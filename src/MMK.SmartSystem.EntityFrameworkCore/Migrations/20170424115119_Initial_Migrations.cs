@@ -13,7 +13,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     DeleterUserId = table.Column<long>(nullable: true),
@@ -34,7 +34,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     BrowserInfo = table.Column<string>(maxLength: 256, nullable: true),
                     ClientIpAddress = table.Column<string>(maxLength: 64, nullable: true),
                     ClientName = table.Column<string>(maxLength: 128, nullable: true),
@@ -60,7 +60,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     DeleterUserId = table.Column<long>(nullable: true),
@@ -85,7 +85,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     BrowserInfo = table.Column<string>(maxLength: 256, nullable: true),
                     ClientIpAddress = table.Column<string>(maxLength: 64, nullable: true),
                     ClientName = table.Column<string>(maxLength: 128, nullable: true),
@@ -106,7 +106,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     OrganizationUnitId = table.Column<long>(nullable: false),
@@ -123,7 +123,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     IsAbandoned = table.Column<bool>(nullable: false),
@@ -144,7 +144,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     DeleterUserId = table.Column<long>(nullable: true),
@@ -167,7 +167,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     Key = table.Column<string>(maxLength: 256, nullable: false),
@@ -267,7 +267,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(maxLength: 95, nullable: false),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
@@ -296,7 +296,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     AuthenticationSource = table.Column<string>(maxLength: 64, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
@@ -355,7 +355,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
@@ -380,7 +380,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
                     CreationTime = table.Column<DateTime>(nullable: false),
@@ -404,7 +404,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
                     ProviderKey = table.Column<string>(maxLength: 256, nullable: false),
                     TenantId = table.Column<int>(nullable: true),
@@ -426,7 +426,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     RoleId = table.Column<int>(nullable: false),
@@ -449,7 +449,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     LoginProvider = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     TenantId = table.Column<int>(nullable: true),
@@ -472,7 +472,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -498,7 +498,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
@@ -542,7 +542,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ConnectionString = table.Column<string>(maxLength: 1024, nullable: true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
@@ -590,7 +590,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
@@ -622,7 +622,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
                     CreationTime = table.Column<DateTime>(nullable: false),
@@ -743,7 +743,7 @@ namespace MMK.SmartSystem.Migrations
                 columns: new[] { "TenantId", "UserId" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AbpUserLogins_TenantId_LoginProvider_ProviderKey",
+                name: "IX_TenantId_LoginProvider_ProviderKey",
                 table: "AbpUserLogins",
                 columns: new[] { "TenantId", "LoginProvider", "ProviderKey" });
 
@@ -753,12 +753,12 @@ namespace MMK.SmartSystem.Migrations
                 columns: new[] { "UserId", "TenantId" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AbpUserLoginAttempts_TenancyName_UserNameOrEmailAddress_Result",
+                name: "IX_TenancyName_UserNameOrEmailAddress_Result",
                 table: "AbpUserLoginAttempts",
                 columns: new[] { "TenancyName", "UserNameOrEmailAddress", "Result" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AbpUserOrganizationUnits_TenantId_OrganizationUnitId",
+                name: "IX_TenantId_OrganizationUnitId",
                 table: "AbpUserOrganizationUnits",
                 columns: new[] { "TenantId", "OrganizationUnitId" });
 
@@ -813,17 +813,17 @@ namespace MMK.SmartSystem.Migrations
                 columns: new[] { "TenantId", "Name" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AbpLanguageTexts_TenantId_Source_LanguageName_Key",
+                name: "IX_TenantId_Source_LanguageName_Key",
                 table: "AbpLanguageTexts",
                 columns: new[] { "TenantId", "Source", "LanguageName", "Key" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AbpNotificationSubscriptions_NotificationName_EntityTypeName_EntityId_UserId",
+                name: "IX_NotificationName_EntityTypeName_EntityId_UserId",
                 table: "AbpNotificationSubscriptions",
                 columns: new[] { "NotificationName", "EntityTypeName", "EntityId", "UserId" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AbpNotificationSubscriptions_TenantId_NotificationName_EntityTypeName_EntityId_UserId",
+                name: "IX_TenantId_NName_EntityName_EId_UId",
                 table: "AbpNotificationSubscriptions",
                 columns: new[] { "TenantId", "NotificationName", "EntityTypeName", "EntityId", "UserId" });
 

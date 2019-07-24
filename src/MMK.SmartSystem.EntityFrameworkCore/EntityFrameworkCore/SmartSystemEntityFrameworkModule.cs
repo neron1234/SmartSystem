@@ -2,12 +2,14 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.EntityFrameworkCore;
+using MMK.CNC.Core;
 using MMK.SmartSystem.EntityFrameworkCore.Seed;
 
 namespace MMK.SmartSystem.EntityFrameworkCore
 {
     [DependsOn(
         typeof(SmartSystemCoreModule), 
+        typeof(CNCCoreModule),
         typeof(AbpZeroCoreEntityFrameworkCoreModule))]
     public class SmartSystemEntityFrameworkModule : AbpModule
     {

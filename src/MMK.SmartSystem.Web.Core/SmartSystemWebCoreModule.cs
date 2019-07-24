@@ -12,11 +12,13 @@ using Abp.Zero.Configuration;
 using MMK.SmartSystem.Authentication.JwtBearer;
 using MMK.SmartSystem.Configuration;
 using MMK.SmartSystem.EntityFrameworkCore;
+using MMK.CNC.Application;
 
 namespace MMK.SmartSystem
 {
     [DependsOn(
          typeof(SmartSystemApplicationModule),
+         typeof(CNCApplicationModule),
          typeof(SmartSystemEntityFrameworkModule),
          typeof(AbpAspNetCoreModule)
         ,typeof(AbpAspNetCoreSignalRModule)
@@ -46,6 +48,10 @@ namespace MMK.SmartSystem
                      typeof(SmartSystemApplicationModule).GetAssembly()
                  );
 
+            Configuration.Modules.AbpAspNetCore()
+                 .CreateControllersForAppServices(
+                     typeof(CNCApplicationModule).GetAssembly()
+                 );
             ConfigureTokenAuth();
         }
 

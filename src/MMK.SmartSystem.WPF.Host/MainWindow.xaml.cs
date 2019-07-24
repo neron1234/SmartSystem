@@ -1,4 +1,5 @@
 ﻿using Abp.Dependency;
+using MMK.CNC.Application.Managements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,37 @@ namespace MMK.SmartSystem.WPF.Host
     /// </summary>
     public partial class MainWindow : Window, ISingletonDependency
     {
-        public MainWindow()
+        IDepartmentAppService userAppService;
+        public MainWindow(IDepartmentAppService userAppService)
         {
+            this.userAppService = userAppService;
+
             InitializeComponent();
+            this.Loaded += MainWindow_Loaded;
+        }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                await userAppService.Create(new CNC.Application.Managements.Dto.CreateDeppartmentDto()
+                {
+
+                    Code = DateTime.Now.ToString(),
+                    Icon = "Icon",
+                    Level = "parent",
+                    Name = "Wpf",
+                    ParentId = 0,
+                    Sort = 1
+
+                });
+                var res = await userAppService.GetAll(new CNC.Application.Managements.Dto.PagedDepartmentResultRequestDto() { SkipCount = 0, MaxResultCount = 10 });
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

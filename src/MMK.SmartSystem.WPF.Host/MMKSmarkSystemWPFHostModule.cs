@@ -1,4 +1,9 @@
 ﻿using Abp.Modules;
+using Abp.Reflection.Extensions;
+using Microsoft.Extensions.Configuration;
+using MMK.CNC.Application;
+using MMK.SmartSystem.Configuration;
+using MMK.SmartSystem.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +13,28 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WPF.Host
 {
-    [DependsOn(typeof(SmartSystemApplicationModule))]
+    [DependsOn(typeof(CNCApplicationModule),typeof(SmartSystemEntityFrameworkModule))]
     public class MMKSmarkSystemWPFHostModule : AbpModule
     {
+        private readonly IConfigurationRoot _appConfiguration;
+
+        public MMKSmarkSystemWPFHostModule()
+        {
+
+            _appConfiguration = AppConfigurations.Get(
+                typeof(MMKSmarkSystemWPFHostModule).GetAssembly().GetDirectoryPathOrNull()
+            );
+        }
+
+        public override void PreInitialize()
+        {
+            Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
+                SmartSystemConsts.ConnectionStringName
+            );
+
+            Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
+         
+        }
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
