@@ -29,6 +29,7 @@ namespace MMK.SmartSystem.WPF.Host
         {
             _bootstrapper.Initialize();
             _mainWindow = _bootstrapper.IocManager.Resolve<MainWindow>();
+            _bootstrapper.IocManager.Resolve(Type.GetType(""));
             _mainWindow.Show();
             // base.OnStartup(e);
         }

@@ -22,7 +22,7 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\cnc\MMK.CNC.Core\MMK.CNC.Core.csproj" />
+    <ProjectReference Include="..\..\module\cnc\MMK.CNC.Core\MMK.CNC.Core.csproj" />
     <ProjectReference Include="..\MMK.SmartSystem.Core\MMK.SmartSystem.Core.csproj" />
   </ItemGroup>
   <ItemGroup>

@@ -278,13 +278,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\cnc\MMK.CNC.Application\MMK.CNC.Application.csproj">
+    <ProjectReference Include="..\..\module\cnc\MMK.CNC.Application\MMK.CNC.Application.csproj">
       <Project>{078BA423-84E1-482C-81B4-D861E9DE2D9F}</Project>
       <Name>MMK.CNC.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\cnc\MMK.CNC.Core\MMK.CNC.Core.csproj">
-      <Project>{f1f5df84-ebe4-4f5e-b8b8-c42ccb91ab83}</Project>
-      <Name>MMK.CNC.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\MMK.SmartSystem.Core\MMK.SmartSystem.Core.csproj">
       <Project>{0FA75A5B-AB83-4FD0-B545-279774C01E87}</Project>
