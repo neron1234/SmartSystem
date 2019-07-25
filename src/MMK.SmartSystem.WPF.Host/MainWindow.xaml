@@ -7,6 +7,31 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+
+                
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+
+            <ItemsControl ItemsSource="{Binding mainMenuViews}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Title}" Height="30" Margin="10" Command="{Binding OpenCommand}" CommandParameter="{Binding .}"/>
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            
+            </ItemsControl>
+        </StackPanel>
+        <Border Grid.Column="1">
+            <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
+        </Border>
     </Grid>
 </Window>
