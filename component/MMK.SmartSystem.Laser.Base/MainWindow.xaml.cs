@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.Laser.Base.MachineOperation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,35 @@ namespace MMK.SmartSystem.Laser.Base
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+            switch (btn.Content)
+            {
+                case "自动巡边":
+                    Frame.Content = new AutoFindSidePage();
+                    break;
+                case "割嘴复归":
+                    Frame.Content = new CutterResetCheckPage();
+                    break;
+                case "割嘴清洁":
+                    Frame.Content = new AutoCutterCleanPage();
+                    break;
+                case "割嘴对中":
+                    Frame.Content = new CutCenterPage();
+                    break;
+                case "辅助气体":
+                    Frame.Content = new AuxGasCheckPage();
+                    break;
+                case "手动寻边":
+                    Frame.Content = new ManualFindSidePage();
+                    break;
+                default:
+                        Frame.Content = null;
+                break;
+            }
         }
     }
 }
