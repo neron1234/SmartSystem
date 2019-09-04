@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Laser.Base
 {
-    public class SmartSystemDeviceModule:AbpModule
+    public class SmartSystemLaserModule : AbpModule
     {
         public override void PreInitialize()
         {
