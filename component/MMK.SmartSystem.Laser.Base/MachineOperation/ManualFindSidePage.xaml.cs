@@ -24,6 +24,10 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         public ManualFindSidePage()
         {
             InitializeComponent();
+
+            SmartSystem.Common.Client client = new Common.Client("http://localhost:21021", new System.Net.Http.HttpClient());
+            var alls = client.ApiServicesAppDepartmentGetAllGetAsync("", "", 0, 20).Result;
+
         }
     }
 }
