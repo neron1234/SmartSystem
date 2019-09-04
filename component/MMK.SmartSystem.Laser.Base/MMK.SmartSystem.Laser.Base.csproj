@@ -97,4 +97,7 @@
     <Folder Include="MachineOperation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetFileName)"  "$(SolutionDir)\src\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
