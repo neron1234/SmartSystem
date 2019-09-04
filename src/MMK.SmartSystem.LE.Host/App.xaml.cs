@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace MMK.SmartSystem.WPF.Host
+namespace MMK.SmartSystem.LE.Host
 {
     /// <summary>
     /// App.xaml 的交互逻辑
@@ -22,7 +22,7 @@ namespace MMK.SmartSystem.WPF.Host
         private MainWindow _mainWindow;
         public App()
         {
-            _bootstrapper = AbpBootstrapper.Create<MMKSmarkSystemWPFHostModule>();
+            _bootstrapper = AbpBootstrapper.Create<MMKSmartSystemLEHostModule>();
             _bootstrapper.IocManager.IocContainer.AddFacility<LoggingFacility>(
                 f => f.UseAbpLog4Net().WithConfig("log4net.config"));
         }
@@ -47,7 +47,7 @@ namespace MMK.SmartSystem.WPF.Host
             {
                 foreach (var item in plug.GetAssemblies())
                 {
-                    SmartSystemWPFConsts.SystemMeuns.Where(d => !d.IsLoad).ToList().ForEach(d =>
+                    SmartSystemLEConsts.SystemMeuns.Where(d => !d.IsLoad).ToList().ForEach(d =>
                     {
                         var type = item.GetType(d.Page);
                         if (type != null)
