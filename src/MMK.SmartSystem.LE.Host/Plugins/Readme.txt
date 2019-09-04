@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMK.SmartSystem.WPF.Host.Plugins
+namespace MMK.SmartSystem.LE.Host.Plugins
 {
     class Readme
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MMK.SmartSystem.WPF.Host.Properties
+namespace MMK.SmartSystem.LE.Host.Properties
 {
 
 
