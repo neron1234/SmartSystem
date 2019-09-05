@@ -25,9 +25,12 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         {
             InitializeComponent();
 
-            Common.DepartmentClient client = new Common.DepartmentClient("http://localhost:21021", new System.Net.Http.HttpClient());
+            SmartSystem.Common.UserClient userClient = new Common.UserClient("http://localhost:21021", new System.Net.Http.HttpClient());
+          
+            var res = userClient.GetRolesAsync().Result;
+            SmartSystem.Common.DepartmentClient client = new Common.DepartmentClient("http://localhost:21021", new System.Net.Http.HttpClient());
+            var alls = client.GetAllAsync("", "", 0, 20).Result;
 
-            var result = client.GetAllAsync("", "", 0, 20).Result;
         }
     }
 }
