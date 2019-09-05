@@ -16,7 +16,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
-            <ItemsControl ItemsSource="{Binding mainMenuViews}">
+            <ItemsControl x:Name="MenuItemControl" ItemsSource="{Binding mainMenuPageViews}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel />
@@ -25,7 +25,6 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Content="{Binding Title}" Height="30" Margin="10" Command="{Binding OpenCommand}" CommandParameter="{Binding .}"/>
-
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -37,15 +36,16 @@
             <ItemsControl ItemsSource="{Binding SysModuleViews}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel />
+                        <StackPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding ModuleName}" Height="30" Margin="10" Command="{Binding OpenCommand}" CommandParameter="{Binding .}"/>
+                        <Button Content="{Binding ModuleName}" Width="150" Height="30" Margin="10" Command="{Binding OpenCommand}" CommandParameter="{Binding .}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+            <Button Content="登陆"  Width="150" Height="30" Margin="10" Click="Button_Click"/>
         </StackPanel>
     </Grid>
 </Window>

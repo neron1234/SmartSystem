@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common.SerivceProxy;
 using MMK.SmartSystem.LE.Host.Account.UserControls.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -25,18 +26,30 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls
         public LoginControl()
         {
             InitializeComponent();
-            LoginModel = new LoginControlViewModel();
+            Loaded += UserControl_Loaded;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            LoginModel = new LoginControlViewModel()
+            {
+                Account = "admin",
+                Pwd = "123qwe",
+                IsLogin = true
+            };
             this.DataContext = this;
             Messenger.Default.Register<LoginControlViewModel>(this, Login);
         }
 
-        private void Login(LoginControlViewModel loginModel)
+        private void Login(LoginControlViewModel model)
         {
-            MessageBox.Show(LoginModel.Account);
+            TokenAuthClient tokenAuthClient = new TokenAuthClient(MMK.SmartSystem.Common.SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
+            if (ts.Result != null)
+            {
+                Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
+                MessageBox.Show("登陆成功");
+            }
         }
     }
 }

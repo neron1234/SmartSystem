@@ -14,7 +14,13 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
     {
         public string ModuleName { get; set; } 
         public string Icon { get; set; }
-        public List<MainMenuViewModel> mainMenuViews { get; set; }
+        private List<MainMenuViewModel> mainMenuViews;
+        public List<MainMenuViewModel> MainMenuViews
+        {
+            get { return mainMenuViews; }
+            set { mainMenuViews = value; RaisePropertyChanged(() => MainMenuViews); }
+        }
+        
 
         public ICommand OpenCommand
         {
