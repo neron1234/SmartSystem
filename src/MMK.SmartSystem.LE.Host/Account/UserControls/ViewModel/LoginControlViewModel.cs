@@ -12,7 +12,9 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls.ViewModel
 {
     public class LoginControlViewModel:ViewModelBase
     {
+        
         public bool IsLogin { get; set; }
+
         public string Account { get; set; }
         public string Pwd { get; set; }
 

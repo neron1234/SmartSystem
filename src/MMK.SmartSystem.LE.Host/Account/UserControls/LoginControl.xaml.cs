@@ -45,10 +45,14 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls
         {
             TokenAuthClient tokenAuthClient = new TokenAuthClient(MMK.SmartSystem.Common.SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
             var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
-            if (ts.Result != null)
+            if (ts.Success)
             {
                 Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
                 MessageBox.Show("登陆成功");
+            }
+            else
+            {
+                MessageBox.Show(ts.Error.Details);
             }
         }
     }
