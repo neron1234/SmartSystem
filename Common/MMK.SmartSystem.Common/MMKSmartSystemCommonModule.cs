@@ -1,4 +1,5 @@
 ﻿using Abp.Modules;
+using Abp.Reflection.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,9 @@ namespace MMK.SmartSystem.Common
 {
     public class MMKSmartSystemCommonModule : AbpModule
     {
-
         public override void PreInitialize()
         {
-           
-
+            
         }
         public override void Initialize()
         {
