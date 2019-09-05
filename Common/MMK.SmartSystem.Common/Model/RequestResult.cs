@@ -10,7 +10,6 @@ namespace MMK.SmartSystem.Common.Model
     public class RequestResult<T> where T : class
     {
         [JsonProperty("result", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-
         public T Result { get; set; }
 
         [JsonProperty("targetUrl", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
