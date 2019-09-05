@@ -43,6 +43,8 @@ namespace MMK.SmartSystem.LE.Host
             mainMenuViews = SmartSystemLEConsts.SystemMeuns;
             this.DataContext = this;
             Messenger.Default.Register<MainMenuViewModel>(this, Navigation);
+            frame.Content = new Account.UserControls.LoginControl();
+            return;
             if (mainMenuViews.Count > 0)
             {
                 Navigation(mainMenuViews[0]);
@@ -56,11 +58,7 @@ namespace MMK.SmartSystem.LE.Host
             {
                 var page = iocManager.Resolve(model.PageType);
                 frame.Content = page;
-
             }
-
         }
-
-        
     }
 }

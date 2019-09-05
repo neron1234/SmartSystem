@@ -209,8 +209,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Account\UserControls\LoginControl.xaml.cs">
+      <DependentUpon>LoginControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Account\UserControls\ViewModel\LoginControlViewModel.cs" />
     <Compile Include="SmartSystemLEConsts.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
+    <Page Include="Account\UserControls\LoginControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
