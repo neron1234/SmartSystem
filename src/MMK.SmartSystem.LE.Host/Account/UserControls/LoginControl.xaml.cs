@@ -27,6 +27,12 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls
         {
             InitializeComponent();
             Loaded += UserControl_Loaded;
+            Unloaded += LoginControl_Unloaded;
+        }
+
+        private void LoginControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Unregister<LoginControlViewModel>(this, Login);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -54,6 +60,7 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls
             {
                 MessageBox.Show(ts.Error.Details);
             }
+            LoginModel.IsLogin = true;
         }
     }
 }

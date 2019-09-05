@@ -26,7 +26,7 @@
             <Border Grid.Column="0" BorderBrush="#FF323232" BorderThickness="0" Background="Transparent">
                 <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Border>
-            <TextBlock Grid.Row="1" Text="PROCESSDESCRIP" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+            <TextBlock Grid.Row="1" Text="PROCESSDESCRIP" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Foreground="White" Margin="0,16,132,15.6"/>
 
             <Button Grid.Row="2" Width="200" Height="60" VerticalAlignment="Center" Content="MANUALSTART" 
                         HorizontalAlignment="Center" />
@@ -54,7 +54,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="" Margin="10,0,0,0"
+                <TextBlock Text="ZEROPOINT" Margin="10,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
                 <TextBlock Text="X" Margin="5,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>

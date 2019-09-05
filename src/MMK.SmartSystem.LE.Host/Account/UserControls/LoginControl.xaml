@@ -3,14 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.Account"
+        xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.Account.UserControls"
         mc:Ignorable="d"
         Height="450" Width="800" 
         BorderBrush="DarkGray" BorderThickness="1" 
         Background="#FFC4DEE7" FontSize="15" FontFamily="微软雅黑">
     <UserControl.Resources>
         <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Padding" Value="18"/>
+            <Setter Property="IsEnabled" Value="{Binding LoginModel.IsLogin}"/>
+        </Style>
+        <Style x:Key="TextBlockStyle_Error" TargetType="{x:Type TextBlock}">
+            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="Padding" Value="15 0 0 0"/>
         </Style>
         <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Margin" Value="10"/>
@@ -23,7 +30,7 @@
             <ColumnDefinition />
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="250"/>
-            <ColumnDefinition />
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -35,12 +42,14 @@
 
 
         <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="账号:" Style="{StaticResource TextBlockStyle}"/>
-            <TextBlock Text="密码:" Style="{StaticResource TextBlockStyle}"/>
+            <TextBlock Text="账号:" Style="{StaticResource TextBlockStyle}" />
+            <TextBlock Text="密码:" Style="{StaticResource TextBlockStyle}" />
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding LoginModel.Account}" />
+            <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="账号不能为空"/>
             <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding LoginModel.Pwd}"/>
+            <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="密码不能为空"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="登陆" Width="250" Height="35" Foreground="White" BorderBrush="#FF3838C9" Command="{Binding LoginModel.LoginCommand}" IsEnabled="{Binding LoginModel.IsLogin}">

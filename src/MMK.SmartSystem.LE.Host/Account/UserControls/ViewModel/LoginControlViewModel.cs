@@ -12,8 +12,49 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls.ViewModel
 {
     public class LoginControlViewModel:ViewModelBase
     {
-        
-        public bool IsLogin { get; set; }
+        private bool isLogin;
+        public bool IsLogin
+        {
+            get { return isLogin; }
+            set
+            {
+                isLogin = value;
+                RaisePropertyChanged(() => IsLogin);
+            }
+        }
+
+        private bool isError;
+        public bool IsError
+        {
+            get { return isLogin; }
+            set
+            {
+                isError = value;
+                RaisePropertyChanged(() => IsError);
+            }
+        }
+
+        private string accountError;
+        public string AccountError
+        {
+            get { return accountError; }
+            set
+            {
+                accountError = value;
+                RaisePropertyChanged(() => AccountError);
+            }
+        }
+
+        private string pwdError;
+        public string PwdError
+        {
+            get { return pwdError; }
+            set
+            {
+                pwdError = value;
+                RaisePropertyChanged(() => PwdError);
+            }
+        }
 
         public string Account { get; set; }
         public string Pwd { get; set; }
@@ -24,6 +65,7 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls.ViewModel
             {
                 return new RelayCommand<LoginControlViewModel>((s) =>
                 {
+                    IsLogin = false;
                     Messenger.Default.Send(s);
                 });
             }

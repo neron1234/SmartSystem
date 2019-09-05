@@ -20,7 +20,6 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
             get { return mainMenuViews; }
             set { mainMenuViews = value; RaisePropertyChanged(() => MainMenuViews); }
         }
-        
 
         public ICommand OpenCommand
         {
@@ -32,6 +31,5 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
                 });
             }
         }
-
     }
 }
