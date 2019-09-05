@@ -26,7 +26,7 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls.ViewModel
         private bool isError;
         public bool IsError
         {
-            get { return isLogin; }
+            get { return isError; }
             set
             {
                 isError = value;
