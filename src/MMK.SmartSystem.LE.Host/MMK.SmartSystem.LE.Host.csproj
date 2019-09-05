@@ -215,6 +215,7 @@
     <Compile Include="Account\UserControls\ViewModel\LoginControlViewModel.cs" />
     <Compile Include="SmartSystemLEConsts.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
+    <Compile Include="ViewModel\SystemMenuModuleViewModel.cs" />
     <Page Include="Account\UserControls\LoginControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

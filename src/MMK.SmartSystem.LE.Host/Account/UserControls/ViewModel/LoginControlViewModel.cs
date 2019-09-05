@@ -21,7 +21,7 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls.ViewModel
         {
             Account = "请输入账号";
             Pwd = "请输入密码";
-            IsLogin = false;
+            IsLogin = true;
         }
 
         public ICommand LoginCommand

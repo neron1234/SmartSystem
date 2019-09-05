@@ -11,5 +11,7 @@ namespace MMK.SmartSystem.LE.Host
     {
         public static List<MainMenuViewModel> SystemMeuns = new List<MainMenuViewModel>();
 
+        public static List<SystemMenuModuleViewModel> SystemModules = new List<SystemMenuModuleViewModel>();
+
     }
 }

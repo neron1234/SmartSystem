@@ -24,6 +24,8 @@ namespace MMK.SmartSystem.LE.Host
     public partial class MainWindow : Window, ISingletonDependency
     {
         public List<MainMenuViewModel> mainMenuViews { set; get; }
+        //public List<MainMenuViewModel> mainMenuPageViews { set; get; }
+        public List<SystemMenuModuleViewModel> SysModuleViews { get;set; }
         IIocManager iocManager;
         public MainWindow(IIocManager iocManager)
         {
@@ -40,16 +42,17 @@ namespace MMK.SmartSystem.LE.Host
 
         private  void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            mainMenuViews = SmartSystemLEConsts.SystemMeuns;
+            //mainMenuViews = SmartSystemLEConsts.SystemMeuns;
+            SysModuleViews = SmartSystemLEConsts.SystemModules;
             this.DataContext = this;
-            Messenger.Default.Register<MainMenuViewModel>(this, Navigation);
-            frame.Content = new Account.UserControls.LoginControl();
-            return;
-            if (mainMenuViews.Count > 0)
+            
+            Messenger.Default.Register<SystemMenuModuleViewModel>(this, NavigationModule);
+            //frame.Content = new Account.UserControls.LoginControl();
+            //return;
+            if (SysModuleViews.Count > 0)
             {
-                Navigation(mainMenuViews[0]);
+                NavigationModule(SysModuleViews[0]);
             }
-
         }
 
         private void Navigation(MainMenuViewModel model)
@@ -58,6 +61,16 @@ namespace MMK.SmartSystem.LE.Host
             {
                 var page = iocManager.Resolve(model.PageType);
                 frame.Content = page;
+            }
+        }
+
+        private void NavigationModule(SystemMenuModuleViewModel model)
+        {
+            mainMenuViews = model.mainMenuViews;
+            Messenger.Default.Register<MainMenuViewModel>(this, Navigation);
+            if (mainMenuViews.Count > 0)
+            {
+                Navigation(mainMenuViews[0]);
             }
         }
     }

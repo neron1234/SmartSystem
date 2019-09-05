@@ -57,6 +57,16 @@ namespace MMK.SmartSystem.LE.Host
                         }
 
                     });
+                    SmartSystemLEConsts.SystemModules.ForEach((s) => s.mainMenuViews.Where(d => !d.IsLoad).ToList().ForEach(d =>
+                    {
+                        var type = item.GetType(d.Page);
+                        if (type != null)
+                        {
+                            d.IsLoad = true;
+                            d.PageType = type;
+                        }
+
+                    }));
                 }
             }
         }

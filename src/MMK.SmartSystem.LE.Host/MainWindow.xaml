@@ -10,11 +10,12 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*" />
-
-
         </Grid.ColumnDefinitions>
-        <StackPanel>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
             <ItemsControl ItemsSource="{Binding mainMenuViews}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -27,11 +28,24 @@
 
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-
             </ItemsControl>
         </StackPanel>
-        <Border Grid.Column="1">
+        <Border Grid.Column="1" Grid.Row="1">
             <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
         </Border>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <ItemsControl ItemsSource="{Binding SysModuleViews}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding ModuleName}" Height="30" Margin="10" Command="{Binding OpenCommand}" CommandParameter="{Binding .}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
     </Grid>
 </Window>
