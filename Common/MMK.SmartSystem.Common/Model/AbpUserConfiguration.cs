@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MMK.SmartSystem.Common.Converts;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,19 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.Model
 {
+    public class PermissionNode
+    {
+        public string Name { get; set; }
+
+        public bool Value { get; set; }
+    }
+
+    public class LocalNode
+    {
+        public string Key { get; set; }
+
+        public string Value { get; set; }
+    }
     public class AbpUserConfiguration
     {
         [JsonProperty("auth", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
@@ -18,16 +32,20 @@ namespace MMK.SmartSystem.Common.Model
 
     public class AuthNode
     {
-        [JsonProperty("allPermissions", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public string AllPermissions { get; set; }
+        [JsonProperty("allPermissions")]
 
-        [JsonProperty("grantedPermissions", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public string GrantedPermissions { get; set; }
+        public Dictionary<string, string> AllPermissions { get; set; }
+
+        [JsonProperty("grantedPermissions")]
+
+
+        public Dictionary<string, string> GrantedPermissions { get; set; }
     }
 
     public class LocalizationNode
     {
         [JsonProperty("currentCulture", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(TestJsonConvert))]
         public Culture CurrentCulture { get; set; }
 
         [JsonProperty("values", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
@@ -45,8 +63,7 @@ namespace MMK.SmartSystem.Common.Model
 
     public class LocalizationValue
     {
-        [JsonProperty("SmartSystem", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-
-        public string SmartSystem { get; set; }
+        [JsonProperty("SmartSystem", Required = Required.Default))]
+        public Dictionary<string, string> SmartSystem { get; set; }
     }
 }

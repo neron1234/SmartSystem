@@ -13,5 +13,7 @@ namespace MMK.SmartSystem.Common
         public const string ApiHost = "http://localhost:21021";
 
         public static AuthenticateResultModel AuthenticateModel = new AuthenticateResultModel();
+
+        public static string CurrentCulture = "zh-Hans";
     }
 }

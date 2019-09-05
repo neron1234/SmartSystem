@@ -1,45 +1,23 @@
-﻿using MMK.SmartSystem.Common.Model;
+﻿using MMK.SmartSystem.Common.Converts;
+using MMK.SmartSystem.Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.SerivceProxy
 {
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.0.4.0 (NJsonSchema v10.0.21.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial interface ITokenAuthClient
+    public interface ITokenAuthClient
     {
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RequestResult<AuthenticateResultModel>> AuthenticateAsync(AuthenticateModel model);
 
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RequestResult<AuthenticateResultModel>> AuthenticateAsync(AuthenticateModel model, System.Threading.CancellationToken cancellationToken);
+        Task<RequestResult<AuthenticateResultModel>> AuthenticateAsync(AuthenticateModel model);
+        Task<RequestResult<AuthenticateResultModel>> AuthenticateAsync(AuthenticateModel model, CancellationToken cancellationToken);
 
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ExternalLoginProviderInfoModel>> GetExternalAuthenticationProvidersAsync();
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ExternalLoginProviderInfoModel>> GetExternalAuthenticationProvidersAsync(System.Threading.CancellationToken cancellationToken);
-
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ExternalAuthenticateResultModel> ExternalAuthenticateAsync(ExternalAuthenticateModel model);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ExternalAuthenticateResultModel> ExternalAuthenticateAsync(ExternalAuthenticateModel model, System.Threading.CancellationToken cancellationToken);
-
+        Task<RequestResult<AbpUserConfiguration>> GetUserConfiguraionAsync();
     }
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.0.4.0 (NJsonSchema v10.0.21.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class TokenAuthClient : ITokenAuthClient
+    public partial class TokenAuthClient : BaseAuthClient, ITokenAuthClient
     {
         private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
@@ -51,7 +29,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
             _httpClient = httpClient;
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
             {
-                var settings = new Newtonsoft.Json.JsonSerializerSettings();
+                var settings = new Newtonsoft.Json.JsonSerializerSettings();            
                 UpdateJsonSerializerSettings(settings);
                 return settings;
             });
@@ -66,21 +44,17 @@ namespace MMK.SmartSystem.Common.SerivceProxy
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
 
         partial void UpdateJsonSerializerSettings(Newtonsoft.Json.JsonSerializerSettings settings);
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url);
+
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<RequestResult<AuthenticateResultModel>> AuthenticateAsync(AuthenticateModel model)
+        public Task<RequestResult<AuthenticateResultModel>> AuthenticateAsync(AuthenticateModel model)
         {
-            return AuthenticateAsync(model, System.Threading.CancellationToken.None);
+            return AuthenticateAsync(model, CancellationToken.None);
         }
 
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<RequestResult<AuthenticateResultModel>> AuthenticateAsync(AuthenticateModel model, System.Threading.CancellationToken cancellationToken)
+
+        public async Task<RequestResult<AuthenticateResultModel>> AuthenticateAsync(AuthenticateModel model, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TokenAuth/Authenticate");
@@ -114,10 +88,10 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                         ProcessResponse(client_, response_);
 
                         var status_ = ((int)response_.StatusCode).ToString();
-                       // if (status_ == "200")
+                        // if (status_ == "200")
                         //{
-                            var objectResponse_ = await ReadObjectResponseAsync<RequestResult<AuthenticateResultModel>>(response_, headers_).ConfigureAwait(false);
-                            return objectResponse_.Object;
+                        var objectResponse_ = await ReadObjectResponseAsync<RequestResult<AuthenticateResultModel>>(response_, headers_).ConfigureAwait(false);
+                        return objectResponse_.Object;
                         //}
                         //else
                         //if (status_ != "200" && status_ != "204")
@@ -128,7 +102,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
 
                         //return default(RequestResult<AuthenticateResultModel>);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                         throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, null, ex);
@@ -145,96 +119,18 @@ namespace MMK.SmartSystem.Common.SerivceProxy
             }
         }
 
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ExternalLoginProviderInfoModel>> GetExternalAuthenticationProvidersAsync()
-        {
-            return GetExternalAuthenticationProvidersAsync(System.Threading.CancellationToken.None);
-        }
 
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ExternalLoginProviderInfoModel>> GetExternalAuthenticationProvidersAsync(System.Threading.CancellationToken cancellationToken)
+        public async Task<RequestResult<AbpUserConfiguration>> GetUserConfiguraionAsync()
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TokenAuth/GetExternalAuthenticationProviders");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/AbpUserConfiguration/GetAll");
 
             var client_ = _httpClient;
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
-                    PrepareRequest(client_, request_, urlBuilder_);
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    try
-                    {
-                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200")
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<ExternalLoginProviderInfoModel>>(response_, headers_).ConfigureAwait(false);
-                            return objectResponse_.Object;
-                        }
-                        else
-                        if (status_ != "200" && status_ != "204")
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
-                        }
-
-                        return default(System.Collections.Generic.ICollection<ExternalLoginProviderInfoModel>);
-                    }
-                    finally
-                    {
-                        if (response_ != null)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-            }
-        }
-
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<ExternalAuthenticateResultModel> ExternalAuthenticateAsync(ExternalAuthenticateModel model)
-        {
-            return ExternalAuthenticateAsync(model, System.Threading.CancellationToken.None);
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<ExternalAuthenticateResultModel> ExternalAuthenticateAsync(ExternalAuthenticateModel model, System.Threading.CancellationToken cancellationToken)
-        {
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/TokenAuth/ExternalAuthenticate");
-
-            var client_ = _httpClient;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    var content_ = new System.Net.Http.StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(model, _settings.Value));
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
-                    request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
@@ -243,7 +139,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
 
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
                     try
                     {
                         var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
@@ -256,19 +152,15 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                         ProcessResponse(client_, response_);
 
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200")
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ExternalAuthenticateResultModel>(response_, headers_).ConfigureAwait(false);
-                            return objectResponse_.Object;
-                        }
-                        else
-                        if (status_ != "200" && status_ != "204")
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
-                        }
+                        string red = response_.Content.ReadAsStringAsync().Result;
+                        var objectResponse_ = await ReadObjectResponseAsync<RequestResult<AbpUserConfiguration>>(response_, headers_).ConfigureAwait(false);
+                        return objectResponse_.Object;
 
-                        return default(ExternalAuthenticateResultModel);
+                    }
+                    catch (Exception ex)
+                    {
+                        var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, null, ex);
                     }
                     finally
                     {
@@ -297,7 +189,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
 
         public bool ReadResponseAsString { get; set; }
 
-        protected virtual async System.Threading.Tasks.Task<ObjectResponseResult<T>> ReadObjectResponseAsync<T>(System.Net.Http.HttpResponseMessage response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers)
+        protected virtual async Task<ObjectResponseResult<T>> ReadObjectResponseAsync<T>(System.Net.Http.HttpResponseMessage response, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers)
         {
             if (response == null || response.Content == null)
             {
@@ -374,5 +266,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
 
             return System.Convert.ToString(value, cultureInfo);
         }
+
+
     }
 }

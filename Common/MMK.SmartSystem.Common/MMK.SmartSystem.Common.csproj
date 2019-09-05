@@ -176,6 +176,7 @@
     <Compile Include="Model\RequestResult.cs" />
     <Compile Include="Model\SystemMeunModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerivceProxy\BaseAuthClient.cs" />
     <Compile Include="SerivceProxy\TokenAuthServiceProxy.cs" />
     <Compile Include="SmartSystem.ServiceProxy.cs" />
     <Compile Include="SmartSystemCommonConsts.cs" />
@@ -185,6 +186,8 @@
     <None Include="packages.config" />
     <None Include="SwaggerConfig.nswag" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Converts\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

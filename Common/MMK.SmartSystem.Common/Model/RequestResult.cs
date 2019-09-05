@@ -16,7 +16,6 @@ namespace MMK.SmartSystem.Common.Model
         public string TargetUrl { get; set; }
 
         [JsonProperty("success", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-
         public bool Success { get; set; }
         [JsonProperty("error", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
 

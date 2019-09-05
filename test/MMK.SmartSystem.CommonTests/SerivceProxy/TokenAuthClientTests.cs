@@ -18,5 +18,18 @@ namespace MMK.SmartSystem.Common.SerivceProxy.Tests
             var obj = tokenAuthClient.AuthenticateAsync(new AuthenticateModel() { UserNameOrEmailAddress = "admin", Password = "123qwe" }).Result;
 
         }
+
+     
+
+        [TestMethod()]
+        public void GetUserConfiguraionAsyncTest()
+        {
+            TokenAuthClient tokenAuthClient = new TokenAuthClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            var obj = tokenAuthClient.AuthenticateAsync(new AuthenticateModel() { UserNameOrEmailAddress = "admin", Password = "123qwe" }).Result;
+            SmartSystemCommonConsts.AuthenticateModel = obj.Result;
+            //   TokenAuthClient tokenAuthClient = new TokenAuthClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
+
+        }
     }
 }
