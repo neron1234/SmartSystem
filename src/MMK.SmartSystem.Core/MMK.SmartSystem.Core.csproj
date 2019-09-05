@@ -12,7 +12,8 @@
     <RootNamespace>MMK.SmartSystem</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Localization\SourceFiles\*.xml" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+    <EmbeddedResource Include="Localization\SourceFiles\SmartSystem-zh-Hans.xml" />
+    <EmbeddedResource Include="Localization\SourceFiles\SmartSystem.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Abp.AutoMapper" Version="4.3.0" />

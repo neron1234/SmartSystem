@@ -27,6 +27,12 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls
         {
             InitializeComponent();
             Loaded += UserControl_Loaded;
+            Unloaded += LoginControl_Unloaded;
+        }
+
+        private void LoginControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Unregister<LoginControlViewModel>(this, Login);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -35,7 +41,8 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls
             {
                 Account = "admin",
                 Pwd = "123qwe",
-                IsLogin = true
+                IsLogin = true,
+                IsError = false
             };
             this.DataContext = this;
             Messenger.Default.Register<LoginControlViewModel>(this, Login);
@@ -43,6 +50,29 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls
 
         private void Login(LoginControlViewModel model)
         {
+            if (string.IsNullOrEmpty(LoginModel.Account))
+            {
+                LoginModel.AccountError = "账号不能为空";
+                LoginModel.IsError = true;
+            }else
+            {
+                LoginModel.AccountError = "";
+                LoginModel.IsError = false;
+            }
+            if (string.IsNullOrEmpty(LoginModel.Pwd))
+            {
+                LoginModel.PwdError = "密码不能为空";
+                LoginModel.IsError = true;
+            }else
+            {
+                LoginModel.PwdError = "";
+                LoginModel.IsError = false;
+            }
+            LoginModel.IsLogin = true;
+            if (LoginModel.IsError)
+            {
+                return;
+            }
             TokenAuthClient tokenAuthClient = new TokenAuthClient(MMK.SmartSystem.Common.SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
             var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
             if (ts.Success)
@@ -53,6 +83,7 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls
             else
             {
                 MessageBox.Show(ts.Error.Details);
+                LoginModel.IsError = true;
             }
         }
     }
