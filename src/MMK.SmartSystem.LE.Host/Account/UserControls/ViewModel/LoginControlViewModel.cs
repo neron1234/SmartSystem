@@ -12,17 +12,11 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls.ViewModel
 {
     public class LoginControlViewModel:ViewModelBase
     {
+        
         public bool IsLogin { get; set; }
+
         public string Account { get; set; }
-
         public string Pwd { get; set; }
-
-        public LoginControlViewModel()
-        {
-            Account = "请输入账号";
-            Pwd = "请输入密码";
-            IsLogin = true;
-        }
 
         public ICommand LoginCommand
         {

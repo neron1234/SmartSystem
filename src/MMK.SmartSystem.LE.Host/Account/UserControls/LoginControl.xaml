@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Height="450" Width="800" 
         BorderBrush="DarkGray" BorderThickness="1" 
-        Background="#FFC4DEE7" FontSize="15" FontFamily="微软雅黑" Loaded="UserControl_Loaded">
+        Background="#FFC4DEE7" FontSize="15" FontFamily="微软雅黑">
     <UserControl.Resources>
         <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="Padding" Value="10"/>
