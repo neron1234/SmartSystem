@@ -1,4 +1,6 @@
 ﻿using Abp.Modules;
+using MMK.SmartSystem.Common;
+using MMK.SmartSystem.Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +14,24 @@ namespace MMK.SmartSystem.Laser.Base
     {
         public override void PreInitialize()
         {
-            List<string> meun = new List<string>()
+            SystemMenuModule systemMenu = new SystemMenuModule()
             {
-                $"自动寻边:MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage",
-                $"割嘴复归:MMK.SmartSystem.Laser.Base.MachineOperation.CutterResetCheckPage",
-                $"割嘴清洁:MMK.SmartSystem.Laser.Base.MachineOperation.AutoCutterCleanPage",
-                $"割嘴对中:MMK.SmartSystem.Laser.Base.MachineOperation.CutCenterPage",
-                $"辅助气体:MMK.SmartSystem.Laser.Base.MachineOperation.AuxGasCheckPage",
-                $"手动寻边:MMK.SmartSystem.Laser.Base.MachineOperation.ManualFindSidePage"
+                ModuleName = "机床功能",
+                Pages = new List<SystemPageModel>()
+                {
+                    new SystemPageModel(){ Title="自动寻边",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage",IsAuth=true,Permission="MachineOperation.AutoFindSidePage"},
+                    new SystemPageModel(){ Title="割嘴复归",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.CutterResetCheckPage",IsAuth=true,Permission="MachineOperation.CutterResetCheckPage"},
+                    new SystemPageModel(){ Title="割嘴清洁",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AutoCutterCleanPage",IsAuth=true,Permission="MachineOperation.AutoCutterCleanPage"},
+                    new SystemPageModel(){ Title="割嘴对中",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.CutCenterPage",IsAuth=true,Permission="MachineOperation.CutCenterPage"},
+                    new SystemPageModel(){ Title="辅助气体",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AuxGasCheckPage",IsAuth=true,Permission="MachineOperation.AuxGasCheckPage"},
+                    new SystemPageModel(){ Title="手动寻边",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.ManualFindSidePage",IsAuth=true,Permission="MachineOperation.ManualFindSidePage"},
+
+                }
             };
-            Configuration.GetOrCreate("WPF.Page", () => new List<string>()).AddRange(meun);
+          
+            Configuration.GetOrCreate(SmartSystemCommonConsts.ModulePageKey, () => new List<SystemMenuModule>()).AddRange((new List<SystemMenuModule>() { systemMenu}));
+
+
 
         }
         public override void Initialize()
