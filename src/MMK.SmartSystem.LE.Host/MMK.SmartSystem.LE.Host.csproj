@@ -215,6 +215,9 @@
     <Compile Include="AccountControl\ViewModel\LoginControlViewModel.cs" />
     <Compile Include="EventHandler\UserConfigHandler.cs" />
     <Compile Include="SmartSystemLEConsts.cs" />
+    <Compile Include="SystemControl\HeaderMenuControl.xaml.cs">
+      <DependentUpon>HeaderMenuControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemControl\ModuleMenuControl.xaml.cs">
       <DependentUpon>ModuleMenuControl.xaml</DependentUpon>
     </Compile>
@@ -237,6 +240,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SystemControl\HeaderMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SystemControl\ModuleMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -30,7 +30,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
             }
         }
 
-
+        public string ModuleKey { get; set; }
 
         private Visibility _Show;
         public Visibility Show

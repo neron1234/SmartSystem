@@ -24,7 +24,7 @@ namespace MMK.SmartSystem.Authorization
             context.CreatePermission(PermissionNames.Pages_Roles, L("Roles"));
             context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
             foreach (var item in PermissionList){
-                context.CreatePermission(item, L(item), multiTenancySides: MultiTenancySides.Tenant);
+                context.CreatePermission(item, L(item));
                 
             }
         }

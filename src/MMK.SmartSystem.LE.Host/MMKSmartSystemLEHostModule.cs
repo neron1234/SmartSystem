@@ -33,9 +33,9 @@ namespace MMK.SmartSystem.LE.Host
                 var pages = new List<MainMenuViewModel>();
                 d.Pages.OrderBy(f => f.Sort).ToList().ForEach(g =>
                 {
-                    pages.Add(new MainMenuViewModel() { Title = g.Title, Page = g.FullName, Auth = g.IsAuth, Permission = g.Permission });
+                    pages.Add(new MainMenuViewModel() { Title = g.Title, Page = g.FullName, Auth = g.IsAuth, Permission = g.Permission, PageKey = g.Title });
                 });
-                SmartSystemLEConsts.SystemModules.Add(new SystemMenuModuleViewModel() { Icon = d.Icon, ModuleName = d.ModuleName, MainMenuViews = pages });
+                SmartSystemLEConsts.SystemModules.Add(new SystemMenuModuleViewModel() { Icon = d.Icon, ModuleName = d.ModuleName, MainMenuViews = pages, ModuleKey = d.ModuleName });
             });
 
         }

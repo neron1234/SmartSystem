@@ -33,6 +33,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 
         public string Page { get; set; }
 
+        public string PageKey { get; set; }
         public bool Auth { get; set; }
 
         public string Permission { get; set; }

@@ -52,11 +52,11 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
             {
                 foreach (var item in SmartSystemLEConsts.SystemModules)
                 {
-                    item.ModuleName = item.ModuleName.Translate();
+                    item.ModuleName = item.ModuleKey.Translate();
                     bool isAuth = false;
                     foreach (var g in item.MainMenuViews)
                     {
-                        g.Title = g.Title.Translate();
+                        g.Title = g.PageKey.Translate();
                         if (g.Auth)
                         {
                             if (pageAuth.ContainsKey(g.Permission))

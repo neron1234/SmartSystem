@@ -40,52 +40,5 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
                 });
             }
         }
-
-        public ICommand CnCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    SmartSystemCommonConsts.CurrentCulture = "zh-Hans";
-                    EventBus.Default.Trigger(new UserConfigEventData()
-                    {
-                        Culture = SmartSystemCommonConsts.CurrentCulture
-                    });
-                });
-            }
-        }
-
-        public ICommand EnCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    SmartSystemCommonConsts.CurrentCulture = "en";
-                    EventBus.Default.Trigger(new UserConfigEventData()
-                    {
-                        Culture = SmartSystemCommonConsts.CurrentCulture
-                    });
-                });
-            }
-        }
-
-        public ICommand ChangeUserCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    EventBus.Default.Trigger(new UserConfigEventData()
-                    {
-                        UserName = SmartSystemLEConsts.DefaultUser,
-                        Pwd = SmartSystemLEConsts.DefaultPwd,
-                        Culture = SmartSystemLEConsts.Culture,
-                        IsChangeUser = true
-                    });
-                });
-            }
-        }
     }
 }
