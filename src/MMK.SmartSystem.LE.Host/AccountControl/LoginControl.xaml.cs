@@ -46,7 +46,7 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
                 IsLogin = true,
                 IsError = false
             };
-            this.DataContext = this;
+            this.DataContext = LoginModel;
             Messenger.Default.Register<LoginControlViewModel>(this, Login);
         }
 

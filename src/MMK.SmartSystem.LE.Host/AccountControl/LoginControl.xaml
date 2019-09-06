@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="Padding" Value="18"/>
-            <Setter Property="IsEnabled" Value="{Binding LoginModel.IsLogin}"/>
+            <Setter Property="IsEnabled" Value="{Binding IsLogin}"/>
         </Style>
         <Style x:Key="TextBlockStyle_Error" TargetType="{x:Type TextBlock}">
             <Setter Property="Visibility" Value="Visible" />
@@ -27,7 +27,7 @@
                 <Trigger Property="IsFocused" Value="true">
                     <Setter Property="BorderBrush" Value="Green"></Setter>
                 </Trigger>
-                <DataTrigger Binding="{Binding LoginModel.IsError}" Value="True">
+                <DataTrigger Binding="{Binding IsError}" Value="True">
                     <Setter Property="BorderBrush" Value="Red" />
                 </DataTrigger>
             </Style.Triggers>
@@ -54,13 +54,13 @@
             <TextBlock Text="密码:" Style="{StaticResource TextBlockStyle}" />
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding LoginModel.Account}" />
-            <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding LoginModel.AccountError}"/>
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding LoginModel.Pwd}"/>
-            <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding LoginModel.PwdError}"/>
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Account}" />
+            <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding AccountError}"/>
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Pwd}"/>
+            <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding PwdError}"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="登陆" Width="250" Height="35" Foreground="White" BorderBrush="#FF3838C9" Command="{Binding LoginModel.LoginCommand}" IsEnabled="{Binding LoginModel.IsLogin}">
+            <Button Content="登陆" Width="250" Height="35" Foreground="White" BorderBrush="#FF3838C9" Command="{Binding LoginCommand}" IsEnabled="{Binding IsLogin}">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                         <GradientStop Color="#FF7062CE" Offset="1"/>
