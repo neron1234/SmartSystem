@@ -209,14 +209,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Account\UserControls\LoginControl.xaml.cs">
+    <Compile Include="AccountControl\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Account\UserControls\ViewModel\LoginControlViewModel.cs" />
+    <Compile Include="AccountControl\ViewModel\LoginControlViewModel.cs" />
     <Compile Include="SmartSystemLEConsts.cs" />
-    <Compile Include="ViewModel\MainMenuViewModel.cs" />
-    <Compile Include="ViewModel\SystemMenuModuleViewModel.cs" />
-    <Page Include="Account\UserControls\LoginControl.xaml">
+    <Compile Include="SystemControl\ModuleMenuControl.xaml.cs">
+      <DependentUpon>ModuleMenuControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemControl\ViewModel\MainMenuViewModel.cs" />
+    <Compile Include="SystemControl\ViewModel\SystemMenuModuleViewModel.cs" />
+    <Page Include="AccountControl\LoginControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,6 +235,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SystemControl\ModuleMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MMKSmartSystemLEHostModule.cs" />
@@ -277,6 +284,9 @@
       <Project>{233a97df-08b0-4635-b0dc-231f84ab10c5}</Project>
       <Name>MMK.SmartSystem.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
