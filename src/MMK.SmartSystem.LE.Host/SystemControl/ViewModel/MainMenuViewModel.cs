@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MMK.SmartSystem.LE.Host.ViewModel
+namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {
     public class MainMenuViewModel : ViewModelBase
     {

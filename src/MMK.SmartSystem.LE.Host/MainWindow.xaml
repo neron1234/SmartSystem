@@ -16,53 +16,13 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
-            <ItemsControl ItemsSource="{Binding SysModuleViews}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <GroupBox Header="{Binding ModuleName}" BindingGroup="{Binding MainMenuViews}">
-                            <DataTemplate>
-                                <Button Content="{Binding Title}" Height="30" Margin="10" Command="{Binding OpenCommand}" CommandParameter="{Binding .}"/>
-                            </DataTemplate>
-                        </GroupBox>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            
-            <ItemsControl x:Name="MenuItemControl" ItemsSource="{Binding mainMenuPageViews}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding Title}" Height="30" Margin="10" Command="{Binding OpenCommand}" CommandParameter="{Binding .}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <Frame x:Name="systemMenuFrame" NavigationUIVisibility="Hidden"/>
         </StackPanel>
         <Border Grid.Column="1" Grid.Row="1">
-            <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
         </Border>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-            <ItemsControl ItemsSource="{Binding SysModuleViews}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding ModuleName}" Width="150" Height="30" Margin="10" Command="{Binding OpenCommand}" CommandParameter="{Binding .}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <Button Content="登陆"  Width="150" Height="30" Margin="10" Click="Button_Click"/>
+            <Button Content="登陆"  Width="80" Height="30" Margin="10" Click="Button_Click"/>
         </StackPanel>
     </Grid>
 </Window>

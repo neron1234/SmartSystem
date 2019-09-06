@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MMK.SmartSystem.LE.Host.Account.UserControls.ViewModel
+namespace MMK.SmartSystem.LE.Host.AccountControl.ViewModel
 {
     public class LoginControlViewModel:ViewModelBase
     {

@@ -7,15 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Collections.ObjectModel;
-namespace MMK.SmartSystem.LE.Host.ViewModel
+
+namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {
     public class SystemMenuModuleViewModel:ViewModelBase
     {
         public string ModuleName { get; set; } 
         public string Icon { get; set; }
-        public ObservableCollection<MainMenuViewModel> MainMenuViews { set; get; } = new ObservableCollection<MainMenuViewModel>();
-        
+        private List<MainMenuViewModel> mainMenuViews;
+        public List<MainMenuViewModel> MainMenuViews
+        {
+            get { return mainMenuViews; }
+            set { mainMenuViews = value; RaisePropertyChanged(() => MainMenuViews); }
+        }
 
         public ICommand OpenCommand
         {

@@ -2,7 +2,7 @@
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.SerivceProxy;
-using MMK.SmartSystem.LE.Host.Account.UserControls.ViewModel;
+using MMK.SmartSystem.LE.Host.AccountControl.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MMK.SmartSystem.LE.Host.Account.UserControls
+namespace MMK.SmartSystem.LE.Host.AccountControl
 {
     /// <summary>
     /// Login.xaml 的交互逻辑

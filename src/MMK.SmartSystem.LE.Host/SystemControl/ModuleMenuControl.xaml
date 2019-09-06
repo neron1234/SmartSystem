@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="MMK.SmartSystem.LE.Host.SystemControl.ModuleMenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="200">
+    <Grid>
+        <ItemsControl ItemsSource="{Binding SysModuleViews}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <GroupBox Header="{Binding ModuleName}" >
+                        <StackPanel>
+                            <ItemsControl ItemsSource="{Binding MainMenuViews}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button Content="{Binding Title}" Height="30" Margin="10" Command="{Binding OpenCommand}" CommandParameter="{Binding .}"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </GroupBox>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

@@ -1,6 +1,6 @@
 ﻿using Abp.Dependency;
 using GalaSoft.MvvmLight.Messaging;
-using MMK.SmartSystem.LE.Host.ViewModel;
+using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Collections.ObjectModel;
+
 namespace MMK.SmartSystem.LE.Host
 {
     /// <summary>
@@ -23,58 +23,28 @@ namespace MMK.SmartSystem.LE.Host
     /// </summary>
     public partial class MainWindow : Window, ISingletonDependency
     {
-        //public MainMenuListViewModel MainMenuList = new MainMenuListViewModel();
-        public ObservableCollection<MainMenuViewModel> mainMenuPageViews { set; get; }
-        public List<SystemMenuModuleViewModel> SysModuleViews { get;set; }
         IIocManager iocManager;
         public MainWindow(IIocManager iocManager)
         {
             this.iocManager = iocManager;
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
-            this.Unloaded += MainWindow_Unloaded;
-        }
-
-        private void MainWindow_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Messenger.Default.Unregister<MainMenuViewModel>(this);
         }
 
         private  void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            SysModuleViews = SmartSystemLEConsts.SystemModules;
-            this.DataContext = this;
-            Messenger.Default.Register<SystemMenuModuleViewModel>(this, NavigationModule);
-
-            if (SysModuleViews.Count > 0)
-            {
-                NavigationModule(SysModuleViews[0]);
-            }
+            this.systemMenuFrame.Content = new SystemControl.ModuleMenuControl();
         }
 
-        private void Navigation(MainMenuViewModel model)
+        public void Navigation(MainMenuViewModel model)
         {
-            if (model.IsLoad)
-            {
-                var page = iocManager.Resolve(model.PageType);
-                frame.Content = page;
-            }
-        }
-
-        private void NavigationModule(SystemMenuModuleViewModel model)
-        {
-            mainMenuPageViews = model.MainMenuViews;
-            MenuItemControl.ItemsSource = mainMenuPageViews;
-            Messenger.Default.Register<MainMenuViewModel>(this, Navigation);
-            if (mainMenuPageViews.Count > 0)
-            {
-                Navigation(mainMenuPageViews[0]);
-            }
+            var page = iocManager.Resolve(model.PageType);
+            mainFrame.Content = page;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            frame.Content = new Account.UserControls.LoginControl();
+            mainFrame.Content = new AccountControl.LoginControl();
         }
     }
 }
