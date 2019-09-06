@@ -61,7 +61,7 @@ namespace MMK.SmartSystem.LE.Host
             {
                 foreach (var item in plug.GetAssemblies())
                 {
-                    SmartSystemLEConsts.SystemModules.ForEach((s) => s.MainMenuViews.Where(d => !d.IsLoad).ToList().ForEach(d =>
+                    SmartSystemLEConsts.SystemModules.ToList().ForEach((s) => s.MainMenuViews.Where(d => !d.IsLoad).ToList().ForEach(d =>
                     {
                         var type = item.GetType(d.Page);
                         if (type != null)

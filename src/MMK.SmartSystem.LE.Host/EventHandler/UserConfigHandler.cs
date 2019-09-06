@@ -31,6 +31,8 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                     SmartSystemCommonConsts.AuthenticateModel = ts.Result;
                 }
             }
+            UserClientServiceProxy userClientService = new UserClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            userClientService.ChangeLanguageAsync(new ChangeUserLanguageDto() { LanguageName= eventData.Culture }).Wait();
             tokenAuthClient = new TokenAuthClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
             var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
             if (obj2.Success)

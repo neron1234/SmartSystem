@@ -81,7 +81,6 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
             var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
             if (ts.Success)
             {
-                EventBus.Default.Trigger(new UserConfigEventData() { Culture = "en" });
                 Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
                 var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
                 if (obj2.Success)
