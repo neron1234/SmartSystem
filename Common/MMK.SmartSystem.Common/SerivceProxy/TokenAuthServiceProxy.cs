@@ -74,7 +74,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
 
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, CancellationToken.None).ConfigureAwait(false);
                     try
                     {
                         var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
@@ -124,13 +124,12 @@ namespace MMK.SmartSystem.Common.SerivceProxy
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/AbpUserConfiguration/GetAll");
 
-            var client_ = _httpClient;
+            var client_ = _httpClient;         
             try
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     PrepareRequest(client_, request_, urlBuilder_);
@@ -138,7 +137,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
 
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, CancellationToken.None).ConfigureAwait(false);
                     try
                     {
                         var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
@@ -151,10 +150,10 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                         ProcessResponse(client_, response_);
 
                         var status_ = ((int)response_.StatusCode).ToString();
-                        string red = response_.Content.ReadAsStringAsync().Result;
+                       var info= response_.Content.ReadAsStringAsync().Result;
                         var objectResponse_ = await ReadObjectResponseAsync<RequestResult<AbpUserConfiguration>>(response_, headers_).ConfigureAwait(false);
                         return objectResponse_.Object;
-
+                      
                     }
                     catch (Exception ex)
                     {

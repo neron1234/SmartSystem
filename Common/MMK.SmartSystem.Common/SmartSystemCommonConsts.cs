@@ -17,6 +17,6 @@ namespace MMK.SmartSystem.Common
 
         public static AbpUserConfiguration UserConfiguration = new AbpUserConfiguration();
 
-        public static string CurrentCulture = "zh-Hans";
+        public static string CurrentCulture = "en";
     }
 }

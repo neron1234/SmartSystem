@@ -16,7 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Collections.ObjectModel;
 namespace MMK.SmartSystem.LE.Host.SystemControl
 {
     /// <summary>
@@ -24,7 +24,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
     /// </summary>
     public partial class ModuleMenuControl : UserControl
     {
-        public List<SystemMenuModuleViewModel> SysModuleViews { get; set; }
+        public ObservableCollection<SystemMenuModuleViewModel> SysModuleViews { get; set; }
         public ModuleMenuControl()
         {
             InitializeComponent();

@@ -15,7 +15,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <GroupBox Header="{Binding ModuleName}" >
+                    <GroupBox Header="{Binding ModuleName}" Visibility="{Binding Show}" >
                         <StackPanel>
                             <ItemsControl ItemsSource="{Binding MainMenuViews}">
                                 <ItemsControl.ItemsPanel>
@@ -25,7 +25,7 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Button Content="{Binding Title}" Height="30" Margin="10" Command="{Binding OpenCommand}" CommandParameter="{Binding .}"/>
+                                        <Button Visibility="{Binding Show}" Content="{Binding Title}" Height="30" Margin="10" Command="{Binding OpenCommand}" CommandParameter="{Binding .}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

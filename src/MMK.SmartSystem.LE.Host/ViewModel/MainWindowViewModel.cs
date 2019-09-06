@@ -62,7 +62,7 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    SmartSystemCommonConsts.CurrentCulture = "en-Hans";
+                    SmartSystemCommonConsts.CurrentCulture = "en";
                     EventBus.Default.Trigger(new UserConfigEventData()
                     {
                         Culture = SmartSystemCommonConsts.CurrentCulture

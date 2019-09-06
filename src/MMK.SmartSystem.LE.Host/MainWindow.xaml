@@ -24,7 +24,7 @@
         </Border>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
             <Button Content="登陆"  Width="80" Height="25" Margin="10" Command="{Binding LoginCommand}"/>
-            <Button Content="中文"  Width="80" Height="25" Margin="10" Command="{Binding CNCommand}"/>
+            <Button Content="中文"  Width="80" Height="25" Margin="10" Command="{Binding CnCommand}"/>
             <Button Content="英文"  Width="80" Height="25" Margin="10" Command="{Binding EnCommand}"/>
             <Button Content="切换用户"  Width="80" Height="25" Margin="10" Command="{Binding ChangeUserCommand}"/>
         </StackPanel>
