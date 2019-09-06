@@ -1,0 +1,50 @@
+﻿{
+  "Env": [
+    {
+      "Name": "ctobaby",
+      "ServerList": [],
+      "LinuxServerList": [
+        {
+          "UserName": "ubuntu",
+          "Pwd": "BC028C968350A600264C11A5460D7935",
+          "Host": "ctobaby.com",
+          "NickName": "",
+          "IIsFireUrl": null,
+          "DockerFireUrl": "",
+          "WindowsServiceFireUrl": null
+        }
+      ],
+      "IgnoreList": [],
+      "WindowsBackUpIgnoreList": []
+    }
+  ],
+  "IIsConfig": {
+    "SdkType": null,
+    "WebSiteName": "",
+    "LastEnvName": null,
+    "EnvPairList": [
+      {
+        "EnvName": "ctobaby",
+        "ConfigName": ""
+      }
+    ]
+  },
+  "WindowsServiveConfig": {
+    "ServiceName": "",
+    "SdkType": null,
+    "LastEnvName": null,
+    "EnvPairList": [
+      {
+        "EnvName": "ctobaby",
+        "ConfigName": ""
+      }
+    ]
+  },
+  "DockerConfig": {
+    "Prot": "21021",
+    "AspNetCoreEnv": "Staging",
+    "LastEnvName": "ctobaby",
+    "RemoveDaysFromPublished": "10",
+    "Volume": ""
+  }
+}

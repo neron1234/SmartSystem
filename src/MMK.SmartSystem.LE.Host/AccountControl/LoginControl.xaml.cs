@@ -54,7 +54,8 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
             {
                 LoginModel.AccountError = "账号不能为空";
                 LoginModel.IsError = true;
-            }else
+            }
+            else
             {
                 LoginModel.AccountError = "";
                 LoginModel.IsError = false;
@@ -63,7 +64,8 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
             {
                 LoginModel.PwdError = "密码不能为空";
                 LoginModel.IsError = true;
-            }else
+            }
+            else
             {
                 LoginModel.PwdError = "";
                 LoginModel.IsError = false;
@@ -77,7 +79,13 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
             var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
             if (ts.Success)
             {
+
                 Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
+                var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
+                if (obj2.Success)
+                {
+                    Common.SmartSystemCommonConsts.UserConfiguration = obj2.Result;
+                }
                 MessageBox.Show("登陆成功");
             }
             else

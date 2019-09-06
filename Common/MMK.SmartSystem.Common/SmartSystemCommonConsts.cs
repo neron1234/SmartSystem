@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.Common.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace MMK.SmartSystem.Common
         public const string ApiHost = "http://localhost:21021";
 
         public static AuthenticateResultModel AuthenticateModel = new AuthenticateResultModel();
+
+        public static AbpUserConfiguration UserConfiguration = new AbpUserConfiguration();
 
         public static string CurrentCulture = "zh-Hans";
     }
