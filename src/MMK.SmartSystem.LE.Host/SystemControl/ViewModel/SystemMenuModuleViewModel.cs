@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
@@ -25,6 +26,22 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
                 {
                     moduleName = value;
                     RaisePropertyChanged(() => ModuleName);
+                }
+            }
+        }
+
+
+
+        private Visibility _Show;
+        public Visibility Show
+        {
+            get { return _Show; }
+            set
+            {
+                if (_Show != value)
+                {
+                    _Show = value;
+                    RaisePropertyChanged(() => Show);
                 }
             }
         }
@@ -50,6 +67,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
                     Messenger.Default.Send(s);
                 });
             }
+        }
+
+        public SystemMenuModuleViewModel()
+        {
+            _Show = Visibility.Collapsed;
         }
     }
 }

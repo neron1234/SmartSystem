@@ -1,7 +1,11 @@
 {
   "iisSettings": {
-    "windowsAuthentication": false,
+    "windowsAuthentication": true,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/MMK",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:21021/",
       "sslPort": 0
@@ -13,10 +17,11 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "nativeDebugging": false
     },
     "MMK.SmartSystem.Web.Host": {
-      "commandName": "Project",
+      "commandName": "IIS",
       "launchBrowser": true,
       "launchUrl": "http://localhost:21021",
       "environmentVariables": {

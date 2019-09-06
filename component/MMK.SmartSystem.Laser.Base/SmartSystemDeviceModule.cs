@@ -19,7 +19,7 @@ namespace MMK.SmartSystem.Laser.Base
                     ModuleName = "MachineOperation",
                     Pages = new List<SystemPageModel>{
                         new SystemPageModel(){ Title="MachineOperation.AutoFindSide",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage",IsAuth=true,Permission="MachineOperation.AutoFindSidePage"},
-                        new SystemPageModel(){ Title="MachineOperation.AuxGasCheck",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AuxGasCheckPage",IsAuth=true,Permission="MachineOperation.AuxGasCheckPage"},
+                        new SystemPageModel(){ Title="MachineOperation.AuxGasCheck",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AuxGasCheckPage",IsAuth=false,Permission="MachineOperation.AuxGasCheckPage"},
                         new SystemPageModel(){ Title="MachineOperation.ManualFindSide",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.ManualFindSidePage",IsAuth=true,Permission="MachineOperation.ManualFindSidePage"},
                     }
                 },

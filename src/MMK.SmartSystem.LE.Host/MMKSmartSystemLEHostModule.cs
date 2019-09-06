@@ -18,7 +18,7 @@ namespace MMK.SmartSystem.LE.Host
         public override void PreInitialize()
         {
 
-           
+
 
         }
         public override void Initialize()
@@ -30,10 +30,11 @@ namespace MMK.SmartSystem.LE.Host
             listModule.ForEach(d =>
             {
                 var pages = new List<MainMenuViewModel>();
-                d.Pages.ForEach(g =>{
-                    pages.Add(new MainMenuViewModel() { Title = g.Title.Translate(), Page = g.FullName });
+                d.Pages.OrderBy(f => f.Sort).ToList().ForEach(g =>
+                {
+                    pages.Add(new MainMenuViewModel() { Title = g.Title, Page = g.FullName, Auth = g.IsAuth, Permission = g.Permission });
                 });
-                SmartSystemLEConsts.SystemModules.Add(new SystemMenuModuleViewModel() { Icon = d.Icon, ModuleName = d.ModuleName.Translate(), MainMenuViews = pages });
+                SmartSystemLEConsts.SystemModules.Add(new SystemMenuModuleViewModel() { Icon = d.Icon, ModuleName = d.ModuleName, MainMenuViews = pages });
             });
 
         }
