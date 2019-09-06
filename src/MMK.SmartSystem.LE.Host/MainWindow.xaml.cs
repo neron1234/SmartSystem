@@ -1,6 +1,8 @@
 ﻿using Abp.Dependency;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
+using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,7 @@ namespace MMK.SmartSystem.LE.Host
     public partial class MainWindow : Window, ISingletonDependency
     {
         IIocManager iocManager;
+        public MainWindowViewModel MainViewModel = new MainWindowViewModel();
         public MainWindow(IIocManager iocManager)
         {
             this.iocManager = iocManager;
@@ -33,18 +36,12 @@ namespace MMK.SmartSystem.LE.Host
 
         private  void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            this.systemMenuFrame.Content = new SystemControl.ModuleMenuControl();
-        }
+            this.DataContext = MainViewModel;
 
-        public void Navigation(MainMenuViewModel model)
-        {
-            var page = iocManager.Resolve(model.PageType);
-            mainFrame.Content = page;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            mainFrame.Content = new AccountControl.LoginControl();
+            Messenger.Default.Register<Type>(this, (type)=> {
+                var page = iocManager.Resolve(type);
+                MainViewModel.MainFrame = page;
+            });
         }
     }
 }

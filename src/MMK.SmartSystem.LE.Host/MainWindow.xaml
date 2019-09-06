@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host"
+        xmlns:SystemControl="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -16,13 +17,16 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
-            <Frame x:Name="systemMenuFrame" NavigationUIVisibility="Hidden"/>
+            <SystemControl:ModuleMenuControl />
         </StackPanel>
         <Border Grid.Column="1" Grid.Row="1">
-            <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}"/>
         </Border>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-            <Button Content="登陆"  Width="80" Height="30" Margin="10" Click="Button_Click"/>
+            <Button Content="登陆"  Width="80" Height="25" Margin="10" Command="{Binding LoginCommand}"/>
+            <Button Content="中文"  Width="80" Height="25" Margin="10" Command="{Binding CNCommand}"/>
+            <Button Content="英文"  Width="80" Height="25" Margin="10" Command="{Binding EnCommand}"/>
+            <Button Content="切换用户"  Width="80" Height="25" Margin="10" Command="{Binding ChangeUserCommand}"/>
         </StackPanel>
     </Grid>
 </Window>

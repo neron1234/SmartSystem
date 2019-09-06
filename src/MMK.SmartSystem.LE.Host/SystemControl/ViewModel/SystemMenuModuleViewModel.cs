@@ -40,16 +40,5 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
                 RaisePropertyChanged(() => MainMenuViews);
             }
         }
-
-        public ICommand OpenCommand
-        {
-            get
-            {
-                return new RelayCommand<SystemMenuModuleViewModel>((s) =>
-                {
-                    Messenger.Default.Send(s);
-                });
-            }
-        }
     }
 }

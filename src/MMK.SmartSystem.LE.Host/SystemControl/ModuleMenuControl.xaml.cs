@@ -1,6 +1,7 @@
 ﻿using Abp.Dependency;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
+using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,29 +29,13 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         {
             InitializeComponent();
             Loaded += ModuleMenuControl_Loaded;
-            Unloaded += ModuleMenuControl_Unloaded;
-        }
-
-        private void ModuleMenuControl_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Messenger.Default.Unregister<MainMenuViewModel>(this, Navigation);
         }
 
         private void ModuleMenuControl_Loaded(object sender, RoutedEventArgs e)
         {
             SysModuleViews = SmartSystemLEConsts.SystemModules;
             this.DataContext = this;
-            Messenger.Default.Register<MainMenuViewModel>(this, Navigation);
         }
 
-        private void Navigation(MainMenuViewModel model)
-        {
-            if (model.IsLoad)
-            {
-                //var page = IocManager.Resolve(model.PageType);
-                var mainWindow = (MainWindow)Window.GetWindow(this);
-                mainWindow.Navigation(model);
-            }
-        }
     }
 }
