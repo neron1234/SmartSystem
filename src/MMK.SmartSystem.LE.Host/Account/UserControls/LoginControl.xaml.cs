@@ -1,4 +1,6 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using Abp.Events.Bus;
+using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.SerivceProxy;
 using MMK.SmartSystem.LE.Host.Account.UserControls.ViewModel;
 using System;
@@ -79,7 +81,7 @@ namespace MMK.SmartSystem.LE.Host.Account.UserControls
             var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
             if (ts.Success)
             {
-
+                EventBus.Default.Trigger(new UserConfigEventData() { Culture = "en" });
                 Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
                 var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
                 if (obj2.Success)

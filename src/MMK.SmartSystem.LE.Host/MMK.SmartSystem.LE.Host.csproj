@@ -213,6 +213,7 @@
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Account\UserControls\ViewModel\LoginControlViewModel.cs" />
+    <Compile Include="EventHandler\UserConfigHandler.cs" />
     <Compile Include="SmartSystemLEConsts.cs" />
     <Compile Include="ViewModel\MainMenuViewModel.cs" />
     <Compile Include="ViewModel\SystemMenuModuleViewModel.cs" />

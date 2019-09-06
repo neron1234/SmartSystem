@@ -1,7 +1,10 @@
 ﻿using Abp;
 using Abp.Castle.Logging.Log4Net;
+using Abp.Events.Bus;
 using Abp.PlugIns;
 using Castle.Facilities.Logging;
+using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.Common.SerivceProxy;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -36,10 +39,21 @@ namespace MMK.SmartSystem.LE.Host
 
             LoadPluginAssemblies();
 
+            Task.Factory.StartNew(() => AutoLogin());
             _mainWindow.Show();
             // base.OnStartup(e);
         }
+        private void AutoLogin()
+        {
+            EventBus.Default.Trigger(new UserConfigEventData()
+            {
+                UserName = SmartSystemLEConsts.DefaultUser,
+                Pwd = SmartSystemLEConsts.DefaultPwd,
+                Culture = SmartSystemLEConsts.Culture,
+                IsChangeUser = true
+            });
 
+        }
         private void LoadPluginAssemblies()
         {
 

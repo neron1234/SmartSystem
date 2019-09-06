@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Collections.ObjectModel;
 namespace MMK.SmartSystem.LE.Host
 {
     /// <summary>
@@ -24,7 +24,7 @@ namespace MMK.SmartSystem.LE.Host
     public partial class MainWindow : Window, ISingletonDependency
     {
         //public MainMenuListViewModel MainMenuList = new MainMenuListViewModel();
-        public List<MainMenuViewModel> mainMenuPageViews { set; get; }
+        public ObservableCollection<MainMenuViewModel> mainMenuPageViews { set; get; }
         public List<SystemMenuModuleViewModel> SysModuleViews { get;set; }
         IIocManager iocManager;
         public MainWindow(IIocManager iocManager)

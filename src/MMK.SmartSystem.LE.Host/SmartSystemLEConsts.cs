@@ -9,7 +9,11 @@ namespace MMK.SmartSystem.LE.Host
 {
     public class SmartSystemLEConsts
     {
-        public static List<MainMenuViewModel> SystemMeuns = new List<MainMenuViewModel>();
+        public const string DefaultUser = "admin";
+
+        public const string DefaultPwd = "123qwe";
+
+        public const string Culture = "zh-Hans";
 
         public static List<SystemMenuModuleViewModel> SystemModules = new List<SystemMenuModuleViewModel>();
 
