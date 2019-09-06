@@ -1,5 +1,4 @@
-﻿using MMK.SmartSystem.Common.Converts;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,19 +32,15 @@ namespace MMK.SmartSystem.Common.Model
     public class AuthNode
     {
         [JsonProperty("allPermissions")]
-
         public Dictionary<string, string> AllPermissions { get; set; }
 
         [JsonProperty("grantedPermissions")]
-
-
         public Dictionary<string, string> GrantedPermissions { get; set; }
     }
 
     public class LocalizationNode
     {
         [JsonProperty("currentCulture", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(TestJsonConvert))]
         public Culture CurrentCulture { get; set; }
 
         [JsonProperty("values", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
@@ -63,7 +58,7 @@ namespace MMK.SmartSystem.Common.Model
 
     public class LocalizationValue
     {
-        [JsonProperty("SmartSystem", Required = Required.Default))]
+        [JsonProperty("SmartSystem", Required = Required.Default)]
         public Dictionary<string, string> SmartSystem { get; set; }
     }
 }
