@@ -29,9 +29,9 @@ namespace MMK.SmartSystem.LE.Host
             {
                 var pages = new List<ViewModel.MainMenuViewModel>();
                 d.Pages.ForEach(g =>{
-                    pages.Add(new ViewModel.MainMenuViewModel() { Title = g.Title, Page = g.FullName });
+                    pages.Add(new ViewModel.MainMenuViewModel() { Title = g.Title.Translate(), Page = g.FullName });
                 });
-                SmartSystemLEConsts.SystemModules.Add(new ViewModel.SystemMenuModuleViewModel() { Icon = d.Icon, ModuleName = d.ModuleName, MainMenuViews = pages });
+                SmartSystemLEConsts.SystemModules.Add(new ViewModel.SystemMenuModuleViewModel() { Icon = d.Icon, ModuleName = d.ModuleName.Translate(), MainMenuViews = pages });
             });
 
         }
