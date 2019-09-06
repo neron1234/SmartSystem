@@ -14,7 +14,21 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
     {
 
         public bool IsLoad { get; set; }
-        public string Title { get; set; }
+
+
+        private string _title;
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                if (_title != value)
+                {
+                    _title = value;
+                    RaisePropertyChanged(() => Title);
+                }
+            }
+        }
 
         public string Page { get; set; }
 

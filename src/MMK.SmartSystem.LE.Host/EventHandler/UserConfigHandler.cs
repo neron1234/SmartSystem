@@ -34,8 +34,26 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
             if (obj2.Success)
             {
                 SmartSystemCommonConsts.UserConfiguration = obj2.Result;
+                Translate();
             }
 
+        }
+
+        private void Translate()
+        {
+            var dict = SmartSystemCommonConsts.UserConfiguration.Localization.Values?.SmartSystem;
+            if (dict != null)
+            {
+                foreach (var item in SmartSystemLEConsts.SystemModules)
+                {
+                    item.ModuleName = item.ModuleName.Translate();
+                    foreach (var g in item.MainMenuViews)
+                    {
+                        g.Title = g.Title.Translate();
+                    }
+                }
+            }
+            
         }
     }
 }

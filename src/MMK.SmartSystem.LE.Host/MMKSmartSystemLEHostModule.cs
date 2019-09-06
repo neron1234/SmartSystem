@@ -2,6 +2,7 @@
 using Abp.Modules;
 using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.Model;
+using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,11 +29,11 @@ namespace MMK.SmartSystem.LE.Host
 
             listModule.ForEach(d =>
             {
-                var pages = new System.Collections.ObjectModel.ObservableCollection<ViewModel.MainMenuViewModel>();
+                var pages = new List<MainMenuViewModel>();
                 d.Pages.ForEach(g =>{
-                    pages.Add(new ViewModel.MainMenuViewModel() { Title = g.Title.Translate(), Page = g.FullName });
+                    pages.Add(new MainMenuViewModel() { Title = g.Title.Translate(), Page = g.FullName });
                 });
-                SmartSystemLEConsts.SystemModules.Add(new ViewModel.SystemMenuModuleViewModel() { Icon = d.Icon, ModuleName = d.ModuleName.Translate(), MainMenuViews = pages });
+                SmartSystemLEConsts.SystemModules.Add(new SystemMenuModuleViewModel() { Icon = d.Icon, ModuleName = d.ModuleName.Translate(), MainMenuViews = pages });
             });
 
         }

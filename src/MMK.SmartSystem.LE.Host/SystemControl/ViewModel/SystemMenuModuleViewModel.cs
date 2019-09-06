@@ -10,15 +10,35 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {
-    public class SystemMenuModuleViewModel:ViewModelBase
+    public class SystemMenuModuleViewModel : ViewModelBase
     {
-        public string ModuleName { get; set; } 
+
+
+        private string moduleName;
+
+        public string ModuleName
+        {
+            get { return moduleName; }
+            set
+            {
+                if (moduleName != value)
+                {
+                    moduleName = value;
+                    RaisePropertyChanged(() => ModuleName);
+                }
+            }
+        }
+
         public string Icon { get; set; }
         private List<MainMenuViewModel> mainMenuViews;
         public List<MainMenuViewModel> MainMenuViews
         {
             get { return mainMenuViews; }
-            set { mainMenuViews = value; RaisePropertyChanged(() => MainMenuViews); }
+            set
+            {
+                mainMenuViews = value;
+                RaisePropertyChanged(() => MainMenuViews);
+            }
         }
 
         public ICommand OpenCommand
