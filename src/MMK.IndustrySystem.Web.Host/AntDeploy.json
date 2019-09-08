@@ -44,7 +44,7 @@
     "Prot": "21021",
     "AspNetCoreEnv": "Staging",
     "LastEnvName": "ctobaby",
-    "RemoveDaysFromPublished": "10",
+    "RemoveDaysFromPublished": "1",
     "Volume": ""
   }
 }
