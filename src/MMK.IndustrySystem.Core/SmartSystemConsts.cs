@@ -4,7 +4,7 @@
     {
         public const string LocalizationSourceName = "SmartSystem";
 
-        public const string ConnectionStringName = "Default";
+        public const string ConnectionStringName ="Default";
 
         public const bool MultiTenancyEnabled = true;
     }

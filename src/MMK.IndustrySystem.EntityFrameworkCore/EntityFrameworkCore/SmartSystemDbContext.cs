@@ -4,6 +4,7 @@ using MMK.SmartSystem.Authorization.Roles;
 using MMK.SmartSystem.Authorization.Users;
 using MMK.SmartSystem.MultiTenancy;
 using MMK.CNC.Core.Managements;
+using MMK.CNC.Core.SystemClient;
 
 namespace MMK.SmartSystem.EntityFrameworkCore
 {
@@ -12,6 +13,7 @@ namespace MMK.SmartSystem.EntityFrameworkCore
         /* Define a DbSet for each entity of the application */
 
         public DbSet<Department> Departments { get; set; }
+        public DbSet<OperationLog> OperationLogs { get; set; }
         public SmartSystemDbContext(DbContextOptions<SmartSystemDbContext> options)
             : base(options)
         {
