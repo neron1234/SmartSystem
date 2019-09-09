@@ -18,7 +18,7 @@
     <PackageReference Include="Abp.Castle.Log4Net" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MMK.SmartSystem.Core\MMK.SmartSystem.Core.csproj" />
-    <ProjectReference Include="..\MMK.SmartSystem.EntityFrameworkCore\MMK.SmartSystem.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\MMK.IndustrySystem.Application\MMK.SmartSystem.Application.csproj" />
+    <ProjectReference Include="..\MMK.IndustrySystem.EntityFrameworkCore\MMK.SmartSystem.EntityFrameworkCore.csproj" />
   </ItemGroup>
 </Project>

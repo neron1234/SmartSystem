@@ -16,12 +16,12 @@ namespace MMK.SmartSystem.Tests
 {
     [DependsOn(
         typeof(SmartSystemApplicationModule),
-        typeof(SmartSystemEntityFrameworkModule),
+        typeof(SmartSystemEntityFrameworkCoreModule),
         typeof(AbpTestBaseModule)
         )]
     public class SmartSystemTestModule : AbpModule
     {
-        public SmartSystemTestModule(SmartSystemEntityFrameworkModule abpProjectNameEntityFrameworkModule)
+        public SmartSystemTestModule(SmartSystemEntityFrameworkCoreModule abpProjectNameEntityFrameworkModule)
         {
             abpProjectNameEntityFrameworkModule.SkipDbContextRegistration = true;
             abpProjectNameEntityFrameworkModule.SkipDbSeed = true;
