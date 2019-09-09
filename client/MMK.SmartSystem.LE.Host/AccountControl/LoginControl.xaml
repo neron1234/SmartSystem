@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.AccountControl"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cmd="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
         Height="450" Width="800" 
         BorderBrush="DarkGray" BorderThickness="1" 
@@ -23,6 +25,17 @@
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Width" Value="200"/>
             <Setter Property="BorderBrush" Value="#FF797070"/>
+            <Setter Property="InputMethod.IsInputMethodEnabled" Value="False"/>
+            <Setter Property="InputMethod.InputScope">
+                <Setter.Value>
+                    <InputScope>
+                        <InputScope.Names>
+                            <InputScopeName NameValue="AlphanumericHalfWidth"></InputScopeName>
+                        </InputScope.Names>
+                    </InputScope>
+                </Setter.Value>
+            </Setter>
+
             <Style.Triggers>
                 <Trigger Property="IsFocused" Value="true">
                     <Setter Property="BorderBrush" Value="Green"></Setter>
@@ -54,9 +67,21 @@
             <TextBlock Text="密码:" Style="{StaticResource TextBlockStyle}" />
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Account}" />
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Account}" x:Name="txtAccount">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <cmd:EventToCommand Command="{Binding AccountChangedCommand}" CommandParameter="{Binding ElementName=txtAccount,Path=Text}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
             <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding AccountError}"/>
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Pwd}"/>
+            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Pwd}" x:Name="txtPwd" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged">
+                        <cmd:EventToCommand Command="{Binding PwdChangedCommand}" CommandParameter="{Binding ElementName=txtPwd, Path=Text}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
             <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding PwdError}"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">

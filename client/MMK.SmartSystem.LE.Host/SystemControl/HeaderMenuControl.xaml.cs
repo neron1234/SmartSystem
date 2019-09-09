@@ -1,5 +1,9 @@
 ﻿using Abp.Events.Bus;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.LE.Host.AccountControl;
+using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +29,12 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         public HeaderMenuControl()
         {
             InitializeComponent();
+            Loaded += HeaderMenuControl_Loaded;
+        }
+        
+        private void HeaderMenuControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = new HeaderMenuViewModel();
         }
 
         private async void ChangeUserBtn_Click(object sender, RoutedEventArgs e)
@@ -36,11 +46,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
                 Culture = SmartSystemLEConsts.Culture,
                 IsChangeUser = true
             });
-        }
-
-        private void LoginBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void EnBtn_Click(object sender, RoutedEventArgs e)

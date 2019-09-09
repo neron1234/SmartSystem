@@ -221,6 +221,7 @@
     <Compile Include="SystemControl\ModuleMenuControl.xaml.cs">
       <DependentUpon>ModuleMenuControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemControl\ViewModel\HeaderMenuViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\MainMenuViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\SystemMenuModuleViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />

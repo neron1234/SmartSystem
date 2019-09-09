@@ -29,16 +29,5 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
                 }
             }
         }
-
-        public ICommand LoginCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    MainFrame = new AccountControl.LoginControl();
-                });
-            }
-        }
     }
 }
