@@ -9,12 +9,12 @@ using MMK.SmartSystem.Migrator.DependencyInjection;
 
 namespace MMK.SmartSystem.Migrator
 {
-    [DependsOn(typeof(SmartSystemEntityFrameworkModule))]
+    [DependsOn(typeof(SmartSystemEntityFrameworkCoreModule))]
     public class SmartSystemMigratorModule : AbpModule
     {
         private readonly IConfigurationRoot _appConfiguration;
 
-        public SmartSystemMigratorModule(SmartSystemEntityFrameworkModule abpProjectNameEntityFrameworkModule)
+        public SmartSystemMigratorModule(SmartSystemEntityFrameworkCoreModule abpProjectNameEntityFrameworkModule)
         {
             abpProjectNameEntityFrameworkModule.SkipDbSeed = true;
 
