@@ -11,6 +11,6 @@
     <RootNamespace>MMK.SmartSystem</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MMK.IndustrySystem.Core\MMK.SmartSystem.Core.csproj" />
+    <ProjectReference Include="..\MMK.SmartSystem.Core\MMK.SmartSystem.Core.csproj" />
   </ItemGroup>
 </Project>

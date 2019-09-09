@@ -23,6 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\module\MMK.CNC.Core\MMK.CNC.Core.csproj" />
-    <ProjectReference Include="..\MMK.IndustrySystem.Core\MMK.SmartSystem.Core.csproj" />
+    <ProjectReference Include="..\MMK.SmartSystem.Core\MMK.SmartSystem.Core.csproj" />
   </ItemGroup>
 </Project>

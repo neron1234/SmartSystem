@@ -17,9 +17,9 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\module\MMK.CNC.Application\MMK.CNC.Application.csproj" />
-    <ProjectReference Include="..\MMK.IndustrySystem.Application\MMK.SmartSystem.Application.csproj" />
-    <ProjectReference Include="..\MMK.IndustrySystem.Core\MMK.SmartSystem.Core.csproj" />
-    <ProjectReference Include="..\MMK.IndustrySystem.EntityFrameworkCore\MMK.SmartSystem.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\MMK.SmartSystem.Application\MMK.SmartSystem.Application.csproj" />
+    <ProjectReference Include="..\MMK.SmartSystem.Core\MMK.SmartSystem.Core.csproj" />
+    <ProjectReference Include="..\MMK.SmartSystem.EntityFrameworkCore\MMK.SmartSystem.EntityFrameworkCore.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />

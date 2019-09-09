@@ -19,19 +19,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMK.SmartSystem.Common", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMK.SmartSystem.CommonTests", "test\MMK.SmartSystem.CommonTests\MMK.SmartSystem.CommonTests.csproj", "{D50D8CA2-183D-4492-8E97-EBC9909E3129}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Application", "src\MMK.IndustrySystem.Application\MMK.SmartSystem.Application.csproj", "{1874EE0B-809A-4586-90DC-F199520C4A26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Application", "src\MMK.SmartSystem.Application\MMK.SmartSystem.Application.csproj", "{1874EE0B-809A-4586-90DC-F199520C4A26}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Core", "src\MMK.IndustrySystem.Core\MMK.SmartSystem.Core.csproj", "{3C419326-6465-4755-9388-2245D864B7BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Core", "src\MMK.SmartSystem.Core\MMK.SmartSystem.Core.csproj", "{3C419326-6465-4755-9388-2245D864B7BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.EntityFrameworkCore", "src\MMK.IndustrySystem.EntityFrameworkCore\MMK.SmartSystem.EntityFrameworkCore.csproj", "{90498323-4836-4342-BA70-8F7DD005F7C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.EntityFrameworkCore", "src\MMK.SmartSystem.EntityFrameworkCore\MMK.SmartSystem.EntityFrameworkCore.csproj", "{90498323-4836-4342-BA70-8F7DD005F7C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Migrator", "src\MMK.IndustrySystem.Migrator\MMK.SmartSystem.Migrator.csproj", "{16241911-5EFD-4E51-842A-61B89CFDC914}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Migrator", "src\MMK.SmartSystem.Migrator\MMK.SmartSystem.Migrator.csproj", "{16241911-5EFD-4E51-842A-61B89CFDC914}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Web.Core", "src\MMK.IndustrySystem.Web.Core\MMK.SmartSystem.Web.Core.csproj", "{6F82C82A-86BC-4AC6-BF40-C9FEC4E5833B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Web.Core", "src\MMK.SmartSystem.Web.Core\MMK.SmartSystem.Web.Core.csproj", "{6F82C82A-86BC-4AC6-BF40-C9FEC4E5833B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Web.Host", "src\MMK.IndustrySystem.Web.Host\MMK.SmartSystem.Web.Host.csproj", "{0601A404-A623-4CE3-92FC-4127EFEEC2DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Web.Host", "src\MMK.SmartSystem.Web.Host\MMK.SmartSystem.Web.Host.csproj", "{0601A404-A623-4CE3-92FC-4127EFEEC2DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Tests", "test\MMK.IndustrySystem.Tests\MMK.SmartSystem.Tests.csproj", "{0146DD75-ED31-43A2-8EE4-4C7960B11C70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.Tests", "test\MMK.SmartSystem.Tests\MMK.SmartSystem.Tests.csproj", "{0146DD75-ED31-43A2-8EE4-4C7960B11C70}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.CNC.Core", "module\MMK.CNC.Core\MMK.CNC.Core.csproj", "{F8B889D6-3C4A-43BC-9349-6F9BD5FA4249}"
 EndProject

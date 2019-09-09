@@ -3,14 +3,16 @@ using System;
 using MMK.SmartSystem.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MMK.SmartSystem.Migrations
 {
     [DbContext(typeof(SmartSystemDbContext))]
-    partial class SmartSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190909052059_operationLog")]
+    partial class operationLog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -876,6 +878,46 @@ namespace MMK.SmartSystem.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("management_department");
+                });
+
+            modelBuilder.Entity("MMK.CNC.Core.SystemClient.OperationLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BrowserInfo");
+
+                    b.Property<string>("ClientIpAddress");
+
+                    b.Property<string>("ClientName");
+
+                    b.Property<DateTime>("CreationTime");
+
+                    b.Property<string>("CustomData");
+
+                    b.Property<string>("Exception");
+
+                    b.Property<int>("ExecutionDuration");
+
+                    b.Property<DateTime>("ExecutionTime");
+
+                    b.Property<string>("MethodName");
+
+                    b.Property<string>("ModuleName");
+
+                    b.Property<string>("PageName");
+
+                    b.Property<string>("Parameters");
+
+                    b.Property<string>("ReturnValue");
+
+                    b.Property<string>("ServiceName");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SystemClient_OperationLog");
                 });
 
             modelBuilder.Entity("MMK.SmartSystem.Authorization.Roles.Role", b =>

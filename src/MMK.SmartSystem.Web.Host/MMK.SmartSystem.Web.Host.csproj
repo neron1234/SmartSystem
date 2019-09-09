@@ -42,6 +42,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MMK.IndustrySystem.Web.Core\MMK.SmartSystem.Web.Core.csproj" />
+    <ProjectReference Include="..\MMK.SmartSystem.Web.Core\MMK.SmartSystem.Web.Core.csproj" />
   </ItemGroup>
 </Project>
