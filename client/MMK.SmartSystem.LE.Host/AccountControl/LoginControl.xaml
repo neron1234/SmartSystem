@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.AccountControl"
+        xmlns:control="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:cmd="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
-        Height="450" Width="800" 
+        Height="400" Width="700" 
         BorderBrush="DarkGray" BorderThickness="1" 
         Background="#FFC4DEE7" FontSize="15" FontFamily="微软雅黑">
     <UserControl.Resources>
@@ -47,52 +48,72 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+        <control:PopupEx x:Name="maskLayer" PopupAnimation="Fade"
+                    control:MaskLayerBehavior.Owner="{Binding Path=., RelativeSource={RelativeSource AncestorType=Window}}" >
+            <Grid Width="600" Height="400" Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Border Background="Gainsboro" CornerRadius="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="150"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-
-        <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,13">
-            <TextBlock Text="账号:" Style="{StaticResource TextBlockStyle}" />
-            <TextBlock Text="密码:" Style="{StaticResource TextBlockStyle}" />
-        </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Account}" x:Name="txtAccount">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="TextChanged">
-                        <cmd:EventToCommand Command="{Binding AccountChangedCommand}" CommandParameter="{Binding ElementName=txtAccount,Path=Text}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </TextBox>
-            <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding AccountError}"/>
-            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Pwd}" x:Name="txtPwd" >
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="TextChanged">
-                        <cmd:EventToCommand Command="{Binding PwdChangedCommand}" CommandParameter="{Binding ElementName=txtPwd, Path=Text}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </TextBox>
-            <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding PwdError}"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="登陆" Width="250" Height="35" Foreground="White" BorderBrush="#FF3838C9" Command="{Binding LoginCommand}" IsEnabled="{Binding IsLogin}">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Color="#FF7062CE" Offset="1"/>
-                        <GradientStop Color="#FF3838C9" Offset="0.33"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
-        </StackPanel>
+                        <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,13">
+                            <TextBlock Text="账号:" Style="{StaticResource TextBlockStyle}" />
+                            <TextBlock Text="密码:" Style="{StaticResource TextBlockStyle}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Account}" x:Name="txtAccount" KeyDown="Login_KeyDown">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <cmd:EventToCommand Command="{Binding AccountChangedCommand}" CommandParameter="{Binding ElementName=txtAccount,Path=Text}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+                            <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding AccountError}" />
+                            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Pwd}" x:Name="txtPwd" KeyDown="Login_KeyDown">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <cmd:EventToCommand Command="{Binding PwdChangedCommand}" CommandParameter="{Binding ElementName=txtPwd, Path=Text}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+                            <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding PwdError}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                            <Button Content="登陆" Margin="10" Width="150" Height="35" Foreground="White" BorderBrush="#FF3838C9" Command="{Binding LoginCommand}" IsEnabled="{Binding IsLogin}">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF7062CE" Offset="1"/>
+                                        <GradientStop Color="#FF3838C9" Offset="0.33"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                            <Button Content="取消" Margin="10" Width="150" Height="35" Foreground="White" BorderBrush="#FF3838C9" Click="CloseButton_Click">
+                                <Button.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF7062CE" Offset="1"/>
+                                        <GradientStop Color="#FF3838C9" Offset="0.33"/>
+                                    </LinearGradientBrush>
+                                </Button.Background>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </control:PopupEx>
     </Grid>
 </UserControl>

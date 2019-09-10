@@ -214,18 +214,32 @@
     </Compile>
     <Compile Include="AccountControl\ViewModel\LoginControlViewModel.cs" />
     <Compile Include="EventHandler\UserConfigHandler.cs" />
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SmartSystemLEConsts.cs" />
+    <Compile Include="SystemControl\Control\MaskLayerBehavior.cs" />
+    <Compile Include="SystemControl\Control\PopupEx.cs" />
     <Compile Include="SystemControl\HeaderMenuControl.xaml.cs">
       <DependentUpon>HeaderMenuControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="SystemControl\ModuleMenuControl.xaml.cs">
       <DependentUpon>ModuleMenuControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemControl\PopupWindowControl.xaml.cs">
+      <DependentUpon>PopupWindowControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemControl\ViewModel\HeaderMenuViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\MainMenuViewModel.cs" />
+    <Compile Include="SystemControl\Control\PopupHelper.cs" />
+    <Compile Include="SystemControl\ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\SystemMenuModuleViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="AccountControl\LoginControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SystemControl\ModuleMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\PopupWindowControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

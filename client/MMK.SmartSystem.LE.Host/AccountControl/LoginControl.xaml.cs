@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.SerivceProxy;
 using MMK.SmartSystem.LE.Host.AccountControl.ViewModel;
+using MMK.SmartSystem.LE.Host.SystemControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
         {
             Messenger.Default.Unregister<string>(this, Login);
         }
-
+        private bool IsClose = false;
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             LoginModel = new LoginControlViewModel()
@@ -48,11 +49,35 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
             };
             this.DataContext = LoginModel;
             Messenger.Default.Register<string>(this, Login);
+            if (!IsClose)
+            {
+                this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, true);
+            }
         }
 
         private void Login(string msg)
         {
             MessageBox.Show(msg);
+            Close();
+        }
+
+        private void Login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                LoginModel.LoginCommand.Execute("");
+                Close();
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        private void Close()
+        {
+            IsClose = true;
+            this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, false);
         }
     }
 }

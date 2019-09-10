@@ -20,9 +20,10 @@
             <SystemControl:ModuleMenuControl />
         </StackPanel>
         <Border Grid.Column="1" Grid.Row="1">
-            <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}"/>
+            <!--<Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}"/>-->
+            <ContentControl x:Name="mainFrame" Content="{Binding MainFrame}"/>
         </Border>
-        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <SystemControl:HeaderMenuControl />
         </StackPanel>
     </Grid>

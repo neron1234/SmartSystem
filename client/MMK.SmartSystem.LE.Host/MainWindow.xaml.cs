@@ -48,7 +48,7 @@ namespace MMK.SmartSystem.LE.Host
                 MainViewModel.MainFrame = control;
             });
 
-            Messenger.Default.Register<AbpUserConfiguration>(this, (userConfig) => {
+            Messenger.Default.Register<Common.AuthenticateResultModel>(this, (userConfig) => {
                 MainViewModel.MainFrame = null;
             });
         }

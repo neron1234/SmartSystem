@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.LE.Host.AccountControl;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using System;
@@ -32,19 +33,15 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             Loaded += HeaderMenuControl_Loaded;
         }
         
+        public HeaderMenuViewModel headerViewModel { get; set; }
         private void HeaderMenuControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = new HeaderMenuViewModel();
-        }
+            this.DataContext = headerViewModel = new HeaderMenuViewModel();
 
-        private async void ChangeUserBtn_Click(object sender, RoutedEventArgs e)
-        {
-            await EventBus.Default.TriggerAsync(new UserConfigEventData()
-            {
-                UserName = SmartSystemLEConsts.DefaultUser,
-                Pwd = SmartSystemLEConsts.DefaultPwd,
-                Culture = SmartSystemLEConsts.Culture,
-                IsChangeUser = true
+            Messenger.Default.Register<Common.AuthenticateResultModel> (this, (userConfig) => {
+                headerViewModel.IsLogin = true;
+                headerViewModel.AccountGroupVisibility = Visibility.Visible;
+                headerViewModel.UserAccount = "ID:" + userConfig.UserId;
             });
         }
 
