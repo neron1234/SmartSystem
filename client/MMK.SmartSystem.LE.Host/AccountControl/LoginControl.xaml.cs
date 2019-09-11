@@ -29,29 +29,23 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
         public LoginControl()
         {
             InitializeComponent();
-            Loaded += UserControl_Loaded;
-            Unloaded += LoginControl_Unloaded;
-        }
-
-        private void LoginControl_Unloaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-        private bool IsClose = false;
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             LoginModel = new LoginControlViewModel()
             {
                 Account = "",
                 Pwd = "",
-                IsLogin = true,
-                IsError = false
+                IsError = false,
+                IsLogin = false
             };
             this.DataContext = LoginModel;
-            if (!IsClose)
-            {
-                this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, true);
-            }
+
+            Loaded += UserControl_Loaded;
+        }  
+        
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+            this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, true);
+            Loaded -= UserControl_Loaded;
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -107,7 +101,6 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
         }
         private void Close()
         {
-            IsClose = true;
             this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, false);
         }
     }

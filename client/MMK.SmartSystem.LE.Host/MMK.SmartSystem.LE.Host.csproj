@@ -16,7 +16,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -212,6 +212,9 @@
     <Compile Include="AccountControl\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AccountControl\UpdatePasswordControl.xaml.cs">
+      <DependentUpon>UpdatePasswordControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AccountControl\ViewModel\LoginControlViewModel.cs" />
     <Compile Include="EventHandler\UserConfigHandler.cs" />
     <Compile Include="LoginWindow.xaml.cs">
@@ -219,6 +222,7 @@
     </Compile>
     <Compile Include="SmartSystemLEConsts.cs" />
     <Compile Include="SystemControl\Control\MaskLayerBehavior.cs" />
+    <Compile Include="SystemControl\Control\PathIconButton.cs" />
     <Compile Include="SystemControl\Control\PopupEx.cs" />
     <Compile Include="SystemControl\HeaderMenuControl.xaml.cs">
       <DependentUpon>HeaderMenuControl.xaml</DependentUpon>
@@ -236,6 +240,10 @@
     <Compile Include="SystemControl\ViewModel\SystemMenuModuleViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="AccountControl\LoginControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AccountControl\UpdatePasswordControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

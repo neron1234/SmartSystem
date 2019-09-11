@@ -1,5 +1,6 @@
 ﻿using Abp.Dependency;
 using Abp.Events.Bus;
+using GalaSoft.MvvmLight.Threading;
 using MMK.SmartSystem.Common.EventDatas;
 using System;
 using System.Collections.Generic;
@@ -28,12 +29,23 @@ namespace MMK.SmartSystem.LE.Host
         {
             this.iocManager = iocManager;
             InitializeComponent();
-            ContentRendered += LoginWindow_ContentRendered;
+            Loaded += LoginWindow_Loaded;
         }
 
-        private async void LoginWindow_ContentRendered(object sender, EventArgs e)
+        private async void LoginWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            await AutoLogin();
+            //await DispatcherHelper.RunAsync(async () =>
+            //{
+            //    await AutoLogin();
+            //});
+            await Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(2000);
+                this.Dispatcher.InvokeAsync(async () =>
+                {
+                    await AutoLogin();
+                });
+            });
         }
 
         private async Task AutoLogin()
@@ -45,7 +57,6 @@ namespace MMK.SmartSystem.LE.Host
                 Culture = SmartSystemLEConsts.Culture,
                 IsChangeUser = true
             });
-
             MainWindow mainWindow = new MainWindow(iocManager);
             mainWindow.Show();
             Close();

@@ -27,18 +27,13 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
     /// </summary>
     public partial class HeaderMenuControl : UserControl
     {
+        public HeaderMenuViewModel headerViewModel { get; set; }
         public HeaderMenuControl()
         {
             InitializeComponent();
-            Loaded += HeaderMenuControl_Loaded;
-        }
-        
-        public HeaderMenuViewModel headerViewModel { get; set; }
-        private void HeaderMenuControl_Loaded(object sender, RoutedEventArgs e)
-        {
             this.DataContext = headerViewModel = new HeaderMenuViewModel();
 
-            Messenger.Default.Register<Common.AuthenticateResultModel> (this, (userConfig) => {
+            Messenger.Default.Register<Common.AuthenticateResultModel>(this, (userConfig) => {
                 headerViewModel.IsLogin = true;
                 headerViewModel.AccountGroupVisibility = Visibility.Visible;
                 headerViewModel.UserAccount = "ID:" + userConfig.UserId;
@@ -62,6 +57,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
                 Culture = language
             }));
 
+        }
+
+        private void UpdatePwdBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Send((UserControl)new PopupWindowControl(new UpdatePasswordControl()));
         }
     }
 }

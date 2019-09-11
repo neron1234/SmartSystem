@@ -83,7 +83,7 @@
                                 </i:Interaction.Triggers>
                             </TextBox>
                             <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding AccountError}" />
-                            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Pwd}" x:Name="txtPwd" KeyDown="Login_KeyDown">
+                            <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Pwd}" x:Name="txtPwd" KeyDown="Login_KeyDown" >
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="TextChanged">
                                         <cmd:EventToCommand Command="{Binding PwdChangedCommand}" CommandParameter="{Binding ElementName=txtPwd, Path=Text}"/>

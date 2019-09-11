@@ -33,12 +33,11 @@ namespace MMK.SmartSystem.LE.Host
             this.iocManager = iocManager;
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
+            this.DataContext = MainViewModel;
         }
 
         private  void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = MainViewModel;
-
             Messenger.Default.Register<Type>(this, (type)=> {
                 var page = iocManager.Resolve(type);
                 MainViewModel.MainFrame = page;

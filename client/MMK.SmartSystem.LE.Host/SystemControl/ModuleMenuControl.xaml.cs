@@ -28,14 +28,8 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         public ModuleMenuControl()
         {
             InitializeComponent();
-            Loaded += ModuleMenuControl_Loaded;
-        }
-
-        private void ModuleMenuControl_Loaded(object sender, RoutedEventArgs e)
-        {
             SysModuleViews = SmartSystemLEConsts.SystemModules;
             this.DataContext = this;
         }
-
     }
 }

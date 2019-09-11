@@ -22,36 +22,25 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
     /// </summary>
     public partial class PopupWindowControl : UserControl
     {
-        public PopupWindowControl()
+        private PopupWindowViewModel popupWindowViewModel { get; set; }
+        
+        public PopupWindowControl(UserControl userControl)
         {
             InitializeComponent();
+            this.DataContext = popupWindowViewModel =new PopupWindowViewModel();
+            popupWindowViewModel.PopupContent = userControl;
             Loaded += PopupWindowControl_Loaded;
         }
 
         private void PopupWindowControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, true);
-            this.DataContext = new PopupWindowViewModel();
+            this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, true);
+            Loaded -= PopupWindowControl_Loaded;
         }
 
-        public void Close()
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, false);
-        }
-
-        public void Open()
-        {
-            btnOpenMaskLayer.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void BtnOpenMaskLayer_Click(object sender, RoutedEventArgs e)
-        {
-            this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, true);
         }
     }
 }
