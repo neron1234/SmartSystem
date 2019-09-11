@@ -744,3 +744,161 @@ MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of 
    at Nito.AsyncEx.AsyncContext.Run[TResult](Func`1 action)
    at Abp.BackgroundJobs.BackgroundJobManager.DoWork() in D:\Github\aspnetboilerplate\src\Abp\BackgroundJobs\BackgroundJobManager.cs:line 93
    at Abp.Threading.BackgroundWorkers.PeriodicBackgroundWorkerBase.Timer_Elapsed(Object sender, EventArgs e) in D:\Github\aspnetboilerplate\src\Abp\Threading\BackgroundWorkers\PeriodicBackgroundWorkerBase.cs:line 48
+DEBUG 2019-09-11 08:37:17,415 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-11 08:37:17,459 [1    ] Abp.Modules.AbpModuleManager             - Found 17 ABP modules in total.
+DEBUG 2019-09-11 08:37:17,483 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,486 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,486 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,486 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,487 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,487 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,487 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,488 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,488 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,488 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,489 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,489 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,489 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,490 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,490 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,490 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,490 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:17,495 [1    ] Abp.Modules.AbpModuleManager             - 17 modules loaded.
+DEBUG 2019-09-11 08:37:17,555 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-11 08:37:17,556 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-11 08:37:17,556 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-11 08:37:17,556 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-11 08:37:17,897 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-11 08:37:18,283 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-11 08:37:18,423 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-11 08:37:18,469 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-11 08:37:18,475 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-11 08:37:18,506 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-11 08:37:18,538 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-09-11 08:37:18,580 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 15 classes define auto mapping attributes
+DEBUG 2019-09-11 08:37:18,580 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-11 08:37:18,589 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-11 08:37:18,590 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-11 08:37:18,590 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-11 08:37:18,590 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-11 08:37:18,590 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-11 08:37:18,590 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-11 08:37:18,590 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-11 08:37:18,591 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-11 08:37:18,591 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-11 08:37:18,591 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-11 08:37:18,591 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-11 08:37:18,591 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-11 08:37:18,591 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-11 08:37:18,592 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-11 08:37:24,575 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-11 08:37:25,971 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-11 08:37:26,395 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-11 08:37:26,398 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.5064ms.
+INFO  2019-09-11 08:37:26,902 [4    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-11 08:37:26,915 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 940.4599ms
+INFO  2019-09-11 08:37:26,970 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2397.5484ms 302 
+INFO  2019-09-11 08:37:26,973 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-11 08:37:26,985 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 11.2852ms 301 
+INFO  2019-09-11 08:37:26,990 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:37:27,015 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 24.6363ms 200 text/html
+INFO  2019-09-11 08:37:27,032 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-09-11 08:37:27,038 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-09-11 08:37:27,039 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-09-11 08:37:27,040 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2019-09-11 08:37:27,040 [13   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2019-09-11 08:37:27,068 [9    ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-bundle.js was not modified
+INFO  2019-09-11 08:37:27,068 [11   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-standalone-preset.js was not modified
+INFO  2019-09-11 08:37:27,068 [7    ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui.css was not modified
+INFO  2019-09-11 08:37:27,073 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 33.3824ms 304 application/javascript
+INFO  2019-09-11 08:37:27,073 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 40.244ms 304 text/css
+INFO  2019-09-11 08:37:27,073 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 34.434ms 304 application/javascript
+INFO  2019-09-11 08:37:27,090 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'D:\WorkCode\FANUC\SmartSystem\SmartSystem\src\MMK.SmartSystem.Web.Host\wwwroot\swagger\ui\abp.js'
+INFO  2019-09-11 08:37:27,090 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 50.0463ms 200 application/javascript
+INFO  2019-09-11 08:37:27,090 [7    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'D:\WorkCode\FANUC\SmartSystem\SmartSystem\src\MMK.SmartSystem.Web.Host\wwwroot\swagger\ui\abp.swagger.js'
+INFO  2019-09-11 08:37:27,090 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 49.9041ms 200 application/javascript
+INFO  2019-09-11 08:37:27,524 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-11 08:37:27,801 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 276.398ms 200 application/json;charset=utf-8
+INFO  2019-09-11 08:51:00,541 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-11 08:51:00,549 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 7.4763ms 200 application/json;charset=utf-8
+INFO  2019-09-11 08:51:06,812 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-11 08:51:06,833 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 20.4218ms 200 application/json;charset=utf-8
+INFO  2019-09-11 08:51:21,118 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-11 08:51:21,136 [28   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-11 08:51:21,139 [28   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-11 08:51:21,139 [28   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.0085ms.
+INFO  2019-09-11 08:51:21,764 [19   ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-11 08:51:21,765 [19   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 628.1479ms
+INFO  2019-09-11 08:51:21,765 [19   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 647.2413ms 302 
+INFO  2019-09-11 08:51:21,771 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-11 08:51:21,774 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2.785ms 301 
+INFO  2019-09-11 08:51:21,779 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:21,789 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 9.4187ms 200 text/html
+INFO  2019-09-11 08:51:30,620 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:30,624 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3.3571ms 200 text/html
+INFO  2019-09-11 08:51:41,452 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:41,454 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.5382ms 200 text/html
+INFO  2019-09-11 08:51:41,660 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:41,661 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.8543ms 200 text/html
+INFO  2019-09-11 08:51:41,901 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:41,902 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.3565ms 200 text/html
+INFO  2019-09-11 08:51:48,970 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/  
+INFO  2019-09-11 08:51:48,971 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.4142ms 301 
+INFO  2019-09-11 08:51:48,989 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:48,991 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.4201ms 200 text/html
+INFO  2019-09-11 08:51:49,664 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/  
+INFO  2019-09-11 08:51:49,665 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.3986ms 301 
+INFO  2019-09-11 08:51:49,676 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:49,678 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2.2377ms 200 text/html
+INFO  2019-09-11 08:51:49,859 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/  
+INFO  2019-09-11 08:51:49,861 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.2468ms 301 
+INFO  2019-09-11 08:51:49,863 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:49,866 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2.5893ms 200 text/html
+INFO  2019-09-11 08:51:50,040 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/  
+INFO  2019-09-11 08:51:50,041 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.185ms 301 
+INFO  2019-09-11 08:51:50,046 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:50,049 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3.1472ms 200 text/html
+INFO  2019-09-11 08:51:50,242 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/  
+INFO  2019-09-11 08:51:50,243 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.1237ms 301 
+INFO  2019-09-11 08:51:50,247 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:50,248 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.1487ms 200 text/html
+INFO  2019-09-11 08:51:50,414 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/  
+INFO  2019-09-11 08:51:50,416 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.3146ms 301 
+INFO  2019-09-11 08:51:50,419 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:50,421 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.8545ms 200 text/html
+INFO  2019-09-11 08:51:50,607 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/  
+INFO  2019-09-11 08:51:50,608 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.0556ms 301 
+INFO  2019-09-11 08:51:50,611 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:50,615 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4.0191ms 200 text/html
+INFO  2019-09-11 08:51:50,811 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/  
+INFO  2019-09-11 08:51:50,813 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.0767ms 301 
+INFO  2019-09-11 08:51:50,816 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:50,818 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2.4079ms 200 text/html
+INFO  2019-09-11 08:51:51,005 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/  
+INFO  2019-09-11 08:51:51,006 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.0892ms 301 
+INFO  2019-09-11 08:51:51,009 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:51:51,014 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 5.1902ms 200 text/html
+INFO  2019-09-11 08:52:10,746 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/api/services/app/OperationLog/Get?Id=1  
+INFO  2019-09-11 08:52:10,796 [24   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Get", controller = "OperationLog"}. Executing action MMK.CNC.Application.SystemClient.OperationLog.OperationLogAppService.Get (MMK.CNC.Application)
+INFO  2019-09-11 08:52:10,999 [24   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.CNC.Application.SystemClient.OperationLog.OperationLogAppService.Get (MMK.CNC.Application) with arguments (Abp.Application.Services.Dto.EntityDto`1[System.Int32]) - Validation state: Valid
+INFO  2019-09-11 08:52:11,634 [21   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.CNC.Application.SystemClient.OperationLog.OperationLogAppService.Get (MMK.CNC.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 634.956ms.
+INFO  2019-09-11 08:52:12,408 [21   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-11 08:52:12,428 [21   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.CNC.Application.SystemClient.OperationLog.OperationLogAppService.Get (MMK.CNC.Application) in 1631.7133ms
+INFO  2019-09-11 08:52:12,428 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1681.9201ms 200 application/json; charset=utf-8
+INFO  2019-09-11 08:52:22,524 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/api/services/app/OperationLog  
+INFO  2019-09-11 08:52:22,526 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.5065ms 404 
+INFO  2019-09-11 08:52:27,199 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/api/services/  
+INFO  2019-09-11 08:52:27,200 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.8522ms 404 
+INFO  2019-09-11 08:52:30,067 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-11 08:52:30,079 [25   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-11 08:52:30,084 [25   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-11 08:52:30,084 [25   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.0014ms.
+INFO  2019-09-11 08:52:30,550 [20   ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-11 08:52:30,550 [20   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 470.3869ms
+INFO  2019-09-11 08:52:30,551 [20   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 483.0568ms 302 
+INFO  2019-09-11 08:52:30,556 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-11 08:52:30,559 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2.7463ms 301 
+INFO  2019-09-11 08:52:30,564 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-11 08:52:30,568 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3.6205ms 200 text/html
+INFO  2019-09-11 08:52:48,490 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-11 08:52:48,498 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 7.6013ms 200 application/json;charset=utf-8

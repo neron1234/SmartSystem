@@ -35,7 +35,7 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
 
         private void LoginControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            Messenger.Default.Unregister<string>(this, Login);
+            
         }
         private bool IsClose = false;
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -48,26 +48,57 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
                 IsError = false
             };
             this.DataContext = LoginModel;
-            Messenger.Default.Register<string>(this, Login);
             if (!IsClose)
             {
                 this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, true);
             }
         }
 
-        private void Login(string msg)
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(msg);
-            Close();
+            Login();
         }
 
         private void Login_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                LoginModel.LoginCommand.Execute("");
-                Close();
+                Login();
             }
+        }
+
+        private void Login()
+        {
+            var msg = string.Empty;
+            try
+            {
+                TokenAuthClient tokenAuthClient = new TokenAuthClient(MMK.SmartSystem.Common.SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+                var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
+                if (ts.Success)
+                {
+                    Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
+                    var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
+                    if (obj2.Success)
+                    {
+                        Common.SmartSystemCommonConsts.UserConfiguration = obj2.Result;
+                    }
+                    msg = "登陆成功";
+                    Close();
+                }
+                else
+                {
+                    msg = ts.Error.Details;
+                }
+            }
+            catch (Exception ex)
+            {
+                msg = ex.ToString();
+            }
+            MessageBox.Show(msg);
+
+            //Messenger.Default.Send(Common.SmartSystemCommonConsts.UserConfiguration);
+
+            Messenger.Default.Send(Common.SmartSystemCommonConsts.AuthenticateModel);
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

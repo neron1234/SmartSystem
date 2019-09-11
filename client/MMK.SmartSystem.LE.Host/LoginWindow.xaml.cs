@@ -1,4 +1,6 @@
 ﻿using Abp.Dependency;
+using Abp.Events.Bus;
+using MMK.SmartSystem.Common.EventDatas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +28,24 @@ namespace MMK.SmartSystem.LE.Host
         {
             this.iocManager = iocManager;
             InitializeComponent();
-            Loaded += LoginWindow_Loaded;
+            ContentRendered += LoginWindow_ContentRendered;
         }
 
-        private void LoginWindow_Loaded(object sender, RoutedEventArgs e)
+        private async void LoginWindow_ContentRendered(object sender, EventArgs e)
         {
+            await AutoLogin();
+        }
+
+        private async Task AutoLogin()
+        {
+            await EventBus.Default.TriggerAsync(new UserConfigEventData()
+            {
+                UserName = SmartSystemLEConsts.DefaultUser,
+                Pwd = SmartSystemLEConsts.DefaultPwd,
+                Culture = SmartSystemLEConsts.Culture,
+                IsChangeUser = true
+            });
+
             MainWindow mainWindow = new MainWindow(iocManager);
             mainWindow.Show();
             Close();

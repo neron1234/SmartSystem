@@ -137,34 +137,5 @@ namespace MMK.SmartSystem.LE.Host.AccountControl.ViewModel
                 });
             }
         }
-
-        public ICommand LoginCommand{
-            get{
-                return new RelayCommand<string>((s) => {
-                    try { 
-                        TokenAuthClient tokenAuthClient = new TokenAuthClient(MMK.SmartSystem.Common.SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-                        var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = Account, Password = Pwd }).Result;
-                        if (ts.Success){
-                            Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
-                            var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
-                            if (obj2.Success)
-                            {
-                                Common.SmartSystemCommonConsts.UserConfiguration = obj2.Result;
-                            }
-                            s = "登陆成功";
-                        }else{
-                            s = ts.Error.Details;
-                        }
-                    }catch(Exception ex){
-                        s = ex.ToString();
-                    }
-                    Messenger.Default.Send(s);
-
-                    //Messenger.Default.Send(Common.SmartSystemCommonConsts.UserConfiguration);
-
-                    Messenger.Default.Send(Common.SmartSystemCommonConsts.AuthenticateModel);
-                });
-            }
-        }
     }
 }

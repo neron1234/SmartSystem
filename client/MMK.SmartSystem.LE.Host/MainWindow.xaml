@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host"
         xmlns:SystemControl="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -20,11 +20,16 @@
             <SystemControl:ModuleMenuControl />
         </StackPanel>
         <Border Grid.Column="1" Grid.Row="1">
-            <!--<Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}"/>-->
-            <ContentControl x:Name="mainFrame" Content="{Binding MainFrame}"/>
+            <Viewbox Stretch="Fill">
+                <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Viewbox>
+            <!--<Frame x:Name="mainFrame" Content="{Binding MainFrame}"/>-->
         </Border>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <SystemControl:HeaderMenuControl />
+        </StackPanel>
+        <StackPanel>
+            <ContentControl x:Name="popupControl" Content="{Binding PopupControl}"/>
         </StackPanel>
     </Grid>
 </Window>

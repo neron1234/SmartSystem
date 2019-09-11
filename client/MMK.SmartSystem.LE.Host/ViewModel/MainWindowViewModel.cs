@@ -29,5 +29,20 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
                 }
             }
         }
+
+        private object _PopupControl;
+        public object PopupControl
+        {
+            get { return _PopupControl; }
+            set
+            {
+                if (_PopupControl != value)
+                {
+                    _PopupControl = value;
+                    RaisePropertyChanged(() => PopupControl);
+                }
+            }
+        }
+
     }
 }

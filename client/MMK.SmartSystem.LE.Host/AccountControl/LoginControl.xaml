@@ -9,8 +9,7 @@
         xmlns:cmd="http://www.galasoft.ch/mvvmlight"
         mc:Ignorable="d"
         Height="400" Width="700" 
-        BorderBrush="DarkGray" BorderThickness="1" 
-        Background="#FFC4DEE7" FontSize="15" FontFamily="微软雅黑">
+        FontSize="15" FontFamily="微软雅黑">
     <UserControl.Resources>
         <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="Padding" Value="18"/>
@@ -94,7 +93,7 @@
                             <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding PwdError}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                            <Button Content="登陆" Margin="10" Width="150" Height="35" Foreground="White" BorderBrush="#FF3838C9" Command="{Binding LoginCommand}" IsEnabled="{Binding IsLogin}">
+                            <Button Content="登陆" Margin="10" Width="150" Height="35" Foreground="White" BorderBrush="#FF3838C9" Click="LoginButton_Click" IsEnabled="{Binding IsLogin}">
                                 <Button.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                                         <GradientStop Color="#FF7062CE" Offset="1"/>

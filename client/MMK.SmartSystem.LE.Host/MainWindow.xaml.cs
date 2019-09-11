@@ -45,7 +45,7 @@ namespace MMK.SmartSystem.LE.Host
             });
 
             Messenger.Default.Register<UserControl>(this, (control) => {
-                MainViewModel.MainFrame = control;
+                MainViewModel.PopupControl = control;
             });
 
             Messenger.Default.Register<Common.AuthenticateResultModel>(this, (userConfig) => {
