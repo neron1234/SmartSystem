@@ -35,7 +35,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
 
             Messenger.Default.Register<Common.AuthenticateResultModel>(this, (userConfig) => {
                 headerViewModel.IsLogin = true;
-                headerViewModel.AccountGroupVisibility = Visibility.Visible;
                 headerViewModel.UserAccount = "ID:" + userConfig.UserId;
             });
         }

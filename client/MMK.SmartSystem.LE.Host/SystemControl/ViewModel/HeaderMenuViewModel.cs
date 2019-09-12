@@ -28,27 +28,43 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
                     _IsLogin = value;
                     if (_IsLogin)
                     {
-                        LoginBtnTxt = "切换账号";
+                        LoginBtnVisibility = Visibility.Collapsed;
+                        ChangeAccountBtnVisibility = Visibility.Visible;
                     }
                     else
                     {
-                        LoginBtnTxt = "登陆";
+                        LoginBtnVisibility = Visibility.Visible;
+                        ChangeAccountBtnVisibility = Visibility.Collapsed;
                     }
                     RaisePropertyChanged(() => IsLogin);
                 }
             }
         }
 
-        private string _LoginBtnTxt;
-        public string LoginBtnTxt
+        private Visibility _LoginBtnVisibility;
+        public Visibility LoginBtnVisibility
         {
-            get { return _LoginBtnTxt; }
+            get { return _LoginBtnVisibility; }
             set
             {
-                if (_LoginBtnTxt != value)
+                if (_LoginBtnVisibility != value)
                 {
-                    _LoginBtnTxt = value;
-                    RaisePropertyChanged(() => LoginBtnTxt);
+                    _LoginBtnVisibility = value;
+                    RaisePropertyChanged(() => LoginBtnVisibility);
+                }
+            }
+        }
+
+        private Visibility _ChangeAccountBtnVisibility;
+        public Visibility ChangeAccountBtnVisibility
+        {
+            get { return _ChangeAccountBtnVisibility; }
+            set
+            {
+                if (_ChangeAccountBtnVisibility != value)
+                {
+                    _ChangeAccountBtnVisibility = value;
+                    RaisePropertyChanged(() => ChangeAccountBtnVisibility);
                 }
             }
         }
@@ -67,25 +83,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
             }
         }
 
-        private Visibility _AccountGroupVisibility;
-        public Visibility AccountGroupVisibility
-        {
-            get { return _AccountGroupVisibility; }
-            set
-            {
-                if (_AccountGroupVisibility != value)
-                {
-                    _AccountGroupVisibility = value;
-                    RaisePropertyChanged(() => AccountGroupVisibility);
-                }
-            }
-        }
-
         public HeaderMenuViewModel()
         {
             IsLogin = false;
-            AccountGroupVisibility = Visibility.Collapsed;
-            LoginBtnTxt = "登陆";
+            LoginBtnVisibility = Visibility.Visible;
+            ChangeAccountBtnVisibility = Visibility.Collapsed;
         }
 
         public ICommand OpenCommand
@@ -107,7 +109,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
                             Culture = SmartSystemLEConsts.Culture,
                             IsChangeUser = true
                         });
-                        AccountGroupVisibility = Visibility.Collapsed;
                         IsLogin = false;
                     }
                 });
