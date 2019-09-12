@@ -251,6 +251,7 @@
       <DependentUpon>WebAppControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\SystemTranslate.cs" />
     <Page Include="AccountControl\LoginControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

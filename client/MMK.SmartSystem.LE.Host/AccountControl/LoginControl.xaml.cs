@@ -41,6 +41,7 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
             Messenger.Default.Register<UserInfo>(this,(u) =>
             {
                 MessageBox.Show("登陆成功!");
+                //Dispatcher.BeginInvoke(new Action());
                 Close();
             });
             Loaded += UserControl_Loaded;
