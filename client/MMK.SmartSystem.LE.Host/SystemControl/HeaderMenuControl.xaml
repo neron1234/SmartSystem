@@ -8,8 +8,8 @@
              d:DesignHeight="50" d:DesignWidth="600">
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="中文"  Width="80" Height="25" Margin="2" x:Name="CnBtn" Click="CnBtn_Click"/>
-            <Button Content="英文"  Width="80" Height="25" Margin="2" x:Name="EnBtn" Click="EnBtn_Click"/>
+            <Button Content="{Binding Translate.SmartSystem.Chinese}"  Width="80" Height="25" Margin="2" x:Name="CnBtn" Click="CnBtn_Click"/>
+            <Button Content="{Binding Translate.SmartSystem.English}"  Width="80" Height="25" Margin="2" x:Name="EnBtn" Click="EnBtn_Click"/>
             <Button Content="{Binding LoginBtnTxt}"  Width="80" Height="25" Margin="2" x:Name="LoginBtn" Command="{Binding OpenCommand}"/>
         </StackPanel>
     </Grid>

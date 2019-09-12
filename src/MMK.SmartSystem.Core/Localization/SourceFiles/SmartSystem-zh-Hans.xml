@@ -22,6 +22,21 @@
     <text name="SmartSystem.Account" value="账号" />
     <text name="SmartSystem.Pwd" value="密码" />
     <text name="SmartSystem.Login" value="登陆" />
+    <text name="SmartSystem.ChangeAccout" value="切换账号" />
+    <text name="SmartSystem.Cancel" value="取消" />
+
+    <text name="SmartSystem.LoginSucceed" value="登陆成功" />
+    <text name="SmartSystem.LoginFailure" value="登陆失败" />
+    
+    <text name="SmartSystem.OldPwd" value="原密码" />
+    <text name="SmartSystem.Pwd1" value="新密码" />
+    <text name="SmartSystem.Pwd2" value="重复密码" />
+    <text name="SmartSystem.UpdatePwd" value="修改密码" />
+
+    <text name="SmartSystem.Chinese" value="中文" />
+    <text name="SmartSystem.English" value="英文" />
+    
+    <text name="SmartSystem.LogingSystem" value="登陆系统中" />
     
   </texts>
 </localizationDictionary>

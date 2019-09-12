@@ -71,8 +71,8 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                 Translate();
                 Messenger.Default.Send(new LoginMessage
                 {
-                    Success = true,
-                    Msg = "登陆成功"
+                    Success = true
+                    //Msg = "登陆成功"
                 });
             }
             else

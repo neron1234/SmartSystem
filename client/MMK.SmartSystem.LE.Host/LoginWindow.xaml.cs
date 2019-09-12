@@ -2,6 +2,7 @@
 using Abp.Events.Bus;
 using GalaSoft.MvvmLight.Threading;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace MMK.SmartSystem.LE.Host
             this.iocManager = iocManager;
             InitializeComponent();
             Loaded += LoginWindow_Loaded;
+            this.DataContext = new MainTranslateViewModel();
         }
 
         private async void LoginWindow_Loaded(object sender, RoutedEventArgs e)

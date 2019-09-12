@@ -18,6 +18,7 @@ namespace MMK.SmartSystem.LE.Host
         public const string Culture = "en";
 
         public static SystemTranslate SystemTranslateModel = new SystemTranslate();
+
         public static ObservableCollection<SystemMenuModuleViewModel> SystemModules = new ObservableCollection<SystemMenuModuleViewModel>();
 
 

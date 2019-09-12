@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.LE.Host.AccountControl.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
     /// </summary>
     public partial class UpdatePasswordControl : UserControl
     {
+        public UpdatePasswordControlViewModel updatePasswordViewModel { get; set; }
         public UpdatePasswordControl()
         {
             InitializeComponent();
+            this.DataContext = updatePasswordViewModel = new UpdatePasswordControlViewModel();
         }
     }
 }
