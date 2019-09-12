@@ -36,7 +36,8 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
             }
             UserClientServiceProxy userClientService = new UserClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
 
-            Task.Factory.StartNew(() => {
+            Task.Factory.StartNew(() =>
+            {
                 var rs = userClientService.GetAsync(SmartSystemCommonConsts.AuthenticateModel.UserId).Result;
                 if (rs.Success)
                 {
@@ -53,10 +54,13 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
             OperationLogClientServiceProxy operationLogClientService = new OperationLogClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
 
             tokenAuthClient = new TokenAuthClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            operationLogClientService.CreateAsync(new OperationLogDto {
-                ExecutionTime = DateTime.Now, ExecutionDuration = 0,
+            operationLogClientService.CreateAsync(new OperationLogDto
+            {
+                ExecutionTime = DateTime.Now,
+                ExecutionDuration = 0,
                 UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId,
-                ServiceName = SmartSystemCommonConsts.ApiHost,PageName= MethodBase.GetCurrentMethod().Name,
+                ServiceName = SmartSystemCommonConsts.ApiHost,
+                PageName = MethodBase.GetCurrentMethod().Name,
                 MethodName = MethodBase.GetCurrentMethod().DeclaringType.Namespace
             });
 
@@ -65,16 +69,20 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
             {
                 SmartSystemCommonConsts.UserConfiguration = obj2.Result;
                 Translate();
+                Messenger.Default.Send(new LoginMessage
+                {
+                    Success = true,
+                    Msg = "登陆成功"
+                });
             }
             else
             {
-                //Messenger.Default.Send(new LoginMessage {
-                //    Success
-                //});
-
+                Messenger.Default.Send(new LoginMessage
+                {
+                    Success = false,
+                    Msg = obj2.Error.Details
+                });
             }
-
-            
         }
 
         private void Translate()
@@ -114,6 +122,21 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                 }
             }
 
+            //
+            var smartGype = SmartSystemLEConsts.SystemTranslateModel.GetType();
+            foreach (PropertyInfo item in smartGype.GetProperties())
+            {
+                var obj = item.GetValue(SmartSystemLEConsts.SystemTranslateModel,null);
+                foreach (PropertyInfo propItem in item.PropertyType.GetProperties())
+                {
+                    string key = $"{item.Name}.{propItem.Name}";
+                    if (dict.ContainsKey(key))
+                    {
+                        propItem.SetValue(obj, dict[key]);
+
+                    }
+                }
+            }
         }
     }
 }

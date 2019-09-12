@@ -19,9 +19,9 @@
     <text name="AutoFindSide.FindSideMovePath" value="寻边时X、Y的移动轨迹" />
     <text name="AutoFindSide.ManualStartFindSide" value="手动启动寻边" />
 
-    <text name="Account" value="账号" />
-    <text name="Pwd" value="密码" />
-    <text name="Login" value="登陆" />
+    <text name="SmartSystem.Account" value="账号" />
+    <text name="SmartSystem.Pwd" value="密码" />
+    <text name="SmartSystem.Login" value="登陆" />
     
   </texts>
 </localizationDictionary>
