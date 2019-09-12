@@ -1,6 +1,7 @@
 ﻿using Abp.Events.Bus;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SerivceProxy;
 using MMK.SmartSystem.LE.Host.AccountControl.ViewModel;
 using MMK.SmartSystem.LE.Host.SystemControl;
@@ -37,13 +38,16 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
                 IsLogin = false
             };
             this.DataContext = LoginModel;
-
+            Messenger.Default.Register<UserInfo>(this,(u) =>
+            {
+                MessageBox.Show("登陆成功!");
+                Close();
+            });
             Loaded += UserControl_Loaded;
-        }  
+        }
         
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            
             this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, true);
             Loaded -= UserControl_Loaded;
         }
@@ -64,35 +68,41 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
         private void Login()
         {
             var msg = string.Empty;
-            try
-            {
-                TokenAuthClient tokenAuthClient = new TokenAuthClient(MMK.SmartSystem.Common.SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-                var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
-                if (ts.Success)
+            //try
+            //{
+                EventBus.Default.TriggerAsync(new UserConfigEventData()
                 {
-                    Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
-                    var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
-                    if (obj2.Success)
-                    {
-                        Common.SmartSystemCommonConsts.UserConfiguration = obj2.Result;
-                    }
-                    msg = "登陆成功";
-                    Close();
-                }
-                else
-                {
-                    msg = ts.Error.Details;
-                }
-            }
-            catch (Exception ex)
-            {
-                msg = ex.ToString();
-            }
-            MessageBox.Show(msg);
+                    UserName = LoginModel.Account,
+                    Pwd = LoginModel.Pwd,
+                    IsChangeUser = true
+                });
+
+
+                //TokenAuthClient tokenAuthClient = new TokenAuthClient(MMK.SmartSystem.Common.SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+                //var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
+                //if (ts.Success)
+                //{
+                //    Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
+                //    var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
+                //    if (obj2.Success)
+                //    {
+                //        Common.SmartSystemCommonConsts.UserConfiguration = obj2.Result;
+                //    }
+                //    msg = "登陆成功";
+                //    Close();
+                //}
+                //else
+                //{
+                //    msg = ts.Error.Details;
+                //}
+            //}
+            //catch (Exception ex)
+            //{
+            //    msg = ex.ToString();
+            //}
+            //MessageBox.Show(msg);
 
             //Messenger.Default.Send(Common.SmartSystemCommonConsts.UserConfiguration);
-
-            Messenger.Default.Send(Common.SmartSystemCommonConsts.AuthenticateModel);
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

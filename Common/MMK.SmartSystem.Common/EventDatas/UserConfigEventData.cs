@@ -13,6 +13,7 @@ namespace MMK.SmartSystem.Common.EventDatas
 
         public string Pwd { get; set; }
         public bool IsChangeUser { get; set; }
+        public bool IsChangeLanguage { get; set; }
         public string Culture { get; set; }
     }
 }

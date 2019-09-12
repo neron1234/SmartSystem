@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host"
-        xmlns:SystemControl="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
+        xmlns:systemControl="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
+        xmlns:accountControl="clr-namespace:MMK.SmartSystem.LE.Host.AccountControl"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="900">
     <Grid>
@@ -17,7 +18,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
-            <SystemControl:ModuleMenuControl />
+            <systemControl:ModuleMenuControl />
         </StackPanel>
         <Border Grid.Column="1" Grid.Row="1">
             <Viewbox Stretch="Fill">
@@ -26,7 +27,8 @@
             <!--<Frame x:Name="mainFrame" Content="{Binding MainFrame}"/>-->
         </Border>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <SystemControl:HeaderMenuControl />
+            <systemControl:HeaderMenuControl />
+            <accountControl:UserInfoControl />
         </StackPanel>
         <StackPanel>
             <ContentControl x:Name="popupControl" Content="{Binding PopupControl}"/>

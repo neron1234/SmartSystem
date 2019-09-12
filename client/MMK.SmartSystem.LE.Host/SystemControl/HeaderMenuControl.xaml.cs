@@ -54,9 +54,9 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         {
             Task.Factory.StartNew(() => EventBus.Default.Trigger(new UserConfigEventData()
             {
-                Culture = language
+                Culture = language,
+                IsChangeLanguage = true 
             }));
-
         }
 
         private void UpdatePwdBtn_Click(object sender, RoutedEventArgs e)

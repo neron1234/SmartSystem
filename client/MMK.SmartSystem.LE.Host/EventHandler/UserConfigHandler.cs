@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TokenAuthClient = MMK.SmartSystem.Common.SerivceProxy.TokenAuthClient;
+using System.Reflection;
+using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common.Model;
 
 namespace MMK.SmartSystem.LE.Host.EventHandler
 {
@@ -32,12 +35,30 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                 }
             }
             UserClientServiceProxy userClientService = new UserClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            userClientService.ChangeLanguageAsync(new ChangeUserLanguageDto() { LanguageName= eventData.Culture }).Wait();
+
+            Task.Factory.StartNew(() => {
+                var rs = userClientService.GetAsync(SmartSystemCommonConsts.AuthenticateModel.UserId).Result;
+                if (rs.Success)
+                {
+                    SmartSystemCommonConsts.UserInfo = rs.Result;
+                    Messenger.Default.Send(SmartSystemCommonConsts.UserInfo);
+                }
+            });
+
+            if (eventData.IsChangeLanguage)
+            {
+                userClientService.ChangeLanguageAsync(new ChangeUserLanguageDto() { LanguageName = eventData.Culture }).Wait();
+            }
 
             OperationLogClientServiceProxy operationLogClientService = new OperationLogClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
 
             tokenAuthClient = new TokenAuthClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            operationLogClientService.CreateAsync(new OperationLogDto { ExecutionTime = DateTime.Now, ExecutionDuration = 0, UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId,ServiceName = SmartSystemCommonConsts.ApiHost,PageName= System.Reflection.MethodBase.GetCurrentMethod().Name, MethodName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Namespace });
+            operationLogClientService.CreateAsync(new OperationLogDto {
+                ExecutionTime = DateTime.Now, ExecutionDuration = 0,
+                UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId,
+                ServiceName = SmartSystemCommonConsts.ApiHost,PageName= MethodBase.GetCurrentMethod().Name,
+                MethodName = MethodBase.GetCurrentMethod().DeclaringType.Namespace
+            });
 
             var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
             if (obj2.Success)
@@ -45,8 +66,15 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                 SmartSystemCommonConsts.UserConfiguration = obj2.Result;
                 Translate();
             }
+            else
+            {
+                //Messenger.Default.Send(new LoginMessage {
+                //    Success
+                //});
 
+            }
 
+            
         }
 
         private void Translate()
