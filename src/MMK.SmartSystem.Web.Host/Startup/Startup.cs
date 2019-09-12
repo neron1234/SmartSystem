@@ -16,6 +16,7 @@ using MMK.SmartSystem.Configuration;
 using MMK.SmartSystem.Identity;
 
 using Abp.AspNetCore.SignalR.Hubs;
+using MMK.SmartSystem.RealTime.Hubs;
 
 namespace MMK.SmartSystem.Web.Host.Startup
 {
@@ -101,6 +102,7 @@ namespace MMK.SmartSystem.Web.Host.Startup
             app.UseSignalR(routes =>
             {
                 routes.MapHub<AbpCommonHub>("/signalr");
+                routes.MapHub<RouteHub>("/hubs-routeHub");
             });
 
             app.UseMvc(routes =>

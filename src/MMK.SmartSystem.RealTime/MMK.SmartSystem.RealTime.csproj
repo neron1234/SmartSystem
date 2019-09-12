@@ -6,12 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Abp" Version="4.3.0" />
-    <PackageReference Include="Abp.AutoMapper" Version="4.3.0" />
+    <PackageReference Include="Abp.AspNetCore.SignalR" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MMK.SmartSystem.WebCommon\MMK.SmartSystem.WebCommon.csproj" />
-    <ProjectReference Include="..\MMK.CNC.Core\MMK.CNC.Core.csproj" />
+    <ProjectReference Include="..\MMK.SmartSystem.WebCommon\MMK.SmartSystem.WebCommon.csproj" />
   </ItemGroup>
 
 </Project>

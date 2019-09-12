@@ -13,11 +13,13 @@ using MMK.SmartSystem.Authentication.JwtBearer;
 using MMK.SmartSystem.Configuration;
 using MMK.SmartSystem.EntityFrameworkCore;
 using MMK.CNC.Application;
+using MMK.SmartSystem.RealTime;
 
 namespace MMK.SmartSystem
 {
     [DependsOn(
          typeof(SmartSystemApplicationModule),
+         typeof(SmartSystemRealTimeModule),
          typeof(CNCApplicationModule),
          typeof(SmartSystemEntityFrameworkCoreModule),
          typeof(AbpAspNetCoreModule)

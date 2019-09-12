@@ -20,6 +20,7 @@
     <ProjectReference Include="..\MMK.SmartSystem.Application\MMK.SmartSystem.Application.csproj" />
     <ProjectReference Include="..\MMK.SmartSystem.Core\MMK.SmartSystem.Core.csproj" />
     <ProjectReference Include="..\MMK.SmartSystem.EntityFrameworkCore\MMK.SmartSystem.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\MMK.SmartSystem.RealTime\MMK.SmartSystem.RealTime.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
