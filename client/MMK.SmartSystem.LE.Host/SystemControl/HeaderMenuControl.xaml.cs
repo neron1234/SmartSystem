@@ -1,6 +1,7 @@
 ﻿using Abp.Events.Bus;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.LE.Host.AccountControl;
@@ -62,6 +63,18 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         private void UpdatePwdBtn_Click(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Send((UserControl)new PopupWindowControl(new UpdatePasswordControl()));
+        }
+
+        private void CnHomeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            webRouteClient.NavigateAsync("/");
+        }
+
+        private void CnHomeBtn2_Click(object sender, RoutedEventArgs e)
+        {
+            WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            webRouteClient.NavigateAsync("/home");
         }
     }
 }
