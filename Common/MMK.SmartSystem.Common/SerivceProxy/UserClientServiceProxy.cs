@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.Common.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -74,12 +75,12 @@ namespace MMK.SmartSystem.Common.SerivceProxy
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<UserDto> GetAsync(long? id);
+        System.Threading.Tasks.Task<RequestResult<UserInfo>> GetAsync(long? id);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<UserDto> GetAsync(long? id, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<RequestResult<UserInfo>> GetAsync(long? id, System.Threading.CancellationToken cancellationToken);
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -605,7 +606,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<UserDto> GetAsync(long? id)
+        public System.Threading.Tasks.Task<RequestResult<UserInfo>> GetAsync(long? id)
         {
             return GetAsync(id, System.Threading.CancellationToken.None);
         }
@@ -613,7 +614,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<UserDto> GetAsync(long? id, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<RequestResult<UserInfo>> GetAsync(long? id, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/User/Get?");
@@ -651,7 +652,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200")
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<UserDto>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<RequestResult<UserInfo>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
@@ -661,7 +662,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
 
-                        return default(UserDto);
+                        return default(RequestResult<UserInfo>);
                     }
                     finally
                     {

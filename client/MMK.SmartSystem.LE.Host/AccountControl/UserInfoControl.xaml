@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="MMK.SmartSystem.LE.Host.AccountControl.UserInfoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.AccountControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="300"
+             FontSize="12" FontFamily="微软雅黑">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBlock Text="{Binding Id}"/>
+                <TextBlock Text="{Binding Account}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10">
+                <TextBlock Text="{Binding Email}"/>
+                <TextBlock Text="{Binding CreateTime}"/>
+            </StackPanel>
+            <Button Content="修改密码" x:Name="UpdatePwdBtn" Click="UpdatePwdBtn_Click" Width="70" Height="28" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

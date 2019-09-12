@@ -175,6 +175,7 @@
     <Compile Include="Expands\StringToTranslate.cs" />
     <Compile Include="MMKSmartSystemCommonModule.cs" />
     <Compile Include="Model\AbpUserConfiguration.cs" />
+    <Compile Include="Model\OperationLogInfo.cs" />
     <Compile Include="Model\RequestResult.cs" />
     <Compile Include="Model\SystemMeunModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

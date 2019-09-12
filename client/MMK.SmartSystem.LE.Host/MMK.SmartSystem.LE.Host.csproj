@@ -16,7 +16,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -215,7 +215,12 @@
     <Compile Include="AccountControl\UpdatePasswordControl.xaml.cs">
       <DependentUpon>UpdatePasswordControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AccountControl\UserInfoControl.xaml.cs">
+      <DependentUpon>UserInfoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AccountControl\ViewModel\LoginControlViewModel.cs" />
+    <Compile Include="AccountControl\ViewModel\UpdatePasswordControlViewModel.cs" />
+    <Compile Include="AccountControl\ViewModel\UserInfoControlViewModel.cs" />
     <Compile Include="EventHandler\UserConfigHandler.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -244,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AccountControl\UpdatePasswordControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AccountControl\UserInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
