@@ -36,20 +36,34 @@ namespace MMK.SmartSystem.LE.Host
             this.DataContext = MainViewModel;
         }
 
-        private  void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            Messenger.Default.Register<Type>(this, (type)=> {
+            Messenger.Default.Register<Type>(this, (type) =>
+            {
                 var page = iocManager.Resolve(type);
                 MainViewModel.MainFrame = page;
             });
 
-            Messenger.Default.Register<UserControl>(this, (control) => {
+            Messenger.Default.Register<UserControl>(this, (control) =>
+            {
                 MainViewModel.PopupControl = control;
             });
 
-            Messenger.Default.Register<Common.AuthenticateResultModel>(this, (userConfig) => {
+            Messenger.Default.Register<Common.AuthenticateResultModel>(this, (userConfig) =>
+            {
                 MainViewModel.MainFrame = null;
             });
+            loadWebApp();
+        }
+
+        void loadWebApp()
+        {
+            string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "WebApp", "cncapp.exe");
+            if (System.IO.File.Exists(path))
+            {
+
+                ctnTest.StartAndEmbedProcess(path);
+            }
         }
     }
 }

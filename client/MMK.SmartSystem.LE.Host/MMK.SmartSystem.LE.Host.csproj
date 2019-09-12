@@ -247,9 +247,6 @@
     <Compile Include="SystemControl\Control\PopupHelper.cs" />
     <Compile Include="SystemControl\ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\SystemMenuModuleViewModel.cs" />
-    <Compile Include="SystemControl\WebAppControl.xaml.cs">
-      <DependentUpon>WebAppControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\MainTranslateViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\SystemTranslate.cs" />
@@ -294,10 +291,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SystemControl\PopupWindowControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SystemControl\WebAppControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

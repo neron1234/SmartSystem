@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host"
         xmlns:systemControl="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
         xmlns:accountControl="clr-namespace:MMK.SmartSystem.LE.Host.AccountControl"
+                           xmlns:embed="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl.Embed"
+
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="900">
     <Grid>
@@ -21,9 +23,18 @@
             <systemControl:ModuleMenuControl />
         </StackPanel>
         <Border Grid.Column="1" Grid.Row="1">
-            <Viewbox Stretch="Fill">
-                <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            </Viewbox>
+            <TabControl>
+                <TabItem Header="web">
+                    <embed:AppContainer x:Name="ctnTest" />
+
+                </TabItem>
+                <TabItem Header="基本功能">
+                    <Viewbox Stretch="Fill">
+                        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    </Viewbox>
+                </TabItem>
+            </TabControl>
+          
             <!--<Frame x:Name="mainFrame" Content="{Binding MainFrame}"/>-->
         </Border>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
