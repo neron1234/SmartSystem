@@ -902,3 +902,416 @@ INFO  2019-09-11 08:52:30,564 [25   ] soft.AspNetCore.Hosting.Internal.WebHost -
 INFO  2019-09-11 08:52:30,568 [25   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3.6205ms 200 text/html
 INFO  2019-09-11 08:52:48,490 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
 INFO  2019-09-11 08:52:48,498 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 7.6013ms 200 application/json;charset=utf-8
+DEBUG 2019-09-12 16:28:11,454 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-12 16:28:12,083 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-12 16:28:12,098 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,100 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,100 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,100 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,101 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,101 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,101 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,102 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,102 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,102 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,102 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,102 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,103 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,103 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,103 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,103 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,103 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,104 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:12,106 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-12 16:28:12,167 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:28:12,167 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:28:12,167 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:28:12,167 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:28:12,529 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:28:13,373 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-12 16:28:13,497 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-12 16:28:13,531 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-12 16:28:13,535 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-12 16:28:13,558 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-12 16:28:13,680 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-09-12 16:28:13,716 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-12 16:28:13,716 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-12 16:28:13,722 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-12 16:28:13,722 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-12 16:28:13,722 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-12 16:28:13,723 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-12 16:28:13,723 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-12 16:28:13,723 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-12 16:28:13,723 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-12 16:28:13,723 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-12 16:28:13,723 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-12 16:28:13,724 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-12 16:28:13,724 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-12 16:28:13,724 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-12 16:28:13,724 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-12 16:28:13,724 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-12 16:28:13,724 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-12 16:28:19,143 [13   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-12 16:28:19,143 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-12 16:28:19,230 [13   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 91.8591ms 200 
+INFO  2019-09-12 16:28:22,177 [17   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-12 16:28:23,002 [17   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-12 16:28:23,007 [17   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.6054ms.
+INFO  2019-09-12 16:28:23,379 [4    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-12 16:28:23,391 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 1209.0942ms
+INFO  2019-09-12 16:28:23,407 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4270.904ms 302 
+INFO  2019-09-12 16:28:23,425 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-12 16:28:23,436 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 11.2522ms 301 
+INFO  2019-09-12 16:28:23,483 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-12 16:28:23,507 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 24.646ms 200 text/html
+INFO  2019-09-12 16:28:23,525 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-09-12 16:28:23,533 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-09-12 16:28:23,535 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-09-12 16:28:23,539 [13   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2019-09-12 16:28:23,541 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2019-09-12 16:28:23,575 [9    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2019-09-12 16:28:23,577 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 43.1349ms 200 text/css
+INFO  2019-09-12 16:28:23,592 [9    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+INFO  2019-09-12 16:28:23,597 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 71.7216ms 200 application/javascript
+INFO  2019-09-12 16:28:23,605 [14   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+INFO  2019-09-12 16:28:23,607 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 74.2798ms 200 application/javascript
+INFO  2019-09-12 16:28:23,925 [6    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Host\wwwroot\swagger\ui\abp.js'
+INFO  2019-09-12 16:28:23,929 [18   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Host\wwwroot\swagger\ui\abp.swagger.js'
+INFO  2019-09-12 16:28:23,931 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 390.6867ms 200 application/javascript
+INFO  2019-09-12 16:28:23,933 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 390.1976ms 200 application/javascript
+INFO  2019-09-12 16:30:26,353 [29   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-12 16:30:26,356 [29   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2.9053ms 200 text/html
+INFO  2019-09-12 16:30:26,419 [29   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-09-12 16:30:26,424 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-09-12 16:30:26,427 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2019-09-12 16:30:26,430 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-09-12 16:30:26,433 [29   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui.css was not modified
+INFO  2019-09-12 16:30:26,434 [6    ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-standalone-preset.js was not modified
+INFO  2019-09-12 16:30:26,435 [17   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger/ui/abp.swagger.js was not modified
+INFO  2019-09-12 16:30:26,436 [21   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-bundle.js was not modified
+INFO  2019-09-12 16:30:26,438 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2019-09-12 16:30:26,439 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 12.7617ms 304 application/javascript
+INFO  2019-09-12 16:30:26,448 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 9.3692ms 304 application/javascript
+INFO  2019-09-12 16:30:26,449 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 15.5662ms 304 application/javascript
+INFO  2019-09-12 16:30:26,451 [24   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger/ui/abp.js was not modified
+INFO  2019-09-12 16:30:26,452 [29   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 20.7448ms 304 text/css
+INFO  2019-09-12 16:30:26,454 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 15.6744ms 304 application/javascript
+DEBUG 2019-09-12 16:30:39,074 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-12 16:30:39,163 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-12 16:30:39,178 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,181 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,181 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,181 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,181 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,181 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,182 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,184 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:39,187 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-12 16:30:39,247 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:30:39,247 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:30:39,247 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:30:39,247 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:30:39,594 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:30:40,316 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-12 16:30:40,439 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-12 16:30:40,475 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-12 16:30:40,479 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-12 16:30:40,504 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-12 16:30:40,646 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-09-12 16:30:40,682 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-12 16:30:40,682 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-12 16:30:40,688 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-12 16:30:40,688 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-12 16:30:40,689 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-12 16:30:40,689 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-12 16:30:40,689 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-12 16:30:40,689 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-12 16:30:40,689 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-12 16:30:40,690 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-12 16:30:40,690 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-12 16:30:40,690 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-12 16:30:40,690 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-12 16:30:40,690 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-12 16:30:40,690 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-12 16:30:40,690 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-12 16:30:40,690 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-12 16:30:45,775 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-12 16:30:45,775 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-12 16:30:45,842 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 72.6026ms 200 
+INFO  2019-09-12 16:30:48,566 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-12 16:30:49,328 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-12 16:30:49,333 [6    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.6175ms.
+INFO  2019-09-12 16:30:49,688 [5    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-12 16:30:49,700 [5    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 1128.9862ms
+INFO  2019-09-12 16:30:49,717 [5    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3949.5413ms 302 
+INFO  2019-09-12 16:30:49,723 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-12 16:30:49,734 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 10.7509ms 301 
+INFO  2019-09-12 16:30:49,753 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-12 16:30:49,776 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 23.1723ms 200 text/html
+INFO  2019-09-12 16:30:49,795 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-09-12 16:30:49,798 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-09-12 16:30:49,800 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-09-12 16:30:49,818 [12   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-standalone-preset.js was not modified
+INFO  2019-09-12 16:30:49,819 [9    ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-bundle.js was not modified
+INFO  2019-09-12 16:30:49,821 [14   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui.css was not modified
+INFO  2019-09-12 16:30:49,825 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 27.2331ms 304 application/javascript
+INFO  2019-09-12 16:30:49,827 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 29.8833ms 304 application/javascript
+INFO  2019-09-12 16:30:49,828 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 26.6096ms 304 text/css
+INFO  2019-09-12 16:30:50,040 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-12 16:30:50,210 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 170.0059ms 200 application/json;charset=utf-8
+INFO  2019-09-12 16:31:16,528 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-12 16:31:16,531 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2.5849ms 200 text/html
+INFO  2019-09-12 16:31:16,560 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-09-12 16:31:16,568 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-09-12 16:31:16,575 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-09-12 16:31:16,584 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2019-09-12 16:31:16,591 [12   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-bundle.js was not modified
+INFO  2019-09-12 16:31:16,593 [10   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui.css was not modified
+INFO  2019-09-12 16:31:16,595 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 43.3033ms 304 application/javascript
+INFO  2019-09-12 16:31:16,597 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 32.6179ms 304 text/css
+INFO  2019-09-12 16:31:16,598 [24   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger/ui/abp.js was not modified
+INFO  2019-09-12 16:31:16,600 [7    ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-standalone-preset.js was not modified
+INFO  2019-09-12 16:31:16,602 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 22.9797ms 304 application/javascript
+INFO  2019-09-12 16:31:16,603 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2019-09-12 16:31:16,605 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 40.4078ms 304 application/javascript
+INFO  2019-09-12 16:31:16,607 [26   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger/ui/abp.swagger.js was not modified
+INFO  2019-09-12 16:31:16,610 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 23.1034ms 304 application/javascript
+INFO  2019-09-12 16:31:16,855 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-12 16:31:16,870 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 15.9864ms 200 application/json;charset=utf-8
+INFO  2019-09-12 16:32:51,232 [36   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:32:51,280 [36   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:32:51,297 [36   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 82.3864ms 204 
+INFO  2019-09-12 16:32:51,641 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:32:51,644 [21   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:32:51,721 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 79.8391ms 200 application/json
+INFO  2019-09-12 16:32:51,862 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=-3jft4GJJ2Lenvo-4qDoLg  
+INFO  2019-09-12 16:32:51,864 [26   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:32:52,170 [22   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:32:52,210 [22   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"-3jft4GJJ2Lenvo-4qDoLg","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:32:52.200843+08:00","Properties":{}}
+DEBUG 2019-09-12 16:33:24,416 [42   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: -3jft4GJJ2Lenvo-4qDoLg
+INFO  2019-09-12 16:33:24,439 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 32574.431ms 101 
+INFO  2019-09-12 16:33:27,161 [23   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:33:27,163 [23   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:33:27,166 [23   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3.9034ms 204 
+INFO  2019-09-12 16:33:27,246 [36   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:33:27,248 [36   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:33:27,258 [36   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 5.8111ms 200 application/json
+INFO  2019-09-12 16:33:27,322 [22   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=ozTq1ityJee7wDvyt0P2_w  
+INFO  2019-09-12 16:33:27,324 [22   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:33:27,355 [36   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:33:27,360 [36   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"ozTq1ityJee7wDvyt0P2_w","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:33:27.3559197+08:00","Properties":{}}
+DEBUG 2019-09-12 16:33:51,326 [39   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: ozTq1ityJee7wDvyt0P2_w
+INFO  2019-09-12 16:33:51,341 [31   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 24017.248ms 101 
+INFO  2019-09-12 16:33:54,363 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:33:54,365 [21   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:33:54,367 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3.5176ms 204 
+INFO  2019-09-12 16:33:54,430 [36   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:33:54,432 [36   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:33:54,435 [36   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4.5498ms 200 application/json
+INFO  2019-09-12 16:33:54,495 [22   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=ZHd1Fpqzm2Eju-XMbuvn4g  
+INFO  2019-09-12 16:33:54,497 [22   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:33:54,535 [31   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:33:54,541 [31   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"ZHd1Fpqzm2Eju-XMbuvn4g","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:33:54.5362226+08:00","Properties":{}}
+INFO  2019-09-12 16:34:07,961 [48   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/services/app/WebRoute/Navigate?url=%2Fhome  0
+INFO  2019-09-12 16:34:07,963 [48   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2019-09-12 16:34:07,965 [48   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2019-09-12 16:34:07,993 [48   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Navigate", controller = "WebRoute"}. Executing action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application)
+INFO  2019-09-12 16:34:07,994 [48   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2019-09-12 16:34:07,996 [48   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2019-09-12 16:34:08,111 [48   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) with arguments (/home) - Validation state: Valid
+INFO  2019-09-12 16:34:08,123 [48   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 10.5706ms.
+INFO  2019-09-12 16:34:11,299 [45   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-12 16:34:11,313 [45   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) in 3318.9637ms
+INFO  2019-09-12 16:34:11,316 [45   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3354.7559ms 200 application/json; charset=utf-8
+DEBUG 2019-09-12 16:34:37,118 [32   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: ZHd1Fpqzm2Eju-XMbuvn4g
+INFO  2019-09-12 16:34:37,120 [32   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 42624.0013ms 101 
+INFO  2019-09-12 16:34:39,069 [22   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:34:39,071 [22   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:34:39,072 [22   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2.9275ms 204 
+INFO  2019-09-12 16:34:39,178 [31   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:34:39,180 [31   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:34:39,183 [31   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4.4747ms 200 application/json
+INFO  2019-09-12 16:34:39,201 [22   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=rgk6YJ2l-COGtShqKpMhMg  
+INFO  2019-09-12 16:34:39,203 [22   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:34:39,226 [31   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:34:39,230 [31   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"rgk6YJ2l-COGtShqKpMhMg","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:34:39.227096+08:00","Properties":{}}
+DEBUG 2019-09-12 16:35:37,584 [43   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: rgk6YJ2l-COGtShqKpMhMg
+INFO  2019-09-12 16:35:37,594 [43   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 58385.3805ms 101 
+INFO  2019-09-12 16:35:39,236 [39   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:35:39,238 [39   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:35:39,239 [39   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3.6441ms 204 
+INFO  2019-09-12 16:35:39,296 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:35:39,298 [21   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:35:39,300 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4.6474ms 200 application/json
+INFO  2019-09-12 16:35:39,331 [32   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=qftGqD7Vs9N_YtISnwg0qQ  
+INFO  2019-09-12 16:35:39,332 [32   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:35:39,345 [39   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:35:39,349 [39   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"qftGqD7Vs9N_YtISnwg0qQ","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:35:39.3463689+08:00","Properties":{}}
+DEBUG 2019-09-12 16:39:44,343 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-12 16:39:44,383 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-12 16:39:44,398 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,400 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,400 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,401 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,401 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,401 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,401 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,402 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,402 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,402 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,402 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,402 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,404 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,406 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-12 16:39:44,453 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:39:44,453 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:39:44,453 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:39:44,453 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-12 16:39:44,689 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-12 16:39:44,985 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-12 16:39:45,119 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-12 16:39:45,159 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-12 16:39:45,164 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-12 16:39:45,188 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-12 16:39:45,214 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-09-12 16:39:45,249 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-12 16:39:45,249 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-12 16:39:45,255 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-12 16:39:45,256 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-12 16:39:45,256 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-12 16:39:45,256 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-12 16:39:45,257 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-12 16:39:45,257 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-12 16:39:45,257 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-12 16:39:45,257 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-12 16:39:45,257 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-12 16:39:45,258 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-12 16:39:45,258 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-12 16:39:45,258 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-12 16:39:45,258 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-12 16:39:45,258 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-12 16:39:45,258 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-12 16:39:49,983 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:39:49,983 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:39:50,025 [9    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:39:50,025 [17   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:39:50,064 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 84.0699ms 204 
+INFO  2019-09-12 16:39:50,064 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 84.0623ms 204 
+INFO  2019-09-12 16:39:50,081 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:39:50,082 [11   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:39:50,215 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 134.0588ms 200 application/json
+INFO  2019-09-12 16:39:50,236 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=xTB862XpIlkrlPfqk2irZg  
+INFO  2019-09-12 16:39:50,236 [15   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:39:50,381 [11   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:39:50,414 [11   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"xTB862XpIlkrlPfqk2irZg","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:39:50.3995002+08:00","Properties":{}}
+DEBUG 2019-09-12 16:40:53,431 [11   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: xTB862XpIlkrlPfqk2irZg
+INFO  2019-09-12 16:40:53,472 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 63235.8055ms 101 
+INFO  2019-09-12 16:40:55,546 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:40:55,546 [12   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:40:55,546 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.2226ms 204 
+INFO  2019-09-12 16:40:55,577 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:40:55,577 [12   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:40:55,579 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.3477ms 200 application/json
+INFO  2019-09-12 16:40:55,606 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=Aasa-LDESss-gEy019Lfjg  
+INFO  2019-09-12 16:40:55,606 [11   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:40:55,620 [11   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:40:55,623 [11   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"Aasa-LDESss-gEy019Lfjg","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:40:55.6212787+08:00","Properties":{}}
+DEBUG 2019-09-12 16:41:10,791 [24   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: Aasa-LDESss-gEy019Lfjg
+INFO  2019-09-12 16:41:10,792 [24   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 15185.5676ms 101 
+INFO  2019-09-12 16:41:12,761 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:41:12,761 [12   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:41:12,761 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.1906ms 204 
+INFO  2019-09-12 16:41:12,792 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:41:12,792 [12   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:41:12,793 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.9175ms 200 application/json
+INFO  2019-09-12 16:41:12,801 [22   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=0O6N5A4HF879RhC3Q8WfVg  
+INFO  2019-09-12 16:41:12,801 [22   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:41:12,822 [11   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:41:12,826 [11   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"0O6N5A4HF879RhC3Q8WfVg","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:41:12.8229404+08:00","Properties":{}}
+DEBUG 2019-09-12 16:41:42,548 [11   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: 0O6N5A4HF879RhC3Q8WfVg
+INFO  2019-09-12 16:41:42,549 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 29747.7206ms 101 
+INFO  2019-09-12 16:41:44,336 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:41:44,336 [27   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:41:44,336 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.2777ms 204 
+INFO  2019-09-12 16:41:44,346 [29   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:41:44,346 [29   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:41:44,347 [29   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.5867ms 200 application/json
+INFO  2019-09-12 16:41:44,376 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=XJKG9V-zqySsr_RIR7qSnA  
+INFO  2019-09-12 16:41:44,376 [27   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:41:44,391 [30   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:41:44,395 [30   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"XJKG9V-zqySsr_RIR7qSnA","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:41:44.3917204+08:00","Properties":{}}
+DEBUG 2019-09-12 16:42:10,267 [28   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: XJKG9V-zqySsr_RIR7qSnA
+INFO  2019-09-12 16:42:10,267 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 25890.9083ms 101 
+INFO  2019-09-12 16:42:12,181 [29   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:42:12,181 [29   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:42:12,181 [29   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.2211ms 204 
+INFO  2019-09-12 16:42:12,210 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:42:12,210 [28   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:42:12,211 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.9996ms 200 application/json
+INFO  2019-09-12 16:42:12,241 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=M0_-NIzHchs2GBwDlGRl_A  
+INFO  2019-09-12 16:42:12,241 [28   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:42:12,255 [28   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:42:12,258 [28   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"M0_-NIzHchs2GBwDlGRl_A","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:42:12.2558647+08:00","Properties":{}}
+DEBUG 2019-09-12 16:42:18,357 [28   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: M0_-NIzHchs2GBwDlGRl_A
+INFO  2019-09-12 16:42:18,357 [28   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 6116.0013ms 101 
+INFO  2019-09-12 16:42:20,190 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:42:20,190 [27   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:42:20,190 [27   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.2651ms 204 
+INFO  2019-09-12 16:42:20,211 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:42:20,211 [26   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:42:20,213 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.7837ms 200 application/json
+INFO  2019-09-12 16:42:20,235 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=1pDAlQr7k4i5Uh5AT2_uhA  
+INFO  2019-09-12 16:42:20,235 [26   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:42:20,250 [26   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:42:20,255 [26   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"1pDAlQr7k4i5Uh5AT2_uhA","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:42:20.2515227+08:00","Properties":{}}
+DEBUG 2019-09-12 16:43:26,838 [26   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: 1pDAlQr7k4i5Uh5AT2_uhA
+INFO  2019-09-12 16:43:26,838 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 66603.3944ms 101 
+INFO  2019-09-12 16:43:28,842 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:43:28,842 [26   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:43:28,842 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.1863ms 204 
+INFO  2019-09-12 16:43:28,872 [38   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:43:28,872 [38   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:43:28,873 [38   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.1641ms 200 application/json
+INFO  2019-09-12 16:43:28,892 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=nJmPyoiG-D9jA54FskMBtQ  
+INFO  2019-09-12 16:43:28,892 [26   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:43:28,908 [40   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:43:28,911 [40   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"nJmPyoiG-D9jA54FskMBtQ","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:43:28.9088866+08:00","Properties":{}}
+DEBUG 2019-09-12 16:43:32,375 [26   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: nJmPyoiG-D9jA54FskMBtQ
+INFO  2019-09-12 16:43:32,375 [26   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 3482.7862ms 101 
+INFO  2019-09-12 16:43:34,089 [39   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:43:34,089 [39   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:43:34,089 [39   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.206ms 204 
+INFO  2019-09-12 16:43:34,110 [40   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:43:34,110 [40   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:43:34,111 [40   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.1619ms 200 application/json
+INFO  2019-09-12 16:43:34,121 [40   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=v0M22OTOgR6CQix9L0z8Kg  
+INFO  2019-09-12 16:43:34,121 [40   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:43:34,147 [41   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:43:34,151 [41   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"v0M22OTOgR6CQix9L0z8Kg","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:43:34.1476858+08:00","Properties":{}}
+DEBUG 2019-09-12 16:43:41,318 [41   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is disconnected: v0M22OTOgR6CQix9L0z8Kg
+INFO  2019-09-12 16:43:41,319 [41   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 7198.0222ms 101 
+INFO  2019-09-12 16:43:43,027 [33   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 OPTIONS http://localhost:21021/hubs-routeHub/negotiate  
+INFO  2019-09-12 16:43:43,027 [33   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:43:43,027 [33   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 0.3147ms 204 
+INFO  2019-09-12 16:43:43,034 [44   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/hubs-routeHub/negotiate text/plain;charset=UTF-8 0
+INFO  2019-09-12 16:43:43,034 [44   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:43:43,035 [44   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1.1444ms 200 application/json
+INFO  2019-09-12 16:43:43,043 [40   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/hubs-routeHub?id=xxhfWQlNG65ia9drfOhCSA  
+INFO  2019-09-12 16:43:43,043 [40   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
+INFO  2019-09-12 16:43:43,054 [40   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
+DEBUG 2019-09-12 16:43:43,058 [40   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"xxhfWQlNG65ia9drfOhCSA","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:43:43.0548267+08:00","Properties":{}}

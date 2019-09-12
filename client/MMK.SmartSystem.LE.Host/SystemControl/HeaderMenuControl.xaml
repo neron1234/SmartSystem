@@ -8,6 +8,9 @@
              d:DesignHeight="50" d:DesignWidth="600">
     <Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="首页一"  Width="80" Height="25" Margin="2" x:Name="CnHomeBtn" Click="CnHomeBtn_Click"/>
+            <Button Content="首页二"  Width="80" Height="25" Margin="2" x:Name="CnHomeBtn2" Click="CnHomeBtn2_Click"/>
+
             <Button Content="{Binding Translate.SmartSystem.Chinese}"  Width="80" Height="25" Margin="2" x:Name="CnBtn" Click="CnBtn_Click"/>
             <Button Content="{Binding Translate.SmartSystem.English}"  Width="80" Height="25" Margin="2" x:Name="EnBtn" Click="EnBtn_Click"/>
             <Button Content="{Binding Translate.SmartSystem.Login}"  Width="80" Height="25" Margin="2" x:Name="LoginBtn" Command="{Binding OpenCommand}" Visibility="{Binding LoginBtnVisibility}"/>
