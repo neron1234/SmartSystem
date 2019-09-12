@@ -3,6 +3,8 @@ using Abp.Castle.Logging.Log4Net;
 using Abp.Events.Bus;
 using Abp.PlugIns;
 using Castle.Facilities.Logging;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Threading;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.SerivceProxy;
 using System;
@@ -22,7 +24,8 @@ namespace MMK.SmartSystem.LE.Host
     public partial class App : Application
     {
         private readonly AbpBootstrapper _bootstrapper;
-        private MainWindow _mainWindow;
+        //private MainWindow _mainWindow;
+        private LoginWindow _loginWindow;
         public App()
         {
             _bootstrapper = AbpBootstrapper.Create<MMKSmartSystemLEHostModule>();
@@ -35,14 +38,16 @@ namespace MMK.SmartSystem.LE.Host
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins");
             _bootstrapper.PlugInSources.AddFolder(path);
             _bootstrapper.Initialize();
-            _mainWindow = _bootstrapper.IocManager.Resolve<MainWindow>();
+            DispatcherHelper.Initialize();
+            //_mainWindow = _bootstrapper.IocManager.Resolve<MainWindow>();
+            //_mainWindow.Show();
+            _loginWindow = _bootstrapper.IocManager.Resolve<LoginWindow>();
+            _loginWindow.Show();
 
+            //Task.Factory.StartNew(() => AutoLogin());
             LoadPluginAssemblies();
-
-            Task.Factory.StartNew(() => AutoLogin());
-            _mainWindow.Show();
-            // base.OnStartup(e);
         }
+
         private void AutoLogin()
         {
             EventBus.Default.Trigger(new UserConfigEventData()
@@ -52,11 +57,10 @@ namespace MMK.SmartSystem.LE.Host
                 Culture = SmartSystemLEConsts.Culture,
                 IsChangeUser = true
             });
-
         }
+
         private void LoadPluginAssemblies()
         {
-
             foreach (var plug in _bootstrapper.PlugInSources)
             {
                 foreach (var item in plug.GetAssemblies())
@@ -76,7 +80,7 @@ namespace MMK.SmartSystem.LE.Host
         }
         protected override void OnExit(ExitEventArgs e)
         {
-            _bootstrapper.IocManager.Release(_mainWindow);
+            _bootstrapper.IocManager.Release(_loginWindow);
             _bootstrapper.Dispose();
             // base.OnExit(e);
         }

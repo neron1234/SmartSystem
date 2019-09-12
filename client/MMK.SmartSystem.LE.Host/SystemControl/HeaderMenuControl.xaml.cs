@@ -1,5 +1,10 @@
 ﻿using Abp.Events.Bus;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.Common.Model;
+using MMK.SmartSystem.LE.Host.AccountControl;
+using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,25 +27,17 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
     /// </summary>
     public partial class HeaderMenuControl : UserControl
     {
+        public HeaderMenuViewModel headerViewModel { get; set; }
         public HeaderMenuControl()
         {
             InitializeComponent();
-        }
+            this.DataContext = headerViewModel = new HeaderMenuViewModel();
 
-        private async void ChangeUserBtn_Click(object sender, RoutedEventArgs e)
-        {
-            await EventBus.Default.TriggerAsync(new UserConfigEventData()
-            {
-                UserName = SmartSystemLEConsts.DefaultUser,
-                Pwd = SmartSystemLEConsts.DefaultPwd,
-                Culture = SmartSystemLEConsts.Culture,
-                IsChangeUser = true
+            Messenger.Default.Register<Common.AuthenticateResultModel>(this, (userConfig) => {
+                headerViewModel.IsLogin = true;
+                headerViewModel.AccountGroupVisibility = Visibility.Visible;
+                headerViewModel.UserAccount = "ID:" + userConfig.UserId;
             });
-        }
-
-        private void LoginBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void EnBtn_Click(object sender, RoutedEventArgs e)
@@ -60,6 +57,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
                 Culture = language
             }));
 
+        }
+
+        private void UpdatePwdBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Send((UserControl)new PopupWindowControl(new UpdatePasswordControl()));
         }
     }
 }

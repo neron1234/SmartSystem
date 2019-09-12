@@ -33,7 +33,12 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
             }
             UserClientServiceProxy userClientService = new UserClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
             userClientService.ChangeLanguageAsync(new ChangeUserLanguageDto() { LanguageName= eventData.Culture }).Wait();
+
+            OperationLogClientServiceProxy operationLogClientService = new OperationLogClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+
             tokenAuthClient = new TokenAuthClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            operationLogClientService.CreateAsync(new OperationLogDto { ExecutionTime = DateTime.Now, ExecutionDuration = 0, UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId,ServiceName = SmartSystemCommonConsts.ApiHost,PageName= System.Reflection.MethodBase.GetCurrentMethod().Name, MethodName = System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Namespace });
+
             var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
             if (obj2.Success)
             {

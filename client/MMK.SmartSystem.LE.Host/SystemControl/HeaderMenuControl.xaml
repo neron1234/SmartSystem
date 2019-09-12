@@ -10,8 +10,13 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="中文"  Width="80" Height="25" Margin="2" x:Name="CnBtn" Click="CnBtn_Click"/>
             <Button Content="英文"  Width="80" Height="25" Margin="2" x:Name="EnBtn" Click="EnBtn_Click"/>
-            <Button Content="登陆"  Width="80" Height="25" Margin="2" x:Name="LoginBtn" Click="LoginBtn_Click"/>
-            <Button Content="切换用户"  Width="80" Height="25" Margin="2" x:Name="ChangeUserBtn" Click="ChangeUserBtn_Click"/>
+            <Button Content="{Binding LoginBtnTxt}"  Width="80" Height="25" Margin="2" x:Name="LoginBtn" Command="{Binding OpenCommand}"/>
+            <GroupBox Header="已登陆账号" Width="120" Height="40" Margin="2" Visibility="{Binding AccountGroupVisibility}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding UserAccount}"/>
+                    <Button Content="修改密码" x:Name="UpdatePwdBtn" Click="UpdatePwdBtn_Click"/>
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
     </Grid>
 </UserControl>

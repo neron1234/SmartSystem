@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.SerivceProxy;
 using MMK.SmartSystem.LE.Host.AccountControl.ViewModel;
+using MMK.SmartSystem.LE.Host.SystemControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,72 +29,79 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
         public LoginControl()
         {
             InitializeComponent();
-            Loaded += UserControl_Loaded;
-            Unloaded += LoginControl_Unloaded;
-        }
-
-        private void LoginControl_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Messenger.Default.Unregister<LoginControlViewModel>(this, Login);
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
             LoginModel = new LoginControlViewModel()
             {
-                Account = "admin",
-                Pwd = "123qwe",
-                IsLogin = true,
-                IsError = false
+                Account = "",
+                Pwd = "",
+                IsError = false,
+                IsLogin = false
             };
             this.DataContext = LoginModel;
-            Messenger.Default.Register<LoginControlViewModel>(this, Login);
+
+            Loaded += UserControl_Loaded;
+        }  
+        
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+            this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, true);
+            Loaded -= UserControl_Loaded;
         }
 
-        private void Login(LoginControlViewModel model)
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(LoginModel.Account))
+            Login();
+        }
+
+        private void Login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
             {
-                LoginModel.AccountError = "账号不能为空";
-                LoginModel.IsError = true;
+                Login();
             }
-            else
+        }
+
+        private void Login()
+        {
+            var msg = string.Empty;
+            try
             {
-                LoginModel.AccountError = "";
-                LoginModel.IsError = false;
-            }
-            if (string.IsNullOrEmpty(LoginModel.Pwd))
-            {
-                LoginModel.PwdError = "密码不能为空";
-                LoginModel.IsError = true;
-            }
-            else
-            {
-                LoginModel.PwdError = "";
-                LoginModel.IsError = false;
-            }
-            LoginModel.IsLogin = true;
-            if (LoginModel.IsError)
-            {
-                return;
-            }
-            TokenAuthClient tokenAuthClient = new TokenAuthClient(MMK.SmartSystem.Common.SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
-            if (ts.Success)
-            {
-                Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
-                var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
-                if (obj2.Success)
+                TokenAuthClient tokenAuthClient = new TokenAuthClient(MMK.SmartSystem.Common.SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+                var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
+                if (ts.Success)
                 {
-                    Common.SmartSystemCommonConsts.UserConfiguration = obj2.Result;
+                    Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
+                    var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
+                    if (obj2.Success)
+                    {
+                        Common.SmartSystemCommonConsts.UserConfiguration = obj2.Result;
+                    }
+                    msg = "登陆成功";
+                    Close();
                 }
-                MessageBox.Show("登陆成功");
+                else
+                {
+                    msg = ts.Error.Details;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(ts.Error.Details);
-                LoginModel.IsError = true;
+                msg = ex.ToString();
             }
+            MessageBox.Show(msg);
+
+            //Messenger.Default.Send(Common.SmartSystemCommonConsts.UserConfiguration);
+
+            Messenger.Default.Send(Common.SmartSystemCommonConsts.AuthenticateModel);
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        private void Close()
+        {
+            this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, false);
         }
     }
 }

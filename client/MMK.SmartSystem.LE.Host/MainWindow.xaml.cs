@@ -1,6 +1,7 @@
 ﻿using Abp.Dependency;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
@@ -32,15 +33,22 @@ namespace MMK.SmartSystem.LE.Host
             this.iocManager = iocManager;
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
+            this.DataContext = MainViewModel;
         }
 
         private  void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = MainViewModel;
-
             Messenger.Default.Register<Type>(this, (type)=> {
                 var page = iocManager.Resolve(type);
                 MainViewModel.MainFrame = page;
+            });
+
+            Messenger.Default.Register<UserControl>(this, (control) => {
+                MainViewModel.PopupControl = control;
+            });
+
+            Messenger.Default.Register<Common.AuthenticateResultModel>(this, (userConfig) => {
+                MainViewModel.MainFrame = null;
             });
         }
     }

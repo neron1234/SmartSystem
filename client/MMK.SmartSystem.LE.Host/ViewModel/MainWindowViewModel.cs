@@ -30,15 +30,19 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
             }
         }
 
-        public ICommand LoginCommand
+        private object _PopupControl;
+        public object PopupControl
         {
-            get
+            get { return _PopupControl; }
+            set
             {
-                return new RelayCommand(() =>
+                if (_PopupControl != value)
                 {
-                    MainFrame = new AccountControl.LoginControl();
-                });
+                    _PopupControl = value;
+                    RaisePropertyChanged(() => PopupControl);
+                }
             }
         }
+
     }
 }
