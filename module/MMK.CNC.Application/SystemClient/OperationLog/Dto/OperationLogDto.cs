@@ -112,4 +112,20 @@ namespace MMK.CNC.Application.SystemClient.Dto
         /// </summary>
         public string CustomData { get; set; }
     }
+
+    [AutoMap(typeof(Core.SystemClient.OperationLog))]
+
+    public class UpdateOperationLogDto:EntityDto<int>
+    {
+        public string ServiceName { get; set; }
+
+    }
+
+    public class PagedOperationResultRequestDto : PagedResultRequestDto
+    {
+        public string Keyword { get; set; }
+
+
+
+    }
 }
