@@ -19,8 +19,8 @@
     <text name="AutoFindSide.FindSideMovePath" value="Edge finding X、Y  Moving track " />
     <text name="AutoFindSide.ManualStartFindSide" value="Manually start edge finding" />
 
-    <text name="Account" value="Account" />
-    <text name="Pwd" value="Password" />
-    <text name="Login" value="Login" />
+    <text name="SmartSystem.Account" value="Account" />
+    <text name="SmartSystem.Pwd" value="Password" />
+    <text name="SmartSystem.Login" value="Login" />
   </texts>
 </localizationDictionary>

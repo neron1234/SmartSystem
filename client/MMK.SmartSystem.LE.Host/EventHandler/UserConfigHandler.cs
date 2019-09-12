@@ -124,15 +124,15 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
 
             //
             var smartGype = SmartSystemLEConsts.SystemTranslateModel.GetType();
-            foreach (var item in smartGype.GetProperties())
+            foreach (PropertyInfo item in smartGype.GetProperties())
             {
-
-                foreach (PropertyInfo propItem in item.GetType().GetProperties())
+                var obj = item.GetValue(SmartSystemLEConsts.SystemTranslateModel,null);
+                foreach (PropertyInfo propItem in item.PropertyType.GetProperties())
                 {
                     string key = $"{item.Name}.{propItem.Name}";
                     if (dict.ContainsKey(key))
                     {
-                        propItem.SetValue(item, dict[key]);
+                        propItem.SetValue(obj, dict[key]);
 
                     }
                 }

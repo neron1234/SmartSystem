@@ -20,5 +20,6 @@ namespace MMK.SmartSystem.LE.Host
         public static SystemTranslate SystemTranslateModel = new SystemTranslate();
         public static ObservableCollection<SystemMenuModuleViewModel> SystemModules = new ObservableCollection<SystemMenuModuleViewModel>();
 
+
     }
 }

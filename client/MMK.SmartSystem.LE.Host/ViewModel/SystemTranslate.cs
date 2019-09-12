@@ -8,7 +8,7 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
 {
     public class SystemTranslate
     {
-        public SmartSystem Common { get; set; }
+        public SmartSystem SmartSystem { get; set; } = new SmartSystem();
 
     }
 
