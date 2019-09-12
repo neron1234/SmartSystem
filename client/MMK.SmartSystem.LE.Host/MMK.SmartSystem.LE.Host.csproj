@@ -250,6 +250,7 @@
     <Compile Include="SystemControl\WebAppControl.xaml.cs">
       <DependentUpon>WebAppControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MainTranslateViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\SystemTranslate.cs" />
     <Page Include="AccountControl\LoginControl.xaml">

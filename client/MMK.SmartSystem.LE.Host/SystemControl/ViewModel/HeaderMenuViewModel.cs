@@ -11,10 +11,11 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using Abp.Events.Bus;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.LE.Host.ViewModel;
 
 namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {
-    public class HeaderMenuViewModel : ViewModelBase
+    public class HeaderMenuViewModel : MainTranslateViewModel
     {
         private bool _IsLogin;
         public bool IsLogin

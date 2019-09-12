@@ -22,5 +22,19 @@
     <text name="SmartSystem.Account" value="Account" />
     <text name="SmartSystem.Pwd" value="Password" />
     <text name="SmartSystem.Login" value="Login" />
+    <text name="SmartSystem.ChangeAccout" value="Switch Account" />
+    <text name="SmartSystem.Cancel" value="Cancel" />
+    <text name="SmartSystem.LoginSucceed" value="Login successfully" />
+    <text name="SmartSystem.LoginFailure" value="Login failure" />
+
+    <text name="SmartSystem.OldPwd" value="Original Password" />
+    <text name="SmartSystem.Pwd1" value="New Password" />
+    <text name="SmartSystem.Pwd2" value="Confirm Password " />
+    <text name="SmartSystem.UpdatePwd" value="Update Password" />
+
+    <text name="SmartSystem.Chinese" value="Chinese" />
+    <text name="SmartSystem.English" value="English" />
+    
+    <text name="SmartSystem.LogingSystem" value="System logging in" />
   </texts>
 </localizationDictionary>

@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.SerivceProxy;
+using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.LE.Host.AccountControl.ViewModel
 {
-    public class LoginControlViewModel:ViewModelBase
+    public class LoginControlViewModel : MainTranslateViewModel
     {
         private bool isLogin;
         public bool IsLogin
@@ -33,7 +34,8 @@ namespace MMK.SmartSystem.LE.Host.AccountControl.ViewModel
             {
                 isError = value;
                 IsLogin = !isError;
-                if (!isError){
+                if (!isError)
+                {
                     AccountError = "";
                     PwdError = "";
                 }
@@ -72,7 +74,8 @@ namespace MMK.SmartSystem.LE.Host.AccountControl.ViewModel
                 if (_Account != value)
                 {
                     _Account = value;
-                    if (string.IsNullOrEmpty(_Account)){
+                    if (string.IsNullOrEmpty(_Account))
+                    {
                         AccountError = "账号不能为空";
                         IsError = true;
                     }
@@ -94,7 +97,8 @@ namespace MMK.SmartSystem.LE.Host.AccountControl.ViewModel
                 if (_Pwd != value)
                 {
                     _Pwd = value;
-                    if (string.IsNullOrEmpty(_Pwd)){
+                    if (string.IsNullOrEmpty(_Pwd))
+                    {
                         PwdError = "账号不能为空";
                         IsError = true;
                     }
@@ -107,11 +111,15 @@ namespace MMK.SmartSystem.LE.Host.AccountControl.ViewModel
             }
         }
 
-        public ICommand AccountChangedCommand{
-            get{
-                return new RelayCommand<string>((str) => {
-                   Account = str;
-                   if (!string.IsNullOrEmpty(str) && !string.IsNullOrEmpty(Pwd)){
+        public ICommand AccountChangedCommand
+        {
+            get
+            {
+                return new RelayCommand<string>((str) =>
+                {
+                    Account = str;
+                    if (!string.IsNullOrEmpty(str) && !string.IsNullOrEmpty(Pwd))
+                    {
                         IsError = false;
                     }
                     else
@@ -122,9 +130,12 @@ namespace MMK.SmartSystem.LE.Host.AccountControl.ViewModel
             }
         }
 
-        public ICommand PwdChangedCommand{
-            get{
-                return new RelayCommand<string>((str) => {
+        public ICommand PwdChangedCommand
+        {
+            get
+            {
+                return new RelayCommand<string>((str) =>
+                {
                     Pwd = str;
                     if (!string.IsNullOrEmpty(Account) && !string.IsNullOrEmpty(str))
                     {
@@ -137,5 +148,6 @@ namespace MMK.SmartSystem.LE.Host.AccountControl.ViewModel
                 });
             }
         }
+
     }
 }

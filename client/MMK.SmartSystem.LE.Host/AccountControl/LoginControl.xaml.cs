@@ -38,11 +38,13 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
                 IsLogin = false
             };
             this.DataContext = LoginModel;
+         
             Messenger.Default.Register<UserInfo>(this,(u) =>
             {
-                MessageBox.Show("登陆成功!");
-                //Dispatcher.BeginInvoke(new Action());
-                Close();
+                this.Dispatcher.InvokeAsync(() =>
+                {
+                    Close();
+                });
             });
             Loaded += UserControl_Loaded;
         }
