@@ -12,6 +12,7 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
     {
         public ErrorTagretEnum Tagret { get; set; }
 
+        public int HashCode { get; set; }
         public string Error { get; set; }
 
         public bool Success { set; get; }

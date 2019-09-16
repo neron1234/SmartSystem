@@ -224,7 +224,6 @@
     <Compile Include="AccountControl\ViewModel\UpdatePasswordControlViewModel.cs" />
     <Compile Include="AccountControl\ViewModel\UserInfoControlViewModel.cs" />
     <Compile Include="EventHandler\OperationLogHandler.cs" />
-    <Compile Include="EventHandler\UserConfigHandler.cs" />
     <Compile Include="EventHandler\UserInfoHandler.cs" />
     <Compile Include="EventHandler\UserLanguageHandler.cs" />
     <Compile Include="EventHandler\UserLoginHandler.cs" />

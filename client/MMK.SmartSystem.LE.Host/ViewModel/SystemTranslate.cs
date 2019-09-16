@@ -57,16 +57,16 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
             }
         }
 
-        private string _ChangeAccount;
-        public string ChangeAccount
+        private string _ChangeAccout;
+        public string ChangeAccout
         {
-            get { return _ChangeAccount; }
+            get { return _ChangeAccout; }
             set
             {
-                if (_ChangeAccount != value)
+                if (_ChangeAccout != value)
                 {
-                    _ChangeAccount = value;
-                    RaisePropertyChanged(() => ChangeAccount);
+                    _ChangeAccout = value;
+                    RaisePropertyChanged(() => ChangeAccout);
                 }
             }
         }

@@ -6,6 +6,7 @@ using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.LE.Host.AccountControl;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
+using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,11 +34,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         {
             InitializeComponent();
             this.DataContext = headerViewModel = new HeaderMenuViewModel();
-
-            Messenger.Default.Register<Common.AuthenticateResultModel>(this, (userConfig) => {
-                headerViewModel.IsLogin = true;
-                headerViewModel.UserAccount = "ID:" + userConfig.UserId;
-            });
         }
 
         private void EnBtn_Click(object sender, RoutedEventArgs e)
@@ -52,16 +48,12 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
 
         private void SetCulture(string language)
         {
-            Task.Factory.StartNew(() => EventBus.Default.Trigger(new UserConfigEventData()
+            Task.Factory.StartNew(() => EventBus.Default.Trigger(new UserLanguageEventData()
             {
                 Culture = language,
-                IsChangeLanguage = true 
+                HashCode = this.GetHashCode(),
+                Tagret = ErrorTagretEnum.UserControl
             }));
-        }
-
-        private void UpdatePwdBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Messenger.Default.Send((UserControl)new PopupWindowControl(new UpdatePasswordControl()));
         }
 
         private void CnHomeBtn_Click(object sender, RoutedEventArgs e)

@@ -17,7 +17,9 @@
                 <TextBlock Text="{Binding Email}"/>
                 <TextBlock Text="{Binding CreateTime}"/>
             </StackPanel>
-            <Button Content="{Binding Translate.SmartSystem.UpdatePwd}" x:Name="UpdatePwdBtn" Click="UpdatePwdBtn_Click" Width="70" Height="28" Margin="5"/>
+            <Button Content="{Binding Translate.SmartSystem.Login}"  Width="80" Height="25" Margin="2" x:Name="LoginBtn" Command="{Binding OpenCommand}" Visibility="{Binding LoginBtnVisibility}"/>
+            <Button Content="{Binding Translate.SmartSystem.ChangeAccout}"  Width="80" Height="25" Margin="2" x:Name="ChangeLoginBtn" Command="{Binding OpenCommand}" Visibility="{Binding ChangeAccountBtnVisibility}"/>
+            <Button Content="{Binding Translate.SmartSystem.UpdatePwd}" x:Name="UpdatePwdBtn" Click="UpdatePwdBtn_Click" Width="80" Height="25" Margin="2" Visibility="{Binding UpdateBtnVisibility}"/>
         </StackPanel>
     </Grid>
 </UserControl>
