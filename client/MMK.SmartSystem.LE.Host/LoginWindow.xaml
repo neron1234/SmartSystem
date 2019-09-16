@@ -62,7 +62,7 @@
     <Grid>
         <Border Background="Gainsboro" CornerRadius="5">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="{Binding Translate.SmartSystem.LogingSystem}" Style="{StaticResource FlashStyle}" Foreground="#FF6575CB" FontSize="20"/>
+                <TextBlock Text="加载中" Style="{StaticResource FlashStyle}" Foreground="#FF6575CB" FontSize="20"/>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel.Triggers>
                         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
