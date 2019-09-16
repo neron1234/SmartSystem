@@ -48,17 +48,6 @@ namespace MMK.SmartSystem.LE.Host
             LoadPluginAssemblies();
         }
 
-        private void AutoLogin()
-        {
-            EventBus.Default.Trigger(new UserConfigEventData()
-            {
-                UserName = SmartSystemLEConsts.DefaultUser,
-                Pwd = SmartSystemLEConsts.DefaultPwd,
-                Culture = SmartSystemLEConsts.Culture,
-                IsChangeUser = true
-            });
-        }
-
         private void LoadPluginAssemblies()
         {
             foreach (var plug in _bootstrapper.PlugInSources)

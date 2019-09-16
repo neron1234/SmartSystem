@@ -8,8 +8,10 @@ using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TokenAuthClient = MMK.SmartSystem.Common.SerivceProxy.TokenAuthClient;
 
 namespace MMK.SmartSystem.LE.Host.EventHandler
@@ -19,7 +21,6 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
         public void HandleEvent(UserLoginEventData eventData)
         {
             TokenAuthClient tokenAuthClient = new TokenAuthClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-
             try
             {
                 var ts = tokenAuthClient.AuthenticateAsync(new AuthenticateModel() { UserNameOrEmailAddress = eventData.UserName, Password = eventData.Pwd }).Result;
@@ -32,23 +33,24 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                     if (obj2.Success)
                     {
                         SmartSystemCommonConsts.UserConfiguration = obj2.Result;
-                        EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)ts.Result.UserId, Tagret = eventData.Tagret });
+                        Translate();
                         Messenger.Default.Send(new MainSystemNoticeModel
                         {
                             Tagret = eventData.Tagret,
                             Error = "",
                             Success=true,
-                            SuccessAction=eventData.SuccessAction
+                            SuccessAction=eventData.SuccessAction,
+                            HashCode = eventData.HashCode
                         });
                         return;
                     }
                 }
-
                 Messenger.Default.Send(new MainSystemNoticeModel
                 {
                     Tagret = eventData.Tagret,
                     Error = errorMessage,
-                    ErrorAction=eventData.ErrorAction
+                    ErrorAction=eventData.ErrorAction,
+                    HashCode = eventData.HashCode
                 });
             }
             catch (Exception ex)
@@ -57,14 +59,64 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                 {
                     Tagret = eventData.Tagret,
                     Error = ex.Message,
-                    ErrorAction = eventData.ErrorAction
-
+                    ErrorAction = eventData.ErrorAction,
+                    HashCode = eventData.HashCode
                 });
+            }
+        }
 
+        private void Translate()
+        {
+            var dict = SmartSystemCommonConsts.UserConfiguration.Localization.Values?.SmartSystem;
+            var pageAuth = SmartSystemCommonConsts.UserConfiguration?.Auth?.GrantedPermissions ?? new Dictionary<string, string>();
+            if (dict != null)
+            {
+                foreach (var item in SmartSystemLEConsts.SystemModules)
+                {
+                    item.ModuleName = item.ModuleKey.Translate();
+                    bool isAuth = false;
+                    foreach (var g in item.MainMenuViews)
+                    {
+                        g.Title = g.PageKey.Translate();
+                        if (g.Auth)
+                        {
+                            if (pageAuth.ContainsKey(g.Permission))
+                            {
+                                g.Show = Visibility.Visible;
+                                isAuth = true;
+                            }
+                            else
+                            {
+                                g.Show = Visibility.Collapsed;
+                            }
+                        }
+                        else
+                        {
+                            isAuth = true;
+                            g.Show = Visibility.Visible;
+
+                        }
+
+                    }
+                    item.Show = isAuth ? Visibility.Visible : Visibility.Collapsed;
+                }
             }
 
+            //
+            var smartGype = SmartSystemLEConsts.SystemTranslateModel.GetType();
+            foreach (PropertyInfo item in smartGype.GetProperties())
+            {
+                var obj = item.GetValue(SmartSystemLEConsts.SystemTranslateModel, null);
+                foreach (PropertyInfo propItem in item.PropertyType.GetProperties())
+                {
+                    string key = $"{item.Name}.{propItem.Name}";
+                    if (dict.ContainsKey(key))
+                    {
+                        propItem.SetValue(obj, dict[key]);
 
-
+                    }
+                }
+            }
         }
     }
 }

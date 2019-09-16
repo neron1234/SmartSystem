@@ -11,6 +11,7 @@ namespace MMK.SmartSystem.Common.EventDatas
     {
         UserControl,
         Page,
+        Window,
         MainWindow
     }
     public class BaseErrorEventData : EventData

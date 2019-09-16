@@ -1,6 +1,8 @@
 ﻿using Abp.Dependency;
 using Abp.Events.Bus;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
+using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
@@ -36,10 +38,7 @@ namespace MMK.SmartSystem.LE.Host
 
         private async void LoginWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //await DispatcherHelper.RunAsync(async () =>
-            //{
-            //    await AutoLogin();
-            //});
+           
             await Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(1000);
@@ -52,16 +51,28 @@ namespace MMK.SmartSystem.LE.Host
 
         private async Task AutoLogin()
         {
-            await EventBus.Default.TriggerAsync(new UserConfigEventData()
+            await EventBus.Default.TriggerAsync(new UserLoginEventData()
             {
                 UserName = SmartSystemLEConsts.DefaultUser,
                 Pwd = SmartSystemLEConsts.DefaultPwd,
-                Culture = SmartSystemLEConsts.Culture,
-                IsChangeUser = true
+                Tagret = ErrorTagretEnum.Window,
+                HashCode = this.GetHashCode(),
+                SuccessAction = LoginSuccess
             });
             MainWindow mainWindow = new MainWindow(iocManager);
             mainWindow.Show();
+            Messenger.Default.Register<MainSystemNoticeModel>(this, (model) => {
+                if (model.HashCode == this.GetHashCode())
+                {
+                    model.SuccessAction?.Invoke();
+                }
+            });
             Close();
+        }
+
+        public void LoginSuccess()
+        {
+            EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
         }
     }
 }

@@ -45,7 +45,8 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                     {
                         Tagret = eventData.Tagret,
                         Error = obj2.Error?.Message,
-                        ErrorAction = eventData.ErrorAction
+                        ErrorAction = eventData.ErrorAction,
+                        HashCode = eventData.HashCode
 
                     });
                 }
@@ -56,7 +57,8 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                 {
                     Tagret = eventData.Tagret,
                     Error = apiExcaption.Message,
-                    ErrorAction = eventData.ErrorAction
+                    ErrorAction = eventData.ErrorAction,
+                    HashCode = eventData.HashCode
 
                 });
             }
@@ -66,7 +68,8 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                 {
                     Tagret = eventData.Tagret,
                     Error = ex.Message,
-                    ErrorAction = eventData.ErrorAction
+                    ErrorAction = eventData.ErrorAction,
+                    HashCode = eventData.HashCode
 
                 });
 

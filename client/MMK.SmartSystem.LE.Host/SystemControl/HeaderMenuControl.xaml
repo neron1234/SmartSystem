@@ -13,8 +13,6 @@
 
             <Button Content="{Binding Translate.SmartSystem.Chinese}"  Width="80" Height="25" Margin="2" x:Name="CnBtn" Click="CnBtn_Click"/>
             <Button Content="{Binding Translate.SmartSystem.English}"  Width="80" Height="25" Margin="2" x:Name="EnBtn" Click="EnBtn_Click"/>
-            <Button Content="{Binding Translate.SmartSystem.Login}"  Width="80" Height="25" Margin="2" x:Name="LoginBtn" Command="{Binding OpenCommand}" Visibility="{Binding LoginBtnVisibility}"/>
-            <Button Content="{Binding Translate.SmartSystem.ChangeAccout}"  Width="80" Height="25" Margin="2" x:Name="ChangeLoginBtn" Command="{Binding OpenCommand}" Visibility="{Binding ChangeAccountBtnVisibility}"/>
         </StackPanel>
     </Grid>
 </UserControl>
