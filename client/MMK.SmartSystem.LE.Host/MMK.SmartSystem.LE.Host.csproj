@@ -224,6 +224,9 @@
     <Compile Include="AccountControl\ViewModel\UpdatePasswordControlViewModel.cs" />
     <Compile Include="AccountControl\ViewModel\UserInfoControlViewModel.cs" />
     <Compile Include="EventHandler\UserConfigHandler.cs" />
+    <Compile Include="EventHandler\UserInfoHandler.cs" />
+    <Compile Include="EventHandler\UserLanguageHandler.cs" />
+    <Compile Include="EventHandler\UserLoginHandler.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -247,6 +250,7 @@
     <Compile Include="SystemControl\Control\PopupHelper.cs" />
     <Compile Include="SystemControl\ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\SystemMenuModuleViewModel.cs" />
+    <Compile Include="ViewModel\MainSystemNoticeModel.cs" />
     <Compile Include="ViewModel\MainTranslateViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\SystemTranslate.cs" />

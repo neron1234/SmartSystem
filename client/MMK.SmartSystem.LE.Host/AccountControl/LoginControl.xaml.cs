@@ -38,17 +38,18 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
                 IsLogin = false
             };
             this.DataContext = LoginModel;
-         
-            Messenger.Default.Register<UserInfo>(this,(u) =>
-            {
-                this.Dispatcher.InvokeAsync(() =>
-                {
-                    Close();
-                });
-            });
+
+            Messenger.Default.Register<UserInfo>(this, (u) =>
+             {
+                 this.Dispatcher.InvokeAsync(() =>
+                 {
+                     Close();
+                 });
+             });
             Loaded += UserControl_Loaded;
+          
         }
-        
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, true);
@@ -71,41 +72,16 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
         private void Login()
         {
             var msg = string.Empty;
-            //try
-            //{
-                EventBus.Default.TriggerAsync(new UserConfigEventData()
-                {
-                    UserName = LoginModel.Account,
-                    Pwd = LoginModel.Pwd,
-                    IsChangeUser = true
-                });
+
+            EventBus.Default.TriggerAsync(new UserConfigEventData()
+            {
+                UserName = LoginModel.Account,
+                Pwd = LoginModel.Pwd,
+                IsChangeUser = true
+            });
 
 
-                //TokenAuthClient tokenAuthClient = new TokenAuthClient(MMK.SmartSystem.Common.SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-                //var ts = tokenAuthClient.AuthenticateAsync(new MMK.SmartSystem.Common.AuthenticateModel() { UserNameOrEmailAddress = LoginModel.Account, Password = LoginModel.Pwd }).Result;
-                //if (ts.Success)
-                //{
-                //    Common.SmartSystemCommonConsts.AuthenticateModel = ts.Result;
-                //    var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
-                //    if (obj2.Success)
-                //    {
-                //        Common.SmartSystemCommonConsts.UserConfiguration = obj2.Result;
-                //    }
-                //    msg = "登陆成功";
-                //    Close();
-                //}
-                //else
-                //{
-                //    msg = ts.Error.Details;
-                //}
-            //}
-            //catch (Exception ex)
-            //{
-            //    msg = ex.ToString();
-            //}
-            //MessageBox.Show(msg);
 
-            //Messenger.Default.Send(Common.SmartSystemCommonConsts.UserConfiguration);
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

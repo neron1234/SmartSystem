@@ -7,13 +7,38 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public class UserConfigEventData : EventData
+    public enum ErrorTagretEnum
+    {
+        UserControl,
+        Page,
+        MainWindow
+    }
+    public class BaseErrorEventData : EventData
+    {
+        public ErrorTagretEnum Tagret { get; set; }
+
+        public int HashCode { get; set; }
+
+        public Action SuccessAction { set; get; }
+
+        public Action ErrorAction { set; get; }
+
+    }
+   
+    public class UserInfoEventData : BaseErrorEventData
+    {
+        public int UserId { get; set; }
+    }
+    public class UserLoginEventData : BaseErrorEventData
     {
         public string UserName { get; set; }
 
         public string Pwd { get; set; }
-        public bool IsChangeUser { get; set; }
-        public bool IsChangeLanguage { get; set; }
+    }
+
+    public class UserLanguageEventData : BaseErrorEventData
+    {
         public string Culture { get; set; }
+
     }
 }
