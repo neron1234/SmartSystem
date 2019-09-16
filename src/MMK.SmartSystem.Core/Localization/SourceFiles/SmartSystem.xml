@@ -4,20 +4,20 @@
     <text name="MachineOperation" value="Machine operation" />
     <text name="ManualFindSide" value="Cutting oozzle operation" />
 
-    <text name="MachineOperation.AutoFindSide" value="Automatic edge finding" />
-    <text name="MachineOperation.AuxGasCheck" value="Auxiliary gas" />
-    <text name="MachineOperation.ManualFindSide" value="Manual edge finding" />
+    <text name="MachineOperation.AutoFindSideBtn" value="Automatic edge finding" />
+    <text name="MachineOperation.AuxGasCheckBtn" value="Auxiliary gas" />
+    <text name="MachineOperation.ManualFindSideBtn" value="Manual edge finding" />
 
-    <text name="ManualFindSide.CutterResetCheck" value="Cutting nozzle Reset" />
-    <text name="ManualFindSide.AutoCutterClean" value="Cutting nozzle cleaning" />
-    <text name="ManualFindSide.CutCenter" value="Cutting nozzle centring" />
+    <text name="ManualFindSide.CutterResetCheckBtn" value="Cutting nozzle Reset" />
+    <text name="ManualFindSide.AutoCutterCleanBtn" value="Cutting nozzle cleaning" />
+    <text name="ManualFindSide.CutCenterBtn" value="Cutting nozzle centring" />
 
-    <text name="AutoFindSide.PlateOrigin" value="Plate origin" />
+    <!--<text name="AutoFindSide.PlateOrigin" value="Plate origin" />
     <text name="AutoFindSide.PlateAngle" value="Plate angle" />
     <text name="AutoFindSide.CenterDistance" value="Center P1、P2 Distance" />
     <text name="AutoFindSide.Opofs" value="Opofs" />
     <text name="AutoFindSide.FindSideMovePath" value="Edge finding X、Y  Moving track " />
-    <text name="AutoFindSide.ManualStartFindSide" value="Manually start edge finding" />
+    <text name="AutoFindSide.ManualStartFindSide" value="Manually start edge finding" />-->
 
     <text name="SmartSystem.Account" value="Account" />
     <text name="SmartSystem.Pwd" value="Password" />
@@ -36,5 +36,17 @@
     <text name="SmartSystem.English" value="English" />
     
     <text name="SmartSystem.LogingSystem" value="System logging in" />
+    
+    <text name="MachineOperation.AutoFindSide.PlateOrigin" value="Plate the Origin" />
+    <text name="MachineOperation.AutoFindSide.PlateAngle" value="Plate the Angle" />
+    <text name="MachineOperation.AutoFindSide.P12Distance" value="Center P1、P2 Distance" />
+    
+    <text name="MachineOperation.AutoFindSide.OptoelectronicSwitchDistance" value="Optoelectronic switch Offset distance" />
+    <text name="MachineOperation.AutoFindSide.PlateEdgeDistance" value="A Plate edge Vertical reservation distance" />
+    
+    <text name="MachineOperation.AutoFindSide.FindXYTrack" value="When find for The side,The trajectory of X and Y:P1→A→P2→B→P1→C→D" />
+    <text name="MachineOperation.AutoFindSide.ManualStartFindSide" value="Manually start edge finding" />
+    
+
   </texts>
 </localizationDictionary>

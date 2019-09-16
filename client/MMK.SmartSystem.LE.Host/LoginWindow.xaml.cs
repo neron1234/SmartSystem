@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
 using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,6 @@ namespace MMK.SmartSystem.LE.Host
 
         private async void LoginWindow_Loaded(object sender, RoutedEventArgs e)
         {
-           
             await Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(1000);

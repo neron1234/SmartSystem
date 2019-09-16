@@ -5,12 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMK.SmartSystem.LE.Host.ViewModel
+namespace MMK.SmartSystem.Common.ViewModel
 {
+    public class LastTranslateLevelAttribute : Attribute
+    {
+
+    }
     public class SystemTranslate
     {
         public SmartSystem SmartSystem { get; set; } = new SmartSystem();
-
+        public MachineOperation MachineOperation { get; set; } = new MachineOperation();
     }
 
     public class SmartSystem : ViewModelBase
@@ -194,6 +198,113 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
                 {
                     _English = value;
                     RaisePropertyChanged(() => English);
+                }
+            }
+        }
+    }
+
+    public class MachineOperation
+    {
+        [LastTranslateLevel]
+        public AutoFindSide AutoFindSide { get; set; } = new AutoFindSide();
+    }
+
+    public class AutoFindSide : ViewModelBase
+    {
+        private string _PlateOrigin;
+        public string PlateOrigin
+        {
+            get { return _PlateOrigin; }
+            set
+            {
+                if (_PlateOrigin != value)
+                {
+                    _PlateOrigin = value;
+                    RaisePropertyChanged(() => PlateOrigin);
+                }
+            }
+        }
+
+        private string _PlateAngle;
+        public string PlateAngle
+        {
+            get { return _PlateAngle; }
+            set
+            {
+                if (_PlateAngle != value)
+                {
+                    _PlateAngle = value;
+                    RaisePropertyChanged(() => PlateAngle);
+                }
+            }
+        }
+
+        private string _P12Distance;
+        public string P12Distance
+        {
+            get { return _P12Distance; }
+            set
+            {
+                if (_P12Distance != value)
+                {
+                    _P12Distance = value;
+                    RaisePropertyChanged(() => P12Distance);
+                }
+            }
+        }
+
+        private string _OptoelectronicSwitchDistance;
+        public string OptoelectronicSwitchDistance
+        {
+            get { return _OptoelectronicSwitchDistance; }
+            set
+            {
+                if (_OptoelectronicSwitchDistance != value)
+                {
+                    _OptoelectronicSwitchDistance = value;
+                    RaisePropertyChanged(() => OptoelectronicSwitchDistance);
+                }
+            }
+        }
+
+        private string _PlateEdgeDistance;
+        public string PlateEdgeDistance
+        {
+            get { return _PlateEdgeDistance; }
+            set
+            {
+                if (_PlateEdgeDistance != value)
+                {
+                    _PlateEdgeDistance = value;
+                    RaisePropertyChanged(() => PlateEdgeDistance);
+                }
+            }
+        }
+
+        private string _FindXYTrack;
+        public string FindXYTrack
+        {
+            get { return _FindXYTrack; }
+            set
+            {
+                if (_FindXYTrack != value)
+                {
+                    _FindXYTrack = value;
+                    RaisePropertyChanged(() => FindXYTrack);
+                }
+            }
+        }
+
+        private string _ManualStartFindSide;
+        public string ManualStartFindSide
+        {
+            get { return _ManualStartFindSide; }
+            set
+            {
+                if (_ManualStartFindSide != value)
+                {
+                    _ManualStartFindSide = value;
+                    RaisePropertyChanged(() => ManualStartFindSide);
                 }
             }
         }

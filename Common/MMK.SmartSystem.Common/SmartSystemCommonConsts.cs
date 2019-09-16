@@ -1,4 +1,5 @@
 ﻿using MMK.SmartSystem.Common.Model;
+using MMK.SmartSystem.Common.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,8 @@ namespace MMK.SmartSystem.Common
         public static string CurrentCulture = "en";
 
         public static UserInfo UserInfo = new UserInfo();
+
+        public static SystemTranslate SystemTranslateModel = new SystemTranslate();
+
     }
 }

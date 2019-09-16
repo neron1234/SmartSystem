@@ -35,7 +35,6 @@
                     </InputScope>
                 </Setter.Value>
             </Setter>
-
             <Style.Triggers>
                 <Trigger Property="IsFocused" Value="true">
                     <Setter Property="BorderBrush" Value="Green"></Setter>

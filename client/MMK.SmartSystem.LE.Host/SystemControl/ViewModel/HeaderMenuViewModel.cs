@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using Abp.Events.Bus;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.LE.Host.ViewModel;
+using MMK.SmartSystem.Common.ViewModel;
 
 namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {

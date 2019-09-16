@@ -16,7 +16,7 @@ using TokenAuthClient = MMK.SmartSystem.Common.SerivceProxy.TokenAuthClient;
 
 namespace MMK.SmartSystem.LE.Host.EventHandler
 {
-    public class UserLanguageHandler : IEventHandler<UserLanguageEventData>, ITransientDependency
+    public class UserLanguageHandler : BaseTranslate,IEventHandler<UserLanguageEventData>, ITransientDependency
     {
 
         public void HandleEvent(UserLanguageEventData eventData)
@@ -75,60 +75,6 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
 
             }
 
-        }
-
-        private void Translate()
-        {
-            var dict = SmartSystemCommonConsts.UserConfiguration.Localization.Values?.SmartSystem;
-            var pageAuth = SmartSystemCommonConsts.UserConfiguration?.Auth?.GrantedPermissions ?? new Dictionary<string, string>();
-            if (dict != null)
-            {
-                foreach (var item in SmartSystemLEConsts.SystemModules)
-                {
-                    item.ModuleName = item.ModuleKey.Translate();
-                    bool isAuth = false;
-                    foreach (var g in item.MainMenuViews)
-                    {
-                        g.Title = g.PageKey.Translate();
-                        if (g.Auth)
-                        {
-                            if (pageAuth.ContainsKey(g.Permission))
-                            {
-                                g.Show = Visibility.Visible;
-                                isAuth = true;
-                            }
-                            else
-                            {
-                                g.Show = Visibility.Collapsed;
-                            }
-                        }
-                        else
-                        {
-                            isAuth = true;
-                            g.Show = Visibility.Visible;
-
-                        }
-
-                    }
-                    item.Show = isAuth ? Visibility.Visible : Visibility.Collapsed;
-                }
-            }
-
-            //
-            var smartGype = SmartSystemLEConsts.SystemTranslateModel.GetType();
-            foreach (PropertyInfo item in smartGype.GetProperties())
-            {
-                var obj = item.GetValue(SmartSystemLEConsts.SystemTranslateModel, null);
-                foreach (PropertyInfo propItem in item.PropertyType.GetProperties())
-                {
-                    string key = $"{item.Name}.{propItem.Name}";
-                    if (dict.ContainsKey(key))
-                    {
-                        propItem.SetValue(obj, dict[key]);
-
-                    }
-                }
-            }
         }
     }
 }

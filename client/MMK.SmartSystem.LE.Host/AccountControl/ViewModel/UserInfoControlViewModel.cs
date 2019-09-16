@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using MMK.SmartSystem.Common.ViewModel;
 
 namespace MMK.SmartSystem.LE.Host.AccountControl.ViewModel
 {

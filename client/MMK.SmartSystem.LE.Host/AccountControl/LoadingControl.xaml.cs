@@ -1,6 +1,4 @@
-﻿using Abp.Dependency;
-using MMK.SmartSystem.Common.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MMK.SmartSystem.Laser.Base.MachineOperation
+namespace MMK.SmartSystem.LE.Host.AccountControl
 {
     /// <summary>
-    /// AutoFindSidePage.xaml 的交互逻辑
+    /// LoadingControl.xaml 的交互逻辑
     /// </summary>
-    public partial class AutoFindSidePage : Page, ITransientDependency
+    public partial class LoadingControl : UserControl
     {
-        public AutoFindSidePage()
+        public LoadingControl()
         {
             InitializeComponent();
-            this.DataContext = new MainTranslateViewModel();
         }
     }
 }

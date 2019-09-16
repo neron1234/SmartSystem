@@ -13,8 +13,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {
     public class SystemMenuModuleViewModel : ViewModelBase
     {
-
-
         private string moduleName;
 
         public string ModuleName

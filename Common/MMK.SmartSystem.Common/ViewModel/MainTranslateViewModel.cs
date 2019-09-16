@@ -5,16 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMK.SmartSystem.LE.Host.ViewModel
+namespace MMK.SmartSystem.Common.ViewModel
 {
-    public class MainTranslateViewModel : ViewModelBase
+    public class MainTranslateViewModel:ViewModelBase
     {
         public SystemTranslate Translate { get; set; }
 
         public MainTranslateViewModel()
         {
-            Translate = SmartSystemLEConsts.SystemTranslateModel;
+            Translate = SmartSystemCommonConsts.SystemTranslateModel;
         }
-
     }
 }

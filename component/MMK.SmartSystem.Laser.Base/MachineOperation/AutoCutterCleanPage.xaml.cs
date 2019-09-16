@@ -1,4 +1,5 @@
 ﻿using Abp.Dependency;
+using MMK.SmartSystem.Common.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         public AutoCutterCleanPage()
         {
             InitializeComponent();
+            this.DataContext = new MainTranslateViewModel();
         }
     }
 }

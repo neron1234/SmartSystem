@@ -4,20 +4,20 @@
     <text name="MachineOperation" value="机床功能" />
     <text name="ManualFindSide" value="割嘴功能" />
 
-    <text name="MachineOperation.AutoFindSide" value="自动寻边" />
-    <text name="MachineOperation.AuxGasCheck" value="辅助气体" />
-    <text name="MachineOperation.ManualFindSide" value="手动寻边" />
+    <text name="MachineOperation.AutoFindSideBtn" value="自动寻边" />
+    <text name="MachineOperation.AuxGasCheckBtn" value="辅助气体" />
+    <text name="MachineOperation.ManualFindSideBtn" value="手动寻边" />
 
-    <text name="ManualFindSide.CutterResetCheck" value="割嘴复归" />
-    <text name="ManualFindSide.AutoCutterClean" value="割嘴清洁" />
-    <text name="ManualFindSide.CutCenter" value="割嘴对中" />
+    <text name="ManualFindSide.CutterResetCheckBtn" value="割嘴复归" />
+    <text name="ManualFindSide.AutoCutterCleanBtn" value="割嘴清洁" />
+    <text name="ManualFindSide.CutCenterBtn" value="割嘴对中" />
 
-    <text name="AutoFindSide.PlateOrigin" value="板材原点" />
+    <!--<text name="AutoFindSide.PlateOrigin" value="板材原点" />
     <text name="AutoFindSide.PlateAngle" value="板材倾斜角度" />
     <text name="AutoFindSide.CenterDistance" value="中间点P1、P2距离" />
     <text name="AutoFindSide.Opofs" value="光电开关偏置距离" />
     <text name="AutoFindSide.FindSideMovePath" value="寻边时X、Y的移动轨迹" />
-    <text name="AutoFindSide.ManualStartFindSide" value="手动启动寻边" />
+    <text name="AutoFindSide.ManualStartFindSide" value="手动启动寻边" />-->
 
     <text name="SmartSystem.Account" value="账号" />
     <text name="SmartSystem.Pwd" value="密码" />
@@ -37,7 +37,15 @@
     <text name="SmartSystem.English" value="英文" />
     
     <text name="SmartSystem.LogingSystem" value="登陆系统中" />
-    
+
+
+    <text name="MachineOperation.AutoFindSide.PlateOrigin" value="板材原点" />
+    <text name="MachineOperation.AutoFindSide.PlateAngle" value="板材倾斜角度" />
+    <text name="MachineOperation.AutoFindSide.P12Distance" value="中心点P1、P2距离" />
+    <text name="MachineOperation.AutoFindSide.OptoelectronicSwitchDistance" value="光电开关偏置距离" />
+    <text name="MachineOperation.AutoFindSide.PlateEdgeDistance" value="板材边缘的垂直预留距离" />
+    <text name="MachineOperation.AutoFindSide.FindXYTrack" value="寻边时X和Y的移动轨迹:P1→A→P2→B→P1→C→D" />
+    <text name="MachineOperation.AutoFindSide.ManualStartFindSide" value="手动启动寻边" />
   </texts>
 </localizationDictionary>
 

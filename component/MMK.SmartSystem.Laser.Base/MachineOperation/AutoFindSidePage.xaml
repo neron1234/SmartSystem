@@ -26,9 +26,9 @@
             <Border Grid.Column="0" BorderBrush="#FF323232" BorderThickness="0" Background="Transparent">
                 <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Border>
-            <TextBlock Grid.Row="1" Text="PROCESSDESCRIP" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Foreground="White" Margin="0,16,132,15.6"/>
+            <TextBlock Grid.Row="1" Text="{Binding Translate.MachineOperation.AutoFindSide.FindXYTrack}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Foreground="White" Margin="0,16,132,15.6"/>
 
-            <Button Grid.Row="2" Width="200" Height="60" VerticalAlignment="Center" Content="MANUALSTART" 
+            <Button Grid.Row="2" Width="200" Height="60" VerticalAlignment="Center" Content="{Binding Translate.MachineOperation.AutoFindSide.ManualStartFindSide}" 
                         HorizontalAlignment="Center" />
         </Grid>
 
@@ -54,7 +54,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="ZEROPOINT" Margin="10,0,0,0"
+                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateOrigin}" Margin="10,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
                 <TextBlock Text="X" Margin="5,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
@@ -67,7 +67,7 @@
                      Text="{Binding AutoFindSide_Info.XD}" Foreground="Yellow" IsReadOnly="True" IsEnabled="False"/>
 
             <StackPanel Grid.Row="3"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="ZEROPOINT" Margin="10,0,0,0"
+                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateOrigin}" Margin="10,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
                 <TextBlock Text="Y" Margin="5,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
@@ -80,7 +80,7 @@
                      Text="{Binding AutoFindSide_Info.YD}" Foreground="Yellow" IsReadOnly="True" IsEnabled="False"/>
 
             <StackPanel Grid.Row="5"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="ANGLE" Margin="10,0,0,0"
+                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateAngle}" Margin="10,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
                 <TextBlock Text="θ" Margin="5,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
@@ -91,7 +91,7 @@
                      Text="{Binding AutoFindSide_Info.SITA}" Foreground="Yellow" IsReadOnly="True" IsEnabled="False"/>
 
             <StackPanel Grid.Row="8"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="P1P2" Margin="10,0,0,0"
+                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.P12Distance}" Margin="10,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
                 <TextBlock Text="H" Margin="5,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
@@ -102,7 +102,7 @@
                      Text="{Binding H}" Foreground="Yellow" />
 
             <StackPanel Grid.Row="10"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="OPOFS" Margin="10,0,0,0"
+                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.OptoelectronicSwitchDistance}" Margin="10,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
                 <TextBlock Text="X" Margin="5,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
@@ -113,7 +113,7 @@
                      Text="{Binding X}" Foreground="Yellow" />
 
             <StackPanel Grid.Row="12"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="OPOFS" Margin="10,0,0,0"
+                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.OptoelectronicSwitchDistance}" Margin="10,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
                 <TextBlock Text="Y" Margin="5,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
@@ -124,7 +124,7 @@
                      Text="{Binding Y}" Foreground="Yellow" />
 
             <StackPanel Grid.Row="14"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="SIDEREMAIN" Margin="10,0,0,0"
+                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateEdgeDistance}" Margin="10,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
                 <TextBlock Text="M" Margin="5,0,0,0"
                        HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>

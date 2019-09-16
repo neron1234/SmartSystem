@@ -211,6 +211,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AccountControl\LoadingControl.xaml.cs">
+      <DependentUpon>LoadingControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AccountControl\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
@@ -251,9 +254,11 @@
     <Compile Include="SystemControl\ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\SystemMenuModuleViewModel.cs" />
     <Compile Include="ViewModel\MainSystemNoticeModel.cs" />
-    <Compile Include="ViewModel\MainTranslateViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="ViewModel\SystemTranslate.cs" />
+    <Page Include="AccountControl\LoadingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AccountControl\LoginControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

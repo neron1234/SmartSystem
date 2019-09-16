@@ -18,17 +18,17 @@ namespace MMK.SmartSystem.Laser.Base
                 new SystemMenuModule{
                     ModuleName = "MachineOperation",
                     Pages = new List<SystemPageModel>{
-                        new SystemPageModel(){ Title="MachineOperation.AutoFindSide",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage",IsAuth=true,Permission="MachineOperation.AutoFindSidePage"},
-                        new SystemPageModel(){ Title="MachineOperation.AuxGasCheck",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AuxGasCheckPage",IsAuth=false,Permission="MachineOperation.AuxGasCheckPage"},
-                        new SystemPageModel(){ Title="MachineOperation.ManualFindSide",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.ManualFindSidePage",IsAuth=true,Permission="MachineOperation.ManualFindSidePage"},
+                        new SystemPageModel(){ Title="MachineOperation.AutoFindSideBtn",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage",IsAuth=true,Permission="MachineOperation.AutoFindSidePage"},
+                        new SystemPageModel(){ Title="MachineOperation.AuxGasCheckBtn",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AuxGasCheckPage",IsAuth=false,Permission="MachineOperation.AuxGasCheckPage"},
+                        new SystemPageModel(){ Title="MachineOperation.ManualFindSideBtn",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.ManualFindSidePage",IsAuth=true,Permission="MachineOperation.ManualFindSidePage"},
                     }
                 },
                 new SystemMenuModule{
                      ModuleName = "ManualFindSide",
                      Pages = new List<SystemPageModel>{
-                        new SystemPageModel(){ Title="ManualFindSide.CutterResetCheck",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.CutterResetCheckPage",IsAuth=true,Permission="MachineOperation.CutterResetCheckPage"},
-                        new SystemPageModel(){ Title="ManualFindSide.AutoCutterClean",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AutoCutterCleanPage",IsAuth=true,Permission="MachineOperation.AutoCutterCleanPage"},
-                        new SystemPageModel(){ Title="ManualFindSide.CutCenter",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.CutCenterPage",IsAuth=true,Permission="MachineOperation.CutCenterPage"}
+                        new SystemPageModel(){ Title="ManualFindSide.CutterResetCheckBtn",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.CutterResetCheckPage",IsAuth=true,Permission="MachineOperation.CutterResetCheckPage"},
+                        new SystemPageModel(){ Title="ManualFindSide.AutoCutterCleanBtn",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.AutoCutterCleanPage",IsAuth=true,Permission="MachineOperation.AutoCutterCleanPage"},
+                        new SystemPageModel(){ Title="ManualFindSide.CutCenterBtn",FullName="MMK.SmartSystem.Laser.Base.MachineOperation.CutCenterPage",IsAuth=true,Permission="MachineOperation.CutCenterPage"}
                      }
                 }
             };

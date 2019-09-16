@@ -4,6 +4,7 @@ using Abp.Events.Bus.Handlers;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -16,56 +17,10 @@ using TokenAuthClient = MMK.SmartSystem.Common.SerivceProxy.TokenAuthClient;
 
 namespace MMK.SmartSystem.LE.Host.EventHandler
 {
-    public class UserLoginHandler : IEventHandler<UserLoginEventData>, ITransientDependency
-    {
-        public void HandleEvent(UserLoginEventData eventData)
-        {
-            TokenAuthClient tokenAuthClient = new TokenAuthClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            try
-            {
-                var ts = tokenAuthClient.AuthenticateAsync(new AuthenticateModel() { UserNameOrEmailAddress = eventData.UserName, Password = eventData.Pwd }).Result;
-                string errorMessage = ts.Error?.Details;
-                if (ts.Success)
-                {
-                    SmartSystemCommonConsts.AuthenticateModel = ts.Result;
-                    var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
-                    errorMessage = obj2.Error?.Details;
-                    if (obj2.Success)
-                    {
-                        SmartSystemCommonConsts.UserConfiguration = obj2.Result;
-                        Translate();
-                        Messenger.Default.Send(new MainSystemNoticeModel
-                        {
-                            Tagret = eventData.Tagret,
-                            Error = "",
-                            Success=true,
-                            SuccessAction=eventData.SuccessAction,
-                            HashCode = eventData.HashCode
-                        });
-                        return;
-                    }
-                }
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction=eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.Message,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
-        }
 
-        private void Translate()
+    public class BaseTranslate
+    {
+        protected void Translate()
         {
             var dict = SmartSystemCommonConsts.UserConfiguration.Localization.Values?.SmartSystem;
             var pageAuth = SmartSystemCommonConsts.UserConfiguration?.Auth?.GrantedPermissions ?? new Dictionary<string, string>();
@@ -103,20 +58,85 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
             }
 
             //
-            var smartGype = SmartSystemLEConsts.SystemTranslateModel.GetType();
+            var smartGype = SmartSystemCommonConsts.SystemTranslateModel.GetType();
             foreach (PropertyInfo item in smartGype.GetProperties())
             {
-                var obj = item.GetValue(SmartSystemLEConsts.SystemTranslateModel, null);
+                var obj = item.GetValue(SmartSystemCommonConsts.SystemTranslateModel, null);
                 foreach (PropertyInfo propItem in item.PropertyType.GetProperties())
                 {
                     string key = $"{item.Name}.{propItem.Name}";
                     if (dict.ContainsKey(key))
                     {
                         propItem.SetValue(obj, dict[key]);
-
                     }
+                    var attr = propItem.GetCustomAttribute<LastTranslateLevelAttribute>();
+                    if (attr != null)
+                    {
+                        var Pobj = propItem.GetValue(obj, null);
+
+                        foreach (var sonPropItem in propItem.PropertyType.GetProperties())
+                        {
+                            string sonkey = $"{item.Name}.{propItem.Name}.{sonPropItem.Name}";
+                            if (dict.ContainsKey(sonkey))
+                            {
+                                sonPropItem.SetValue(Pobj, dict[sonkey]);
+                            }
+                        }
+                    }
+
                 }
             }
         }
+
+    }
+    public class UserLoginHandler : BaseTranslate, IEventHandler<UserLoginEventData>, ITransientDependency
+    {
+        public void HandleEvent(UserLoginEventData eventData)
+        {
+            TokenAuthClient tokenAuthClient = new TokenAuthClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            try
+            {
+                var ts = tokenAuthClient.AuthenticateAsync(new AuthenticateModel() { UserNameOrEmailAddress = eventData.UserName, Password = eventData.Pwd }).Result;
+                string errorMessage = ts.Error?.Details;
+                if (ts.Success)
+                {
+                    SmartSystemCommonConsts.AuthenticateModel = ts.Result;
+                    var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
+                    errorMessage = obj2.Error?.Details;
+                    if (obj2.Success)
+                    {
+                        SmartSystemCommonConsts.UserConfiguration = obj2.Result;
+                        Translate();
+                        Messenger.Default.Send(new MainSystemNoticeModel
+                        {
+                            Tagret = eventData.Tagret,
+                            Error = "",
+                            Success = true,
+                            SuccessAction = eventData.SuccessAction,
+                            HashCode = eventData.HashCode
+                        });
+                        return;
+                    }
+                }
+                Messenger.Default.Send(new MainSystemNoticeModel
+                {
+                    Tagret = eventData.Tagret,
+                    Error = errorMessage,
+                    ErrorAction = eventData.ErrorAction,
+                    HashCode = eventData.HashCode
+                });
+            }
+            catch (Exception ex)
+            {
+                Messenger.Default.Send(new MainSystemNoticeModel
+                {
+                    Tagret = eventData.Tagret,
+                    Error = ex.Message,
+                    ErrorAction = eventData.ErrorAction,
+                    HashCode = eventData.HashCode
+                });
+            }
+        }
+
     }
 }
