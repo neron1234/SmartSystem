@@ -9,7 +9,7 @@
                            xmlns:embed="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl.Embed"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1200">
+        Title="MainWindow" Height="600" Width="1200" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />

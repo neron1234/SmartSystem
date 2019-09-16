@@ -27,10 +27,8 @@ namespace MMK.SmartSystem.LE.Host
     /// </summary>
     public partial class LoginWindow : Window, ISingletonDependency
     {
-        IIocManager iocManager;
-        public LoginWindow(IIocManager iocManager)
+        public LoginWindow()
         {
-            this.iocManager = iocManager;
             InitializeComponent();
             Loaded += LoginWindow_Loaded;
             this.DataContext = new MainTranslateViewModel();
@@ -38,7 +36,15 @@ namespace MMK.SmartSystem.LE.Host
 
         private async void LoginWindow_Loaded(object sender, RoutedEventArgs e)
         {
-           
+            Messenger.Default.Register<MainSystemNoticeModel>(this, (model) =>
+            {
+                if (model.HashCode == this.GetHashCode())
+                {
+                    Close();
+                    model.SuccessAction?.Invoke();
+                }
+            });
+
             await Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(1000);
@@ -59,15 +65,7 @@ namespace MMK.SmartSystem.LE.Host
                 HashCode = this.GetHashCode(),
                 SuccessAction = LoginSuccess
             });
-            MainWindow mainWindow = new MainWindow(iocManager);
-            mainWindow.Show();
-            Messenger.Default.Register<MainSystemNoticeModel>(this, (model) => {
-                if (model.HashCode == this.GetHashCode())
-                {
-                    model.SuccessAction?.Invoke();
-                }
-            });
-            Close();
+        
         }
 
         public void LoginSuccess()

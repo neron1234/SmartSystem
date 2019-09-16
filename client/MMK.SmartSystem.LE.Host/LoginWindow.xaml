@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
+        Title="LoginWindow" Height="450" Width="800" WindowStyle="None" WindowStartupLocation="CenterOwner" WindowState="Maximized">
     <Window.Resources>
         <Style x:Key="FlashStyle" TargetType="{x:Type FrameworkElement}">
             <Style.Triggers>

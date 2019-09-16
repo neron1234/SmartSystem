@@ -24,8 +24,8 @@ namespace MMK.SmartSystem.LE.Host
     public partial class App : Application
     {
         private readonly AbpBootstrapper _bootstrapper;
-        //private MainWindow _mainWindow;
-        private LoginWindow _loginWindow;
+        private MainWindow _mainWindow;
+       // private LoginWindow _loginWindow;
         public App()
         {
             _bootstrapper = AbpBootstrapper.Create<MMKSmartSystemLEHostModule>();
@@ -39,10 +39,10 @@ namespace MMK.SmartSystem.LE.Host
             _bootstrapper.PlugInSources.AddFolder(path);
             _bootstrapper.Initialize();
             DispatcherHelper.Initialize();
-            //_mainWindow = _bootstrapper.IocManager.Resolve<MainWindow>();
-            //_mainWindow.Show();
-            _loginWindow = _bootstrapper.IocManager.Resolve<LoginWindow>();
-            _loginWindow.Show();
+            _mainWindow = _bootstrapper.IocManager.Resolve<MainWindow>();
+            _mainWindow.Show();
+            //_loginWindow = _bootstrapper.IocManager.Resolve<LoginWindow>();
+            //_loginWindow.Show();
 
             //Task.Factory.StartNew(() => AutoLogin());
             LoadPluginAssemblies();
@@ -69,7 +69,7 @@ namespace MMK.SmartSystem.LE.Host
         }
         protected override void OnExit(ExitEventArgs e)
         {
-            _bootstrapper.IocManager.Release(_loginWindow);
+            _bootstrapper.IocManager.Release(_mainWindow);
             _bootstrapper.Dispose();
             // base.OnExit(e);
         }

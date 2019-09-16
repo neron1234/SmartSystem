@@ -66,7 +66,9 @@ namespace MMK.SmartSystem.LE.Host
             {
                 MainViewModel.MainFrame = null;
             });
-            loadWebApp();
+            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
+            new LoginWindow().ShowDialog();
+            //loadWebApp();
         }
 
         void loadWebApp()
