@@ -9,6 +9,7 @@ namespace MMK.SmartSystem.Authorization
     {
         private List<string> PermissionList = new List<string>()
         {
+
             "MachineOperation.CutCenterPage",
             "MachineOperation.AutoCutterCleanPage",
             "MachineOperation.CutterResetCheckPage",
@@ -22,13 +23,15 @@ namespace MMK.SmartSystem.Authorization
             context.CreatePermission(PermissionNames.Pages_Users, L("Users"));
             context.CreatePermission(PermissionNames.Pages_Roles, L("Roles"));
             context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
+            context.CreatePermission("SmartSystem.Manager", L("SmartSystem.Manager"));
+
             foreach (var item in PermissionList)
             {
                 context.CreatePermission(item, L(item));
-
+                context.CreatePermission($"{item}.Edit", L($"{item}.Edit"));
             }
         }
-      
+
 
         private static ILocalizableString L(string name)
         {
