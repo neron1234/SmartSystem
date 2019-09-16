@@ -38,10 +38,23 @@ namespace MMK.SmartSystem.LE.Host
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            Messenger.Default.Register<Type>(this, (type) =>
+            ctnTest.Visibility = Visibility.Visible;
+            viewBox.Visibility = Visibility.Collapsed;
+            Messenger.Default.Register<PageChangeModel>(this, (type) =>
             {
-                var page = iocManager.Resolve(type);
-                MainViewModel.MainFrame = page;
+                if (type.Page == PageEnum.WPFPage)
+                {
+                    var page = iocManager.Resolve(type.FullType);
+                    MainViewModel.MainFrame = page;
+                    ctnTest.Visibility = Visibility.Collapsed;
+                    viewBox.Visibility = Visibility.Visible;
+                }
+                else if (type.Page == PageEnum.WebPage)
+                {
+                    ctnTest.Visibility = Visibility.Visible;
+                    viewBox.Visibility = Visibility.Collapsed;
+                }
+
             });
 
             Messenger.Default.Register<UserControl>(this, (control) =>
@@ -53,7 +66,11 @@ namespace MMK.SmartSystem.LE.Host
             {
                 MainViewModel.MainFrame = null;
             });
-            loadWebApp();
+            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
+            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(() => new LoginWindow().ShowDialog()))));
+
+           
+            //loadWebApp();
         }
 
         void loadWebApp()

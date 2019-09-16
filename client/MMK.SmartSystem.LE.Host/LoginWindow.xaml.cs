@@ -4,7 +4,6 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
 using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
-using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -28,10 +27,8 @@ namespace MMK.SmartSystem.LE.Host
     /// </summary>
     public partial class LoginWindow : Window, ISingletonDependency
     {
-        IIocManager iocManager;
-        public LoginWindow(IIocManager iocManager)
+        public LoginWindow()
         {
-            this.iocManager = iocManager;
             InitializeComponent();
             Loaded += LoginWindow_Loaded;
             this.DataContext = new MainTranslateViewModel();
@@ -39,9 +36,18 @@ namespace MMK.SmartSystem.LE.Host
 
         private async void LoginWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            Messenger.Default.Register<MainSystemNoticeModel>(this, (model) =>
+            {
+                if (model.HashCode == this.GetHashCode())
+                {
+                    Close();
+                    model.SuccessAction?.Invoke();
+                }
+            });
+
             await Task.Factory.StartNew(() =>
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 this.Dispatcher.InvokeAsync(async () =>
                 {
                     await AutoLogin();
@@ -59,15 +65,7 @@ namespace MMK.SmartSystem.LE.Host
                 HashCode = this.GetHashCode(),
                 SuccessAction = LoginSuccess
             });
-            MainWindow mainWindow = new MainWindow(iocManager);
-            mainWindow.Show();
-            Messenger.Default.Register<MainSystemNoticeModel>(this, (model) => {
-                if (model.HashCode == this.GetHashCode())
-                {
-                    model.SuccessAction?.Invoke();
-                }
-            });
-            Close();
+        
         }
 
         public void LoginSuccess()

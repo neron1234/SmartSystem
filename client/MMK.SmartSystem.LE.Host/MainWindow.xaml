@@ -9,7 +9,7 @@
                            xmlns:embed="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl.Embed"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1200">
+        Title="MainWindow" Height="600" Width="1200" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -23,17 +23,17 @@
             <systemControl:ModuleMenuControl />
         </StackPanel>
         <Border Grid.Column="1" Grid.Row="1">
-            <TabControl>
-                <TabItem Header="web">
-                    <embed:AppContainer x:Name="ctnTest" />
-
-                </TabItem>
-                <TabItem Header="基本功能">
-                    <Viewbox Stretch="Fill">
-                        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                    </Viewbox>
-                </TabItem>
-            </TabControl>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <embed:AppContainer x:Name="ctnTest" />
+                <Viewbox Stretch="Fill" x:Name="viewBox">
+                    <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </Viewbox>
+            </Grid>
+           
+           
           
             <!--<Frame x:Name="mainFrame" Content="{Binding MainFrame}"/>-->
         </Border>
