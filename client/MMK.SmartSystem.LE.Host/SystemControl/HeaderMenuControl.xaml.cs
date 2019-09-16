@@ -60,12 +60,16 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         {
             WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
             webRouteClient.NavigateAsync("/");
+            Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
+
         }
 
         private void CnHomeBtn2_Click(object sender, RoutedEventArgs e)
         {
             WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
             webRouteClient.NavigateAsync("/home");
+            Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
+
         }
     }
 }
