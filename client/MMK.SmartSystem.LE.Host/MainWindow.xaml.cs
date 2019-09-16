@@ -67,7 +67,9 @@ namespace MMK.SmartSystem.LE.Host
                 MainViewModel.MainFrame = null;
             });
             Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
-            new LoginWindow().ShowDialog();
+            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(() => new LoginWindow().ShowDialog()))));
+
+           
             //loadWebApp();
         }
 

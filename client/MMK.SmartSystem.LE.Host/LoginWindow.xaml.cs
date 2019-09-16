@@ -47,7 +47,7 @@ namespace MMK.SmartSystem.LE.Host
 
             await Task.Factory.StartNew(() =>
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 this.Dispatcher.InvokeAsync(async () =>
                 {
                     await AutoLogin();
