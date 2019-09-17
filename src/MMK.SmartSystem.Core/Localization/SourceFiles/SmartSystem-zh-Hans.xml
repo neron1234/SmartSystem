@@ -38,7 +38,6 @@
     
     <text name="SmartSystem.LogingSystem" value="登陆系统中" />
 
-
     <text name="MachineOperation.AutoFindSide.PlateOrigin" value="板材原点" />
     <text name="MachineOperation.AutoFindSide.PlateAngle" value="板材倾斜角度" />
     <text name="MachineOperation.AutoFindSide.P12Distance" value="中心点P1、P2距离" />
@@ -46,6 +45,9 @@
     <text name="MachineOperation.AutoFindSide.PlateEdgeDistance" value="板材边缘的垂直预留距离" />
     <text name="MachineOperation.AutoFindSide.FindXYTrack" value="寻边时X和Y的移动轨迹:P1→A→P2→B→P1→C→D" />
     <text name="MachineOperation.AutoFindSide.ManualStartFindSide" value="手动启动寻边" />
+    
+    <text name="SmartSystem.Index1" value="首页一" />
+    <text name="SmartSystem.Index2" value="首页二" />
   </texts>
 </localizationDictionary>
 

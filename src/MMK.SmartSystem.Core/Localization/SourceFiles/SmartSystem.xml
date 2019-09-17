@@ -46,7 +46,8 @@
     
     <text name="MachineOperation.AutoFindSide.FindXYTrack" value="When find for The side,The trajectory of X and Y:P1→A→P2→B→P1→C→D" />
     <text name="MachineOperation.AutoFindSide.ManualStartFindSide" value="Manually start edge finding" />
-    
 
+    <text name="SmartSystem.Index1" value="Index1" />
+    <text name="SmartSystem.Index2" value="Index2" />
   </texts>
 </localizationDictionary>
