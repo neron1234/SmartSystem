@@ -1,62 +1,73 @@
 [
-  {
-    "ModuleName": "MachineOperation",
-    "Pages": [
-      {
-        "Title": "MachineOperation.AutoFindSideBtn",
-        "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage",
-        "IsAuth": true,
-        "Permission": "MachineOperation.AutoFindSidePage"
-      },
-      {
-        "Title": "MachineOperation.AuxGasCheckBtn",
-        "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AuxGasCheckPage",
-        "IsAuth": false
-      },
-      {
-        "Title": "MachineOperation.ManualFindSideBtn",
-        "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.ManualFindSidePage",
-        "IsAuth": true,
-        "Permission": "MachineOperation.ManualFindSidePage"
-      }
-    ]
-  },
-  {
-    "ModuleName": "ManualFindSide",
-    "Pages": [
-      {
-        "Title": "ManualFindSide.CutterResetCheckBtn",
-        "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.CutterResetCheckPage",
-        "IsAuth": true,
-        "Permission": "MachineOperation.CutterResetCheckPage"
-      },
-      {
-        "Title": "ManualFindSide.AutoCutterCleanBtn",
-        "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AutoCutterCleanPage",
-        "IsAuth": true,
-        "Permission": "MachineOperation.AutoCutterCleanPage"
-      },
-      {
-        "Title": "ManualFindSide.CutCenterBtn",
-        "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.CutCenterPage",
-        "IsAuth": true,
-        "Permission": "MachineOperation.CutCenterPage"
-      }
-    ]
-  },
-  {
-    "ModuleName": "WebModule",
-    "Pages": [
-      {
-        "Title": "Baidu",
-        "WebPage": true,
-        "Url": "http://www.baidu.com"
-      },
-      {
-        "Title": "QQ",
-        "WebPage": true,
-        "Url": "http://www.qq.com"
-      }
-    ]
-  }
+    {
+        "ModuleName": "MachineOperation",
+        "BackColor": "#46d36a",
+        "Pages": [
+            {
+                "Id": "MachineOperation.AutoFindSide",
+                "Title": "MachineOperation.AutoFindSideBtn",
+                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage",
+                "IsAuth": true,
+                "Permission": "MachineOperation.AutoFindSidePage"
+            },
+            {
+                "Id": "MachineOperation.AuxGasCheck",
+                "Title": "MachineOperation.AuxGasCheckBtn",
+                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AuxGasCheckPage",
+                "IsAuth": false
+            },
+            {
+                "Id": "MachineOperation.ManualFindSidePage",
+                "Title": "MachineOperation.ManualFindSideBtn",
+                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.ManualFindSidePage",
+                "IsAuth": true,
+                "Permission": "MachineOperation.ManualFindSidePage"
+            }
+        ]
+    },
+    {
+        "ModuleName": "ManualFindSide",
+        "BackColor": "#1ebef2",
+        "Pages": [
+            {
+                "Id": "MachineOperation.CutterResetCheckPage",
+                "Title": "ManualFindSide.CutterResetCheckBtn",
+                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.CutterResetCheckPage",
+                "IsAuth": true,
+                "Permission": "MachineOperation.CutterResetCheckPage"
+            },
+            {
+                "Id": "MachineOperation.AutoCutterCleanPage",
+                "Title": "ManualFindSide.AutoCutterCleanBtn",
+                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AutoCutterCleanPage",
+                "IsAuth": true,
+                "Permission": "MachineOperation.AutoCutterCleanPage"
+            },
+            {
+                "Id": "MachineOperation.CutCenterPage",
+                "Title": "ManualFindSide.CutCenterBtn",
+                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.CutCenterPage",
+                "IsAuth": true,
+                "Permission": "MachineOperation.CutCenterPage"
+            }
+        ]
+    },
+    {
+        "ModuleName": "WebModule",
+        "BackColor": "#f2be2d",
+        "Pages": [
+            {
+                "Id": "web1",
+                "Title": "Baidu",
+                "WebPage": true,
+                "Url": "http://www.baidu.com"
+            },
+            {
+                "Id": "web2",
+                "Title": "QQ",
+                "WebPage": true,
+                "Url": "http://www.qq.com"
+            }
+        ]
+    }
 ]

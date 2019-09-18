@@ -13,9 +13,8 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {
     public class MainMenuViewModel : ViewModelBase
     {
-
+        public string Id { get; set; }
         public bool IsLoad { get; set; }
-
 
         private string _title;
         public string Title
@@ -41,6 +40,8 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         public string Url { get; set; }
         public string Permission { get; set; }
 
+        public string Icon { get; set; }
+        public string BackColor { get; set; }
 
         private Visibility _Show;
         public Visibility Show

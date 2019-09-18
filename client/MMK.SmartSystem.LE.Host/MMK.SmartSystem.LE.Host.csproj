@@ -237,8 +237,12 @@
     <Compile Include="SystemControl\Control\MaskLayerBehavior.cs" />
     <Compile Include="SystemControl\Control\PathIconButton.cs" />
     <Compile Include="SystemControl\Control\PopupEx.cs" />
+    <Compile Include="SystemControl\Control\ZGroupBox.cs" />
     <Compile Include="SystemControl\Embed\Appcontainer.cs" />
     <Compile Include="SystemControl\Embed\Win32Api.cs" />
+    <Compile Include="SystemControl\FunctionConfigControl.xaml.cs">
+      <DependentUpon>FunctionConfigControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemControl\HeaderMenuControl.xaml.cs">
       <DependentUpon>HeaderMenuControl.xaml</DependentUpon>
     </Compile>
@@ -248,6 +252,7 @@
     <Compile Include="SystemControl\PopupWindowControl.xaml.cs">
       <DependentUpon>PopupWindowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemControl\ViewModel\FunctionConfigViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\HeaderMenuViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\MainMenuViewModel.cs" />
     <Compile Include="SystemControl\Control\PopupHelper.cs" />
@@ -290,6 +295,10 @@
     <Page Include="SystemControl\Embed\AppContainer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SystemControl\FunctionConfigControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SystemControl\HeaderMenuControl.xaml">
       <SubType>Designer</SubType>

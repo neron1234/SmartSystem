@@ -45,6 +45,8 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         }
 
         public string Icon { get; set; }
+        public string BackColor { get; set; }
+
         private List<MainMenuViewModel> mainMenuViews;
         public List<MainMenuViewModel> MainMenuViews
         {

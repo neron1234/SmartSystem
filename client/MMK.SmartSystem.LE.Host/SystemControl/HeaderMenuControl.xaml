@@ -13,6 +13,8 @@
 
             <Button Content="{Binding Translate.SmartSystem.Chinese}"  Width="80" Height="25" Margin="2" x:Name="CnBtn" Click="CnBtn_Click"/>
             <Button Content="{Binding Translate.SmartSystem.English}"  Width="80" Height="25" Margin="2" x:Name="EnBtn" Click="EnBtn_Click"/>
+
+            <Button Content="系统配置"  Width="80" Height="25" Margin="2" x:Name="FunctionConfigBtn" Click="FunctionConfigBtn_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

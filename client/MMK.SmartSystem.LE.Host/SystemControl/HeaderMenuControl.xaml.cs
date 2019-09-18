@@ -71,5 +71,10 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
 
         }
+
+        private void FunctionConfigBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Send((UserControl)new PopupWindowControl(new FunctionConfigControl(),600,700));
+        }
     }
 }
