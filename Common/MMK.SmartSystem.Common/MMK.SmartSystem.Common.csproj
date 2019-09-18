@@ -188,6 +188,7 @@
   <ItemGroup>
     <Compile Include="EventDatas\OperationLogEventData.cs" />
     <Compile Include="EventDatas\UserConfigEventData.cs" />
+    <Compile Include="Expands\IsEditToPermission.cs" />
     <Compile Include="Expands\StringToTranslate.cs" />
     <Compile Include="MMKSmartSystemCommonModule.cs" />
     <Compile Include="Model\AbpUserConfiguration.cs" />

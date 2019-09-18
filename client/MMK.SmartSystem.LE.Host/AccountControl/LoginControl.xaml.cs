@@ -6,6 +6,7 @@ using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SerivceProxy;
 using MMK.SmartSystem.LE.Host.AccountControl.ViewModel;
 using MMK.SmartSystem.LE.Host.SystemControl;
+using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,6 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
                 IsLogin = false
             };
             this.DataContext = LoginModel;
-
             //Messenger.Default.Register<UserInfo>(this, (u) =>
             // {
             //     this.Dispatcher.InvokeAsync(() =>
@@ -50,6 +50,7 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
             //         Close();
             //     });
             // });
+
             Messenger.Default.Register<MainSystemNoticeModel>(this, (ms) => {
                 if (ms.HashCode == this.GetHashCode()){
                     if (ms.Success) {
@@ -111,6 +112,9 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
         {
             EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
             this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, false);
+            WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            webRouteClient.NavigateAsync("/");
+            Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
         }
     }
 }

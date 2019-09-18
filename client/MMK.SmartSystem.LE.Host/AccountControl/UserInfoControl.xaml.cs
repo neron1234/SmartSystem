@@ -5,6 +5,7 @@ using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.LE.Host.AccountControl.ViewModel;
 using MMK.SmartSystem.LE.Host.SystemControl;
+using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -35,37 +36,35 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
             this.DataContext = userViewModel = new UserInfoControlViewModel();
            
             Messenger.Default.Register<UserInfo>(this, (u) => {
-                userViewModel.Account = "Account:" + u.UserName;
-                userViewModel.Email = "Email:" + u.EmailAddress;
-                userViewModel.Id = "Id:" + u.Id;
-                userViewModel.CreateTime = "CreateTime:" + u.CreationTime;
-
+                userViewModel.Account = $"{userViewModel.Translate.SmartSystem.Account}:{u.UserName}";
+                userViewModel.Email = $"Email:{u.EmailAddress}";
+                userViewModel.Id = $"Id:{u.Id}";
+                userViewModel.CreateTime = $"CreateTime:{u.CreationTime}";
                 userViewModel.IsLogin = true;
             });
 
             userViewModel.ChangeUserEvent += UserViewModel_ChangeUserEvent;
 
             Messenger.Default.Register<MainSystemNoticeModel>(this, (model) => {
-                if (model.HashCode == this.GetHashCode())
-                {
-                    if (model.Success)
-                    {
+                if (model.HashCode == this.GetHashCode()){
+                    if (model.Success){
                         model.SuccessAction?.Invoke();
                     }
                 }
             });
         }
 
-        private void UserViewModel_ChangeUserEvent()
-        {
-            EventBus.Default.TriggerAsync(new UserLoginEventData()
-            {
+        private void UserViewModel_ChangeUserEvent(){
+            EventBus.Default.TriggerAsync(new UserLoginEventData(){
                 UserName = SmartSystemLEConsts.DefaultUser,
                 Pwd = SmartSystemLEConsts.DefaultPwd,
                 Tagret = ErrorTagretEnum.Window,
                 HashCode = this.GetHashCode(),
                 SuccessAction = LoginSuccess
             });
+            WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            webRouteClient.NavigateAsync("/");
+            Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
         }
 
         public void LoginSuccess()

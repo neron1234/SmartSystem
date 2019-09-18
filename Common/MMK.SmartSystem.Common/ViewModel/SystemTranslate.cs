@@ -11,6 +11,7 @@ namespace MMK.SmartSystem.Common.ViewModel
     {
 
     }
+
     public class SystemTranslate
     {
         public SmartSystem SmartSystem { get; set; } = new SmartSystem();
@@ -19,6 +20,34 @@ namespace MMK.SmartSystem.Common.ViewModel
 
     public class SmartSystem : ViewModelBase
     {
+        private string _Index1;
+        public string Index1
+        {
+            get { return _Index1; }
+            set
+            {
+                if (_Index1 != value)
+                {
+                    _Index1 = value;
+                    RaisePropertyChanged(() => Index1);
+                }
+            }
+        }
+
+        private string _Index2;
+        public string Index2
+        {
+            get { return _Index2; }
+            set
+            {
+                if (_Index2 != value)
+                {
+                    _Index2 = value;
+                    RaisePropertyChanged(() => Index2);
+                }
+            }
+        }
+
         private string _Account;
         public string Account
         {

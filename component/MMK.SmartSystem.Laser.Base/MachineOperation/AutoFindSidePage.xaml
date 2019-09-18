@@ -29,7 +29,7 @@
             <TextBlock Grid.Row="1" Text="{Binding Translate.MachineOperation.AutoFindSide.FindXYTrack}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Foreground="White" Margin="0,16,132,15.6"/>
 
             <Button Grid.Row="2" Width="200" Height="60" VerticalAlignment="Center" Content="{Binding Translate.MachineOperation.AutoFindSide.ManualStartFindSide}" 
-                        HorizontalAlignment="Center" />
+                        HorizontalAlignment="Center" IsEnabled="{Binding IsEdit}"/>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="2" Margin="15,0,0,0">
