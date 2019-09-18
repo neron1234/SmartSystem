@@ -58,17 +58,15 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
 
         private void CnHomeBtn_Click(object sender, RoutedEventArgs e)
         {
-            WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            webRouteClient.NavigateAsync("/");
-            Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
-
+            Messenger.Default.Send(new PageChangeModel() { Url = "/", Page = PageEnum.WebPage });
+        
         }
 
         private void CnHomeBtn2_Click(object sender, RoutedEventArgs e)
         {
-            WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            webRouteClient.NavigateAsync("/home");
-            Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
+            Messenger.Default.Send(new PageChangeModel() { Url = "/home", Page = PageEnum.WebPage });
+
+          
 
         }
     }

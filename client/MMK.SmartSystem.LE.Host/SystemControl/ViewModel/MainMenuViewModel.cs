@@ -63,7 +63,13 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
             {
                 return new RelayCommand<MainMenuViewModel>((s) =>
                 {
+                    if (s.WebPage)
+                    {
+                        Messenger.Default.Send(new PageChangeModel() { Url = s.Url, Page = PageEnum.WebPage });
+                        return;
+                    }
                     Messenger.Default.Send(new PageChangeModel() { FullType = s.PageType, Page = PageEnum.WPFPage });
+
                 });
             }
         }

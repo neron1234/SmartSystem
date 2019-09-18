@@ -17,5 +17,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 
         public PageEnum Page { get; set; }
 
+        public string Url { get; set; }
+
     }
 }

@@ -190,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\AutoRefreshPage.cs" />
+    <Compile Include="EventDatas\NavigateEventData.cs" />
     <Compile Include="EventDatas\OperationLogEventData.cs" />
     <Compile Include="EventDatas\UserConfigEventData.cs" />
     <Compile Include="Expands\GrantedPermission.cs" />

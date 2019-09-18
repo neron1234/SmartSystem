@@ -1,6 +1,8 @@
 ﻿using Abp.Dependency;
+using Abp.Events.Bus;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
@@ -42,18 +44,9 @@ namespace MMK.SmartSystem.LE.Host
             viewBox.Visibility = Visibility.Collapsed;
             Messenger.Default.Register<PageChangeModel>(this, (type) =>
             {
-                if (type.Page == PageEnum.WPFPage)
-                {
-                    var page = iocManager.Resolve(type.FullType);
-                    MainViewModel.MainFrame = page;
-                    ctnTest.Visibility = Visibility.Collapsed;
-                    viewBox.Visibility = Visibility.Visible;
-                }
-                else if (type.Page == PageEnum.WebPage)
-                {
-                    ctnTest.Visibility = Visibility.Visible;
-                    viewBox.Visibility = Visibility.Collapsed;
-                }
+                Dispatcher.BeginInvoke(new Action(() => pageChange(type)));
+            
+
 
             });
 
@@ -71,6 +64,26 @@ namespace MMK.SmartSystem.LE.Host
 
 
             //loadWebApp();
+        }
+
+        void pageChange(PageChangeModel changeModel)
+        {
+            if (changeModel.Page == PageEnum.WPFPage)
+            {
+                var page = iocManager.Resolve(changeModel.FullType);
+                MainViewModel.MainFrame = page;
+                ctnTest.Visibility = Visibility.Collapsed;
+                viewBox.Visibility = Visibility.Visible;
+            }
+            else if (changeModel.Page == PageEnum.WebPage)
+            {
+                ctnTest.Visibility = Visibility.Visible;
+                viewBox.Visibility = Visibility.Collapsed;
+                Task.Factory.StartNew(() => EventBus.Default.Trigger(new NavigateEventData()
+                {
+                    Url = changeModel.Url
+                }));
+            }
         }
 
         void loadWebApp()
