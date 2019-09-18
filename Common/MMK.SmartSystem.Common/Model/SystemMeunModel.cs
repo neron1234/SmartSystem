@@ -18,7 +18,9 @@ namespace MMK.SmartSystem.Common.Model
     public class SystemPageModel
     {
         public string Title { get; set; }
+        public bool WebPage { get; set; }
 
+        public string Url { get; set; }
         public string Icon { get; set; }
         public int Sort { get; set; }
         public string FullName { get; set; }

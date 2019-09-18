@@ -25,7 +25,7 @@ namespace MMK.SmartSystem.LE.Host
     {
         private readonly AbpBootstrapper _bootstrapper;
         private MainWindow _mainWindow;
-       // private LoginWindow _loginWindow;
+        // private LoginWindow _loginWindow;
         public App()
         {
             _bootstrapper = AbpBootstrapper.Create<MMKSmartSystemLEHostModule>();
@@ -56,12 +56,16 @@ namespace MMK.SmartSystem.LE.Host
                 {
                     SmartSystemLEConsts.SystemModules.ToList().ForEach((s) => s.MainMenuViews.Where(d => !d.IsLoad).ToList().ForEach(d =>
                     {
-                        var type = item.GetType(d.Page);
-                        if (type != null)
+                        if (!d.WebPage)
                         {
-                            d.IsLoad = true;
-                            d.PageType = type;
+                            var type = item.GetType(d.Page);
+                            if (type != null)
+                            {
+                                d.IsLoad = true;
+                                d.PageType = type;
+                            }
                         }
+
 
                     }));
                 }

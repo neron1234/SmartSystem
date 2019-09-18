@@ -18,6 +18,7 @@ namespace MMK.SmartSystem.LE.Host
     {
         public override void PreInitialize()
         {
+            Configuration.BackgroundJobs.IsJobExecutionEnabled = false;
 
 
 
@@ -33,9 +34,24 @@ namespace MMK.SmartSystem.LE.Host
                 var pages = new List<MainMenuViewModel>();
                 d.Pages.OrderBy(f => f.Sort).ToList().ForEach(g =>
                 {
-                    pages.Add(new MainMenuViewModel() { Title = g.Title, Page = g.FullName, Auth = g.IsAuth, Permission = g.Permission, PageKey = g.Title });
+                    pages.Add(new MainMenuViewModel()
+                    {
+                        Title = g.Title,
+                        Page = g.FullName,
+                        Auth = g.IsAuth,
+                        Permission = g.Permission,
+                        PageKey = g.Title,
+                        Url=g.Url,
+                        WebPage=g.WebPage
+                    });
                 });
-                SmartSystemLEConsts.SystemModules.Add(new SystemMenuModuleViewModel() { Icon = d.Icon, ModuleName = d.ModuleName, MainMenuViews = pages, ModuleKey = d.ModuleName });
+                SmartSystemLEConsts.SystemModules.Add(new SystemMenuModuleViewModel()
+                {
+                    Icon = d.Icon,
+                    ModuleName = d.ModuleName,
+                    MainMenuViews = pages,
+                    ModuleKey = d.ModuleName
+                });
             });
 
         }

@@ -279,6 +279,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Content Include="MMK.SmartSystem.Laser.Base.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -296,6 +299,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetFileName)"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetFileName)"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"
+copy "$(TargetName).json"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"</PostBuildEvent>
   </PropertyGroup>
 </Project>
