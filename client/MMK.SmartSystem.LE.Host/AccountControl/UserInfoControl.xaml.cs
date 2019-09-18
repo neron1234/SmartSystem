@@ -5,6 +5,7 @@ using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.LE.Host.AccountControl.ViewModel;
 using MMK.SmartSystem.LE.Host.SystemControl;
+using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,9 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
                 HashCode = this.GetHashCode(),
                 SuccessAction = LoginSuccess
             });
+            WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            webRouteClient.NavigateAsync("/");
+            Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
         }
 
         public void LoginSuccess()

@@ -23,41 +23,31 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
         protected void Translate()
         {
             var dict = SmartSystemCommonConsts.UserConfiguration.Localization.Values?.SmartSystem;
-            var pageAuth = SmartSystemCommonConsts.UserConfiguration?.Auth?.GrantedPermissions ?? new Dictionary<string, string>();
             if (dict != null)
             {
-                foreach (var item in SmartSystemLEConsts.SystemModules)
-                {
+                //导航栏翻译以及权限
+                foreach (var item in SmartSystemLEConsts.SystemModules){
                     item.ModuleName = item.ModuleKey.Translate();
                     bool isAuth = false;
-                    foreach (var g in item.MainMenuViews)
-                    {
+                    foreach (var g in item.MainMenuViews){
                         g.Title = g.PageKey.Translate();
-                        if (g.Auth)
-                        {
-                            if (pageAuth.ContainsKey(g.Permission))
-                            {
+                        if (g.Auth){
+                            if (isAuth.ToPermission(g.Permission)){
                                 g.Show = Visibility.Visible;
                                 isAuth = true;
-                            }
-                            else
-                            {
+                            }else{
                                 g.Show = Visibility.Collapsed;
                             }
-                        }
-                        else
-                        {
+                        }else{
                             isAuth = true;
                             g.Show = Visibility.Visible;
-
                         }
-
                     }
                     item.Show = isAuth ? Visibility.Visible : Visibility.Collapsed;
                 }
             }
 
-            //
+            //文字翻译
             var smartGype = SmartSystemCommonConsts.SystemTranslateModel.GetType();
             foreach (PropertyInfo item in smartGype.GetProperties())
             {
@@ -83,7 +73,6 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                             }
                         }
                     }
-
                 }
             }
         }

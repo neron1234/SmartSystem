@@ -19,7 +19,6 @@
             <Setter Property="MouseOverPathColor" Value="#000000" />
             <Setter Property="PressedPathColor" Value="#000000" />
             <Setter Property="DisabledPathColor" Value="#888" />
-            <Setter Property="PathData" Value="{StaticResource DefaultIcon}" />
             <Setter Property="PathWidth" Value="13" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />

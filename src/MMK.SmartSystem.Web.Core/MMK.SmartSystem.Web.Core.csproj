@@ -16,6 +16,9 @@
     <RootNamespace>MMK.SmartSystem</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="AntDeploy.json" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\module\MMK.CNC.Application\MMK.CNC.Application.csproj" />
     <ProjectReference Include="..\MMK.SmartSystem.Application\MMK.SmartSystem.Application.csproj" />
     <ProjectReference Include="..\MMK.SmartSystem.Core\MMK.SmartSystem.Core.csproj" />
