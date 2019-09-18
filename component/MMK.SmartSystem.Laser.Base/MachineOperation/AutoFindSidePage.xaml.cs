@@ -16,23 +16,33 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Reflection;
+using MMK.SmartSystem.Common.Base;
 
 namespace MMK.SmartSystem.Laser.Base.MachineOperation
 {
     /// <summary>
     /// AutoFindSidePage.xaml 的交互逻辑
     /// </summary>
-    public partial class AutoFindSidePage : Page, ITransientDependency
+    public partial class AutoFindSidePage : AutoRefreshPage
     {
         public AutoFindSidePageViewModel AutoFindSidePageViewModel { get; set; }
         public AutoFindSidePage()
         {
             InitializeComponent();
+            this.DataContext = AutoFindSidePageViewModel = new AutoFindSidePageViewModel("MachineOperation.AutoFindSidePage");
+            this.Unloaded += AutoFindSidePage_Unloaded;
+            this.RefreshAuth += AutoFindSidePage_RefreshAuth;
+        }
 
-            var declaringType = MethodBase.GetCurrentMethod().DeclaringType;
-            this.DataContext = AutoFindSidePageViewModel = new AutoFindSidePageViewModel();
+        private void AutoFindSidePage_RefreshAuth()
+        {
+            AutoFindSidePageViewModel.RefreshAuth();
+        }
 
-            AutoFindSidePageViewModel.IsEdit = AutoFindSidePageViewModel.IsEdit.ToPermission($"{declaringType.Namespace.Substring(declaringType.Namespace.LastIndexOf('.') + 1, declaringType.Namespace.Length - declaringType.Namespace.LastIndexOf('.') - 1)}.{declaringType.Name}.Edit");
+        private void AutoFindSidePage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            this.RefreshAuth -= AutoFindSidePage_RefreshAuth;
+            ClearRegister();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Abp.Events.Bus;
+using MMK.SmartSystem.Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public enum ErrorTagretEnum
-    {
-        UserControl,
-        Page,
-        Window,
-        MainWindow
-    }
+  
     public class BaseErrorEventData : EventData
     {
         public ErrorTagretEnum Tagret { get; set; }

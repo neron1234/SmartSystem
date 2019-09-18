@@ -51,18 +51,23 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
             //     });
             // });
 
-            Messenger.Default.Register<MainSystemNoticeModel>(this, (ms) => {
-                if (ms.HashCode == this.GetHashCode()){
-                    if (ms.Success) {
+            Messenger.Default.Register<MainSystemNoticeModel>(this, (ms) =>
+            {
+                if (ms.HashCode == this.GetHashCode())
+                {
+                    if (ms.Success)
+                    {
                         ms.SuccessAction?.Invoke();
-                    } else{
+                    }
+                    else
+                    {
                         Error = ms.Error;
                         ms.ErrorAction?.Invoke();
                     }
                 }
             });
             Loaded += UserControl_Loaded;
-          
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -112,9 +117,10 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
         {
             EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
             this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, false);
-            WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            webRouteClient.NavigateAsync("/");
-            Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
+            Messenger.Default.Send(new MainSystemNoticeModel() { EventType = EventEnum.RefreshAuth });
+            //WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            //webRouteClient.NavigateAsync("/");
+            //Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
         }
     }
 }

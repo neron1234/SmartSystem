@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
 using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;

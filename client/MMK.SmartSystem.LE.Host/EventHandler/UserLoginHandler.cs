@@ -4,6 +4,7 @@ using Abp.Events.Bus.Handlers;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
@@ -26,19 +27,27 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
             if (dict != null)
             {
                 //导航栏翻译以及权限
-                foreach (var item in SmartSystemLEConsts.SystemModules){
+                foreach (var item in SmartSystemLEConsts.SystemModules)
+                {
                     item.ModuleName = item.ModuleKey.Translate();
                     bool isAuth = false;
-                    foreach (var g in item.MainMenuViews){
+                    foreach (var g in item.MainMenuViews)
+                    {
                         g.Title = g.PageKey.Translate();
-                        if (g.Auth){
-                            if (isAuth.ToPermission(g.Permission)){
+                        if (g.Auth)
+                        {
+                            if (g.Permission.IsGrantedPermission())
+                            {
                                 g.Show = Visibility.Visible;
                                 isAuth = true;
-                            }else{
+                            }
+                            else
+                            {
                                 g.Show = Visibility.Collapsed;
                             }
-                        }else{
+                        }
+                        else
+                        {
                             isAuth = true;
                             g.Show = Visibility.Visible;
                         }

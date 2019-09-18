@@ -1,9 +1,10 @@
-﻿<Page x:Class="MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage"
+﻿<base:AutoRefreshPage x:Class="MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
+      xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       Width="624" Height="528" Background="#FF323232"
       Title="AutoFindSidePage">
 
@@ -29,7 +30,7 @@
             <TextBlock Grid.Row="1" Text="{Binding Translate.MachineOperation.AutoFindSide.FindXYTrack}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Foreground="White" Margin="0,16,132,15.6"/>
 
             <Button Grid.Row="2" Width="200" Height="60" VerticalAlignment="Center" Content="{Binding Translate.MachineOperation.AutoFindSide.ManualStartFindSide}" 
-                        HorizontalAlignment="Center" IsEnabled="{Binding IsEdit}"/>
+                        HorizontalAlignment="Center" IsEnabled="{Binding EditAuth}"/>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="2" Margin="15,0,0,0">
@@ -137,4 +138,4 @@
         </Grid>
 
     </Grid>
-</Page>
+</base:AutoRefreshPage>

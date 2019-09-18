@@ -3,6 +3,7 @@ using Abp.Events.Bus.Handlers;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SerivceProxy;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;

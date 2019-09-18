@@ -254,7 +254,6 @@
     <Compile Include="SystemControl\ViewModel\PageChangeModel.cs" />
     <Compile Include="SystemControl\ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\SystemMenuModuleViewModel.cs" />
-    <Compile Include="ViewModel\MainSystemNoticeModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="AccountControl\LoadingControl.xaml">
       <SubType>Designer</SubType>
