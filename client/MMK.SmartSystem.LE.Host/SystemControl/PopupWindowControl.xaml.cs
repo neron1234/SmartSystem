@@ -24,12 +24,15 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
     {
         private PopupWindowViewModel popupWindowViewModel { get; set; }
         
-        public PopupWindowControl(UserControl userControl)
+        public PopupWindowControl(UserControl userControl,int width = 600,int height = 300)
         {
             InitializeComponent();
             this.DataContext = popupWindowViewModel =new PopupWindowViewModel();
             popupWindowViewModel.PopupContent = userControl;
             Loaded += PopupWindowControl_Loaded;
+            this.Width = PopupGrid.Width = width;
+            this.Height = PopupGrid.Height = height;
+            
         }
 
         private void PopupWindowControl_Loaded(object sender, RoutedEventArgs e)

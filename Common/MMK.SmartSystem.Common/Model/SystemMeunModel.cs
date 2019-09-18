@@ -14,14 +14,18 @@ namespace MMK.SmartSystem.Common.Model
 
         public List<SystemPageModel> Pages { get; set; }
 
+        public string BackColor { get; set; }
+
     }
     public class SystemPageModel
     {
+        public string Id { get; set; }
         public string Title { get; set; }
         public bool WebPage { get; set; }
 
         public string Url { get; set; }
         public string Icon { get; set; }
+        
         public int Sort { get; set; }
         public string FullName { get; set; }
 
@@ -29,7 +33,4 @@ namespace MMK.SmartSystem.Common.Model
 
         public bool IsAuth { get; set; }
     }
-
-   
-
 }

@@ -36,17 +36,20 @@ namespace MMK.SmartSystem.LE.Host
                 {
                     pages.Add(new MainMenuViewModel()
                     {
+                        Id = g.Id,
                         Title = g.Title,
                         Page = g.FullName,
                         Auth = g.IsAuth,
                         Permission = g.Permission,
                         PageKey = g.Title,
                         Url=g.Url,
-                        WebPage=g.WebPage
+                        WebPage=g.WebPage,
+                        BackColor = d.BackColor
                     });
                 });
                 SmartSystemLEConsts.SystemModules.Add(new SystemMenuModuleViewModel()
                 {
+                    BackColor = d.BackColor,
                     Icon = d.Icon,
                     ModuleName = d.ModuleName,
                     MainMenuViews = pages,

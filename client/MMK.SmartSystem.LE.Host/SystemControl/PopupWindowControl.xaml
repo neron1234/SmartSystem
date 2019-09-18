@@ -68,7 +68,7 @@
     <Grid>
         <local:PopupEx x:Name="maskLayer" PopupAnimation="Fade"
                     local:MaskLayerBehavior.Owner="{Binding Path=., RelativeSource={RelativeSource AncestorType=Window}}" >
-            <Grid Width="600" Height="400" Background="MediumSlateBlue">
+            <Grid Width="600" Height="400" Background="#3762b2" x:Name="PopupGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
                     <RowDefinition Height="auto" />
