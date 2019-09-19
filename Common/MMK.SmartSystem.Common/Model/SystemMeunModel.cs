@@ -16,6 +16,8 @@ namespace MMK.SmartSystem.Common.Model
 
         public string BackColor { get; set; }
 
+        public int Sort { get; set; }
+
     }
     public class SystemPageModel
     {

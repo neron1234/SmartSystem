@@ -44,7 +44,8 @@ namespace MMK.SmartSystem.LE.Host
                         PageKey = g.Title,
                         Url=g.Url,
                         WebPage=g.WebPage,
-                        BackColor = d.BackColor
+                        BackColor = d.BackColor,
+                        Sort = g.Sort
                     });
                 });
                 SmartSystemLEConsts.SystemModules.Add(new SystemMenuModuleViewModel()
@@ -52,8 +53,9 @@ namespace MMK.SmartSystem.LE.Host
                     BackColor = d.BackColor,
                     Icon = d.Icon,
                     ModuleName = d.ModuleName,
-                    MainMenuViews = pages,
-                    ModuleKey = d.ModuleName
+                    MainMenuViews = new ObservableCollection<MainMenuViewModel>(pages),
+                    ModuleKey = d.ModuleName,
+                    Sort = d.Sort
                 });
             });
 

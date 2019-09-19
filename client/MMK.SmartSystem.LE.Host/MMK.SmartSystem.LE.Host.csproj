@@ -238,6 +238,9 @@
     <Compile Include="SystemControl\Control\MaskLayerBehavior.cs" />
     <Compile Include="SystemControl\Control\PathIconButton.cs" />
     <Compile Include="SystemControl\Control\PopupEx.cs" />
+    <Compile Include="SystemControl\Control\Tag.cs" />
+    <Compile Include="SystemControl\Control\TagBox.cs" />
+    <Compile Include="SystemControl\Control\TagInputBox.cs" />
     <Compile Include="SystemControl\Control\ZGroupBox.cs" />
     <Compile Include="SystemControl\Embed\Appcontainer.cs" />
     <Compile Include="SystemControl\Embed\Win32Api.cs" />

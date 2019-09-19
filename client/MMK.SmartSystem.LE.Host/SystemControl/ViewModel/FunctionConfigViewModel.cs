@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Abp.Modules;
+using MMK.SmartSystem.Common;
 
 namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {
@@ -25,11 +26,21 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
             }
         }
 
-
-
-        public FunctionConfigViewModel()
+        private ObservableCollection<SystemMenuModuleViewModel> _CustomModuleViews;
+        public ObservableCollection<SystemMenuModuleViewModel> CustomModuleViews
         {
-            SysModuleViews = SmartSystemLEConsts.SystemModules;
+            get { return _CustomModuleViews; }
+            set
+            {
+                _CustomModuleViews = value;
+                RaisePropertyChanged(() => CustomModuleViews);
+            }
+        }
+
+        public FunctionConfigViewModel(){
+            //SysModuleViews = new ObservableCollection<SystemMenuModuleViewModel>(SmartSystemLEConsts.SystemModules.CloneJson().OrderByDescending(n => n.Sort));
+            SysModuleViews = SmartSystemLEConsts.SystemModules.CloneJson();
+            CustomModuleViews = new ObservableCollection<SystemMenuModuleViewModel>();
         }
 
         public ICommand AddCommand

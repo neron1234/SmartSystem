@@ -3,6 +3,8 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,7 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {
-    public class SystemMenuModuleViewModel : ViewModelBase
+    public class SystemMenuModuleViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private string moduleName;
 
@@ -46,9 +48,10 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 
         public string Icon { get; set; }
         public string BackColor { get; set; }
+        public int Sort { get; set; }
 
-        private List<MainMenuViewModel> mainMenuViews;
-        public List<MainMenuViewModel> MainMenuViews
+        private ObservableCollection<MainMenuViewModel> mainMenuViews;
+        public ObservableCollection<MainMenuViewModel> MainMenuViews
         {
             get { return mainMenuViews; }
             set
@@ -73,5 +76,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         {
             _Show = Visibility.Collapsed;
         }
+
+        //protected internal virtual void OnPropertyChanged(string propertyName)
+        //{
+        //    PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        //}
+        //public event PropertyChangedEventHandler PropertyChanged;
     }
 }
