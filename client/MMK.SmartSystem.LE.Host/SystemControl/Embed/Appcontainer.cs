@@ -41,9 +41,9 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
             var isStartAndEmbedSuccess = false;
             _eventDone.Reset();
             _process = new Process();
-             _process.StartInfo.FileName = @"E:\CODE\electron\angular-electron\release\win-unpacked\angular-electron.exe";
+            // _process.StartInfo.FileName = @"E:\CODE\electron\angular-electron\release\win-unpacked\angular-electron.exe";
 
-            //_process.StartInfo.FileName = processPath;
+            _process.StartInfo.FileName = processPath;
             //_process.StartInfo.UseShellExecute = false;
             //_process.StartInfo.RedirectStandardInput = true;
             //_process.StartInfo.CreateNoWindow = true;

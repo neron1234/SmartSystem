@@ -30,6 +30,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             InitializeComponent();
             Messenger.Default.Register<string>(this, (s) => {
                 //保存配置
+                RemoveNullCustemGroup();
                 if (FunctionConfigViewModel.CustomModuleViews.Count(n => n.Show == Visibility.Visible) > 0)
                 {
                     Messenger.Default.Send(FunctionConfigViewModel.CustomModuleViews);
@@ -42,6 +43,17 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
                 SmartSystemLEConsts.SystemModules = FunctionConfigViewModel.SysModuleViews.CloneJson();
             });
             this.DataContext = FunctionConfigViewModel = new FunctionConfigViewModel();
+        }
+
+        private void RemoveNullCustemGroup()
+        {
+            for (int i = FunctionConfigViewModel.CustomModuleViews.Count - 1; i >= 0; i--)
+            {
+                if (FunctionConfigViewModel.CustomModuleViews[i].MainMenuViews.Count == 0)
+                {
+                    FunctionConfigViewModel.CustomModuleViews.RemoveAt(i);
+                }
+            }
         }
 
         private void UnSelectedControl<T>(ItemsControl itemsControl, Thickness ts, Brush brush,string tag = "") where T : ContentControl
@@ -240,7 +252,12 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             var customFunction = FunctionConfigViewModel.CustomModuleViews.FirstOrDefault(n => n.MainMenuViews.Any(m => m.Id == id)).MainMenuViews.FirstOrDefault(n => n.Id == id);
             if (customFunction != null)
             {
-                FunctionConfigViewModel.CustomModuleViews.FirstOrDefault(n => n.MainMenuViews.Any(m => m.Id == id)).MainMenuViews.Remove(customFunction);
+                var customModule = FunctionConfigViewModel.CustomModuleViews.FirstOrDefault(n => n.MainMenuViews.Any(m => m.Id == id));
+                customModule.MainMenuViews.Remove(customFunction);
+                if(customModule.MainMenuViews.Count(n => n.Show == Visibility.Visible) == 0)
+                {
+                    FunctionConfigViewModel.CustomModuleViews.Remove(customModule);
+                }
             }
             var sysFunction = FunctionConfigViewModel.SysModuleViews.FirstOrDefault(n => n.MainMenuViews.Any(m => m.Id == id)).MainMenuViews.FirstOrDefault(n => n.Id == id);
             if (sysFunction != null)
