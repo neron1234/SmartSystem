@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -45,7 +46,7 @@ namespace MMK.SmartSystem.LE.Host
             Messenger.Default.Register<PageChangeModel>(this, (type) =>
             {
                 Dispatcher.BeginInvoke(new Action(() => pageChange(type)));
-            
+
 
 
             });
@@ -59,9 +60,15 @@ namespace MMK.SmartSystem.LE.Host
             {
                 MainViewModel.MainFrame = null;
             });
-            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(() => new LoginWindow().ShowDialog()))));
-            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
+            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(() =>
+            {
+                new LoginWindow().ShowDialog();
+               // loadWebApp();
+            }
 
+           ))));
+
+            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
 
             //loadWebApp();
         }
@@ -88,12 +95,19 @@ namespace MMK.SmartSystem.LE.Host
 
         void loadWebApp()
         {
+            //Thread.Sleep(5000);
             string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "WebApp", "cncapp.exe");
             if (System.IO.File.Exists(path))
             {
 
                 ctnTest.StartAndEmbedProcess(path);
             }
+        }
+
+        private void WebBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
+
         }
     }
 }

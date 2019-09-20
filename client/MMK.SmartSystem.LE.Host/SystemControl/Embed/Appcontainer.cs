@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,18 +40,27 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
         {
             var isStartAndEmbedSuccess = false;
             _eventDone.Reset();
+            _process = new Process();
+             _process.StartInfo.FileName = @"E:\CODE\electron\angular-electron\release\win-unpacked\angular-electron.exe";
 
+            //_process.StartInfo.FileName = processPath;
+            //_process.StartInfo.UseShellExecute = false;
+            //_process.StartInfo.RedirectStandardInput = true;
+            //_process.StartInfo.CreateNoWindow = true;
+            //_process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;//加上这句效果更好 
             // Start the process 
-            _process = Process.Start(processPath);
+            _process.Start();
+            System.Threading.Thread.Sleep(200);
             if (_process == null)
             {
                 return false;
             }
 
+
             // Wait for process to be created and enter idle condition 
             _process.WaitForInputIdle();
 
-            // Get the main handle
+            //  Get the main handle
             var thread = new Thread(() =>
             {
                 while (true)
@@ -64,7 +74,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
                 }
             });
             thread.Start();
-
             //嵌入进程
             if (_eventDone.WaitOne(10000))
             {
@@ -109,7 +118,9 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
                 }
 
                 // Remove border and whatnot
-                Win32Api.SetWindowLong(processHwnd, Win32Api.GWL_STYLE, Win32Api.WS_CHILDWINDOW | Win32Api.WS_CLIPSIBLINGS | Win32Api.WS_CLIPCHILDREN | Win32Api.WS_VISIBLE);
+                Win32Api.SetWindowLong(new HandleRef(this, _process.MainWindowHandle), Win32Api.GWL_STYLE, Win32Api.WS_VISIBLE);
+
+                //   Win32Api.SetWindowLong(processHwnd, Win32Api.GWL_STYLE, Win32Api.WS_CHILDWINDOW | Win32Api.WS_CLIPSIBLINGS | Win32Api.WS_CLIPCHILDREN | Win32Api.WS_VISIBLE);
 
                 // Move the window to overlay it on this window
                 Win32Api.MoveWindow(_process.MainWindowHandle, 0, 0, (int)ActualWidth, (int)ActualHeight, true);
