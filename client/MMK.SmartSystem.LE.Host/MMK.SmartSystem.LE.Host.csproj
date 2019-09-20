@@ -260,6 +260,7 @@
     <Compile Include="SystemControl\ViewModel\HeaderMenuViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\MainMenuViewModel.cs" />
     <Compile Include="SystemControl\Control\PopupHelper.cs" />
+    <Compile Include="SystemControl\ViewModel\ModuleMenuViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\PageChangeModel.cs" />
     <Compile Include="SystemControl\ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\SystemMenuModuleViewModel.cs" />

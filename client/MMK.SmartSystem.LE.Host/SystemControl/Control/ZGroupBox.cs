@@ -97,6 +97,21 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
 
         #endregion
 
+
+        #region Tag
+
+        //public string Tag
+        //{
+        //    get { return (string)GetValue(TagProperty); }
+        //    set { SetValue(TagProperty, value); }
+        //}
+
+        //public static readonly DependencyProperty TagProperty =
+        //    DependencyProperty.Register("Tag", typeof(string), typeof(Tag), new PropertyMetadata(true));
+
+        #endregion
+
+
         #region Constructors
         static ZGroupBox()
         {

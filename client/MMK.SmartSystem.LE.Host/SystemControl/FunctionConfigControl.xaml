@@ -431,7 +431,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Background="#2a579a" Grid.Column="0" >
-                <TextBlock Text="系统功能组" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="系统功能组" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
             </Grid>
             <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Height="600">
                 <ItemsControl ItemsSource="{Binding SysModuleViews}" x:Name="SysItemControl" Grid.Column="1">
@@ -443,7 +443,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <local:ZGroupBox Header="{Binding ModuleName}" Visibility="{Binding Show}" HeaderBackground="{Binding BackColor}" Foreground="White" BorderBrush="{Binding BackColor}"
-                                      CornerRadius="3" HorizontalHeaderAlignment="Center" Width="300" x:Name="SysZGroupBox" MouseLeftButtonDown="SysZGroupBox_MouseLeftButtonDown" Margin="2">
+                                      CornerRadius="3" HorizontalHeaderAlignment="Center" Width="300" x:Name="SysZGroupBox" MouseLeftButtonDown="SysZGroupBox_MouseLeftButtonDown" Margin="2" Tag="{Binding ModuleName}">
                                 <Grid>
                                     <Button Height="20" Width="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 -25 0 0" Content="克隆" BorderBrush="{Binding BackColor}" BorderThickness="1" Tag="{Binding ModuleName}" Click="CloneGroupBtn_Click" x:Name="CloneGroupBtn"/>
                                     <ItemsControl ItemsSource="{Binding MainMenuViews}">
@@ -480,7 +480,7 @@
                 <ColumnDefinition MaxWidth="20" />
             </Grid.ColumnDefinitions>
             <Grid Background="#2a579a" Grid.Column="1" >
-                <TextBlock Text="自定义功能组" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="自定义功能组" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
             </Grid>
             <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Height="600">
                 <ItemsControl ItemsSource="{Binding CustomModuleViews}" x:Name="CustomItemControl" >
@@ -492,10 +492,10 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <local:ZGroupBox Header="{Binding ModuleName}" Visibility="{Binding Show}" HeaderBackground="{Binding BackColor}" Foreground="White" BorderBrush="{Binding BackColor}"
-                                      CornerRadius="3" HorizontalHeaderAlignment="Center" Width="300"  x:Name="CostomZGroupBox" MouseLeftButtonDown="CostomZGroupBox_MouseLeftButtonDown" Margin="2">
+                                      CornerRadius="3" HorizontalHeaderAlignment="Center" Width="300"  x:Name="CostomZGroupBox" MouseLeftButtonDown="CostomZGroupBox_MouseLeftButtonDown" Margin="2" Tag="{Binding ModuleName}">
                                 <Grid>
                                     <Button Height="20" Width="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 -25 0 0" Content="添加" BorderBrush="{Binding BackColor}" BorderThickness="1" Tag="{Binding ModuleName}" Click="AddFunctionBtn_Click" x:Name="AddFunctionBtn"/>
-                                    <Button Height="20" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 -25 100 0" Content="删除分组" BorderBrush="{Binding BackColor}" BorderThickness="1" Tag="{Binding ModuleName}" Click="RemoveGroupBtn_Click" x:Name="RemoveGroupBtn"/>
+                                    <Button Height="20" Width="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 -25 35 0" Content="删除分组" BorderBrush="{Binding BackColor}" BorderThickness="1" Tag="{Binding ModuleName}" Click="RemoveGroupBtn_Click" x:Name="RemoveGroupBtn"/>
                                     <ItemsControl ItemsSource="{Binding MainMenuViews}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
@@ -505,7 +505,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <!--<Button Visibility="{Binding Show}" Content="{Binding Title}" Height="30" Margin="10" BorderBrush="{Binding BackColor}" BorderThickness="1" Drop="Button_Drop" />-->
-                                                <local:Tag Visibility="{Binding Show}" Content="{Binding Title}" Margin="2" BorderBrush="{Binding BackColor}" x:Name="FunctionBtn" Tag="{Binding Id}"/>
+                                                <local:Tag Visibility="{Binding Show}" Closed="FunctionBtn_Closed" Content="{Binding Title}" Margin="2" BorderBrush="{Binding BackColor}" x:Name="FunctionBtn" Tag="{Binding Id}"/>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>

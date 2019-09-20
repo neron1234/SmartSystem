@@ -16,6 +16,7 @@
                 "Id": "MachineOperation.AuxGasCheck",
                 "Title": "MachineOperation.AuxGasCheckBtn",
                 "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AuxGasCheckPage",
+                "Permission": "MachineOperation.AuxGasCheck",
                 "IsAuth": false,
                 "Sort": 2
             },

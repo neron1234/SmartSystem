@@ -38,18 +38,61 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         }
 
         public FunctionConfigViewModel(){
-            //SysModuleViews = new ObservableCollection<SystemMenuModuleViewModel>(SmartSystemLEConsts.SystemModules.CloneJson().OrderByDescending(n => n.Sort));
             SysModuleViews = SmartSystemLEConsts.SystemModules.CloneJson();
-            CustomModuleViews = new ObservableCollection<SystemMenuModuleViewModel>();
+            CustomModuleViews = SmartSystemLEConsts.CustemModules.CloneJson();
+            foreach (var item in CustomModuleViews)
+            {
+                //初始化自定义功能项和系统功能项的交集
+                foreach (var sysItem in SysModuleViews)
+                {
+                    //foreach(var inItem in sysItem.MainMenuViews.Intersect(item.MainMenuViews))
+                    foreach(var sysMenu in sysItem.MainMenuViews)
+                    {
+                        if (item.MainMenuViews.Any(n => n.Id == sysMenu.Id))
+                        {
+                            sysMenu.Show = System.Windows.Visibility.Collapsed;
+                        }
+                    }
+                }
+            }
+            CheckMenuSetShowCommand.Execute(null);
         }
 
-        public ICommand AddCommand
+        public ICommand CheckMenuSetShowCommand
         {
             get
             {
-                return new RelayCommand<string>((s) =>
+                return new RelayCommand(() =>
                 {
-                    
+                    foreach (var item in SysModuleViews)
+                    {
+                        if (item.MainMenuViews.Count(n => n.Show == System.Windows.Visibility.Visible) > 0)
+                        {
+                            item.Show = System.Windows.Visibility.Visible;
+                        }
+                        else
+                        {
+                            item.Show = System.Windows.Visibility.Collapsed;
+                        }
+                    }
+                });
+            }
+        }
+
+        public ICommand SysMenuSetHiddenCommand{
+            get
+            {
+                return new RelayCommand(() => {
+                    foreach (var item in SysModuleViews)
+                    {
+                        if (item.Show == System.Windows.Visibility.Collapsed)
+                        {
+                            foreach (var menu in item.MainMenuViews)
+                            {
+                                menu.Show = System.Windows.Visibility.Collapsed;
+                            }
+                        }
+                    }
                 });
             }
         }

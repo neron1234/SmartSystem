@@ -44,6 +44,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, false);
+            Messenger.Default.Send("");
         }
     }
 }

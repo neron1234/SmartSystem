@@ -19,5 +19,7 @@ namespace MMK.SmartSystem.LE.Host
         public const string Culture = "en";
 
         public static ObservableCollection<SystemMenuModuleViewModel> SystemModules = new ObservableCollection<SystemMenuModuleViewModel>();
+
+        public static ObservableCollection<SystemMenuModuleViewModel> CustemModules = new ObservableCollection<SystemMenuModuleViewModel>();
     }
 }

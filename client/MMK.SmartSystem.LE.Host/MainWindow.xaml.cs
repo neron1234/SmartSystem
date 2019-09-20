@@ -45,9 +45,6 @@ namespace MMK.SmartSystem.LE.Host
             Messenger.Default.Register<PageChangeModel>(this, (type) =>
             {
                 Dispatcher.BeginInvoke(new Action(() => pageChange(type)));
-            
-
-
             });
 
             Messenger.Default.Register<UserControl>(this, (control) =>
@@ -61,8 +58,6 @@ namespace MMK.SmartSystem.LE.Host
             });
             Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(() => new LoginWindow().ShowDialog()))));
             Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
-
-
             //loadWebApp();
         }
 

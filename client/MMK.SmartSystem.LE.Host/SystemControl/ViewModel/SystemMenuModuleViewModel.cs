@@ -57,6 +57,15 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
             set
             {
                 mainMenuViews = value;
+                //if (mainMenuViews.Count(n => n.Show == Visibility.Visible) > 0)
+                if (mainMenuViews.Count() > 0)
+                {
+                    this.Show = Visibility.Visible;
+                }
+                else
+                {
+                    this.Show = Visibility.Hidden;
+                }
                 RaisePropertyChanged(() => MainMenuViews);
             }
         }
@@ -77,10 +86,5 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
             _Show = Visibility.Collapsed;
         }
 
-        //protected internal virtual void OnPropertyChanged(string propertyName)
-        //{
-        //    PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        //}
-        //public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+
 namespace MMK.SmartSystem.LE.Host.SystemControl
 {
     /// <summary>
@@ -24,12 +25,14 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
     /// </summary>
     public partial class ModuleMenuControl : UserControl
     {
-        public ObservableCollection<SystemMenuModuleViewModel> SysModuleViews { get; set; }
+        public ModuleMenuViewModel SysViewModel { get; set; }
         public ModuleMenuControl()
         {
             InitializeComponent();
-            SysModuleViews = SmartSystemLEConsts.SystemModules;
-            this.DataContext = this;
+            this.DataContext = SysViewModel = new ModuleMenuViewModel();
+            Messenger.Default.Register<ObservableCollection<SystemMenuModuleViewModel>>(this, (views) => {
+                SysViewModel.SysModuleViews = views;
+            });
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,21 +28,84 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         public FunctionConfigControl()
         {
             InitializeComponent();
+            Messenger.Default.Register<string>(this, (s) => {
+                //保存配置
+                if (FunctionConfigViewModel.CustomModuleViews.Count(n => n.Show == Visibility.Visible) > 0)
+                {
+                    Messenger.Default.Send(FunctionConfigViewModel.CustomModuleViews);
+                }
+                else
+                {
+                    Messenger.Default.Send(FunctionConfigViewModel.SysModuleViews);
+                }
+                SmartSystemLEConsts.CustemModules = FunctionConfigViewModel.CustomModuleViews.CloneJson();
+                SmartSystemLEConsts.SystemModules = FunctionConfigViewModel.SysModuleViews.CloneJson();
+            });
             this.DataContext = FunctionConfigViewModel = new FunctionConfigViewModel();
         }
 
+        private void UnSelectedControl<T>(ItemsControl itemsControl, Thickness ts, Brush brush,string tag = "") where T : ContentControl
+        {
+            List<T> btnList = GetChildObjects<T>(itemsControl, tag);
+            foreach (var item in btnList)
+            {
+                ((T)(item)).BorderBrush = brush;
+                ((T)(item)).BorderThickness = ts;
+            }
+        }
+
+        public List<T> GetChildObjects<T>(DependencyObject obj, string tag) where T : FrameworkElement
+        {
+            DependencyObject child = null;
+            List<T> childList = new List<T>();
+            for (int i = 0; i <= VisualTreeHelper.GetChildrenCount(obj) - 1; i++)
+            {
+                child = VisualTreeHelper.GetChild(obj, i);
+                if (child is T && (((T)child).Tag != null))
+                {
+                    if (((T)child).Tag.ToString() == tag || string.IsNullOrEmpty(tag))
+                    {
+                        childList.Add((T)child);
+                    }
+                }
+                childList.AddRange(GetChildObjects<T>(child, tag));
+            }
+            return childList;
+        }
+
+        private void UnSelectedZGroupBox(ObservableCollection<SystemMenuModuleViewModel> systemMenus,string sysMenusName = "",bool ClearMenu = false)
+        {
+            foreach (var module in systemMenus)
+            {
+                if (!string.IsNullOrEmpty(sysMenusName) && module.ModuleName != sysMenusName)
+                {
+                    continue;
+                }
+                UnSelectedControl<ZGroupBox>(SysItemControl, new Thickness(1), (Brush)new BrushConverter().ConvertFromString(module.BackColor), module.ModuleName);
+                if (!ClearMenu)
+                {
+                    continue;
+                }
+                foreach (var item in module.MainMenuViews)
+                {
+                    UnSelectedControl<Tag>(SysItemControl, new Thickness(1), (Brush)new BrushConverter().ConvertFromString(item.BackColor), item.Id);
+                    selectedFunctions.Remove(item);
+                }
+            }
+        }
+
         private string SysSelectedName = string.Empty;
+        private bool SysGroupClick = true;
         private void SysZGroupBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            SysSelectedName = ((ZGroupBox)sender).Header.ToString();
-
-            List<ZGroupBox> boxList = GetChildObjects<ZGroupBox>(SysItemControl, "");
-            foreach (var item in boxList)
+            if (!SysGroupClick)
             {
-                item.BorderBrush = Brushes.Transparent;
-                item.BorderThickness = new Thickness();
+                SysGroupClick = true;
+                return;
             }
-          ((ZGroupBox)sender).BorderBrush = Brushes.Red;
+            SysSelectedName = ((ZGroupBox)sender).Header.ToString();
+            UnSelectedZGroupBox(FunctionConfigViewModel.SysModuleViews);
+            ((ZGroupBox)sender).BorderBrush = Brushes.Red;
             ((ZGroupBox)sender).BorderThickness = new Thickness(2);
         }
 
@@ -49,31 +113,10 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         private void CostomZGroupBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             CostomSelectedName = ((ZGroupBox)sender).Header.ToString();
-
-            List<ZGroupBox> boxList = GetChildObjects<ZGroupBox>(CustomItemControl, "");
-            foreach (var item in boxList)
-            {
-                item.BorderBrush = Brushes.Transparent;
-                item.BorderThickness = new Thickness();
-            }
+            Brush brush = Brushes.Transparent;
+            UnSelectedZGroupBox(FunctionConfigViewModel.CustomModuleViews);
             ((ZGroupBox)sender).BorderBrush = Brushes.Yellow;
             ((ZGroupBox)sender).BorderThickness = new Thickness(2);
-        }
-
-        public List<T> GetChildObjects<T>(DependencyObject obj, string name) where T : FrameworkElement
-        {
-            DependencyObject child = null;
-            List<T> childList = new List<T>();
-            for (int i = 0; i <= VisualTreeHelper.GetChildrenCount(obj) - 1; i++)
-            {
-                child = VisualTreeHelper.GetChild(obj, i);
-                if (child is T && (((T)child).Name == name || string.IsNullOrEmpty(name)))
-                {
-                    childList.Add((T)child);
-                }
-                childList.AddRange(GetChildObjects<T>(child, ""));
-            }
-            return childList;
         }
 
         private void UpMoveBtn_Click(object sender, RoutedEventArgs e){
@@ -119,11 +162,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             FunctionConfigViewModel.SysModuleViews = new ObservableCollection<SystemMenuModuleViewModel>(FunctionConfigViewModel.SysModuleViews.OrderBy(n => n.Sort));
         }
 
-        private void Button_Drop(object sender, DragEventArgs e)
-        {
-            
-        }
-
+        /// <summary>
+        /// 添加自定义分组
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddCustemGroup_Click(object sender, RoutedEventArgs e)
         {
             FunctionConfigViewModel.CustomModuleViews.Add(new SystemMenuModuleViewModel
@@ -136,6 +179,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             });
         }
 
+        /// <summary>
+        /// 添加功能项
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddFunctionBtn_Click(object sender, RoutedEventArgs e)
         {
             var name = ((Button)sender).Tag.ToString();
@@ -146,25 +194,24 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             }
             foreach (var item in selectedFunctions)
             {
-                customModule.MainMenuViews.Add(item);
-                FunctionConfigViewModel.SysModuleViews.FirstOrDefault(n => n.MainMenuViews.Any(m => m.Id == item.Id))?.MainMenuViews.Remove(item);
+                customModule.MainMenuViews.Add(item.CloneJson());
+                UnSelectedControl<Tag>(SysItemControl, new Thickness(1), (Brush)new BrushConverter().ConvertFromString(item.BackColor),item.Id);
+                item.Show = Visibility.Collapsed;
             }
-            for (int i = FunctionConfigViewModel.SysModuleViews.Count -1; i >=0 ; i--)
-            {
-                if(!FunctionConfigViewModel.SysModuleViews[i].MainMenuViews.Any(n => n.Show == Visibility.Visible))
-                {
-                    FunctionConfigViewModel.SysModuleViews.RemoveAt(i);
-                }
-            }
-            //FunctionConfigViewModel.SysModuleViews.Remove(FunctionConfigViewModel.SysModuleViews.)
+            FunctionConfigViewModel.CheckMenuSetShowCommand.Execute(null);
             selectedFunctions.Clear();
         }
 
         private List<MainMenuViewModel> selectedFunctions = new List<MainMenuViewModel>();
+        /// <summary>
+        /// 选择功能项
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SelectFunctionBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            SysGroupClick = false;
             var id = ((Tag)sender).Tag.ToString();
-
             var selectedFunction = selectedFunctions.FirstOrDefault(n => n.Id == id);
             if (selectedFunction != null)
             {
@@ -174,7 +221,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
                 return;
             }
             var function = FunctionConfigViewModel.SysModuleViews.FirstOrDefault(n => n.MainMenuViews.Any(m => m.Id == id)).MainMenuViews.FirstOrDefault(n => n.Id == id);
-            //List<Tag> boxList = GetChildObjects<Tag>(SysItemControl, "");
             if (function != null)
             {
                 selectedFunctions.Add(function);
@@ -183,6 +229,26 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             ((Tag)sender).BorderThickness = new Thickness(2);
         }
 
+        /// <summary>
+        /// 删除功能项
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FunctionBtn_Closed(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            var id = ((Tag)sender).Tag.ToString();
+            var customFunction = FunctionConfigViewModel.CustomModuleViews.FirstOrDefault(n => n.MainMenuViews.Any(m => m.Id == id)).MainMenuViews.FirstOrDefault(n => n.Id == id);
+            if (customFunction != null)
+            {
+                FunctionConfigViewModel.CustomModuleViews.FirstOrDefault(n => n.MainMenuViews.Any(m => m.Id == id)).MainMenuViews.Remove(customFunction);
+            }
+            var sysFunction = FunctionConfigViewModel.SysModuleViews.FirstOrDefault(n => n.MainMenuViews.Any(m => m.Id == id)).MainMenuViews.FirstOrDefault(n => n.Id == id);
+            if (sysFunction != null)
+            {
+                sysFunction.Show = Visibility.Visible;
+            }
+            FunctionConfigViewModel.CheckMenuSetShowCommand.Execute(null);
+        }
 
         /// <summary>
         /// 克隆分组
@@ -192,18 +258,48 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         private void CloneGroupBtn_Click(object sender, RoutedEventArgs e)
         {
             var name = ((Button)sender).Tag.ToString();
-            var moveSysModel = FunctionConfigViewModel.SysModuleViews.FirstOrDefault(n => n.ModuleName == name);
-            if (moveSysModel == null)
+            var sysModel = FunctionConfigViewModel.SysModuleViews.FirstOrDefault(n => n.ModuleName == name);
+            if (sysModel == null)
             {
                 return;
             }
-            FunctionConfigViewModel.CustomModuleViews.Add(moveSysModel);
-            FunctionConfigViewModel.SysModuleViews.Remove(moveSysModel);
+            FunctionConfigViewModel.CustomModuleViews.Add(sysModel.CloneJson());
+            sysModel.Show = Visibility.Collapsed;
+            FunctionConfigViewModel.SysMenuSetHiddenCommand.Execute(null);
+            UnSelectedZGroupBox(FunctionConfigViewModel.SysModuleViews, name, true);
         }
 
+        /// <summary>
+        /// 删除分组
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveGroupBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var name = ((Button)sender).Tag.ToString();
+            //找到自定义分组
+            var custemModel = FunctionConfigViewModel.CustomModuleViews.FirstOrDefault(n => n.ModuleName == name);
+            if (custemModel != null)
+            {
+                //遍历自定义分组中的所有功能项，通过功能项找到系统分组中的对应功能项，并修改显示状态
+                foreach (var item in custemModel.MainMenuViews)
+                {
+                    var sysFunction = FunctionConfigViewModel.SysModuleViews.First(n => n.MainMenuViews.Any(m => m.Id == item.Id)).MainMenuViews.FirstOrDefault(n => n.Id == item.Id);
+                    if (sysFunction != null)
+                    {
+                        if (custemModel.ModuleName == "WebModule"){
+                            sysFunction.Show = Visibility.Visible;
+                        }else { 
+                            //查找权限
+                            if (!sysFunction.Auth || sysFunction.Permission.IsGrantedPermission()){
+                                sysFunction.Show = Visibility.Visible;
+                            }
+                        }
+                    }
+                }
+                FunctionConfigViewModel.CheckMenuSetShowCommand.Execute(null);
+                FunctionConfigViewModel.CustomModuleViews.Remove(custemModel);
+            }
         }
     }
 }

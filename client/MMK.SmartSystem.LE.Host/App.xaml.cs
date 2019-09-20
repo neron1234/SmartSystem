@@ -65,8 +65,6 @@ namespace MMK.SmartSystem.LE.Host
                                 d.PageType = type;
                             }
                         }
-
-
                     }));
                 }
             }
