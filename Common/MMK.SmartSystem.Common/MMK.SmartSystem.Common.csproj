@@ -194,6 +194,7 @@
     <Compile Include="EventDatas\OperationLogEventData.cs" />
     <Compile Include="EventDatas\UserConfigEventData.cs" />
     <Compile Include="Expands\GrantedPermission.cs" />
+    <Compile Include="Expands\ObjectClone.cs" />
     <Compile Include="Expands\StringToTranslate.cs" />
     <Compile Include="MMKSmartSystemCommonModule.cs" />
     <Compile Include="Model\AbpUserConfiguration.cs" />

@@ -29,7 +29,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
                 }
             }
         }
-
+        public int Sort { get; set; }
         public string Page { get; set; }
 
         public string PageKey { get; set; }
