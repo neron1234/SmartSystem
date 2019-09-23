@@ -49,6 +49,9 @@ namespace MMK.SmartSystem.Laser.Base
                 case "手动寻边":
                     Frame.Content = new ManualFindSidePage();
                     break;
+                case "激光状态":
+                    Frame.Content = new LaserStatePage();
+                    break;
                 default:
                         Frame.Content = null;
                 break;

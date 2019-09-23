@@ -27,6 +27,14 @@
                 "IsAuth": true,
                 "Permission": "MachineOperation.ManualFindSidePage",
                 "Sort": 3
+            },
+            {
+                "Id": "MachineOperation.LaserStatePage",
+                "Title": "MachineOperation.LaserStatePage",
+                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.LaserStatePage",
+                "IsAuth": false,
+                "Permission": "MachineOperation.LaserStatePage",
+                "Sort": 4
             }
         ]
     },

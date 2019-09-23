@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="850"  >
+        Title="MainWindow" Height="650" Width="1650"  >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="15" Grid.Column="0">
             <Button Content="自动巡边" Width="100" Height="30" Margin="2" Click="Button_Click"/>
@@ -18,6 +18,8 @@
             <Button Content="割嘴对中" Width="100" Height="30" Margin="2" Click="Button_Click"/>
             <Button Content="辅助气体" Width="100" Height="30" Margin="2" Click="Button_Click"/>
             <Button Content="手动寻边" Width="100" Height="30" Margin="2" Click="Button_Click"/>
+
+            <Button Content="激光状态" Width="100" Height="30" Margin="2" Click="Button_Click"/>
         </StackPanel>
         <Grid Grid.Column="1">
             <Border CornerRadius="0,2,2,0" Grid.Row="0" 

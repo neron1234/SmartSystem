@@ -217,6 +217,9 @@
     <Compile Include="MachineOperation\CutterResetCheckPage.xaml.cs">
       <DependentUpon>CutterResetCheckPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MachineOperation\LaserStatePage.xaml.cs">
+      <DependentUpon>LaserStatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineOperation\ManualFindSidePage.xaml.cs">
       <DependentUpon>ManualFindSidePage.xaml</DependentUpon>
     </Compile>
@@ -244,6 +247,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MachineOperation\CutterResetCheckPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineOperation\LaserStatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -279,6 +286,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Resource Include="Image\BtnTest.png" />
+    <Resource Include="Image\BtnTest2.png" />
     <Content Include="MMK.SmartSystem.Laser.Base.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

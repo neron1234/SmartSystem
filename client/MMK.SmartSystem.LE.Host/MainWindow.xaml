@@ -28,13 +28,11 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <embed:AppContainer x:Name="ctnTest" />
-                <Viewbox Stretch="Fill" x:Name="viewBox">
+                <Viewbox Stretch="None" x:Name="viewBox">
                     <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                 </Viewbox>
             </Grid>
-           
-           
-          
+
             <!--<Frame x:Name="mainFrame" Content="{Binding MainFrame}"/>-->
         </Border>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">

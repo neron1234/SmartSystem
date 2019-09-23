@@ -14,7 +14,71 @@
             <Button Content="{Binding Translate.SmartSystem.Chinese}"  Width="80" Height="25" Margin="2" x:Name="CnBtn" Click="CnBtn_Click"/>
             <Button Content="{Binding Translate.SmartSystem.English}"  Width="80" Height="25" Margin="2" x:Name="EnBtn" Click="EnBtn_Click"/>
 
-            <Button Content="系统配置"  Width="80" Height="25" Margin="2" x:Name="FunctionConfigBtn" Click="FunctionConfigBtn_Click"/>
+            <Button Content="系统设置"  Width="80" Height="45" Margin="2" x:Name="FunctionConfigBtn" Click="FunctionConfigBtn_Click" BorderBrush="#e36733" Foreground="White" Background="#FFDDDDDD">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0.5" CornerRadius="5,5,5,5" Name="PART_Background">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#394247" Offset="0.2" />
+                                    <GradientStop Color="#20282d" Offset="0.5" />
+                                    <GradientStop Color="#1a2024" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                <Setter Property="Border.Background" TargetName="PART_Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                            <GradientStop Color="#FF484D4F" Offset="0.2" />
+                                            <GradientStop Color="#FF30373A" Offset="0.5" />
+                                            <GradientStop Color="#FF252C31" Offset="0.0" />
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#FFFFCF00"/>
+                </Button.Effect>
+            </Button>
+
+            <Button Content="系统设置"  Width="80" Height="45" Margin="2" x:Name="FunctionConfig2Btn" Click="FunctionConfigBtn_Click" BorderBrush="#6baf2f" Foreground="White" Background="#FFDDDDDD">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0.5" CornerRadius="5,5,5,5" Name="PART_Background">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#394247" Offset="0.2" />
+                                    <GradientStop Color="#20282d" Offset="0.5" />
+                                    <GradientStop Color="#1a2024" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                <Setter Property="Border.Background" TargetName="PART_Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                            <GradientStop Color="#FF484D4F" Offset="0.2" />
+                                            <GradientStop Color="#FF30373A" Offset="0.5" />
+                                            <GradientStop Color="#FF252C31" Offset="0.0" />
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Effect>
+                    <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#6baf2f"/>
+                </Button.Effect>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>
