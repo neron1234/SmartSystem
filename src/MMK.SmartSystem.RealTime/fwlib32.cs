@@ -7232,9 +7232,9 @@ public class Focas1
         [ FieldOffset( 6 )]
         public short   datano_e ;  /* end PMC address */
         [ FieldOffset( 8 ),
-        MarshalAs(UnmanagedType.ByValArray,SizeConst=5)]
+        MarshalAs(UnmanagedType.ByValArray,SizeConst=10)]//MMK:5¡ú10
         public int[] ldata;
-    } /* In case that the number of data is 5 */
+    } /* In case that the number of data is 10 */
 
     /* pmc_rdpmcinfo:read informations of PMC data */
     [StructLayout(LayoutKind.Sequential,Pack=4)]
