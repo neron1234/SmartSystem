@@ -1315,3 +1315,1004 @@ INFO  2019-09-12 16:43:43,043 [40   ] soft.AspNetCore.Hosting.Internal.WebHost -
 INFO  2019-09-12 16:43:43,043 [40   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution successful.
 INFO  2019-09-12 16:43:43,054 [40   ] .AspNetCore.SignalR.HubConnectionContext - Completed connection handshake. Using HubProtocol 'json'.
 DEBUG 2019-09-12 16:43:43,058 [40   ] MMK.SmartSystem.RealTime.Hubs.RouteHub   - A client is connected: {"ConnectionId":"xxhfWQlNG65ia9drfOhCSA","IpAddress":"::1","TenantId":null,"UserId":null,"ConnectTime":"2019-09-12T16:43:43.0548267+08:00","Properties":{}}
+DEBUG 2019-09-23 09:35:59,891 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 09:36:00,250 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-23 09:36:00,268 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,270 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,271 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,271 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,271 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,271 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,272 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,272 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,272 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,272 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,273 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,273 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,273 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,273 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,274 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,274 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,274 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,274 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:00,277 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-23 09:36:00,445 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 09:36:00,445 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 09:36:00,445 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 09:36:00,445 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 09:36:45,525 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 09:36:45,551 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-23 09:36:45,576 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,579 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,580 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,580 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,580 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,581 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,581 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,581 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,582 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,582 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,582 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,583 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,583 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,583 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,583 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,584 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,584 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,584 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 09:36:45,588 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-23 09:36:45,649 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 09:36:45,649 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 09:36:45,649 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 09:36:45,649 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+FATAL 2019-09-23 09:36:46,144 [1    ] Abp.AbpBootstrapper                      - System.TypeLoadException: Could not load type 'IODBPSD_3' from assembly 'MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' because it contains an object field at offset 4 that is incorrectly aligned or overlapped by a non-object field.
+   at System.Reflection.RuntimeAssembly.GetExportedTypes(RuntimeAssembly assembly, ObjectHandleOnStack retTypes)
+   at System.Reflection.RuntimeAssembly.GetExportedTypes()
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypes(Assembly assembly, Boolean includeNonExported)
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypesOrdered(Assembly assembly, Boolean includeNonExported)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at Castle.MicroKernel.Registration.FromDescriptor.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.AspNetCore.AbpAspNetCoreConventionalRegistrar.RegisterAssembly(IConventionalRegistrationContext context) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpAspNetCoreConventionalRegistrar.cs:line 22
+   at Abp.Dependency.IocManager.RegisterAssemblyByConvention(Assembly assembly, ConventionalRegistrationConfig config) in D:\Github\aspnetboilerplate\src\Abp\Dependency\IocManager.cs:line 98
+   at MMK.SmartSystem.RealTime.SmartSystemRealTimeModule.Initialize() in F:\GIT\SmartSystem\src\MMK.SmartSystem.RealTime\IndustrySystemRealTimeModule.cs:line 15
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 48
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+System.TypeLoadException: Could not load type 'IODBPSD_3' from assembly 'MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' because it contains an object field at offset 4 that is incorrectly aligned or overlapped by a non-object field.
+   at System.Reflection.RuntimeAssembly.GetExportedTypes(RuntimeAssembly assembly, ObjectHandleOnStack retTypes)
+   at System.Reflection.RuntimeAssembly.GetExportedTypes()
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypes(Assembly assembly, Boolean includeNonExported)
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypesOrdered(Assembly assembly, Boolean includeNonExported)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at Castle.MicroKernel.Registration.FromDescriptor.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.AspNetCore.AbpAspNetCoreConventionalRegistrar.RegisterAssembly(IConventionalRegistrationContext context) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpAspNetCoreConventionalRegistrar.cs:line 22
+   at Abp.Dependency.IocManager.RegisterAssemblyByConvention(Assembly assembly, ConventionalRegistrationConfig config) in D:\Github\aspnetboilerplate\src\Abp\Dependency\IocManager.cs:line 98
+   at MMK.SmartSystem.RealTime.SmartSystemRealTimeModule.Initialize() in F:\GIT\SmartSystem\src\MMK.SmartSystem.RealTime\IndustrySystemRealTimeModule.cs:line 15
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 48
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+FATAL 2019-09-23 09:36:46,156 [1    ] soft.AspNetCore.Hosting.Internal.WebHost - Application startup exception
+System.TypeLoadException: Could not load type 'IODBPSD_3' from assembly 'MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' because it contains an object field at offset 4 that is incorrectly aligned or overlapped by a non-object field.
+   at System.Reflection.RuntimeAssembly.GetExportedTypes(RuntimeAssembly assembly, ObjectHandleOnStack retTypes)
+   at System.Reflection.RuntimeAssembly.GetExportedTypes()
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypes(Assembly assembly, Boolean includeNonExported)
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypesOrdered(Assembly assembly, Boolean includeNonExported)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at Castle.MicroKernel.Registration.FromDescriptor.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.AspNetCore.AbpAspNetCoreConventionalRegistrar.RegisterAssembly(IConventionalRegistrationContext context) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpAspNetCoreConventionalRegistrar.cs:line 22
+   at Abp.Dependency.IocManager.RegisterAssemblyByConvention(Assembly assembly, ConventionalRegistrationConfig config) in D:\Github\aspnetboilerplate\src\Abp\Dependency\IocManager.cs:line 98
+   at MMK.SmartSystem.RealTime.SmartSystemRealTimeModule.Initialize() in F:\GIT\SmartSystem\src\MMK.SmartSystem.RealTime\IndustrySystemRealTimeModule.cs:line 15
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 48
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+   at Abp.AspNetCore.AbpApplicationBuilderExtensions.InitializeAbp(IApplicationBuilder app) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpApplicationBuilderExtensions.cs:line 67
+   at Abp.AspNetCore.AbpApplicationBuilderExtensions.UseAbp(IApplicationBuilder app, Action`1 optionsAction) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpApplicationBuilderExtensions.cs:line 38
+   at MMK.SmartSystem.Web.Host.Startup.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) in F:\GIT\SmartSystem\src\MMK.SmartSystem.Web.Host\Startup\Startup.cs:line 91
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+INFO  2019-09-23 09:36:46,718 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-23 09:36:46,718 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+ERROR 2019-09-23 09:36:46,765 [6    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLPVOPVI5IFJ", Request id "0HLPVOPVI5IFJ:00000001": An unhandled exception was thrown by the application.
+System.InvalidOperationException: Writing to the response body is invalid for responses with status code 500.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ThrowWritingToResponseBodyNotSupported()
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.WriteAsync(ReadOnlyMemory`1 data, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseStream.WriteAsync(Byte[] buffer, Int32 offset, Int32 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.StreamWriter.Flush(Boolean flushStream, Boolean flushEncoder)
+   at System.IO.StreamWriter.Write(String value)
+   at Microsoft.AspNetCore.Hosting.Views.ErrorPage.ExecuteAsync()
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+INFO  2019-09-23 09:36:46,826 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 108.6307ms 500 
+INFO  2019-09-23 09:36:46,855 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 142.14ms 500 
+DEBUG 2019-09-23 10:01:54,732 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:01:54,880 [1    ] Abp.Modules.AbpModuleManager             - Found 19 ABP modules in total.
+DEBUG 2019-09-23 10:01:54,900 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,903 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,903 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,903 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,904 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,904 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,904 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,904 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,905 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,905 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,905 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Cnc.MMKSmartSystemCNCModule, MMK.SmartSystem.Cnc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,905 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,906 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,906 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,906 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,906 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,906 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,907 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,907 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:01:54,909 [1    ] Abp.Modules.AbpModuleManager             - 19 modules loaded.
+DEBUG 2019-09-23 10:01:54,976 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:01:54,976 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:01:54,976 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:01:54,976 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:03:00,016 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:03:00,059 [1    ] Abp.Modules.AbpModuleManager             - Found 19 ABP modules in total.
+DEBUG 2019-09-23 10:03:00,075 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,077 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,078 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,078 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,078 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,078 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,079 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,079 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,079 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,079 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,080 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Cnc.MMKSmartSystemCNCModule, MMK.SmartSystem.Cnc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,080 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,080 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,080 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,081 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,081 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,081 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,081 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,081 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:00,084 [1    ] Abp.Modules.AbpModuleManager             - 19 modules loaded.
+DEBUG 2019-09-23 10:03:00,132 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:03:00,132 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:03:00,132 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:03:00,132 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+FATAL 2019-09-23 10:03:00,448 [1    ] Abp.AbpBootstrapper                      - System.TypeLoadException: Could not load type 'IODBPSD_3' from assembly 'MMK.SmartSystem.Cnc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' because it contains an object field at offset 4 that is incorrectly aligned or overlapped by a non-object field.
+   at System.Reflection.RuntimeAssembly.GetExportedTypes(RuntimeAssembly assembly, ObjectHandleOnStack retTypes)
+   at System.Reflection.RuntimeAssembly.GetExportedTypes()
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypes(Assembly assembly, Boolean includeNonExported)
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypesOrdered(Assembly assembly, Boolean includeNonExported)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at Castle.MicroKernel.Registration.FromDescriptor.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.AspNetCore.AbpAspNetCoreConventionalRegistrar.RegisterAssembly(IConventionalRegistrationContext context) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpAspNetCoreConventionalRegistrar.cs:line 22
+   at Abp.Dependency.IocManager.RegisterAssemblyByConvention(Assembly assembly, ConventionalRegistrationConfig config) in D:\Github\aspnetboilerplate\src\Abp\Dependency\IocManager.cs:line 98
+   at MMK.SmartSystem.Cnc.MMKSmartSystemCNCModule.Initialize() in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Cnc\MMKSmartSystemCNCModule.cs:line 18
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 48
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+System.TypeLoadException: Could not load type 'IODBPSD_3' from assembly 'MMK.SmartSystem.Cnc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' because it contains an object field at offset 4 that is incorrectly aligned or overlapped by a non-object field.
+   at System.Reflection.RuntimeAssembly.GetExportedTypes(RuntimeAssembly assembly, ObjectHandleOnStack retTypes)
+   at System.Reflection.RuntimeAssembly.GetExportedTypes()
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypes(Assembly assembly, Boolean includeNonExported)
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypesOrdered(Assembly assembly, Boolean includeNonExported)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at Castle.MicroKernel.Registration.FromDescriptor.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.AspNetCore.AbpAspNetCoreConventionalRegistrar.RegisterAssembly(IConventionalRegistrationContext context) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpAspNetCoreConventionalRegistrar.cs:line 22
+   at Abp.Dependency.IocManager.RegisterAssemblyByConvention(Assembly assembly, ConventionalRegistrationConfig config) in D:\Github\aspnetboilerplate\src\Abp\Dependency\IocManager.cs:line 98
+   at MMK.SmartSystem.Cnc.MMKSmartSystemCNCModule.Initialize() in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Cnc\MMKSmartSystemCNCModule.cs:line 18
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 48
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+FATAL 2019-09-23 10:03:00,459 [1    ] soft.AspNetCore.Hosting.Internal.WebHost - Application startup exception
+System.TypeLoadException: Could not load type 'IODBPSD_3' from assembly 'MMK.SmartSystem.Cnc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' because it contains an object field at offset 4 that is incorrectly aligned or overlapped by a non-object field.
+   at System.Reflection.RuntimeAssembly.GetExportedTypes(RuntimeAssembly assembly, ObjectHandleOnStack retTypes)
+   at System.Reflection.RuntimeAssembly.GetExportedTypes()
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypes(Assembly assembly, Boolean includeNonExported)
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypesOrdered(Assembly assembly, Boolean includeNonExported)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at Castle.MicroKernel.Registration.FromDescriptor.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.AspNetCore.AbpAspNetCoreConventionalRegistrar.RegisterAssembly(IConventionalRegistrationContext context) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpAspNetCoreConventionalRegistrar.cs:line 22
+   at Abp.Dependency.IocManager.RegisterAssemblyByConvention(Assembly assembly, ConventionalRegistrationConfig config) in D:\Github\aspnetboilerplate\src\Abp\Dependency\IocManager.cs:line 98
+   at MMK.SmartSystem.Cnc.MMKSmartSystemCNCModule.Initialize() in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Cnc\MMKSmartSystemCNCModule.cs:line 18
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 48
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+   at Abp.AspNetCore.AbpApplicationBuilderExtensions.InitializeAbp(IApplicationBuilder app) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpApplicationBuilderExtensions.cs:line 67
+   at Abp.AspNetCore.AbpApplicationBuilderExtensions.UseAbp(IApplicationBuilder app, Action`1 optionsAction) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpApplicationBuilderExtensions.cs:line 38
+   at MMK.SmartSystem.Web.Host.Startup.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Host\Startup\Startup.cs:line 91
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+INFO  2019-09-23 10:03:00,819 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-23 10:03:00,819 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+ERROR 2019-09-23 10:03:00,849 [6    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLPVP8KMC9IL", Request id "0HLPVP8KMC9IL:00000001": An unhandled exception was thrown by the application.
+System.ArgumentNullException: Value cannot be null.
+Parameter name: values
+   at System.String.Join(String separator, IEnumerable`1 values)
+   at Microsoft.Extensions.RazorViews.BaseView.EndWriteAttribute()
+   at Microsoft.AspNetCore.Hosting.Views.ErrorPage.ExecuteAsync()
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+INFO  2019-09-23 10:03:00,886 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 67.8235ms 500 
+INFO  2019-09-23 10:03:00,896 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 81.3997ms 500 text/html; charset=utf-8
+DEBUG 2019-09-23 10:03:51,085 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:03:51,230 [1    ] Abp.Modules.AbpModuleManager             - Found 19 ABP modules in total.
+DEBUG 2019-09-23 10:03:51,248 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,250 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,251 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,251 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,251 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,251 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,252 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,252 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,252 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,253 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,253 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Cnc.MMKSmartSystemCNCModule, MMK.SmartSystem.Cnc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,253 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,253 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,254 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,254 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,254 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,254 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,255 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,255 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:03:51,258 [1    ] Abp.Modules.AbpModuleManager             - 19 modules loaded.
+DEBUG 2019-09-23 10:03:51,331 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:03:51,331 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:03:51,331 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:03:51,331 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:04:15,794 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:04:15,826 [1    ] Abp.Modules.AbpModuleManager             - Found 19 ABP modules in total.
+DEBUG 2019-09-23 10:04:15,848 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,851 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,851 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,851 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,852 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,852 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,852 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,853 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,853 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,853 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,853 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Cnc.MMKSmartSystemCNCModule, MMK.SmartSystem.Cnc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,854 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,854 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,854 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,855 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,855 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,855 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,855 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,855 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:04:15,859 [1    ] Abp.Modules.AbpModuleManager             - 19 modules loaded.
+DEBUG 2019-09-23 10:04:15,931 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:04:15,931 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:04:15,931 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:04:15,931 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+FATAL 2019-09-23 10:04:16,245 [1    ] Abp.AbpBootstrapper                      - System.TypeLoadException: Could not load type 'IODBPSD_3' from assembly 'MMK.SmartSystem.Cnc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' because it contains an object field at offset 4 that is incorrectly aligned or overlapped by a non-object field.
+   at System.Reflection.RuntimeAssembly.GetExportedTypes(RuntimeAssembly assembly, ObjectHandleOnStack retTypes)
+   at System.Reflection.RuntimeAssembly.GetExportedTypes()
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypes(Assembly assembly, Boolean includeNonExported)
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypesOrdered(Assembly assembly, Boolean includeNonExported)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at Castle.MicroKernel.Registration.FromDescriptor.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.AspNetCore.AbpAspNetCoreConventionalRegistrar.RegisterAssembly(IConventionalRegistrationContext context) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpAspNetCoreConventionalRegistrar.cs:line 22
+   at Abp.Dependency.IocManager.RegisterAssemblyByConvention(Assembly assembly, ConventionalRegistrationConfig config) in D:\Github\aspnetboilerplate\src\Abp\Dependency\IocManager.cs:line 98
+   at MMK.SmartSystem.Cnc.MMKSmartSystemCNCModule.Initialize() in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Cnc\MMKSmartSystemCNCModule.cs:line 18
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 48
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+System.TypeLoadException: Could not load type 'IODBPSD_3' from assembly 'MMK.SmartSystem.Cnc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' because it contains an object field at offset 4 that is incorrectly aligned or overlapped by a non-object field.
+   at System.Reflection.RuntimeAssembly.GetExportedTypes(RuntimeAssembly assembly, ObjectHandleOnStack retTypes)
+   at System.Reflection.RuntimeAssembly.GetExportedTypes()
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypes(Assembly assembly, Boolean includeNonExported)
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypesOrdered(Assembly assembly, Boolean includeNonExported)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at Castle.MicroKernel.Registration.FromDescriptor.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.AspNetCore.AbpAspNetCoreConventionalRegistrar.RegisterAssembly(IConventionalRegistrationContext context) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpAspNetCoreConventionalRegistrar.cs:line 22
+   at Abp.Dependency.IocManager.RegisterAssemblyByConvention(Assembly assembly, ConventionalRegistrationConfig config) in D:\Github\aspnetboilerplate\src\Abp\Dependency\IocManager.cs:line 98
+   at MMK.SmartSystem.Cnc.MMKSmartSystemCNCModule.Initialize() in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Cnc\MMKSmartSystemCNCModule.cs:line 18
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 48
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+FATAL 2019-09-23 10:04:16,257 [1    ] soft.AspNetCore.Hosting.Internal.WebHost - Application startup exception
+System.TypeLoadException: Could not load type 'IODBPSD_3' from assembly 'MMK.SmartSystem.Cnc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' because it contains an object field at offset 4 that is incorrectly aligned or overlapped by a non-object field.
+   at System.Reflection.RuntimeAssembly.GetExportedTypes(RuntimeAssembly assembly, ObjectHandleOnStack retTypes)
+   at System.Reflection.RuntimeAssembly.GetExportedTypes()
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypes(Assembly assembly, Boolean includeNonExported)
+   at Castle.Core.Internal.ReflectionUtil.GetAvailableTypesOrdered(Assembly assembly, Boolean includeNonExported)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at Castle.MicroKernel.Registration.FromDescriptor.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.AspNetCore.AbpAspNetCoreConventionalRegistrar.RegisterAssembly(IConventionalRegistrationContext context) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpAspNetCoreConventionalRegistrar.cs:line 22
+   at Abp.Dependency.IocManager.RegisterAssemblyByConvention(Assembly assembly, ConventionalRegistrationConfig config) in D:\Github\aspnetboilerplate\src\Abp\Dependency\IocManager.cs:line 98
+   at MMK.SmartSystem.Cnc.MMKSmartSystemCNCModule.Initialize() in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Cnc\MMKSmartSystemCNCModule.cs:line 18
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 48
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+   at Abp.AspNetCore.AbpApplicationBuilderExtensions.InitializeAbp(IApplicationBuilder app) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpApplicationBuilderExtensions.cs:line 67
+   at Abp.AspNetCore.AbpApplicationBuilderExtensions.UseAbp(IApplicationBuilder app, Action`1 optionsAction) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpApplicationBuilderExtensions.cs:line 38
+   at MMK.SmartSystem.Web.Host.Startup.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Host\Startup\Startup.cs:line 91
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+INFO  2019-09-23 10:04:16,805 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-23 10:04:16,805 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-23 10:04:16,912 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 107.9519ms 500 text/html; charset=utf-8
+ERROR 2019-09-23 10:04:16,914 [11   ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLPVP9B92U1A", Request id "0HLPVP9B92U1A:00000001": An unhandled exception was thrown by the application.
+System.ObjectDisposedException: Cannot write to the response body, the response has completed.
+Object name: 'HttpResponseStream'.
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseStream.<ValidateState>g__ThrowObjectDisposedException|24_0()
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseStream.WriteAsync(Byte[] buffer, Int32 offset, Int32 count, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpResponseStream.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at System.IO.StreamWriter.Flush(Boolean flushStream, Boolean flushEncoder)
+   at System.IO.StreamWriter.Write(String value)
+   at Microsoft.AspNetCore.Hosting.Views.ErrorPage.ExecuteAsync()
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+INFO  2019-09-23 10:04:16,918 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 118.184ms 500 
+DEBUG 2019-09-23 10:11:50,012 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:11:50,138 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-23 10:11:50,161 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,165 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,165 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,165 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,166 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,166 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,167 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,167 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,168 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,168 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,168 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,169 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,169 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,169 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,170 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,170 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,170 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,170 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:50,174 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-23 10:11:50,258 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:11:50,259 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:11:50,259 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:11:50,259 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:11:50,682 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:11:51,874 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-23 10:11:52,024 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-23 10:11:52,066 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-23 10:11:52,071 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-23 10:11:52,098 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-23 10:11:52,248 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-09-23 10:11:52,289 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-23 10:11:52,289 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-23 10:11:52,295 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-23 10:11:52,295 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-23 10:11:52,296 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-23 10:11:52,296 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-23 10:11:52,296 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-23 10:11:52,296 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-23 10:11:52,296 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-23 10:11:52,297 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-23 10:11:52,297 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-23 10:11:52,297 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-23 10:11:52,297 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-23 10:11:52,297 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-23 10:11:52,297 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-23 10:11:52,297 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-23 10:11:52,298 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-23 10:11:58,130 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-23 10:11:58,130 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-23 10:11:58,201 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 76.6743ms 200 
+INFO  2019-09-23 10:12:01,389 [17   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-23 10:12:02,308 [17   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-23 10:12:02,314 [17   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.798ms.
+INFO  2019-09-23 10:12:02,689 [19   ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-23 10:12:02,701 [19   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 1306.7664ms
+INFO  2019-09-23 10:12:02,718 [19   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4595.3736ms 302 
+INFO  2019-09-23 10:12:02,744 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-23 10:12:02,757 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 12.3777ms 301 
+INFO  2019-09-23 10:12:02,777 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-23 10:12:02,803 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 26.3173ms 200 text/html
+INFO  2019-09-23 10:12:02,830 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-09-23 10:12:02,831 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-09-23 10:12:02,833 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2019-09-23 10:12:02,836 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-09-23 10:12:02,839 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2019-09-23 10:12:02,872 [7    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2019-09-23 10:12:02,874 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 44.3887ms 200 text/css
+INFO  2019-09-23 10:12:02,889 [7    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+INFO  2019-09-23 10:12:02,891 [6    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Host\wwwroot\swagger\ui\abp.swagger.js'
+INFO  2019-09-23 10:12:02,893 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 54.1153ms 200 application/javascript
+INFO  2019-09-23 10:12:02,897 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 60.4729ms 200 application/javascript
+INFO  2019-09-23 10:12:02,902 [7    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Host\wwwroot\swagger\ui\abp.js'
+INFO  2019-09-23 10:12:02,903 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 71.28ms 200 application/javascript
+INFO  2019-09-23 10:12:02,949 [17   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+INFO  2019-09-23 10:12:02,951 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 121.2497ms 200 application/javascript
+INFO  2019-09-23 10:12:03,578 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-23 10:12:03,782 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 204.3139ms 200 application/json;charset=utf-8
+DEBUG 2019-09-23 10:17:58,933 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:17:59,046 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-23 10:17:59,062 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,064 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,064 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,065 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,065 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,065 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,065 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,066 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,066 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,066 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,066 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,067 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,067 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,067 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,067 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,067 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,068 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,068 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:17:59,070 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-23 10:17:59,135 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:17:59,135 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:17:59,135 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:17:59,135 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+FATAL 2019-09-23 10:17:59,198 [1    ] Abp.AbpBootstrapper                      - Castle.MicroKernel.ComponentRegistrationException: Component Abp.Domain.Uow.UnitOfWorkDefaultOptions could not be registered. There is already a component with that name. Did you want to modify the existing component instead? If not, make sure you specify a unique name.
+   at Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.Register(IHandler handler)
+   at Castle.MicroKernel.DefaultKernel.AddCustomComponent(ComponentModel model)
+   at Castle.MicroKernel.Registration.ComponentRegistration`1.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.Dependency.Installers.AbpCoreInstaller.Install(IWindsorContainer container, IConfigurationStore store) in D:\Github\aspnetboilerplate\src\Abp\Dependency\Installers\AbpCoreInstaller.cs:line 48
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers, DefaultComponentInstaller scope)
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers)
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 148
+Castle.MicroKernel.ComponentRegistrationException: Component Abp.Domain.Uow.UnitOfWorkDefaultOptions could not be registered. There is already a component with that name. Did you want to modify the existing component instead? If not, make sure you specify a unique name.
+   at Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.Register(IHandler handler)
+   at Castle.MicroKernel.DefaultKernel.AddCustomComponent(ComponentModel model)
+   at Castle.MicroKernel.Registration.ComponentRegistration`1.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.Dependency.Installers.AbpCoreInstaller.Install(IWindsorContainer container, IConfigurationStore store) in D:\Github\aspnetboilerplate\src\Abp\Dependency\Installers\AbpCoreInstaller.cs:line 48
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers, DefaultComponentInstaller scope)
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers)
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 148
+DEBUG 2019-09-23 10:18:13,024 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:18:13,047 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-23 10:18:13,063 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,065 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,065 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,066 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,066 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,066 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,066 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,067 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,067 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,067 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,067 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,068 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,068 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,068 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,068 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,068 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,069 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,069 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:13,071 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-23 10:18:13,117 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:18:13,117 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:18:13,117 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:18:13,117 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+FATAL 2019-09-23 10:18:13,143 [1    ] Abp.AbpBootstrapper                      - Castle.MicroKernel.ComponentRegistrationException: Component Abp.Domain.Uow.UnitOfWorkDefaultOptions could not be registered. There is already a component with that name. Did you want to modify the existing component instead? If not, make sure you specify a unique name.
+   at Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.Register(IHandler handler)
+   at Castle.MicroKernel.DefaultKernel.AddCustomComponent(ComponentModel model)
+   at Castle.MicroKernel.Registration.ComponentRegistration`1.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.Dependency.Installers.AbpCoreInstaller.Install(IWindsorContainer container, IConfigurationStore store) in D:\Github\aspnetboilerplate\src\Abp\Dependency\Installers\AbpCoreInstaller.cs:line 48
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers, DefaultComponentInstaller scope)
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers)
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 148
+Castle.MicroKernel.ComponentRegistrationException: Component Abp.Domain.Uow.UnitOfWorkDefaultOptions could not be registered. There is already a component with that name. Did you want to modify the existing component instead? If not, make sure you specify a unique name.
+   at Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.Register(IHandler handler)
+   at Castle.MicroKernel.DefaultKernel.AddCustomComponent(ComponentModel model)
+   at Castle.MicroKernel.Registration.ComponentRegistration`1.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.Dependency.Installers.AbpCoreInstaller.Install(IWindsorContainer container, IConfigurationStore store) in D:\Github\aspnetboilerplate\src\Abp\Dependency\Installers\AbpCoreInstaller.cs:line 48
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers, DefaultComponentInstaller scope)
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers)
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 148
+FATAL 2019-09-23 10:18:13,145 [1    ] Abp.AbpBootstrapper                      - Castle.MicroKernel.ComponentRegistrationException: Component Abp.Domain.Uow.UnitOfWorkDefaultOptions could not be registered. There is already a component with that name. Did you want to modify the existing component instead? If not, make sure you specify a unique name.
+   at Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.Register(IHandler handler)
+   at Castle.MicroKernel.DefaultKernel.AddCustomComponent(ComponentModel model)
+   at Castle.MicroKernel.Registration.ComponentRegistration`1.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.Dependency.Installers.AbpCoreInstaller.Install(IWindsorContainer container, IConfigurationStore store) in D:\Github\aspnetboilerplate\src\Abp\Dependency\Installers\AbpCoreInstaller.cs:line 48
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers, DefaultComponentInstaller scope)
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers)
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 148
+   at MMK.SmartSystem.SmartSystemWebCoreModule.PreInitialize() in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Core\SmartSystemWebCoreModule.cs:line 66
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 47
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+Castle.MicroKernel.ComponentRegistrationException: Component Abp.Domain.Uow.UnitOfWorkDefaultOptions could not be registered. There is already a component with that name. Did you want to modify the existing component instead? If not, make sure you specify a unique name.
+   at Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.Register(IHandler handler)
+   at Castle.MicroKernel.DefaultKernel.AddCustomComponent(ComponentModel model)
+   at Castle.MicroKernel.Registration.ComponentRegistration`1.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.Dependency.Installers.AbpCoreInstaller.Install(IWindsorContainer container, IConfigurationStore store) in D:\Github\aspnetboilerplate\src\Abp\Dependency\Installers\AbpCoreInstaller.cs:line 48
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers, DefaultComponentInstaller scope)
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers)
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 148
+   at MMK.SmartSystem.SmartSystemWebCoreModule.PreInitialize() in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Core\SmartSystemWebCoreModule.cs:line 66
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 47
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+FATAL 2019-09-23 10:18:13,155 [1    ] soft.AspNetCore.Hosting.Internal.WebHost - Application startup exception
+Castle.MicroKernel.ComponentRegistrationException: Component Abp.Domain.Uow.UnitOfWorkDefaultOptions could not be registered. There is already a component with that name. Did you want to modify the existing component instead? If not, make sure you specify a unique name.
+   at Castle.MicroKernel.SubSystems.Naming.DefaultNamingSubSystem.Register(IHandler handler)
+   at Castle.MicroKernel.DefaultKernel.AddCustomComponent(ComponentModel model)
+   at Castle.MicroKernel.Registration.ComponentRegistration`1.Castle.MicroKernel.Registration.IRegistration.Register(IKernelInternal kernel)
+   at Castle.MicroKernel.DefaultKernel.Register(IRegistration[] registrations)
+   at Castle.Windsor.WindsorContainer.Register(IRegistration[] registrations)
+   at Abp.Dependency.Installers.AbpCoreInstaller.Install(IWindsorContainer container, IConfigurationStore store) in D:\Github\aspnetboilerplate\src\Abp\Dependency\Installers\AbpCoreInstaller.cs:line 48
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers, DefaultComponentInstaller scope)
+   at Castle.Windsor.WindsorContainer.Install(IWindsorInstaller[] installers)
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 148
+   at MMK.SmartSystem.SmartSystemWebCoreModule.PreInitialize() in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Core\SmartSystemWebCoreModule.cs:line 66
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at Abp.Modules.AbpModuleManager.StartModules() in D:\Github\aspnetboilerplate\src\Abp\Modules\AbpModuleManager.cs:line 47
+   at Abp.AbpBootstrapper.Initialize() in D:\Github\aspnetboilerplate\src\Abp\AbpBootstrapper.cs:line 155
+   at Abp.AspNetCore.AbpApplicationBuilderExtensions.InitializeAbp(IApplicationBuilder app) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpApplicationBuilderExtensions.cs:line 67
+   at Abp.AspNetCore.AbpApplicationBuilderExtensions.UseAbp(IApplicationBuilder app, Action`1 optionsAction) in D:\Github\aspnetboilerplate\src\Abp.AspNetCore\AspNetCore\AbpApplicationBuilderExtensions.cs:line 38
+   at MMK.SmartSystem.Web.Host.Startup.Startup.Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Host\Startup\Startup.cs:line 91
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Hosting.ConventionBasedStartup.Configure(IApplicationBuilder app)
+   at Microsoft.AspNetCore.Hosting.Internal.WebHost.BuildApplication()
+INFO  2019-09-23 10:18:13,484 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-23 10:18:13,484 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+ERROR 2019-09-23 10:18:13,514 [7    ] Microsoft.AspNetCore.Server.Kestrel      - Connection id "0HLPVPH4M86G5", Request id "0HLPVPH4M86G5:00000001": An unhandled exception was thrown by the application.
+System.ArgumentNullException: Value cannot be null.
+Parameter name: values
+   at System.String.Join(String separator, IEnumerable`1 values)
+   at Microsoft.Extensions.RazorViews.BaseView.EndWriteAttribute()
+   at Microsoft.AspNetCore.Hosting.Views.ErrorPage.ExecuteAsync()
+   at Microsoft.Extensions.RazorViews.BaseView.ExecuteAsync(HttpContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+INFO  2019-09-23 10:18:13,557 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 74.4532ms 500 
+INFO  2019-09-23 10:18:13,575 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 95.9126ms 500 text/html; charset=utf-8
+DEBUG 2019-09-23 10:18:28,186 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:18:28,289 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-23 10:18:28,307 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,309 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,310 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,310 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,310 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,310 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,311 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,311 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,312 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,312 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,312 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,312 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,313 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,313 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,313 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,313 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,313 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,314 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:28,316 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-23 10:18:28,381 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:18:28,381 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:18:28,381 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:18:28,381 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:18:28,711 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:18:29,538 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-23 10:18:29,646 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-23 10:18:29,683 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-23 10:18:29,688 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-23 10:18:29,714 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-23 10:18:29,839 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-09-23 10:18:29,875 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-23 10:18:29,875 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-23 10:18:29,881 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-23 10:18:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-23 10:18:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-23 10:18:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-23 10:18:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-23 10:18:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-23 10:18:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-23 10:18:29,883 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-23 10:18:29,883 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-23 10:18:29,883 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-23 10:18:29,883 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-23 10:18:29,883 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-23 10:18:29,883 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-23 10:18:29,883 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-23 10:18:29,883 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-23 10:18:35,011 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-23 10:18:35,011 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-23 10:18:35,082 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 75.8137ms 200 
+INFO  2019-09-23 10:18:38,126 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-23 10:18:39,019 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-23 10:18:39,025 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.5995ms.
+INFO  2019-09-23 10:18:39,398 [19   ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-23 10:18:39,410 [19   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 1278.2609ms
+INFO  2019-09-23 10:18:39,433 [19   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4428.8131ms 302 
+INFO  2019-09-23 10:18:39,453 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-23 10:18:39,464 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 11.1489ms 301 
+INFO  2019-09-23 10:18:39,504 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-23 10:18:39,530 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 25.6787ms 200 text/html
+INFO  2019-09-23 10:18:39,548 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-09-23 10:18:39,552 [16   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-09-23 10:18:39,554 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-09-23 10:18:39,577 [10   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui.css was not modified
+INFO  2019-09-23 10:18:39,578 [6    ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-bundle.js was not modified
+INFO  2019-09-23 10:18:39,580 [16   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-standalone-preset.js was not modified
+INFO  2019-09-23 10:18:39,585 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 36.8344ms 304 text/css
+INFO  2019-09-23 10:18:39,588 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 32.5183ms 304 application/javascript
+INFO  2019-09-23 10:18:39,590 [16   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 32.6776ms 304 application/javascript
+INFO  2019-09-23 10:18:39,960 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-23 10:18:40,154 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 194.2435ms 200 application/json;charset=utf-8
+DEBUG 2019-09-23 10:20:46,926 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:20:47,056 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-23 10:20:47,076 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,080 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,081 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,081 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,081 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,081 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,082 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,082 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,083 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,083 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,083 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,084 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,084 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,084 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,084 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,085 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,085 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,085 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:47,088 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-23 10:20:47,167 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:20:47,167 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:20:47,167 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:20:47,167 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:20:47,516 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:20:48,369 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-23 10:20:48,474 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-23 10:20:48,509 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-23 10:20:48,514 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-23 10:20:48,539 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-23 10:20:48,664 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-09-23 10:20:48,702 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-23 10:20:48,702 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-23 10:20:48,708 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-23 10:20:48,709 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-23 10:20:48,709 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-23 10:20:48,709 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-23 10:20:48,709 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-23 10:20:48,709 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-23 10:20:48,710 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-23 10:20:48,710 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-23 10:20:48,710 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-23 10:20:48,710 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-23 10:20:48,711 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-23 10:20:48,711 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-23 10:20:48,711 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-23 10:20:48,711 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-23 10:20:48,711 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-23 10:20:57,665 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-23 10:20:57,665 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-23 10:20:57,745 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 85.162ms 200 
+INFO  2019-09-23 10:21:01,039 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-23 10:21:01,975 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-23 10:21:01,980 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.836ms.
+INFO  2019-09-23 10:21:02,563 [19   ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-23 10:21:02,576 [19   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 1532.4977ms
+INFO  2019-09-23 10:21:02,594 [19   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4936.3695ms 302 
+INFO  2019-09-23 10:21:02,622 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-23 10:21:02,635 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 13.1596ms 301 
+INFO  2019-09-23 10:21:02,675 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-23 10:21:02,699 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 23.796ms 200 text/html
+INFO  2019-09-23 10:21:02,716 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-09-23 10:21:02,719 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-09-23 10:21:02,722 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-09-23 10:21:02,741 [14   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-standalone-preset.js was not modified
+INFO  2019-09-23 10:21:02,743 [9    ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-bundle.js was not modified
+INFO  2019-09-23 10:21:02,744 [17   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui.css was not modified
+INFO  2019-09-23 10:21:02,748 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 32.3275ms 304 text/css
+INFO  2019-09-23 10:21:02,750 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 29.5927ms 304 application/javascript
+INFO  2019-09-23 10:21:02,751 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 29.2405ms 304 application/javascript
+INFO  2019-09-23 10:21:02,974 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-23 10:21:03,155 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 180.4449ms 200 application/json;charset=utf-8
+INFO  2019-09-23 10:21:17,305 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/services/app/WebRoute/Navigate?url=8  0
+INFO  2019-09-23 10:21:17,314 [15   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2019-09-23 10:21:17,316 [15   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2019-09-23 10:21:17,360 [15   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Navigate", controller = "WebRoute"}. Executing action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application)
+INFO  2019-09-23 10:21:17,362 [15   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2019-09-23 10:21:17,363 [15   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2019-09-23 10:21:17,486 [15   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) with arguments (8) - Validation state: Valid
+INFO  2019-09-23 10:21:17,502 [15   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 14.1707ms.
+INFO  2019-09-23 10:21:18,123 [4    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-23 10:21:18,139 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) in 777.0252ms
+INFO  2019-09-23 10:21:18,142 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 836.7973ms 200 application/json; charset=utf-8
+DEBUG 2019-09-23 10:22:34,246 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:22:34,361 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-23 10:22:34,378 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,380 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,381 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,381 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,381 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,381 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,381 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,382 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,382 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,382 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,383 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,383 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,383 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,383 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,384 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,384 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,384 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,384 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:34,387 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-23 10:22:34,452 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:22:34,452 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:22:34,452 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:22:34,453 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:22:34,785 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:22:35,666 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-23 10:22:35,777 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-23 10:22:35,815 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-23 10:22:35,820 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-23 10:22:35,846 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-23 10:22:35,986 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-09-23 10:22:36,023 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-23 10:22:36,023 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-23 10:22:36,029 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-23 10:22:36,029 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-23 10:22:36,029 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-23 10:22:36,030 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-23 10:22:36,030 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-23 10:22:36,030 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-23 10:22:36,030 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-23 10:22:36,030 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-23 10:22:36,031 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-23 10:22:36,031 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-23 10:22:36,031 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-23 10:22:36,031 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-23 10:22:36,031 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-23 10:22:36,031 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-23 10:22:36,031 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-23 10:22:41,863 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-23 10:22:41,863 [17   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-23 10:22:41,929 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 71.4479ms 200 
+DEBUG 2019-09-23 10:23:37,520 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:23:37,632 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-23 10:23:37,651 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,653 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,653 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,654 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,654 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,654 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,654 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,655 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,655 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,655 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,655 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,656 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,656 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,656 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,656 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,657 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,657 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,657 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:37,660 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-23 10:23:37,725 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:23:37,725 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:23:37,725 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:23:37,725 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:23:38,061 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:38,952 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-23 10:23:39,058 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-23 10:23:39,094 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-23 10:23:39,099 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-23 10:23:39,124 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-23 10:23:39,256 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-09-23 10:23:39,295 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-23 10:23:39,295 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-23 10:23:39,301 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-23 10:23:39,301 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-23 10:23:39,302 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-23 10:23:39,302 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-23 10:23:39,302 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-23 10:23:39,302 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-23 10:23:39,302 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-23 10:23:39,303 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-23 10:23:39,303 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-23 10:23:39,303 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-23 10:23:39,303 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-23 10:23:39,303 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-23 10:23:39,303 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-23 10:23:39,304 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-23 10:23:39,304 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+DEBUG 2019-09-23 10:23:48,140 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:23:48,166 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-23 10:23:48,183 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,186 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,186 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,186 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,187 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,187 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,187 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,188 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,188 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,188 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,188 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,189 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,189 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,189 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,189 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,190 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,190 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,190 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,193 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-23 10:23:48,244 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:23:48,244 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:23:48,244 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:23:48,244 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:23:48,504 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:23:48,847 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-23 10:23:48,955 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-23 10:23:48,992 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-23 10:23:48,996 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-23 10:23:49,021 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-23 10:23:49,048 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-09-23 10:23:49,086 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-23 10:23:49,086 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-23 10:23:49,092 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-23 10:23:49,093 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-23 10:23:49,093 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-23 10:23:49,093 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-23 10:23:49,093 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-23 10:23:49,093 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-23 10:23:49,093 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-23 10:23:49,094 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-23 10:23:49,094 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-23 10:23:49,094 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-23 10:23:49,094 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-23 10:23:49,094 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-23 10:23:49,095 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-23 10:23:49,095 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-23 10:23:49,095 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-23 10:23:54,002 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-23 10:23:54,002 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-23 10:23:55,095 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-23 10:23:55,095 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-23 10:23:55,387 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-23 10:23:55,387 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-23 10:23:55,390 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.6032ms.
+INFO  2019-09-23 10:23:55,390 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.5793ms.
+INFO  2019-09-23 10:23:55,753 [5    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-23 10:23:55,763 [5    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 664.1598ms
+INFO  2019-09-23 10:23:55,766 [4    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-23 10:23:55,766 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 669.422ms
+INFO  2019-09-23 10:23:55,810 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1812.4676ms 302 
+INFO  2019-09-23 10:23:55,810 [5    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1812.4736ms 302 
+INFO  2019-09-23 10:23:55,818 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-23 10:23:55,828 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 10.2522ms 301 
+INFO  2019-09-23 10:23:55,861 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-23 10:23:55,884 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 22.3069ms 200 text/html
+INFO  2019-09-23 10:23:55,900 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-09-23 10:23:55,902 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-09-23 10:23:55,914 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-09-23 10:23:55,920 [9    ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-bundle.js was not modified
+INFO  2019-09-23 10:23:55,920 [12   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui.css was not modified
+INFO  2019-09-23 10:23:55,920 [10   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-standalone-preset.js was not modified
+INFO  2019-09-23 10:23:55,923 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 9.5031ms 304 application/javascript
+INFO  2019-09-23 10:23:55,923 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 20.7683ms 304 text/css
+INFO  2019-09-23 10:23:55,923 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 23.3627ms 304 application/javascript
+INFO  2019-09-23 10:23:56,149 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-23 10:23:56,308 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 159.2218ms 200 application/json;charset=utf-8
+DEBUG 2019-09-23 10:24:33,293 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-23 10:24:33,383 [1    ] Abp.Modules.AbpModuleManager             - Found 17 ABP modules in total.
+DEBUG 2019-09-23 10:24:33,399 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,401 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,402 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,402 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,402 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,402 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,402 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,403 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,404 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,404 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,404 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,404 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,404 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,405 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,405 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.3.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:33,408 [1    ] Abp.Modules.AbpModuleManager             - 17 modules loaded.
+DEBUG 2019-09-23 10:24:33,472 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:24:33,472 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:24:33,472 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:24:33,472 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-23 10:24:33,798 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-23 10:24:34,664 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-23 10:24:34,765 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-23 10:24:34,801 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-23 10:24:34,805 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-23 10:24:34,830 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-23 10:24:34,960 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Abp.BackgroundJobs.BackgroundJobManager
+DEBUG 2019-09-23 10:24:34,998 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-23 10:24:34,998 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-23 10:24:35,004 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-23 10:24:35,004 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-23 10:24:35,005 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-23 10:24:35,005 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-23 10:24:35,005 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-23 10:24:35,005 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-23 10:24:35,005 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-23 10:24:35,006 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-23 10:24:35,006 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-23 10:24:35,006 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-23 10:24:35,006 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-23 10:24:35,006 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-23 10:24:35,006 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-23 10:24:35,006 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-23 10:24:35,006 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-23 10:24:40,078 [16   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-23 10:24:40,078 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-23 10:24:40,154 [16   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 80.9342ms 200 
+INFO  2019-09-23 10:24:43,331 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-23 10:24:44,219 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-23 10:24:44,224 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.7672ms.
+INFO  2019-09-23 10:24:44,581 [4    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-23 10:24:44,594 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 1257.4807ms
+INFO  2019-09-23 10:24:44,610 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4540.0943ms 302 
+INFO  2019-09-23 10:24:44,626 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-23 10:24:44,637 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 11.5376ms 301 
+INFO  2019-09-23 10:24:44,687 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-23 10:24:44,712 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 24.9358ms 200 text/html
+INFO  2019-09-23 10:24:44,733 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-09-23 10:24:44,735 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-09-23 10:24:44,738 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-09-23 10:24:44,758 [15   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-bundle.js was not modified
+INFO  2019-09-23 10:24:44,760 [9    ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui-standalone-preset.js was not modified
+INFO  2019-09-23 10:24:44,761 [14   ] NetCore.StaticFiles.StaticFileMiddleware - The file /swagger-ui.css was not modified
+INFO  2019-09-23 10:24:44,765 [9    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 32.0183ms 304 application/javascript
+INFO  2019-09-23 10:24:44,766 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 32.0184ms 304 text/css
+INFO  2019-09-23 10:24:44,768 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 27.4876ms 304 application/javascript
+INFO  2019-09-23 10:24:45,002 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-23 10:24:45,201 [15   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 198.2066ms 200 application/json;charset=utf-8
+INFO  2019-09-23 10:25:02,585 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/services/app/WebRoute/Navigate?url=456  0
+INFO  2019-09-23 10:25:02,593 [11   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2019-09-23 10:25:02,595 [11   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2019-09-23 10:25:02,631 [11   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Navigate", controller = "WebRoute"}. Executing action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application)
+INFO  2019-09-23 10:25:02,633 [11   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2019-09-23 10:25:02,635 [11   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2019-09-23 10:25:02,755 [11   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) with arguments (456) - Validation state: Valid
+INFO  2019-09-23 10:25:02,770 [11   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 12.5344ms.
+INFO  2019-09-23 10:25:02,976 [5    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-23 10:25:02,993 [5    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) in 359.8509ms
+INFO  2019-09-23 10:25:02,997 [5    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 411.3943ms 200 application/json; charset=utf-8

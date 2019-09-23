@@ -15,6 +15,7 @@ using MMK.SmartSystem.EntityFrameworkCore;
 using MMK.CNC.Application;
 using MMK.SmartSystem.RealTime;
 
+
 namespace MMK.SmartSystem
 {
     [DependsOn(
@@ -23,7 +24,7 @@ namespace MMK.SmartSystem
          typeof(CNCApplicationModule),
          typeof(SmartSystemEntityFrameworkCoreModule),
          typeof(AbpAspNetCoreModule)
-        ,typeof(AbpAspNetCoreSignalRModule)
+        , typeof(AbpAspNetCoreSignalRModule)
      )]
     public class SmartSystemWebCoreModule : AbpModule
     {
@@ -53,6 +54,7 @@ namespace MMK.SmartSystem
                .CreateControllersForAppServices(
                    typeof(CNCApplicationModule).GetAssembly()
                );
+          
             ConfigureTokenAuth();
         }
 
