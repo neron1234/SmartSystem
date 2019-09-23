@@ -9,7 +9,7 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
+src/MMK.SmartSystem.Web.Host/App_Data/Logs/logs.txt
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
