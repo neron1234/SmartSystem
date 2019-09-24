@@ -148,7 +148,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
         public static string DecompileWritePmcPara(string para, ref short adr_type, ref short data_type, ref ushort adr, ref ushort bit, ref string data)
         {
             //PMC;adr_type;data_type;adr;bit;data
-            var temps = para.Split(";");
+            var temps = para.Split(';');
 
             if (temps.Length < 6) return "PMC通讯参数错误";
 
