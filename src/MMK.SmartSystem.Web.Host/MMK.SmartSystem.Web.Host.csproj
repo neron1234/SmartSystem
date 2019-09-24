@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>MMK.SmartSystem.Web.Host</AssemblyName>
