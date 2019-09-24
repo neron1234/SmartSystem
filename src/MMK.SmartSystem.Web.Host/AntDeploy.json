@@ -16,15 +16,26 @@
       ],
       "IgnoreList": [],
       "WindowsBackUpIgnoreList": []
+    },
+    {
+      "Name": "local",
+      "ServerList": [],
+      "LinuxServerList": [],
+      "IgnoreList": [],
+      "WindowsBackUpIgnoreList": []
     }
   ],
   "IIsConfig": {
-    "SdkType": null,
+    "SdkType": "netcore",
     "WebSiteName": "",
     "LastEnvName": null,
     "EnvPairList": [
       {
         "EnvName": "ctobaby",
+        "ConfigName": ""
+      },
+      {
+        "EnvName": "local",
         "ConfigName": ""
       }
     ]
@@ -36,6 +47,10 @@
     "EnvPairList": [
       {
         "EnvName": "ctobaby",
+        "ConfigName": ""
+      },
+      {
+        "EnvName": "local",
         "ConfigName": ""
       }
     ]

@@ -120,42 +120,10 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0">
-                <Button Content="切割头" Width="261" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#141619" Foreground="#4c5d5d" FontSize="24"/>
-                <Button Content="激光状态" Width="261" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#202328" Foreground="#d8d8d8" FontSize="24" Margin="262,0,0,0"/>
+                <Button Content="切割头" Width="261" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#141619" Foreground="#4c5d5d" FontSize="24" BorderThickness="0"/>
+                <Button Content="激光状态" Width="261" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#202328" Foreground="#d8d8d8" FontSize="24" Margin="262,0,0,0" BorderThickness="0"/>
             </Grid>
             <WrapPanel Grid.Row="1" Grid.Column="0" Background="#202328">
-                <StackPanel>
-                    <Button Style="{StaticResource NormalBtn}"/>
-                    <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource NormalBtn}"/>
-                    <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource NormalBtn}"/>
-                    <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource NormalBtn}"/>
-                    <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource NormalBtn}"/>
-                    <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource NormalBtn}"/>
-                    <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource NormalBtn}"/>
-                    <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource NormalBtn}"/>
-                    <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
                 <StackPanel>
                     <Button Style="{StaticResource NormalBtn}"/>
                     <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
@@ -175,46 +143,6 @@
             </WrapPanel>
             
             <WrapPanel Grid.Row="1" Grid.Column="3" Background="#202328">
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
                 <StackPanel>
                     <Button Style="{StaticResource WarnBtn}"/>
                     <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>

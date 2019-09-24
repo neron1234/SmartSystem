@@ -2316,3 +2316,355 @@ INFO  2019-09-23 10:25:02,770 [11   ] ore.Mvc.Internal.ControllerActionInvoker -
 INFO  2019-09-23 10:25:02,976 [5    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
 INFO  2019-09-23 10:25:02,993 [5    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) in 359.8509ms
 INFO  2019-09-23 10:25:02,997 [5    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 411.3943ms 200 application/json; charset=utf-8
+DEBUG 2019-09-24 09:35:18,592 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-24 09:35:20,315 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-24 09:35:20,337 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,340 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,340 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,340 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,340 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,341 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,341 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,341 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,341 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,342 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,342 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,342 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,342 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,342 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,343 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,343 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,343 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,343 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:20,346 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-24 09:35:20,405 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:35:20,405 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:35:20,405 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:35:20,405 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:35:20,750 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:35:21,532 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-24 09:35:21,590 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-24 09:35:21,625 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-24 09:35:21,629 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-24 09:35:21,653 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-24 09:35:21,845 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-09-24 09:35:21,950 [1    ] rization.Users.UserTokenExpirationWorker - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker
+DEBUG 2019-09-24 09:35:21,988 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-24 09:35:21,989 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-24 09:35:21,994 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-24 09:35:21,994 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-24 09:35:21,994 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-24 09:35:21,994 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-24 09:35:21,995 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-24 09:35:21,995 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-24 09:35:21,995 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-24 09:35:21,995 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-24 09:35:21,995 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-24 09:35:21,995 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-24 09:35:21,996 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-24 09:35:21,996 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-24 09:35:21,996 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-24 09:35:21,996 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-24 09:35:21,996 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-24 09:35:28,525 [13   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-24 09:35:28,525 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-24 09:35:28,590 [6    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 69.4963ms 200 
+INFO  2019-09-24 09:35:31,592 [13   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-24 09:35:32,480 [13   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-24 09:35:32,485 [13   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.6055ms.
+INFO  2019-09-24 09:35:33,241 [4    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-24 09:35:33,259 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 1660.9184ms
+INFO  2019-09-24 09:35:33,277 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 4758.7387ms 302 
+INFO  2019-09-24 09:35:33,292 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-24 09:35:33,303 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 10.739ms 301 
+INFO  2019-09-24 09:35:33,342 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-24 09:35:33,370 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 28.7878ms 200 text/html
+INFO  2019-09-24 09:35:33,580 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-24 09:35:33,656 [14   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:35:34,027 [5    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 446.9779ms 200 application/json;charset=utf-8
+DEBUG 2019-09-24 09:36:21,461 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-24 09:36:21,550 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-24 09:36:21,566 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,568 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,569 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,569 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,569 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,569 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,569 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,570 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,570 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,570 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,571 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,571 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,571 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,571 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,571 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,572 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,572 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,572 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:21,574 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-24 09:36:21,635 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:36:21,635 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:36:21,635 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:36:21,635 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:36:21,969 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:22,800 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-24 09:36:22,857 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-24 09:36:22,893 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-24 09:36:22,897 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-24 09:36:22,922 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-24 09:36:23,079 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-09-24 09:36:23,209 [1    ] rization.Users.UserTokenExpirationWorker - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker
+DEBUG 2019-09-24 09:36:23,248 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-24 09:36:23,248 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-24 09:36:23,253 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-24 09:36:23,253 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-24 09:36:23,254 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-24 09:36:23,254 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-24 09:36:23,254 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-24 09:36:23,254 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-24 09:36:23,254 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-24 09:36:23,255 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-24 09:36:23,255 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-24 09:36:23,255 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-24 09:36:23,255 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-24 09:36:23,255 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-24 09:36:23,256 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-24 09:36:23,256 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-24 09:36:23,256 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+DEBUG 2019-09-24 09:36:31,393 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-09-24 09:36:31,414 [1    ] Abp.Modules.AbpModuleManager             - Found 18 ABP modules in total.
+DEBUG 2019-09-24 09:36:31,431 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,433 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,433 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,434 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,434 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,434 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,434 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,434 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,435 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,435 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,435 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,435 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,436 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkCoreModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,436 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,436 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,436 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,436 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,436 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=4.9.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:31,439 [1    ] Abp.Modules.AbpModuleManager             - 18 modules loaded.
+DEBUG 2019-09-24 09:36:31,494 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:36:31,494 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:36:31,494 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:36:31,494 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-09-24 09:36:31,817 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-09-24 09:36:32,228 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-09-24 09:36:32,296 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-09-24 09:36:32,342 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-09-24 09:36:32,348 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-09-24 09:36:32,381 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-09-24 09:36:32,421 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2019-09-24 09:36:32,442 [1    ] rization.Users.UserTokenExpirationWorker - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker
+DEBUG 2019-09-24 09:36:32,483 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 16 classes define auto mapping attributes
+DEBUG 2019-09-24 09:36:32,483 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-09-24 09:36:32,488 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-09-24 09:36:32,489 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-09-24 09:36:32,489 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-09-24 09:36:32,489 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-09-24 09:36:32,489 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.CreateRoleDto
+DEBUG 2019-09-24 09:36:32,489 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-09-24 09:36:32,490 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.RoleDto
+DEBUG 2019-09-24 09:36:32,490 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-09-24 09:36:32,490 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-09-24 09:36:32,490 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-09-24 09:36:32,490 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-09-24 09:36:32,491 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-09-24 09:36:32,491 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-09-24 09:36:32,491 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-09-24 09:36:32,491 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+INFO  2019-09-24 09:36:37,391 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-09-24 09:36:37,391 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 DEBUG http://localhost:21021/  0
+INFO  2019-09-24 09:36:38,384 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-24 09:36:38,384 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)
+INFO  2019-09-24 09:36:38,671 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-24 09:36:38,671 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-09-24 09:36:38,674 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.9796ms.
+INFO  2019-09-24 09:36:38,674 [10   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 1.9241ms.
+INFO  2019-09-24 09:36:39,042 [5    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-24 09:36:39,052 [5    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 665.4212ms
+INFO  2019-09-24 09:36:39,094 [5    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1707.3565ms 302 
+INFO  2019-09-24 09:36:39,098 [4    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-09-24 09:36:39,098 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 712.4751ms
+INFO  2019-09-24 09:36:39,098 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1712.8645ms 302 
+INFO  2019-09-24 09:36:39,105 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-09-24 09:36:39,114 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 8.1726ms 301 
+INFO  2019-09-24 09:36:39,148 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-09-24 09:36:39,194 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 46.0378ms 200 text/html
+INFO  2019-09-24 09:36:39,378 [10   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-09-24 09:36:39,440 [10   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:36:39,791 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 412.9471ms 200 application/json;charset=utf-8
+INFO  2019-09-24 09:36:52,442 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/TokenAuth/Authenticate application/json 53
+INFO  2019-09-24 09:36:52,471 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Authenticate", controller = "TokenAuth", area = ""}. Executing action MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core)
+INFO  2019-09-24 09:36:52,755 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core) with arguments (MMK.SmartSystem.Models.TokenAuth.AuthenticateModel) - Validation state: Valid
+INFO  2019-09-24 09:36:54,567 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1035.2607ms.
+INFO  2019-09-24 09:36:54,840 [4    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:36:54,859 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core) in 2387.2751ms
+INFO  2019-09-24 09:36:54,859 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 2417.7238ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:36:54,892 [11   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/AbpUserConfiguration/GetAll  
+INFO  2019-09-24 09:36:54,893 [11   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:36:55,088 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpUserConfiguration", area = ""}. Executing action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore)
+INFO  2019-09-24 09:36:55,090 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) - Validation state: Valid
+INFO  2019-09-24 09:36:56,292 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore), returned result Microsoft.AspNetCore.Mvc.JsonResult in 1201.5687ms.
+INFO  2019-09-24 09:36:56,610 [4    ] matters.Json.Internal.JsonResultExecutor - Executing JsonResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:36:56,631 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) in 1542.9256ms
+INFO  2019-09-24 09:36:56,632 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1739.1794ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:36:57,555 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/api/services/app/User/Get?Id=3  
+INFO  2019-09-24 09:36:57,555 [7    ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:36:57,570 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Get", controller = "User"}. Executing action MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application)
+INFO  2019-09-24 09:36:57,636 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application) with arguments (Abp.Application.Services.Dto.EntityDto`1[System.Int64]) - Validation state: Valid
+INFO  2019-09-24 09:36:58,011 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 375.2389ms.
+INFO  2019-09-24 09:36:58,249 [4    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:36:58,254 [4    ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application) in 684.4616ms
+INFO  2019-09-24 09:36:58,254 [4    ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 699.5006ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:37:13,992 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/TokenAuth/Authenticate application/json 53
+INFO  2019-09-24 09:37:13,996 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Authenticate", controller = "TokenAuth", area = ""}. Executing action MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core)
+INFO  2019-09-24 09:37:14,011 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core) with arguments (MMK.SmartSystem.Models.TokenAuth.AuthenticateModel) - Validation state: Valid
+INFO  2019-09-24 09:37:14,562 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 550.7273ms.
+INFO  2019-09-24 09:37:14,802 [18   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:14,802 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core) in 805.6855ms
+INFO  2019-09-24 09:37:14,802 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 810.2342ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:37:14,827 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/AbpUserConfiguration/GetAll  
+INFO  2019-09-24 09:37:14,828 [12   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:37:14,830 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpUserConfiguration", area = ""}. Executing action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore)
+INFO  2019-09-24 09:37:14,831 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) - Validation state: Valid
+INFO  2019-09-24 09:37:14,836 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore), returned result Microsoft.AspNetCore.Mvc.JsonResult in 5.1514ms.
+INFO  2019-09-24 09:37:15,040 [18   ] matters.Json.Internal.JsonResultExecutor - Executing JsonResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:15,040 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) in 209.8827ms
+INFO  2019-09-24 09:37:15,040 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 212.8683ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:37:15,108 [12   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/api/services/app/User/Get?Id=3  
+INFO  2019-09-24 09:37:15,108 [12   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:37:15,110 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Get", controller = "User"}. Executing action MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application)
+INFO  2019-09-24 09:37:15,112 [12   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application) with arguments (Abp.Application.Services.Dto.EntityDto`1[System.Int64]) - Validation state: Valid
+INFO  2019-09-24 09:37:15,351 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 239.0063ms.
+INFO  2019-09-24 09:37:15,587 [18   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:15,588 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application) in 476.6349ms
+INFO  2019-09-24 09:37:15,589 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 481.1238ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:37:26,552 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/services/app/User/ChangeLanguage application/json 21
+INFO  2019-09-24 09:37:26,552 [7    ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:37:26,557 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "ChangeLanguage", controller = "User"}. Executing action MMK.SmartSystem.Users.UserAppService.ChangeLanguage (MMK.SmartSystem.Application)
+INFO  2019-09-24 09:37:26,560 [7    ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Users.UserAppService.ChangeLanguage (MMK.SmartSystem.Application) with arguments (MMK.SmartSystem.Users.Dto.ChangeUserLanguageDto) - Validation state: Valid
+INFO  2019-09-24 09:37:26,840 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Users.UserAppService.ChangeLanguage (MMK.SmartSystem.Application), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 279.7649ms.
+INFO  2019-09-24 09:37:27,092 [18   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:27,093 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Users.UserAppService.ChangeLanguage (MMK.SmartSystem.Application) in 535.4586ms
+INFO  2019-09-24 09:37:27,093 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 541.0522ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:37:27,120 [7    ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/AbpUserConfiguration/GetAll  
+INFO  2019-09-24 09:37:27,120 [7    ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:37:27,683 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpUserConfiguration", area = ""}. Executing action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore)
+INFO  2019-09-24 09:37:27,684 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) - Validation state: Valid
+INFO  2019-09-24 09:37:27,836 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore), returned result Microsoft.AspNetCore.Mvc.JsonResult in 152.1743ms.
+INFO  2019-09-24 09:37:28,084 [18   ] matters.Json.Internal.JsonResultExecutor - Executing JsonResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:28,085 [18   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) in 401.4286ms
+INFO  2019-09-24 09:37:28,085 [18   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 964.9774ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:37:29,335 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/services/app/User/ChangeLanguage application/json 26
+INFO  2019-09-24 09:37:29,335 [14   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:37:29,531 [22   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "ChangeLanguage", controller = "User"}. Executing action MMK.SmartSystem.Users.UserAppService.ChangeLanguage (MMK.SmartSystem.Application)
+INFO  2019-09-24 09:37:29,532 [22   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Users.UserAppService.ChangeLanguage (MMK.SmartSystem.Application) with arguments (MMK.SmartSystem.Users.Dto.ChangeUserLanguageDto) - Validation state: Valid
+INFO  2019-09-24 09:37:29,726 [22   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Users.UserAppService.ChangeLanguage (MMK.SmartSystem.Application), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 193.5647ms.
+INFO  2019-09-24 09:37:29,966 [22   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:29,966 [22   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Users.UserAppService.ChangeLanguage (MMK.SmartSystem.Application) in 435.5699ms
+INFO  2019-09-24 09:37:29,967 [22   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 631.7294ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:37:29,997 [20   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/AbpUserConfiguration/GetAll  
+INFO  2019-09-24 09:37:29,998 [20   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:37:30,193 [22   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpUserConfiguration", area = ""}. Executing action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore)
+INFO  2019-09-24 09:37:30,194 [22   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) - Validation state: Valid
+INFO  2019-09-24 09:37:30,198 [22   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore), returned result Microsoft.AspNetCore.Mvc.JsonResult in 4.7408ms.
+INFO  2019-09-24 09:37:30,400 [22   ] matters.Json.Internal.JsonResultExecutor - Executing JsonResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:30,400 [22   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) in 207.4047ms
+INFO  2019-09-24 09:37:30,401 [22   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 403.9261ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:37:44,317 [20   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/TokenAuth/Authenticate application/json 53
+INFO  2019-09-24 09:37:44,317 [20   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:37:44,320 [20   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "Authenticate", controller = "TokenAuth", area = ""}. Executing action MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core)
+INFO  2019-09-24 09:37:44,322 [20   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core) with arguments (MMK.SmartSystem.Models.TokenAuth.AuthenticateModel) - Validation state: Valid
+INFO  2019-09-24 09:37:45,723 [21   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1401.6742ms.
+INFO  2019-09-24 09:37:46,171 [21   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:46,171 [21   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Controllers.TokenAuthController.Authenticate (MMK.SmartSystem.Web.Core) in 1851.1731ms
+INFO  2019-09-24 09:37:46,171 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 1854.4314ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:37:46,187 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/AbpUserConfiguration/GetAll  
+INFO  2019-09-24 09:37:46,188 [14   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:37:46,194 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpUserConfiguration", area = ""}. Executing action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore)
+INFO  2019-09-24 09:37:46,195 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) - Validation state: Valid
+INFO  2019-09-24 09:37:46,206 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore), returned result Microsoft.AspNetCore.Mvc.JsonResult in 10.6168ms.
+INFO  2019-09-24 09:37:46,558 [21   ] matters.Json.Internal.JsonResultExecutor - Executing JsonResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:46,559 [21   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpUserConfigurationController.GetAll (Abp.AspNetCore) in 364.6353ms
+INFO  2019-09-24 09:37:46,559 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 372.2074ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:37:46,571 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 GET http://localhost:21021/api/services/app/User/Get?Id=3  
+INFO  2019-09-24 09:37:46,571 [14   ] uthentication.JwtBearer.JwtBearerHandler - Successfully validated the token.
+INFO  2019-09-24 09:37:46,573 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Get", controller = "User"}. Executing action MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application)
+INFO  2019-09-24 09:37:46,574 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application) with arguments (Abp.Application.Services.Dto.EntityDto`1[System.Int64]) - Validation state: Valid
+INFO  2019-09-24 09:37:47,002 [21   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action method MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 427.8185ms.
+INFO  2019-09-24 09:37:47,247 [21   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:47,247 [21   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.SmartSystem.Users.UserAppService.Get (MMK.SmartSystem.Application) in 673.4273ms
+INFO  2019-09-24 09:37:47,247 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 675.9713ms 200 application/json; charset=utf-8
+INFO  2019-09-24 09:37:47,272 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/services/app/WebRoute/Navigate?url=%2F application/json; charset=utf-8 0
+INFO  2019-09-24 09:37:47,272 [23   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/services/app/WebRoute/Navigate application/json; charset=utf-8 0
+INFO  2019-09-24 09:37:47,277 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Navigate", controller = "WebRoute"}. Executing action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application)
+INFO  2019-09-24 09:37:47,277 [23   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Navigate", controller = "WebRoute"}. Executing action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application)
+INFO  2019-09-24 09:37:47,290 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) with arguments (/) - Validation state: Valid
+INFO  2019-09-24 09:37:47,291 [23   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) with arguments () - Validation state: Valid
+ERROR 2019-09-24 09:37:47,577 [21   ] Mvc.ExceptionHandling.AbpExceptionFilter - 试图加载格式不正确的程序。 (Exception from HRESULT: 0x8007000B)
+System.BadImageFormatException: 试图加载格式不正确的程序。 (Exception from HRESULT: 0x8007000B)
+   at Focas1.cnc_allclibhndl3(Object ip, UInt16 port, Int32 timeout, UInt16& FlibHndl)
+   at MMK.SmartSystem.RealTime.EventHandlers.RouteEventHandler.HandleEvent(RouteEventData eventData) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.RealTime\EventHandlers\RouteEventHandler.cs:line 22
+--- End of stack trace from previous location where exception was thrown ---
+   at Abp.Events.Bus.EventBus.Trigger(Type eventType, Object eventSource, IEventData eventData) in D:\Github\aspnetboilerplate\src\Abp\Events\Bus\EventBus.cs:line 279
+   at MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate(String url) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\module\MMK.CNC.Application\SystemClient\WebApp\WebRouteApplicationService.cs:line 18
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.<>c__DisplayClass33_0.<WrapVoidMethod>b__0(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.VoidResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+ERROR 2019-09-24 09:37:47,577 [22   ] Mvc.ExceptionHandling.AbpExceptionFilter - 试图加载格式不正确的程序。 (Exception from HRESULT: 0x8007000B)
+System.BadImageFormatException: 试图加载格式不正确的程序。 (Exception from HRESULT: 0x8007000B)
+   at Focas1.cnc_allclibhndl3(Object ip, UInt16 port, Int32 timeout, UInt16& FlibHndl)
+   at MMK.SmartSystem.RealTime.EventHandlers.RouteEventHandler.HandleEvent(RouteEventData eventData) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.RealTime\EventHandlers\RouteEventHandler.cs:line 22
+--- End of stack trace from previous location where exception was thrown ---
+   at Abp.Events.Bus.EventBus.Trigger(Type eventType, Object eventSource, IEventData eventData) in D:\Github\aspnetboilerplate\src\Abp\Events\Bus\EventBus.cs:line 279
+   at MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate(String url) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\module\MMK.CNC.Application\SystemClient\WebApp\WebRouteApplicationService.cs:line 18
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.<>c__DisplayClass33_0.<WrapVoidMethod>b__0(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.VoidResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2019-09-24 09:37:47,593 [21   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:47,593 [22   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:37:47,599 [21   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) in 322.372ms
+INFO  2019-09-24 09:37:47,599 [22   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) in 322.6601ms
+INFO  2019-09-24 09:37:47,600 [21   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 327.6348ms 500 application/json; charset=utf-8
+INFO  2019-09-24 09:37:47,600 [22   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 327.8088ms 500 application/json; charset=utf-8
+INFO  2019-09-24 09:38:01,349 [14   ] soft.AspNetCore.Hosting.Internal.WebHost - Request starting HTTP/1.1 POST http://localhost:21021/api/services/app/WebRoute/Navigate?url=http%3A%2F%2Fwww.baidu.com application/json; charset=utf-8 0
+INFO  2019-09-24 09:38:01,352 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Route matched with {area = "app", action = "Navigate", controller = "WebRoute"}. Executing action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application)
+INFO  2019-09-24 09:38:01,353 [14   ] ore.Mvc.Internal.ControllerActionInvoker - Executing action method MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) with arguments (http://www.baidu.com) - Validation state: Valid
+ERROR 2019-09-24 09:38:01,564 [22   ] Mvc.ExceptionHandling.AbpExceptionFilter - 试图加载格式不正确的程序。 (Exception from HRESULT: 0x8007000B)
+System.BadImageFormatException: 试图加载格式不正确的程序。 (Exception from HRESULT: 0x8007000B)
+   at Focas1.cnc_allclibhndl3(Object ip, UInt16 port, Int32 timeout, UInt16& FlibHndl)
+   at MMK.SmartSystem.RealTime.EventHandlers.RouteEventHandler.HandleEvent(RouteEventData eventData) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.RealTime\EventHandlers\RouteEventHandler.cs:line 22
+--- End of stack trace from previous location where exception was thrown ---
+   at Abp.Events.Bus.EventBus.Trigger(Type eventType, Object eventSource, IEventData eventData) in D:\Github\aspnetboilerplate\src\Abp\Events\Bus\EventBus.cs:line 279
+   at MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate(String url) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\module\MMK.CNC.Application\SystemClient\WebApp\WebRouteApplicationService.cs:line 18
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.<>c__DisplayClass33_0.<WrapVoidMethod>b__0(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.VoidResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextExceptionFilterAsync()
+INFO  2019-09-24 09:38:01,566 [22   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-09-24 09:38:01,566 [22   ] ore.Mvc.Internal.ControllerActionInvoker - Executed action MMK.CNC.Application.SystemClient.WebApp.WebRouteApplicationService.Navigate (MMK.CNC.Application) in 214.1681ms
+INFO  2019-09-24 09:38:01,567 [22   ] soft.AspNetCore.Hosting.Internal.WebHost - Request finished in 217.0492ms 500 application/json; charset=utf-8
