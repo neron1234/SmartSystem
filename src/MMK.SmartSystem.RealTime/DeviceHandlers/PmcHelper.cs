@@ -39,14 +39,14 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                         if (itemModel.Bit.HasValue == false) message = "无法获得信息,Bool型地址没有配置BIT位";
                         else
                         {
-                            var area = (int)Math.Ceiling((double)itemModel.StartAdr / 4.0);
+                            var area = (int)Math.Ceiling((double)itemModel.RelStartAdr / 4.0);
                             if (area >= data.Length)
                             {
                                 message = "无法获得信息,Bool型地址超出读取范围";
                             }
                             else
                             {
-                                var area_rem = itemModel.StartAdr % 4;
+                                var area_rem = itemModel.RelStartAdr % 4;
 
                                 int bd = (int)(0x01 << area_rem * 8 + itemModel.Bit.Value);
                                 var res = (data[area] & bd) > 0;
@@ -61,14 +61,14 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                     break;
                 case "System.Byte":
                     {
-                        var area = (int)Math.Ceiling((double)itemModel.StartAdr / 4.0);
+                        var area = (int)Math.Ceiling((double)itemModel.RelStartAdr / 4.0);
                         if (area >= data.Length)
                         {
                             message = "无法获得信息,Byte型地址超出读取范围";
                         }
                         else
                         {
-                            var area_rem = itemModel.StartAdr % 4;
+                            var area_rem = itemModel.RelStartAdr % 4;
                             int bd = (int)(0x0F << area_rem * 8);
 
                             var res = (byte)((data[area] >> area_rem * 8) & 0x0F);
@@ -81,14 +81,14 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                     break;
                 case "System.Int16":
                     {
-                        var area = (int)Math.Ceiling((double)itemModel.StartAdr / 4.0);
+                        var area = (int)Math.Ceiling((double)itemModel.RelStartAdr / 4.0);
                         if (area >= data.Length)
                         {
                             message = "无法获得信息,Word型地址超出读取范围";
                         }
                         else
                         {
-                            var area_rem = itemModel.StartAdr % 4;
+                            var area_rem = itemModel.RelStartAdr % 4;
                             if(area_rem==0)
                             {
                                 var res = (short)(data[area] & 0xFF);
@@ -112,14 +112,14 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                     break;
                 case "System.Int32":
                     {
-                        var area = (int)Math.Ceiling((double)itemModel.StartAdr / 4.0);
+                        var area = (int)Math.Ceiling((double)itemModel.RelStartAdr / 4.0);
                         if (area >= data.Length)
                         {
                             message = "无法获得信息,Word型地址超出读取范围";
                         }
                         else
                         {
-                            var area_rem = itemModel.StartAdr % 4;
+                            var area_rem = itemModel.RelStartAdr % 4;
                             if (area_rem == 0)
                             {
                                 var res = data[area];

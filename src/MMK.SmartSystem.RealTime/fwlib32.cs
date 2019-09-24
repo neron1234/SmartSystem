@@ -7,7 +7,7 @@
 /*                                                                   */
 /*-------------------------------------------------------------------*/
 
-#define LEAVE_OLD_STYLE
+#define FS30D
 
 using System;
 using System.Runtime.InteropServices;

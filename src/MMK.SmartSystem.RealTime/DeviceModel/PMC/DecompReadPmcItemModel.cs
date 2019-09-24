@@ -12,7 +12,7 @@ namespace MMK.SmartSystem.RealTime.DeviceModel
 
         public Type DataType { get; set; }
 
-        public short StartAdr { get; set; }
+        public short RelStartAdr { get; set; }
 
         public ushort? Bit { get; set; }
 

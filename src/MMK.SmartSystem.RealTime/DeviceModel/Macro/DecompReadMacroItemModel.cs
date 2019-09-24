@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMK.SmartSystem.RealTime.DeviceModel.Macro
+namespace MMK.SmartSystem.RealTime.DeviceModel
 {
     public class DecompReadMacroItemModel
     {
         public string Id { get; set; }
 
-        public short Number { get; set; }
+        public short RelStartNum { get; set; }
     }
 }
