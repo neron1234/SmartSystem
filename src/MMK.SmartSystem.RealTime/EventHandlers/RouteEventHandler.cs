@@ -17,9 +17,7 @@ namespace MMK.SmartSystem.RealTime.EventHandlers
             hubContext = service.GetService(typeof(IHubContext<RouteHub>)) as IHubContext<RouteHub>;
         }
         public void HandleEvent(RouteEventData eventData)
-        {
-            ushort flib;
-            var ret = Focas1.cnc_allclibhndl3("192.168.1.1", 8193, 10, out flib);
+        {           
             hubContext.Clients.All.SendAsync(RouteHub.ClientAction, eventData.Url);
         }
     }

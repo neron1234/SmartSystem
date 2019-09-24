@@ -1,74 +1,87 @@
-﻿using Abp.BackgroundJobs;
-using Abp.Dependency;
-using System.Collections.Concurrent;
-using Abp.Events.Bus.Handlers;
-using Microsoft.AspNetCore.SignalR;
-using MMK.SmartSystem.RealTime.Hubs;
-using MMK.SmartSystem.WebCommon.DeviceModel;
-using MMK.SmartSystem.WebCommon.EventModel;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MMK.SmartSystem.CNC.Host.DeviceHandlers;
+using MMK.SmartSystem.CNC.Host.DeviceModel;
 using Newtonsoft.Json;
-using MMK.SmartSystem.RealTime.DeviceModel;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MMK.SmartSystem.RealTime.DeviceHandlers
+namespace MMK.SmartSystem.CNC.Host.CNC
 {
-
-    public class CncEventHandler : BackgroundJob<CncEventData>, ITransientDependency
+    public class CncEventData 
     {
-        string m_ip = "192.168.21.1";
+        public CncEventEnum Kind { get; set; }
+
+        public string Para { get; set; }
+    }
+
+    public enum CncEventEnum
+    {
+        ReadMacro,
+        ReadPmc,
+        Position,
+        LampStatus,
+        AlarmMessage,
+        NoticeMessage,
+        ProgramInfo,
+        ModelInfo,
+        CycleTime,
+        WorkpartNum,
+    }
+    public class CncHandler
+    {
+        string m_ip = "192.168.21.177";
         ushort m_port = 8193;
         int m_timeout = 10;
         double m_increment = 1000;
         ushort m_flib = 0;
         int m_maxConn = 1;
 
-        BlockingCollection<CncEventData> m_EventDatas = new BlockingCollection<CncEventData>();
+        public event Action<string> ShowErrorLogEvent;
+        public event Action<object> GetResultEvent;
+        public static BlockingCollection<CncEventData> m_EventDatas = new BlockingCollection<CncEventData>();
 
-        static CncEventHandler() {
 
-        }
-        
-        public void HandleEvent(CncEventData eventData)
-        {
 
-        }
-
-        public override void Execute(CncEventData args)
+        public void Connect()
         {
             var ret = ConnectHelper.BuildConnect(ref m_flib, m_ip, m_port, m_timeout);
 
-            while (true)
+        }
+
+        public void Execute()
+        {
+
+            List<CncEventData> tempEventDatas = new List<CncEventData>(m_EventDatas.ToArray());
+
+            tempEventDatas.ForEach(item =>
             {
-                List<CncEventData> tempEventDatas = new List<CncEventData>(m_EventDatas.ToArray());
-
-                tempEventDatas.ForEach(item =>
+                string info = "";
+                switch (item.Kind)
                 {
-                    switch (item.Kind)
-                    {
-                        case CncEventEnum.ReadPmc:
-                            ReadPmcHandle(ref m_flib, item.Para);
-                            break;
-                        case CncEventEnum.ReadMacro:
-                            ReadMacroHandle(ref m_flib, item.Para);
-                            break;
-                        case CncEventEnum.Position:
-                            ReadPositionHandle(ref m_flib, item.Para);
-                            break;
-                        case CncEventEnum.AlarmMessage:
-                            ReadAlarmHandle(ref m_flib, item.Para);
-                            break;
-                        case CncEventEnum.NoticeMessage:
-                            ReadNoticeHandle(ref m_flib, item.Para);
-                            break;
-                        default:
-                            break;
-                    }
-                });
+                    case CncEventEnum.ReadPmc:
+                        info = ReadPmcHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadMacro:
+                        info = ReadMacroHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.Position:
+                        info = ReadPositionHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.AlarmMessage:
+                        info = ReadAlarmHandle(ref m_flib, item.Para);
+                        break;
+                    default:
+                        break;
+                }
+                if (info?.Length >= 1)
+                {
+                    ShowErrorLogEvent?.Invoke(info);
+                }
 
-                System.Threading.Thread.Sleep(100);
-            }
+            });
         }
 
         private string ReadPmcHandle(ref ushort flib, string para)
@@ -98,14 +111,14 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                 {
                     datas.Add(item.AdrType, data);
                 }
-                
+
             }
-                        
-            foreach(var item in paraModel.Decompilers)
+
+            foreach (var item in paraModel.Decompilers)
             {
                 string data = "";
-                var ret_dec = PmcHelper.DecompilerReadPmcInfo(datas[item.AdrType], item,ref data);
-                if(ret_dec!=null)
+                var ret_dec = PmcHelper.DecompilerReadPmcInfo(datas[item.AdrType], item, ref data);
+                if (ret_dec != null)
                 {
                     message = ret_dec;
                 }
@@ -115,10 +128,10 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                     {
                         Id = item.Id,
                         Value = data
-                    }); 
+                    });
                 }
             }
-
+            GetResultEvent?.Invoke(res);
             return message;
 
         }
@@ -132,7 +145,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
 
             var datas = new double[paraModel.Quantity];
 
-            var ret = MacroHelper.ReadMacroRange(flib, paraModel.StartNum, paraModel.Quantity,ref datas);
+            var ret = MacroHelper.ReadMacroRange(flib, paraModel.StartNum, paraModel.Quantity, ref datas);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
@@ -160,6 +173,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                     });
                 }
             }
+            GetResultEvent?.Invoke(res);
 
             return message;
 
@@ -208,10 +222,11 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                     res.Add(new ReadPositionResultItemModel()
                     {
                         Id = item.Id,
-                        Value = (double)data/m_increment
+                        Value = (double)data / m_increment
                     });
                 }
             }
+            GetResultEvent?.Invoke(res);
 
             return message;
 
@@ -238,31 +253,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             {
                 message = ret.Item2;
             }
-
-            return message;
-        }
-
-        private string ReadNoticeHandle(ref ushort flib, string para)
-        {
-            string message = null;
-
-            var res = new List<ReadNoticeResultItemModel>();
-
-            var ret = NoticeHelper.ReadNoticeRange(flib, ref res);
-            if (ret.Item1 == -16)
-            {
-                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
-
-                if (ret_conn == 0)
-                {
-                    ret = NoticeHelper.ReadNoticeRange(flib, ref res);
-                }
-            }
-
-            if (ret.Item1 != 0)
-            {
-                message = ret.Item2;
-            }
+            GetResultEvent?.Invoke(res);
 
             return message;
         }
