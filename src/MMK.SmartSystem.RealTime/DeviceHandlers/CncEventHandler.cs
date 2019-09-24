@@ -17,7 +17,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
 
     public class CncEventHandler : BackgroundJob<CncEventData>, ITransientDependency
     {
-        string m_ip = "192.168.1.1";
+        string m_ip = "192.168.21.1";
         ushort m_port = 8193;
         int m_timeout = 10;
         double m_increment = 1000;
@@ -58,6 +58,9 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                             break;
                         case CncEventEnum.AlarmMessage:
                             ReadAlarmHandle(ref m_flib, item.Para);
+                            break;
+                        case CncEventEnum.NoticeMessage:
+                            ReadNoticeHandle(ref m_flib, item.Para);
                             break;
                         default:
                             break;
@@ -228,6 +231,31 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                 if (ret_conn == 0)
                 {
                     ret = AlarmHelper.ReadAlarmRange(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+
+            return message;
+        }
+
+        private string ReadNoticeHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new List<ReadNoticeResultItemModel>();
+
+            var ret = NoticeHelper.ReadNoticeRange(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = NoticeHelper.ReadNoticeRange(flib, ref res);
                 }
             }
 

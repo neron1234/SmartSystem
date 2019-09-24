@@ -17,7 +17,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             if (ret != 0) return new Tuple<short, string>(ret, $"读取变量错误,返回:{ret}");
 
             
-            return new Tuple<short, string>(ret, $"读取PMC信号错误,返回:{ret}");
+            return new Tuple<short, string>(ret, $"读取变量错误,返回:{ret}");
         }
 
         public static string DecompilerReadMacroInfo(double[] data, DecompReadMacroItemModel itemModel,ref double val)
