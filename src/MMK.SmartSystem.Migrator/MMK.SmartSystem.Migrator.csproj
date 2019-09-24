@@ -1,6 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <AssemblyName>MMK.SmartSystem.Migrator</AssemblyName>
     <OutputType>Exe</OutputType>
@@ -15,7 +15,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Abp.Castle.Log4Net" Version="4.3.0" />
+    <PackageReference Include="Abp.Castle.Log4Net" Version="4.9.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MMK.SmartSystem.Core\MMK.SmartSystem.Core.csproj" />

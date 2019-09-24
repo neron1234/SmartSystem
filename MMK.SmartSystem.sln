@@ -41,9 +41,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{984C2D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMK.SmartSystem.LE.Host", "client\MMK.SmartSystem.LE.Host\MMK.SmartSystem.LE.Host.csproj", "{67FEE39F-ED71-4EB1-B5D2-549BFE2A8971}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMK.SmartSystem.RealTime", "src\MMK.SmartSystem.RealTime\MMK.SmartSystem.RealTime.csproj", "{6A58AB18-9F7C-4C69-93E8-1F22899AC2B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.RealTime", "src\MMK.SmartSystem.RealTime\MMK.SmartSystem.RealTime.csproj", "{6A58AB18-9F7C-4C69-93E8-1F22899AC2B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMK.SmartSystem.WebCommon", "src\MMK.SmartSystem.WebCommon\MMK.SmartSystem.WebCommon.csproj", "{A7A51F2B-A45E-489D-B8B2-2A42BAAD8E1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MMK.SmartSystem.WebCommon", "src\MMK.SmartSystem.WebCommon\MMK.SmartSystem.WebCommon.csproj", "{A7A51F2B-A45E-489D-B8B2-2A42BAAD8E1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
