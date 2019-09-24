@@ -27,7 +27,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             return new Tuple<short, string>(ret, $"读取PMC信号错误,返回:{ret}");
         }
 
-        public static string DecompilerReadPmcInfo(int[] data, DecompReadPmcItemModel itemModel, string val)
+        public static string DecompilerReadPmcInfo(int[] data, DecompReadPmcItemModel itemModel,ref string val)
         {
             string message;
             if (data == null) return "没法获得信息,读取的信息种类不包含该信息";
