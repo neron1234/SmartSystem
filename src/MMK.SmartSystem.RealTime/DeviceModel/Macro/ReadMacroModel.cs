@@ -10,7 +10,7 @@ namespace MMK.SmartSystem.RealTime.DeviceModel
     {
         public ushort StartNum { get; set; }
 
-        public ushort Quantity { get; set; }
+        public int Quantity { get; set; }
 
         public List<DecompReadMacroItemModel> Decompilers { get; set; } = new List<DecompReadMacroItemModel>();
     }

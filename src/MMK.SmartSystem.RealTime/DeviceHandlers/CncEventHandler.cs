@@ -20,6 +20,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
         string m_ip = "192.168.1.1";
         ushort m_port = 8193;
         int m_timeout = 10;
+        double m_increment = 1000;
         ushort m_flib = 0;
         int m_maxConn = 1;
 
@@ -48,6 +49,15 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                     {
                         case CncEventEnum.ReadPmc:
                             ReadPmcHandle(ref m_flib, item.Para);
+                            break;
+                        case CncEventEnum.ReadMacro:
+                            ReadMacroHandle(ref m_flib, item.Para);
+                            break;
+                        case CncEventEnum.Position:
+                            ReadPositionHandle(ref m_flib, item.Para);
+                            break;
+                        case CncEventEnum.AlarmMessage:
+                            ReadAlarmHandle(ref m_flib, item.Para);
                             break;
                         default:
                             break;
@@ -91,7 +101,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             foreach(var item in paraModel.Decompilers)
             {
                 string data = "";
-                var ret_dec = PmcHelper.DecompilerReadPmcInfo(datas[item.AdrType], item, data);
+                var ret_dec = PmcHelper.DecompilerReadPmcInfo(datas[item.AdrType], item,ref data);
                 if(ret_dec!=null)
                 {
                     message = ret_dec;
@@ -110,6 +120,123 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
 
         }
 
+        private string ReadMacroHandle(ref ushort flib, string para)
+        {
+            string message = null;
 
+            var paraModel = JsonConvert.DeserializeObject<ReadMacroModel>(para);
+            var res = new List<ReadMacroResultItemModel>();
+
+            var datas = new double[paraModel.Quantity];
+
+            var ret = MacroHelper.ReadMacroRange(flib, paraModel.StartNum, paraModel.Quantity,ref datas);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = MacroHelper.ReadMacroRange(flib, paraModel.StartNum, paraModel.Quantity, ref datas);
+                }
+            }
+
+            foreach (var item in paraModel.Decompilers)
+            {
+                double data = 0;
+                var ret_dec = MacroHelper.DecompilerReadMacroInfo(datas, item, ref data);
+                if (ret_dec != null)
+                {
+                    message = ret_dec;
+                }
+                else
+                {
+                    res.Add(new ReadMacroResultItemModel()
+                    {
+                        Id = item.Id,
+                        Value = data
+                    });
+                }
+            }
+
+            return message;
+
+        }
+
+        private string ReadPositionHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var paraModel = JsonConvert.DeserializeObject<ReadPositionModel>(para);
+            var res = new List<ReadPositionResultItemModel>();
+
+            Dictionary<CncPositionTypeEnum, int[]> datas = new Dictionary<CncPositionTypeEnum, int[]>();
+
+            foreach (var item in paraModel.Readers)
+            {
+                int[] data = new int[Focas1.MAX_AXIS];
+                var ret = PositionHelper.ReadPositionRange(flib, item.PositionType, ref data);
+                if (ret.Item1 == -16)
+                {
+                    var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                    if (ret_conn == 0)
+                    {
+                        ret = PositionHelper.ReadPositionRange(flib, item.PositionType, ref data);
+                    }
+                }
+
+                if (ret.Item1 == 0)
+                {
+                    datas.Add(item.PositionType, data);
+                }
+
+            }
+
+            foreach (var item in paraModel.Decompilers)
+            {
+                int data = 0;
+                var ret_dec = PositionHelper.DecompilerReadPositionInfo(datas[item.PositionType], item, ref data);
+                if (ret_dec != null)
+                {
+                    message = ret_dec;
+                }
+                else
+                {
+                    res.Add(new ReadPositionResultItemModel()
+                    {
+                        Id = item.Id,
+                        Value = (double)data/m_increment
+                    });
+                }
+            }
+
+            return message;
+
+        }
+
+        private string ReadAlarmHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new List<ReadAlarmResultItemModel>();
+
+            var ret = AlarmHelper.ReadAlarmRange(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = AlarmHelper.ReadAlarmRange(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+
+            return message;
+        }
     }
 }
