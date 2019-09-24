@@ -6,7 +6,15 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public enum CncEventEnum
     {
-        IP,
-        READPMC,
+        ReadMacro,
+        ReadPmc,
+        Position,
+        LampStatus,
+        AlarmMessage,
+        NoticeMessage,
+        ProgramInfo,
+        ModelInfo,
+        CycleTime,
+        WorkpartNum,
     }
 }
