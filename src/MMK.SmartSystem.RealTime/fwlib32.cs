@@ -7,7 +7,7 @@
 /*                                                                   */
 /*-------------------------------------------------------------------*/
 
-#define LEAVE_OLD_STYLE
+#define FS30D
 
 using System;
 using System.Runtime.InteropServices;
@@ -1419,6 +1419,21 @@ public class Focas1
         public IODBMR_data data3=new IODBMR_data();
         public IODBMR_data data4=new IODBMR_data();
         public IODBMR_data data5=new IODBMR_data();
+        public IODBMR_data data6 = new IODBMR_data();
+        public IODBMR_data data7 = new IODBMR_data();
+        public IODBMR_data data8 = new IODBMR_data();
+        public IODBMR_data data9 = new IODBMR_data();
+        public IODBMR_data data10 = new IODBMR_data();
+        public IODBMR_data data11 = new IODBMR_data();
+        public IODBMR_data data12 = new IODBMR_data();
+        public IODBMR_data data13 = new IODBMR_data();
+        public IODBMR_data data14 = new IODBMR_data();
+        public IODBMR_data data15 = new IODBMR_data();
+        public IODBMR_data data16 = new IODBMR_data();
+        public IODBMR_data data17 = new IODBMR_data();
+        public IODBMR_data data18 = new IODBMR_data();
+        public IODBMR_data data19 = new IODBMR_data();
+        public IODBMR_data data20 = new IODBMR_data();
     }  /* In case that the number of data is 5 */
     [StructLayout(LayoutKind.Sequential,Pack=4)]
     public class IODBMR
