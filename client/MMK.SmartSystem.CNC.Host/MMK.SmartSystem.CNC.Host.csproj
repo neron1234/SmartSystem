@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8C1C960A-5737-4519-A34B-9E205C30E24C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MMK.SmartSystem.CNC.Host</RootNamespace>
+    <AssemblyName>MMK.SmartSystem.CNC.Host</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CNC\CncHandler.cs" />
+    <Compile Include="CNC\DeviceHandlers\AlarmHelper.cs" />
+    <Compile Include="CNC\DeviceHandlers\ConnectHelper.cs" />
+    <Compile Include="CNC\DeviceHandlers\MacroHelper.cs" />
+    <Compile Include="CNC\DeviceHandlers\PmcHelper.cs" />
+    <Compile Include="CNC\DeviceHandlers\PositionHelper.cs" />
+    <Compile Include="CNC\DeviceModel\Alarm\ReadAlarmResultItemModel.cs" />
+    <Compile Include="CNC\DeviceModel\Macro\DecompReadMacroItemModel.cs" />
+    <Compile Include="CNC\DeviceModel\Macro\ReadMacroModel.cs" />
+    <Compile Include="CNC\DeviceModel\Macro\ReadMacroResultItemModel.cs" />
+    <Compile Include="CNC\DeviceModel\PMC\DecompReadPmcItemModel.cs" />
+    <Compile Include="CNC\DeviceModel\PMC\ReadPmcModel.cs" />
+    <Compile Include="CNC\DeviceModel\PMC\ReadPmcResultItemModel.cs" />
+    <Compile Include="CNC\DeviceModel\PMC\ReadPmcTypeModel.cs" />
+    <Compile Include="CNC\DeviceModel\Position\CncPositionTypeEnum.cs" />
+    <Compile Include="CNC\DeviceModel\Position\DecompReadPositionItemModel.cs" />
+    <Compile Include="CNC\DeviceModel\Position\ReadPositionModel.cs" />
+    <Compile Include="CNC\DeviceModel\Position\ReadPositionResultItemModel.cs" />
+    <Compile Include="CNC\DeviceModel\Position\ReadPositionTypeModel.cs" />
+    <Compile Include="fwlib32.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

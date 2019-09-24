@@ -32,9 +32,9 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             string message;
             if (data == null) return "没法获得信息,读取的信息种类不包含该信息";
 
-            switch(itemModel.DataType.FullName)
+            switch(itemModel.DataType)
             {
-                case "System.Boolean":
+                case DataTypeEnum.Boolean:
                     {
                         if (itemModel.Bit.HasValue == false) message = "无法获得信息,Bool型地址没有配置BIT位";
                         else
@@ -59,7 +59,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                         }
                     }
                     break;
-                case "System.Byte":
+                case DataTypeEnum.Byte:
                     {
                         var area = (int)Math.Ceiling((double)itemModel.RelStartAdr / 4.0);
                         if (area >= data.Length)
@@ -79,7 +79,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                         }
                     }
                     break;
-                case "System.Int16":
+                case DataTypeEnum.Int16:
                     {
                         var area = (int)Math.Ceiling((double)itemModel.RelStartAdr / 4.0);
                         if (area >= data.Length)
@@ -110,7 +110,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                         }
                     }
                     break;
-                case "System.Int32":
+                case DataTypeEnum.Int32:
                     {
                         var area = (int)Math.Ceiling((double)itemModel.RelStartAdr / 4.0);
                         if (area >= data.Length)
