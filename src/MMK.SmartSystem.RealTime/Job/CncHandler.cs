@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
-using MMK.SmartSystem.RealTime.DeviceModel;
 
 namespace MMK.SmartSystem.RealTime.DeviceHandlers
 {
