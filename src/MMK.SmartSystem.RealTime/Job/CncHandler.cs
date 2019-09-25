@@ -21,7 +21,6 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
         int m_timeout = 10;
         double m_increment = 1000;
         ushort m_flib = 0;
-        int m_maxConn = 1;
 
         public event Action<string> ShowErrorLogEvent;
         public event Action<object> GetResultEvent;
@@ -56,6 +55,36 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                         break;
                     case CncEventEnum.ReadAlarm:
                         info = ReadAlarmHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadNotice:
+                        info = ReadNoticeHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadProgramName:
+                        info = ReadProgramNameHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadProgramBlock:
+                        info = ReadProgramBlockHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadProgramStr:
+                        info = ReadProgramStrHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadProgramInfo:
+                        info = ReadProgramInfoHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadModalInfo:
+                        info = ReadModalInfoHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadCycleTime:
+                        info = ReadCycleTimeHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadWorkpartNum:
+                        info = ReadWorkpartNumHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadSpindleSpeed:
+                        info = ReadSpindleSpeedHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadFeedrate:
+                        info = ReadFeedrateHandle(ref m_flib, item.Para);
                         break;
                     default:
                         break;
@@ -230,6 +259,266 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                 if (ret_conn == 0)
                 {
                     ret = AlarmHelper.ReadAlarmRange(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+            GetResultEvent?.Invoke(res);
+
+            return message;
+        }
+
+        private string ReadNoticeHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new List<ReadNoticeResultItemModel>();
+
+            var ret = NoticeHelper.ReadNoticeRange(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = NoticeHelper.ReadNoticeRange(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+            GetResultEvent?.Invoke(res);
+
+            return message;
+        }
+
+        private string ReadProgramNameHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new ReadProgramNameResultModel();
+
+            var ret = ProgramNameHelper.ReadProgramName(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = ProgramNameHelper.ReadProgramName(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+            GetResultEvent?.Invoke(res);
+
+            return message;
+        }
+
+        private string ReadProgramBlockHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new ReadProgramBlockResultModel();
+
+            var ret = ProgramBlockHelper.ReadProgramBlock(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = ProgramBlockHelper.ReadProgramBlock(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+            GetResultEvent?.Invoke(res);
+
+            return message;
+        }
+
+        private string ReadProgramStrHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new ReadProgramStrResultModel();
+
+            var ret = ProgramStrHelper.ReadProgramStr(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = ProgramStrHelper.ReadProgramStr(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+            GetResultEvent?.Invoke(res);
+
+            return message;
+        }
+
+        private string ReadProgramInfoHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new ReadProgramInfoResultModel();
+
+            var ret = ProgramInfoHelper.ReadProgramInfo(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = ProgramInfoHelper.ReadProgramInfo(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+            GetResultEvent?.Invoke(res);
+
+            return message;
+        }
+
+        private string ReadModalInfoHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new ReadModalResultModel();
+
+            var ret = ModalInfoHelper.ReadModalInfo(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = ModalInfoHelper.ReadModalInfo(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+            GetResultEvent?.Invoke(res);
+
+            return message;
+        }
+
+        private string ReadCycleTimeHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new ReadCycleTimeResultModel();
+
+            var ret = CycleTimeHelper.ReadCycleTime(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = CycleTimeHelper.ReadCycleTime(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+            GetResultEvent?.Invoke(res);
+
+            return message;
+        }
+
+        private string ReadWorkpartNumHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new ReadWorkpartNumResultModel();
+
+            var ret = WorkpartNumHelper.ReadWorkpartNum(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = WorkpartNumHelper.ReadWorkpartNum(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+            GetResultEvent?.Invoke(res);
+
+            return message;
+        }
+
+        private string ReadSpindleSpeedHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new ReadSpindleSpeedResultModel();
+
+            var ret = SpindleSpeedHelper.ReadSpindleSpeed(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = SpindleSpeedHelper.ReadSpindleSpeed(flib, ref res);
+                }
+            }
+
+            if (ret.Item1 != 0)
+            {
+                message = ret.Item2;
+            }
+            GetResultEvent?.Invoke(res);
+
+            return message;
+        }
+
+        private string ReadFeedrateHandle(ref ushort flib, string para)
+        {
+            string message = null;
+
+            var res = new ReadFeedrateResultModel();
+
+            var ret = FeedrateHelper.ReadFeedrate(flib, ref res);
+            if (ret.Item1 == -16)
+            {
+                var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+                if (ret_conn == 0)
+                {
+                    ret = FeedrateHelper.ReadFeedrate(flib, ref res);
                 }
             }
 

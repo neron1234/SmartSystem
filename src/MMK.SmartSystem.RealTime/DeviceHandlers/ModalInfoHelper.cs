@@ -32,6 +32,6 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             {
                 return new Tuple<short, string>(ret, $"读取模态信息错误,返回:{ret}");
             }
-}
+        }
     }
 }
