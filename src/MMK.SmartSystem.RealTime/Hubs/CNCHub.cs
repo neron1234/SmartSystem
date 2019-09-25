@@ -48,10 +48,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
             return Task.CompletedTask;
         }
 
-        public void SendMessage(string info)
-        {
-            string dd = info.ToLower();
-        }
+        
 
         public override Task OnConnectedAsync()
         {

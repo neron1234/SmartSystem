@@ -3,6 +3,7 @@ using Abp.Dependency;
 using Microsoft.AspNetCore.SignalR;
 using MMK.SmartSystem.RealTime.DeviceHandlers;
 using MMK.SmartSystem.RealTime.Hubs;
+using MMK.SmartSystem.WebCommon.HubModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace MMK.SmartSystem.RealTime.Job
 
         private void CncHandler_GetResultEvent(object obj)
         {
-            hubContext.Clients.All.SendAsync(CNCHub.GetDataAction, new { data=obj, time=DateTime.Now.ToString("HH:mm:ss.ffff")});
+            hubContext.Clients.All.SendAsync(CNCHub.GetDataAction, new HubResultModel { Data=obj, Time=DateTime.Now.ToString("HH:mm:ss.ffff")});
         }
 
         private void CncHandler_ShowErrorLogEvent(string obj)

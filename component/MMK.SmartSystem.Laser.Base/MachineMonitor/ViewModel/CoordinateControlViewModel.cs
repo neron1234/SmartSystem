@@ -140,6 +140,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor.ViewModel
             ResidualMoveNumber1 = "41241";
             ResidualMoveNumber2 = "12312";
             ResidualMoveNumber3 = "64521";
+
             MachineX = "1412";
             MachineY = "15";
             MachineZ = "124";
