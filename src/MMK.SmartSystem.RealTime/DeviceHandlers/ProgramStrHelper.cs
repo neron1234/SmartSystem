@@ -1,4 +1,4 @@
-﻿using MMK.SmartSystem.RealTime.DeviceModel;
+﻿using MMK.SmartSystem.WebCommon.DeviceModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

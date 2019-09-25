@@ -10,14 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
-using MMK.SmartSystem.RealTime.DeviceModel;
 
 namespace MMK.SmartSystem.RealTime.DeviceHandlers
 {
 
     public class CncHandler
     {
-        string m_ip = "192.168.21.177";
+        string m_ip = "192.168.21.121";
         ushort m_port = 8193;
         int m_timeout = 10;
         double m_increment = 1000;

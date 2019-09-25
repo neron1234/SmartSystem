@@ -9,4 +9,6 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
         // 
         public string Para { get; set; }
     }
+
+  
 }
