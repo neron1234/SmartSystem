@@ -19,7 +19,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "nativeDebugging": true,
-      "use64Bit": false
+      "use64Bit": true
     },
     "MMK.IndustrySystem.Web.Host": {
       "commandName": "Project",

@@ -122,7 +122,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
         public async Task<RequestResult<AbpUserConfiguration>> GetUserConfiguraionAsync()
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/AbpUserConfiguration/GetAll");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/UserConfiguration/GetAll");
 
             var client_ = _httpClient;         
             try
