@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MMK.SmartSystem.RealTime.DeviceModel.Feedrate
+{
+    public class ReadFeedrateResultModel
+    {
+        public string Id { get; set; }
+
+        public int Value { get; set; }
+    }
+}

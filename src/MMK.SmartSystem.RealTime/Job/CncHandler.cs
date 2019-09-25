@@ -52,10 +52,10 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                     case CncEventEnum.ReadMacro:
                         info = ReadMacroHandle(ref m_flib, item.Para);
                         break;
-                    case CncEventEnum.Position:
+                    case CncEventEnum.ReadPosition:
                         info = ReadPositionHandle(ref m_flib, item.Para);
                         break;
-                    case CncEventEnum.AlarmMessage:
+                    case CncEventEnum.ReadAlarm:
                         info = ReadAlarmHandle(ref m_flib, item.Para);
                         break;
                     default:
