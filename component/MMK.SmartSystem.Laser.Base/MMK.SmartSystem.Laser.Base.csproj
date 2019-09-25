@@ -206,6 +206,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl\ToggleButton\Implementation\AnimationButton.cs" />
+    <Compile Include="CustomControl\ToggleButton\Implementation\FlatToggleButton.cs" />
+    <Compile Include="CustomControl\ToggleButton\Implementation\IconToggleButton.cs" />
+    <Compile Include="CustomControl\ToggleButton\Implementation\ZToggleButton.cs" />
     <Compile Include="MachineMonitor\ControlHelp\GridHelper.cs" />
     <Compile Include="MachineMonitor\CoordinateControl.xaml.cs">
       <DependentUpon>CoordinateControl.xaml</DependentUpon>
@@ -249,6 +253,22 @@
     <Page Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\ToggleButton\Themes\AnimationButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\ToggleButton\Themes\DefaultToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\ToggleButton\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\ToggleButton\Themes\IconToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MachineMonitor\CoordinateControl.xaml">
       <SubType>Designer</SubType>

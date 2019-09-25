@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation"
+      xmlns:custom="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
       mc:Ignorable="d" 
       d:DesignHeight="860" d:DesignWidth="1600"
       Title="LaserStatePage" Background="#2a2f34">
@@ -11,6 +12,17 @@
         <Style TargetType="Button" x:Key="FunctionBtnStyle">
             <Setter Property="Width" Value="111"/>
             <Setter Property="Height" Value="111"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Width" Value="115"/>
+                    <Setter Property="Height" Value="115"/>
+                    <Setter Property="BorderBrush" Value="Red"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Width" Value="111"/>
+                    <Setter Property="Height" Value="111"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="NormalBtn" BasedOn="{StaticResource FunctionBtnStyle}" TargetType="Button">
             <Setter Property="BorderBrush" Value="#6baf2f"/>
@@ -106,7 +118,7 @@
             <RowDefinition MaxHeight="64"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Background="#111315" Grid.Row="0">
+        <Grid Background="#111315" Grid.Row="0" >
             <TextBlock Foreground="#4c5d5d" FontSize="26" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0,0,0">其他状态信息</TextBlock>
         </Grid>
         <Grid Grid.Row="1" Margin="30,0,30,30">
@@ -136,10 +148,6 @@
                     <Button Style="{StaticResource NormalBtn}"/>
                     <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
                 </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource NormalBtn}"/>
-                    <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
             </WrapPanel>
             
             <WrapPanel Grid.Row="1" Grid.Column="3" Background="#202328">
@@ -155,13 +163,10 @@
                     <Button Style="{StaticResource WarnBtn}"/>
                     <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
                 </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
-                </StackPanel>
-                <StackPanel>
-                    <Button Style="{StaticResource WarnBtn}"/>
-                    <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="20,0" VerticalAlignment="Center" Text="是否启用：" Foreground="White"/>
+                    <custom:FlatToggleButton Width="100" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                         Background="Blue" IsChecked="False"/>
                 </StackPanel>
             </WrapPanel>
         </Grid>
