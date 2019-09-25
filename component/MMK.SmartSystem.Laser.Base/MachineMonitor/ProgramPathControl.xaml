@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="MMK.SmartSystem.Laser.Base.MachineMonitor.ProgramPathControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineMonitor"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600"  Background="#2a2f34" Foreground="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock Text="12414111Module" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25 0 0 0" FontSize="20"/>
+            <TextBlock Text="[程序路径显示]" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 25 0" FontSize="20"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <RichTextBox Margin="20" Background="#202328" Foreground="#67686d" FontSize="15">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text="2141241412412411421111111 &#x0a;22222222222 &#x0a;22222 &#x0a;314fdkljsdklfjsdjlkdfjkls "/>
+                    </Paragraph>
+                </FlowDocument>
+                <RichTextBox.Effect>
+                    <DropShadowEffect ShadowDepth="0" BlurRadius="25" Color="Black"/>
+                </RichTextBox.Effect>
+            </RichTextBox>
+        </Grid>
+    </Grid>
+</UserControl>

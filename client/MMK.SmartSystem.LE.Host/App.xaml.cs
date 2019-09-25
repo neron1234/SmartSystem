@@ -56,7 +56,7 @@ namespace MMK.SmartSystem.LE.Host
                 {
                     SmartSystemLEConsts.SystemModules.ToList().ForEach((s) => s.MainMenuViews.Where(d => !d.IsLoad).ToList().ForEach(d =>
                     {
-                        if (!d.WebPage)
+                        if (!d.WebPage && d.Page != null)
                         {
                             var type = item.GetType(d.Page);
                             if (type != null)
