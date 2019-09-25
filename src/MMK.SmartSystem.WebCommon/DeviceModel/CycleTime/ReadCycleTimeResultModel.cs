@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMK.SmartSystem.WebCommon.DeviceModel.CycleTime
+namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public class ReadCycleTimeResultModel
     {

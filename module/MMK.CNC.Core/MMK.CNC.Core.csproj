@@ -9,4 +9,8 @@
     <PackageReference Include="Abp.AutoMapper" Version="4.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="LaserLibrary\" />
+  </ItemGroup>
+
 </Project>
