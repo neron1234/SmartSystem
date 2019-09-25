@@ -334,6 +334,10 @@
       <Project>{233a97df-08b0-4635-b0dc-231f84ab10c5}</Project>
       <Name>MMK.SmartSystem.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\MMK.SmartSystem.WebCommon\MMK.SmartSystem.WebCommon.csproj">
+      <Project>{A7A51F2B-A45E-489D-B8B2-2A42BAAD8E1B}</Project>
+      <Name>MMK.SmartSystem.WebCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MachineMonitor\UserControl\" />
