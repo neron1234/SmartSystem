@@ -26,6 +26,14 @@ namespace MMK.SmartSystem.RealTime.Hubs
 
         }
 
+        //public BaseCNCResultModel<ReadProgramListItemResultModel> ReadProgramList(string folder)
+        //{
+        //    ConnectHelper.BuildConnect()
+
+        //    ProgramListHelper.ReadProgramList();
+
+        //}
+
         public Task Refresh(string info)
         {
             List<CncEventData> cncEvents = new List<CncEventData>();
@@ -47,8 +55,6 @@ namespace MMK.SmartSystem.RealTime.Hubs
 
             return Task.CompletedTask;
         }
-
-        
 
         public override Task OnConnectedAsync()
         {
