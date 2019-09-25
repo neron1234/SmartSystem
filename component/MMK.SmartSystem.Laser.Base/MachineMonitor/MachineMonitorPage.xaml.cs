@@ -21,8 +21,7 @@ using Newtonsoft.Json.Linq;
 namespace MMK.SmartSystem.Laser.Base.MachineMonitor
 {
 
-
-    public class DataViewDealModel<T> where T : new()
+    public class DataViewDealModel<T>
     {
         public List<T> InitViewModel(JObject json)
         {
@@ -57,7 +56,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
     public partial class MachineMonitorPage : Page, ITransientDependency
     {
         SignalrProxyClient signalrProxyClient;
+
+
         DataViewDealModel<ReadPmcResultItemModel> pmcResult = new DataViewDealModel<ReadPmcResultItemModel>();
+        DataViewDealModel<ReadPositionResultItemModel> pmcPositionResult = new DataViewDealModel<ReadPositionResultItemModel>();
+
         DataViewDealModel<ReadProgramStrResultModel> progrogramResult = new DataViewDealModel<ReadProgramStrResultModel>();
         public MachineMonitorPage()
         {
@@ -90,7 +93,25 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
                 }
             }
 
+            var listPostion = pmcPositionResult.InitViewModel(jobject);
+            if (listPostion.Count > 0)
+            {
+                foreach (var item in coordinateControl.ControlViewModel.GetType().GetProperties())
+                {
+                    var propValue = listPostion.FirstOrDefault(d => d.Id == item.Name);
+                    if (propValue != null)
+                    {
+                        item.SetValue(coordinateControl.ControlViewModel, propValue.Value.ToString());
+                    }
+                }
+            }
             var listProgram = progrogramResult.InitViewModel(jobject);
+            if (listProgram.Count > 0)
+            {
+                programPathControl.PathViewModel.Text = listProgram[0].Value;
+               
+                
+            }
         }
 
         private void SignalrProxyClient_CncErrorEvent(string obj)

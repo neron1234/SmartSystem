@@ -217,7 +217,7 @@
       <DependentUpon>ProgramPathControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MachineMonitor\ViewModel\CoordinateControlViewModel.cs" />
-    <Compile Include="MachineMonitor\ViewModel\CoordinateViewModel.cs" />
+    <Compile Include="MachineMonitor\ViewModel\ProgramPathViewModel.cs" />
     <Compile Include="MachineOperation\AutoCutterCleanPage.xaml.cs">
       <DependentUpon>AutoCutterCleanPage.xaml</DependentUpon>
     </Compile>
