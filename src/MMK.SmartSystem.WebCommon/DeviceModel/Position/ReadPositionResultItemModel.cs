@@ -8,7 +8,11 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public class ReadPositionResultItemModel
     {
+        [Newtonsoft.Json.JsonProperty("id")]
+
         public string Id { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("value")]
 
         public double Value { get; set; }
     }

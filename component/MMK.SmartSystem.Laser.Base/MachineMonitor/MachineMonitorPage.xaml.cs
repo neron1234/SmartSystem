@@ -20,13 +20,45 @@ using Newtonsoft.Json.Linq;
 
 namespace MMK.SmartSystem.Laser.Base.MachineMonitor
 {
+
+
+    public class DataViewDealModel<T> where T : new()
+    {
+        public List<T> InitViewModel(JObject json)
+        {
+            var name = json["fullNamespace"]?.ToString();
+            if (string.IsNullOrEmpty(name))
+            {
+                return new List<T>();
+            }
+            var str = json["value"].ToString();
+            try
+            {
+                if (name == typeof(T).FullName)
+                {
+                    return Newtonsoft.Json.JsonConvert.DeserializeObject<List<T>>(str);
+
+                }
+                return new List<T>();
+            }
+            catch (Exception)
+            {
+                return new List<T>();
+
+            }
+        }
+
+    }
+
+
     /// <summary>
     /// MachineMonitorPage.xaml 的交互逻辑
     /// </summary>
     public partial class MachineMonitorPage : Page, ITransientDependency
     {
         SignalrProxyClient signalrProxyClient;
-
+        DataViewDealModel<ReadPmcResultItemModel> pmcResult = new DataViewDealModel<ReadPmcResultItemModel>();
+        DataViewDealModel<ReadProgramStrResultModel> progrogramResult = new DataViewDealModel<ReadProgramStrResultModel>();
         public MachineMonitorPage()
         {
             InitializeComponent();
@@ -44,28 +76,21 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
 
         private void SignalrProxyClient_HubRefreshModelEvent(WebCommon.HubModel.HubResultModel obj)
         {
-            JArray jsonArr = JArray.Parse(obj.Data.ToString());
-
-            InitViewModel(coordinateControl.ControlViewModel,jsonArr);
-
-        }
-        private void InitViewModel(object viewModel,JArray jsonArr)
-        {
-
-            var porops = viewModel.GetType().GetProperties();
-            foreach (var item in porops)
+            JObject jobject = JObject.Parse(obj.Data.ToString());
+            var listPmc = pmcResult.InitViewModel(jobject);
+            if (listPmc.Count > 0)
             {
-                foreach (var arr in jsonArr)
+                foreach (var item in coordinateControl.ControlViewModel.GetType().GetProperties())
                 {
-
-                    if (arr["id"].ToString() == item.Name)
+                    var propValue = listPmc.FirstOrDefault(d => d.Id == item.Name);
+                    if (propValue != null)
                     {
-                        item.SetValue(viewModel, arr["value"].ToString());
-
+                        item.SetValue(coordinateControl.ControlViewModel, propValue.Value);
                     }
                 }
-
             }
+
+            var listProgram = progrogramResult.InitViewModel(jobject);
         }
 
         private void SignalrProxyClient_CncErrorEvent(string obj)
@@ -131,7 +156,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
             cncEventDatas.Add(new CncEventData()
             {
                 Kind = CncEventEnum.ReadProgramStr,
-                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new { }));
+                Para = "programPathControl",
+            });
             signalrProxyClient.SendCncData(cncEventDatas);
         }
     }
