@@ -8,7 +8,6 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public class ReadFeedrateResultModel
     {
-        public string Id { get; set; }
 
         public int Value { get; set; }
     }

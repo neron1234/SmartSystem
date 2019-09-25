@@ -6,8 +6,6 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public class ReadProgramInfoResultModel
     {
-        public string Id { get; set; }
-
         public short RegeditProgramQuantity { get; set; }
         public short UnRegeditProgramQuantity { get; set; }
 

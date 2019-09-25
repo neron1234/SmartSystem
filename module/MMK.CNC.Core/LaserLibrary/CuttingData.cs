@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMK.SmartSystem.WebCommon.DeviceModel
+namespace MMK.CNC.Core.LaserLibrary
 {
-    public class ReadWorkpartNumResultModel
+    public class CuttingData
     {
 
-        public int Value { get; set; }
     }
 }

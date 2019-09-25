@@ -6,13 +6,7 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public class ReadProgramStrResultModel
     {
-        public string Id { get; set; }
 
         public string Value { get; set; }
-    }
-    public class ReadProgramStrModel
-    {
-        public string Id { get; set; }
-
     }
 }
