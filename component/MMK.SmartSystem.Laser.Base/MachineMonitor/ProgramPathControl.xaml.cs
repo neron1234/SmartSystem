@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.Laser.Base.MachineMonitor.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
     /// </summary>
     public partial class ProgramPathControl : UserControl
     {
+        public ProgramPathViewModel PathViewModel { get; private set; }
         public ProgramPathControl()
         {
             InitializeComponent();
+            this.DataContext = PathViewModel = new ProgramPathViewModel();
         }
     }
 }
