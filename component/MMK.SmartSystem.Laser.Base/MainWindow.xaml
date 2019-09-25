@@ -20,13 +20,14 @@
             <Button Content="手动寻边" Width="100" Height="30" Margin="2" Click="Button_Click"/>
 
             <Button Content="激光状态" Width="100" Height="30" Margin="2" Click="Button_Click"/>
+            <Button Content="坐标列表" Width="100" Height="30" Margin="2" Click="Button_Click"/>
         </StackPanel>
         <Grid Grid.Column="1">
             <Border CornerRadius="0,2,2,0" Grid.Row="0" 
                 		BorderThickness="1"
                 		Padding="0" Margin="0,0,0,0"
                         Background="Transparent" BorderBrush="#FF323232" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Frame Background="Transparent" x:Name="Frame"></Frame>
+                <Frame Background="Transparent" x:Name="Frame" Width="1480" Height="620" ></Frame>
             </Border>
         </Grid>
     </Grid>

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AF2E35AB-6D27-430C-89B6-103FD7043600}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>MMK.SmartSystem.Laser.Base</RootNamespace>
     <AssemblyName>MMK.SmartSystem.Laser.Base</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -35,7 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Abp, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -202,6 +203,15 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineMonitor\ControlHelp\GridHelper.cs" />
+    <Compile Include="MachineMonitor\CoordinateControl.xaml.cs">
+      <DependentUpon>CoordinateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineMonitor\ViewModel\CoordinateControlViewModel.cs" />
+    <Compile Include="MachineMonitor\ViewModel\CoordinateViewModel.cs" />
     <Compile Include="MachineOperation\AutoCutterCleanPage.xaml.cs">
       <DependentUpon>AutoCutterCleanPage.xaml</DependentUpon>
     </Compile>
@@ -230,6 +240,14 @@
     <Compile Include="MachineOperation\ViewModel\CutterResetCheckPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\ManualFindSidePageViewModel.cs" />
     <Compile Include="SmartSystemDeviceModule.cs" />
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="MachineMonitor\CoordinateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MachineOperation\AutoCutterCleanPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -304,7 +322,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MachineMonitor\" />
     <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
