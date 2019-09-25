@@ -47,5 +47,7 @@ namespace MMK.SmartSystem.Web.Host.Controllers
 
             return Content("Sent notification: " + message);
         }
+   
+         
     }
 }
