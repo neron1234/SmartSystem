@@ -9,7 +9,7 @@ using System.Text;
 namespace MMK.CNC.Core.LaserLibrary
 {
     [Table("LaserLibrary_Material")]
-    public class Material : Entity<string>, IHasCreationTime
+    public class Material : Entity<int>, IHasCreationTime
     {
         /// <summary>
         /// 材料编号

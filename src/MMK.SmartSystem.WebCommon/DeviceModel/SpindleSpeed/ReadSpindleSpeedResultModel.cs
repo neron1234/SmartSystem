@@ -8,7 +8,6 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public class ReadSpindleSpeedResultModel
     {
-        public string Id { get; set; }
 
         public int Value { get; set; }
     }

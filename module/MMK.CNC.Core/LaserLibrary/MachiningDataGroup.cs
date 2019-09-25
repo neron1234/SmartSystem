@@ -8,25 +8,34 @@ using System.Text;
 
 namespace MMK.CNC.Core.LaserLibrary
 {
-    [Table("LaserLibrary_Gas")]
-    public class Gas : Entity<int>, IHasCreationTime
+    [Table("LaserLibrary_MachiningDataGroup")]
+    public class MachiningDataGroup : Entity<int>, IHasCreationTime
     {
         /// <summary>
-        /// 气体编号
+        /// 加工参数组编号
         /// </summary>
         public int Code { get; set; }
 
         /// <summary>
-        /// 气体名称（英文）
+        /// 材料类型ID
         /// </summary>
-        [StringLength(100)]
-        public string Name_EN { get; set; }
+        public int MaterialId { get; set; }
 
         /// <summary>
-        /// 气体名称（中文）
+        /// 气体ID
         /// </summary>
-        [StringLength(100)]
-        public string Name_CN { get; set; }
+        public int GasId { get; set; }
+
+        /// <summary>
+        /// 材料厚度
+        /// </summary>
+        public double MaterialThickness { get; set; }
+
+
+        /// <summary>
+        /// 割嘴内径
+        /// </summary>
+        public double NozzleDiameter { get; set; }
 
         /// <summary>
         /// 备注信息
@@ -34,7 +43,7 @@ namespace MMK.CNC.Core.LaserLibrary
         public string Description { get; set; }
 
         public DateTime CreationTime { get; set; }
-        public Gas()
+        public MachiningDataGroup()
         {
             CreationTime = DateTime.Now;
         }
