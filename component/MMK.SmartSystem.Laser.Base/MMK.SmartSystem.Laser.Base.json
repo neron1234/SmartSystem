@@ -8,7 +8,7 @@
                 "Id": "MachineOperation.AutoFindSide",
                 "Title": "MachineOperation.AutoFindSideBtn",
                 "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage",
-                "IsAuth": true,
+                "IsAuth": false,
                 "Permission": "MachineOperation.AutoFindSidePage",
                 "Sort": 1
             },
@@ -24,17 +24,25 @@
                 "Id": "MachineOperation.ManualFindSidePage",
                 "Title": "MachineOperation.ManualFindSideBtn",
                 "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.ManualFindSidePage",
-                "IsAuth": true,
+                "IsAuth": false,
                 "Permission": "MachineOperation.ManualFindSidePage",
                 "Sort": 3
             },
             {
                 "Id": "MachineOperation.LaserStatePage",
-                "Title": "MachineOperation.LaserStatePage",
+                "Title": "LaserStatePage",
                 "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.LaserStatePage",
                 "IsAuth": false,
                 "Permission": "MachineOperation.LaserStatePage",
                 "Sort": 4
+            },
+            {
+                "Id": "MachineMonitor.MachineMonitorPage",
+                "Title": "MachineMonitorPage",
+                "FullName": "MMK.SmartSystem.Laser.Base.MachineMonitor.MachineMonitorPage",
+                "IsAuth": false,
+                "Permission": "MachineMonitor.MachineMonitorPage",
+                "Sort": 5
             }
         ]
     },
@@ -47,7 +55,7 @@
                 "Id": "MachineOperation.CutterResetCheckPage",
                 "Title": "ManualFindSide.CutterResetCheckBtn",
                 "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.CutterResetCheckPage",
-                "IsAuth": true,
+                "IsAuth": false,
                 "Permission": "MachineOperation.CutterResetCheckPage",
                 "Sort": 1
             },
@@ -55,7 +63,7 @@
                 "Id": "MachineOperation.AutoCutterCleanPage",
                 "Title": "ManualFindSide.AutoCutterCleanBtn",
                 "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AutoCutterCleanPage",
-                "IsAuth": true,
+                "IsAuth": false,
                 "Permission": "MachineOperation.AutoCutterCleanPage",
                 "Sort": 2
             },
@@ -63,7 +71,7 @@
                 "Id": "MachineOperation.CutCenterPage",
                 "Title": "ManualFindSide.CutCenterBtn",
                 "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.CutCenterPage",
-                "IsAuth": true,
+                "IsAuth": false,
                 "Permission": "MachineOperation.CutCenterPage",
                 "Sort": 3
             }
