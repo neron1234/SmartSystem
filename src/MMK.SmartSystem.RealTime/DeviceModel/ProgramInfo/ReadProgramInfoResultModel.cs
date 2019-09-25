@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MMK.SmartSystem.RealTime.DeviceModel.ProgramInfo
+namespace MMK.SmartSystem.RealTime.DeviceModel
 {
     public class ReadProgramInfoResultModel
     {

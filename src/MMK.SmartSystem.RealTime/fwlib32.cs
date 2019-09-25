@@ -76,14 +76,72 @@ public class Focas1
         DNC_READERR =  (-517)              /* read error */
     };
 
-/*--------------------*/
-/*                    */
-/* Structure Template */
-/*                    */
-/*--------------------*/
-/*-------------------------------------*/
-/* CNC: Control axis / spindle related */
-/*-------------------------------------*/
+    /*--------------------*/
+    /*                    */
+    /* Structure Template */
+    /*                    */
+    /*--------------------*/
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4)]
+    public class PRGFOLDER//MMK
+    {
+        public ODBPDFADIR folder1 = new ODBPDFADIR();
+        public ODBPDFADIR folder2 = new ODBPDFADIR();
+        public ODBPDFADIR folder3 = new ODBPDFADIR();
+        public ODBPDFADIR folder4 = new ODBPDFADIR();
+        public ODBPDFADIR folder5 = new ODBPDFADIR();
+        public ODBPDFADIR folder6 = new ODBPDFADIR();
+        public ODBPDFADIR folder7 = new ODBPDFADIR();
+        public ODBPDFADIR folder8 = new ODBPDFADIR();
+        public ODBPDFADIR folder9 = new ODBPDFADIR();
+        public ODBPDFADIR folder10 = new ODBPDFADIR();
+        public ODBPDFADIR folder11 = new ODBPDFADIR();
+        public ODBPDFADIR folder12 = new ODBPDFADIR();
+        public ODBPDFADIR folder13 = new ODBPDFADIR();
+        public ODBPDFADIR folder14 = new ODBPDFADIR();
+        public ODBPDFADIR folder15 = new ODBPDFADIR();
+        public ODBPDFADIR folder16 = new ODBPDFADIR();
+        public ODBPDFADIR folder17 = new ODBPDFADIR();
+        public ODBPDFADIR folder18 = new ODBPDFADIR();
+        public ODBPDFADIR folder19 = new ODBPDFADIR();
+        public ODBPDFADIR folder20 = new ODBPDFADIR();
+        public ODBPDFADIR folder21 = new ODBPDFADIR();
+        public ODBPDFADIR folder22 = new ODBPDFADIR();
+        public ODBPDFADIR folder23 = new ODBPDFADIR();
+        public ODBPDFADIR folder24 = new ODBPDFADIR();
+        public ODBPDFADIR folder25 = new ODBPDFADIR();
+        public ODBPDFADIR folder26 = new ODBPDFADIR();
+        public ODBPDFADIR folder27 = new ODBPDFADIR();
+        public ODBPDFADIR folder28 = new ODBPDFADIR();
+        public ODBPDFADIR folder29 = new ODBPDFADIR();
+        public ODBPDFADIR folder30 = new ODBPDFADIR();
+        public ODBPDFADIR folder31 = new ODBPDFADIR();
+        public ODBPDFADIR folder32 = new ODBPDFADIR();
+        public ODBPDFADIR folder33 = new ODBPDFADIR();
+        public ODBPDFADIR folder34 = new ODBPDFADIR();
+        public ODBPDFADIR folder35 = new ODBPDFADIR();
+        public ODBPDFADIR folder36 = new ODBPDFADIR();
+        public ODBPDFADIR folder37 = new ODBPDFADIR();
+        public ODBPDFADIR folder38 = new ODBPDFADIR();
+        public ODBPDFADIR folder39 = new ODBPDFADIR();
+        public ODBPDFADIR folder40 = new ODBPDFADIR();
+        public ODBPDFADIR folder41 = new ODBPDFADIR();
+        public ODBPDFADIR folder42 = new ODBPDFADIR();
+        public ODBPDFADIR folder43 = new ODBPDFADIR();
+        public ODBPDFADIR folder44 = new ODBPDFADIR();
+        public ODBPDFADIR folder45 = new ODBPDFADIR();
+        public ODBPDFADIR folder46 = new ODBPDFADIR();
+        public ODBPDFADIR folder47 = new ODBPDFADIR();
+        public ODBPDFADIR folder48 = new ODBPDFADIR();
+        public ODBPDFADIR folder49 = new ODBPDFADIR();
+        public ODBPDFADIR folder50 = new ODBPDFADIR();
+
+    }
+
+
+    /*-------------------------------------*/
+    /* CNC: Control axis / spindle related */
+    /*-------------------------------------*/
 
     /* cnc_actf:read actual axis feedrate(F) */
     /* cnc_acts:read actual spindle speed(S) */
