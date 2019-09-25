@@ -19,7 +19,7 @@
             <RichTextBox Margin="20" Background="#202328" Foreground="#67686d" FontSize="15">
                 <FlowDocument>
                     <Paragraph>
-                        <Run Text="2141241412412411421111111 &#x0a;22222222222 &#x0a;22222 &#x0a;314fdkljsdklfjsdjlkdfjkls "/>
+                        <Run Text="{Binding Text}"/>
                     </Paragraph>
                 </FlowDocument>
                 <RichTextBox.Effect>

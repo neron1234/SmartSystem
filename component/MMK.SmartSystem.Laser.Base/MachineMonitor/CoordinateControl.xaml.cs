@@ -1,5 +1,6 @@
 ﻿using MMK.SmartSystem.Common.SignalrProxy;
 using MMK.SmartSystem.Laser.Base.MachineMonitor.ViewModel;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MMK.SmartSystem.Laser.Base.MachineMonitor
 {
@@ -22,35 +25,15 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
     /// </summary>
     public partial class CoordinateControl : UserControl
     {
-        SignalrProxyClient signalrProxyClient;
+        readonly CoordinateControlViewModel controlViewModel;
+        public CoordinateControlViewModel ControlViewModel { get { return controlViewModel; } }
         public CoordinateControl()
         {
             InitializeComponent();
-            this.DataContext = new CoordinateControlViewModel();
-            signalrProxyClient = new SignalrProxyClient();
-            signalrProxyClient.CncErrorEvent += SignalrProxyClient_CncErrorEvent;
-            signalrProxyClient.HubRefreshModelEvent += SignalrProxyClient_HubRefreshModelEvent;
-            this.Loaded += CoordinateControl_Loaded;
-            this.Unloaded += CoordinateControl_Unloaded;
+            this.DataContext = controlViewModel = new CoordinateControlViewModel();
+
         }
 
-        private void SignalrProxyClient_HubRefreshModelEvent(WebCommon.HubModel.HubResultModel obj)
-        {
-        }
 
-        private void SignalrProxyClient_CncErrorEvent(string obj)
-        {
-        }
-
-        private async void CoordinateControl_Unloaded(object sender, RoutedEventArgs e)
-        {
-            await signalrProxyClient.Close();
-        }
-
-        private async void CoordinateControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            await signalrProxyClient.Start();
-            signalrProxyClient.SendCncData(null);
-        }
     }
 }

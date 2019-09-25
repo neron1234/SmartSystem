@@ -2,6 +2,7 @@
 using Abp.Domain.Entities.Auditing;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -17,6 +18,7 @@ namespace MMK.CNC.Core.SystemClient
         /// <summary>
         /// 接口地址
         /// </summary>
+        ///
         public string ServiceName { get; set; }
         /// <summary>
         /// 接口名称
