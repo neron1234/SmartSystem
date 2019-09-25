@@ -10,4 +10,9 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
         public string Value { get; set; }
     }
+    public class ReadProgramStrModel
+    {
+        public string Id { get; set; }
+
+    }
 }
