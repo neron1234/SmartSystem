@@ -29,6 +29,11 @@ namespace MMK.SmartSystem.Common.SignalrProxy
             await connection.StartAsync();
         }
 
+        public async Task<T> SendAction<T>(string actionName, object message)
+        {
+            return await connection.InvokeAsync<T>(actionName, message);
+        }
+
         public async Task Close()
         {
 

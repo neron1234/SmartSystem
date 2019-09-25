@@ -109,8 +109,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
             if (listProgram.Count > 0)
             {
                 programPathControl.PathViewModel.Text = listProgram[0].Value;
-               
-                
+
+
             }
         }
 
@@ -180,6 +180,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
                 Para = "programPathControl",
             });
             signalrProxyClient.SendCncData(cncEventDatas);
+        }
+
+        private async void Btn_Click(object sender, RoutedEventArgs e)
+        {
+            var res = await signalrProxyClient.SendAction<BaseCNCResultModel<ReadProgramListItemResultModel>>("ReadProgramList", "//CNC_MEM/USER/PATH1/");
         }
     }
 }
