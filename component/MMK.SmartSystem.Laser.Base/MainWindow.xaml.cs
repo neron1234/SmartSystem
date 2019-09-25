@@ -52,6 +52,9 @@ namespace MMK.SmartSystem.Laser.Base
                 case "激光状态":
                     Frame.Content = new LaserStatePage();
                     break;
+                case "坐标列表":
+                    Frame.Content = new MachineMonitor.CoordinateControl();
+                    break;
                 default:
                         Frame.Content = null;
                 break;

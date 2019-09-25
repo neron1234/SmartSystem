@@ -6,6 +6,7 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
     {
         public CncEventEnum Kind { get; set; }
 
+        // 
         public string Para { get; set; }
     }
 }
