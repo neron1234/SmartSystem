@@ -8,6 +8,8 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public class ReadCycleTimeResultModel
     {
+        public string Id { get; set; }
+
         public double TotalSeconds { get; set; }
 
         public string CycleTimeStr

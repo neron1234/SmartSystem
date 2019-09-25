@@ -144,7 +144,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                     });
                 }
             }
-            GetResultEvent?.Invoke(res);
+            GetResultEvent?.Invoke( new BaseCNCResultModel<ReadPmcResultItemModel>() { Value=res,Id=""});
             return message;
 
         }
@@ -266,7 +266,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             {
                 message = ret.Item2;
             }
-            GetResultEvent?.Invoke(res);
+            GetResultEvent?.Invoke(new BaseCNCResultModel<ReadAlarmResultItemModel>() { Value = res, Id = para });
 
             return message;
         }
@@ -302,6 +302,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             string message = null;
 
             var res = new ReadProgramNameResultModel();
+            res.Id = para;
 
             var ret = ProgramNameHelper.ReadProgramName(flib, ref res);
             if (ret.Item1 == -16)
@@ -328,6 +329,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             string message = null;
 
             var res = new ReadProgramBlockResultModel();
+            res.Id = para;
 
             var ret = ProgramBlockHelper.ReadProgramBlock(flib, ref res);
             if (ret.Item1 == -16)
@@ -354,6 +356,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             string message = null;
 
             var res = new ReadProgramStrResultModel();
+            res.Id = para;
 
             var ret = ProgramStrHelper.ReadProgramStr(flib, ref res);
             if (ret.Item1 == -16)
@@ -370,7 +373,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             {
                 message = ret.Item2;
             }
-            GetResultEvent?.Invoke(res);
+            GetResultEvent?.Invoke(new BaseCNCResultModel<ReadProgramStrResultModel>() { Value = new List<ReadProgramStrResultModel>() { res }, Id = para });
 
             return message;
         }
@@ -380,6 +383,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             string message = null;
 
             var res = new ReadProgramInfoResultModel();
+            res.Id = para;
 
             var ret = ProgramInfoHelper.ReadProgramInfo(flib, ref res);
             if (ret.Item1 == -16)
@@ -406,6 +410,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             string message = null;
 
             var res = new ReadModalResultModel();
+            res.Id = para;
 
             var ret = ModalInfoHelper.ReadModalInfo(flib, ref res);
             if (ret.Item1 == -16)
@@ -432,6 +437,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             string message = null;
 
             var res = new ReadCycleTimeResultModel();
+            res.Id = para;
 
             var ret = CycleTimeHelper.ReadCycleTime(flib, ref res);
             if (ret.Item1 == -16)
@@ -458,6 +464,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             string message = null;
 
             var res = new ReadWorkpartNumResultModel();
+            res.Id = para;
 
             var ret = WorkpartNumHelper.ReadWorkpartNum(flib, ref res);
             if (ret.Item1 == -16)
@@ -484,6 +491,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             string message = null;
 
             var res = new ReadSpindleSpeedResultModel();
+            res.Id = para;
 
             var ret = SpindleSpeedHelper.ReadSpindleSpeed(flib, ref res);
             if (ret.Item1 == -16)
@@ -510,6 +518,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             string message = null;
 
             var res = new ReadFeedrateResultModel();
+            res.Id = para;
 
             var ret = FeedrateHelper.ReadFeedrate(flib, ref res);
             if (ret.Item1 == -16)

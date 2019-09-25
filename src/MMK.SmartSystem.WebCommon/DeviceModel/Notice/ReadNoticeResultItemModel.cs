@@ -6,6 +6,8 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public class ReadNoticeResultItemModel
     {
+        public string Id { get; set; }
+
         public int Num { get; set; }
 
         public string NumStr
