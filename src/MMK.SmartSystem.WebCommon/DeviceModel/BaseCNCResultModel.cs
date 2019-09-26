@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class BaseCNCResultModel<T> where T : new()
+    public class BaseCNCResultModel<T> 
     {
         public string Id { get; set; }
 
@@ -23,6 +23,6 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
     public class BaseCncResultModel
     {
-
+        
     }
 }

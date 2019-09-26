@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
+    public class ReadAlarmModel: CncReadDecoplilersModel<string, string>
+    {
+
+    }
+
     public class ReadAlarmResultItemModel
     {
         [Newtonsoft.Json.JsonProperty("num")]
@@ -51,5 +56,12 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
         [Newtonsoft.Json.JsonProperty("message")]
 
         public string Message { get; set; }
+    }
+
+    public class ReadAlarmResultModel:BaseCncResultModel
+    {
+        public string Id { get; set; }
+
+        public List<ReadAlarmResultItemModel> Value { get; set; } = new List<ReadAlarmResultItemModel>();
     }
 }
