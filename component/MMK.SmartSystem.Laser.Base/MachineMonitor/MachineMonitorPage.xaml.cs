@@ -52,6 +52,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
             cncEventDatas.Add(new CncEventData()
             {
                 Kind = CncEventEnum.ReadPmc,
+                
                 Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadPmcModel()
                 {
                     Decompilers = new List<DecompReadPmcItemModel>()
@@ -98,6 +99,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
                 Para = "programPathControl",
             });
 
+            cncEventDatas.Add(new CncEventData() { 
+                Kind = CncEventEnum.ReadProgramName,
+                Para = "programPathControl"
+            });
+
             return cncEventDatas;
         }
         
@@ -107,7 +113,13 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
             {
                 new SingalrResultMapModel<ReadPmcResultItemModel>()
                 {
-                    ViewModels = coordinateControl.ControlViewModel,
+                    ViewModels = coordinateControl.PMCViewModel,
+                    MapType = SignalrMapModelEnum.AutoPropMap,
+                    AutoPropMapAction = (node, propName) => node.FirstOrDefault(d => d.Id == propName)?.Value
+                },
+                new SingalrResultMapModel<ReadPositionResultItemModel>()
+                {
+                    ViewModels = coordinateControl.PositionViewModel,
                     MapType = SignalrMapModelEnum.AutoPropMap,
                     AutoPropMapAction = (node, propName) => node.FirstOrDefault(d => d.Id == propName)?.Value
                 },
@@ -118,7 +130,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
                     MapAction = (node) => programPathControl.PathViewModel.Text = node[0].Value,
                  }
             };
-        
             return list;
         }
 

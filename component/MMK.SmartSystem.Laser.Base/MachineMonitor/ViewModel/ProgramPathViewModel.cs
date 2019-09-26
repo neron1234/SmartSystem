@@ -11,8 +11,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor.ViewModel
 {
     public class ProgramPathViewModel:  CncResultViewModel<ReadProgramStrResultModel>
     {
-
-
         private string _Text;
         public string Text
         {
@@ -26,6 +24,5 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor.ViewModel
                 }
             }
         }
-
     }
 }
