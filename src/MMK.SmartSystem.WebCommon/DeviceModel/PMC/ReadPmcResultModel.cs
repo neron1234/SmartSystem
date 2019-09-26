@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class ReadPmcResultModel
+    public class ReadPmcResultItemModel: BaseCncResultModel
     {
         [Newtonsoft.Json.JsonProperty("id")]
 

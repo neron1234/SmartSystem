@@ -256,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\AutoRefreshPage.cs" />
+    <Compile Include="Base\SignalrPage.cs" />
     <Compile Include="EventDatas\NavigateEventData.cs" />
     <Compile Include="EventDatas\OperationLogEventData.cs" />
     <Compile Include="EventDatas\UserConfigEventData.cs" />
@@ -267,8 +268,11 @@
     <Compile Include="Model\MainSystemNoticeModel.cs" />
     <Compile Include="Model\OperationLogInfo.cs" />
     <Compile Include="Model\RequestResult.cs" />
+    <Compile Include="Model\SingalrResultMapModel.cs" />
     <Compile Include="Model\SystemMeunModel.cs" />
     <Compile Include="SignalrProxy\SignalrProxyClient.cs" />
+    <Compile Include="SignalrProxy\SinglarCNCHubConsts.cs" />
+    <Compile Include="ViewModel\CncResultViewModel.cs" />
     <Compile Include="ViewModel\MainTranslateViewModel.cs" />
     <Compile Include="ViewModel\SystemTranslate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

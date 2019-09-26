@@ -31,7 +31,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
         {
             InitializeComponent();
             this.DataContext = controlViewModel = new CoordinateControlViewModel();
-
         }
 
 

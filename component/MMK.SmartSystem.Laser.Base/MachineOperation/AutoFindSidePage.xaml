@@ -5,137 +5,134 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
-      Width="624" Height="528" Background="#FF323232"
+      d:DesignHeight="500" d:DesignWidth="1200" Foreground="White" Background="#2a2f34" FontSize="18"
       Title="AutoFindSidePage">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid Margin="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <TextBlock Grid.Row="0" Text="【自动巡边】" FontSize="35" Margin="25 10 0 0"/>
+
         <Grid Grid.Row="1" Grid.Column="0">
+            <StackPanel Orientation="Vertical" Margin="15" HorizontalAlignment="Center" Width="500">
+
+                <StackPanel Orientation="Horizontal" Margin="10" Width="480">
+                    <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateOrigin}" Margin="10,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text="X" Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text="D" Margin="0,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="8" Foreground="White"/>
+                    <TextBlock Text=" = " Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+
+                    <TextBox HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0,0,0" Width="120" Background="Transparent"
+                     Text="{Binding AutoFindSide_Info.XD}" Foreground="Yellow" IsReadOnly="True" IsEnabled="False"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateOrigin}" Margin="10,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text="Y" Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text="D" Margin="0,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="8" Foreground="White"/>
+                    <TextBlock Text=" = "  Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+
+                    <TextBox HorizontalAlignment="Right" Margin="10,0,0,0" Width="120" Background="Transparent"
+                     Text="{Binding AutoFindSide_Info.YD}" Foreground="Yellow" IsReadOnly="True" IsEnabled="False"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateAngle}" Margin="10,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text="θ" Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text=" = " Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+
+                    <TextBox HorizontalAlignment="Right" Margin="10,0,0,0" Width="120" Background="Transparent"
+                     Text="{Binding AutoFindSide_Info.SITA}" Foreground="Yellow" IsReadOnly="True" IsEnabled="False"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10 30 10 10">
+                    <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.P12Distance}" Margin="10,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text="H" Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text=" = " Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBox HorizontalAlignment="Right" Margin="10,5,0,5" Width="120" Background="Transparent"
+                     Text="{Binding H}" Foreground="Yellow" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.OptoelectronicSwitchDistance}" Margin="10,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text="X" Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text=" = " Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+
+                    <TextBox Grid.Row="11" HorizontalAlignment="Right" Margin="10,0,0,0" Width="120" Background="Transparent"
+                     Text="{Binding X}" Foreground="Yellow" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.OptoelectronicSwitchDistance}" Margin="10,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text="Y" Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text=" = " Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBox  HorizontalAlignment="Right" Margin="10,0,0,0" Width="120" Background="Transparent"
+                     Text="{Binding Y}" Foreground="Yellow" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateEdgeDistance}" Margin="10,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text="M" Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBlock Text=" = " Margin="5,0,0,0"
+                       HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
+                    <TextBox HorizontalAlignment="Right" Margin="10,0,0,0" Width="120" Background="Transparent"
+                     Text="{Binding RH}" Foreground="Yellow" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.RowSpan="2" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="400"/>
+                <RowDefinition Height="350"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="100*"/>
             </Grid.RowDefinitions>
             <Border Grid.Column="0" BorderBrush="#FF323232" BorderThickness="0" Background="Transparent">
-                <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="..\Image\AutoFindSideImg.png"/>
             </Border>
             <TextBlock Grid.Row="1" Text="{Binding Translate.MachineOperation.AutoFindSide.FindXYTrack}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Foreground="White" Margin="0,16,132,15.6"/>
 
-            <Button Grid.Row="2" Width="200" Height="60" VerticalAlignment="Center" Content="{Binding Translate.MachineOperation.AutoFindSide.ManualStartFindSide}" 
-                        HorizontalAlignment="Center" IsEnabled="{Binding EditAuth}"/>
+            <!--Content="{Binding Translate.MachineOperation.AutoFindSide.ManualStartFindSide}"-->
+            <Button Style="{StaticResource BtnStyle}" Grid.Row="2" Width="200" Height="60"  Content="{Binding Translate.MachineOperation.AutoFindSide.ManualStartFindSide}"
+                        IsEnabled="{Binding EditAuth}" >
+                
+            </Button>
         </Grid>
-
-        <Grid Grid.Column="1" Grid.Row="2" Margin="15,0,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="0"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateOrigin}" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="X" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="D" Margin="0,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="8" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="2" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding AutoFindSide_Info.XD}" Foreground="Yellow" IsReadOnly="True" IsEnabled="False"/>
-
-            <StackPanel Grid.Row="3"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateOrigin}" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="Y" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="D" Margin="0,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="8" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="4" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding AutoFindSide_Info.YD}" Foreground="Yellow" IsReadOnly="True" IsEnabled="False"/>
-
-            <StackPanel Grid.Row="5"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateAngle}" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="θ" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="6" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding AutoFindSide_Info.SITA}" Foreground="Yellow" IsReadOnly="True" IsEnabled="False"/>
-
-            <StackPanel Grid.Row="8"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.P12Distance}" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="H" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="9" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding H}" Foreground="Yellow" />
-
-            <StackPanel Grid.Row="10"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.OptoelectronicSwitchDistance}" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="X" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="11" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding X}" Foreground="Yellow" />
-
-            <StackPanel Grid.Row="12"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.OptoelectronicSwitchDistance}" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="Y" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="13" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding Y}" Foreground="Yellow" />
-
-            <StackPanel Grid.Row="14"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding Translate.MachineOperation.AutoFindSide.PlateEdgeDistance}" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="M" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="15" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding RH}" Foreground="Yellow" />
-            <!--<TextBox Grid.Row="16" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"/>-->
-        </Grid>
-
     </Grid>
 </base:AutoRefreshPage>

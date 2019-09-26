@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel;
 
 namespace MMK.SmartSystem.Laser.Base.MachineOperation
 {
@@ -21,10 +22,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
     /// </summary>
     public partial class ManualFindSidePage : Page, ITransientDependency
     {
+        public ManualFindSidePageViewModel mfViewModel { get; private set; }
         public ManualFindSidePage()
         {
             InitializeComponent();
-
+            this.DataContext = mfViewModel = new ManualFindSidePageViewModel();
             //SmartSystem.Common.UserClient userClient = new Common.UserClient("http://localhost:21021", new System.Net.Http.HttpClient());
           
             //var res = userClient.GetRolesAsync().Result;

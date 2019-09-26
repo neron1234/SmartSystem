@@ -11,22 +11,35 @@ namespace MMK.SmartSystem.Common.SignalrProxy
 {
     public class SignalrProxyClient
     {
-        private const string GetCNCDataAction = "GetCNCData";
-        private const string GetErrorAction = "GetError";
+
         public event Action<string> CncErrorEvent;
         public event Action<HubResultModel> HubRefreshModelEvent;
         HubConnection connection;
         bool isExit = false;
-        public SignalrProxyClient()
+        public SignalrProxyClient(string groupName)
         {
             connection = new HubConnectionBuilder()
-              .WithUrl($"{SmartSystemCommonConsts.ApiHost}/hubs-cncHub")
+              .WithUrl($"{SmartSystemCommonConsts.ApiHost}/hubs-cncHub?groupName={groupName}")
               .Build();
             initEvent();
         }
         public async Task Start()
         {
-            await connection.StartAsync();
+            try
+            {
+                await connection.StartAsync();
+
+            }
+            catch (Exception ex)
+            {
+
+                CncErrorEvent?.Invoke(ex.Message);
+            }
+        }
+
+        public async Task<T> SendAction<T>(string actionName, object message)
+        {
+            return await connection.InvokeAsync<T>(actionName, message);
         }
 
         public async Task Close()
@@ -38,20 +51,20 @@ namespace MMK.SmartSystem.Common.SignalrProxy
                 await connection.StopAsync();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-
+                CncErrorEvent?.Invoke(ex.Message);
             }
+
+
         }
-        public void SendCncData(List<CncEventData> cncEventDatas)
+        public void SendCncData(object cncEventDatas)
         {
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(cncEventDatas);
             try
             {
-                connection.InvokeAsync("Refresh", json);
-
-
+                connection.InvokeAsync(SinglarCNCHubConsts.InitRefreshAction, json);
             }
             catch (Exception ex)
             {
@@ -60,23 +73,33 @@ namespace MMK.SmartSystem.Common.SignalrProxy
 
             }
         }
-        void initEvent()
+        private void initEvent()
         {
             connection.Closed += async (error) =>
             {
                 await Task.Delay(5000);
                 if (!isExit)
                 {
-                    await connection.StartAsync();
+                    try
+                    {
+                        await connection.StartAsync();
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        CncErrorEvent?.Invoke(ex.Message);
+
+                    }
 
                 }
             };
-            connection.On<string>(GetErrorAction, (message) =>
+            connection.On<string>(SinglarCNCHubConsts.CNCErrorAction, (message) =>
             {
                 CncErrorEvent?.Invoke(message);
             });
 
-            connection.On<HubResultModel>(GetCNCDataAction, (data) =>
+            connection.On<HubResultModel>(SinglarCNCHubConsts.CNCDataAction, (data) =>
             {
                 HubRefreshModelEvent?.Invoke(data);
             });

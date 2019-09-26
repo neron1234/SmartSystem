@@ -26,13 +26,12 @@ namespace MMK.SmartSystem.RealTime.Hubs
 
         }
 
-        //public BaseCNCResultModel<ReadProgramListItemResultModel> ReadProgramList(string folder)
-        //{
-        //    ConnectHelper.BuildConnect()
+        public BaseCNCResultModel<ReadProgramListItemResultModel> ReadProgramList(string folder)
+        {
 
-        //    ProgramListHelper.ReadProgramList();
+            return new CncHandler().ReadProgramList(folder);
 
-        //}
+        }
 
         public Task Refresh(string info)
         {

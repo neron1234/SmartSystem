@@ -222,6 +222,10 @@
     </Compile>
     <Compile Include="MachineMonitor\ViewModel\CoordinateControlViewModel.cs" />
     <Compile Include="MachineMonitor\ViewModel\ProgramPathViewModel.cs" />
+    <Compile Include="MachineMonitor\ViewModel\WarningListViewModel.cs" />
+    <Compile Include="MachineMonitor\WarningListControl.xaml.cs">
+      <DependentUpon>WarningListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineOperation\AutoCutterCleanPage.xaml.cs">
       <DependentUpon>AutoCutterCleanPage.xaml</DependentUpon>
     </Compile>
@@ -282,6 +286,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MachineMonitor\WarningListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MachineOperation\AutoCutterCleanPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -318,6 +326,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Style\BtnStyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -340,6 +352,8 @@
     <None Include="app.config" />
     <Resource Include="Image\BtnTest.png" />
     <Resource Include="Image\BtnTest2.png" />
+    <Resource Include="Image\AutoFindSideImg.png" />
+    <Resource Include="Image\MsFindSideImg.png" />
     <Content Include="MMK.SmartSystem.Laser.Base.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
