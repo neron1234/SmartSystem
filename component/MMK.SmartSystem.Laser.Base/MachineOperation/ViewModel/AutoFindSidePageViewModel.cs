@@ -10,7 +10,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
     public class AutoFindSidePageViewModel : MainTranslateViewModel
     {
 
-
         private string _XD;
         public string XD
         {
@@ -24,7 +23,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
                 }
             }
         }
-
 
         private string _YD;
         public string YD
@@ -40,8 +38,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
             }
         }
 
-
-
         private string _SITA;
         public string SITA
         {
@@ -55,8 +51,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
                 }
             }
         }
-
-
 
         private string _H;
         public string H
@@ -72,8 +66,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
             }
         }
 
-
-
         private string _X;
         public string X
         {
@@ -87,7 +79,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
                 }
             }
         }
-
 
         private string _Y;
         public string Y
@@ -103,8 +94,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
             }
         }
 
-
-
         private string _RH;
         public string RH
         {
@@ -119,11 +108,15 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
             }
         }
 
-
-
         public AutoFindSidePageViewModel(string authKey) : base(authKey)
         {
-
+            this.XD = "0";
+            this.YD = "0"; 
+            this.SITA = "0";
+            this.H = "0";
+            this.X = "0";
+            this.Y = "0";
+            this.RH = "0";
         }
     }
 }
