@@ -58,8 +58,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
         SignalrProxyClient signalrProxyClient;
 
 
-        DataViewDealModel<ReadPmcResultItemModel> pmcResult = new DataViewDealModel<ReadPmcResultItemModel>();
-        DataViewDealModel<ReadPositionResultItemModel> pmcPositionResult = new DataViewDealModel<ReadPositionResultItemModel>();
+        DataViewDealModel<ReadPmcResultModel> pmcResult = new DataViewDealModel<ReadPmcResultModel>();
+        DataViewDealModel<ReadPositionResultModel> pmcPositionResult = new DataViewDealModel<ReadPositionResultModel>();
 
         DataViewDealModel<ReadProgramStrResultModel> progrogramResult = new DataViewDealModel<ReadProgramStrResultModel>();
         public MachineMonitorPage()
@@ -138,9 +138,9 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
                 {
                     Decompilers = new List<DecompReadPmcItemModel>()
                     {
-                        new DecompReadPmcItemModel() {Id="AbsX", AdrType=5, Bit=null, DataType=DataTypeEnum.Int32,RelStartAdr=0 },
-                        new DecompReadPmcItemModel() {Id="AbsY", AdrType=5, Bit=null, DataType=DataTypeEnum.Int32,RelStartAdr=4 },
-                        new DecompReadPmcItemModel() {Id="AbsZ",AdrType=5, Bit=null, DataType=DataTypeEnum.Int32,RelStartAdr=8 },
+                        new DecompReadPmcItemModel() {Id="AbsX", AdrType=5, Bit=null, DataType=DataTypeEnum.Int32,StartAdr=0 },
+                        new DecompReadPmcItemModel() {Id="AbsY", AdrType=5, Bit=null, DataType=DataTypeEnum.Int32,StartAdr=4 },
+                        new DecompReadPmcItemModel() {Id="AbsZ",AdrType=5, Bit=null, DataType=DataTypeEnum.Int32,StartAdr=8 },
 
 
                     },

@@ -4,11 +4,16 @@ using System.Text;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class ReadProgramNameResultModel
+    public class ReadPmcResultModel
     {
+        [Newtonsoft.Json.JsonProperty("id")]
 
         public string Id { get; set; }
 
-        public ReadProgramNameResultItemModel Value { get; set; } = new ReadProgramNameResultItemModel();
+        [Newtonsoft.Json.JsonProperty("value")]
+
+        public string Value { get; set; }
+
     }
+
 }

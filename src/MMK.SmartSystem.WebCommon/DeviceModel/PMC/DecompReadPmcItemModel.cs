@@ -12,6 +12,8 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
         public DataTypeEnum DataType { get; set; }
 
+        public short StartAdr { get; set; }
+
         public short RelStartAdr { get; set; }
 
         public ushort? Bit { get; set; }

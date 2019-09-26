@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class DecompReadMacroItemModel
+    public enum CncPollEventKindEnum
     {
-        public string Id { get; set; }
-
-        public short StartNum { get; set; }
-
-        public short RelStartNum { get; set; }
+        EnterIn,
+        Quit
     }
 }
