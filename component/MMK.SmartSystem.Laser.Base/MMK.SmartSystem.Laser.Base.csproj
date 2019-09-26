@@ -349,6 +349,7 @@
     <Resource Include="Image\BtnTest.png" />
     <Resource Include="Image\BtnTest2.png" />
     <Resource Include="Image\AutoFindSideImg.png" />
+    <Resource Include="Image\MsFindSideImg.png" />
     <Content Include="MMK.SmartSystem.Laser.Base.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

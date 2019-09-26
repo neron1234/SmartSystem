@@ -7,31 +7,6 @@
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       d:DesignHeight="500" d:DesignWidth="1200" Foreground="White" Background="#2a2f34" FontSize="18"
       Title="AutoFindSidePage">
-    <Page.Resources>
-        <Style x:Key="BtnStyle"  TargetType="Button">
-            <Setter Property="Background" Value="#FFDDDDDD"/>
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}" >
-                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="33,33,33,33">
-                            <Border.Background>
-                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                    <GradientStop Color="#3f484d" Offset="0.1" />
-                                    <GradientStop Color="#2c353a" Offset="0.2" />
-                                    <GradientStop Color="#20282d" Offset="0.4" />
-                                    <GradientStop Color="#1a2023" Offset="0.6" />
-                                    <GradientStop Color="#141719" Offset="0.8" />
-                                    <GradientStop Color="#181c1f" Offset="0.9" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
 
     <Grid Margin="0">
         <Grid.ColumnDefinitions>
@@ -147,8 +122,8 @@
             <TextBlock Grid.Row="1" Text="{Binding Translate.MachineOperation.AutoFindSide.FindXYTrack}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Foreground="White" Margin="0,16,132,15.6"/>
 
             <!--Content="{Binding Translate.MachineOperation.AutoFindSide.ManualStartFindSide}"-->
-            <Button Style="{StaticResource BtnStyle}" Grid.Row="2" Width="200" Height="60" VerticalAlignment="Center"  Content="{Binding Translate.MachineOperation.AutoFindSide.ManualStartFindSide}"
-                        HorizontalAlignment="Center" IsEnabled="{Binding EditAuth}" >
+            <Button Style="{StaticResource BtnStyle}" Grid.Row="2" Width="200" Height="60"  Content="{Binding Translate.MachineOperation.AutoFindSide.ManualStartFindSide}"
+                        IsEnabled="{Binding EditAuth}" >
                 
             </Button>
         </Grid>
