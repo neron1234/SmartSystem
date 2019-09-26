@@ -6,6 +6,7 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public class ReadProgramBlockResultModel
     {
+        public string Id { get; set; }
 
         public int Value { get; set; }
 

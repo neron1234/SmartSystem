@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class ReadProgramNameResultModel
+    public class ReadMacroResultModel
     {
-
         public string Id { get; set; }
 
-        public ReadProgramNameResultItemModel Value { get; set; } = new ReadProgramNameResultItemModel();
+        public double Value { get; set; }
     }
 }

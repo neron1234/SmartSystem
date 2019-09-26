@@ -9,7 +9,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
 {
     public static class ProgramNameHelper
     {
-        public static Tuple<short, string> ReadProgramName(ushort flib, ref ReadProgramNameResultModel data)
+        public static Tuple<short, string> ReadProgramName(ushort flib, ref ReadProgramNameResultItemModel data)
         {
             StringBuilder str = new StringBuilder();
             var ret = Focas1.cnc_pdf_rdmain(flib, str);

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class ReadMacroResultItemModel
+    public class ReadProgramNameModel
     {
-        public string Id { get; set; }
-
-        public double Value { get; set; }
+        public List<string> Decompilers { get; set; } = new List<string>();
     }
 }
