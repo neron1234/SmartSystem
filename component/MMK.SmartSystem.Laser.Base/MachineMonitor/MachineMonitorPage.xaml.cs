@@ -56,8 +56,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
     public partial class MachineMonitorPage : Page, ITransientDependency
     {
         SignalrProxyClient signalrProxyClient;
-
-
         DataViewDealModel<ReadPmcResultItemModel> pmcResult = new DataViewDealModel<ReadPmcResultItemModel>();
         DataViewDealModel<ReadPositionResultItemModel> pmcPositionResult = new DataViewDealModel<ReadPositionResultItemModel>();
 
