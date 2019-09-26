@@ -45,6 +45,30 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor.ViewModel
                     Number = "1005",
                     Message = "THIS IS A ALARM NO 5 CURRENT"
                 }
+                ,new WarningInfo {
+                    Id = "17",
+                    Number = "1006",
+                    Message = "THIS IS A ALARM NO 6 CURRENT"
+                }
+                ,new WarningInfo {
+                    Id = "17",
+                    Number = "1007",
+                    Message = "THIS IS A ALARM NO 7 CURRENT"
+                }
+                ,new WarningInfo {
+                    Id = "18",
+                    Number = "1008",
+                    Message = "THIS IS A ALARM NO 8 CURRENT"
+                }
+                ,new WarningInfo {
+                    Id = "18",
+                    Number = "1009",
+                    Message = "THIS IS A ALARM NO 9 CURRENT"
+                },new WarningInfo {
+                    Id = "19",
+                    Number = "1010",
+                    Message = "THIS IS A ALARM NO 10 CURRENT"
+                }
             };
         }
     }
