@@ -5,9 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineMonitor"
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
-
       mc:Ignorable="d" 
-       Width="1000" Height="528"
+       Width="1200" Height="528"
       Title="MachineMonitorPage">
 
     <Grid>
@@ -21,10 +20,10 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         
-        <local:CoordinateControl Width="600" Height="200" Grid.Column="0" Grid.Row="0" x:Name="coordinateControl"/>
-        <local:ProgramPathControl Width="600" Height="500" Grid.Column="1" Grid.RowSpan="3" x:Name="programPathControl"/>
+        <local:CoordinateControl Width="600" Height="240" Grid.Column="0" Grid.Row="0" x:Name="coordinateControl"/>
+        <local:ProgramPathControl Width="600" Height="525" Grid.Column="1" Grid.RowSpan="3" x:Name="programPathControl"/>
 
-        <local:WarningListControl Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1" Height="230"/>
+        <local:WarningListControl Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1" Height="235"/>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
             <Button x:Name="btn" Content="GO" Click="Btn_Click" Width="100" Margin="10"/>
         </StackPanel>

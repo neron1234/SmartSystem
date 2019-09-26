@@ -220,7 +220,8 @@
     <Compile Include="MachineMonitor\ProgramPathControl.xaml.cs">
       <DependentUpon>ProgramPathControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MachineMonitor\ViewModel\CoordinateControlViewModel.cs" />
+    <Compile Include="MachineMonitor\ViewModel\CoordinatePMCViewModel.cs" />
+    <Compile Include="MachineMonitor\ViewModel\CoordinatePositionViewModel.cs" />
     <Compile Include="MachineMonitor\ViewModel\ProgramPathViewModel.cs" />
     <Compile Include="MachineMonitor\ViewModel\WarningListViewModel.cs" />
     <Compile Include="MachineMonitor\WarningListControl.xaml.cs">

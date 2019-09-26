@@ -25,14 +25,17 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
     /// </summary>
     public partial class CoordinateControl : UserControl
     {
-        readonly CoordinateControlViewModel controlViewModel;
-        public CoordinateControlViewModel ControlViewModel { get { return controlViewModel; } }
+        readonly CoordinatePMCViewModel pmcViewModel;
+        public CoordinatePMCViewModel PMCViewModel { get { return pmcViewModel; } }
+
+        readonly CoordinatePositionViewModel positionViewModel;
+        public CoordinatePositionViewModel PositionViewModel { get { return positionViewModel; } }
         public CoordinateControl()
         {
             InitializeComponent();
-            this.DataContext = controlViewModel = new CoordinateControlViewModel();
+            pmcViewModel = new CoordinatePMCViewModel();
+            positionViewModel = new CoordinatePositionViewModel();
+            this.DataContext = this;
         }
-
-
     }
 }
