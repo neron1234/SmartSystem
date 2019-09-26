@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
+using MMK.SmartSystem.Common.ViewModel;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Laser.Base.MachineMonitor.ViewModel
 {
-    public class ProgramPathViewModel: ViewModelBase
+    public class ProgramPathViewModel:  CncResultViewModel<ReadProgramStrResultModel>
     {
 
 

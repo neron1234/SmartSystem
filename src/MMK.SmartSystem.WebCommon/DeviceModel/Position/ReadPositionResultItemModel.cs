@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class ReadPositionResultItemModel
+    public class ReadPositionResultItemModel: BaseCncResultModel
     {
         [Newtonsoft.Json.JsonProperty("id")]
 

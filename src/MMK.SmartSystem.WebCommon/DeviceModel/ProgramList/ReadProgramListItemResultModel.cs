@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class ReadProgramListItemResultModel
+    public class ReadProgramListItemResultModel: BaseCncResultModel
     {
 
         public string Name { get; set; }

@@ -16,8 +16,6 @@ namespace MMK.SmartSystem.Common.Base
         public event Action RefreshAuth;
         public AutoRefreshPage()
         {
-            // MainSystemNoticeModel
-
             Messenger.Default.Register<MainSystemNoticeModel>(this, loadModel);
         }
         private void loadModel(MainSystemNoticeModel model)
@@ -29,7 +27,7 @@ namespace MMK.SmartSystem.Common.Base
             }
             if (model.EventType == EventEnum.NavHome)
             {
-              
+
             }
         }
         public void ClearRegister()
