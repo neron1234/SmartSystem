@@ -222,6 +222,10 @@
     </Compile>
     <Compile Include="MachineMonitor\ViewModel\CoordinateControlViewModel.cs" />
     <Compile Include="MachineMonitor\ViewModel\ProgramPathViewModel.cs" />
+    <Compile Include="MachineMonitor\ViewModel\WarningListViewModel.cs" />
+    <Compile Include="MachineMonitor\WarningListControl.xaml.cs">
+      <DependentUpon>WarningListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineOperation\AutoCutterCleanPage.xaml.cs">
       <DependentUpon>AutoCutterCleanPage.xaml</DependentUpon>
     </Compile>
@@ -279,6 +283,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MachineMonitor\ProgramPathControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineMonitor\WarningListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

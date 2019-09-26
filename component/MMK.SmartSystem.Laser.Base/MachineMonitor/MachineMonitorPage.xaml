@@ -13,7 +13,12 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <local:CoordinateControl Width="600" Height="500" Grid.Column="0" x:Name="coordinateControl"/>
-        <local:ProgramPathControl Width="600" Height="500" Grid.Column="1" x:Name="programPathControl"/>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <local:CoordinateControl Width="600" Height="500" Grid.Column="0" Grid.Row="0" x:Name="coordinateControl"/>
+        <local:ProgramPathControl Width="600" Height="500" Grid.Column="1" Grid.Row="0" x:Name="programPathControl"/>
+        <local:WarningListControl Grid.Column="1" Grid.Row="1" BorderBrush="Black" BorderThickness="1"></local:WarningListControl>
     </Grid>
 </Page>
