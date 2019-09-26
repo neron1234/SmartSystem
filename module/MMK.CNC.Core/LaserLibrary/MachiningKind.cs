@@ -8,27 +8,20 @@ using System.Text;
 
 namespace MMK.CNC.Core.LaserLibrary
 {
-    [Table("LaserLibrary_MachiningDataGroup")]
-    public class MachiningDataGroup : Entity<int>, IHasCreationTime
+    [Table("LaserLibrary_MachiningKind")]
+    public class MachiningKind : Entity<int>, IHasCreationTime
     {
         /// <summary>
-        /// 加工参数组编号
+        /// 加工类型名称（英文）
         /// </summary>
-        public int Code { get; set; }
+        [StringLength(100)]
+        public string Name_EN { get; set; }
 
         /// <summary>
-        /// 材料类型ID
+        /// 加工类型名称（中文）
         /// </summary>
-        public int MaterialId { get; set; }
-
-
-
-        /// <summary>
-        /// 材料厚度
-        /// </summary>
-        public double MaterialThickness { get; set; }
-
-
+        [StringLength(100)]
+        public string Name_CN { get; set; }
 
         /// <summary>
         /// 备注信息
@@ -36,7 +29,7 @@ namespace MMK.CNC.Core.LaserLibrary
         public string Description { get; set; }
 
         public DateTime CreationTime { get; set; }
-        public MachiningDataGroup()
+        public MachiningKind()
         {
             CreationTime = DateTime.Now;
         }

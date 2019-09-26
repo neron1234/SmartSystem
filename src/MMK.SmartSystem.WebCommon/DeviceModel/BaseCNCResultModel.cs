@@ -16,6 +16,8 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
         {
             FullNamespace = typeof(T).FullName;
         }
+
+        public string ErrorMessage { get; set; }
         public List<T> Value { get; set; } = new List<T>();
     }
 }

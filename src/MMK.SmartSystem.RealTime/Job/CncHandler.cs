@@ -26,7 +26,36 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
         public event Action<object> GetResultEvent;
         public static BlockingCollection<CncEventData> m_EventDatas = new BlockingCollection<CncEventData>();
 
+        public BaseCNCResultModel<ReadProgramListItemResultModel> ReadProgramList(string folder)
+        {
 
+            ushort flib = 0;
+            var ret = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
+
+            if(ret==0)
+            {
+                var res = new List<ReadProgramListItemResultModel>();
+
+                var ret_1 = ProgramListHelper.ReadProgramList(flib, folder, ref res);
+                ConnectHelper.FreeConnect(flib);
+
+                if (ret_1.Item1==0)
+                {
+                    return new BaseCNCResultModel<ReadProgramListItemResultModel>() { Value = res, ErrorMessage = ret_1.Item2 };
+                }
+                else
+                {
+                    return new BaseCNCResultModel<ReadProgramListItemResultModel>() { ErrorMessage = ret_1.Item2 };
+                }
+
+                
+            }
+            else
+            {
+                return new BaseCNCResultModel<ReadProgramListItemResultModel>() { ErrorMessage = "获得程序列表失败,连接失败" };
+            }
+            
+        }
 
         public void Connect()
         {
