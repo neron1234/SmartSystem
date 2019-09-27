@@ -18,6 +18,10 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
         protected override object PollDecompiler(List<ReadPositionResultItemModel> res, DecompReadPositionItemModel item)
         {
             int data = 0;
+            if (!datas.ContainsKey(item.PositionType))
+            {
+                return "读取错误";
+            }
             var ret_dec = PositionHelper.DecompilerReadPositionInfo(datas[item.PositionType], item, ref data);
             if (string.IsNullOrEmpty(ret_dec))
             {
