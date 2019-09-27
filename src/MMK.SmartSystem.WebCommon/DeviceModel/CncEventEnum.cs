@@ -22,11 +22,16 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
         [CncCustomEvent("ReadPmcModel", "PmcHandler")]
         ReadPmc,
+
+        [CncCustomEvent("ReadPositionModel", "PositionHandler")]
         ReadPosition,
         ReadAlarm,
         ReadNotice,
+
+        [CncCustomEvent("ReadProgramNameModel", "ProgramNameHandler")]
         ReadProgramName,
         ReadProgramBlock,
+
         ReadProgramStr,
         //ReadProgramList,
         //ReadProgramFolder,

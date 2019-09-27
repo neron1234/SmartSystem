@@ -39,6 +39,11 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
                     {
                         ret = PollRead(item);
                     }
+                    else
+                    {
+                        return new BaseCNCResultModel<U>() { Value = res, Id = "", ErrorMessage = "连接CNC通信失败" };
+
+                    }
                 }
             }
 

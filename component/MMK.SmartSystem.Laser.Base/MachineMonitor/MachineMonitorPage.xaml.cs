@@ -51,7 +51,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
             cncEventDatas.Add(new CncEventData()
             {
                 Kind = CncEventEnum.ReadPmc,
-                
+
                 Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadPmcModel()
                 {
                     Decompilers = new List<DecompReadPmcItemModel>()
@@ -92,20 +92,27 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
                 })
             });
 
+            //cncEventDatas.Add(new CncEventData()
+            //{
+            //    Kind = CncEventEnum.ReadProgramStr,
+            //    Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadProgramNameModel()
+            //    {
+            //        Readers = new List<string>() { "programPathControl" }
+            //    })
+            //});
+
             cncEventDatas.Add(new CncEventData()
             {
-                Kind = CncEventEnum.ReadProgramStr,
-                Para = "programPathControl",
-            });
-
-            cncEventDatas.Add(new CncEventData() { 
                 Kind = CncEventEnum.ReadProgramName,
-                Para = "programPathControl"
+                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadProgramNameModel()
+                {
+                    Readers = new List<string>() { "programPathControl" }
+                })
             });
 
             return cncEventDatas;
         }
-        
+
         public override List<object> GetResultViewModelMap()
         {
             List<object> list = new List<object>()
