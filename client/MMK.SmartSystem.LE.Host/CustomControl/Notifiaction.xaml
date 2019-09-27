@@ -147,6 +147,7 @@
                     <Setter TargetName="Border" Property="Background" Value="#61B891" />
                 </DataTrigger>
                 <EventTrigger RoutedEvent="Grid.Loaded" SourceName="NoticeGrid">
+                    <!--循序渐进的加载隐藏通知面板-->
                     <BeginStoryboard x:Name="FadeInStoryBoard">
                         <Storyboard>
                             <DoubleAnimation Duration="0:0:0.2" From="0" Storyboard.TargetName="NoticeGrid" 
@@ -156,11 +157,11 @@
                                              Storyboard.TargetProperty="Opacity"
                                              To="1" />
 
-                            <DoubleAnimation BeginTime="0:0:10" Duration="0:0:0.2" From="1" Storyboard.TargetName="NoticeGrid" 
+                            <DoubleAnimation BeginTime="0:0:5" Duration="0:0:0.2" From="1" Storyboard.TargetName="NoticeGrid" 
                                              Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)"
                                              To="0" />
 
-                            <DoubleAnimation BeginTime="0:0:10" Duration="0:0:0.2" From="1" 
+                            <DoubleAnimation BeginTime="0:0:5" Duration="0:0:0.2" From="1" 
                                              Storyboard.TargetName="NoticeGrid"
                                              Storyboard.TargetProperty="Opacity" To="0" />
                         </Storyboard>

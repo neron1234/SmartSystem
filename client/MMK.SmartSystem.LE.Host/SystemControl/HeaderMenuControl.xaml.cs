@@ -76,17 +76,17 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             Messenger.Default.Send((UserControl)new PopupWindowControl(new FunctionConfigControl(),900,600));
         }
 
-        Notifiaction notifiaction = new Notifiaction();
         private void FunctionConfig2Btn_Click(object sender, RoutedEventArgs e)
         {
             //Messenger.Default.Send(new BottomWarningLogViewModel()
             //{
             //    WarningLogStr = "测试出现了BUG！------" + DateTime.Now
             //}); 
-            notifiaction.AddNotifiaction(new NotifiactionModel()
+
+            Messenger.Default.Send(new NotifiactionModel()
             {
-                Title = "这是Error通知标题",
-                Content = "这条通知不会自动关闭，需要点击关闭按钮",
+                Title = "异常通知",
+                Content = "测试出现了异常 ----- " + DateTime.Now,
                 NotifiactionType = EnumPromptType.Error
             });
         }
