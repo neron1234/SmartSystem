@@ -131,6 +131,7 @@
     <Reference Include="System.Linq.Dynamic.Core, Version=1.0.10.0, Culture=neutral, PublicKeyToken=0f07ec44de6ac832, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Linq.Dynamic.Core.1.0.10\lib\net46\System.Linq.Dynamic.Core.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -233,6 +234,37 @@
     <Compile Include="AccountControl\ViewModel\LoginControlViewModel.cs" />
     <Compile Include="AccountControl\ViewModel\UpdatePasswordControlViewModel.cs" />
     <Compile Include="AccountControl\ViewModel\UserInfoControlViewModel.cs" />
+    <Compile Include="Converters\OffsetConverter.cs" />
+    <Compile Include="CustomControl\Buttom\PathIconButton.cs" />
+    <Compile Include="CustomControl\ControlEnum.cs" />
+    <Compile Include="CustomControl\Decorator\AngleBorder.cs" />
+    <Compile Include="Converters\InverseBooleanVisibilityConverter.cs" />
+    <Compile Include="CustomControl\Notifiaction.xaml.cs">
+      <DependentUpon>Notifiaction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\Poptip\Implementation\Poptip.cs" />
+    <Compile Include="CustomControl\Primitives\CircleBase.cs" />
+    <Compile Include="CustomControl\Primitives\IconTextBoxBase.cs" />
+    <Compile Include="CustomControl\Primitives\MyCalendar.cs" />
+    <Compile Include="CustomControl\Primitives\MyEventArgs\ItemMouseDoubleClickEventArgs.cs" />
+    <Compile Include="CustomControl\Primitives\MyEventArgs\ItemMouseRightButtonDownEventArgs.cs" />
+    <Compile Include="CustomControl\Primitives\MyEventArgs\ItemMouseSingleClickEventArgs.cs" />
+    <Compile Include="CustomControl\Primitives\NumberBox.cs" />
+    <Compile Include="CustomControl\Primitives\ZTextBoxBase.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\IconTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\IpTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\NumbericTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\SearchBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\TagTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\TitleTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\ValidateTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\ZPasswordBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\ZTextBox.cs" />
+    <Compile Include="CustomControl\ToolTip\Implementation\FlatToolTip.cs" />
+    <Compile Include="CustomControl\ToolTip\Implementation\ZToolTip.cs" />
+    <Compile Include="CustomControl\Utils\UIElementEx.cs" />
+    <Compile Include="CustomControl\Utils\VisualHelper.cs" />
+    <Compile Include="Converters\ValueIsZeroConverter.cs" />
     <Compile Include="EventHandler\NavigateHandler.cs" />
     <Compile Include="EventHandler\OperationLogHandler.cs" />
     <Compile Include="EventHandler\UserInfoHandler.cs" />
@@ -291,6 +323,54 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomControl\Notifiaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\Poptip\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\IconTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\IpTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\NumbericTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\TagTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\TitleTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\ValidateTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\ZPasswordBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\ToolTip\Themes\FlatToolTipStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\ToolTip\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -307,6 +387,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\PathGeometry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SystemControl\BottomWarningLogControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

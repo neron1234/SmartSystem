@@ -21,7 +21,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
     /// <summary>
     /// LaserStatePage.xaml 的交互逻辑
     /// </summary>
-    public partial class LaserStatePage : SignalrPage
+    public partial class LaserStatePage : Page, ITransientDependency
     {
         /// <summary>
         /// 激光状态
@@ -31,24 +31,24 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
             InitializeComponent();
         }
 
-        public override void CncOnError(string message)
-        {
-            throw new NotImplementedException();
-        }
+        //public override void CncOnError(string message)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public override List<CncEventData> GetCncEventData()
-        {
-            throw new NotImplementedException();
-        }
+        //public override List<CncEventData> GetCncEventData()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public override List<object> GetResultViewModelMap()
-        {
-            throw new NotImplementedException();
-        }
+        //public override List<object> GetResultViewModelMap()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public override void PageSignlarLoaded()
-        {
-            throw new NotImplementedException();
-        }
+        //public override void PageSignlarLoaded()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

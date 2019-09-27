@@ -6,6 +6,7 @@ using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.LE.Host.AccountControl;
+using MMK.SmartSystem.LE.Host.CustomControl;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
@@ -78,10 +79,17 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
 
         private void FunctionConfig2Btn_Click(object sender, RoutedEventArgs e)
         {
-            Messenger.Default.Send(new BottomWarningLogViewModel()
+            //Messenger.Default.Send(new BottomWarningLogViewModel()
+            //{
+            //    WarningLogStr = "测试出现了BUG！------" + DateTime.Now
+            //}); 
+
+            Messenger.Default.Send(new NotifiactionModel()
             {
-                WarningLogStr = "测试出现了BUG！------" + DateTime.Now
-            }); 
+                Title = "异常通知",
+                Content = "测试出现了异常 ----- " + DateTime.Now,
+                NotifiactionType = EnumPromptType.Error
+            });
         }
     }
 }

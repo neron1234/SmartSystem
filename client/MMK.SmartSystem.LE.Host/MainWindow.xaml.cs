@@ -4,6 +4,8 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
+using MMK.SmartSystem.Common.ViewModel;
+using MMK.SmartSystem.LE.Host.CustomControl;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
@@ -31,6 +33,7 @@ namespace MMK.SmartSystem.LE.Host
     {
         IIocManager iocManager;
         public MainWindowViewModel MainViewModel = new MainWindowViewModel();
+        private Notifiaction notifiaction = new Notifiaction();
         public MainWindow(IIocManager iocManager)
         {
             this.iocManager = iocManager;
@@ -71,6 +74,10 @@ namespace MMK.SmartSystem.LE.Host
             Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
 
             //loadWebApp();
+            //消息通知
+            Messenger.Default.Register<NotifiactionModel>(this, (nm) => {
+                notifiaction.AddNotifiaction(nm);
+            });
         }
 
         void pageChange(PageChangeModel changeModel)
