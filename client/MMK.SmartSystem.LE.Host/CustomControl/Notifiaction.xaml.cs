@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using MMK.SmartSystem.Common.ViewModel;
 
 namespace MMK.SmartSystem.LE.Host.CustomControl
 {
@@ -71,25 +72,5 @@ namespace MMK.SmartSystem.LE.Host.CustomControl
             var element = sender as Grid;
             RemoveNotification(NotifiactionList.First(n => n.Id == Int32.Parse(element.Tag.ToString())));
         }
-    }
-
-    public class NotifiactionModel
-    {
-        /// <summary>
-        /// Id不需要赋值
-        /// </summary>
-        public int Id { get; set; }
-        /// <summary>
-        /// 通知标题
-        /// </summary>
-        public string Title { get; set; }
-        /// <summary>
-        /// 通知内容
-        /// </summary>
-        public string Content { get; set; }
-        /// <summary>
-        /// 通知类型
-        /// </summary>
-        public EnumPromptType NotifiactionType { get; set; }
     }
 }

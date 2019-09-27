@@ -103,31 +103,6 @@ namespace MMK.SmartSystem.LE.Host.CustomControl
     }
     #endregion
 
-    #region EnumPromptType
-    /// <summary>
-    /// 提示类型
-    /// </summary>
-    public enum EnumPromptType
-    {
-        /// <summary>
-        /// 消息
-        /// </summary>
-        Info,
-        /// <summary>
-        /// 警告
-        /// </summary>
-        Warn,
-        /// <summary>
-        /// 失败
-        /// </summary>
-        Error,
-        /// <summary>
-        /// 成功
-        /// </summary>
-        Success,
-    }
-    #endregion
-
     #region EnumCompare
     public enum EnumCompare
     {
