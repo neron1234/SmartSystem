@@ -1,4 +1,5 @@
-﻿using MMK.SmartSystem.WebCommon.DeviceModel;
+﻿using Abp.Dependency;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
 {
-    public class ProgramNameHandler:BasePollCNCHandler<ReadProgramNameModel, ReadProgramNameResultModel,string,string>
+    public class ProgramNameHandler : BasePollCNCHandler<ReadProgramNameModel, ReadProgramNameResultModel, string, string>
     {
         ReadProgramNameResultItemModel temp;
         private string message;
-        public ProgramNameHandler(ushort flib) : base(flib)
+        public ProgramNameHandler()
         {
             temp = new ReadProgramNameResultItemModel();
         }
@@ -28,6 +29,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
 
         protected override Tuple<short, string> PollRead(string item)
         {
+
             var ret = ProgramNameHelper.ReadProgramName(flib, ref temp);
             if (ret.Item1 != 0)
             {

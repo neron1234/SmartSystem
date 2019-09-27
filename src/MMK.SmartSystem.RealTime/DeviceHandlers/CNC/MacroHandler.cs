@@ -10,7 +10,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
     public class MacroHandler : BasePollCNCHandler<ReadMacroModel, ReadMacroResultItemModel, ReadMacroTypeModel, DecompReadMacroItemModel>
     {
         double[] datas;
-        public MacroHandler(ushort flib) : base(flib)
+        public MacroHandler() 
         {
 
         }

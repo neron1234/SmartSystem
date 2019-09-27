@@ -14,9 +14,11 @@ using Abp.Castle.Logging.Log4Net;
 using Abp.Extensions;
 using MMK.SmartSystem.Configuration;
 using MMK.SmartSystem.Identity;
-
+using Hangfire.MemoryStorage;
 using Abp.AspNetCore.SignalR.Hubs;
 using MMK.SmartSystem.RealTime.Hubs;
+using Hangfire;
+using Abp.Hangfire;
 
 namespace MMK.SmartSystem.Web.Host.Startup
 {
@@ -33,11 +35,15 @@ namespace MMK.SmartSystem.Web.Host.Startup
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddHangfire(config =>
+            {
+                config.UseMemoryStorage();
+            });
             // MVC
             services.AddMvc(
                 options => options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName))
             );
-
+         
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
 
@@ -88,12 +94,14 @@ namespace MMK.SmartSystem.Web.Host.Startup
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseHangfireServer();
+            app.UseHangfireDashboard();
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
             app.UseStaticFiles();
-
+          
             app.UseAuthentication();
 
             app.UseAbpRequestLocalization();
@@ -126,6 +134,11 @@ namespace MMK.SmartSystem.Web.Host.Startup
                 options.IndexStream = () => Assembly.GetExecutingAssembly()
                     .GetManifestResourceStream("MMK.SmartSystem.Web.Host.wwwroot.swagger.ui.index.html");
             }); // URL: /swagger
+
+            app.UseHangfireDashboard("/hangfire", new DashboardOptions
+            {
+                Authorization = new[] { new AbpHangfireAuthorizationFilter("MyHangFireDashboardPermissionName") }
+            });
         }
     }
 }

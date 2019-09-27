@@ -1,6 +1,7 @@
 ﻿using Abp.AspNetCore.SignalR.Hubs;
 using Abp.Auditing;
 using Abp.BackgroundJobs;
+using Abp.Dependency;
 using Abp.RealTime;
 using MMK.SmartSystem.RealTime.DeviceHandlers;
 using MMK.SmartSystem.RealTime.Job;
@@ -15,21 +16,20 @@ namespace MMK.SmartSystem.RealTime.Hubs
 {
     public class CNCHub : AbpCommonHub
     {
-        public static bool IsFirstConnect = true;
+        private IIocManager _iocManager;
         public const string GetDataAction = "GetCNCData";
         public const string GetErrorAction = "GetError";
-        private readonly IBackgroundJobManager _backgroundJobManager;
-        public CNCHub(IOnlineClientManager onlineClientManager, IClientInfoProvider clientInfoProvider, IBackgroundJobManager backgroundJobManager) :
+        public CNCHub(IOnlineClientManager onlineClientManager, IIocManager iocManager, IClientInfoProvider clientInfoProvider) :
           base(onlineClientManager, clientInfoProvider)
         {
-            _backgroundJobManager = backgroundJobManager;
+            _iocManager = iocManager;
 
         }
 
         public BaseCNCResultModel<ReadProgramListItemResultModel> ReadProgramList(string folder)
         {
 
-            return new CncHandler().ReadProgramList(folder);
+            return new CncHandler(_iocManager).ReadProgramList(folder);
 
         }
 
@@ -57,11 +57,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
 
         public override Task OnConnectedAsync()
         {
-            if (IsFirstConnect)
-            {
-                _backgroundJobManager.Enqueue<CncBackgroudJob, CncBackgroudArgs>(new CncBackgroudArgs());
-                IsFirstConnect = false;
-            }
+            
             return base.OnConnectedAsync();
         }
     }

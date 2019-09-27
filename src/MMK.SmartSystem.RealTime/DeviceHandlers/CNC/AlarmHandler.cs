@@ -12,7 +12,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
         List<ReadAlarmResultItemModel> temp;
         private string message;
 
-        public AlarmHandler(ushort flib) : base(flib)
+        public AlarmHandler() 
         {
             temp = new List<ReadAlarmResultItemModel>();
         }

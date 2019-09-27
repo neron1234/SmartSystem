@@ -11,7 +11,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
     {
         Dictionary<CncPositionTypeEnum, int[]> datas;
 
-        public PositionHandler(ushort flib) : base(flib)
+        public PositionHandler()
         {
             datas = new Dictionary<CncPositionTypeEnum, int[]>();
         }
@@ -20,7 +20,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
             int data = 0;
             if (!datas.ContainsKey(item.PositionType))
             {
-                return "读取错误";
+                return "Position未正确读取，无法解析！";
             }
             var ret_dec = PositionHelper.DecompilerReadPositionInfo(datas[item.PositionType], item, ref data);
             if (string.IsNullOrEmpty(ret_dec))
@@ -36,11 +36,21 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
 
         protected override Tuple<short, string> PollRead(ReadPositionTypeModel item)
         {
+            
             int[] data = new int[Focas1.MAX_AXIS];
             var ret = PositionHelper.ReadPositionRange(flib, item.PositionType, ref data);
             if (ret.Item1 == 0)
             {
-                datas.Add(item.PositionType, data);
+                if (datas.ContainsKey(item.PositionType))
+                {
+                    datas[item.PositionType] = data;
+
+                }
+                else
+                {
+                    datas.Add(item.PositionType, data);
+
+                }
             }
             return ret;
         }

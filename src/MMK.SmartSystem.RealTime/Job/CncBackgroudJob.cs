@@ -21,12 +21,13 @@ namespace MMK.SmartSystem.RealTime.Job
     }
     public class CncBackgroudJob : BackgroundJob<CncBackgroudArgs>, ITransientDependency
     {
-        CncHandler cncHandler = new CncHandler();
+        CncHandler cncHandler;
         IHubContext<CNCHub> hubContext;
         DateTime dateTime = DateTime.Now;
 
-        public CncBackgroudJob(IServiceProvider service)
+        public CncBackgroudJob(IServiceProvider service, IIocManager iocManager)
         {
+            cncHandler = new CncHandler(iocManager);
             cncHandler.ShowErrorLogEvent += CncHandler_ShowErrorLogEvent;
             cncHandler.GetResultEvent += CncHandler_GetResultEvent;
             hubContext = service.GetService(typeof(IHubContext<CNCHub>)) as IHubContext<CNCHub>;

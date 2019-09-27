@@ -14,7 +14,8 @@ using MMK.SmartSystem.Configuration;
 using MMK.SmartSystem.EntityFrameworkCore;
 using MMK.CNC.Application;
 using MMK.SmartSystem.RealTime;
-
+using Abp.Hangfire;
+using Abp.Hangfire.Configuration;
 
 namespace MMK.SmartSystem
 {
@@ -23,7 +24,8 @@ namespace MMK.SmartSystem
          typeof(SmartSystemRealTimeModule),
          typeof(CNCApplicationModule),
          typeof(SmartSystemEntityFrameworkCoreModule),
-         typeof(AbpAspNetCoreModule)
+         typeof(AbpAspNetCoreModule),
+        typeof(AbpHangfireAspNetCoreModule)
         , typeof(AbpAspNetCoreSignalRModule)
      )]
     public class SmartSystemWebCoreModule : AbpModule
@@ -42,6 +44,7 @@ namespace MMK.SmartSystem
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
                 SmartSystemConsts.ConnectionStringName
             );
+            Configuration.BackgroundJobs.UseHangfire();
 
             // Use database for language management
             Configuration.Modules.Zero().LanguageManagement.EnableDbLocalization();
@@ -54,7 +57,7 @@ namespace MMK.SmartSystem
                .CreateControllersForAppServices(
                    typeof(CNCApplicationModule).GetAssembly()
                );
-          
+
             ConfigureTokenAuth();
         }
 

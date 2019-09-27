@@ -4,6 +4,7 @@ using Abp.Threading.Timers;
 using Microsoft.AspNetCore.SignalR;
 using MMK.SmartSystem.RealTime.DeviceHandlers;
 using MMK.SmartSystem.RealTime.Hubs;
+using MMK.SmartSystem.WebCommon.HubModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,14 +14,15 @@ namespace MMK.SmartSystem.RealTime.Job
 {
     public class CncBackgroudWorker : PeriodicBackgroundWorkerBase, ISingletonDependency
     {
-        CncHandler cncHandler = new CncHandler();
+        CncHandler cncHandler = new CncHandler(null);
         IHubContext<CNCHub> hubContext;
         DateTime dateTime = DateTime.Now;
 
-        public CncBackgroudWorker(AbpTimer timer, IServiceProvider service)
+        public CncBackgroudWorker(AbpTimer timer, IServiceProvider service, IIocManager _iocManager)
        : base(timer)
         {
-            Timer.Period = 100000000;
+            Timer.Period = 100;
+            cncHandler = new CncHandler(_iocManager);
             cncHandler.ShowErrorLogEvent += CncHandler_ShowErrorLogEvent;
             cncHandler.GetResultEvent += CncHandler_GetResultEvent;
             hubContext = service.GetService(typeof(IHubContext<CNCHub>)) as IHubContext<CNCHub>;          
@@ -28,38 +30,26 @@ namespace MMK.SmartSystem.RealTime.Job
 
         private void CncHandler_GetResultEvent(object obj)
         {
-            hubContext.Clients.All.SendAsync(CNCHub.GetDataAction, obj);
+            var res = new HubResultModel
+            {
+                Data = obj,
+                Time = DateTime.Now.ToString("HH:mm:ss.ffff")
+            };
+            hubContext.Clients.All.SendAsync(CNCHub.GetDataAction, res);
+            Logger.Info($"【Focas Result】{obj.ToString()}");
         }
 
         private void CncHandler_ShowErrorLogEvent(string obj)
         {
             hubContext.Clients.All.SendAsync(CNCHub.GetErrorAction, obj);
-
+            Logger.Error($"【Focas】{ obj}");
         }
 
         protected override void DoWork()
         {
-            while (true)
-            {
-                try
-                {
-                    cncHandler.Execute();
+            cncHandler.Execute();
 
-                }
-                catch (Exception ex)
-                {
-                    if ((DateTime.Now - dateTime).TotalSeconds >= 5)
-                    {
-                        hubContext.Clients.All.SendAsync(CNCHub.GetErrorAction, ex.Message);
 
-                        Logger.Error($"【Focas】{ ex.Message}");
-                        dateTime = DateTime.Now;
-                    }
-
-                }
-                Thread.Sleep(100);
-            }
-          
         }
     }
 }

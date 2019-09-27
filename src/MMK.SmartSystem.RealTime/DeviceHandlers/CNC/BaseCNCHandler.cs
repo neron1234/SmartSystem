@@ -1,4 +1,5 @@
-﻿using MMK.SmartSystem.WebCommon.DeviceModel;
+﻿using Abp.Dependency;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,10 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
 {
-    public abstract class BasePollCNCHandler<I, U, R, D> where I : CncReadDecoplilersModel<R, D> where U : BaseCncResultModel
+    public abstract class BasePollCNCHandler<I, U, R, D> : ITransientDependency where I : CncReadDecoplilersModel<R, D> where U : BaseCncResultModel
     {
-        protected ushort flib = 0;
-        public BasePollCNCHandler(ushort f)
-        {
-            flib = f;
-        }
+        protected static ushort flib = 0;
+
         protected virtual short Connect()
         {
             return ConnectHelper.BuildConnect(ref flib, SmartSystemRealTimeConsts.CncIP,

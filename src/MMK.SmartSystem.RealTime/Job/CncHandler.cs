@@ -17,56 +17,9 @@ using Newtonsoft.Json.Linq;
 
 namespace MMK.SmartSystem.RealTime.DeviceHandlers
 {
-    public class HanderAssemblyModel
-    {
-        private static Dictionary<string, HanderAssemblyModel> DictHandler = new Dictionary<string, HanderAssemblyModel>();
-        public string FullName { get; set; }
-
-        public object Handler { get; set; }
-
-        public MethodInfo Method { get; set; }
-
-        public Type HandlerType { get; set; }
-        public Type MethodType { get; set; }
-        public static object Invoke(string fullName, ushort m_flib, string data)
-        {
-            Type handlerType=null;
-            object hander = null;
-            MethodInfo methodInfo = null;
-            Type methodType = null;
-
-            if (!DictHandler.ContainsKey(fullName))
-            {
-                handlerType = Type.GetType(fullName);
-                hander = handlerType.Assembly.CreateInstance(fullName, false, BindingFlags.CreateInstance, null, new object[] { m_flib }, null, null);
-                methodInfo = handlerType.GetMethod("PollHandle");
-                methodType = methodInfo.GetParameters()[0].ParameterType;
-
-                DictHandler.Add(fullName, new HanderAssemblyModel()
-                {
-                    FullName = fullName,
-                    Handler = hander,
-                    Method = methodInfo,
-                    MethodType = methodType,
-                    HandlerType = handlerType
-                });
-            }
-            else
-            {
-                handlerType = DictHandler[fullName].HandlerType;
-                hander = DictHandler[fullName].Handler;
-                methodInfo = DictHandler[fullName].Method;
-                methodType = DictHandler[fullName].MethodType;
-            }
-           
-            var jsonData = JsonConvert.DeserializeObject(data, methodType);
-            return methodInfo.Invoke(hander, new object[] { jsonData });
-        }
-
-    }
     public class CncHandler
     {
-        string m_ip = "192.168.21.121";
+        string m_ip = "192.168.21.97";
         ushort m_port = 8193;
         int m_timeout = 10;
         double m_increment = 1000;
@@ -74,7 +27,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
 
         public event Action<string> ShowErrorLogEvent;
         public event Action<object> GetResultEvent;
-
+        IIocManager iocManager;
 
         public static BlockingCollection<CncEventData> m_EventDatas = new BlockingCollection<CncEventData>();
 
@@ -161,11 +114,13 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
 
         }
 
-
-
-        public void Execute()
+        public CncHandler(IIocManager _iocManager)
         {
+            iocManager = _iocManager;
+        }
 
+        private void HandlerExecute()
+        {
             List<CncEventData> tempEventDatas = new List<CncEventData>(m_EventDatas.ToArray());
 
             foreach (var item in tempEventDatas)
@@ -189,8 +144,11 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                 try
                 {
 
-                  
-                    info = HanderAssemblyModel.Invoke(cncCustom.HandlerName, m_flib, item.Para);
+                    var handler = iocManager.Resolve(handlerType);
+                    var methodInfo = handlerType.GetMethod("PollHandle");
+                    var methodType = methodInfo.GetParameters()[0].ParameterType;
+                    var jsonData = JsonConvert.DeserializeObject(item.Para, methodType);
+                    info = methodInfo.Invoke(handler, new object[] { jsonData });
                     JObject jObject = JObject.FromObject(info);
 
                     if (!string.IsNullOrEmpty(jObject["ErrorMessage"]?.ToString()))
@@ -206,66 +164,79 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                     ShowErrorLogEvent?.Invoke(ex.Message);
                 }
 
-
             }
-            //tempEventDatas.ForEach(item =>
-            //{
-            //    string info = "";
-
-            //    switch (item.Kind)
-            //    {
-            //        case CncEventEnum.ReadPmc:
-            //            info = ReadPmcHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadMacro:
-            //            info = ReadMacroHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadPosition:
-            //            info = ReadPositionHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadAlarm:
-            //            info = ReadAlarmHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadNotice:
-            //            info = ReadNoticeHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadProgramName:
-            //            info = ReadProgramNameHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadProgramBlock:
-            //            info = ReadProgramBlockHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadProgramStr:
-            //            info = ReadProgramStrHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadProgramInfo:
-            //            info = ReadProgramInfoHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadModalInfo:
-            //            info = ReadModalInfoHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadCycleTime:
-            //            info = ReadCycleTimeHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadWorkpartNum:
-            //            info = ReadWorkpartNumHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadSpindleSpeed:
-            //            info = ReadSpindleSpeedHandle(ref m_flib, item.Para);
-            //            break;
-            //        case CncEventEnum.ReadFeedrate:
-            //            info = ReadFeedrateHandle(ref m_flib, item.Para);
-            //            break;
-            //        default:
-            //            break;
-            //    }
-            //    if (info?.Length >= 1)
-            //    {
-            //        ShowErrorLogEvent?.Invoke(info);
-            //    }
-
-            //});
         }
+
+        private void HandlerSwitchExecute()
+        {
+            List<CncEventData> tempEventDatas = new List<CncEventData>(m_EventDatas.ToArray());
+
+            tempEventDatas.ForEach(item =>
+            {
+                string info = "";
+
+                switch (item.Kind)
+                {
+                    case CncEventEnum.ReadPmc:
+                        info = ReadPmcHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadMacro:
+                        info = ReadMacroHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadPosition:
+                        info = ReadPositionHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadAlarm:
+                        info = ReadAlarmHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadNotice:
+                        info = ReadNoticeHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadProgramName:
+                        info = ReadProgramNameHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadProgramBlock:
+                        info = ReadProgramBlockHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadProgramStr:
+                        info = ReadProgramStrHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadProgramInfo:
+                        info = ReadProgramInfoHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadModalInfo:
+                        info = ReadModalInfoHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadCycleTime:
+                        info = ReadCycleTimeHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadWorkpartNum:
+                        info = ReadWorkpartNumHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadSpindleSpeed:
+                        info = ReadSpindleSpeedHandle(ref m_flib, item.Para);
+                        break;
+                    case CncEventEnum.ReadFeedrate:
+                        info = ReadFeedrateHandle(ref m_flib, item.Para);
+                        break;
+                    default:
+                        break;
+                }
+                if (info?.Length >= 1)
+                {
+                    ShowErrorLogEvent?.Invoke(info);
+                }
+
+            });
+
+        }
+        public void Execute()
+        {
+
+            HandlerExecute();
+            // HandlerSwitchExecute();
+        }
+
 
         private string ReadPmcHandle(ref ushort flib, string para)
         {
@@ -300,7 +271,13 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             foreach (var item in paraModel.Decompilers)
             {
                 string data = "";
-                var ret_dec = PmcHelper.DecompilerReadPmcInfo(datas[item.AdrType], item, ref data);
+                string ret_dec = "";
+                if (datas.ContainsKey(item.AdrType))
+                {
+                    ret_dec = PmcHelper.DecompilerReadPmcInfo(datas[item.AdrType], item, ref data);
+
+                }
+                // var ret_dec = PmcHelper.DecompilerReadPmcInfo(datas[item.AdrType], item, ref data);
                 if (ret_dec != null)
                 {
                     message = ret_dec;
@@ -378,7 +355,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             {
                 int[] data = new int[Focas1.MAX_AXIS];
                 var ret = PositionHelper.ReadPositionRange(flib, item.PositionType, ref data);
-                if (ret.Item1 == -16)
+                if (ret.Item1 == -16 || ret.Item1 == -8)
                 {
                     var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
@@ -398,7 +375,12 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             foreach (var item in paraModel.Decompilers)
             {
                 int data = 0;
-                var ret_dec = PositionHelper.DecompilerReadPositionInfo(datas[item.PositionType], item, ref data);
+                string ret_dec = "";
+                if (datas.ContainsKey(item.PositionType))
+                {
+                    ret_dec = PositionHelper.DecompilerReadPositionInfo(datas[item.PositionType], item, ref data);
+                }
+
                 if (ret_dec != null)
                 {
                     message = ret_dec;
@@ -491,7 +473,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
             {
                 message = ret.Item2;
             }
-            //GetResultEvent?.Invoke(new BaseCNCResultModel<ReadProgramNameResultModel>() { Value = new List<ReadProgramNameResultModel>() { res}, Id = para });
+            //GetResultEvent?.Invoke(new BaseCNCResultModel<ReadProgramNameResultModel>() { Value = new List<ReadProgramNameResultModel>() {  Id = para });
 
             return message;
         }

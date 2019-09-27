@@ -266,7 +266,6 @@
     <Compile Include="SystemControl\PopupWindowControl.xaml.cs">
       <DependentUpon>PopupWindowControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SystemControl\ViewModel\BottomWarningLogViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\FunctionConfigViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\HeaderMenuViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\MainMenuViewModel.cs" />

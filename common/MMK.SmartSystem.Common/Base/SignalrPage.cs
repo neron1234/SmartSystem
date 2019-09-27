@@ -1,4 +1,5 @@
 ﻿using Abp.Dependency;
+using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SignalrProxy;
 using MMK.SmartSystem.Common.ViewModel;
@@ -73,6 +74,8 @@ namespace MMK.SmartSystem.Common.Base
 
         private void SignalrProxyClient_CncErrorEvent(string obj)
         {
+            Messenger.Default.Send(new BottomWarningLogViewModel() { WarningLogStr = obj });
+
             CncOnError(obj);
         }
 
