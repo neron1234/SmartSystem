@@ -14,15 +14,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel;
+using MMK.SmartSystem.Common.Base;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 
 namespace MMK.SmartSystem.Laser.Base.MachineOperation
 {
     /// <summary>
     /// ManualFindSidePage.xaml 的交互逻辑
     /// </summary>
-    public partial class ManualFindSidePage : Page, ITransientDependency
+    public partial class ManualFindSidePage : SignalrPage
     {
         public ManualFindSidePageViewModel mfViewModel { get; private set; }
+        /// <summary>
+        /// 手动寻边
+        /// </summary>
         public ManualFindSidePage()
         {
             InitializeComponent();
@@ -33,6 +38,26 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
             //SmartSystem.Common.DepartmentClient client = new Common.DepartmentClient("http://localhost:21021", new System.Net.Http.HttpClient());
             //var alls = client.GetAllAsync("", "", 0, 20).Result;
 
+        }
+
+        public override void PageSignlarLoaded()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<CncEventData> GetCncEventData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<object> GetResultViewModelMap()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void CncOnError(string message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

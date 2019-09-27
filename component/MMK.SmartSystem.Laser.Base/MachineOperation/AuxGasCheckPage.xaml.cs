@@ -1,4 +1,6 @@
 ﻿using Abp.Dependency;
+using MMK.SmartSystem.Common.Base;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +21,34 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
     /// <summary>
     /// AuxGasCheckPage.xaml 的交互逻辑
     /// </summary>
-    public partial class AuxGasCheckPage : Page, ITransientDependency
+    public partial class AuxGasCheckPage : SignalrPage
     {
+        /// <summary>
+        /// 辅助气体检查
+        /// </summary>
         public AuxGasCheckPage()
         {
             InitializeComponent();
+        }
+
+        public override void CncOnError(string message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<CncEventData> GetCncEventData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<object> GetResultViewModelMap()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void PageSignlarLoaded()
+        {
+            throw new NotImplementedException();
         }
     }
 }
