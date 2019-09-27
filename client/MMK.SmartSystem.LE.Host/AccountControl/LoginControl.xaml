@@ -7,6 +7,7 @@
         xmlns:control="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+        xmlns:CUI="clr-namespace:MMK.SmartSystem.LE.Host.CustomControl"
         mc:Ignorable="d"
         Height="400" Width="700" 
         FontSize="15" FontFamily="微软雅黑">
@@ -82,6 +83,7 @@
                                 </i:Interaction.Triggers>
                             </TextBox>
                             <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding AccountError}" />
+
                             <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding Pwd}" x:Name="txtPwd" KeyDown="Login_KeyDown" >
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="TextChanged">
