@@ -74,5 +74,13 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         {
             Messenger.Default.Send((UserControl)new PopupWindowControl(new FunctionConfigControl(),900,600));
         }
+
+        private void FunctionConfig2Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Send(new BottomWarningLogViewModel()
+            {
+                WarningLogStr = "测试出现了BUG！------" + DateTime.Now
+            }); 
+        }
     }
 }

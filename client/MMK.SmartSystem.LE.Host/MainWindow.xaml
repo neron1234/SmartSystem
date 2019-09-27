@@ -7,9 +7,8 @@
         xmlns:systemControl="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
         xmlns:accountControl="clr-namespace:MMK.SmartSystem.LE.Host.AccountControl"
                            xmlns:embed="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl.Embed"
-
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1200" WindowState="Maximized">
+        Title="MainWindow" Height="600" Width="1400" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -18,6 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
             <systemControl:ModuleMenuControl />
@@ -40,8 +40,11 @@
             <accountControl:UserInfoControl />
             <Button Content="Web" Height="25" Width="50" Margin="10,0,0,0" x:Name="webBtn" Click="WebBtn_Click"></Button>
         </StackPanel>
-        <StackPanel>
+        <StackPanel Grid.Row="0">
             <ContentControl x:Name="popupControl" Content="{Binding PopupControl}"/>
         </StackPanel>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" >
+            <systemControl:BottomWarningLogControl />
+        </Grid>
     </Grid>
 </Window>

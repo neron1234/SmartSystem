@@ -47,7 +47,7 @@
                 </Button.Effect>
             </Button>
 
-            <Button Content="系统设置"  Width="80" Height="45" Margin="2" x:Name="FunctionConfig2Btn" Click="FunctionConfigBtn_Click" BorderBrush="#6baf2f" Foreground="White" Background="#FFDDDDDD">
+            <Button Content="系统设置"  Width="80" Height="45" Margin="2" x:Name="FunctionConfig2Btn" Click="FunctionConfig2Btn_Click" BorderBrush="#6baf2f" Foreground="White" Background="#FFDDDDDD">
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0.5" CornerRadius="5,5,5,5" Name="PART_Background">

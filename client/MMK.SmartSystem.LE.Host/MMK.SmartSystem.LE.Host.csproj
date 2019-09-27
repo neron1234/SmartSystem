@@ -242,6 +242,9 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SmartSystemLEConsts.cs" />
+    <Compile Include="SystemControl\BottomWarningLogControl.xaml.cs">
+      <DependentUpon>BottomWarningLogControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemControl\Control\MaskLayerBehavior.cs" />
     <Compile Include="SystemControl\Control\PathIconButton.cs" />
     <Compile Include="SystemControl\Control\PopupEx.cs" />
@@ -263,6 +266,7 @@
     <Compile Include="SystemControl\PopupWindowControl.xaml.cs">
       <DependentUpon>PopupWindowControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemControl\ViewModel\BottomWarningLogViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\FunctionConfigViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\HeaderMenuViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\MainMenuViewModel.cs" />
@@ -304,6 +308,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SystemControl\BottomWarningLogControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SystemControl\Embed\AppContainer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
