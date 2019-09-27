@@ -111,8 +111,8 @@
                 <TextBlock Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="3" 
                     Text="MACHINE_MENU_MANUELCHANGEWORKSTATION_SUB"
                                HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <Label VerticalAlignment="Bottom" Width="80" Height="80" Grid.Row="1" Grid.Column="4" Tag="{Binding WorkStationInfo.SubWorkStationUp,Converter={StaticResource _wsc}}"
-                        HorizontalAlignment="Center" Style="{StaticResource WorkStationArrorLabel}" IsEnabled="{Binding VerticalChange}">
+                <Label VerticalAlignment="Bottom" Width="80" Height="80" Grid.Row="1" Grid.Column="4"
+                        HorizontalAlignment="Center"  IsEnabled="{Binding VerticalChange}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding SubUpMouseDownCommand}"/>
