@@ -248,6 +248,12 @@
     <Compile Include="MachineOperation\ManualFindSidePage.xaml.cs">
       <DependentUpon>ManualFindSidePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MachineOperation\ManuelChangeWorkStationPage.xaml.cs">
+      <DependentUpon>ManuelChangeWorkStationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineOperation\RemainCutPage.xaml.cs">
+      <DependentUpon>RemainCutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineOperation\ViewModel\AutoCutterCleanViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AutoFindSidePageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AuxGasCheckPageViewModel.cs" />
@@ -316,6 +322,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MachineOperation\ManualFindSidePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineOperation\ManuelChangeWorkStationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineOperation\RemainCutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

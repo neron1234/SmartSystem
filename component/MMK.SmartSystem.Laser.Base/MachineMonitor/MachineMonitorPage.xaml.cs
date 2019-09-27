@@ -1,5 +1,4 @@
 ﻿using Abp.Dependency;
-using MMK.SmartSystem.Common.SignalrProxy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MMK.SmartSystem.Laser.Base.MachineMonitor.ViewModel;
-using MMK.SmartSystem.WebCommon.DeviceModel;
 using Newtonsoft.Json.Linq;
+using MMK.SmartSystem.WebCommon.DeviceModel;
+using MMK.SmartSystem.Common.SignalrProxy;
 using MMK.SmartSystem.Common.Base;
 using MMK.SmartSystem.Common.Model;
 
@@ -34,7 +34,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
             InitializeComponent();
 
         }
-
 
         private async void Btn_Click(object sender, RoutedEventArgs e)
         {

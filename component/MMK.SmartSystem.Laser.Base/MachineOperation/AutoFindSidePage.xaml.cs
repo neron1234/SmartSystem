@@ -26,6 +26,9 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
     public partial class AutoFindSidePage : AutoRefreshPage
     {
         public AutoFindSidePageViewModel AutoFindSidePageViewModel { get; set; }
+        /// <summary>
+        /// 自动寻边
+        /// </summary>
         public AutoFindSidePage()
         {
             InitializeComponent();
