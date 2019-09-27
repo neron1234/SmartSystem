@@ -19,6 +19,10 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
         protected override object PollDecompiler(List<ReadPmcResultItemModel> res, DecompReadPmcItemModel deModel)
         {
             string data = "";
+            if (!datas.ContainsKey(deModel.AdrType))
+            {
+                return "读取错误";
+            }
             var ret_dec = PmcHelper.DecompilerReadPmcInfo(datas[deModel.AdrType], deModel, ref data);
             if (string.IsNullOrEmpty(ret_dec))
             {

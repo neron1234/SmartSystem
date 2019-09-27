@@ -21,11 +21,10 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
 
 
         }
-        public event Action<string> ShowErrorLogEvent;
-        public event Action<object> GetResultEvent;
+
         protected abstract Tuple<short, string> PollRead(R item);
         protected abstract object PollDecompiler(List<U> res, D item);
-        public string PollHandle(I paraModel)
+        public BaseCNCResultModel<U> PollHandle(I paraModel)
         {
             string message = null;
             var res = new List<U>();
@@ -45,15 +44,15 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers.CNC
 
             foreach (var item in paraModel.Decompilers)
             {
-                string ret_dec = PollDecompiler(res, item).ToString();
+                string ret_dec = PollDecompiler(res, item)?.ToString();
                 if (ret_dec != null)
                 {
                     message = ret_dec;
                 }
-               
+
             }
-            GetResultEvent?.Invoke(new BaseCNCResultModel<U>() { Value = res, Id = "" });
-            return message;
+
+            return new BaseCNCResultModel<U>() { Value = res, Id = "", ErrorMessage = message };
 
         }
 

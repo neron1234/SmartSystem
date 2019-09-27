@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using MMK.SmartSystem.RealTime.DeviceHandlers.CNC;
 using System.Reflection;
+using Newtonsoft.Json.Linq;
 
 namespace MMK.SmartSystem.RealTime.DeviceHandlers
 {
@@ -123,7 +124,7 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
 
             foreach (var item in tempEventDatas)
             {
-                string info = "";
+                object info;
                 Type kindtype = item.Kind.GetType();
                 FieldInfo fd = kindtype.GetField(item.Kind.ToString());
                 var cncCustom = fd.GetCustomAttribute<CncCustomEventAttribute>();
@@ -131,7 +132,6 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                 {
                     continue;
                 }
-                var jsonData = JsonConvert.DeserializeObject(item.Para);
                 var handlerType = Type.GetType(cncCustom.HandlerName);
                 object hander;
                 if (handlerType == null)
@@ -141,14 +141,19 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                 try
                 {
 
-                    hander = handlerType.Assembly.CreateInstance(handlerType.FullName, false, BindingFlags.Public, null, new object[] { m_flib }, null, null);
+                    hander = handlerType.Assembly.CreateInstance(handlerType.FullName, false, BindingFlags.CreateInstance, null, new object[] { m_flib }, null, null);
                     MethodInfo methodInfo = handlerType.GetMethod("PollHandle");
-                    info = methodInfo.Invoke(hander, new object[] { jsonData }).ToString();
+                    Type methodType = methodInfo.GetParameters()[0].ParameterType;
+                    var jsonData = JsonConvert.DeserializeObject(item.Para, methodType);
+                    info = methodInfo.Invoke(hander, new object[] { jsonData }) ;
+                    JObject jObject = JObject.FromObject(info);
                    
-                    if (info?.Length >= 1)
+                    if (!string.IsNullOrEmpty(jObject["ErrorMessage"]?.ToString()))
                     {
-                        ShowErrorLogEvent?.Invoke(info);
+                        ShowErrorLogEvent?.Invoke(jObject["ErrorMessage"]?.ToString());
+                        continue;
                     }
+                    GetResultEvent(info);
                 }
                 catch (Exception ex)
                 {
