@@ -1,4 +1,5 @@
 ﻿using MMK.SmartSystem.Common.Base;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,25 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         public ManuelChangeWorkStationPage()
         {
             InitializeComponent();
+        }
+        public override void PageSignlarLoaded()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<CncEventData> GetCncEventData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<object> GetResultViewModelMap()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void CncOnError(string message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

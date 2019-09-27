@@ -74,6 +74,22 @@
                 "IsAuth": false,
                 "Permission": "MachineOperation.CutCenterPage",
                 "Sort": 3
+            },
+            {
+                "Id": "MachineOperation.ManuelChangeWorkStationPage",
+                "Title": "ManualFindSide.ManuelChangeWorkStation",
+                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.ManuelChangeWorkStationPage",
+                "IsAuth": false,
+                "Permission": "MachineOperation.ManuelChangeWorkStationPage",
+                "Sort": 4
+            },
+            {
+                "Id": "MachineOperation.RemainCutPage",
+                "Title": "ManualFindSide.RemainCut",
+                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.RemainCutPage",
+                "IsAuth": false,
+                "Permission": "MachineOperation.RemainCutPage",
+                "Sort": 5
             }
         ]
     },
