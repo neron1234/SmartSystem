@@ -84,7 +84,7 @@
                                HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="Yellow"/>
 
                 <Button Grid.Row="1" Grid.Column="4" Margin="5"  
-                        Content="P1读取" Command="{Binding GetP1Command}"/>
+                        Content="P1读取" Command="{Binding GetP1Command}" />
                 <Button Grid.Row="2" Grid.Column="4" Margin="5" 
                         Content="P2读取" Command="{Binding GetP2Command}"/>
                 <Button Grid.Row="3" Grid.Column="4" Margin="5" 
