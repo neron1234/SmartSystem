@@ -17,7 +17,53 @@ using Newtonsoft.Json.Linq;
 
 namespace MMK.SmartSystem.RealTime.DeviceHandlers
 {
+    public class HanderAssemblyModel
+    {
+        private static Dictionary<string, HanderAssemblyModel> DictHandler = new Dictionary<string, HanderAssemblyModel>();
+        public string FullName { get; set; }
 
+        public object Handler { get; set; }
+
+        public MethodInfo Method { get; set; }
+
+        public Type HandlerType { get; set; }
+        public Type MethodType { get; set; }
+        public static object Invoke(string fullName, ushort m_flib, string data)
+        {
+            Type handlerType=null;
+            object hander = null;
+            MethodInfo methodInfo = null;
+            Type methodType = null;
+
+            if (!DictHandler.ContainsKey(fullName))
+            {
+                handlerType = Type.GetType(fullName);
+                hander = handlerType.Assembly.CreateInstance(fullName, false, BindingFlags.CreateInstance, null, new object[] { m_flib }, null, null);
+                methodInfo = handlerType.GetMethod("PollHandle");
+                methodType = methodInfo.GetParameters()[0].ParameterType;
+
+                DictHandler.Add(fullName, new HanderAssemblyModel()
+                {
+                    FullName = fullName,
+                    Handler = hander,
+                    Method = methodInfo,
+                    MethodType = methodType,
+                    HandlerType = handlerType
+                });
+            }
+            else
+            {
+                handlerType = DictHandler[fullName].HandlerType;
+                hander = DictHandler[fullName].Handler;
+                methodInfo = DictHandler[fullName].Method;
+                methodType = DictHandler[fullName].MethodType;
+            }
+           
+            var jsonData = JsonConvert.DeserializeObject(data, methodType);
+            return methodInfo.Invoke(hander, new object[] { jsonData });
+        }
+
+    }
     public class CncHandler
     {
         string m_ip = "192.168.21.121";
@@ -130,24 +176,23 @@ namespace MMK.SmartSystem.RealTime.DeviceHandlers
                 var cncCustom = fd.GetCustomAttribute<CncCustomEventAttribute>();
                 if (cncCustom == null)
                 {
+                    ShowErrorLogEvent?.Invoke($"未定义与前端定义的映射模型{cncCustom.ToString()} CncCustomEvent");
+
                     continue;
                 }
                 var handlerType = Type.GetType(cncCustom.HandlerName);
-                object hander;
                 if (handlerType == null)
                 {
+                    ShowErrorLogEvent?.Invoke($"未定义{cncCustom.HandlerName} Handler");
                     continue;
                 }
                 try
                 {
 
-                    hander = handlerType.Assembly.CreateInstance(handlerType.FullName, false, BindingFlags.CreateInstance, null, new object[] { m_flib }, null, null);
-                    MethodInfo methodInfo = handlerType.GetMethod("PollHandle");
-                    Type methodType = methodInfo.GetParameters()[0].ParameterType;
-                    var jsonData = JsonConvert.DeserializeObject(item.Para, methodType);
-                    info = methodInfo.Invoke(hander, new object[] { jsonData }) ;
+                  
+                    info = HanderAssemblyModel.Invoke(cncCustom.HandlerName, m_flib, item.Para);
                     JObject jObject = JObject.FromObject(info);
-                   
+
                     if (!string.IsNullOrEmpty(jObject["ErrorMessage"]?.ToString()))
                     {
                         ShowErrorLogEvent?.Invoke(jObject["ErrorMessage"]?.ToString());

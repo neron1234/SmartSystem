@@ -53,12 +53,12 @@ namespace MMK.SmartSystem.Common.Base
                 {
                     if (item.MapType == SignalrMapModelEnum.AutoPropMap)
                     {
-                        foreach (var prop in item.GetType().GetProperties())
+                        foreach (var prop in item.ViewModels.GetType().GetProperties())
                         {
                             var propValue = item?.AutoPropMapAction(list, prop.Name);
                             if (propValue != null)
                             {
-                                prop.SetValue(item, propValue.ToString());
+                                prop.SetValue(item.ViewModels, propValue.ToString());
                             }
                         }
                     }

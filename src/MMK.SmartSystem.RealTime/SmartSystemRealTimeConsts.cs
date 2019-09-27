@@ -8,7 +8,7 @@ namespace MMK.SmartSystem.RealTime
 {
     public class SmartSystemRealTimeConsts
     {
-        public const string CncIP = "192.168.21.125";
+        public const string CncIP = "192.168.21.97";
 
         public const int CncPort = 8193;
 
