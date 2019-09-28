@@ -6,6 +6,7 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Threading.BackgroundWorkers;
 using Hangfire;
+using MMK.SmartSystem.CNC.Core;
 using MMK.SmartSystem.RealTime.Job;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ using System.Text;
 
 namespace MMK.SmartSystem.RealTime
 {
-    [DependsOn(typeof(AbpAspNetCoreSignalRModule))]
+    [DependsOn(typeof(AbpAspNetCoreSignalRModule),
+        typeof(SmartSytemCNCCoreModule))]
     public class SmartSystemRealTimeModule : AbpModule
     {
         private IBackgroundJobManager _backgroundJobManager;

@@ -3,7 +3,7 @@ using Abp.Auditing;
 using Abp.BackgroundJobs;
 using Abp.Dependency;
 using Abp.RealTime;
-using MMK.SmartSystem.RealTime.DeviceHandlers;
+using MMK.SmartSystem.CNC.Core.Workers;
 using MMK.SmartSystem.RealTime.Job;
 using MMK.SmartSystem.WebCommon.DeviceModel;
 using Newtonsoft.Json;
@@ -29,7 +29,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
         public BaseCNCResultModel<ReadProgramListItemResultModel> ReadProgramList(string folder)
         {
 
-            return new CncHandler(_iocManager).ReadProgramList(folder);
+            return new CncCoreWorker(_iocManager).ReadProgramList(folder);
 
         }
 
@@ -42,7 +42,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
                 Logger.Info($"【CncConfig】:{info}");
                 foreach (var item in cncEvents)
                 {
-                    CncHandler.m_EventDatas.Add(item);
+                    CncCoreWorker.m_EventDatas.Add(item);
 
                 }
             }

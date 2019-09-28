@@ -7,28 +7,26 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public class CncCustomEventAttribute : Attribute
     {
-        public string ModelName { get; }
         public string HandlerName { get; }
-        public CncCustomEventAttribute(string model, string handlerName)
+        public CncCustomEventAttribute(string handlerName)
         {
-            ModelName = $"MMK.SmartSystem.WebCommon.DeviceModel.{ model}";
-            HandlerName = $"MMK.SmartSystem.RealTime.DeviceHandlers.CNC.{handlerName}";
+            HandlerName = $"MMK.SmartSystem.CNC.Core.DeviceHandlers.{handlerName}";
         }
     }
     public enum CncEventEnum
     {
-        [CncCustomEvent("ReadMacroModel", "MacroHandler")]
+        [CncCustomEvent("MacroHandler")]
         ReadMacro,
 
-        [CncCustomEvent("ReadPmcModel", "PmcHandler")]
+        [CncCustomEvent("PmcHandler")]
         ReadPmc,
 
-        [CncCustomEvent("ReadPositionModel", "PositionHandler")]
+        [CncCustomEvent("PositionHandler")]
         ReadPosition,
         ReadAlarm,
         ReadNotice,
 
-        [CncCustomEvent("ReadProgramNameModel", "ProgramNameHandler")]
+        [CncCustomEvent("ProgramNameHandler")]
         ReadProgramName,
         ReadProgramBlock,
 

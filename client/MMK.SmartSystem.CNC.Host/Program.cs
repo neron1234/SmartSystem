@@ -1,4 +1,6 @@
-﻿using MMK.SmartSystem.CNC.Host.CNC;
+﻿using Abp;
+using Abp.Castle.Logging.Log4Net;
+using Castle.Facilities.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,61 +12,17 @@ namespace MMK.SmartSystem.CNC.Host
 {
     class Program
     {
+        private static  AbpBootstrapper _bootstrapper;
+
         static void Main(string[] args)
         {
-            var cncHandler = new CncHandler();
-            cncHandler.ShowErrorLogEvent += CncHandler_ShowErrorLogEvent; ;
-            cncHandler.GetResultEvent += CncHandler_GetResultEvent;
-            cncHandler.Connect();
-            CNCdata();
-            while (true)
-            {
-                System.Threading.Thread.Sleep(1000);
-                try
-                {
-                    cncHandler.Execute();
-
-                }
-                catch (Exception ex)
-                {
-
-                    Console.WriteLine(ex.Message);
-
-                }
-            }
-         //   Console.ReadLine();
+            _bootstrapper = AbpBootstrapper.Create<SmartSystemCNCHostModule>();
+            _bootstrapper.IocManager.IocContainer.AddFacility<LoggingFacility>(
+                f => f.UseAbpLog4Net().WithConfig("log4net.config"));
+            _bootstrapper.Initialize();
 
         }
 
-        private static void CncHandler_GetResultEvent(object obj)
-        {
-           
-            Console.WriteLine(obj.ToString());
-        }
 
-        private static void CncHandler_ShowErrorLogEvent(string obj)
-        {
-            Console.WriteLine(obj);
-        }
-
-        static void CNCdata()
-        {
-
-            string info = System.IO.File.ReadAllText("d:\\json.txt");
-            List<CncEventData> cncEvents = new List<CncEventData>();
-            try
-            {
-                cncEvents = JsonConvert.DeserializeObject<List<CncEventData>>(info);
-                foreach (var item in cncEvents)
-                {
-                    CncHandler.m_EventDatas.Add(item);
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
     }
 }
