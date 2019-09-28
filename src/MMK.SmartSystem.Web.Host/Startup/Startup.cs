@@ -112,6 +112,8 @@ namespace MMK.SmartSystem.Web.Host.Startup
                 routes.MapHub<AbpCommonHub>("/signalr");
                 routes.MapHub<RouteHub>("/hubs-routeHub");
                 routes.MapHub<CNCHub>("/hubs-cncHub");
+                routes.MapHub<CncClientHub>("/hubs-cncClientHub");
+
             });
 
             app.UseMvc(routes =>

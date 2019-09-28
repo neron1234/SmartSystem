@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 using MMK.SmartSystem.WebCommon.HubModel;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,13 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
     public class SignalrProxy
     {
         public event Action<string> CncErrorEvent;
-        public event Action<HubResultModel> HubRefreshModelEvent;
+        public event Action<List<CncEventData>> GetCncEventData;
         HubConnection connection;
         bool isExit = false;
-        public SignalrProxy(string groupName)
+        public SignalrProxy()
         {
             connection = new HubConnectionBuilder()
-              .WithUrl($"{SmartSystemCNCHostConsts.ApiHost}/hubs-cncHub?groupName={groupName}")
+              .WithUrl($"{SmartSystemCNCHostConsts.ApiHost}/hubs-cncClientHub")
               .Build();
             initEvent();
         }
@@ -26,12 +27,14 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
             try
             {
                 await connection.StartAsync();
+                CncErrorEvent?.Invoke($"服务器{SmartSystemCNCHostConsts.ApiHost}连接成功! {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}");
 
             }
             catch (Exception ex)
             {
-
-                CncErrorEvent?.Invoke(ex.Message);
+                await Task.Delay(5000);
+                CncErrorEvent?.Invoke(ex.Message+DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                await Start();
             }
         }
 
@@ -92,15 +95,12 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
 
                 }
             };
-            //connection.On<string>(SinglarCNCHubConsts.CNCErrorAction, (message) =>
-            //{
-            //    CncErrorEvent?.Invoke(message);
-            //});
+            connection.On<List<CncEventData>>(SmartSystemCNCHostConsts.ClientGetCncEvent, (message) =>
+            {
+                GetCncEventData?.Invoke(message);
+            });
 
-            //connection.On<HubResultModel>(SinglarCNCHubConsts.CNCDataAction, (data) =>
-            //{
-            //    HubRefreshModelEvent?.Invoke(data);
-            //});
+           
         }
     }
 }
