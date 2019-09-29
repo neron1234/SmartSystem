@@ -9,6 +9,16 @@
                   mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="1200" Foreground="White" Background="#2a2f34" FontSize="18"
       Title="ManuelChangeWorkStationPage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/MainStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadPageCommand}"/>
@@ -51,8 +61,9 @@
                 <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" 
                     Text="MACHINE_MENU_MANUELCHANGEWORKSTATION_MAIN"
                                HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <Label VerticalAlignment="Bottom" Width="80" Height="80" Grid.Row="1" Grid.Column="1" Tag=""
-                        HorizontalAlignment="Center" IsEnabled="{Binding VerticalChange}">
+
+                <Label VerticalAlignment="Bottom" Width="80" Height="80" Grid.Row="1" Grid.Column="1" Tag="{Binding WorkStationInfo.MainWorkStationUp,Converter={StaticResource _wsc}}"
+                        HorizontalAlignment="Center" Style="{StaticResource WorkStationArrorLabel}" IsEnabled="{Binding VerticalChange}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding MainUpMouseDownCommand}"/>
@@ -62,8 +73,8 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Label>
-                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="0" 
-                        HorizontalAlignment="Right" 
+                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="0" Tag="{Binding WorkStationInfo.MainWorkStationLeft,Converter={StaticResource _wsc}}"
+                        HorizontalAlignment="Right" Style="{StaticResource WorkStationArrorLabel}" 
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -77,12 +88,12 @@
                         <RotateTransform  Angle="-90"></RotateTransform>
                     </Label.RenderTransform>
                 </Label>
-                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="2" 
-                        HorizontalAlignment="Left"
+                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="2" Tag="{Binding WorkStationInfo.MainWorkStationRight,Converter={StaticResource _wsc}}"
+                        HorizontalAlignment="Left" Style="{StaticResource WorkStationArrorLabel}" 
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding MainRightMouseDownCommand}"/>
+                            <i:InvokeCommandAction Command="{Binding MainRightMouseDownCommand}" />
                         </i:EventTrigger>
                         <i:EventTrigger EventName="MouseLeftButtonUp">
                             <i:InvokeCommandAction Command="{Binding MainRightMouseUpCommand}"/>
@@ -92,8 +103,8 @@
                         <RotateTransform  Angle="90"></RotateTransform>
                     </Label.RenderTransform>
                 </Label>
-                <Label VerticalAlignment="Top" Width="80" Height="80" Grid.Row="3" Grid.Column="1" 
-                        HorizontalAlignment="Center" IsEnabled="{Binding VerticalChange}"
+                <Label VerticalAlignment="Top" Width="80" Height="80" Grid.Row="3" Grid.Column="1" Tag="{Binding WorkStationInfo.MainWorkStationDown,Converter={StaticResource _wsc}}"
+                        HorizontalAlignment="Center" Style="{StaticResource WorkStationArrorLabel}" IsEnabled="{Binding VerticalChange}"
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -111,8 +122,8 @@
                 <TextBlock Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="3" 
                     Text="MACHINE_MENU_MANUELCHANGEWORKSTATION_SUB"
                                HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <Label VerticalAlignment="Bottom" Width="80" Height="80" Grid.Row="1" Grid.Column="4"
-                        HorizontalAlignment="Center"  IsEnabled="{Binding VerticalChange}">
+                <Label VerticalAlignment="Bottom" Width="80" Height="80" Grid.Row="1" Grid.Column="4" Tag="{Binding WorkStationInfo.SubWorkStationUp,Converter={StaticResource _wsc}}"
+                        HorizontalAlignment="Center" Style="{StaticResource WorkStationArrorLabel}" IsEnabled="{Binding VerticalChange}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding SubUpMouseDownCommand}"/>
@@ -122,8 +133,8 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Label>
-                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="3" 
-                        HorizontalAlignment="Right"
+                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="3" Tag="{Binding WorkStationInfo.SubWorkStationLeft,Converter={StaticResource _wsc}}"
+                        HorizontalAlignment="Right" Style="{StaticResource WorkStationArrorLabel}" 
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -137,8 +148,8 @@
                         <RotateTransform  Angle="-90"></RotateTransform>
                     </Label.RenderTransform>
                 </Label>
-                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="5"  
-                        HorizontalAlignment="Left" 
+                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="5"  Tag="{Binding WorkStationInfo.SubWorkStationRight,Converter={StaticResource _wsc}}"
+                        HorizontalAlignment="Left" Style="{StaticResource WorkStationArrorLabel}" 
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -152,8 +163,8 @@
                         <RotateTransform  Angle="90"></RotateTransform>
                     </Label.RenderTransform>
                 </Label>
-                <Label VerticalAlignment="Top" Width="80" Height="80" Grid.Row="3" Grid.Column="4" 
-                        HorizontalAlignment="Center"  IsEnabled="{Binding VerticalChange}"
+                <Label VerticalAlignment="Top" Width="80" Height="80" Grid.Row="3" Grid.Column="4" Tag="{Binding WorkStationInfo.SubWorkStationDown,Converter={StaticResource _wsc}}"
+                        HorizontalAlignment="Center" Style="{StaticResource WorkStationArrorLabel}"  IsEnabled="{Binding VerticalChange}"
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -196,10 +207,10 @@
                 </StackPanel>
                 <Button Grid.Column="0" Grid.Row="3" Width="300" Height="60"  Margin="50,0,0,0"  VerticalAlignment="Center" 
                         Content="MACHINE_MENU_MANUELCHANGEWORKSTATION_ONEKEY_BTN"  Command="{Binding StartCommand}"
-                        HorizontalAlignment="Left" />
+                        HorizontalAlignment="Left" Style="{StaticResource BtnStyle}" />
 
                 <ToggleButton Grid.Row="0" Grid.Column="1" Grid.RowSpan="4" Width="200" Height="200" VerticalAlignment="Center" 
-                        HorizontalAlignment="Center" />
+                        HorizontalAlignment="Center" Style="{StaticResource EmcButton}"/>
             </Grid>
         </Grid>
     </Grid>

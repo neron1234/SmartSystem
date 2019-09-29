@@ -34,10 +34,14 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
             InitializeComponent();
             //this.DataContext = new MainTranslateViewModel();
         }
+        public override void PageSignlarLoaded()
+        {
+
+        }
 
         public override void CncOnError(string message)
         {
-            throw new NotImplementedException();
+            
         }
 
         public override List<CncEventData> GetCncEventData()
@@ -46,11 +50,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         }
 
         public override List<object> GetResultViewModelMap()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void PageSignlarLoaded()
         {
             throw new NotImplementedException();
         }

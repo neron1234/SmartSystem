@@ -13,8 +13,8 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../CustomControl/ToggleButton/Themes/Generic.xaml" />
-                <ResourceDictionary Source="../CustomControl/ToggleButton/Themes/IconToggleButton.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/ToggleButton/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/ToggleButton/Themes/IconToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
         
         <Style TargetType="Button" x:Key="FunctionBtnStyle">

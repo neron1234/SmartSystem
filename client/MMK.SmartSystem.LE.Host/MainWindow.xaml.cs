@@ -114,7 +114,32 @@ namespace MMK.SmartSystem.LE.Host
         private void WebBtn_Click(object sender, RoutedEventArgs e)
         {
             Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
+        }
 
+        private void btnMaxWindow_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                this.WindowState = WindowState.Normal;
+                ((PathIconButton)sender).PathData = (PathGeometry)FindResource("maxWindowIcon");
+            }
+            else
+            {
+                this.WindowState = WindowState.Maximized;
+                ((PathIconButton)sender).PathData = (PathGeometry)FindResource("normalWindowIcon");
+            }
+            //this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+        }
+
+        private void btnMinWindow_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
