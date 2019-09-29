@@ -9,6 +9,14 @@
        d:DesignHeight="500" d:DesignWidth="1200" Foreground="White" Background="#2a2f34" FontSize="18"
       Title="CutCenterPage">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
@@ -26,11 +34,11 @@
                 <RowDefinition Height="100*"/>
             </Grid.RowDefinitions>
             <Border Grid.Column="0" BorderBrush="#FF323232" BorderThickness="0" Background="Transparent">
-                <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/cc.png"/>
             </Border>
 
-            <Button Grid.Row="2" Width="200" Height="60"   VerticalAlignment="Center" Content="MANUALSTART" 
-                        HorizontalAlignment="Center" />
+            <Button Grid.Row="2" Width="200" Height="60" VerticalAlignment="Center" Content="MANUALSTART" 
+                        HorizontalAlignment="Center" Style="{StaticResource BtnStyle}"/>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="2" Margin="15,0,0,0">

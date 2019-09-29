@@ -11,10 +11,11 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+    
     <Grid Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
@@ -124,7 +125,7 @@
                 <RowDefinition Height="100*"/>
             </Grid.RowDefinitions>
             <Border Grid.Column="0" BorderBrush="#FF323232" BorderThickness="0" Background="Transparent">
-                <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="..\Image\AutoFindSideImg.png"/>
+                <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/afs.png"/>
             </Border>
             <TextBlock Grid.Row="1" Text="{Binding Translate.MachineOperation.AutoFindSide.FindXYTrack}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Foreground="White" Margin="0,16,132,15.6"/>
 

@@ -9,6 +9,14 @@
       d:DesignHeight="500" d:DesignWidth="1200" Foreground="White" Background="#2a2f34" FontSize="18"
       Title="AuxGasCheckPage">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="0"/>
@@ -62,7 +70,7 @@
                        HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" Foreground="White"/>
 
             <Button x:Name="gasBtn" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Width="200" Height="60"   VerticalAlignment="Center" Content="开气 / 关气" 
-                    HorizontalAlignment="Center" />
+                    HorizontalAlignment="Center" Style="{StaticResource BtnStyle}"/>
         </Grid>
 
     </Grid>

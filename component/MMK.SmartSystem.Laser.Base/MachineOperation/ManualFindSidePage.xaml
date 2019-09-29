@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Row="0" BorderBrush="#FF323232" BorderThickness="0" Background="Transparent">
-                <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="../Image/MsFindSideImg.png"/>
+                <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/mfs.png"/>
             </Border>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>

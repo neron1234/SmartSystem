@@ -206,6 +206,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\MopBackgroundColorConverter.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\AnimationButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\FlatToggleButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\IconToggleButton.cs" />
@@ -345,6 +346,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Style\MainColors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\MainStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -360,15 +369,32 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\afs.png" />
+    <Resource Include="Resources\Images\cac.png" />
+    <Resource Include="Resources\Images\cc.png" />
+    <Resource Include="Resources\Images\crc.png" />
+    <Resource Include="Resources\Images\mfs.png" />
+    <Resource Include="Resources\Images\rc.png" />
+    <Resource Include="Resources\Images\scm_01.png" />
+    <Resource Include="Resources\Images\scm_01_d.png" />
+    <Resource Include="Resources\Images\scm_02.png" />
+    <Resource Include="Resources\Images\scm_03.png" />
+    <Resource Include="Resources\Images\scm_04.png" />
+    <Resource Include="Resources\Images\scm_05.png" />
+    <Resource Include="Resources\Images\scm_06.png" />
+    <Resource Include="Resources\Images\scm_07.png" />
+    <Resource Include="Resources\Images\scm_08.png" />
+    <Resource Include="Resources\Images\sn_batch.png" />
+    <Resource Include="Resources\Images\sn_order.png" />
+    <Resource Include="Resources\Images\sn_rm.png" />
+    <Resource Include="Resources\Images\sn_try.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
-    <Resource Include="Image\BtnTest.png" />
-    <Resource Include="Image\BtnTest2.png" />
-    <Resource Include="Image\AutoFindSideImg.png" />
-    <Resource Include="Image\MsFindSideImg.png" />
+    <Resource Include="Resources\Images\BtnTest.png" />
+    <Resource Include="Resources\Images\BtnTest2.png" />
     <Content Include="MMK.SmartSystem.Laser.Base.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
