@@ -19,7 +19,7 @@ namespace MMK.SmartSystem.CNC.Host
         private static AbpBootstrapper _bootstrapper;
         static CncCoreWorker cncHandler;
         static SignalrProxy signalrProxy = new SignalrProxy();
-
+        static DateTime currentTime = DateTime.Now;
         static void Main(string[] args)
         {
             _bootstrapper = AbpBootstrapper.Create<SmartSystemCNCHostModule>();
@@ -62,6 +62,12 @@ namespace MMK.SmartSystem.CNC.Host
 
         private async static void CncHandler_GetResultEvent(object obj)
         {
+            if ((DateTime.Now - currentTime).TotalSeconds >= 5)
+            {
+                Console.WriteLine($"【Worker Data】【{DateTime.Now.ToString("HH:mm:ss")}】" + JObject.FromObject(obj).ToString());
+                currentTime = DateTime.Now;
+            }
+
             await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientSuccessEvent, obj);
         }
 
@@ -81,7 +87,7 @@ namespace MMK.SmartSystem.CNC.Host
 
         private static void SignalrProxy_GetCncEventData(List<WebCommon.DeviceModel.CncEventData> obj)
         {
-            Console.WriteLine("【CncEventData】" + JObject.FromObject(obj).ToString());
+            Console.WriteLine("【CncEventData】" + JArray.FromObject(obj).ToString());
 
             foreach (var item in obj)
             {

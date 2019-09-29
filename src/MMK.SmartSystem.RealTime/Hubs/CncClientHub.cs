@@ -3,6 +3,8 @@ using Abp.Auditing;
 using Abp.Dependency;
 using Abp.RealTime;
 using Microsoft.AspNetCore.SignalR;
+using MMK.SmartSystem.CNC.Core.Workers;
+using MMK.SmartSystem.WebCommon.HubModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +33,20 @@ namespace MMK.SmartSystem.RealTime.Hubs
         }
         public string PushCncDataMessage(object info)
         {
-            hubClient.Clients.All.SendAsync(CNCHub.GetDataAction, info);
+            var res = new HubResultModel
+            {
+                Data = info,
+                Time = DateTime.Now.ToString("HH:mm:ss.ffff")
+            };
+            hubClient.Clients.All.SendAsync(CNCHub.GetDataAction, res);
             return "True";
 
+        }
+        public override Task OnConnectedAsync()
+        {
+            var list = CncCoreWorker.m_EventDatas.ToList();
+            Clients.All.SendAsync(ClientGetCncEvent, list);
+            return base.OnConnectedAsync();
         }
     }
 }

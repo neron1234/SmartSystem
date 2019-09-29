@@ -34,8 +34,8 @@ namespace MMK.SmartSystem.RealTime
             //_backgroundJobManager = IocManager.Resolve<IBackgroundJobManager>();
 
             //_backgroundJobManager.Enqueue<CncBackgroudJob, CncBackgroudArgs>(new CncBackgroudArgs());
-            CncBackgroudJob cncBackgroudJob = IocManager.Resolve<CncBackgroudJob>();
-            backgroundJobs.Enqueue(() => cncBackgroudJob.Execute(new CncBackgroudArgs()));
+            //CncBackgroudJob cncBackgroudJob = IocManager.Resolve<CncBackgroudJob>();
+            //backgroundJobs.Enqueue(() => cncBackgroudJob.Execute(new CncBackgroudArgs()));
             //var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
             //workManager.Add(IocManager.Resolve<CncBackgroudWorker>());
         }

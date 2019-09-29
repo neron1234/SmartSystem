@@ -21,6 +21,7 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
               .WithUrl($"{SmartSystemCNCHostConsts.ApiHost}/hubs-cncClientHub")
               .Build();
             initEvent();
+
         }
         public async Task Start()
         {
@@ -33,14 +34,29 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
             catch (Exception ex)
             {
                 await Task.Delay(5000);
-                CncErrorEvent?.Invoke(ex.Message+DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                CncErrorEvent?.Invoke(ex.Message + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 await Start();
             }
         }
 
         public async Task<T> SendAction<T>(string actionName, object message)
         {
-            return await connection.InvokeAsync<T>(actionName, message);
+            try
+            {
+                if (connection.State == HubConnectionState.Connected)
+                {
+                    return await connection.InvokeAsync<T>(actionName, message);
+
+                }
+                return default(T);
+            }
+            catch (Exception ex)
+            {
+                CncErrorEvent?.Invoke(ex.Message);
+                return default(T);
+            }
+       
+           
         }
 
         public async Task Close()
@@ -100,7 +116,7 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
                 GetCncEventData?.Invoke(message);
             });
 
-           
+
         }
     }
 }
