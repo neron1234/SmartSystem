@@ -92,6 +92,24 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
                 })
             });
 
+            cncEventDatas.Add(new CncEventData()
+            {
+                Kind = CncEventEnum.ReadMacro,
+                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadMacroModel()
+                {
+                    Decompilers = new List<DecompReadMacroItemModel>(){
+                       new DecompReadMacroItemModel()
+                       {
+                           Id = "AutoFindSide_GET_H"
+                       }
+                    },
+                    Readers = new List<ReadMacroTypeModel>()
+                    {
+                        new ReadMacroTypeModel(){ Quantity=10,StartNum=813}
+                    }
+                })
+            });
+
             //cncEventDatas.Add(new CncEventData()
             //{
             //    Kind = CncEventEnum.ReadProgramStr,

@@ -6,7 +6,7 @@ using System.Windows.Data;
 using System.Globalization;
 using System.Windows;
 
-namespace LaserEngineHmi.View.Converters
+namespace MMK.SmartSystem.Laser.Base.Converters
 {
     [ValueConversion(typeof(bool), typeof(string))]
     public class MopBackgroundColorConverter : IValueConverter

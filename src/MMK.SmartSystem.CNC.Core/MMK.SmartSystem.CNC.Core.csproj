@@ -177,9 +177,12 @@
     <Compile Include="DeviceHandlers\AlarmHandler.cs" />
     <Compile Include="DeviceHandlers\BaseCNCHandler.cs" />
     <Compile Include="DeviceHandlers\MacroHandler.cs" />
+    <Compile Include="DeviceHandlers\NoticeHandle.cs" />
     <Compile Include="DeviceHandlers\PmcHandler.cs" />
     <Compile Include="DeviceHandlers\PositionHandler.cs" />
+    <Compile Include="DeviceHandlers\ProgramBlockHandle.cs" />
     <Compile Include="DeviceHandlers\ProgramNameHandler.cs" />
+    <Compile Include="DeviceHandlers\ProgramStrHandler.cs" />
     <Compile Include="DeviceHelpers\AlarmHelper.cs" />
     <Compile Include="DeviceHelpers\ConnectHelper.cs" />
     <Compile Include="DeviceHelpers\CycleTimeHelper.cs" />
