@@ -1,7 +1,7 @@
 ﻿using Abp.BackgroundJobs;
 using Abp.Dependency;
 using Microsoft.AspNetCore.SignalR;
-using MMK.SmartSystem.RealTime.DeviceHandlers;
+using MMK.SmartSystem.CNC.Core.Workers;
 using MMK.SmartSystem.RealTime.Hubs;
 using MMK.SmartSystem.WebCommon.HubModel;
 using Newtonsoft.Json.Linq;
@@ -21,13 +21,13 @@ namespace MMK.SmartSystem.RealTime.Job
     }
     public class CncBackgroudJob : BackgroundJob<CncBackgroudArgs>, ITransientDependency
     {
-        CncHandler cncHandler;
+        CncCoreWorker cncHandler;
         IHubContext<CNCHub> hubContext;
         DateTime dateTime = DateTime.Now;
 
         public CncBackgroudJob(IServiceProvider service, IIocManager iocManager)
         {
-            cncHandler = new CncHandler(iocManager);
+            cncHandler = new CncCoreWorker(iocManager);
             cncHandler.ShowErrorLogEvent += CncHandler_ShowErrorLogEvent;
             cncHandler.GetResultEvent += CncHandler_GetResultEvent;
             hubContext = service.GetService(typeof(IHubContext<CNCHub>)) as IHubContext<CNCHub>;

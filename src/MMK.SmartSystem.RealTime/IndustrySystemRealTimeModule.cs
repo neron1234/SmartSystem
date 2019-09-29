@@ -6,6 +6,7 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Threading.BackgroundWorkers;
 using Hangfire;
+using MMK.SmartSystem.CNC.Core;
 using MMK.SmartSystem.RealTime.Job;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ using System.Text;
 
 namespace MMK.SmartSystem.RealTime
 {
-    [DependsOn(typeof(AbpAspNetCoreSignalRModule))]
+    [DependsOn(typeof(AbpAspNetCoreSignalRModule),
+        typeof(SmartSytemCNCCoreModule))]
     public class SmartSystemRealTimeModule : AbpModule
     {
         private IBackgroundJobManager _backgroundJobManager;
@@ -32,8 +34,8 @@ namespace MMK.SmartSystem.RealTime
             //_backgroundJobManager = IocManager.Resolve<IBackgroundJobManager>();
 
             //_backgroundJobManager.Enqueue<CncBackgroudJob, CncBackgroudArgs>(new CncBackgroudArgs());
-            CncBackgroudJob cncBackgroudJob = IocManager.Resolve<CncBackgroudJob>();
-            backgroundJobs.Enqueue(() => cncBackgroudJob.Execute(new CncBackgroudArgs()));
+            //CncBackgroudJob cncBackgroudJob = IocManager.Resolve<CncBackgroudJob>();
+            //backgroundJobs.Enqueue(() => cncBackgroudJob.Execute(new CncBackgroudArgs()));
             //var workManager = IocManager.Resolve<IBackgroundWorkerManager>();
             //workManager.Add(IocManager.Resolve<CncBackgroudWorker>());
         }

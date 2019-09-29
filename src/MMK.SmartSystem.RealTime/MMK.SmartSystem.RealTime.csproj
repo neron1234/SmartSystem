@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MMK.SmartSystem.CNC.Core\MMK.SmartSystem.CNC.Core.csproj" />
     <ProjectReference Include="..\MMK.SmartSystem.WebCommon\MMK.SmartSystem.WebCommon.csproj" />
   </ItemGroup>
 

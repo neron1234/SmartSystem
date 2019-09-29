@@ -2,7 +2,7 @@
 using Abp.Threading.BackgroundWorkers;
 using Abp.Threading.Timers;
 using Microsoft.AspNetCore.SignalR;
-using MMK.SmartSystem.RealTime.DeviceHandlers;
+using MMK.SmartSystem.CNC.Core.Workers;
 using MMK.SmartSystem.RealTime.Hubs;
 using MMK.SmartSystem.WebCommon.HubModel;
 using System;
@@ -14,7 +14,7 @@ namespace MMK.SmartSystem.RealTime.Job
 {
     public class CncBackgroudWorker : PeriodicBackgroundWorkerBase, ISingletonDependency
     {
-        CncHandler cncHandler = new CncHandler(null);
+        CncCoreWorker cncHandler = new CncCoreWorker(null);
         IHubContext<CNCHub> hubContext;
         DateTime dateTime = DateTime.Now;
 
@@ -22,7 +22,7 @@ namespace MMK.SmartSystem.RealTime.Job
        : base(timer)
         {
             Timer.Period = 100;
-            cncHandler = new CncHandler(_iocManager);
+            cncHandler = new CncCoreWorker(_iocManager);
             cncHandler.ShowErrorLogEvent += CncHandler_ShowErrorLogEvent;
             cncHandler.GetResultEvent += CncHandler_GetResultEvent;
             hubContext = service.GetService(typeof(IHubContext<CNCHub>)) as IHubContext<CNCHub>;          
