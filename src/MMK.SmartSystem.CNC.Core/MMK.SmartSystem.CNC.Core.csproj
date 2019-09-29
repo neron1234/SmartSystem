@@ -183,6 +183,7 @@
     <Compile Include="DeviceHandlers\ProgramBlockHandle.cs" />
     <Compile Include="DeviceHandlers\ProgramNameHandler.cs" />
     <Compile Include="DeviceHandlers\ProgramStrHandler.cs" />
+    <Compile Include="DeviceHandlers\WorkpartNumHandle.cs" />
     <Compile Include="DeviceHelpers\AlarmHelper.cs" />
     <Compile Include="DeviceHelpers\ConnectHelper.cs" />
     <Compile Include="DeviceHelpers\CycleTimeHelper.cs" />

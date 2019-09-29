@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class ReadWorkpartNumModel
+    public class ReadWorkpartNumModel:CncReadDecoplilersModel<string,string>
+    {        
+    }
+
+    public class ReadWorkpartNumResultModel:BaseCncResultModel
     {
-        public List<string> Decompilers { get; set; } = new List<string>();
+
+        public int Value { get; set; }
     }
 }

@@ -46,7 +46,50 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
 
         public override List<CncEventData> GetCncEventData()
         {
-            throw new NotImplementedException();
+            List<CncEventData> cncEventDatas = new List<CncEventData>();
+            cncEventDatas.Add(new CncEventData()
+            {
+                Kind = CncEventEnum.ReadWorkpartNum,
+                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadWorkpartNumModel() { 
+                    Decompilers = new List<string>()
+                    {
+                        "YD",
+                        "XD"
+                    },
+                    Readers = new List<string>()
+                    {
+                        
+                    }
+                })
+            });
+            cncEventDatas.Add(new CncEventData()
+            {
+                Kind = CncEventEnum.ReadMacro,
+                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadMacroModel()
+                {
+                    Decompilers = new List<DecompReadMacroItemModel>(){
+                       new DecompReadMacroItemModel()
+                       {
+                           Id = "H"
+                       },
+                       new DecompReadMacroItemModel()
+                       {
+                           Id = "CleanTime"
+                       },
+                       new DecompReadMacroItemModel()
+                       {
+                           Id = "ZLimit"
+                       }
+                    },
+                    Readers = new List<ReadMacroTypeModel>()
+                    {
+                        new ReadMacroTypeModel(){ Quantity=10,StartNum=813},
+                        new ReadMacroTypeModel(){ Quantity=10,StartNum=837},
+                        new ReadMacroTypeModel(){ Quantity=10,StartNum=838}
+                    }
+                })
+            });
+            return cncEventDatas;
         }
 
         public override List<object> GetResultViewModelMap()
