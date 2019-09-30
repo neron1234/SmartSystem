@@ -87,6 +87,9 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=3.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Extensions.Primitives.3.0.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="netDxf, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\netDXF.2.2.0.1\lib\net45\netDxf.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -288,6 +291,13 @@
     <Compile Include="CustomControl\Utils\VisualHelper.cs" />
     <Compile Include="Converters\ValueIsZeroConverter.cs" />
     <Compile Include="CustomControl\Utils\VlcUtil.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\LinkedListExtensions.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\MathExtensions.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\PriorityQuadTree.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\PriorityQueue.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\RectExtensions.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\VirtualPanel.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\ZoomableCanvas.cs" />
     <Compile Include="EventHandler\NavigateHandler.cs" />
     <Compile Include="EventHandler\OperationLogHandler.cs" />
     <Compile Include="EventHandler\UserInfoHandler.cs" />
@@ -313,6 +323,9 @@
     </Compile>
     <Compile Include="SystemControl\PopupWindowControl.xaml.cs">
       <DependentUpon>PopupWindowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemControl\ReadDxfControl.xaml.cs">
+      <DependentUpon>ReadDxfControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="SystemControl\ViewModel\FunctionConfigViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\HeaderMenuViewModel.cs" />
@@ -507,6 +520,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SystemControl\PopupWindowControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\ReadDxfControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

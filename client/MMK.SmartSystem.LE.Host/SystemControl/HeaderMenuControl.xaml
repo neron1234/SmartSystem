@@ -79,6 +79,8 @@
                     <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#6baf2f"/>
                 </Button.Effect>
             </Button>
+
+            <Button Content="测试DXF" x:Name="DxfTestBtn" Width="80" Height="25" Click="DxfTestBtn_Click" Margin="5"/>
         </StackPanel>
     </Grid>
 </UserControl>

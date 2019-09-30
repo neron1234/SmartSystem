@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace ZdfFlatUI.Utils
+namespace MMK.SmartSystem.LE.Host.CustomControl.Utils
 {
     public class VlcUtil
     {

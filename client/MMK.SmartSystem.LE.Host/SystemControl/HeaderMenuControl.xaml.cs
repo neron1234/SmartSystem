@@ -91,5 +91,10 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
                 NotifiactionType = EnumPromptType.Error
             });
         }
+
+        private void DxfTestBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Send((UserControl)new PopupWindowControl(new ReadDxfControl(), 900, 600));
+        }
     }
 }
