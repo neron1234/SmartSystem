@@ -29,36 +29,36 @@ namespace MMK.SmartSystem.Laser.Base
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var btn = (Button)sender;
-            switch (btn.Content)
-            {
-                case "自动巡边":
-                    Frame.Content = new AutoFindSidePage();
-                    break;
-                case "割嘴复归":
-                    Frame.Content = new CutterResetCheckPage();
-                    break;
-                case "割嘴清洁":
-                    Frame.Content = new AutoCutterCleanPage();
-                    break;
-                case "割嘴对中":
-                    Frame.Content = new CutCenterPage();
-                    break;
-                case "辅助气体":
-                    Frame.Content = new AuxGasCheckPage();
-                    break;
-                case "手动寻边":
-                    Frame.Content = new ManualFindSidePage();
-                    break;
-                case "激光状态":
-                    Frame.Content = new LaserStatePage();
-                    break;
-                case "坐标列表":
-                    Frame.Content = new MachineMonitor.CoordinateControl();
-                    break;
-                default:
-                        Frame.Content = null;
-                break;
-            }
+            //switch (btn.Content)
+            //{
+            //    case "自动巡边":
+            //        Frame.Content = new AutoFindSidePage();
+            //        break;
+            //    case "割嘴复归":
+            //        Frame.Content = new CutterResetCheckPage();
+            //        break;
+            //    case "割嘴清洁":
+            //        Frame.Content = new AutoCutterCleanPage();
+            //        break;
+            //    case "割嘴对中":
+            //        Frame.Content = new CutCenterPage();
+            //        break;
+            //    case "辅助气体":
+            //        Frame.Content = new AuxGasCheckPage();
+            //        break;
+            //    case "手动寻边":
+            //        Frame.Content = new ManualFindSidePage();
+            //        break;
+            //    case "激光状态":
+            //        Frame.Content = new LaserStatePage();
+            //        break;
+            //    case "坐标列表":
+            //        Frame.Content = new MachineMonitor.CoordinateControl();
+            //        break;
+            //    default:
+            //            Frame.Content = null;
+            //    break;
+            //}
         }
     }
 }

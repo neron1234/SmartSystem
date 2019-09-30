@@ -21,7 +21,8 @@ namespace MMK.SmartSystem.Common.Base
 
         public abstract void PageSignlarLoaded();
 
-        public abstract List<CncEventData> GetCncEventData();
+        public virtual string GetModule { get; }
+        public IIocManager manager { set; get; }
         public abstract List<object> GetResultViewModelMap();
         public abstract void CncOnError(string message);
         public SignalrPage()
@@ -31,6 +32,7 @@ namespace MMK.SmartSystem.Common.Base
             signalrProxyClient.HubRefreshModelEvent += SignalrProxyClient_HubRefreshModelEvent;
             this.Loaded += SignalrPage_Loaded;
             this.Unloaded += SignalrPage_Unloaded;
+
         }
 
         protected async Task<T> SendProxyAction<T>(string actionName, object message)
@@ -78,7 +80,27 @@ namespace MMK.SmartSystem.Common.Base
 
             CncOnError(obj);
         }
+        public virtual List<CncEventData> GetCncEventData()
+        {
+            var list = new List<CncEventData>();
+            var module = SmartSystemCommonConsts.SignalrQueryParmModels.Where(d => d.Module == GetModule).FirstOrDefault();
+            if (module == null || module.Pages?.Count == 0)
+            {
+                return list;
+            }
+            var page = module.Pages.Where(d => this.GetType().FullName.Contains(d.PageName)).FirstOrDefault();
+            if (page == null)
+            {
+                return list;
+            }
+            foreach (var item in page.EventNodes)
+            {
+                var cncData = new CncEventData() { Kind = (CncEventEnum)Enum.Parse(typeof(CncEventEnum), item.Kind) };
+                var dyModel = manager.Resolve(Type.GetType($"MMK.SmartSystem.WebCommon.DeviceModel.{item.Type}"));
 
+            }
+            return list;
+        }
         private async void SignalrPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             PageSignlarLoaded();

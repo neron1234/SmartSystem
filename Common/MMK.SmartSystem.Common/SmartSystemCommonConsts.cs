@@ -12,6 +12,8 @@ namespace MMK.SmartSystem.Common
     {
         public const string ModulePageKey = "WPF.Page";
 
+        public const string ModuleQueryParmKey = "SignalrQueryParm";
+
         public const string ApiHost = "http://localhost:21021";
 
         public static AuthenticateResultModel AuthenticateModel = new AuthenticateResultModel();
@@ -23,6 +25,8 @@ namespace MMK.SmartSystem.Common
         public static UserInfo UserInfo = new UserInfo();
 
         public static SystemTranslate SystemTranslateModel = new SystemTranslate();
+
+        public static List<SignalrQueryParmModel> SignalrQueryParmModels = new List<SignalrQueryParmModel>();
 
     }
 }

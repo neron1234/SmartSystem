@@ -1,0 +1,71 @@
+[
+  {
+    "Module": "MachineMonitor",
+    "Pages": [
+      {
+        "PageName": "MachineMonitorPage",
+        "EventNodes": [
+          {
+            "Kind": "ReadPmc",
+            "Type": "ReadPmcModel",
+            "CncReadDecopliler": {
+              "Readers": {
+                "Type": "ReadPmcTypeModel",
+                "Data": [
+                  {
+                    "Id": "AbsX",
+                    "AdrType": 5,
+                    "DataType": "Int32",
+                    "RelStartAdr": 0
+                  },
+                  {
+                    "Id": "AbsY",
+                    "AdrType": 5,
+                    "DataType": "Int32",
+                    "RelStartAdr": 4
+                  },
+                  {
+                    "Id": "AbsZ",
+                    "AdrType": 5,
+                    "DataType": "Int32",
+                    "RelStartAdr": 8
+                  }
+                ]
+              },
+              "Decompilers": {
+                "Type": "DecompReadPmcItemModel",
+                "Data": [
+                  {
+                    "AdrType": 5,
+                    "DwordQuantity": 10,
+                    "StartNum": 0
+                  }
+                ]
+              }
+
+            }
+          },
+          {
+            "Kind": "ReadPosition",
+            "Type": "ReadPositionModel",
+            "CncReadDecopliler": {
+              "Readers": {
+                "Type": "DecompReadPositionItemModel",
+                "Data": [
+                  {
+                    "AdrType": 5,
+                    "DwordQuantity": 10,
+                    "StartNum": 0
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+
+    ]
+
+  }
+
+]

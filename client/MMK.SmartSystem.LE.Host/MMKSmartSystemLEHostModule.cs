@@ -42,8 +42,8 @@ namespace MMK.SmartSystem.LE.Host
                         Auth = g.IsAuth,
                         Permission = g.Permission,
                         PageKey = g.Title,
-                        Url=g.Url,
-                        WebPage=g.WebPage,
+                        Url = g.Url,
+                        WebPage = g.WebPage,
                         BackColor = d.BackColor,
                         Sort = g.Sort
                     });
@@ -58,7 +58,8 @@ namespace MMK.SmartSystem.LE.Host
                     Sort = d.Sort
                 });
             });
-
+            var listSignalrParm = Configuration.GetOrCreate(SmartSystemCommonConsts.ModuleQueryParmKey, () => new List<SignalrQueryParmModel>());
+            SmartSystemCommonConsts.SignalrQueryParmModels = listSignalrParm;
         }
     }
 }

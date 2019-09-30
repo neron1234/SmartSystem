@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class CncReadDecoplilersModel<R, D>
+    public class CncReadDecoplilersModel<R, D> : Abp.Dependency.ITransientDependency
     {
         public List<R> Readers { get; set; } = new List<R>();
 
