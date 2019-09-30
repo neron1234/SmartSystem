@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
+             xmlns:cc="clr-namespace:MMK.SmartSystem.LE.Host.CustomControl"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.Resources>
@@ -31,14 +31,14 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Cursor" Value="Hand" />
-                                <Setter TargetName="path" Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type local:Tag}}}" />
+                                <Setter TargetName="path" Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type cc:Tag}}}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="{x:Type local:Tag}">
+        <Style TargetType="{x:Type cc:Tag}">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderBrush" Value="#3399FF" />
             <Setter Property="BorderThickness" Value="1" />
@@ -50,7 +50,7 @@
             <Setter Property="UseLayoutRounding" Value="True" />
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type local:Tag}">
+                    <ControlTemplate TargetType="{x:Type cc:Tag}">
                         <Border x:Name="Root" Margin="{TemplateBinding Margin}"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -360,7 +360,7 @@
         <!--默认ScrollView-->
         <Style TargetType="ScrollViewer" BasedOn="{StaticResource for_scrollviewer}"/>
 
-        <Style TargetType="{x:Type local:ZGroupBox}">
+        <Style TargetType="{x:Type cc:ZGroupBox}">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="BorderBrush" Value="#D7DDE4" />
             <Setter Property="BorderThickness" Value="1" />
@@ -372,7 +372,7 @@
             <Setter Property="UseLayoutRounding" Value="True" />
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type local:ZGroupBox}">
+                    <ControlTemplate TargetType="{x:Type cc:ZGroupBox}">
                         <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             CornerRadius="{TemplateBinding CornerRadius}"
@@ -442,7 +442,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <local:ZGroupBox Header="{Binding ModuleName}" Visibility="{Binding Show}" HeaderBackground="{Binding BackColor}" Foreground="White" BorderBrush="{Binding BackColor}"
+                            <cc:ZGroupBox Header="{Binding ModuleName}" Visibility="{Binding Show}" HeaderBackground="{Binding BackColor}" Foreground="White" BorderBrush="{Binding BackColor}"
                                       CornerRadius="3" HorizontalHeaderAlignment="Center" Width="300" x:Name="SysZGroupBox" MouseLeftButtonDown="SysZGroupBox_MouseLeftButtonDown" Margin="2" Tag="{Binding ModuleName}">
                                 <Grid>
                                     <Button Height="20" Width="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 -25 0 0" Content="克隆" BorderBrush="{Binding BackColor}" BorderThickness="1" Tag="{Binding ModuleName}" Click="CloneGroupBtn_Click" x:Name="CloneGroupBtn"/>
@@ -454,14 +454,14 @@
                                         </ItemsControl.ItemsPanel>
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <local:Tag Visibility="{Binding Show}" Content="{Binding Title}" Margin="5" BorderBrush="{Binding BackColor}" IsClosable="False" MouseLeftButtonDown="SelectFunctionBtn_MouseLeftButtonDown" x:Name="SelectFunctionBtn" Tag="{Binding Id}" />
+                                                <cc:Tag Visibility="{Binding Show}" Content="{Binding Title}" Margin="5" BorderBrush="{Binding BackColor}" IsClosable="False" MouseLeftButtonDown="SelectFunctionBtn_MouseLeftButtonDown" x:Name="SelectFunctionBtn" Tag="{Binding Id}" />
                                                 <!--<WPF.UI:Tag Content="标签一" BorderBrush="#27D37D" CornerRadius="3" Margin="5,0" />-->
                                                 <!--<Button   Height="30" Margin="10" BorderBrush="{Binding BackColor}" BorderThickness="1" Drop="Button_Drop" />-->
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
                                 </Grid>
-                            </local:ZGroupBox>
+                            </cc:ZGroupBox>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -491,7 +491,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <local:ZGroupBox Header="{Binding ModuleName}" Visibility="{Binding Show}" HeaderBackground="{Binding BackColor}" Foreground="White" BorderBrush="{Binding BackColor}"
+                            <cc:ZGroupBox Header="{Binding ModuleName}" Visibility="{Binding Show}" HeaderBackground="{Binding BackColor}" Foreground="White" BorderBrush="{Binding BackColor}"
                                       CornerRadius="3" HorizontalHeaderAlignment="Center" Width="300"  x:Name="CostomZGroupBox" MouseLeftButtonDown="CostomZGroupBox_MouseLeftButtonDown" Margin="2" Tag="{Binding ModuleName}">
                                 <Grid>
                                     <Button Height="20" Width="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 -25 0 0" Content="添加" BorderBrush="{Binding BackColor}" BorderThickness="1" Tag="{Binding ModuleName}" Click="AddFunctionBtn_Click" x:Name="AddFunctionBtn"/>
@@ -505,12 +505,12 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <!--<Button Visibility="{Binding Show}" Content="{Binding Title}" Height="30" Margin="10" BorderBrush="{Binding BackColor}" BorderThickness="1" Drop="Button_Drop" />-->
-                                                <local:Tag Visibility="{Binding Show}" Closed="FunctionBtn_Closed" Content="{Binding Title}" Margin="2" BorderBrush="{Binding BackColor}" x:Name="FunctionBtn" Tag="{Binding Id}"/>
+                                                <cc:Tag Visibility="{Binding Show}" Closed="FunctionBtn_Closed" Content="{Binding Title}" Margin="2" BorderBrush="{Binding BackColor}" x:Name="FunctionBtn" Tag="{Binding Id}"/>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
                                 </Grid>
-                            </local:ZGroupBox>
+                            </cc:ZGroupBox>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

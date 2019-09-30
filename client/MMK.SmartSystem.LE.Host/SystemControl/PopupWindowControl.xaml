@@ -9,8 +9,8 @@
              d:DesignHeight="300" d:DesignWidth="600">
 
     <Grid>
-        <local:PopupEx x:Name="maskLayer" PopupAnimation="Fade"
-                    local:MaskLayerBehavior.Owner="{Binding Path=., RelativeSource={RelativeSource AncestorType=Window}}" >
+        <cui:PopupEx x:Name="maskLayer" PopupAnimation="Fade"
+                    cui:MaskLayerBehavior.Owner="{Binding Path=., RelativeSource={RelativeSource AncestorType=Window}}" >
             <Grid Width="600" Height="400" Background="#3762b2" x:Name="PopupGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
@@ -26,6 +26,6 @@
                                         MouseOverBackground="Transparent"
                                         PressedBackground="Transparent" Click="BtnClose_Click"/>
             </Grid>
-        </local:PopupEx>
+        </cui:PopupEx>
     </Grid>
 </UserControl>

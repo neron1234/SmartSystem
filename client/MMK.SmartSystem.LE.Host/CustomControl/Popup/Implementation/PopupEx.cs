@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
 
-namespace MMK.SmartSystem.LE.Host.SystemControl
+namespace MMK.SmartSystem.LE.Host.CustomControl
 {
     public class PopupEx : Popup
     {
@@ -36,7 +36,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             get { return (bool)GetValue(IsUpdatePositionProperty); }
             set { SetValue(IsUpdatePositionProperty, value); }
         }
-        
+
         public static readonly DependencyProperty IsUpdatePositionProperty =
             DependencyProperty.Register("IsUpdatePosition", typeof(bool), typeof(PopupEx), new PropertyMetadata(true));
 
@@ -58,7 +58,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             if (GetWindowRect(hwnd, out rect))
             {
                 FrameworkElement element = this.PlacementTarget as FrameworkElement;
-                if(element != null)
+                if (element != null)
                 {
                     //第二个参数和最后一个参数为关键参数，设置为1表示保持窗口大小，网上的代码是0，如果设置为0会导致Popup弹出时同时更改了PlacementTarget的大小
                     //但如果hwnd句柄的获取是通过this.Child获取的，则最后一个参数可以设置为0

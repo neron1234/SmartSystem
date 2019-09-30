@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interop;
 
-namespace MMK.SmartSystem.LE.Host.SystemControl
+namespace MMK.SmartSystem.LE.Host.CustomControl
 {
     /// <summary>
     /// Popup帮助类，解决Popup设置StayOpen="True"时，移动窗体或者改变窗体大小时，Popup不随窗体移动的问题
@@ -65,6 +65,19 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             var offset = pop.HorizontalOffset;
             pop.HorizontalOffset = offset + 1;
             pop.HorizontalOffset = offset;
+
+            //MethodInfo mi = typeof(Popup).GetMethod("UpdatePosition", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            //try
+            //{
+            //    if(mi != null)
+            //    {
+            //        mi.Invoke(pop, null);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    System.Diagnostics.Debug.WriteLine(ex.Message);
+            //}
         }
     }
 }

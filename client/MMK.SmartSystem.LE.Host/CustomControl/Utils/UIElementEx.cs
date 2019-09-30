@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Documents;
 
-namespace MMK.SmartSystem.LE.Host.CustomControl
+namespace MMK.SmartSystem.LE.Host.CustomControl.Utils
 {
     public class UIElementEx
     {

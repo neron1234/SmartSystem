@@ -4,7 +4,7 @@
                     xmlns:MyTextBox="clr-namespace:MMK.SmartSystem.LE.Host.CustomControl">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/WPF.UI;component/Resources/PathGeometry.xaml" />
+        <ResourceDictionary Source="/MMK.SmartSystem.LE.Host;component/Resources/PathGeometry.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

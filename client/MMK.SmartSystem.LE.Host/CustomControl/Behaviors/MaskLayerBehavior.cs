@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
-namespace MMK.SmartSystem.LE.Host.SystemControl
+namespace MMK.SmartSystem.LE.Host.CustomControl
 {
     public class MaskLayerBehavior
     {

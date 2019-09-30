@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace MMK.SmartSystem.LE.Host.SystemControl
+namespace MMK.SmartSystem.LE.Host.CustomControl
 {
     public class Tag : ContentControl
     {

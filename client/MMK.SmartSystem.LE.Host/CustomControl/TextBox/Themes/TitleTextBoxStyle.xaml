@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:MyControls="clr-namespace:MMK.SmartSystem.LE.Host.CustomControl">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/WPF.UI;component/Resources/AutoDisappearScrollViewerStyle.xaml"/>
-        <ResourceDictionary Source="/WPF.UI;component/Resources/PathGeometry.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MMK.SmartSystem.LE.Host;component/Resources/AutoDisappearScrollViewerStyle.xaml"/>
+        <ResourceDictionary Source="/MMK.SmartSystem.LE.Host;component/Resources/PathGeometry.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

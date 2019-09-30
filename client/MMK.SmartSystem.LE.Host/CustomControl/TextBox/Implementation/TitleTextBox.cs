@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.LE.Host.CustomControl.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -89,7 +90,7 @@ namespace MMK.SmartSystem.LE.Host.CustomControl
                 this.PART_ClearText.MouseLeftButtonDown += PART_ClearText_MouseLeftButtonDown;
             }
 
-            this.PART_ScrollViewer = VisualHelper.FindVisualElement<ScrollViewer>(this, "PART_ContentHost");
+            this.PART_ScrollViewer = Utils.VisualHelper.FindVisualElement<ScrollViewer>(this, "PART_ContentHost");
 
             //监听TextBox的鼠标滚轮滚动事件
             this.PreviewMouseWheel += TitleTextBox_PreviewMouseWheel;

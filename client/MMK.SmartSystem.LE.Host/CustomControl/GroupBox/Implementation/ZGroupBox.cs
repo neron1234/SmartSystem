@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace MMK.SmartSystem.LE.Host.SystemControl
+namespace MMK.SmartSystem.LE.Host.CustomControl
 {
     public class ZGroupBox : HeaderedContentControl
     {
@@ -96,21 +96,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         #endregion
 
         #endregion
-
-
-        #region Tag
-
-        //public string Tag
-        //{
-        //    get { return (string)GetValue(TagProperty); }
-        //    set { SetValue(TagProperty, value); }
-        //}
-
-        //public static readonly DependencyProperty TagProperty =
-        //    DependencyProperty.Register("Tag", typeof(string), typeof(Tag), new PropertyMetadata(true));
-
-        #endregion
-
 
         #region Constructors
         static ZGroupBox()

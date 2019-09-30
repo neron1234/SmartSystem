@@ -241,7 +241,7 @@ namespace MMK.SmartSystem.LE.Host.CustomControl
 
                 pen.Brush = this.BorderBrush;
                 //pen.Thickness = BorderThickness * 0.5;
-                pen.Thickness = UIElementEx.RoundLayoutValue(BorderThickness.Left, DoubleUtil.DpiScaleX);
+                pen.Thickness = Utils.UIElementEx.RoundLayoutValue(BorderThickness.Left, DoubleUtil.DpiScaleX);
 
                 switch (Placement)
                 {

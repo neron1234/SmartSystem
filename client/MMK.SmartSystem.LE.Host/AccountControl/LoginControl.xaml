@@ -12,43 +12,49 @@
         Height="400" Width="700" 
         FontSize="15" FontFamily="微软雅黑">
     <UserControl.Resources>
-        <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="Padding" Value="18"/>
-            <Setter Property="IsEnabled" Value="{Binding IsLogin}"/>
-        </Style>
-        <Style x:Key="TextBlockStyle_Error" TargetType="{x:Type TextBlock}">
-            <Setter Property="Visibility" Value="Visible" />
-            <Setter Property="FontSize" Value="10" />
-            <Setter Property="Foreground" Value="Red"/>
-            <Setter Property="Padding" Value="15 0 0 0"/>
-        </Style>
-        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="BorderBrush" Value="#FF797070"/>
-            <Setter Property="InputMethod.IsInputMethodEnabled" Value="False"/>
-            <Setter Property="InputMethod.InputScope">
-                <Setter.Value>
-                    <InputScope>
-                        <InputScope.Names>
-                            <InputScopeName NameValue="AlphanumericHalfWidth"></InputScopeName>
-                        </InputScope.Names>
-                    </InputScope>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsFocused" Value="true">
-                    <Setter Property="BorderBrush" Value="Green"></Setter>
-                </Trigger>
-                <DataTrigger Binding="{Binding IsError}" Value="True">
-                    <Setter Property="BorderBrush" Value="Red" />
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MMK.SmartSystem.LE.Host;component/Resources/DefaultStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Padding" Value="18"/>
+                <Setter Property="IsEnabled" Value="{Binding IsLogin}"/>
+            </Style>
+            <Style x:Key="TextBlockStyle_Error" TargetType="{x:Type TextBlock}">
+                <Setter Property="Visibility" Value="Visible" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="Foreground" Value="Red"/>
+                <Setter Property="Padding" Value="15 0 0 0"/>
+            </Style>
+            <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="BorderBrush" Value="#FF797070"/>
+                <Setter Property="InputMethod.IsInputMethodEnabled" Value="False"/>
+                <Setter Property="InputMethod.InputScope">
+                    <Setter.Value>
+                        <InputScope>
+                            <InputScope.Names>
+                                <InputScopeName NameValue="AlphanumericHalfWidth"></InputScopeName>
+                            </InputScope.Names>
+                        </InputScope>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsFocused" Value="true">
+                        <Setter Property="BorderBrush" Value="Green"></Setter>
+                    </Trigger>
+                    <DataTrigger Binding="{Binding IsError}" Value="True">
+                        <Setter Property="BorderBrush" Value="Red" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <control:PopupEx x:Name="maskLayer" PopupAnimation="Fade"
-                    control:MaskLayerBehavior.Owner="{Binding Path=., RelativeSource={RelativeSource AncestorType=Window}}" >
+        <CUI:PopupEx x:Name="maskLayer" PopupAnimation="Fade"
+                    CUI:MaskLayerBehavior.Owner="{Binding Path=., RelativeSource={RelativeSource AncestorType=Window}}" >
             <Grid Width="600" Height="400" Background="Transparent">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -92,6 +98,11 @@
                                 </i:Interaction.Triggers>
                             </TextBox>
                             <TextBlock Style="{StaticResource TextBlockStyle_Error}" Text="{Binding PwdError}"/>
+
+                            <CUI:IconTextBox Width="200" Height="28" Margin="0,5" BorderThickness="1,1,1,1"
+                                    CornerRadius="3" IconBackground="White" IconForeground="Gray" IconPlacement="Left"
+                                    IconWidth="11" Watermark="请输入密码" />
+                            <CUI:IpTextBox Width="200" Height="28" Background="Black"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
                             <Button Content="{Binding Translate.SmartSystem.Login}" Margin="10" Width="150" Height="35" Foreground="White" BorderBrush="#FF3838C9" Click="LoginButton_Click" IsEnabled="{Binding IsLogin}">
@@ -114,6 +125,6 @@
                     </Grid>
                 </Border>
             </Grid>
-        </control:PopupEx>
+        </CUI:PopupEx>
     </Grid>
 </UserControl>

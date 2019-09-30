@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.LE.Host.CustomControl;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using System;
 using System.Collections.Generic;
