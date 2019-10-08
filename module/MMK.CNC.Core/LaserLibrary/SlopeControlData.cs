@@ -8,8 +8,8 @@ using System.Text;
 
 namespace MMK.CNC.Core.LaserLibrary
 {
-    [Table("LaserLibrary_CuttingData")]
-    public class CuttingData : Entity<int>, IHasCreationTime
+    [Table("LaserLibrary_SlopeControlData")]
+    public class SlopeControlData : Entity<int>, IHasCreationTime
     {
         /// <summary>
         /// 加工参数组编号
@@ -37,74 +37,59 @@ namespace MMK.CNC.Core.LaserLibrary
         public double NozzleDiameter { get; set; }
 
         /// <summary>
-        /// 速度
+        /// 最小功率
         /// </summary>
-        public double Feedrate { get; set; }
+        public short PowerMin { get; set; }
 
         /// <summary>
-        /// 功率
+        /// 功率速度0
         /// </summary>
-        public short Power { get; set; }
+        public short PowerSpeedZero { get; set; }
 
         /// <summary>
-        /// 频率
+        /// 最小频率
         /// </summary>
-        public short Frequency { get; set; }
+        public short FrequencyMin { get; set; }
 
         /// <summary>
-        /// 占空比
+        /// 频率速度0
         /// </summary>
-        public short Duty { get; set; }
+        public short FrequencySpeedZero { get; set; }
 
         /// <summary>
-        /// 辅助气体压力(MPa)
+        /// 最小占空比
         /// </summary>
-        public double GasPressure { get; set; }
+        public short DutyMin { get; set; }
 
         /// <summary>
-        /// 辅助气体种类ID
+        /// 占空比速度0
         /// </summary>
-        public int GasId { get; set; }
+        public short DutySpeedZero { get; set; }
 
         /// <summary>
-        /// 辅助气体上升时间（毫秒）
+        /// 速度允许变化量
         /// </summary>
-        public int GasSettingTime { get; set; }
+        public int FeedrateR { get; set; }
 
         /// <summary>
-        /// 基准偏移量
+        /// 最小辅助气体压力
         /// </summary>
-        public double StandardDisplacement { get; set; }
+        public short PbPowerMin { get; set; }
 
         /// <summary>
-        /// 补偿量
+        /// 谷底功率速度0
         /// </summary>
-        public double Supple { get; set; }
+        public short PbPowerSpeedZero { get; set; }
 
         /// <summary>
-        /// Edge Cutting 选择
+        /// 最小辅助气体压力
         /// </summary>
-        public short EdgeSlt { get; set; }
+        public short GasPressMin { get; set; }
 
         /// <summary>
-        /// Start Up 选择
+        /// 辅助气体压力速度0
         /// </summary>
-        public short ApprSlt { get; set; }
-
-        /// <summary>
-        /// Power Control 选择
-        /// </summary>
-        public short PwrCtrl { get; set; }
-
-        /// <summary>
-        /// 基准偏移量
-        /// </summary>
-        public double StandardDisplacement2 { get; set; }
-
-        /// <summary>
-        /// 间隙轴
-        /// </summary>
-        public char GapAxis { get; set; }
+        public short GasPressSpeedZero { get; set; }
 
         /// <summary>
         /// 焦斑直径
@@ -121,11 +106,6 @@ namespace MMK.CNC.Core.LaserLibrary
         /// </summary>
         public double LiftDistance { get; set; }
 
-        /// <summary>
-        /// 谷底功率
-        /// </summary>
-        public short PbPower { get; set; }
-
         [StringLength(100)]
         public string Reserve1 { get; set; }
 
@@ -135,9 +115,9 @@ namespace MMK.CNC.Core.LaserLibrary
         [StringLength(100)]
         public string Reserve3 { get; set; }
 
+        public DateTime CreationTime { get; set; } = DateTime.Now;
 
-        public DateTime CreationTime { get; set; }
-        public CuttingData()
+        public SlopeControlData()
         {
             CreationTime = DateTime.Now;
         }

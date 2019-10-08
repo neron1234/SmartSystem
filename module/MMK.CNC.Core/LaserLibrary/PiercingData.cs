@@ -8,8 +8,8 @@ using System.Text;
 
 namespace MMK.CNC.Core.LaserLibrary
 {
-    [Table("LaserLibrary_CuttingData")]
-    public class CuttingData : Entity<int>, IHasCreationTime
+    [Table("LaserLibrary_PiercingData")]
+    public class PiercingData : Entity<int>, IHasCreationTime
     {
         /// <summary>
         /// 加工参数组编号
@@ -37,11 +37,6 @@ namespace MMK.CNC.Core.LaserLibrary
         public double NozzleDiameter { get; set; }
 
         /// <summary>
-        /// 速度
-        /// </summary>
-        public double Feedrate { get; set; }
-
-        /// <summary>
         /// 功率
         /// </summary>
         public short Power { get; set; }
@@ -55,6 +50,31 @@ namespace MMK.CNC.Core.LaserLibrary
         /// 占空比
         /// </summary>
         public short Duty { get; set; }
+
+        /// <summary>
+        /// 步进频率
+        /// </summary>
+        public short StepFrequency { get; set; }
+
+        /// <summary>
+        /// 步进占空比
+        /// </summary>
+        public short StepDuty { get; set; }
+
+        /// <summary>
+        /// 步进时间（毫秒）
+        /// </summary>
+        public short StepTime { get; set; }
+
+        /// <summary>
+        /// 步进次数
+        /// </summary>
+        public short StepQuantity { get; set; }
+
+        /// <summary>
+        /// 穿孔时间（毫秒）
+        /// </summary>
+        public int PiercingTime { get; set; }
 
         /// <summary>
         /// 辅助气体压力(MPa)
@@ -75,26 +95,6 @@ namespace MMK.CNC.Core.LaserLibrary
         /// 基准偏移量
         /// </summary>
         public double StandardDisplacement { get; set; }
-
-        /// <summary>
-        /// 补偿量
-        /// </summary>
-        public double Supple { get; set; }
-
-        /// <summary>
-        /// Edge Cutting 选择
-        /// </summary>
-        public short EdgeSlt { get; set; }
-
-        /// <summary>
-        /// Start Up 选择
-        /// </summary>
-        public short ApprSlt { get; set; }
-
-        /// <summary>
-        /// Power Control 选择
-        /// </summary>
-        public short PwrCtrl { get; set; }
 
         /// <summary>
         /// 基准偏移量
@@ -135,9 +135,9 @@ namespace MMK.CNC.Core.LaserLibrary
         [StringLength(100)]
         public string Reserve3 { get; set; }
 
+        public DateTime CreationTime { get; set; } = DateTime.Now;
 
-        public DateTime CreationTime { get; set; }
-        public CuttingData()
+        public PiercingData()
         {
             CreationTime = DateTime.Now;
         }
