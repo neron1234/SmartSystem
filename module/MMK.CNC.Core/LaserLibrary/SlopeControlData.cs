@@ -69,7 +69,7 @@ namespace MMK.CNC.Core.LaserLibrary
         /// <summary>
         /// 速度允许变化量
         /// </summary>
-        public int FeedrateR { get; set; }
+        public double FeedrateR { get; set; }
 
         /// <summary>
         /// 最小辅助气体压力

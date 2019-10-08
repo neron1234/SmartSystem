@@ -18,7 +18,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
         protected override object PollDecompiler(List<ReadMacroResultItemModel> res, DecompReadMacroItemModel deModel)
         {
             double data = 0;
-            var ret_dec = MacroHelper.DecompilerReadMacroInfo(datas, deModel, ref data);
+            var ret_dec = new MacroHelper().DecompilerReadMacroInfo(datas, deModel, ref data);
             if (string.IsNullOrEmpty(ret_dec))
             {
                 res.Add(new ReadMacroResultItemModel() { Id = deModel.Id, Value = data });
@@ -30,7 +30,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
         {
             datas = new double[inputModel.Quantity];
 
-            var ret = MacroHelper.ReadMacroRange(flib, inputModel.StartNum, inputModel.Quantity, ref datas);
+            var ret = new MacroHelper().ReadMacroRange(flib, inputModel.StartNum, inputModel.Quantity, ref datas);
             return ret;
         }
     }

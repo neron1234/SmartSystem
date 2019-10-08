@@ -13,7 +13,26 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             Focas1.ODBAXIS buf = new Focas1.ODBAXIS();
             buf.data = new int[Focas1.MAX_AXIS];
-            var ret = Focas1.cnc_absolute(flib, -1, 132, buf);
+            short ret = -100;
+
+            switch (pos_type)
+            {
+                case CncPositionTypeEnum.Absolute:
+                    ret = Focas1.cnc_absolute(flib, -1, 132, buf);
+                    break;
+                case CncPositionTypeEnum.Machine:
+                    ret = Focas1.cnc_machine(flib, -1, 132, buf);
+                    break;
+                case CncPositionTypeEnum.Relative:
+                    ret = Focas1.cnc_relative(flib, -1, 132, buf);
+                    break;
+                case CncPositionTypeEnum.Distance:
+                    ret = Focas1.cnc_distance(flib, -1, 132, buf);
+                    break;
+                default:
+                    ret = -100;
+                    break;
+            }
 
             if (ret == 0)
             {

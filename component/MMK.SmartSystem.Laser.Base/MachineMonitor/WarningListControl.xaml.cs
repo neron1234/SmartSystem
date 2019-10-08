@@ -25,7 +25,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
         public WarningListControl()
         {
             InitializeComponent();
-            this.DataContext = wnListViewModel = new WarningListViewModel();
+            wnListViewModel = new WarningListViewModel();
+            this.SysItemControl.ItemsSource = wnListViewModel.WarningList;
         }
     }
 }

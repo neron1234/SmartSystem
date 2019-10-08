@@ -41,7 +41,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="X" Foreground="Blue"/>
                 <TextBlock Grid.Column="1" Text="{Binding PositionViewModel.MachineX}" />
-                <TextBlock Grid.Column="2" Text="{Binding PMCViewModel.AbsX}" />
+                <TextBlock Grid.Column="2" Text="{Binding PositionViewModel.AbsX}" />
                 <TextBlock Grid.Column="3" Text="{Binding PositionViewModel.ResidualMoveNumber1}" />
             </Grid>
             <Grid Grid.Row="2">
@@ -53,7 +53,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Y" Foreground="Yellow"/>
                 <TextBlock Grid.Column="1" Text="{Binding PositionViewModel.MachineY}" />
-                <TextBlock Grid.Column="2" Text="{Binding PMCViewModel.AbsY}" />
+                <TextBlock Grid.Column="2" Text="{Binding PositionViewModel.AbsY}" />
                 <TextBlock Grid.Column="3" Text="{Binding PositionViewModel.ResidualMoveNumber2}" />
             </Grid>
             <Grid Grid.Row="3">
@@ -65,7 +65,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Z" Foreground="Red"/>
                 <TextBlock Grid.Column="1" Text="{Binding PositionViewModel.MachineZ}" />
-                <TextBlock Grid.Column="2" Text="{Binding PMCViewModel.AbsZ}" />
+                <TextBlock Grid.Column="2" Text="{Binding PositionViewModel.AbsZ}" />
                 <TextBlock Grid.Column="3" Text="{Binding PositionViewModel.ResidualMoveNumber3}" />
             </Grid>
         </Grid>

@@ -185,9 +185,11 @@
     <Compile Include="DeviceHandlers\ProgramStrHandler.cs" />
     <Compile Include="DeviceHandlers\WorkpartNumHandle.cs" />
     <Compile Include="DeviceHelpers\AlarmHelper.cs" />
+    <Compile Include="DeviceHelpers\BaseHelper.cs" />
     <Compile Include="DeviceHelpers\ConnectHelper.cs" />
     <Compile Include="DeviceHelpers\CycleTimeHelper.cs" />
     <Compile Include="DeviceHelpers\FeedrateHelper.cs" />
+    <Compile Include="DeviceHelpers\LaserLibraryHelper.cs" />
     <Compile Include="DeviceHelpers\MacroHelper.cs" />
     <Compile Include="DeviceHelpers\ModalInfoHelper.cs" />
     <Compile Include="DeviceHelpers\NoticeHelper.cs" />
@@ -212,6 +214,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\module\MMK.CNC.Application\MMK.CNC.Application.csproj">
+      <Project>{4C6C8994-39BE-4D11-A7C5-15F429C479D8}</Project>
+      <Name>MMK.CNC.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MMK.SmartSystem.WebCommon\MMK.SmartSystem.WebCommon.csproj">
       <Project>{A7A51F2B-A45E-489D-B8B2-2A42BAAD8E1B}</Project>
       <Name>MMK.SmartSystem.WebCommon</Name>
