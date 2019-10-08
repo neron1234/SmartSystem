@@ -398,10 +398,7 @@
     <Content Include="MMK.SmartSystem.Laser.Base.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MMK.SmartSystem.Laser.Base.Core.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="Config\MachineMonitor\MachineMonitorPage.json" />
+    <None Include="Configs\MachineMonitor\MachineMonitorPage.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -425,11 +422,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetFileName)"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"
-copy "*.json"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"</PostBuildEvent>
+copy "*.json"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"
+</PostBuildEvent>
   </PropertyGroup>
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties mmk_1smartsystem_1laser_1base_1core_1json__JsonSchema="http://json.schemastore.org/appsettings" />
-    </VisualStudio>
-  </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(ProjectDir)Configs\*.*" $(SolutionDir)client\MMK.SmartSystem.LE.Host\$(OutDir)Configs\ /S /Y</PreBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions />
 </Project>
