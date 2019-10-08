@@ -24,5 +24,28 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor.ViewModel
                 }
             }
         }
+
+
+
+      
+
+    }
+
+
+    public class ProgramNameViewModel : CncResultViewModel<ReadProgramNameResultModel>
+    {
+        private string _ProgramName;
+        public string ProgramName
+        {
+            get { return _ProgramName; }
+            set
+            {
+                if (_ProgramName != value)
+                {
+                    _ProgramName = value;
+                    RaisePropertyChanged(() => ProgramName);
+                }
+            }
+        }
     }
 }

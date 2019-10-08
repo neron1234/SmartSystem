@@ -1,45 +1,45 @@
 {
   "PageName": "MachineMonitorPage",
   "EventNodes": [
-    {
-      "Kind": "ReadPmc",
-      "Type": "ReadPmcModel",
-      "CncReadDecopliler": {
-        "Decompilers": {
-          "Type": "ReadPmcTypeModel",
-          "Data": [
-            {
-              "Id": "AbsX",
-              "AdrType": 5,
-              "DataType": "Int32",
-              "RelStartAdr": 0
-            },
-            {
-              "Id": "AbsY",
-              "AdrType": 5,
-              "DataType": "Int32",
-              "RelStartAdr": 4
-            },
-            {
-              "Id": "AbsZ",
-              "AdrType": 5,
-              "DataType": "Int32",
-              "RelStartAdr": 8
-            }
-          ]
-        },
-        "Readers": {
-          "Type": "DecompReadPmcItemModel",
-          "Data": [
-            {
-              "AdrType": 5,
-              "DwordQuantity": 10,
-              "StartNum": 0
-            }
-          ]
-        }
-      }
-    },
+    //{
+    //  "Kind": "ReadPmc",
+    //  "Type": "ReadPmcModel",
+    //  "CncReadDecopliler": {
+    //    "Decompilers": {
+    //      "Type": "ReadPmcTypeModel",
+    //      "Data": [
+    //        {
+    //          "Id": "AbsX",
+    //          "AdrType": 5,
+    //          "DataType": "Int32",
+    //          "RelStartAdr": 0
+    //        },
+    //        {
+    //          "Id": "AbsY",
+    //          "AdrType": 5,
+    //          "DataType": "Int32",
+    //          "RelStartAdr": 4
+    //        },
+    //        {
+    //          "Id": "AbsZ",
+    //          "AdrType": 5,
+    //          "DataType": "Int32",
+    //          "RelStartAdr": 8
+    //        }
+    //      ]
+    //    },
+    //    "Readers": {
+    //      "Type": "DecompReadPmcItemModel",
+    //      "Data": [
+    //        {
+    //          "AdrType": 5,
+    //          "DwordQuantity": 10,
+    //          "StartNum": 0
+    //        }
+    //      ]
+    //    }
+    //  }
+    //},
     {
       "Kind": "ReadPosition",
       "Type": "ReadPositionModel",
@@ -72,10 +72,26 @@
               "AxisNum": 2,
               "PositionType": "Distance"
             },
+          
             {
               "Id": "ResidualMoveNumber3",
               "AxisNum": 3,
               "PositionType": "Distance"
+            },
+            {
+              "Id": "AbsX",
+              "AxisNum": 1,
+              "PositionType": "Absolute"
+            },
+            {
+              "Id": "AbsY",
+              "AxisNum": 2,
+              "PositionType": "Absolute"
+            },
+            {
+              "Id": "AbsZ",
+              "AxisNum": 3,
+              "PositionType": "Absolute"
             }
           ]
         },
@@ -87,6 +103,9 @@
             },
             {
               "PositionType": "Distance"
+            },
+            {
+              "PositionType": "Absolute"
             }
           ]
         }
@@ -99,8 +118,12 @@
         "Readers": {
           "Type": "List<string>",
           "Data": [
-            "programStrControl" 
+            "programStrControl"
           ]
+        },
+        "Decompilers": {
+          "Type": "String",
+          "Data": [ "Fixed" ]
         }
       }
     },
@@ -111,8 +134,28 @@
         "Readers": {
           "Type": "List<string>",
           "Data": [
-             "programNameControl" 
+            "programNameControl"
           ]
+        },
+        "Decompilers": {
+          "Type": "String",
+          "Data": [ "Fixed" ]
+        }
+      }
+    },
+    {
+      "Kind": "ReadAlarm",
+      "Type": "ReadAlarmModel",
+      "CncReadDecopliler": {
+        "Readers": {
+          "Type": "string",
+          "Data": [
+            "programAlarmControl"
+          ]
+        },
+        "Decompilers": {
+          "Type": "String",
+          "Data": [ "Fixed" ]
         }
       }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class ReadAlarmModel: CncReadDecoplilersModel<string, string>
+    public class ReadAlarmModel : CncReadDecoplilersModel<string, string>
     {
 
     }
@@ -50,7 +50,8 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
         {
             get
             {
-                return $"第{Axis}轴";
+
+                return Axis != 0 ? $" 【第{Axis}轴】" : "";
             }
         }
         [Newtonsoft.Json.JsonProperty("message")]
@@ -58,7 +59,7 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
         public string Message { get; set; }
     }
 
-    public class ReadAlarmResultModel:BaseCncResultModel
+    public class ReadAlarmResultModel : BaseCncResultModel
     {
         public string Id { get; set; }
 
