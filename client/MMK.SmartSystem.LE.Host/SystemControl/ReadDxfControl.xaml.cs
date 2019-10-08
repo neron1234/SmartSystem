@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -27,7 +29,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         System.Windows.Point LastMousePosition;
         private DxfDocument dxf;
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openDlg = new OpenFileDialog();
             openDlg.Filter = "DXF 文件|*.dxf";
@@ -46,12 +48,86 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             }
         }
 
+        private void BeginTrajectory_Click(object sender, RoutedEventArgs e)
+        {
+            StartTrajectory(0);
+        }
+
+        private void BeginReverseTrajectory_Click(object sender, RoutedEventArgs e)
+        {
+            StartTrajectory(1);
+        }
+
+
+        private async void StartTrajectory(int orientation)
+        {
+            var count = 0;
+            foreach (var item in MyCanvas.Children)
+            {
+                if (item is Path)
+                {
+                    Path path = (Path)item;
+                    if (!path.Data.Bounds.IsEmpty)
+                        count++;
+                }
+            }
+            var time = Convert.ToInt32(this.DurationTime.Text.Trim()) / count;
+            if (orientation == 0)
+            {
+                for (int i = 0; i < MyCanvas.Children.Count; i++)
+                {
+                    if (MyCanvas.Children[i] is Path)
+                    {
+                        Path path = (Path)MyCanvas.Children[i];
+                        if (!path.Data.Bounds.IsEmpty)
+                        {
+                            await Task.Factory.StartNew(() =>
+                            {
+                                this.Dispatcher.InvokeAsync(() =>
+                                {
+                                    foreach (var dataItem in ((GeometryGroup)path.Data).Children)
+                                    {
+                                        MatrixStory(orientation, dataItem.GetFlattenedPathGeometry().Figures.ToString(), time);
+                                    }
+                                });
+                                Thread.Sleep(time * 1000);
+                            });
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = MyCanvas.Children.Count - 1; i > 0; i--)
+                {
+                    if (MyCanvas.Children[i] is Path)
+                    {
+                        Path path = (Path)MyCanvas.Children[i];
+                        if (!path.Data.Bounds.IsEmpty)
+                        {
+                            await Task.Factory.StartNew(() =>
+                            {
+                                this.Dispatcher.InvokeAsync(() =>
+                                {
+                                    foreach (var dataItem in ((GeometryGroup)path.Data).Children)
+                                    {
+                                        MatrixStory(orientation, dataItem.GetFlattenedPathGeometry().Figures.ToString(), time);
+                                    }
+                                });
+                                Thread.Sleep(time * 1000);
+                            });
+                        }
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// 路径走向
         /// </summary>
         /// <param name="orientation">0正向 1反向</param>
         /// <param name="data">路径数据</param>
-        private void MatrixStory(int orientation, string data)
+        private void MatrixStory(int orientation, string data, int durationTime)
         {
             Border border = new Border();
             border.Width = 10;
@@ -64,6 +140,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             else
             {
                 border.Background = new SolidColorBrush(Colors.Green);
+                data = ConvertReverseData(data);
             }
 
             this.MyCanvas.Children.Add(border);
@@ -80,7 +157,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             this.RegisterName(registname, matrix);
             MatrixAnimationUsingPath matrixAnimation = new MatrixAnimationUsingPath();
             matrixAnimation.PathGeometry = PathGeometry.CreateFromGeometry(Geometry.Parse(data));
-            matrixAnimation.Duration = new Duration(TimeSpan.FromSeconds(10));
+            matrixAnimation.Duration = new Duration(TimeSpan.FromSeconds(durationTime));
             matrixAnimation.DoesRotateWithTangent = true;//旋转
             //matrixAnimation.FillBehavior = FillBehavior.Stop;
             Storyboard story = new Storyboard();
@@ -833,13 +910,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
                         path.StrokeThickness = 1;
                     }
                     CalBounds(ref maxLeft, ref maxRight, ref maxTop, ref maxBottom, path);
-                    if (!path.Data.Bounds.IsEmpty)
-                    {
-                        foreach (var dataItem in ((GeometryGroup)path.Data).Children)
-                        {
-                            MatrixStory(0, dataItem.GetFlattenedPathGeometry().Figures.ToString());
-                        }
-                    }
                 }
             }
 

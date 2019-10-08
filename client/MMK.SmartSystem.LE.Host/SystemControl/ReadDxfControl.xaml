@@ -7,9 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="Black">
     <DockPanel>
-        <Canvas DockPanel.Dock="Top" Height="25" Background="#FFEFDCDC">
-            <Button Content="打开文件"  Click="Button_Click" Width="70" Height="25" />
-        </Canvas>
+        <StackPanel DockPanel.Dock="Top" Height="35" Background="#FFEFDCDC" Orientation="Horizontal">
+            <Button Content="打开文件" x:Name="OpenFile" Click="OpenFile_Click"  Width="70" Height="25" Margin="5"/>
+            <Button Content="开始正向轨迹" x:Name="BeginTrajectory"  Click="BeginTrajectory_Click" Width="100" Height="25" Margin="5"/>
+            <Button Content="开始反向轨迹" x:Name="BeginReverseTrajectory" Click="BeginReverseTrajectory_Click" Width="100" Height="25" Margin="5"/>
+            <TextBox x:Name="DurationTime" Text="15" Width="100" TextAlignment="Left" Margin="5" VerticalContentAlignment="Center"/>
+        </StackPanel>
         <Canvas x:Name="Benchmark" Width="800" Height="450">
             <cc:ZoomableCanvas x:Name="MyCanvas" 
                                     RealizationLimit="1000"
