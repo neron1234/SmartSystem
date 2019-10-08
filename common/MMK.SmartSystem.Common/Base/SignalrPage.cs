@@ -97,7 +97,7 @@ namespace MMK.SmartSystem.Common.Base
             foreach (var item in page.EventNodes)
             {
                 var cncData = new CncEventData() { Kind = (CncEventEnum)Enum.Parse(typeof(CncEventEnum), item.Kind) };
-                Assembly.GetAssembly();
+               // Assembly.GetAssembly();
                 var dyModel = manager.Resolve(Type.GetType($"MMK.SmartSystem.WebCommon.DeviceModel.{item.Type}"));
 
             }
