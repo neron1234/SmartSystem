@@ -16,22 +16,9 @@ namespace MMK.SmartSystem.Laser.Base
     {
         public override void PreInitialize()
         {
-            string path = typeof(SmartSystemLaserModule).GetAssembly().GetDirectoryPathOrNull();
-            string fileName = typeof(SmartSystemLaserModule).GetAssembly().GetName().Name;
-            string fullName = Path.Combine(path, fileName + ".json");
-            if (File.Exists(fullName))
-            {
-                var list = JsonConvert.DeserializeObject<List<SystemMenuModule>>(File.ReadAllText(fullName));
-                Configuration.GetOrCreate(SmartSystemCommonConsts.ModulePageKey, () => new List<SystemMenuModule>()).AddRange(list);
 
-            }
-            var coreFullName = Path.Combine(path, fileName + ".core.json");
-            if (File.Exists(coreFullName))
-            {
-                var list = JsonConvert.DeserializeObject<List<SignalrQueryParmModel>>(File.ReadAllText(coreFullName));
-                Configuration.GetOrCreate(SmartSystemCommonConsts.ModuleQueryParmKey, () => new List<SignalrQueryParmModel>()).AddRange(list);
-            }
-
+            MMKSmartSystemCommonModule.LoadJsonConfig(typeof(SmartSystemLaserModule), Configuration);
+          
         }
         public override void Initialize()
         {

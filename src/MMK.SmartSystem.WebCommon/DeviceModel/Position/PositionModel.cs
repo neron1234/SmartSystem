@@ -22,13 +22,21 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
     }
     public enum CncPositionTypeEnum
     {
+        [System.Runtime.Serialization.EnumMember(Value = @"Absolute")]
         Absolute,
+        [System.Runtime.Serialization.EnumMember(Value = @"Relative")]
+
         Relative,
+        [System.Runtime.Serialization.EnumMember(Value = @"Machine")]
+
         Machine,
+        [System.Runtime.Serialization.EnumMember(Value = @"Distance")]
+
         Distance,
     }
     public class ReadPositionTypeModel
     {
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public CncPositionTypeEnum PositionType { get; set; }
 
     }
