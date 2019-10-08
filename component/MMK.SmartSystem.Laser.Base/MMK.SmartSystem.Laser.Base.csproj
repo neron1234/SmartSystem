@@ -418,6 +418,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Config\MachineMonitor\" />
     <Folder Include="MachineMonitor\UserControl\" />
     <Folder Include="ViewModel\" />
   </ItemGroup>
