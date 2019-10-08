@@ -5,16 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
+using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
 namespace MMK.SmartSystem.LE.Host.SystemControl
@@ -31,25 +29,211 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         System.Windows.Point LastMousePosition;
         private DxfDocument dxf;
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openDlg = new OpenFileDialog();
             openDlg.Filter = "DXF 文件|*.dxf";
 
-            string filename = "8.dxf";
-            if (openDlg.ShowDialog() == true)
+            if ((bool)openDlg.ShowDialog())
             {
-
                 if (MyCanvas.Children.Count != 0)
                     MyCanvas.Children.Clear();
-                filename = openDlg.FileName;
+
+                var filename = openDlg.FileName;
+                dxf = DxfDocument.Load(filename);
+
+                AddLayers();
+                AddGraph();
+                AdjustGraph();
+            }
+        }
+
+        private void BeginTrajectory_Click(object sender, RoutedEventArgs e)
+        {
+            StartTrajectory(0);
+        }
+
+        private void BeginReverseTrajectory_Click(object sender, RoutedEventArgs e)
+        {
+            StartTrajectory(1);
+        }
+
+
+        private async void StartTrajectory(int orientation)
+        {
+            var count = 0;
+            foreach (var item in MyCanvas.Children)
+            {
+                if (item is Path)
+                {
+                    Path path = (Path)item;
+                    if (!path.Data.Bounds.IsEmpty)
+                        count++;
+                }
+            }
+            var time = Convert.ToInt32(this.DurationTime.Text.Trim()) / count;
+            if (orientation == 0)
+            {
+                for (int i = 0; i < MyCanvas.Children.Count; i++)
+                {
+                    if (MyCanvas.Children[i] is Path)
+                    {
+                        Path path = (Path)MyCanvas.Children[i];
+                        if (!path.Data.Bounds.IsEmpty)
+                        {
+                            await Task.Factory.StartNew(() =>
+                            {
+                                this.Dispatcher.InvokeAsync(() =>
+                                {
+                                    foreach (var dataItem in ((GeometryGroup)path.Data).Children)
+                                    {
+                                        MatrixStory(orientation, dataItem.GetFlattenedPathGeometry().Figures.ToString(), time);
+                                    }
+                                });
+                                Thread.Sleep(time * 1000);
+                            });
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = MyCanvas.Children.Count - 1; i > 0; i--)
+                {
+                    if (MyCanvas.Children[i] is Path)
+                    {
+                        Path path = (Path)MyCanvas.Children[i];
+                        if (!path.Data.Bounds.IsEmpty)
+                        {
+                            await Task.Factory.StartNew(() =>
+                            {
+                                this.Dispatcher.InvokeAsync(() =>
+                                {
+                                    foreach (var dataItem in ((GeometryGroup)path.Data).Children)
+                                    {
+                                        MatrixStory(orientation, dataItem.GetFlattenedPathGeometry().Figures.ToString(), time);
+                                    }
+                                });
+                                Thread.Sleep(time * 1000);
+                            });
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 路径走向
+        /// </summary>
+        /// <param name="orientation">0正向 1反向</param>
+        /// <param name="data">路径数据</param>
+        private void MatrixStory(int orientation, string data, int durationTime)
+        {
+            Border border = new Border();
+            border.Width = 10;
+            border.Height = 10;
+            border.Visibility = Visibility.Collapsed;
+            if (orientation == 0)
+            {
+                border.Background = new SolidColorBrush(Colors.Blue);
+            }
+            else
+            {
+                border.Background = new SolidColorBrush(Colors.Green);
+                data = ConvertReverseData(data);
             }
 
-            dxf = DxfDocument.Load(filename);
+            this.MyCanvas.Children.Add(border);
+            Canvas.SetLeft(border, -border.Width / 2);
+            Canvas.SetTop(border, -border.Height / 2);
+            border.RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
 
-            AddLayers();
-            AddGraph();
-            AdjustGraph();
+            MatrixTransform matrix = new MatrixTransform();
+            TransformGroup groups = new TransformGroup();
+            groups.Children.Add(matrix);
+            border.RenderTransform = groups;
+            //NameScope.SetNameScope(this, new NameScope());
+            string registname = "matrix" + Guid.NewGuid().ToString().Replace("-", "");
+            this.RegisterName(registname, matrix);
+            MatrixAnimationUsingPath matrixAnimation = new MatrixAnimationUsingPath();
+            matrixAnimation.PathGeometry = PathGeometry.CreateFromGeometry(Geometry.Parse(data));
+            matrixAnimation.Duration = new Duration(TimeSpan.FromSeconds(durationTime));
+            matrixAnimation.DoesRotateWithTangent = true;//旋转
+            //matrixAnimation.FillBehavior = FillBehavior.Stop;
+            Storyboard story = new Storyboard();
+            story.Children.Add(matrixAnimation);
+            Storyboard.SetTargetName(matrixAnimation, registname);
+            Storyboard.SetTargetProperty(matrixAnimation, new PropertyPath(MatrixTransform.MatrixProperty));
+
+            #region 控制显示与隐藏
+            ObjectAnimationUsingKeyFrames ObjectAnimation = new ObjectAnimationUsingKeyFrames();
+            ObjectAnimation.Duration = matrixAnimation.Duration;
+            DiscreteObjectKeyFrame kf1 = new DiscreteObjectKeyFrame(Visibility.Visible, TimeSpan.FromMilliseconds(1));
+            ObjectAnimation.KeyFrames.Add(kf1);
+            story.Children.Add(ObjectAnimation);
+            //Storyboard.SetTargetName(border, border.Name);
+            Storyboard.SetTargetProperty(ObjectAnimation, new PropertyPath(UIElement.VisibilityProperty));
+            #endregion
+            story.FillBehavior = FillBehavior.Stop;
+            story.Begin(border, true);
+        }
+
+        /// <summary>
+        /// 反向Data数据
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        string ConvertReverseData(string data)
+        {
+            data = data.Replace("M", "").Replace(" ", "/");
+            Regex regex = new Regex("[a-z]", RegexOptions.IgnoreCase);
+            MatchCollection mc = regex.Matches(data);
+            //item1 从上一个位置到当前位置开始的字符 (match.Index=原始字符串中发现捕获的子字符串的第一个字符的位置。)
+            //item2 当前发现的匹配符号(L C Z M)
+            List<Tuple<string, string>> tmpList = new List<Tuple<string, string>>();
+            int curPostion = 0;
+            for (int i = 0; i < mc.Count; i++)
+            {
+                Match match = mc[i];
+                if (match.Index != curPostion)
+                {
+                    string str = data.Substring(curPostion, match.Index - curPostion);
+                    tmpList.Add(new Tuple<string, string>(str, match.Value));
+                }
+                curPostion = match.Index + match.Length;
+                if (i + 1 == mc.Count)//last 
+                {
+                    tmpList.Add(new Tuple<string, string>(data.Substring(curPostion), match.Value));
+                }
+            }
+            //char[] spChar = new char[2] { 'C', 'L' };
+            //var tmpList = data.Split(spChar);
+            List<string[]> spList = new List<string[]>();
+            for (int i = 0; i < tmpList.Count; i++)
+            {
+                var cList = tmpList[i].Item1.Split('/');
+                spList.Add(cList);
+            }
+            List<string> strList = new List<string>();
+            for (int i = spList.Count - 1; i >= 0; i--)
+            {
+                string[] clist = spList[i];
+                for (int j = clist.Length - 1; j >= 0; j--)
+                {
+                    if (j == clist.Length - 2)//对于第二个元素增加 L或者C的标识
+                    {
+                        var pointWord = tmpList[i - 1].Item2;//获取标识
+                        strList.Add(pointWord + clist[j]);
+                    }
+                    else
+                    {
+                        strList.Add(clist[j]);
+                    }
+                }
+            }
+            string reverseData = "M" + string.Join(" ", strList);
+            return reverseData;
+
         }
 
         protected override void OnMouseWheel(MouseWheelEventArgs e)
@@ -59,11 +243,14 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
 
             foreach (var p in MyCanvas.Children)
             {
-                System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-                //if (path.Name != "label")
-                //{
-                path.StrokeThickness /= x;
-                //}
+                if (p is Path)
+                {
+                    System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
+                    //if (path.Name != "label")
+                    //{
+                    path.StrokeThickness /= x;
+                    //}
+                }
             }
 
             var position = (Vector)e.GetPosition(Benchmark);
@@ -252,7 +439,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
                     b = 1000;
                 }
 
-                line1.Text = string.Format("{0},{1}", k.ToString(), b.ToString());
+                //line1.Text = string.Format("{0},{1}", k.ToString(), b.ToString());
 
 
             }
@@ -580,12 +767,15 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
 
                 foreach (var p in MyCanvas.Children)
                 {
-                    System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-
-                    if ((string)path.Tag == "Character")
+                    if (p is Path)
                     {
+                        System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
 
-                        ((GeometryGroup)path.Data).Children.Add(pathGeometry);
+                        if ((string)path.Tag == "Character")
+                        {
+
+                            ((GeometryGroup)path.Data).Children.Add(pathGeometry);
+                        }
                     }
                 }
                 //Characters.Children.Add(pathGeometry);
@@ -642,12 +832,15 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
 
                 foreach (var p in MyCanvas.Children)
                 {
-                    System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-
-                    if ((string)path.Tag == "Character")
+                    if (p is Path)
                     {
+                        System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
 
-                        ((GeometryGroup)path.Data).Children.Add(pathGeometry);
+                        if ((string)path.Tag == "Character")
+                        {
+
+                            ((GeometryGroup)path.Data).Children.Add(pathGeometry);
+                        }
                     }
                 }
                 //Characters.Children.Add(pathGeometry);
@@ -700,36 +893,24 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             double maxTop = bound.Top;
             double maxBottom = bound.Bottom;
 
-            foreach (var p in MyCanvas.Children)
+            for (int i = 0; i < MyCanvas.Children.Count; i++)
             {
-                System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-                if ((string)path.Tag == "Character")
+                if (MyCanvas.Children[i] is Path)
                 {
-                    path.StrokeThickness = 0.05;
-                    path.Stroke = System.Windows.Media.Brushes.White;
-                    path.Fill = System.Windows.Media.Brushes.White;
+                    System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)MyCanvas.Children[i];
+                    if ((string)path.Tag == "Character")
+                    {
+                        path.StrokeThickness = 0.05;
+                        path.Stroke = System.Windows.Media.Brushes.White;
+                        path.Fill = System.Windows.Media.Brushes.White;
+                    }
+                    else
+                    {
 
+                        path.StrokeThickness = 1;
+                    }
+                    CalBounds(ref maxLeft, ref maxRight, ref maxTop, ref maxBottom, path);
                 }
-                else
-                {
-
-                    path.StrokeThickness = 1;
-                }
-                CalBounds(ref maxLeft, ref maxRight, ref maxTop, ref maxBottom, path);
-
-
-                //path.Stroke = Brushes.White;
-                //path.StrokeThickness = 2;
-
-                //double Sx = path.Data.Bounds.Left + (path.Data.Bounds.Right - path.Data.Bounds.Left) / 2;
-                //double Sy = path.Data.Bounds.Top + (path.Data.Bounds.Bottom - path.Data.Bounds.Top) / 2;
-                //double width = path.Data.Bounds.Right - path.Data.Bounds.Left;
-                //double length = path.Data.Bounds.Bottom - path.Data.Bounds.Top;
-
-                //double scaleX = Benchmark.ActualWidth / (path.Data.Bounds.Right - path.Data.Bounds.Left);
-                //double scaleY = Benchmark.ActualHeight / (path.Data.Bounds.Bottom - path.Data.Bounds.Top);
-
-
             }
 
             double Ex = Benchmark.ActualWidth / 2;
@@ -747,9 +928,10 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
 
             foreach (var p in MyCanvas.Children)
             {
-                System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-
-                path.StrokeThickness /= scale;
+                if (p is Path)
+                {
+                    ((System.Windows.Shapes.Path)p).StrokeThickness /= scale;
+                }
             }
 
             System.Windows.Point size = new System.Windows.Point(Ex - scale * Sx, Ey - scale * Sy);
