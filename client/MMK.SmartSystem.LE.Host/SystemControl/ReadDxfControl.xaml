@@ -17,7 +17,7 @@
             <cc:ZoomableCanvas x:Name="MyCanvas" 
                                     RealizationLimit="1000"
                                     RealizationRate="10"
-                                    RealizationPriority="Background">
+                                    RealizationPriority="Background" Width="750" Height="450">
             </cc:ZoomableCanvas>
         </Canvas>
     </DockPanel>

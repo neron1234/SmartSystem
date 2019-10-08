@@ -107,7 +107,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         {
             foreach (var lp in dxf.LwPolylines)
             {
-                if (lp.Type == EntityType.LightWeightPolyline)
+                if (lp.Type == EntityType.LwPolyline)
                 {
                     LwPolyline polygon = (LwPolyline)lp;
 
