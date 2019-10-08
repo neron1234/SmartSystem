@@ -59,6 +59,7 @@ namespace MMK.SmartSystem.Common
                         Module = pathModule,
                         Pages = new List<SignlarPageParm>()
                     };
+                    signalrQueryParmModels.Add(moduleParm);
                 }
                 moduleParm.Pages.Add(pageNode);
             }

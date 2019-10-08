@@ -102,14 +102,14 @@ namespace MMK.SmartSystem.Common.Base
 
                 var commonModule = typeof(SmartSystemWebCommonModule).Assembly;
                 var dyType = commonModule.GetType($"MMK.SmartSystem.WebCommon.DeviceModel.{item.Type}");
-                if (dyType != null )
+                if (dyType != null)
                 {
                     cncData.Para = JsonConvert.SerializeObject(new
                     {
-                        Readers = item.CncReadDecopliler.Readers.Data,
-                        Decompilers = item.CncReadDecopliler.Decompilers.Data
+                        Readers = item.CncReadDecopliler.Readers?.Data ?? new List<object>(),
+                        Decompilers = item.CncReadDecopliler.Decompilers?.Data ?? new List<object>()
                     });
-
+                    list.Add(cncData);
                 }
 
             }
