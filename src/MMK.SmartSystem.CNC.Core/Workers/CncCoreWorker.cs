@@ -133,7 +133,7 @@ namespace MMK.SmartSystem.CNC.Core.Workers
                 var cncCustom = fd.GetCustomAttribute<CncCustomEventAttribute>();
                 if (cncCustom == null)
                 {
-                    ShowErrorLogEvent?.Invoke($"未定义与前端定义的映射模型{cncCustom.ToString()} CncCustomEvent");
+                    ShowErrorLogEvent?.Invoke($"未定义与前端定义的映射模型{item.Kind.ToString()} CncCustomEvent");
 
                     continue;
                 }

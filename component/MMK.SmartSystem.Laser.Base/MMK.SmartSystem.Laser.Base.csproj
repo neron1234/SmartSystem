@@ -81,6 +81,9 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="netDxf.netstandard, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\netDxf.netstandard.2.3.0\lib\net45\netDxf.netstandard.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -211,6 +214,13 @@
     <Compile Include="CustomControl\ToggleButton\Implementation\FlatToggleButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\IconToggleButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\ZToggleButton.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\LinkedListExtensions.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\MathExtensions.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\PriorityQuadTree.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\PriorityQueue.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\RectExtensions.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\VirtualPanel.cs" />
+    <Compile Include="CustomControl\ZoomableCanvas\ZoomableCanvas.cs" />
     <Compile Include="MachineMonitor\ControlHelp\GridHelper.cs" />
     <Compile Include="MachineMonitor\CoordinateControl.xaml.cs">
       <DependentUpon>CoordinateControl.xaml</DependentUpon>
@@ -261,6 +271,10 @@
     <Compile Include="MachineOperation\ViewModel\CutCenterPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\CutterResetCheckPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\ManualFindSidePageViewModel.cs" />
+    <Compile Include="ProgramOperation\ProgramListPage.xaml.cs">
+      <DependentUpon>ProgramListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramOperation\ViewModel\ProgramListViewModel.cs" />
     <Compile Include="SmartSystemDeviceModule.cs" />
     <Page Include="App.xaml">
       <SubType>Designer</SubType>
@@ -342,6 +356,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProgramOperation\ProgramListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Style\BtnStyleDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -398,10 +416,7 @@
     <Content Include="MMK.SmartSystem.Laser.Base.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MMK.SmartSystem.Laser.Base.Core.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="Config\MachineMonitor\MachineMonitorPage.json" />
+    <None Include="Configs\MachineMonitor\MachineMonitorPage.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -425,11 +440,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetFileName)"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"
-copy "*.json"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"</PostBuildEvent>
+copy "*.json"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"
+</PostBuildEvent>
   </PropertyGroup>
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties mmk_1smartsystem_1laser_1base_1core_1json__JsonSchema="http://json.schemastore.org/appsettings" />
-    </VisualStudio>
-  </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(ProjectDir)Configs\*.*" $(SolutionDir)client\MMK.SmartSystem.LE.Host\$(OutDir)Configs\ /S /Y</PreBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions />
 </Project>

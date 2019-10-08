@@ -9,7 +9,7 @@ namespace MMK.SmartSystem.Common.Model
     public class SignalrQueryParmModel
     {
         public string Module { get; set; }
-        public List<SignlarPageParm> Pages { set; get; }
+        public List<SignlarPageParm> Pages { set; get; } = new List<SignlarPageParm>();
     }
 
     public class SignlarPageParm

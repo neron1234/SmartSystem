@@ -563,6 +563,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Configs\Readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Plugins\Readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

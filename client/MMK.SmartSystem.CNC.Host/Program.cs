@@ -41,7 +41,7 @@ namespace MMK.SmartSystem.CNC.Host
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine("【Worker Error】" + ex.Message + " " + ex.InnerException?.Message);
+                        Console.WriteLine($"【Worker Error】-【{DateTime.Now.ToString("HH:mm:ss")}】" + ex.Message + " " + ex.InnerException?.Message);
 
                     }
                     Thread.Sleep(100);
