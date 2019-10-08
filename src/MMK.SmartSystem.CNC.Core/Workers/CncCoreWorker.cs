@@ -252,14 +252,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
             foreach (var item in paraModel.Readers)
             {
                 int[] data = new int[item.DwordQuantity];
-                var ret = PmcHelper.ReadPmcRange(flib, item.AdrType, item.StartNum, item.DwordQuantity, ref data);
+                var ret = new PmcHelper().ReadPmcRange(flib, item.AdrType, item.StartNum, item.DwordQuantity, ref data);
                 if (ret.Item1 == -16 || ret.Item1 == -8)
                 {
                     var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                     if (ret_conn == 0)
                     {
-                        ret = PmcHelper.ReadPmcRange(flib, item.AdrType, item.StartNum, item.DwordQuantity, ref data);
+                        ret = new PmcHelper().ReadPmcRange(flib, item.AdrType, item.StartNum, item.DwordQuantity, ref data);
                     }
                 }
 
@@ -276,7 +276,7 @@ namespace MMK.SmartSystem.CNC.Core.Workers
                 string ret_dec = "";
                 if (datas.ContainsKey(item.AdrType))
                 {
-                    ret_dec = PmcHelper.DecompilerReadPmcInfo(datas[item.AdrType], item, ref data);
+                    ret_dec = new PmcHelper().DecompilerReadPmcInfo(datas[item.AdrType], item, ref data);
 
                 }
                 // var ret_dec = PmcHelper.DecompilerReadPmcInfo(datas[item.AdrType], item, ref data);
@@ -308,14 +308,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
             {
                 var datas = new double[item.Quantity];
 
-                var ret = MacroHelper.ReadMacroRange(flib, item.StartNum, item.Quantity, ref datas);
+                var ret = new MacroHelper().ReadMacroRange(flib, item.StartNum, item.Quantity, ref datas);
                 if (ret.Item1 == -16)
                 {
                     var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                     if (ret_conn == 0)
                     {
-                        ret = MacroHelper.ReadMacroRange(flib, item.StartNum, item.Quantity, ref datas);
+                        ret = new MacroHelper().ReadMacroRange(flib, item.StartNum, item.Quantity, ref datas);
                     }
                 }
 

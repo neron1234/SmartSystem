@@ -14,7 +14,7 @@ namespace MMK.CNC.Core.LaserLibrary
         /// <summary>
         /// 气体编号
         /// </summary>
-        public int Code { get; set; }
+        public short Code { get; set; }
 
         /// <summary>
         /// 气体名称（英文）
