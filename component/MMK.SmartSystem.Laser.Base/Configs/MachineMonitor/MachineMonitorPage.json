@@ -99,7 +99,7 @@
         "Readers": {
           "Type": "List<string>",
           "Data": [
-            [ "programStrControl" ]
+            "programStrControl" 
           ]
         }
       }
@@ -111,7 +111,7 @@
         "Readers": {
           "Type": "List<string>",
           "Data": [
-            [ "programNameControl" ]
+             "programNameControl" 
           ]
         }
       }
