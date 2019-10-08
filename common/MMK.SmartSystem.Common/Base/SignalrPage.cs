@@ -3,7 +3,9 @@ using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SignalrProxy;
 using MMK.SmartSystem.Common.ViewModel;
+using MMK.SmartSystem.WebCommon;
 using MMK.SmartSystem.WebCommon.DeviceModel;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -97,8 +99,18 @@ namespace MMK.SmartSystem.Common.Base
             foreach (var item in page.EventNodes)
             {
                 var cncData = new CncEventData() { Kind = (CncEventEnum)Enum.Parse(typeof(CncEventEnum), item.Kind) };
-                Assembly.GetAssembly();
-                var dyModel = manager.Resolve(Type.GetType($"MMK.SmartSystem.WebCommon.DeviceModel.{item.Type}"));
+
+                var commonModule = typeof(SmartSystemWebCommonModule).Assembly;
+                var dyType = commonModule.GetType($"MMK.SmartSystem.WebCommon.DeviceModel.{item.Type}");
+                if (dyType != null )
+                {
+                    cncData.Para = JsonConvert.SerializeObject(new
+                    {
+                        Readers = item.CncReadDecopliler.Readers.Data,
+                        Decompilers = item.CncReadDecopliler.Decompilers.Data
+                    });
+
+                }
 
             }
             return list;
