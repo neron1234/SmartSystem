@@ -94,6 +94,21 @@
         ]
     },
     {
+        "ModuleName": "ProgramOperation",
+        "BackColor": "#36a35b",
+        "Sort": 3,
+        "Pages": [
+            {
+                "Id": "ProgramOperation.ProgramListPage",
+                "Title": "ProgramOperation.ProgramList",
+                "FullName": "MMK.SmartSystem.Laser.Base.ProgramOperation.ProgramListPage",
+                "IsAuth": false,
+                "Permission": "ProgramOperation.ProgramListPage",
+                "Sort": 1
+            }
+        ]
+    },
+    {
         "ModuleName": "WebModule",
         "BackColor": "#f2be2d",
         "Sort": 3,

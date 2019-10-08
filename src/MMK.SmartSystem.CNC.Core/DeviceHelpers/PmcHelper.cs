@@ -5,10 +5,10 @@ using System.Text;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class PmcHelper
+    public class PmcHelper : BaseHelper
     {
         //PMC;adr_type;adr;num
-        public static Tuple<short, string> ReadPmcRange(ushort flib, short adr_type, ushort adr, ushort num,ref int[] data)
+        public Tuple<short, string> ReadPmcRange(ushort flib, short adr_type, ushort adr, ushort num,ref int[] data)
         {
             if (num > 10) return new Tuple<short, string>(-100, "读取PMC信号错误,读取数量超限");
             if (data.Length < num) return new Tuple<short, string>(-100, "读取PMC信号错误,数据存储区域过小");
@@ -27,7 +27,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             return new Tuple<short, string>(ret, $"读取PMC信号错误,返回:{ret}");
         }
 
-        public static string DecompilerReadPmcInfo(int[] data, DecompReadPmcItemModel itemModel,ref string val)
+        public string DecompilerReadPmcInfo(int[] data, DecompReadPmcItemModel itemModel,ref string val)
         {
             string message;
             if (data == null) return "没法获得信息,读取的信息种类不包含该信息";
@@ -145,7 +145,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
         //PMC;adr_type;data_type;adr;bit;data
         //adr_type:0-G;1-F;2-Y;3-X;4-A;5-R;6-T;7-K;8-C;9-D;10-M;11-N;12-E;13-Z
         //data_type:0-BYTE;1-WORD;2-LONG;9-BIT;
-        public static string DecompileWritePmcPara(string para, ref short adr_type, ref short data_type, ref ushort adr, ref ushort bit, ref string data)
+        public string DecompileWritePmcPara(string para, ref short adr_type, ref short data_type, ref ushort adr, ref ushort bit, ref string data)
         {
             //PMC;adr_type;data_type;adr;bit;data
             var temps = para.Split(';');
@@ -167,8 +167,18 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
         }
 
-        public static string WritePmc(ushort flib, short adr_type, short data_type, ushort adr, ushort bit, string data)
+        //写操作
+        public string WritePmc(short adr_type, short data_type, ushort adr, ushort bit, string data)
         {
+            ushort flib = 0;
+
+            var ret_conn = BuildConnect(ref flib);
+            if(ret_conn !=0 )
+            {
+                FreeConnect(flib);
+                return "写入PMC信号失败，连接错误";
+            }
+
             string ret;
             switch (data_type)
             {
@@ -189,10 +199,78 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     break;
             }
 
+            FreeConnect(flib);
             return ret;
         }
 
-        private static string WritePmcByte(ushort flib, short adr_type, ushort adr, string data)
+        public string SetPmcBit(short adr_type, ushort adr, ushort bit)
+        {
+            ushort flib = 0;
+
+            var ret_conn = BuildConnect(ref flib);
+            if (ret_conn != 0)
+            {
+                FreeConnect(flib);
+                return "置位PMC信号失败，连接错误";
+            }
+
+            string ret = WritePmcBit(flib, adr_type, adr, bit, "true");
+
+            FreeConnect(flib);
+            return ret;
+        }
+
+        public string ResetPmcBit(short adr_type, ushort adr, ushort bit)
+        {
+            ushort flib = 0;
+
+            var ret_conn = BuildConnect(ref flib);
+            if (ret_conn != 0)
+            {
+                FreeConnect(flib);
+                return "置位PMC信号失败，连接错误";
+            }
+
+            string ret = WritePmcBit(flib, adr_type, adr, bit, "false");
+
+            FreeConnect(flib);
+            return ret;
+        }
+
+        public string ReversalPmcBit(short adr_type, ushort adr, ushort bit)
+        {
+            ushort flib = 0;
+
+            var ret_conn = BuildConnect(ref flib);
+            if (ret_conn != 0)
+            {
+                FreeConnect(flib);
+                return "翻转PMC信号失败，连接错误";
+            }
+
+            bool pmcBit = false;
+            string ret = ReadPmcBit(flib, adr_type, adr, bit, ref pmcBit);
+            if(ret!=null)
+            {
+                FreeConnect(flib);
+                return $"翻转PMC信号失败(ret)";
+            }
+            
+            if(pmcBit==true)
+            {
+                ret = WritePmcBit(flib, adr_type, adr, bit, "false");
+            }
+            else
+            {
+                ret = WritePmcBit(flib, adr_type, adr, bit, "true");
+            }
+
+            FreeConnect(flib);
+            return ret;
+        }
+
+        #region 私有方法
+        private string WritePmcByte(ushort flib, short adr_type, ushort adr, string data)
         {
             byte btemp;
             bool ret_b = byte.TryParse(data, out btemp);
@@ -213,7 +291,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             return null;
         }
 
-        private static string WritePmcWord(ushort flib, short adr_type, ushort adr, string data)
+        private string WritePmcWord(ushort flib, short adr_type, ushort adr, string data)
         {
             short itemp;
             bool ret_b = short.TryParse(data, out itemp);
@@ -232,7 +310,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             return null;
         }
 
-        private static string WritePmcLong(ushort flib, short adr_type, ushort adr, string data)
+        private string WritePmcLong(ushort flib, short adr_type, ushort adr, string data)
         {
             int ltemp;
             bool ret_b = int.TryParse(data, out ltemp);
@@ -251,7 +329,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             return null;
         }
 
-        private static string WritePmcBit(ushort flib, short adr_type, ushort adr, ushort bit, string data)
+        private string WritePmcBit(ushort flib, short adr_type, ushort adr, ushort bit, string data)
         {
             bool btemp;
             bool ret_b = bool.TryParse(data, out btemp);
@@ -277,5 +355,21 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             return null;
         }
+
+        private string ReadPmcBit(ushort flib, short adr_type, ushort adr, ushort bit, ref bool data)
+        {
+
+            Focas1.IODBPMC0 buf = new Focas1.IODBPMC0();
+            buf.cdata = new byte[1];
+            short ret = Focas1.pmc_rdpmcrng(flib, adr_type, 0, adr, adr, 9, buf);
+            if (ret != 0) return $"读取PMC信号失败,返回:{ret}";
+
+            byte bd = (byte)(0x01 << bit);
+            data = (buf.cdata[0] & bd) > 0;
+
+            return null;
+        }
+
+        #endregion
     }
 }
