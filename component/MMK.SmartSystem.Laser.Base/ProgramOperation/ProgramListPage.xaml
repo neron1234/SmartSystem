@@ -119,8 +119,8 @@
                         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
                         <Setter Property="Background" Value="White"></Setter>
                         <Setter Property="Foreground" Value="#616577"></Setter>
-                        <Setter Property="BorderThickness" Value="1"></Setter>
-                        <Setter Property="BorderBrush" Value="#FFAAAAAA"></Setter>
+                        <!--<Setter Property="BorderThickness" Value="1"></Setter>
+                        <Setter Property="BorderBrush" Value="#FFAAAAAA"></Setter>-->
                         <Setter Property="Width" Value="124" />
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
@@ -129,8 +129,8 @@
                         <Setter Property="Background" Value="White" />
                         <Setter Property="Height" Value="40"/>
                         <Setter Property="Foreground" Value="#616577" />
-                        <Setter Property="BorderThickness" Value="1"></Setter>
-                        <Setter Property="BorderBrush" Value="#FFAAAAAA"></Setter>
+                        <!--<Setter Property="BorderThickness" Value="1"></Setter>
+                        <Setter Property="BorderBrush" Value="#FFAAAAAA"></Setter>-->
                     </Style>
                 </DataGrid.RowStyle>
                 <!--<DataGrid.Columns>
@@ -160,10 +160,10 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <TextBlock Text="程序名称:FJFDJS-001" Margin="0 0 0 8" FontSize="13"/>
+                    <TextBlock Text="{Binding SelectedName}" Margin="0 0 0 8" FontSize="13"/>
                     <TextBlock Text="材料类型:合成金属" Margin="0 0 0 8" FontSize="13"/>
                     <TextBlock Text="板材厚度:28mm" Margin="0 0 0 8" FontSize="13"/>
-                    <TextBlock Text="板材尺寸:150cm * 250cm" Margin="0 0 0 8" FontSize="13"/>
+                    <TextBlock Text="板材尺寸:150cm*250cm" Margin="0 0 0 8" FontSize="13"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <TextBlock Text="已用尺寸:99cm/150cm" Margin="0 0 0 8" FontSize="13"/>

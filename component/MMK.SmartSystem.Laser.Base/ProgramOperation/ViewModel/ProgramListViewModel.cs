@@ -10,6 +10,20 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
 {
     public class ProgramListViewModel:ViewModelBase
     {
+        private string _SelectedName;
+        public string SelectedName
+        {
+            get { return _SelectedName; }
+            set
+            {
+                if (_SelectedName != value)
+                {
+                    _SelectedName = value;
+                    RaisePropertyChanged(() => SelectedName);
+                }
+            }
+        }
+
         private string _Path;
         public string Path
         {
@@ -36,6 +50,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
                     RaisePropertyChanged(() => ProgramList);
                 }
             }
+        }
+        public ProgramListViewModel()
+        {
+            this.SelectedName = "程序名称:";
         }
     }
     

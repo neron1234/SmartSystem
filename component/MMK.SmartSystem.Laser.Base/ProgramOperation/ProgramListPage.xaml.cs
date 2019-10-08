@@ -64,6 +64,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             if (selected != null)
             {
                 var programInfo = (ProgramInfo)selected;
+                //程序名称:FJFDJS-001
+                programListViewModel.SelectedName = "程序名称:" + programInfo.Name;
                 if (MyCanvas.Children.Count != 0)
                     MyCanvas.Children.Clear();
 
