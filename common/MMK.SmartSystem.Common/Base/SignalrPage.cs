@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -96,6 +97,7 @@ namespace MMK.SmartSystem.Common.Base
             foreach (var item in page.EventNodes)
             {
                 var cncData = new CncEventData() { Kind = (CncEventEnum)Enum.Parse(typeof(CncEventEnum), item.Kind) };
+                Assembly.GetAssembly();
                 var dyModel = manager.Resolve(Type.GetType($"MMK.SmartSystem.WebCommon.DeviceModel.{item.Type}"));
 
             }
