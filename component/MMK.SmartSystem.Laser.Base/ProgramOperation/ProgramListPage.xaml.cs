@@ -43,16 +43,19 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         public void GetFileName(string path)
         {
-            DirectoryInfo root = new DirectoryInfo(path);
-            programListViewModel.ProgramList = new System.Collections.ObjectModel.ObservableCollection<ProgramInfo>();
-            foreach (FileInfo f in root.GetFiles())
+            if (Directory.Exists(path))
             {
-                programListViewModel.ProgramList.Add(new ProgramInfo
+                DirectoryInfo root = new DirectoryInfo(path);
+                programListViewModel.ProgramList = new System.Collections.ObjectModel.ObservableCollection<ProgramInfo>();
+                foreach (FileInfo f in root.GetFiles())
                 {
-                    Name = f.Name,
-                    CreateTime = f.CreationTime.ToString(),
-                    Size = (f.Length / 1024).ToString() + "KB"
-                }) ;
+                    programListViewModel.ProgramList.Add(new ProgramInfo
+                    {
+                        Name = f.Name,
+                        CreateTime = f.CreationTime.ToString(),
+                        Size = (f.Length / 1024).ToString() + "KB"
+                    });
+                }
             }
         }
 
@@ -67,15 +70,54 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 programListViewModel.SelectedName = "程序名称:" + programInfo.Name;
                 if (MyCanvas.Children.Count != 0)
                     MyCanvas.Children.Clear();
-
-                dxf = DxfDocument.Load(programListViewModel.Path + @"\" + programInfo.Name);
-                if (dxf != null)
+                if (programInfo.Name.Split('.')[1] == "dxf")
                 {
-                    AddLayers();
-                    AddGraph();
+                    dxf = DxfDocument.Load(programListViewModel.Path + @"\" + programInfo.Name);
+                    if (dxf != null)
+                    {
+                        AddLayers();
+                        AddGraph();
+                        AdjustGraph();
+                    }
+                }
+                else
+                {
+                    StreamReader reader = new StreamReader(programListViewModel.Path + @"\" + programInfo.Name);
+                    string line = "";
+                    List<System.Windows.Point> pointList = new List<System.Windows.Point>();
+                    //List<string[]> pointList = new List<string[]>();
+                    line = reader.ReadLine();
+                    while (line != null)
+                    {
+                        pointList.Add(new System.Windows.Point(Convert.ToDouble(line.Split(',')[0]), Convert.ToDouble(line.Split(',')[1])));
+                        //pointList.Add(line.Split(','));
+                        line = reader.ReadLine();
+                    }
+                    //AddLayers();
+                    AddLineTest(pointList,programInfo.Name.Split('.')[0]);
                     AdjustGraph();
                 }
             }
+        }
+
+        private void AddLineTest(List<System.Windows.Point> points,string fileName)
+        {
+            System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
+            GeometryGroup GeoGroup = new GeometryGroup();
+            var brush = new SolidColorBrush(Colors.White);
+            for (int i = 0; i < points.Count -2; i++)
+            {
+                GeoGroup.Children.Add(new LineGeometry(points[i], points[i + 1]));
+            }
+            path.Stroke = brush;
+            path.Data = GeoGroup;
+            path.Tag = "line";
+            path.StrokeThickness = 2;
+            //path.MouseLeftButtonDown += (o, s) =>
+            //{
+            //    CalculateIntersection(path);
+            //};
+            MyCanvas.Children.Add(path);
         }
 
         #region DXF解析
@@ -225,37 +267,24 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         private void AddCircles()
         {
+            System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
+            GeometryGroup GeoGroup = new GeometryGroup();
             foreach (var c in dxf.Circles)
             {
                 EllipseGeometry circle = new EllipseGeometry(new System.Windows.Point(c.Center.X, -c.Center.Y), c.Radius, c.Radius);
-
-                //foreach (var p in MyCanvas.Children)
-                //{
-                //    System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-
-                //    if ((string)path.Tag == c.Layer.Name)
-                //    {
-
-                //        ((GeometryGroup)path.Data).Children.Add(circle);
-                //    }
-                //}
-
-                System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
-
-                GeometryGroup GeoGroup = new GeometryGroup();
                 GeoGroup.Children.Add(circle);
-                path.Stroke = new SolidColorBrush(System.Windows.Media.Colors.White);
-
-                path.Data = GeoGroup;
-                path.Tag = "tu";
-                path.StrokeThickness = 2;
-                path.MouseLeftButtonDown += (o, s) =>
-                {
-                    CalculateIntersection(path);
-                };
-
-                MyCanvas.Children.Add(path);
             }
+            path.Stroke = new SolidColorBrush(System.Windows.Media.Colors.White);
+
+            path.Data = GeoGroup;
+            path.Tag = "tu";
+            path.StrokeThickness = 2;
+            path.MouseLeftButtonDown += (o, s) =>
+            {
+                CalculateIntersection(path);
+            };
+
+            MyCanvas.Children.Add(path);
         }
 
         private void CalculateIntersection(System.Windows.Shapes.Path path)
@@ -291,74 +320,52 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         private void AddLines()
         {
+            System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
+
+            GeometryGroup GeoGroup = new GeometryGroup();
             foreach (var l in dxf.Lines)
             {
                 LineGeometry line = new LineGeometry(new System.Windows.Point(l.StartPoint.X, -l.StartPoint.Y), new System.Windows.Point(l.EndPoint.X, -l.EndPoint.Y));
-
-                //foreach (var p in MyCanvas.Children)
-                //{
-                //    System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-
-                //    if ((string)path.Tag == l.Layer.Name)
-                //    {
-
-                //        ((GeometryGroup)path.Data).Children.Add(line);
-                //    }
-                //}
-
-                System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
-
-                GeometryGroup GeoGroup = new GeometryGroup();
                 GeoGroup.Children.Add(line);
-                path.Stroke = new SolidColorBrush(System.Windows.Media.Colors.White);
-
-                path.Data = GeoGroup;
-                path.Tag = "line";
-                path.StrokeThickness = 2;
-                path.MouseLeftButtonDown += (o, s) =>
-                {
-                    CalculateIntersection(path);
-                };
-
-
-                MyCanvas.Children.Add(path);
             }
+            
+            path.Stroke = new SolidColorBrush(System.Windows.Media.Colors.White);
+
+            path.Data = GeoGroup;
+            path.Tag = "line";
+            path.StrokeThickness = 2;
+            path.MouseLeftButtonDown += (o, s) =>
+            {
+                CalculateIntersection(path);
+            };
+
+
+            MyCanvas.Children.Add(path);
         }
 
         private void AddEllipses()
         {
+            System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
+            GeometryGroup GeoGroup = new GeometryGroup();
             foreach (var e in dxf.Ellipses)
             {
                 RotateTransform trans = new RotateTransform(-e.Rotation, e.Center.X, -e.Center.Y);
                 EllipseGeometry ellipse = new EllipseGeometry(new System.Windows.Point(e.Center.X, -e.Center.Y), e.MajorAxis / 2, e.MinorAxis / 2, trans);
 
-                //foreach (var p in MyCanvas.Children)
-                //{
-                //    System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-
-                //    if ((string)path.Tag == e.Layer.Name)
-                //    {
-
-                //        ((GeometryGroup)path.Data).Children.Add(ellipse);
-                //    }
-                //}
-                System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
-
-                GeometryGroup GeoGroup = new GeometryGroup();
                 GeoGroup.Children.Add(ellipse);
-                path.Stroke = new SolidColorBrush(System.Windows.Media.Colors.White);
-
-                path.Data = GeoGroup;
-                path.Tag = "ellipse";
-                path.StrokeThickness = 2;
-                path.MouseLeftButtonDown += (o, s) =>
-                {
-                    CalculateIntersection(path);
-                };
-
-
-                MyCanvas.Children.Add(path);
             }
+            path.Stroke = new SolidColorBrush(System.Windows.Media.Colors.White);
+
+            path.Data = GeoGroup;
+            path.Tag = "ellipse";
+            path.StrokeThickness = 2;
+            path.MouseLeftButtonDown += (o, s) =>
+            {
+                CalculateIntersection(path);
+            };
+
+
+            MyCanvas.Children.Add(path);
         }
 
         private void AddArcs()
@@ -543,13 +550,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 FormattedText formattedText = new FormattedText(t.Value, CultureInfo.GetCultureInfo("zh-CN"), FlowDirection.LeftToRight, new Typeface("仿宋体"), t.Height * (96.0 / 72.0), System.Windows.Media.Brushes.White);
 
                 double angle = 0;
-                if (t.Normal.X != 0)
-                {
+                if (t.Normal.X != 0){
                     angle = Math.Atan(t.Normal.Y / t.Normal.X) / Math.PI * 180;
                     angle = angle > 0 ? angle : angle + 360;
                 }
-                else
-                {
+                else{
                     if (t.Normal.Y > 0)
                     {
                         angle = 90;
@@ -606,7 +611,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             foreach (var lay in dxf.Layers)
             {
                 System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
-
                 path.Stroke = new SolidColorBrush(System.Windows.Media.Color.FromArgb(lay.Color.ToColor().A, lay.Color.ToColor().R, lay.Color.ToColor().G, lay.Color.ToColor().B));
                 path.Tag = lay.Name;
 
@@ -701,6 +705,18 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             GetFileName(programListViewModel.Path);
+            return;
+            //测试图片输出
+            RenderTargetBitmap bmp = new RenderTargetBitmap(500, 500, 0, 0, PixelFormats.Pbgra32);
+            bmp.Render(Benchmark);
+            string file = @"C:\Users\wjj-yl\Desktop\测试用DXF\test.jpg";
+            string Extension = System.IO.Path.GetExtension(file).ToLower();
+            BitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(bmp));
+            using (Stream stm = File.Create(file))
+            {
+                encoder.Save(stm);
+            }
         }
     }
 }
