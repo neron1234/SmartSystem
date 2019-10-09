@@ -84,7 +84,6 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
         }
 
-
         public BaseCNCResultModel<ReadProgramListItemResultModel> ReadProgramList(string folder)
         {
 
@@ -169,6 +168,20 @@ namespace MMK.SmartSystem.CNC.Core.Workers
             }
         }
 
+        public void Execute()
+        {
+
+            HandlerExecute();
+            // HandlerSwitchExecute();
+        }
+
+        #region 请求合并
+        private ConcurrentDictionary<string, List<CncPollEventData>> m_PagePollRequests = new ConcurrentDictionary<string, List<CncPollEventData>>();
+
+
+        #endregion
+
+        #region OLD 取消的
         private void HandlerSwitchExecute()
         {
             List<CncEventData> tempEventDatas = new List<CncEventData>(m_EventDatas.ToArray());
@@ -232,14 +245,6 @@ namespace MMK.SmartSystem.CNC.Core.Workers
             });
 
         }
-        public void Execute()
-        {
-
-            HandlerExecute();
-            // HandlerSwitchExecute();
-        }
-
-
         private string ReadPmcHandle(ref ushort flib, string para)
         {
             string message = null;
@@ -688,7 +693,7 @@ namespace MMK.SmartSystem.CNC.Core.Workers
             return message;
         }
 
+        #endregion
 
-   
     }
 }

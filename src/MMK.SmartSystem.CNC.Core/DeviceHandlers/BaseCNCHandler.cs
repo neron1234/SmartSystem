@@ -1,6 +1,7 @@
 ﻿using Abp.Dependency;
 using MMK.SmartSystem.CNC.Core.DeviceHelpers;
 using MMK.SmartSystem.WebCommon.DeviceModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,13 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
 
         }
 
+        protected virtual Tuple<short,T> MargePollRequest<T>(T current, CncEventData data) where T : I
+        {
+            var paraModel = JsonConvert.DeserializeObject<T>(data.Para);
 
+            current.Decompilers.AddRange(paraModel.Decompilers);
+
+            return new Tuple<short, T>(0, current);
+        }
     }
 }

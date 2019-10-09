@@ -3,14 +3,16 @@ using System;
 using MMK.SmartSystem.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MMK.SmartSystem.Migrations
 {
     [DbContext(typeof(SmartSystemDbContext))]
-    partial class SmartSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191009004443_cncTable")]
+    partial class cncTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
