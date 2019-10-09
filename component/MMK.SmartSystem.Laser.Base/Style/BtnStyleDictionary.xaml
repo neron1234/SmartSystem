@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <Style x:Key="BtnStyle"  TargetType="Button">
-        <Setter Property="Background" Value="#FFDDDDDD"/>
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="#FF171C1F"/>
+        <Setter Property="Foreground" Value="#FF898A8B" />
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -12,12 +12,11 @@
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="17,17,17,17">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                <GradientStop Color="#3f484d" Offset="0.1" />
-                                <GradientStop Color="#2c353a" Offset="0.2" />
-                                <GradientStop Color="#20282d" Offset="0.4" />
-                                <GradientStop Color="#1a2023" Offset="0.6" />
-                                <GradientStop Color="#141719" Offset="0.8" />
-                                <GradientStop Color="#181c1f" Offset="0.9" />
+                                <GradientStop Color="#384146" Offset="0.1" />
+                                <GradientStop Color="#2d363b" Offset="0.3" />
+                                <GradientStop Color="#21292e" Offset="0.6" />
+                                <GradientStop Color="#1c2226" Offset="0.8" />
+                                <GradientStop Color="#181a1d" Offset="0.9" />
                             </LinearGradientBrush>
                         </Border.Background>
                         <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
@@ -25,5 +24,28 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF3A3A3A"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="17,17,17,17">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <GradientStop Color="#FF3E505A" Offset="0.1" />
+                                        <GradientStop Color="#FF39444B" Offset="0.3" />
+                                        <GradientStop Color="#FF2A363D" Offset="0.6" />
+                                        <GradientStop Color="#FF252E34" Offset="0.8" />
+                                        <GradientStop Color="#FF242A31" Offset="0.9" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

@@ -121,5 +121,9 @@ namespace MMK.CNC.Core.LaserLibrary
         {
             CreationTime = DateTime.Now;
         }
+        public SlopeControlData(int index)
+        {
+
+        }
     }
 }

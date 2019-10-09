@@ -62,7 +62,7 @@
                     Text="MACHINE_MENU_MANUELCHANGEWORKSTATION_MAIN"
                                HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
 
-                <Label VerticalAlignment="Bottom" Width="80" Height="80" Grid.Row="1" Grid.Column="1" Tag="{Binding WorkStationInfo.MainWorkStationUp,Converter={StaticResource _wsc}}"
+                <Label VerticalAlignment="Bottom" Width="80" Height="80" Grid.Row="1" Grid.Column="1" 
                         HorizontalAlignment="Center" Style="{StaticResource WorkStationArrorLabel}" IsEnabled="{Binding VerticalChange}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -73,7 +73,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Label>
-                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="0" Tag="{Binding WorkStationInfo.MainWorkStationLeft,Converter={StaticResource _wsc}}"
+                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="0" 
                         HorizontalAlignment="Right" Style="{StaticResource WorkStationArrorLabel}" 
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
@@ -88,7 +88,7 @@
                         <RotateTransform  Angle="-90"></RotateTransform>
                     </Label.RenderTransform>
                 </Label>
-                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="2" Tag="{Binding WorkStationInfo.MainWorkStationRight,Converter={StaticResource _wsc}}"
+                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="2" 
                         HorizontalAlignment="Left" Style="{StaticResource WorkStationArrorLabel}" 
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
@@ -103,7 +103,7 @@
                         <RotateTransform  Angle="90"></RotateTransform>
                     </Label.RenderTransform>
                 </Label>
-                <Label VerticalAlignment="Top" Width="80" Height="80" Grid.Row="3" Grid.Column="1" Tag="{Binding WorkStationInfo.MainWorkStationDown,Converter={StaticResource _wsc}}"
+                <Label VerticalAlignment="Top" Width="80" Height="80" Grid.Row="3" Grid.Column="1" 
                         HorizontalAlignment="Center" Style="{StaticResource WorkStationArrorLabel}" IsEnabled="{Binding VerticalChange}"
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
@@ -122,7 +122,7 @@
                 <TextBlock Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="3" 
                     Text="MACHINE_MENU_MANUELCHANGEWORKSTATION_SUB"
                                HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <Label VerticalAlignment="Bottom" Width="80" Height="80" Grid.Row="1" Grid.Column="4" Tag="{Binding WorkStationInfo.SubWorkStationUp,Converter={StaticResource _wsc}}"
+                <Label VerticalAlignment="Bottom" Width="80" Height="80" Grid.Row="1" Grid.Column="4" 
                         HorizontalAlignment="Center" Style="{StaticResource WorkStationArrorLabel}" IsEnabled="{Binding VerticalChange}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -133,7 +133,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Label>
-                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="3" Tag="{Binding WorkStationInfo.SubWorkStationLeft,Converter={StaticResource _wsc}}"
+                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="3" 
                         HorizontalAlignment="Right" Style="{StaticResource WorkStationArrorLabel}" 
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
@@ -148,7 +148,7 @@
                         <RotateTransform  Angle="-90"></RotateTransform>
                     </Label.RenderTransform>
                 </Label>
-                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="5"  Tag="{Binding WorkStationInfo.SubWorkStationRight,Converter={StaticResource _wsc}}"
+                <Label VerticalAlignment="Center" Width="80" Height="80" Grid.Row="2" Grid.Column="5" 
                         HorizontalAlignment="Left" Style="{StaticResource WorkStationArrorLabel}" 
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
@@ -163,7 +163,7 @@
                         <RotateTransform  Angle="90"></RotateTransform>
                     </Label.RenderTransform>
                 </Label>
-                <Label VerticalAlignment="Top" Width="80" Height="80" Grid.Row="3" Grid.Column="4" Tag="{Binding WorkStationInfo.SubWorkStationDown,Converter={StaticResource _wsc}}"
+                <Label VerticalAlignment="Top" Width="80" Height="80" Grid.Row="3" Grid.Column="4" 
                         HorizontalAlignment="Center" Style="{StaticResource WorkStationArrorLabel}"  IsEnabled="{Binding VerticalChange}"
                         RenderTransformOrigin="0.5,0.5">
                     <i:Interaction.Triggers>
