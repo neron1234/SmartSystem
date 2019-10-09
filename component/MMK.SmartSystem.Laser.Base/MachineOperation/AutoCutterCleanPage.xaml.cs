@@ -94,7 +94,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
 
         public override List<object> GetResultViewModelMap()
         {
-            throw new NotImplementedException();
+            return default;
         }
     }
 }
