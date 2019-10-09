@@ -23,6 +23,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
         public short LaserLibrarySlopeControlDataQuantity { get; set; } = 5;
 
+        public ushort LaserCommentLineCount { get; set; } = 20;
+
         public BaseHelper()
         {
             LaserLibraryCuttingDataQuantity = MMKSmartSystemWebCommonConsts.LaserLibraryCuttingDataQuantity;
