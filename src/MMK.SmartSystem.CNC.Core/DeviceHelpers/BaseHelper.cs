@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.WebCommon;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,16 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
         public short LaserLibrarySlopeControlDataQuantity { get; set; } = 5;
 
+        public ushort LaserCommentLineCount { get; set; } = 20;
+
+        public BaseHelper()
+        {
+            LaserLibraryCuttingDataQuantity = MMKSmartSystemWebCommonConsts.LaserLibraryCuttingDataQuantity;
+            LaserLibraryEdgeCuttingDataQuantity = MMKSmartSystemWebCommonConsts.LaserLibraryEdgeCuttingDataQuantity;
+            LaserLibraryPiercingDataQuantity = MMKSmartSystemWebCommonConsts.LaserLibraryPiercingDataQuantity;
+            LaserLibrarySlopeControlDataQuantity = MMKSmartSystemWebCommonConsts.LaserLibrarySlopeControlDataQuantity;
+
+        }
         public short BuildConnect(ref ushort flib)
         {
             Focas1.cnc_freelibhndl(flib);
