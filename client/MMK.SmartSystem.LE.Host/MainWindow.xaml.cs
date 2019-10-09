@@ -84,10 +84,19 @@ namespace MMK.SmartSystem.LE.Host
         {
             if (changeModel.Page == PageEnum.WPFPage)
             {
-                var page = iocManager.Resolve(changeModel.FullType);
-                MainViewModel.MainFrame = page;
-                ctnTest.Visibility = Visibility.Collapsed;
-                viewBox.Visibility = Visibility.Visible;
+                try
+                {
+                    var page = iocManager.Resolve(changeModel.FullType);
+                    MainViewModel.MainFrame = page;
+                    ctnTest.Visibility = Visibility.Collapsed;
+                    viewBox.Visibility = Visibility.Visible;
+                }
+                catch (Exception)
+                {
+
+                    
+                }
+              
             }
             else if (changeModel.Page == PageEnum.WebPage)
             {

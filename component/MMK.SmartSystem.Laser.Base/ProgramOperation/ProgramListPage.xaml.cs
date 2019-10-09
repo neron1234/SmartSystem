@@ -36,8 +36,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         private void ProgramListPage_Loaded(object sender, RoutedEventArgs e)
         {
             programListViewModel = new ProgramListViewModel();
-            programListViewModel.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
-            GetFileName(programListViewModel.Path);
+           // programListViewModel.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
+          //  GetFileName(programListViewModel.Path);
             this.DataContext = programListViewModel;
         }
 

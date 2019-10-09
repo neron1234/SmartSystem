@@ -33,22 +33,17 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
 
         public override void CncOnError(string message)
         {
-            throw new NotImplementedException();
         }
 
-        public override List<CncEventData> GetCncEventData()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public override List<object> GetResultViewModelMap()
         {
-            throw new NotImplementedException();
+            return default;
         }
 
         public override void PageSignlarLoaded()
         {
-            throw new NotImplementedException();
         }
     }
 }
