@@ -136,5 +136,10 @@ namespace MMK.CNC.Core.LaserLibrary
         {
             CreationTime = DateTime.Now;
         }
+
+        public EdgeCuttingData(int index)
+        {
+
+        }
     }
 }
