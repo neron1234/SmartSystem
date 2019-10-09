@@ -10,8 +10,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
     public class LaserProgramHelper : BaseHelper
     {
-        public ushort CommentLineCount { get; set; } = 20;
-
         public string GetProgramCommentInfo(string ncPath, ProgramCommentFromCncDto info)
         {
             ushort flib = 0;
@@ -48,7 +46,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     string temp = buf.ToString(0, len);
                     str += temp;
 
-                    if (str.Count(x=>x=='\n') > CommentLineCount)
+                    if (str.Count(x=>x=='\n') > LaserCommentLineCount)
                     {
                         break;
                     }
@@ -61,12 +59,13 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             } while ((ret == 0) || (ret == 10));
 
             Focas1.cnc_upend4(flib);
+            FreeConnect(flib);
 
             if (ret != 0)
             {
                 return "获得程序信息失败," + GetGeneralErrorMessage(ret);
             }
-            FreeConnect(flib);
+            
 
             Regex matRegex = new Regex(@"(?<=\(#MATERIAL=)\w*(?=\))");
             Match matMatch = matRegex.Match(str);
@@ -104,9 +103,13 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             Match cuttingDistanceMatch = cuttingDistanceRegex.Match(str);
             if (cuttingDistanceMatch.Success == true) info.CuttingDistance = double.Parse(cuttingDistanceMatch.Value);
 
-            Regex piercingRegex = new Regex(@"(?<=\(#CUTTING_DISTANCE=)\w*(?=\))");
+            Regex piercingRegex = new Regex(@"(?<=\(#PIERCING_COUNT=)\w*(?=\))");
             Match piercingMatch = piercingRegex.Match(str);
             if (piercingMatch.Success == true) info.PiercingCount = int.Parse(piercingMatch.Value);
+
+            Regex cuttingTimeRegex = new Regex(@"(?<=\(#CUTTING_TIME=)\w*(?=\))");
+            Match cuttingTimeMatch = cuttingTimeRegex.Match(str);
+            if (cuttingTimeMatch.Success == true) info.CuttingTime = double.Parse(cuttingTimeMatch.Value);
 
             return null;
         }
