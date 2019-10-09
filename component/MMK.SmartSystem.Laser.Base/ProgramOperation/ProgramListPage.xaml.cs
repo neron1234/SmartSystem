@@ -695,8 +695,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             maxBottom = maxBottom > ((GeometryGroup)path.Data).Bounds.Bottom ? maxBottom : ((GeometryGroup)path.Data).Bounds.Bottom;
         }
 
+
         #endregion
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            GetFileName(programListViewModel.Path);
+        }
     }
 }
