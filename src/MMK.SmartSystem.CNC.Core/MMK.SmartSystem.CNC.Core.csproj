@@ -201,6 +201,7 @@
     <Compile Include="DeviceHelpers\ProgramListHelper.cs" />
     <Compile Include="DeviceHelpers\ProgramNameHelper.cs" />
     <Compile Include="DeviceHelpers\ProgramStrHelper.cs" />
+    <Compile Include="DeviceHelpers\ProgramTransferHelper.cs" />
     <Compile Include="DeviceHelpers\SpindleSpeedHelper.cs" />
     <Compile Include="DeviceHelpers\WorkpartNumHelper.cs" />
     <Compile Include="fwlib32.cs" />
