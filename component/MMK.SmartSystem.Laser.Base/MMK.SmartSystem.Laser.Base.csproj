@@ -210,6 +210,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\MopBackgroundColorConverter.cs" />
+    <Compile Include="Converters\StringIsEmptyConverter.cs" />
+    <Compile Include="CustomControl\ComboBox\Implementation\ZComboBox.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\AnimationButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\FlatToggleButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\IconToggleButton.cs" />
@@ -271,6 +273,16 @@
     <Compile Include="MachineOperation\ViewModel\CutCenterPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\CutterResetCheckPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\ManualFindSidePageViewModel.cs" />
+    <Compile Include="MachineProcess\UserControls\InciseProcessControl.xaml.cs">
+      <DependentUpon>InciseProcessControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineProcess\UserControls\ProcessOptionsControl.xaml.cs">
+      <DependentUpon>ProcessOptionsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineProcess\ProcessPage.xaml.cs">
+      <DependentUpon>ProcessPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineProcess\UserControls\ViewModel\ProcessOptionsViewModel.cs" />
     <Compile Include="ProgramOperation\ProgramListPage.xaml.cs">
       <DependentUpon>ProgramListPage.xaml</DependentUpon>
     </Compile>
@@ -279,6 +291,10 @@
     <Page Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\ComboBox\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomControl\ToggleButton\Themes\AnimationButton.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -345,6 +361,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MachineOperation\RemainCutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineProcess\UserControls\InciseProcessControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineProcess\UserControls\ProcessOptionsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineProcess\ProcessPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -434,7 +462,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MachineMonitor\UserControl\" />
+    <Folder Include="MachineProcess\ViewModel\" />
     <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

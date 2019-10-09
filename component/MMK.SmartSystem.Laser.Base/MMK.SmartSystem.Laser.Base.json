@@ -109,6 +109,21 @@
         ]
     },
     {
+        "ModuleName": "MachineProcess",
+        "BackColor": "#36a35b",
+        "Sort": 4,
+        "Pages": [
+            {
+                "Id": "MachineProcess.ProcessPage",
+                "Title": "MachineProcess.Process",
+                "FullName": "MMK.SmartSystem.Laser.Base.MachineProcess.ProcessPage",
+                "IsAuth": false,
+                "Permission": "MachineProcess.ProcessPage",
+                "Sort": 1
+            }
+        ]
+    },
+    {
         "ModuleName": "WebModule",
         "BackColor": "#f2be2d",
         "Sort": 3,
