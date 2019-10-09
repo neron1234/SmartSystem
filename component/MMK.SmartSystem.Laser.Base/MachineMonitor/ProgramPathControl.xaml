@@ -11,11 +11,12 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <TextBlock Text="12414111Module" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25 0 0 0" FontSize="20"/>
+        <Grid Grid.Row="0" x:Name="programNameGrid">
+            <TextBlock Text="{Binding ProgramName}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25 0 0 0" FontSize="20"/>
+            
             <TextBlock Text="[程序路径显示]" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 25 0" FontSize="20"/>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" x:Name="programPathGrid">
             <RichTextBox Margin="20" Background="#202328" Foreground="#67686d" FontSize="15">
                 <FlowDocument>
                     <Paragraph>

@@ -23,7 +23,7 @@
         <local:CoordinateControl Width="600" Height="240" Grid.Column="0" Grid.Row="0" x:Name="coordinateControl"/>
         <local:ProgramPathControl Width="600" Height="525" Grid.Column="1" Grid.RowSpan="3" x:Name="programPathControl"/>
 
-        <local:WarningListControl Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1" Height="235"/>
+        <local:WarningListControl x:Name="warnControl" Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1" Height="235"/>
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
             <Button x:Name="btn" Content="GO" Click="Btn_Click" Width="100" Margin="10"/>
         </StackPanel>

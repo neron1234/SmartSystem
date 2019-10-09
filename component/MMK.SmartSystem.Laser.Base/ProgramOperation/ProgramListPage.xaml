@@ -43,8 +43,60 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!--DataGrid样式-->
+            <Style TargetType="DataGrid">
+                <!--网格线颜色-->
+                <Setter Property="CanUserAddRows" Value="False" />
+                <Setter Property="CanUserDeleteRows" Value="False" />
+                <Setter Property="CanUserResizeColumns" Value="false"/>
+                <Setter Property="Background" Value="#FFF7EDAD" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="HeadersVisibility" Value="None" />
+                <Setter Property="HorizontalGridLinesBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Color="#d6c79b"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="VerticalGridLinesBrush">
+                    <Setter.Value>
+                        <SolidColorBrush Color="#d6c79b"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="DataGridCell">
+                
+            </Style>
+            
+            <!--行样式触发-->
+            <!--背景色改变必须先设置cellStyle 因为cellStyle会覆盖rowStyle样式-->
+            <Style  TargetType="DataGridRow">
+                <Setter Property="Background" Value="#F2F2F2" />
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="Foreground" Value="#CDD3D7" />
+                <Style.Triggers>
+                    <!--隔行换色-->
+                    <Trigger Property="AlternationIndex" Value="0" >
+                        <Setter Property="Background" Value="#202328" />
+                    </Trigger>
+                    <Trigger Property="AlternationIndex" Value="1" >
+                        <Setter Property="Background" Value="#2a2f34" />
+                    </Trigger>
+
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#1600A3"/>
+                        <!--<Setter Property="Foreground" Value="White"/>-->
+                    </Trigger>
+
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Foreground" Value="Black"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
         </ResourceDictionary>
     </Page.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -93,51 +145,7 @@
                 </StackPanel>
             </Grid>
             <DataGrid ItemsSource="{Binding ProgramList}" x:Name="CarDataViewGrid" Margin="0 6 0 10" Height="360" Background="#2a2f34" Width="375" 
-                      PreviewMouseLeftButtonDown="CarDataViewGrid_PreviewMouseLeftButtonDown">
-                <DataGrid.Style>
-                    <Style TargetType="DataGrid">
-                        <!--网格线颜色-->
-                        <Setter Property="CanUserResizeColumns" Value="false"/>
-                        <Setter Property="HeadersVisibility" Value="None"/>
-                        <Setter Property="CanUserAddRows" Value="False"/>
-                        <Setter Property="CanUserDeleteRows" Value="False"/>
-                        <Setter Property="HorizontalGridLinesBrush">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FF383838"/>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Property="VerticalGridLinesBrush">
-                            <Setter.Value>
-                                <SolidColorBrush Color="#FF383838"/>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </DataGrid.Style>
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-                        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-                        <Setter Property="Background" Value="White"></Setter>
-                        <Setter Property="Foreground" Value="#616577"></Setter>
-                        <Setter Property="BorderThickness" Value="1"></Setter>
-                        <Setter Property="BorderBrush" Value="#FFAAAAAA"></Setter>
-                        <Setter Property="Width" Value="124" />
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="Background" Value="White" />
-                        <Setter Property="Height" Value="40"/>
-                        <Setter Property="Foreground" Value="#616577" />
-                        <Setter Property="BorderThickness" Value="1"></Setter>
-                        <Setter Property="BorderBrush" Value="#FFAAAAAA"></Setter>
-                    </Style>
-                </DataGrid.RowStyle>
-                <!--<DataGrid.Columns>
-                    <DataGridTextColumn Header="名称" Binding="{Binding Name}" IsReadOnly="True" Width="122"/>
-                    <DataGridTextColumn Header="容量" Binding="{Binding Size}" IsReadOnly="True" Width="125"/>
-                    <DataGridTextColumn Header="日期/时间" Binding="{Binding CreateTime}" IsReadOnly="True" Width="125"/>
-                </DataGrid.Columns>-->
+                       AlternationCount="2" SelectionChanged="CarDataViewGrid_SelectionChanged" IsReadOnly="True" FontSize="13">
             </DataGrid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                 <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 10 10 10" Content="M文档"/>
@@ -160,16 +168,16 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <TextBlock Text="程序名称:FJFDJS-001" Margin="0 0 0 8" FontSize="13"/>
-                    <TextBlock Text="材料类型:合成金属" Margin="0 0 0 8" FontSize="13"/>
-                    <TextBlock Text="板材厚度:28mm" Margin="0 0 0 8" FontSize="13"/>
-                    <TextBlock Text="板材尺寸:150cm * 250cm" Margin="0 0 0 8" FontSize="13"/>
+                    <TextBlock Text="{Binding SelectedName}" Margin="0 0 0 8" FontSize="12"/>
+                    <TextBlock Text="材料类型:合成金属" Margin="0 0 0 8" FontSize="12"/>
+                    <TextBlock Text="板材厚度:28mm" Margin="0 0 0 8" FontSize="12"/>
+                    <TextBlock Text="板材尺寸:150cm*250cm" Margin="0 0 0 8" FontSize="12"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
-                    <TextBlock Text="已用尺寸:99cm/150cm" Margin="0 0 0 8" FontSize="13"/>
-                    <TextBlock Text="切割总长度:21cm/250cm" Margin="0 0 0 8" FontSize="13"/>
+                    <TextBlock Text="已用尺寸:99cm/150cm" Margin="0 0 0 8" FontSize="12"/>
+                    <TextBlock Text="切割总长度:21cm/250cm" Margin="0 0 0 8" FontSize="12"/>
                     <TextBlock Text="穿孔次数:6" Margin="0 0 0 8" FontSize="13"/>
-                    <TextBlock Text="加工时间:8小时35分47秒" Margin="0 0 0 8" FontSize="13"/>
+                    <TextBlock Text="加工时间:8小时35分47秒" Margin="0 0 0 8" FontSize="12"/>
                 </StackPanel>
             </Grid>
         </StackPanel>

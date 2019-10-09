@@ -22,10 +22,13 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
     public partial class ProgramPathControl : UserControl
     {
         public ProgramPathViewModel PathViewModel { get; private set; }
+
+        public ProgramNameViewModel ProgramNameViewModel { get; private set; }
         public ProgramPathControl()
         {
             InitializeComponent();
-            this.DataContext = PathViewModel = new ProgramPathViewModel();
+            programPathGrid.DataContext = PathViewModel = new ProgramPathViewModel();
+            programNameGrid.DataContext = ProgramNameViewModel = new ProgramNameViewModel();
         }
     }
 }

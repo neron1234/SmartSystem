@@ -10,6 +10,49 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor.ViewModel
 {
     public class CoordinatePositionViewModel : CncResultViewModel<ReadPositionResultItemModel>
     {
+        private string _AbsX;
+        public string AbsX
+        {
+            get { return _AbsX; }
+            set
+            {
+                if (_AbsX != value)
+                {
+                    _AbsX = value;
+                    RaisePropertyChanged(() => AbsX);
+                }
+            }
+        }
+
+        private string _AbsY;
+        public string AbsY
+        {
+            get { return _AbsY; }
+            set
+            {
+                if (_AbsY != value)
+                {
+                    _AbsY = value;
+                    RaisePropertyChanged(() => AbsY);
+                }
+            }
+        }
+
+        private string _AbsZ;
+        public string AbsZ
+        {
+            get { return _AbsZ; }
+            set
+            {
+                if (_AbsZ != value)
+                {
+                    _AbsZ = value;
+                    RaisePropertyChanged(() => AbsZ);
+                }
+            }
+        }
+
+
         private string _MachineX;
         public string MachineX
         {
@@ -101,6 +144,9 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor.ViewModel
             MachineX = "1412";
             MachineY = "15";
             MachineZ = "124";
+            AbsX = "0";
+            AbsY = "0";
+            AbsZ = "0";
         }
     }
 }

@@ -56,14 +56,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             }
         }
 
-        System.Windows.Point LastMousePosition;
         private DxfDocument dxf;
-        private void CarDataViewGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void CarDataViewGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = ((DataGrid)sender).SelectedValue;
-            if (selected != null)
+            if (selected != null && selected is ProgramInfo)
             {
                 var programInfo = (ProgramInfo)selected;
+                //程序名称:FJFDJS-001
+                programListViewModel.SelectedName = "程序名称:" + programInfo.Name;
                 if (MyCanvas.Children.Count != 0)
                     MyCanvas.Children.Clear();
 
@@ -77,40 +78,42 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             }
         }
 
-        protected override void OnMouseWheel(MouseWheelEventArgs e)
-        {
-            var x = Math.Pow(2, e.Delta / 3.0 / Mouse.MouseWheelDeltaForOneLine);
-            MyCanvas.Scale *= x;
+        #region DXF解析
+        //System.Windows.Point LastMousePosition;
+        //protected override void OnMouseWheel(MouseWheelEventArgs e)
+        //{
+        //    var x = Math.Pow(2, e.Delta / 3.0 / Mouse.MouseWheelDeltaForOneLine);
+        //    MyCanvas.Scale *= x;
 
-            foreach (var p in MyCanvas.Children)
-            {
-                if (p is System.Windows.Shapes.Path)
-                {
-                    System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-                    //if (path.Name != "label")
-                    //{
-                    path.StrokeThickness /= x;
-                    //}
-                }
-            }
+        //    foreach (var p in MyCanvas.Children)
+        //    {
+        //        if (p is System.Windows.Shapes.Path)
+        //        {
+        //            System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
+        //            //if (path.Name != "label")
+        //            //{
+        //            path.StrokeThickness /= x;
+        //            //}
+        //        }
+        //    }
 
-            var position = (Vector)e.GetPosition(Benchmark);
+        //    var position = (Vector)e.GetPosition(Benchmark);
 
-            MyCanvas.Offset = (System.Windows.Point)((Vector)
-                (MyCanvas.Offset + position) * x - position);
+        //    MyCanvas.Offset = (System.Windows.Point)((Vector)
+        //        (MyCanvas.Offset + position) * x - position);
 
-            e.Handled = true;
-        }
+        //    e.Handled = true;
+        //}
 
-        protected override void OnMouseMove(MouseEventArgs e)
-        {
-            var position = e.GetPosition(Benchmark);
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                MyCanvas.Offset -= position - LastMousePosition;
-            }
-            LastMousePosition = position;
-        }
+        //protected override void OnMouseMove(MouseEventArgs e)
+        //{
+        //    var position = e.GetPosition(Benchmark);
+        //    if (e.LeftButton == MouseButtonState.Pressed)
+        //    {
+        //        MyCanvas.Offset -= position - LastMousePosition;
+        //    }
+        //    LastMousePosition = position;
+        //}
 
         void AddGraph()
         {
@@ -691,5 +694,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             maxTop = maxTop < ((GeometryGroup)path.Data).Bounds.Top ? maxTop : ((GeometryGroup)path.Data).Bounds.Top;
             maxBottom = maxBottom > ((GeometryGroup)path.Data).Bounds.Bottom ? maxBottom : ((GeometryGroup)path.Data).Bounds.Bottom;
         }
+
+        #endregion
+
+        
     }
 }
