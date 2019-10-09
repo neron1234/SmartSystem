@@ -223,6 +223,7 @@
     <Compile Include="CustomControl\ZoomableCanvas\RectExtensions.cs" />
     <Compile Include="CustomControl\ZoomableCanvas\VirtualPanel.cs" />
     <Compile Include="CustomControl\ZoomableCanvas\ZoomableCanvas.cs" />
+    <Compile Include="EventHandler\MaterialInfoHandler.cs" />
     <Compile Include="MachineMonitor\ControlHelp\GridHelper.cs" />
     <Compile Include="MachineMonitor\CoordinateControl.xaml.cs">
       <DependentUpon>CoordinateControl.xaml</DependentUpon>
@@ -387,6 +388,14 @@
     <Page Include="ProgramOperation\ProgramListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\AutoDisappearScrollViewerStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Style\BtnStyleDictionary.xaml">
       <SubType>Designer</SubType>

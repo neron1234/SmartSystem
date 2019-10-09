@@ -257,6 +257,7 @@
   <ItemGroup>
     <Compile Include="Base\AutoRefreshPage.cs" />
     <Compile Include="Base\SignalrPage.cs" />
+    <Compile Include="EventDatas\MaterialEventData.cs" />
     <Compile Include="EventDatas\NavigateEventData.cs" />
     <Compile Include="EventDatas\OperationLogEventData.cs" />
     <Compile Include="EventDatas\UserConfigEventData.cs" />

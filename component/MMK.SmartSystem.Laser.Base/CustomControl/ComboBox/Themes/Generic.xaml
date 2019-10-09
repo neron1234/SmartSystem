@@ -30,16 +30,16 @@
     <PathGeometry x:Key="Arrow.Up" Figures="M832.185 640.020h-640.37l320.184-384.016z" />
 
     <!--#region ComboBoxStyle基样式-->
-    <!--  ComboBox样式 add by zhidf 2015.12.31  -->
+    
     <SolidColorBrush x:Key="BorderColor" Color="#00D3D6DB" />
     <SolidColorBrush x:Key="ComboBox.BorderBrush" Color="#ABADB3" />
     <SolidColorBrush x:Key="ComboBox.Popup.BorderBrush" Color="#C8C8C8" />
-    <SolidColorBrush x:Key="ComboBox.Normal.Background" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="ComboBox.Normal.Background" Color="#202328" />
     <SolidColorBrush x:Key="ComboBox.Disabled.Foreground" Color="#888" />
     <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="#00eeeeee" />
     <SolidColorBrush x:Key="ComboBox.Disabled.BorderBrush" Color="#00888888" />
 
-    <SolidColorBrush x:Key="ComboBoxItem.MouseOver.Background" Color="#E2E2E2" />
+    <SolidColorBrush x:Key="ComboBoxItem.MouseOver.Background" Color="#202328" />
     <SolidColorBrush x:Key="ComboBoxItem.MouseOver.Foreground" Color="#000000" />
 
     <DropShadowEffect x:Key="BorderShadow" BlurRadius="5" Opacity="0.2" ShadowDepth="0"

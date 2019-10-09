@@ -40,6 +40,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
 
         public ProcessOptionsViewModel()
         {
+
             this.MaterialTypeList = new ObservableCollection<string> { 
                 "铜",
                 "铁",
