@@ -107,6 +107,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             Regex piercingRegex = new Regex(@"(?<=\(#CUTTING_DISTANCE=)\w*(?=\))");
             Match piercingMatch = piercingRegex.Match(str);
             if (piercingMatch.Success == true) info.PiercingCount = int.Parse(piercingMatch.Value);
+
+            return null;
         }
 
     }
