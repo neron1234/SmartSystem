@@ -10,22 +10,18 @@ namespace MMK.SmartSystem.Common.EventDatas
 {
     public class MaterialInfoEventData: BaseErrorEventData
     {
-        public string code { get; set; }
-        public string name_EN { get; set; }
-        public string name_CN { get; set; }
-        public string description { get; set; }
-        public string creationTime { get; set; }
-        public int id { get; set; }
+        public bool IsAll { get; set; }
     }
 
     public class MachiningGroupInfoEventData: BaseErrorEventData
     {
-        public string code { get; set; }
-        public string materialId { get; set; }
-        public string materialThickness { get; set; }
-        public string description { get; set; }
-        public string creationTime { get; set; }
-        public string id { get; set; }
+        public int MaterialId { get; set; }
+    }
+
+    public class AddMaterialEventData : BaseErrorEventData
+    {
+        public int MaterialId { get; set; }
+        public double MaterialThickness { get; set; }
     }
 
 }

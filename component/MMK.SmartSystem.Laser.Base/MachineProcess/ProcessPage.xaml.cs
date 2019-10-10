@@ -1,4 +1,5 @@
 ﻿using Abp.Dependency;
+using MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,16 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess
     /// </summary>
     public partial class ProcessPage : Page, ITransientDependency
     {
+        //public ProcessViewModel viewModel { get; set; }
         public ProcessPage()
         {
             InitializeComponent();
+            Loaded += ProcessPage_Loaded;
+        }
+
+        private void ProcessPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

@@ -32,13 +32,22 @@
             <RowDefinition />
             <RowDefinition Height="116"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button Width="186" Height="50" Content="切割" Style="{StaticResource TabBtn}"/>
-            <Button Width="186" Height="50" Content="穿孔" Style="{StaticResource TabBtn}"/>
-            <Button Width="186" Height="50" Content="尖角切割" Style="{StaticResource TabBtn}"/>
-            <Button Width="186" Height="50" Content="功率控制" Style="{StaticResource TabBtn}"/>
-            <Button Style="{StaticResource BtnStyle}" Content="编辑" Height="32" Width="152" Margin="320 0 0 0"/>
-        </StackPanel>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <Button Width="186" Height="50" Content="切割" Style="{StaticResource TabBtn}"/>
+                <Button Width="186" Height="50" Content="穿孔" Style="{StaticResource TabBtn}"/>
+                <Button Width="186" Height="50" Content="尖角切割" Style="{StaticResource TabBtn}"/>
+                <Button Width="186" Height="50" Content="功率控制" Style="{StaticResource TabBtn}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="2">
+                <Button Style="{StaticResource BtnStyle}" Content="编辑" Height="35" Width="152" Margin="30 0 0 0"/>
+            </StackPanel>
+        </Grid>
         <StackPanel Grid.Row="1">
             <uc:InciseProcessControl />
         </StackPanel>

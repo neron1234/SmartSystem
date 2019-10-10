@@ -128,6 +128,7 @@
     <Reference Include="System.Linq.Dynamic.Core, Version=1.0.10.0, Culture=neutral, PublicKeyToken=0f07ec44de6ac832, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Linq.Dynamic.Core.1.0.10\lib\net46\System.Linq.Dynamic.Core.dll</HintPath>
     </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -209,13 +210,65 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\InverseBooleanVisibilityConverter.cs" />
     <Compile Include="Converters\MopBackgroundColorConverter.cs" />
+    <Compile Include="Converters\OffsetConverter.cs" />
     <Compile Include="Converters\StringIsEmptyConverter.cs" />
+    <Compile Include="Converters\ValueIsZeroConverter.cs" />
+    <Compile Include="CustomControl\Behaviors\MaskLayerBehavior.cs" />
+    <Compile Include="CustomControl\Behaviors\TextCompleteDisplayBehavior.cs" />
+    <Compile Include="CustomControl\Button\Implementation\FlatButton.cs" />
+    <Compile Include="CustomControl\Button\Implementation\PathButton.cs" />
+    <Compile Include="CustomControl\Button\Implementation\PathIconButton.cs" />
+    <Compile Include="CustomControl\Button\Implementation\PathTextButton.cs" />
     <Compile Include="CustomControl\ComboBox\Implementation\ZComboBox.cs" />
+    <Compile Include="CustomControl\ControlEnum.cs" />
+    <Compile Include="CustomControl\Decorator\AngleBorder.cs" />
+    <Compile Include="CustomControl\ExtensionFunc\ItemsControlExtensions.cs" />
+    <Compile Include="CustomControl\ExtensionFunc\PopupHelper.cs" />
+    <Compile Include="CustomControl\ExtensionFunc\ScrollViewerBehavior.cs" />
+    <Compile Include="CustomControl\ExtensionFunc\TreeViewExtension.cs" />
+    <Compile Include="CustomControl\ExtensionFunc\ValidateBehavior.cs" />
+    <Compile Include="CustomControl\Notifiaction.xaml.cs">
+      <DependentUpon>Notifiaction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\Poptip\Implementation\Poptip.cs" />
+    <Compile Include="CustomControl\PopupWindowControl.xaml.cs">
+      <DependentUpon>PopupWindowControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\Popup\Implementation\PopupEx.cs" />
+    <Compile Include="CustomControl\Primitives\CircleBase.cs" />
+    <Compile Include="CustomControl\Primitives\IconTextBoxBase.cs" />
+    <Compile Include="CustomControl\Primitives\MyCalendar.cs" />
+    <Compile Include="CustomControl\Primitives\MyEventArgs\ItemMouseDoubleClickEventArgs.cs" />
+    <Compile Include="CustomControl\Primitives\MyEventArgs\ItemMouseRightButtonDownEventArgs.cs" />
+    <Compile Include="CustomControl\Primitives\MyEventArgs\ItemMouseSingleClickEventArgs.cs" />
+    <Compile Include="CustomControl\Primitives\NumberBox.cs" />
+    <Compile Include="CustomControl\Primitives\ZTextBoxBase.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\IconTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\IpTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\NumbericTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\SearchBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\TagTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\TitleTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\ValidateTextBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\ZPasswordBox.cs" />
+    <Compile Include="CustomControl\TextBox\Implementation\ZTextBox.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\AnimationButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\FlatToggleButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\IconToggleButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\ZToggleButton.cs" />
+    <Compile Include="CustomControl\Utils\CommonUtil.cs" />
+    <Compile Include="CustomControl\Utils\DateTimeHelper.cs" />
+    <Compile Include="CustomControl\Utils\DialogHelper.cs" />
+    <Compile Include="CustomControl\Utils\DoubleUtil.cs" />
+    <Compile Include="CustomControl\Utils\Extensions.cs" />
+    <Compile Include="CustomControl\Utils\MyVisualTreeHelper.cs" />
+    <Compile Include="CustomControl\Utils\PaletteHelper.cs" />
+    <Compile Include="CustomControl\Utils\UIElementEx.cs" />
+    <Compile Include="CustomControl\Utils\VisualHelper.cs" />
+    <Compile Include="CustomControl\Utils\VlcUtil.cs" />
+    <Compile Include="CustomControl\ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="CustomControl\ZoomableCanvas\LinkedListExtensions.cs" />
     <Compile Include="CustomControl\ZoomableCanvas\MathExtensions.cs" />
     <Compile Include="CustomControl\ZoomableCanvas\PriorityQuadTree.cs" />
@@ -274,6 +327,12 @@
     <Compile Include="MachineOperation\ViewModel\CutCenterPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\CutterResetCheckPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\ManualFindSidePageViewModel.cs" />
+    <Compile Include="MachineProcess\PopupWindow.xaml.cs">
+      <DependentUpon>PopupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineProcess\UserControls\AddMaterialControl.xaml.cs">
+      <DependentUpon>AddMaterialControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineProcess\UserControls\InciseProcessControl.xaml.cs">
       <DependentUpon>InciseProcessControl.xaml</DependentUpon>
     </Compile>
@@ -283,7 +342,10 @@
     <Compile Include="MachineProcess\ProcessPage.xaml.cs">
       <DependentUpon>ProcessPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MachineProcess\UserControls\ViewModel\AddMaterialViewModel.cs" />
     <Compile Include="MachineProcess\UserControls\ViewModel\ProcessOptionsViewModel.cs" />
+    <Compile Include="MachineProcess\ViewModel\PopupWindowViewModel.cs" />
+    <Compile Include="MachineProcess\ViewModel\ProcessViewModel.cs" />
     <Compile Include="ProgramOperation\ProgramListPage.xaml.cs">
       <DependentUpon>ProgramListPage.xaml</DependentUpon>
     </Compile>
@@ -293,7 +355,71 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomControl\Button\Themes\FlatButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\Button\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\Button\Themes\PathButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\Button\Themes\PathIconButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\Button\Themes\PathTextButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CustomControl\ComboBox\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\Notifiaction.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\Poptip\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\PopupWindowControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\IconTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\IpTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\NumbericTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\TagTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\TitleTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\ValidateTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TextBox\Themes\ZPasswordBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -365,6 +491,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MachineProcess\PopupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineProcess\UserControls\AddMaterialControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MachineProcess\UserControls\InciseProcessControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -393,7 +527,47 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\Brushs\ZUIBrush.Dark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Brushs\ZUIBrush.Light.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\BtnStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Colors\ZUIColor.Dark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Colors\ZUIColor.Light.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ContextMenuStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\DefaultStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\PathGeometry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ScorllViewerStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\TooltipStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -471,7 +645,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MachineProcess\ViewModel\" />
+    <Folder Include="CustomControl\Popup\Themes\" />
     <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
