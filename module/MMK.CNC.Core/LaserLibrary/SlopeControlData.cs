@@ -106,14 +106,6 @@ namespace MMK.CNC.Core.LaserLibrary
         /// </summary>
         public double LiftDistance { get; set; }
 
-        [StringLength(100)]
-        public string Reserve1 { get; set; }
-
-        [StringLength(100)]
-        public string Reserve2 { get; set; }
-
-        [StringLength(100)]
-        public string Reserve3 { get; set; }
 
         public DateTime CreationTime { get; set; } = DateTime.Now;
 

@@ -22,5 +22,52 @@
             <Button Content="激光状态" Width="100" Height="30" Margin="2" Click="Button_Click"/>
             <Button Content="坐标列表" Width="100" Height="30" Margin="2" Click="Button_Click"/>
         </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <Path x:Name="PathFillColor" Fill="{TemplateBinding Property=Button.Background}">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="40,40" IsClosed="True">
+                            <LineSegment Point="40,130"></LineSegment>
+                            <ArcSegment Point="60,150" Size="20,20" ></ArcSegment>
+                            <LineSegment Point="200,150"></LineSegment>
+                            <ArcSegment Point="220,130" Size="20,20"></ArcSegment>
+                            <LineSegment Point="220,40"></LineSegment>
+                            <ArcSegment Point="200,20" Size="20,20"></ArcSegment>
+                            <LineSegment Point="60,20"></LineSegment>
+                            <ArcSegment Point="40,40" Size="20,20"></ArcSegment>
+                        </PathFigure>
+                        <PathFigure StartPoint="80,40" IsClosed="False">
+                            <LineSegment Point="160,40"></LineSegment>
+                            <LineSegment Point="200,100"></LineSegment>
+                            <LineSegment Point="80,100"></LineSegment>
+                            <LineSegment Point="80,40"></LineSegment>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+            <Path x:Name="PathFillColor2" Fill="{TemplateBinding Property=Button.Background}">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="40,40" IsClosed="True">
+                            <LineSegment Point="40,130"></LineSegment>
+                            <ArcSegment Point="60,150" Size="20,20" ></ArcSegment>
+                            <LineSegment Point="200,150"></LineSegment>
+                            <ArcSegment Point="220,130" Size="20,20"></ArcSegment>
+                            <LineSegment Point="220,40"></LineSegment>
+                            <ArcSegment Point="200,20" Size="20,20"></ArcSegment>
+                            <LineSegment Point="60,20"></LineSegment>
+                            <ArcSegment Point="40,40" Size="20,20"></ArcSegment>
+                        </PathFigure>
+                        <PathFigure StartPoint="80,40" IsClosed="False">
+                            <LineSegment Point="160,40"></LineSegment>
+                            <LineSegment Point="200,100"></LineSegment>
+                            <LineSegment Point="80,100"></LineSegment>
+                            <LineSegment Point="80,40"></LineSegment>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </StackPanel>
     </Grid>
 </Window>

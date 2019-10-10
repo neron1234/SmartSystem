@@ -101,6 +101,9 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
                         });
                     }
                 }
+                else {
+                    errorMessage = "保存失败";
+                }
 
                 Messenger.Default.Send(new MainSystemNoticeModel
                 {
