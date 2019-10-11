@@ -11,15 +11,38 @@ using System.Threading.Tasks;
 
 namespace MMK.CNC.Application.LaserLibrary
 {
-    public interface ISlopeControlDataApplicationService : IAsyncCrudAppService<SlopeControlDataDto, int, PagedResultRequestDto, CreateCSlopeControlDataDto,UpdateSlopeControlDataDto>
+    public interface ISlopeControlDataApplicationService : IAsyncCrudAppService<SlopeControlDataDto, int, SlopeControlDataResultRequestDto, CreateCSlopeControlDataDto,UpdateSlopeControlDataDto>
     {
 
     }
-    public class SlopeControlDataApplicationService : AsyncCrudAppService<SlopeControlData, SlopeControlDataDto, int, PagedResultRequestDto, CreateCSlopeControlDataDto, UpdateSlopeControlDataDto>, ISlopeControlDataApplicationService
+    public class SlopeControlDataApplicationService : AsyncCrudAppService<SlopeControlData, SlopeControlDataDto, int, SlopeControlDataResultRequestDto, CreateCSlopeControlDataDto, UpdateSlopeControlDataDto>, ISlopeControlDataApplicationService
     {
+        public IRepository<Gas, int> GasRepository { set; get; }
+        public IRepository<Material, int> MaterialRepository { get; set; }
+        public IRepository<MachiningDataGroup, int> MachiningDataGroupRepository { get; set; }
+        public IRepository<MachiningKind, int> MachiningKindRepository { get; set; }
+        public IRepository<NozzleKind, int> NozzleKindRepository { get; set; }
+
+        IRepository<SlopeControlData, int> repository;
         public SlopeControlDataApplicationService(IRepository<SlopeControlData, int> repository) : base(repository)
         {
+            this.repository = repository;
+        }
 
+        protected override SlopeControlDataDto MapToEntityDto(SlopeControlData entity)
+        {
+            var resDto = AutoMapper.Mapper.Map<SlopeControlDataDto>(entity);
+            resDto.GasName = GasRepository.FirstOrDefault(d => d.Id == resDto.GasId)?.Name_CN;
+
+
+            var mGroup = MachiningDataGroupRepository.FirstOrDefault(d => d.Id == resDto.MachiningDataGroupId);
+
+            resDto.MachiningKindName = MachiningKindRepository.FirstOrDefault(d => d.Id == resDto.MachiningKindId)?.Name_CN;
+            resDto.MaterialName = MaterialRepository.FirstOrDefault(d => d.Id == mGroup.MaterialId)?.Name_CN;
+            resDto.NozzleKindName = NozzleKindRepository.FirstOrDefault(d => d.Id == resDto.NozzleKindId)?.Name_CN;
+
+            resDto.MaterialThickness = (double)mGroup?.MaterialThickness;
+            return resDto;
         }
     }
 }

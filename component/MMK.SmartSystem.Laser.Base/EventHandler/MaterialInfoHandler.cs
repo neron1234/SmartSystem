@@ -62,32 +62,79 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
                     Error = ex.Message,
                     ErrorAction = eventData.ErrorAction,
                     HashCode = eventData.HashCode
+                });
+            }
+        }
+    }
+
+    public class AddMaterialHandler : IEventHandler<AddMachiningInfoEventData>, ITransientDependency
+    {
+        public void HandleEvent(AddMachiningInfoEventData eventData)
+        {
+            MaterialClientServiceProxy materialClientServiceProxy = new MaterialClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            string errorMessage = string.Empty;
+            try
+            {
+                var rs = materialClientServiceProxy.GetAllAsync(0, 50).Result;
+                errorMessage = rs.Error?.Details;
+                if (rs.Success)
+                {
+                    eventData.CreateMaterial.Code = rs.Result.Items.LastOrDefault() == null ? 1 : rs.Result.Items.LastOrDefault()?.Code + 1;
+                    var addRs = materialClientServiceProxy.CreateAsync(eventData.CreateMaterial).Result;
+                    errorMessage = rs.Error?.Details;
+                    if (addRs.Success)
+                    {
+                        Messenger.Default.Send(new MainSystemNoticeModel
+                        {
+                            Tagret = eventData.Tagret,
+                            Error = "",
+                            Success = true,
+                            SuccessAction = eventData.SuccessAction,
+                            HashCode = eventData.HashCode
+                        });
+                    }
+                }
+                else
+                {
+                    errorMessage = "保存失败";
+                }
+
+                Messenger.Default.Send(new MainSystemNoticeModel
+                {
+                    Tagret = eventData.Tagret,
+                    Error = errorMessage,
+                    ErrorAction = eventData.ErrorAction,
+                    HashCode = eventData.HashCode
+                });
+            }
+            catch (Exception ex)
+            {
+                Messenger.Default.Send(new MainSystemNoticeModel
+                {
+                    Tagret = eventData.Tagret,
+                    Error = ex.Message,
+                    ErrorAction = eventData.ErrorAction,
+                    HashCode = eventData.HashCode
 
                 });
             }
         }
     }
 
-    public class AddMaterialHandler : IEventHandler<AddMaterialEventData>, ITransientDependency
+    public class AddMaterialGroupHandler : IEventHandler<AddMachiningGroupInfoEventData>, ITransientDependency
     {
-        public void HandleEvent(AddMaterialEventData eventData)
+        public void HandleEvent(AddMachiningGroupInfoEventData eventData)
         {
-
             MachiningGroupClientServiceProxy machiningGroupClientServiceProxy = new MachiningGroupClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
             string errorMessage = string.Empty;
             try
             {
-                var rs = machiningGroupClientServiceProxy.GetAllAsync(eventData.MaterialId, 0, 50).Result;
+                var rs = machiningGroupClientServiceProxy.GetAllAsync(eventData.CreateMachiningGroup.MaterialId, 0, 50).Result;
                 errorMessage = rs.Error?.Details;
-                if (rs.Success && !rs.Result.Items.Any(n => n.MaterialThickness == eventData.MaterialThickness))
+                if (rs.Success && !rs.Result.Items.Any(n => n.MaterialThickness == eventData.CreateMachiningGroup.MaterialThickness))
                 {
-                    var addRs = machiningGroupClientServiceProxy.CreateAsync(new CreateMachiningGroupDto
-                    {
-                        Code = rs.Result.TotalCount,
-                        MaterialId = eventData.MaterialId,
-                        Description = "",
-                        MaterialThickness = eventData.MaterialThickness
-                    }).Result;
+                    eventData.CreateMachiningGroup.Code = rs.Result.Items.LastOrDefault() == null ? 1 : rs.Result.Items.LastOrDefault()?.Code + 1;
+                    var addRs = machiningGroupClientServiceProxy.CreateAsync(eventData.CreateMachiningGroup).Result;
                     errorMessage = rs.Error?.Details;
                     if (addRs.Success)
                     {
@@ -127,7 +174,7 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
         }
     }
 
-    public class MaterialTypeHandler : IEventHandler<MachiningGroupInfoEventData>, ITransientDependency
+    public class MaterialGroupHandler : IEventHandler<MachiningGroupInfoEventData>, ITransientDependency
     {
         public void HandleEvent(MachiningGroupInfoEventData eventData)
         {
@@ -159,6 +206,53 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
                     ErrorAction = eventData.ErrorAction,
                     HashCode = eventData.HashCode
 
+                });
+            }
+        }
+    }
+
+    public class DeleteMaterialInfo : IEventHandler<DeleteMachiningInfoEventData>, ITransientDependency
+    {
+        public void HandleEvent(DeleteMachiningInfoEventData eventData)
+        {
+            MaterialClientServiceProxy materialClientServiceProxy = new MaterialClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            string errorMessage = string.Empty;
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                Messenger.Default.Send(new MainSystemNoticeModel
+                {
+                    Tagret = eventData.Tagret,
+                    Error = ex.ToString(),
+                    ErrorAction = eventData.ErrorAction,
+                    HashCode = eventData.HashCode
+
+                });
+            }
+        }
+    }
+
+    public class DeleteMaterialGroup : IEventHandler<DeleteMachiningGroupInfoEventData>, ITransientDependency
+    {
+        public void HandleEvent(DeleteMachiningGroupInfoEventData eventData)
+        {
+            MachiningGroupClientServiceProxy machiningGroupClientServiceProxy = new MachiningGroupClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
+            string errorMessage = string.Empty;
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Messenger.Default.Send(new MainSystemNoticeModel
+                {
+                    Tagret = eventData.Tagret,
+                    Error = ex.ToString(),
+                    ErrorAction = eventData.ErrorAction,
+                    HashCode = eventData.HashCode
                 });
             }
         }

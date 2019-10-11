@@ -521,12 +521,12 @@ namespace MMK.SmartSystem.Common
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedResultDtoOfCuttingDataDto> GetAllAsync(int? skipCount, int? maxResultCount);
+        System.Threading.Tasks.Task<PagedResultDtoOfCuttingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount);
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedResultDtoOfCuttingDataDto> GetAllAsync(int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<PagedResultDtoOfCuttingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -663,18 +663,22 @@ namespace MMK.SmartSystem.Common
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<PagedResultDtoOfCuttingDataDto> GetAllAsync(int? skipCount, int? maxResultCount)
+        public System.Threading.Tasks.Task<PagedResultDtoOfCuttingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount)
         {
-            return GetAllAsync(skipCount, maxResultCount, System.Threading.CancellationToken.None);
+            return GetAllAsync(machiningDataGroupId, skipCount, maxResultCount, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<PagedResultDtoOfCuttingDataDto> GetAllAsync(int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<PagedResultDtoOfCuttingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/CuttingData/GetAll?");
+            if (machiningDataGroupId != null) 
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("MachiningDataGroupId") + "=").Append(System.Uri.EscapeDataString(ConvertToString(machiningDataGroupId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             if (skipCount != null) 
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("SkipCount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(skipCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -1591,12 +1595,12 @@ namespace MMK.SmartSystem.Common
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedResultDtoOfEdgeCuttingDataDto> GetAllAsync(int? skipCount, int? maxResultCount);
+        System.Threading.Tasks.Task<PagedResultDtoOfEdgeCuttingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount);
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedResultDtoOfEdgeCuttingDataDto> GetAllAsync(int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<PagedResultDtoOfEdgeCuttingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -1733,18 +1737,22 @@ namespace MMK.SmartSystem.Common
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<PagedResultDtoOfEdgeCuttingDataDto> GetAllAsync(int? skipCount, int? maxResultCount)
+        public System.Threading.Tasks.Task<PagedResultDtoOfEdgeCuttingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount)
         {
-            return GetAllAsync(skipCount, maxResultCount, System.Threading.CancellationToken.None);
+            return GetAllAsync(machiningDataGroupId, skipCount, maxResultCount, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<PagedResultDtoOfEdgeCuttingDataDto> GetAllAsync(int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<PagedResultDtoOfEdgeCuttingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/EdgeCuttingData/GetAll?");
+            if (machiningDataGroupId != null) 
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("MachiningDataGroupId") + "=").Append(System.Uri.EscapeDataString(ConvertToString(machiningDataGroupId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             if (skipCount != null) 
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("SkipCount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(skipCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -5316,12 +5324,12 @@ namespace MMK.SmartSystem.Common
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedResultDtoOfPiercingDataDto> GetAllAsync(int? skipCount, int? maxResultCount);
+        System.Threading.Tasks.Task<PagedResultDtoOfPiercingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount);
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedResultDtoOfPiercingDataDto> GetAllAsync(int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<PagedResultDtoOfPiercingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -5458,18 +5466,22 @@ namespace MMK.SmartSystem.Common
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<PagedResultDtoOfPiercingDataDto> GetAllAsync(int? skipCount, int? maxResultCount)
+        public System.Threading.Tasks.Task<PagedResultDtoOfPiercingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount)
         {
-            return GetAllAsync(skipCount, maxResultCount, System.Threading.CancellationToken.None);
+            return GetAllAsync(machiningDataGroupId, skipCount, maxResultCount, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<PagedResultDtoOfPiercingDataDto> GetAllAsync(int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<PagedResultDtoOfPiercingDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/PiercingData/GetAll?");
+            if (machiningDataGroupId != null) 
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("MachiningDataGroupId") + "=").Append(System.Uri.EscapeDataString(ConvertToString(machiningDataGroupId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             if (skipCount != null) 
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("SkipCount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(skipCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -6826,12 +6838,12 @@ namespace MMK.SmartSystem.Common
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedResultDtoOfSlopeControlDataDto> GetAllAsync(int? skipCount, int? maxResultCount);
+        System.Threading.Tasks.Task<PagedResultDtoOfSlopeControlDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount);
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedResultDtoOfSlopeControlDataDto> GetAllAsync(int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<PagedResultDtoOfSlopeControlDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -6968,18 +6980,22 @@ namespace MMK.SmartSystem.Common
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<PagedResultDtoOfSlopeControlDataDto> GetAllAsync(int? skipCount, int? maxResultCount)
+        public System.Threading.Tasks.Task<PagedResultDtoOfSlopeControlDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount)
         {
-            return GetAllAsync(skipCount, maxResultCount, System.Threading.CancellationToken.None);
+            return GetAllAsync(machiningDataGroupId, skipCount, maxResultCount, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<PagedResultDtoOfSlopeControlDataDto> GetAllAsync(int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<PagedResultDtoOfSlopeControlDataDto> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/SlopeControlData/GetAll?");
+            if (machiningDataGroupId != null) 
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("MachiningDataGroupId") + "=").Append(System.Uri.EscapeDataString(ConvertToString(machiningDataGroupId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             if (skipCount != null) 
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("SkipCount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(skipCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");

@@ -65,9 +65,6 @@ namespace MMK.CNC.Application.LaserLibrary
                 await SlopeControlRepository.InsertAsync(new SlopeControlData(i) { MachiningDataGroupId = groupId }); 
             }
 
-
-
-
             return AutoMapper.Mapper.Map<MachiningGroupDto>(entity); 
         }
 

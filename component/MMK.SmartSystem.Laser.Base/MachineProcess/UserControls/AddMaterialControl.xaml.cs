@@ -34,10 +34,10 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
 
             this.DataContext = addMaterialViewModel = new AddMaterialViewModel();
 
-            Messenger.Default.Register<PagedResultDtoOfMaterialDto>(this, (results) =>
+            Messenger.Default.Register<List<MaterialDto>>(this, (results) =>
             {
                 addMaterialViewModel.MaterialTypeList.Clear();
-                foreach (var item in results.Items)
+                foreach (var item in results)
                 {
                     addMaterialViewModel.MaterialTypeList.Add(item);
                 }
