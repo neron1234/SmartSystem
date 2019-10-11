@@ -272,11 +272,15 @@
     <Compile Include="Model\SignalrQueryParmModel.cs" />
     <Compile Include="Model\SingalrResultMapModel.cs" />
     <Compile Include="Model\SystemMeunModel.cs" />
+    <Compile Include="SerivceProxy\CuttingDataClientServiceProxy.cs" />
+    <Compile Include="SerivceProxy\EdgeCuttingClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\GasClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\MachiningGroupClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\MachiningKindClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\MaterialClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\NozzleKindClientServiceProxy.cs" />
+    <Compile Include="SerivceProxy\PiercingDataClientServiceProxy.cs" />
+    <Compile Include="SerivceProxy\SlopeControlDataClientServiceProxy.cs" />
     <Compile Include="SignalrProxy\SignalrProxyClient.cs" />
     <Compile Include="SignalrProxy\SinglarCNCHubConsts.cs" />
     <Compile Include="ViewModel\BottomWarningLogViewModel.cs" />
