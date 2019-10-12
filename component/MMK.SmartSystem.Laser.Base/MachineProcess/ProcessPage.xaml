@@ -49,7 +49,7 @@
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1">
-            <uc:InciseProcessControl />
+            <uc:ProcessListControl />
         </StackPanel>
         <StackPanel Grid.Row="2">
             <uc:ProcessOptionsControl />

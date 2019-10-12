@@ -36,8 +36,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         private void ProgramListPage_Loaded(object sender, RoutedEventArgs e)
         {
             programListViewModel = new ProgramListViewModel();
-           // programListViewModel.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
-          //  GetFileName(programListViewModel.Path);
+            if (Directory.Exists(@"C:\Users\wjj-yl\Desktop\测试用DXF"))
+            {
+                programListViewModel.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
+                GetFileName(programListViewModel.Path);
+            }
             this.DataContext = programListViewModel;
         }
 
@@ -60,6 +63,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         }
 
         private DxfDocument dxf;
+        /// <summary>
+        /// 解析路径下的文件并进行绘制
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CarDataViewGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = ((DataGrid)sender).SelectedValue;
@@ -95,6 +103,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                     }
                     //AddLayers();
                     AddLineTest(pointList,programInfo.Name.Split('.')[0]);
+                    //AddCirclesTest(pointList);
                     AdjustGraph();
                 }
             }
@@ -120,42 +129,65 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             MyCanvas.Children.Add(path);
         }
 
+        private void AddCirclesTest(List<System.Windows.Point> points)
+        {
+            
+            System.Windows.Shapes.Path path = new System.Windows.Shapes.Path();
+            GeometryGroup GeoGroup = new GeometryGroup();
+
+            var c = FittingCircle(points);
+            EllipseGeometry circle = new EllipseGeometry(new System.Windows.Point(c.X, c.Y), c.R, c.R);
+            GeoGroup.Children.Add(circle);
+
+            path.Stroke = new SolidColorBrush(System.Windows.Media.Colors.White);
+
+            path.Data = GeoGroup;
+            path.Tag = "tu";
+            path.StrokeThickness = 2;
+            path.MouseLeftButtonDown += (o, s) =>
+            {
+                CalculateIntersection(path);
+            };
+
+            MyCanvas.Children.Add(path);
+        }
+
         #region DXF解析
-        //System.Windows.Point LastMousePosition;
-        //protected override void OnMouseWheel(MouseWheelEventArgs e)
-        //{
-        //    var x = Math.Pow(2, e.Delta / 3.0 / Mouse.MouseWheelDeltaForOneLine);
-        //    MyCanvas.Scale *= x;
+        System.Windows.Point LastMousePosition;
+        protected override void OnMouseWheel(MouseWheelEventArgs e)
+        {
+            var x = Math.Pow(2, e.Delta / 3.0 / Mouse.MouseWheelDeltaForOneLine);
+            MyCanvas.Scale *= x;
 
-        //    foreach (var p in MyCanvas.Children)
-        //    {
-        //        if (p is System.Windows.Shapes.Path)
-        //        {
-        //            System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-        //            //if (path.Name != "label")
-        //            //{
-        //            path.StrokeThickness /= x;
-        //            //}
-        //        }
-        //    }
+            foreach (var p in MyCanvas.Children)
+            {
+                if (p is System.Windows.Shapes.Path)
+                {
+                    System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
+                    //if (path.Name != "label")
+                    //{
+                    path.StrokeThickness /= x;
+                    //}
+                }
+            }
 
-        //    var position = (Vector)e.GetPosition(Benchmark);
+            var position = (Vector)e.GetPosition(Benchmark);
 
-        //    MyCanvas.Offset = (System.Windows.Point)((Vector)
-        //        (MyCanvas.Offset + position) * x - position);
+            MyCanvas.Offset = (System.Windows.Point)((Vector)
+                (MyCanvas.Offset + position) * x - position);
 
-        //    e.Handled = true;
-        //}
+            e.Handled = true;
+        }
 
-        //protected override void OnMouseMove(MouseEventArgs e)
-        //{
-        //    var position = e.GetPosition(Benchmark);
-        //    if (e.LeftButton == MouseButtonState.Pressed)
-        //    {
-        //        MyCanvas.Offset -= position - LastMousePosition;
-        //    }
-        //    LastMousePosition = position;
-        //}
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            var position = e.GetPosition(Benchmark);
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                MyCanvas.Offset -= position - LastMousePosition;
+            }
+            LastMousePosition = position;
+        }
 
         void AddGraph()
         {
@@ -279,10 +311,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             path.Data = GeoGroup;
             path.Tag = "tu";
             path.StrokeThickness = 2;
-            path.MouseLeftButtonDown += (o, s) =>
-            {
-                CalculateIntersection(path);
-            };
 
             MyCanvas.Children.Add(path);
         }
@@ -290,8 +318,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         private void CalculateIntersection(System.Windows.Shapes.Path path)
         {
             path.Stroke = new SolidColorBrush(System.Windows.Media.Colors.Yellow);
-
-
             if (path.Tag.ToString() == "line")
             {
                 LineGeometry line = (LineGeometry)(((GeometryGroup)path.Data).Children[0]);
@@ -311,10 +337,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                     k = 1000;
                     b = 1000;
                 }
-
                 //line1.Text = string.Format("{0},{1}", k.ToString(), b.ToString());
-
-
             }
         }
 
@@ -717,6 +740,65 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             {
                 encoder.Save(stm);
             }
+        }
+
+
+        /// <summary>
+        /// 拟合圆
+        /// </summary>
+        private struct Circle
+        {
+            public double X;//圆心X
+            public double Y;//圆心Y
+            public double R;//半径R
+        }
+
+        /// <summary>
+        /// 拟合圆程序
+        /// </summary>
+        /// <param name="pPointList">要拟合点集</param>
+        /// <returns>返回圆对象</returns>
+        private Circle FittingCircle(List<System.Windows.Point> pPointList)
+        {
+            Circle pCircle = new Circle();
+            if (pPointList.Count < 3){
+                return pCircle;
+            }
+            double X1 = 0;
+            double Y1 = 0;
+            double X2 = 0;
+            double Y2 = 0;
+            double X3 = 0;
+            double Y3 = 0;
+            double X1Y1 = 0;
+            double X1Y2 = 0;
+            double X2Y1 = 0;
+            for (int i = 0; i < pPointList.Count; i++){
+                X1 = X1 + pPointList[i].X;
+                Y1 = Y1 + pPointList[i].Y;
+                X2 = X2 + pPointList[i].X * pPointList[i].X;
+                Y2 = Y2 + pPointList[i].Y * pPointList[i].Y;
+                X3 = X3 + pPointList[i].X * pPointList[i].X * pPointList[i].X;
+                Y3 = Y3 + pPointList[i].Y * pPointList[i].Y * pPointList[i].Y;
+                X1Y1 = X1Y1 + pPointList[i].X * pPointList[i].Y;
+                X1Y2 = X1Y2 + pPointList[i].X * pPointList[i].Y * pPointList[i].Y;
+                X2Y1 = X2Y1 + pPointList[i].X * pPointList[i].X * pPointList[i].Y;
+            }
+            double C, D, E, G, H, N;
+            double a, b, c;
+            N = pPointList.Count;
+            C = N * X2 - X1 * X1;
+            D = N * X1Y1 - X1 * Y1;
+            E = N * X3 + N * X1Y2 - (X2 + Y2) * X1;
+            G = N * Y2 - Y1 * Y1;
+            H = N * X2Y1 + N * Y3 - (X2 + Y2) * Y1;
+            a = (H * D - E * G) / (C * G - D * D);
+            b = (H * C - E * D) / (D * D - G * C);
+            c = -(a * X1 + b * Y1 + X2 + Y2) / N;
+            pCircle.X = a / (-2);
+            pCircle.Y = b / (-2);
+            pCircle.R = Math.Sqrt(a * a + b * b - 4 * c) / 2;
+            return pCircle;
         }
     }
 }

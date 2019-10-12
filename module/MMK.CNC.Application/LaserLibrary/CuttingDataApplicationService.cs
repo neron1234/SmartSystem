@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Linq.Extensions;
 using Abp.Domain.Repositories;
 using MMK.CNC.Application.LaserLibrary.Dto;
 using MMK.CNC.Core.LaserLibrary;
@@ -27,6 +28,11 @@ namespace MMK.CNC.Application.LaserLibrary
         public CuttingDataApplicationService(IRepository<CuttingData, int> repository) : base(repository)
         {
             this.repository = repository;
+        }
+
+        protected override IQueryable<CuttingData> CreateFilteredQuery(CuttingDataResultRequestDto input)
+        {
+            return repository.GetAllIncluding().WhereIf(input.MachiningDataGroupId != -1, n => n.MachiningDataGroupId == input.MachiningDataGroupId);
         }
 
         protected override CuttingDataDto MapToEntityDto(CuttingData entity)

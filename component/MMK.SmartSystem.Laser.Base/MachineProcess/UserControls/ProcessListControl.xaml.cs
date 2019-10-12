@@ -18,11 +18,16 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
     /// <summary>
     /// InciseProcessControl.xaml 的交互逻辑
     /// </summary>
-    public partial class InciseProcessControl : UserControl
+    public partial class ProcessListControl : UserControl
     {
-        public InciseProcessControl()
+        public ProcessListControl()
         {
             InitializeComponent();
+        }
+
+        private void ProcessDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

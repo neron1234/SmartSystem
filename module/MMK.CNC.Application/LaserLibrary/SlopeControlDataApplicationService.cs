@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
+using Abp.Linq.Extensions;
 using MMK.CNC.Application.LaserLibrary.Dto;
 using MMK.CNC.Core.LaserLibrary;
 using System;
@@ -27,6 +28,11 @@ namespace MMK.CNC.Application.LaserLibrary
         public SlopeControlDataApplicationService(IRepository<SlopeControlData, int> repository) : base(repository)
         {
             this.repository = repository;
+        }
+
+        protected override IQueryable<SlopeControlData> CreateFilteredQuery(SlopeControlDataResultRequestDto input)
+        {
+            return repository.GetAllIncluding().WhereIf(input.MachiningDataGroupId != -1, n => n.MachiningDataGroupId == input.MachiningDataGroupId);
         }
 
         protected override SlopeControlDataDto MapToEntityDto(SlopeControlData entity)

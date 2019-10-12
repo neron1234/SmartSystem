@@ -78,4 +78,9 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// </summary>
         public string Description { get; set; }
     }
+
+    public class MaterialResultRequestDto : PagedResultRequestDto
+    {
+        public bool IsCheckSon { get; set; }
+    }
 }

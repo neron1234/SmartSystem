@@ -59,15 +59,11 @@ namespace MMK.CNC.Application.LaserLibrary
                 await PiercingRepository.InsertAsync(new PiercingData(i) { MachiningDataGroupId = groupId });
 
             }
-
             for (int i = 0; i < MMKSmartSystemWebCommonConsts.LaserLibrarySlopeControlDataQuantity; i++)
             {
                 await SlopeControlRepository.InsertAsync(new SlopeControlData(i) { MachiningDataGroupId = groupId }); 
             }
-
             return AutoMapper.Mapper.Map<MachiningGroupDto>(entity); 
         }
-
     }
-
 }

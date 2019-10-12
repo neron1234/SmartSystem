@@ -3727,12 +3727,12 @@ namespace MMK.SmartSystem.Common
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedResultDtoOfMaterialDto> GetAllAsync(int? skipCount, int? maxResultCount);
+        System.Threading.Tasks.Task<PagedResultDtoOfMaterialDto> GetAllAsync(bool? isCheckSon, int? skipCount, int? maxResultCount);
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedResultDtoOfMaterialDto> GetAllAsync(int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<PagedResultDtoOfMaterialDto> GetAllAsync(bool? isCheckSon, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -3869,18 +3869,22 @@ namespace MMK.SmartSystem.Common
     
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<PagedResultDtoOfMaterialDto> GetAllAsync(int? skipCount, int? maxResultCount)
+        public System.Threading.Tasks.Task<PagedResultDtoOfMaterialDto> GetAllAsync(bool? isCheckSon, int? skipCount, int? maxResultCount)
         {
-            return GetAllAsync(skipCount, maxResultCount, System.Threading.CancellationToken.None);
+            return GetAllAsync(isCheckSon, skipCount, maxResultCount, System.Threading.CancellationToken.None);
         }
     
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<PagedResultDtoOfMaterialDto> GetAllAsync(int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<PagedResultDtoOfMaterialDto> GetAllAsync(bool? isCheckSon, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/Material/GetAll?");
+            if (isCheckSon != null) 
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("IsCheckSon") + "=").Append(System.Uri.EscapeDataString(ConvertToString(isCheckSon, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
             if (skipCount != null) 
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("SkipCount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(skipCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -9446,6 +9450,21 @@ namespace MMK.SmartSystem.Common
         [Newtonsoft.Json.JsonProperty("machiningDataGroupId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? MachiningDataGroupId { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("machiningKindName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string MachiningKindName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("materialThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? MaterialThickness { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("materialName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string MaterialName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("gasName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string GasName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("nozzleKindName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string NozzleKindName { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("eNo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? ENo { get; set; }
     
@@ -9475,9 +9494,6 @@ namespace MMK.SmartSystem.Common
     
         [Newtonsoft.Json.JsonProperty("gasId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? GasId { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("gasName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string GasName { get; set; }
     
         [Newtonsoft.Json.JsonProperty("gasSettingTime", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? GasSettingTime { get; set; }
@@ -9790,6 +9806,21 @@ namespace MMK.SmartSystem.Common
     {
         [Newtonsoft.Json.JsonProperty("machiningDataGroupId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? MachiningDataGroupId { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("machiningKindName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string MachiningKindName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("materialThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? MaterialThickness { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("materialName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string MaterialName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("gasName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string GasName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("nozzleKindName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string NozzleKindName { get; set; }
     
         [Newtonsoft.Json.JsonProperty("eNo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? ENo { get; set; }
@@ -10676,6 +10707,21 @@ namespace MMK.SmartSystem.Common
         [Newtonsoft.Json.JsonProperty("machiningDataGroupId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? MachiningDataGroupId { get; set; }
     
+        [Newtonsoft.Json.JsonProperty("machiningKindName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string MachiningKindName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("materialThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? MaterialThickness { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("materialName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string MaterialName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("gasName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string GasName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("nozzleKindName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string NozzleKindName { get; set; }
+    
         [Newtonsoft.Json.JsonProperty("eNo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? ENo { get; set; }
     
@@ -11263,6 +11309,21 @@ namespace MMK.SmartSystem.Common
     {
         [Newtonsoft.Json.JsonProperty("machiningDataGroupId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? MachiningDataGroupId { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("machiningKindName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string MachiningKindName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("materialThickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double? MaterialThickness { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("materialName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string MaterialName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("gasName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string GasName { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("nozzleKindName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string NozzleKindName { get; set; }
     
         [Newtonsoft.Json.JsonProperty("eNo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? ENo { get; set; }

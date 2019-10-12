@@ -61,10 +61,12 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                 }
             });
 
-            await EventBus.Default.TriggerAsync(new AddMaterialEventData
+            await EventBus.Default.TriggerAsync(new AddMachiningGroupInfoEventData
             {
-                MaterialThickness = Convert.ToDouble(addMaterialViewModel.MaterialThickness),
-                MaterialId = addMaterialViewModel.SelectedMaterialId,
+                CreateMachiningGroup = new CreateMachiningGroupDto { 
+                    MaterialThickness = Convert.ToDouble(addMaterialViewModel.MaterialThickness),
+                    MaterialId = addMaterialViewModel.SelectedMaterialId,
+                },
                 SuccessAction = SaveSuccessAction,
                 ErrorAction = SaveErrorAction
             });

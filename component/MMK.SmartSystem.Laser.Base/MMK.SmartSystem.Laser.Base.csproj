@@ -337,8 +337,8 @@
     <Compile Include="MachineProcess\UserControls\AddMaterialControl.xaml.cs">
       <DependentUpon>AddMaterialControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MachineProcess\UserControls\InciseProcessControl.xaml.cs">
-      <DependentUpon>InciseProcessControl.xaml</DependentUpon>
+    <Compile Include="MachineProcess\UserControls\ProcessListControl.xaml.cs">
+      <DependentUpon>ProcessListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MachineProcess\UserControls\ProcessOptionsControl.xaml.cs">
       <DependentUpon>ProcessOptionsControl.xaml</DependentUpon>
@@ -347,7 +347,7 @@
       <DependentUpon>ProcessPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MachineProcess\UserControls\ViewModel\AddMaterialViewModel.cs" />
-    <Compile Include="MachineProcess\UserControls\ViewModel\InciseProcessViewModel.cs" />
+    <Compile Include="MachineProcess\UserControls\ViewModel\ProcessListViewModel.cs" />
     <Compile Include="MachineProcess\UserControls\ViewModel\ProcessOptionsViewModel.cs" />
     <Compile Include="MachineProcess\ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="MachineProcess\ViewModel\ProcessViewModel.cs" />
@@ -504,7 +504,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MachineProcess\UserControls\InciseProcessControl.xaml">
+    <Page Include="MachineProcess\UserControls\ProcessListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

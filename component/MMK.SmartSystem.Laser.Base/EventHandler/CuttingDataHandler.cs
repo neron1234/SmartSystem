@@ -63,7 +63,7 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
             string errorMessage = string.Empty;
             try
             {
-                var rs = cuttingDataClientServiceProxy.GetAsync(eventData.machiningDataGroupId).Result;
+                var rs = cuttingDataClientServiceProxy.GetAllAsync(eventData.machiningDataGroupId,0,50).Result;
                 errorMessage = rs.Error?.Details;
                 if (rs.Success)
                 {
