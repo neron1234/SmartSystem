@@ -77,12 +77,64 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
         {
             this.MaterialTypeList = new ObservableCollection<MaterialDto>();
             this.MaterialThicknessList = new ObservableCollection<MachiningGroupDto>();
+
+            Messenger.Default.Register<PagedResultDtoOfMachiningGroupDto>(this, (result) =>
+            {
+                this.MaterialThicknessList.Clear();
+                foreach (var item in result.Items)
+                {
+                    this.MaterialThicknessList.Add(item);
+                }
+                if (this.MaterialThicknessList.Count > 0)
+                {
+                    this.SelectedMaterialTypeId = (int)this.MaterialThicknessList.First()?.Id;
+                }
+            });
+            RegisterMaterial();
         }
-        
+
+        private void RegisterMaterial()
+        {
+            Messenger.Default.Register<List<MaterialDto>>(this, (results) =>
+            {
+                this.MaterialTypeList.Clear();
+                foreach (var item in results)
+                {
+                    this.MaterialTypeList.Add(item);
+                }
+                if (this.MaterialTypeList.Count > 0)
+                {
+                    this.SelectedMaterialId = (int)this.MaterialTypeList.First()?.Id;
+                    this.MTypeSelectionCommand.Execute("");
+                }
+            });
+            EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsAll = false });
+        }
+
         public ICommand MTypeSelectionCommand{
             get{
                 return  new RelayCommand(() => {
                     EventBus.Default.TriggerAsync(new MachiningGroupInfoEventData() { MaterialId = this.SelectedMaterialId });
+                });
+            }
+        }
+
+        public ICommand AddCommand{
+            get{
+                return new RelayCommand(() =>{
+                    Messenger.Default.Unregister<List<MaterialDto>>(this);
+
+                    new PopupWindow(new AddMaterialControl(), 650, 260, "添加工艺材料").ShowDialog();
+
+                    RegisterMaterial();
+                });
+            }
+        }
+        public ICommand Searchommand
+        {
+            get{
+                return new RelayCommand(() =>{
+                    System.Windows.MessageBox.Show(this.SelectedMaterialId + "|" + this.SelectedMaterialTypeId);
                 });
             }
         }

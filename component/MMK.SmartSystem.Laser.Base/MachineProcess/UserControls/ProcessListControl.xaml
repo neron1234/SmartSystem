@@ -63,10 +63,6 @@
             </Style.Triggers>
         </Style>
         
-        <!--列样式-->
-        <Style TargetType="DataGridCell">
-            <Setter Property="BorderThickness" Value="0" />
-        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>

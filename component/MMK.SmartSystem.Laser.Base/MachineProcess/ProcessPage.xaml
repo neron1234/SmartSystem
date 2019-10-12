@@ -13,16 +13,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="Button" x:Key="TabBtn">
+            <Style TargetType="ToggleButton" x:Key="tBtn">
                 <Setter Property="Foreground" Value="#787b8c" />
                 <Setter Property="Background" Value="#202328" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="Margin" Value="10,0,0,0" />
-                <Style.Triggers>
-                    <Trigger Property="Button.IsPressed" Value="True">
-                        <Setter Property="Background" Value="Black"/>
-                    </Trigger>
-                </Style.Triggers>
             </Style>
         </ResourceDictionary>
     </Page.Resources>
@@ -39,13 +34,13 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Button Width="186" Height="50" Content="切割" Style="{StaticResource TabBtn}"/>
-                <Button Width="186" Height="50" Content="穿孔" Style="{StaticResource TabBtn}"/>
-                <Button Width="186" Height="50" Content="尖角切割" Style="{StaticResource TabBtn}"/>
-                <Button Width="186" Height="50" Content="功率控制" Style="{StaticResource TabBtn}"/>
+                <ToggleButton Width="186" Height="50" Content="切割" Style="{StaticResource tBtn}" x:Name="CuttingDataListBtn" />
+                <ToggleButton Width="186" Height="50" Content="穿孔" Style="{StaticResource tBtn}" x:Name="PiercingDataListBtn" />
+                <ToggleButton Width="186" Height="50" Content="尖角切割" Style="{StaticResource tBtn}" x:Name="EdgeCuttingBtn" />
+                <ToggleButton Width="186" Height="50" Content="功率控制" Style="{StaticResource tBtn}" x:Name="SlopeControlDataListBtn" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="2">
-                <Button Style="{StaticResource BtnStyle}" Content="编辑" Height="35" Width="152" Margin="30 0 0 0"/>
+                <Button Style="{StaticResource BtnStyle}" Content="编辑" Height="35" Width="152" Margin="30 0 0 0" x:Name="Edit"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1">

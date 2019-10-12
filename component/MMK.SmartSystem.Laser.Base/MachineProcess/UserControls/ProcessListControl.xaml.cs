@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,15 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
     /// </summary>
     public partial class ProcessListControl : UserControl
     {
+        public ProcessListViewModel pcListVewModel { get; set; }
         public ProcessListControl()
         {
             InitializeComponent();
+            this.DataContext = pcListVewModel = new ProcessListViewModel();
+            Messenger.Default.Register<Abp.Application.Services.Dto.PagedResultRequestDto>(this, (result) =>
+            {
+                pcListVewModel.ProcessDataList = result;
+            });
         }
 
         private void ProcessDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

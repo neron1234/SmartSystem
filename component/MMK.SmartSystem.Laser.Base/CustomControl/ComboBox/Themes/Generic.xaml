@@ -354,5 +354,62 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+    <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+        <Grid Height="30">
+            <Border Grid.Column="1" Background="White" Opacity="0" Cursor="Hand"/>
+            <Path x:Name="Arrow" Grid.Column="1" Data="M 0 0 6 6 12 0 Z" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Fill="#B1B1B1" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="true">
+                <Setter TargetName="Arrow" Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform CenterX="6" CenterY="3" Angle="180"></RotateTransform>
+                    </Setter.Value>
+                </Setter>
+                <Setter TargetName="Arrow" Property="Margin" Value="0 0 0 2"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type ComboBox}" >
+        <Setter Property="Foreground" Value="#787b8c"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid Background="#202328">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.8*"/>
+                            <ColumnDefinition Width="0.2*" MaxWidth="30"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="1,0,0,1"/>
+                        <ContentPresenter HorizontalAlignment="Left" Margin="3,3,0,3" x:Name="ContentSite" VerticalAlignment="Center" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" IsHitTestVisible="False"/>
+
+                        <!--ToggleButton 已数据绑定到 ComboBox 本身以切换 IsDropDownOpen-->
+                        <ToggleButton Grid.Column="1" Template="{StaticResource ComboBoxToggleButton}" x:Name="ToggleButton" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"/>
+                        <!--必须将 TextBox 命名为 PART_EditableTextBox，否则 ComboBox 将无法识别它-->
+                        <TextBox Height="30" Visibility="Hidden" BorderThickness="0" Margin="2 0 0 0" x:Name="PART_EditableTextBox"  VerticalAlignment="Center" Focusable="True" Background="#202328" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+
+                        <!--Popup 可显示 ComboBox 中的项列表。IsOpen 已数据绑定到通过 ComboBoxToggleButton 来切换的 IsDropDownOpen-->
+                        <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" x:Name="Popup" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide" >
+                            <Grid MaxHeight="150" MinWidth="{TemplateBinding ActualWidth}" x:Name="DropDown" SnapsToDevicePixels="True">
+                                <Border x:Name="DropDownBorder"  BorderBrush="#121417" BorderThickness="1 0 1 1"/>
+                                <ScrollViewer Margin="1"  SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                                    <!--StackPanel 用于显示子级，方法是将 IsItemsHost 设置为 True-->
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" Background="#202328" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEditable" Value="true">
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!--#endregion-->
 </ResourceDictionary>
