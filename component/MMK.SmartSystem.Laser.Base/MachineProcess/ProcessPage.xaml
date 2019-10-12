@@ -19,6 +19,67 @@
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="Margin" Value="10,0,0,0" />
             </Style>
+            <LinearGradientBrush x:Key="CheckRadioFillNormal">
+                <GradientStop Color="#202328" Offset="0"/>
+                <GradientStop Color="#202328" Offset="1"/>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="CheckRadioStrokeNormal">
+                <GradientStop Color="#FF004C94" Offset="0"/>
+                <GradientStop Color="#FF003C74" Offset="1"/>
+            </LinearGradientBrush>
+            <Style x:Key="CheckRadioFocusVisual">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Rectangle Margin="14,0,0,0" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="RadioButtonColorStyle" TargetType="{x:Type RadioButton}">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="Background" Value="{StaticResource CheckRadioFillNormal}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource CheckRadioStrokeNormal}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type RadioButton}">
+                            <Grid>
+                                <Rectangle x:Name="rectangle" Fill="#202328" Stroke="Black" Opacity="0.5"  StrokeThickness="0"/>
+                                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="27.137" FontSize="18.667" Foreground="#FF636A64" FontWeight="Bold"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="GroupName" Value=""/>
+                                <Trigger Property="GroupName" Value=""/>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Fill" TargetName="rectangle" Value="#141619"/>
+                                    <Setter Property="Opacity" TargetName="rectangle" Value="1"/>
+                                    <Setter Property="Foreground" TargetName="textBlock">
+                                        <Setter.Value>
+                                            <LinearGradientBrush>
+                                                <GradientStop Color="#FFD2D4D2" Offset="0"/>
+                                                <GradientStop Color="#FFFCC332" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Effect" TargetName="rectangle" Value="{x:Null}"/>
+                                    <Setter Property="Fill" TargetName="rectangle" Value="Black"/>
+                                </Trigger>
+                                <Trigger Property="HasContent" Value="true">
+                                    <Setter Property="FocusVisualStyle" Value="{StaticResource CheckRadioFocusVisual}"/>
+                                    <Setter Property="Padding" Value="2,0,0,0"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
@@ -34,10 +95,10 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <ToggleButton Width="186" Height="50" Content="切割" Style="{StaticResource tBtn}" x:Name="CuttingDataListBtn" />
-                <ToggleButton Width="186" Height="50" Content="穿孔" Style="{StaticResource tBtn}" x:Name="PiercingDataListBtn" />
-                <ToggleButton Width="186" Height="50" Content="尖角切割" Style="{StaticResource tBtn}" x:Name="EdgeCuttingBtn" />
-                <ToggleButton Width="186" Height="50" Content="功率控制" Style="{StaticResource tBtn}" x:Name="SlopeControlDataListBtn" />
+                <RadioButton Width="186" Height="50" Content="切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="CuttingDataListBtn" />
+                <RadioButton Width="186" Height="50" Content="穿孔" Style="{StaticResource RadioButtonColorStyle}" x:Name="PiercingDataListBtn" />
+                <RadioButton Width="186" Height="50" Content="尖角切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="EdgeCuttingBtn" />
+                <RadioButton Width="186" Height="50" Content="功率控制" Style="{StaticResource RadioButtonColorStyle}" x:Name="SlopeControlDataListBtn" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="2">
                 <Button Style="{StaticResource BtnStyle}" Content="编辑" Height="35" Width="152" Margin="30 0 0 0" x:Name="Edit"/>
