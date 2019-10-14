@@ -19,7 +19,7 @@ namespace MMK.CNC.Application.LaserLibrary
     public class CuttingDataApplicationService : AsyncCrudAppService<CuttingData, CuttingDataDto, int, CuttingDataResultRequestDto, CreateCuttingDataDto, UpdateCuttingDataDto>, ICuttingDataApplicationService
     {
         public IRepository<Gas, int> GasRepository { set; get; }
-        public IRepository<Material,int> MaterialRepository { get; set; }
+        public IRepository<Material, int> MaterialRepository { get; set; }
         public IRepository<MachiningDataGroup, int> MachiningDataGroupRepository { get; set; }
         public IRepository<MachiningKind, int> MachiningKindRepository { get; set; }
         public IRepository<NozzleKind, int> NozzleKindRepository { get; set; }
@@ -30,28 +30,75 @@ namespace MMK.CNC.Application.LaserLibrary
             this.repository = repository;
         }
 
-        protected override IQueryable<CuttingData> CreateFilteredQuery(CuttingDataResultRequestDto input)
+        //protected override IQueryable<CuttingData> CreateFilteredQuery(CuttingDataResultRequestDto input)
+        //{
+        //    return repository.GetAllIncluding().WhereIf(input.MachiningDataGroupId != -1, n => n.MachiningDataGroupId == input.MachiningDataGroupId);
+        //}
+
+        //protected override CuttingDataDto MapToEntityDto(CuttingData entity)
+        //{
+        //    var resDto = ObjectMapper.Map<CuttingDataDto>(entity);
+
+        //    resDto.GasName = GasRepository.FirstOrDefault(d => d.Code == resDto.GasCode)?.Name_CN;
+
+        //    var mGroup = MachiningDataGroupRepository.FirstOrDefault(d => d.Id == resDto.MachiningDataGroupId);
+
+        //    resDto.MachiningKindName = MachiningKindRepository.FirstOrDefault(d => d.Code == resDto.MachiningKindCode)?.Name_CN;
+
+        //    resDto.MaterialName = MaterialRepository.FirstOrDefault(d => d.Code == mGroup.MaterialCode)?.Name_CN;
+
+        //    resDto.NozzleKindName = NozzleKindRepository.FirstOrDefault(d => d.Code == resDto.NozzleKindCode)?.Name_CN;
+
+        //    resDto.MaterialThickness = (double)mGroup?.MaterialThickness;
+
+        //    return resDto;
+        //}
+
+        public override Task<PagedResultDto<CuttingDataDto>> GetAll(CuttingDataResultRequestDto input)
         {
-            return repository.GetAllIncluding().WhereIf(input.MachiningDataGroupId != -1, n => n.MachiningDataGroupId == input.MachiningDataGroupId);
-        }
+            var list = repository.GetAllIncluding().WhereIf(input.MachiningDataGroupId != -1, n => n.MachiningDataGroupId == input.MachiningDataGroupId);
+            int count = list.Count();
+            var listRes = list.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
 
-        protected override CuttingDataDto MapToEntityDto(CuttingData entity)
-        {
-            var resDto = ObjectMapper.Map<CuttingDataDto>(entity);
+            var resultDto = ObjectMapper.Map<List<CuttingDataDto>>(listRes);
+            var gasNodes = GasRepository.GetAllIncluding().ToDictionary(d => d.Code);
 
-            resDto.GasName = GasRepository.FirstOrDefault(d => d.Code == resDto.GasCode)?.Name_CN;
+            var machining = MachiningDataGroupRepository.GetAllIncluding().ToDictionary(d => d.Id);
 
-            var mGroup = MachiningDataGroupRepository.FirstOrDefault(d => d.Id == resDto.MachiningDataGroupId);
+            var machiningKind = MachiningKindRepository.GetAllIncluding().ToDictionary(d => d.Code);
 
-            resDto.MachiningKindName = MachiningKindRepository.FirstOrDefault(d => d.Code == resDto.MachiningKindCode)?.Name_CN;
+            var material = MaterialRepository.GetAllIncluding().ToDictionary(d => d.Code);
 
-            resDto.MaterialName = MaterialRepository.FirstOrDefault(d => d.Code == mGroup.MaterialCode)?.Name_CN;
+            var nozzle = NozzleKindRepository.GetAllIncluding().ToDictionary(d => d.Code);
 
-            resDto.NozzleKindName = NozzleKindRepository.FirstOrDefault(d => d.Code == resDto.NozzleKindCode)?.Name_CN;
+            foreach (var item in resultDto)
+            {
+                if (gasNodes.ContainsKey(item.GasCode))
+                {
+                    item.GasName = gasNodes[item.GasCode].Name_CN;
+                }
 
-            resDto.MaterialThickness = (double)mGroup?.MaterialThickness;
+                if (machining.ContainsKey(item.MachiningDataGroupId))
+                {
+                    var ma = machining[item.MachiningDataGroupId];
+                    item.MaterialThickness = machining[item.MachiningDataGroupId].MaterialThickness;
+                    if (material.ContainsKey(ma.MaterialCode))
+                    {
+                        item.MaterialName = material[ma.MaterialCode].Name_CN;
+                    }
+                }
+                if (machiningKind.ContainsKey(item.MachiningKindCode))
+                {
+                    item.MachiningKindName = machiningKind[item.NozzleKindCode].Name_CN;
+                }
 
-            return resDto;
+                if (nozzle.ContainsKey(item.NozzleKindCode))
+                {
+                    item.NozzleKindName = nozzle[item.NozzleKindCode].Name_CN;
+                }
+            }
+
+            return base.GetAll(input);
         }
     }
 }
