@@ -54,7 +54,7 @@ namespace MMK.CNC.Application.LaserLibrary
         //    return resDto;
         //}
 
-        public override Task<PagedResultDto<CuttingDataDto>> GetAll(CuttingDataResultRequestDto input)
+        public override async Task<PagedResultDto<CuttingDataDto>> GetAll(CuttingDataResultRequestDto input)
         {
             var list = repository.GetAllIncluding().WhereIf(input.MachiningDataGroupId != -1, n => n.MachiningDataGroupId == input.MachiningDataGroupId);
             int count = list.Count();
@@ -98,7 +98,8 @@ namespace MMK.CNC.Application.LaserLibrary
                 }
             }
 
-            return base.GetAll(input);
+            await Task.CompletedTask;
+            return new PagedResultDto<CuttingDataDto>(count, resultDto);
         }
     }
 }
