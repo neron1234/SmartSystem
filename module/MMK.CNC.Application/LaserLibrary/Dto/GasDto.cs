@@ -80,4 +80,6 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// </summary>
         public string Description { get; set; }
     }
+
+  
 }

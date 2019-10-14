@@ -112,11 +112,7 @@ namespace MMK.CNC.Core.LaserLibrary
         {
             CreationTime = DateTime.Now;
         }
-        public SlopeControlData(int index)
-        {
-
-        }
-
+       
         public SlopeControlData(short index, short gasCode, short machiningKindCode, short nozzleKindCode)
         {
             ENo = (short)(901 + index);

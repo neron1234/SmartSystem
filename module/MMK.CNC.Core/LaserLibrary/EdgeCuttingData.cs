@@ -137,11 +137,7 @@ namespace MMK.CNC.Core.LaserLibrary
             CreationTime = DateTime.Now;
         }
 
-        public EdgeCuttingData(int index)
-        {
-
-        }
-
+      
         public EdgeCuttingData(short index, short gasCode, short machiningKindCode, short nozzleKindCode)
         {
             ENo = (short)(index + 201);

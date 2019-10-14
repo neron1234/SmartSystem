@@ -141,10 +141,7 @@ namespace MMK.CNC.Core.LaserLibrary
         {
             CreationTime = DateTime.Now;
         }
-        public PiercingData(int index)
-        {
-
-        }
+      
 
         public PiercingData(short index, short gasCode, short machiningKindCode, short nozzleKindCode)
         {

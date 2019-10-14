@@ -141,11 +141,7 @@ namespace MMK.CNC.Core.LaserLibrary
         {
             CreationTime = DateTime.Now;
         }
-        public CuttingData(int index)
-        {
-
-        }
-
+      
         public CuttingData(short index, short gasCode, short machiningKindCode, short nozzleKindCode)
         {
             ENo = (short)(index + 1);
