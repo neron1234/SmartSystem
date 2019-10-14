@@ -30,26 +30,8 @@ namespace MMK.CNC.Application.LaserLibrary
             this.repository = repository;
         }
 
-        //protected override IQueryable<PiercingData> CreateFilteredQuery(PiercingDataResultRequestDto input)
-        //{
-        //    return repository.GetAllIncluding().WhereIf(input.MachiningDataGroupId != -1, n => n.MachiningDataGroupId == input.MachiningDataGroupId);
-        //}
-
-        //protected override PiercingDataDto MapToEntityDto(PiercingData entity)
-        //{
-        //    var resDto = ObjectMapper.Map<PiercingDataDto>(entity);
-        //    resDto.GasName = GasRepository.FirstOrDefault(d => d.Code == resDto.GasCode)?.Name_CN;
-
-
-        //    var mGroup = MachiningDataGroupRepository.FirstOrDefault(d => d.Id == resDto.MachiningDataGroupId);
-
-        //    resDto.MachiningKindName = MachiningKindRepository.FirstOrDefault(d => d.Code == resDto.MachiningKindCode)?.Name_CN;
-        //    resDto.MaterialName = MaterialRepository.FirstOrDefault(d => d.Code == mGroup.MaterialCode)?.Name_CN;
-        //    resDto.NozzleKindName = NozzleKindRepository.FirstOrDefault(d => d.Code == resDto.NozzleKindCode)?.Name_CN;
-
-        //    resDto.MaterialThickness = (double)mGroup?.MaterialThickness;
-        //    return resDto;
-        //}
+      
+     
         public override async Task<PagedResultDto<PiercingDataDto>> GetAll(PiercingDataResultRequestDto input)
         {
             var list = repository.GetAllIncluding().WhereIf(input.MachiningDataGroupId != -1, n => n.MachiningDataGroupId == input.MachiningDataGroupId);
