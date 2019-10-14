@@ -24,12 +24,12 @@ namespace MMK.CNC.Core.LaserLibrary
         /// <summary>
         /// 加工类型ID
         /// </summary>
-        public int MachiningKindCode { get; set; }
+        public short MachiningKindCode { get; set; }
 
         /// <summary>
         /// 割嘴类型
         /// </summary>
-        public int NozzleKindCode { get; set; }
+        public short NozzleKindCode { get; set; }
 
         /// <summary>
         /// 割嘴内径
@@ -117,7 +117,7 @@ namespace MMK.CNC.Core.LaserLibrary
 
         }
 
-        public SlopeControlData(short index, int gasCode, int machiningKindCode, int nozzleKindCode)
+        public SlopeControlData(short index, short gasCode, short machiningKindCode, short nozzleKindCode)
         {
             ENo = (short)(901 + index);
             MachiningKindCode = machiningKindCode;
