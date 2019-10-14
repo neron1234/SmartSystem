@@ -13,6 +13,14 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.Workers
 {
+    class DyHandlerProxy
+    {
+        public MethodInfo Method { get; set; }
+
+        public object Handler { get; set; }
+
+        public object Parms { get; set; }
+    }
     public class CncCoreWorker
     {
         string m_ip = "192.168.21.97";
@@ -127,16 +135,16 @@ namespace MMK.SmartSystem.CNC.Core.Workers
             {
                 tempEventDatas.AddRange(item.Value);
             }
-
-            foreach (var item in tempEventDatas)
+            List<DyHandlerProxy> dyHandlers = new List<DyHandlerProxy>();
+            var listGroup = tempEventDatas.GroupBy(d => d.Kind);
+            foreach (var item in listGroup)
             {
-                object info;
-                Type kindtype = item.Kind.GetType();
-                FieldInfo fd = kindtype.GetField(item.Kind.ToString());
+                Type kindtype = item.Key.GetType();
+                FieldInfo fd = kindtype.GetField(item.Key.ToString());
                 var cncCustom = fd.GetCustomAttribute<CncCustomEventAttribute>();
                 if (cncCustom == null)
                 {
-                    ShowErrorLogEvent?.Invoke($"未定义与前端定义的映射模型{item.Kind.ToString()} CncCustomEvent");
+                    ShowErrorLogEvent?.Invoke($"未定义与前端定义的映射模型{item.Key.ToString()} CncCustomEvent");
 
                     continue;
                 }
@@ -148,12 +156,41 @@ namespace MMK.SmartSystem.CNC.Core.Workers
                 }
                 try
                 {
-
                     var handler = iocManager.Resolve(handlerType);
-                    var methodInfo = handlerType.GetMethod("PollHandle");
+                    var methodInfo = handlerType.GetMethod("MargePollRequest");
                     var methodType = methodInfo.GetParameters()[0].ParameterType;
-                    var jsonData = JsonConvert.DeserializeObject(item.Para, methodType);
-                    info = methodInfo.Invoke(handler, new object[] { jsonData });
+
+                    var firstParm = typeof(CncEventData).Assembly.CreateInstance(methodType.FullName);
+
+                    foreach (var data in item)
+                    {
+                        var jsonData = JsonConvert.DeserializeObject(data.Para, methodType);
+
+                        firstParm = methodInfo.Invoke(handler, new object[] { firstParm, jsonData });
+
+                    }
+                    dyHandlers.Add(new DyHandlerProxy()
+                    {
+                        Handler = handler,
+                        Method = handlerType.GetMethod("PollHandle"),
+                        Parms = firstParm
+
+                    });
+
+                }
+                catch (Exception ex)
+                {
+
+                    ShowErrorLogEvent?.Invoke(ex.Message);
+                }
+            }
+
+
+            foreach (var item in dyHandlers)
+            {
+                try
+                {
+                    var info = item.Method.Invoke(item.Handler, new object[] { item.Parms });
                     JObject jObject = JObject.FromObject(info);
 
                     if (!string.IsNullOrEmpty(jObject["ErrorMessage"]?.ToString()))
@@ -168,7 +205,7 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
                     ShowErrorLogEvent?.Invoke(ex.Message);
                 }
-
+              
             }
         }
 

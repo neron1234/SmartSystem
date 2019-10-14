@@ -61,13 +61,17 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
 
         }
 
-        protected virtual Tuple<short,T> MargePollRequest<T>(T current, CncEventData data) where T : I
+        public virtual I MargePollRequest(I pre, I current)
         {
-            var paraModel = JsonConvert.DeserializeObject<T>(data.Para);
+            pre.Readers.AddRange(current.Readers);
+            pre.Readers = pre.Readers.Distinct().ToList();
 
-            current.Decompilers.AddRange(paraModel.Decompilers);
+            pre.Decompilers.AddRange(current.Decompilers);
+            pre.Decompilers = pre.Decompilers.Distinct().ToList();
+            return pre;
 
-            return new Tuple<short, T>(0, current);
         }
+
+    
     }
 }

@@ -35,27 +35,26 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
             return ret;
         }
 
-        protected override Tuple<short, T> MargePollRequest<T>(T current, CncEventData data)
+        public override ReadMacroModel MargePollRequest(ReadMacroModel pre, ReadMacroModel current)
         {
-            var paraModel = JsonConvert.DeserializeObject<T>(data.Para);
-
-            var macro = current.Readers[0];
-            var start = paraModel.Readers[0].StartNum > macro.StartNum ? paraModel.Readers[0].StartNum : macro.StartNum;
-            var end = (paraModel.Readers[0].StartNum + paraModel.Readers[0].Quantity) 
-                > (macro.StartNum + macro.Quantity) ? (paraModel.Readers[0].StartNum + paraModel.Readers[0].Quantity) : 
+            var macro = pre.Readers[0];
+            var start = current.Readers[0].StartNum > macro.StartNum ? current.Readers[0].StartNum : macro.StartNum;
+            var end = (current.Readers[0].StartNum + current.Readers[0].Quantity)
+                > (macro.StartNum + macro.Quantity) ? (current.Readers[0].StartNum + current.Readers[0].Quantity) :
                 (macro.StartNum + macro.Quantity);
 
             macro.StartNum = start;
             macro.Quantity = end - start;
 
-            current.Decompilers.AddRange(paraModel.Decompilers);
+            pre.Decompilers.AddRange(current.Decompilers);
 
-            foreach (var item in current.Decompilers)
+            foreach (var item in pre.Decompilers)
             {
                 item.RelStartNum = (short)(item.StartNum - start);
             }
 
-            return new Tuple<short, T>(0, current);
+            return pre;
         }
+
     }
 }
