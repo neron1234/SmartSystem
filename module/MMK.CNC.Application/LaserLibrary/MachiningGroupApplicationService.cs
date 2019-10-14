@@ -28,7 +28,11 @@ namespace MMK.CNC.Application.LaserLibrary
         public IRepository<EdgeCuttingData, int> EdgeCuttingRepository { get; set; }
         public IRepository<PiercingData, int> PiercingRepository { get; set; }
         public IRepository<SlopeControlData, int> SlopeControlRepository { get; set; }
+        public IRepository<Gas, int> GasRepository { get; set; }
+        public IRepository<NozzleKind, int> NozzleKindRepository { set; get; }
+        public IRepository<Material, int> MaterialRepository { set; get; }
 
+        public IRepository<MachiningKind, int> MachiningKindRepository { set; get; }
         public MachiningGroupApplicationService(IRepository<MachiningDataGroup, int> repository) : base(repository)
         {
             this.repository = repository;
@@ -44,8 +48,23 @@ namespace MMK.CNC.Application.LaserLibrary
             var entity = ObjectMapper.Map<MachiningDataGroup>(input);
             var groupId = await repository.InsertAndGetIdAsync(entity);
 
+            var gas = GasRepository.GetAllIncluding().FirstOrDefault();
+            if (gas == null)
+            {
+                gas = new Gas()
+                {
+                    Code = 1,
+                    Name_CN = "空气",
+                    Name_EN = "空气",
+                    Description = "默认新增"
+
+                };
+                gas.Id = await GasRepository.InsertAndGetIdAsync(gas);
+            }
+
             for (int i = 0; i < MMKSmartSystemWebCommonConsts.LaserLibraryCuttingDataQuantity; i++)
             {
+               // new CuttingData(i,gas.Id,)
                 await CuttingRepository.InsertAsync(new CuttingData(i) { MachiningDataGroupId = groupId });
 
             }
@@ -61,9 +80,9 @@ namespace MMK.CNC.Application.LaserLibrary
             }
             for (int i = 0; i < MMKSmartSystemWebCommonConsts.LaserLibrarySlopeControlDataQuantity; i++)
             {
-                await SlopeControlRepository.InsertAsync(new SlopeControlData(i) { MachiningDataGroupId = groupId }); 
+                await SlopeControlRepository.InsertAsync(new SlopeControlData(i) { MachiningDataGroupId = groupId });
             }
-            return ObjectMapper.Map<MachiningGroupDto>(entity); 
+            return ObjectMapper.Map<MachiningGroupDto>(entity);
         }
     }
 }
