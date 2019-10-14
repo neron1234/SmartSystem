@@ -25,7 +25,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
             {
                 return "PMC未正确读取，无法解析！";
             }
-            var ret_dec =  new PmcHelper().DecompilerReadPmcInfo(datas[deModel.AdrType], deModel, ref data);
+            var ret_dec = new PmcHelper().DecompilerReadPmcInfo(datas[deModel.AdrType], deModel, ref data);
             if (string.IsNullOrEmpty(ret_dec))
             {
                 res.Add(new ReadPmcResultItemModel() { Id = deModel.Id, Value = data });
@@ -52,15 +52,13 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
             return ret;
         }
 
-        protected override Tuple<short, T> MargePollRequest<T>(T current, CncEventData data)
+        public override ReadPmcModel MargePollRequest(ReadPmcModel pre, ReadPmcModel current)
         {
-            var paraModel = JsonConvert.DeserializeObject<T>(data.Para);
-
             Dictionary<short, ushort> startInfo = new Dictionary<short, ushort>();
 
-            foreach (var read in paraModel.Readers)
+            foreach (var read in current.Readers)
             {
-                var temp_read = current.Readers.Where(x => x.AdrType == read.AdrType).FirstOrDefault();
+                var temp_read = pre.Readers.Where(x => x.AdrType == read.AdrType).FirstOrDefault();
                 if (temp_read != null)
                 {
                     var start = temp_read.StartNum < read.StartNum ? temp_read.StartNum : read.StartNum;
@@ -69,25 +67,32 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
                     temp_read.StartNum = start;
                     temp_read.DwordQuantity = (ushort)(end - start);
 
-                    if (!startInfo.ContainsKey(read.AdrType)) return new Tuple<short, T>(-1, current);
+                    if (!startInfo.ContainsKey(read.AdrType))
+                    {
+                        return pre;
+
+                    }
                     startInfo[read.AdrType] = start;
                 }
                 else
                 {
-                    current.Readers.Add(read);
+                    pre.Readers.Add(read);
                     startInfo.Add(read.AdrType, read.StartNum);
                 }
             }
 
-            current.Decompilers.AddRange(paraModel.Decompilers);
+            pre.Decompilers.AddRange(current.Decompilers);
 
-            foreach(var item in current.Decompilers)
+            foreach (var item in pre.Decompilers)
             {
-                if (!startInfo.ContainsKey(item.AdrType)) return new Tuple<short, T>(-1, current);
+                if (!startInfo.ContainsKey(item.AdrType))
+                {
+                    return pre;
+                }
                 item.RelStartAdr = (short)(item.StartAdr - startInfo[item.AdrType]);
             }
 
-            return new Tuple<short, T>(0, current);
+            return pre;
         }
     }
 }

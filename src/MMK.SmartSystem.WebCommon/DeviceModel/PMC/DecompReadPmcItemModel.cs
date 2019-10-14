@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class DecompReadPmcItemModel
+    public class DecompReadPmcItemModel : IEquatable<DecompReadPmcItemModel>
     {
         public string Id { get; set; }
 
@@ -19,7 +19,10 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
         public ushort? Bit { get; set; }
 
-
+        public bool Equals(DecompReadPmcItemModel other)
+        {
+            return Id == other.Id;
+        }
     }
 
     public enum DataTypeEnum

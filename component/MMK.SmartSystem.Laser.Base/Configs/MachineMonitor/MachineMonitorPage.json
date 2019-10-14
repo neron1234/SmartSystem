@@ -72,7 +72,7 @@
               "AxisNum": 2,
               "PositionType": "Distance"
             },
-          
+
             {
               "Id": "ResidualMoveNumber3",
               "AxisNum": 3,
@@ -108,6 +108,22 @@
               "PositionType": "Absolute"
             }
           ]
+        }
+      }
+    },
+    {
+      "Kind": "ReadProgramStr",
+      "Type": "ReadProgramStrModel",
+      "CncReadDecopliler": {
+        "Readers": {
+          "Type": "List<string>",
+          "Data": [
+            "programStrControl"
+          ]
+        },
+        "Decompilers": {
+          "Type": "String",
+          "Data": [ "Fixed" ]
         }
       }
     },
