@@ -87,7 +87,7 @@
         </StackPanel>
 
         <DataGrid Grid.Row="1" x:Name="ProcessDataGrid" Margin="0 6 0 10" Background="#2a2f34" 
-                       AlternationCount="2" SelectionChanged="ProcessDataGrid_SelectionChanged" IsReadOnly="True" FontSize="13">
+                       AlternationCount="2" SelectionChanged="ProcessDataGrid_SelectionChanged" IsReadOnly="True" FontSize="13" ItemsSource="{Binding ProcessDataList}">
         </DataGrid>
     </Grid>
 </UserControl>

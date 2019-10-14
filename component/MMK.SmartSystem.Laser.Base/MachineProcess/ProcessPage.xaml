@@ -95,10 +95,10 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <RadioButton Width="186" Height="50" Content="切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="CuttingDataListBtn" />
-                <RadioButton Width="186" Height="50" Content="穿孔" Style="{StaticResource RadioButtonColorStyle}" x:Name="PiercingDataListBtn" />
-                <RadioButton Width="186" Height="50" Content="尖角切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="EdgeCuttingBtn" />
-                <RadioButton Width="186" Height="50" Content="功率控制" Style="{StaticResource RadioButtonColorStyle}" x:Name="SlopeControlDataListBtn" />
+                <RadioButton Width="186" Height="50" Content="切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="CuttingDataListBtn" Command="{Binding CuttingDataCommand}" />
+                <RadioButton Width="186" Height="50" Content="穿孔" Style="{StaticResource RadioButtonColorStyle}" x:Name="PiercingDataListBtn" Command="{Binding PiercingDataCommand}" />
+                <RadioButton Width="186" Height="50" Content="尖角切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="EdgeCuttingBtn" Command="{Binding EdgeCuttingCommand}" />
+                <RadioButton Width="186" Height="50" Content="功率控制" Style="{StaticResource RadioButtonColorStyle}" x:Name="SlopeControlDataListBtn" Command="{Binding SlopeControlDatCommand}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="2">
                 <Button Style="{StaticResource BtnStyle}" Content="编辑" Height="35" Width="152" Margin="30 0 0 0" x:Name="Edit"/>
