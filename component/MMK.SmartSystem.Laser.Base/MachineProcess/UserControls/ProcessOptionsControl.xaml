@@ -13,6 +13,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/ComboBox/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -51,8 +52,18 @@
                            DisplayMemberPath="Name" IsEditable="True" SelectedValuePath="ID" ItemsSource="{Binding MaterialThicknessList}"/>-->
         </StackPanel>
         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 38 10 10" Content="搜索" x:Name="SearchBtn" Command="{Binding Searchommand}"/>
-            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10" Content="上传"/>
+            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 38 10 10" x:Name="SearchBtn" Command="{Binding Searchommand}" >
+                <WrapPanel Height="40" Width="110">
+                    <Path Data="{StaticResource searchBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill" Margin="18 8 0 0"/>
+                    <TextBlock Padding="8 5 0 0" TextWrapping="Wrap" Text="搜索" Width="60" />
+                </WrapPanel>
+            </Button>
+            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10"  >
+                <WrapPanel>
+                    <Path Data="{StaticResource uploadBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill" Margin="10 0 0 0"/>
+                    <TextBlock Padding="8 0 0 0" TextWrapping="Wrap" Text="上传" Width="60" />
+                </WrapPanel>
+            </Button>
             <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10" Content="添加" x:Name="Add" Command="{Binding AddCommand}"/>
             <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10" Content="删除" />
         </StackPanel>
