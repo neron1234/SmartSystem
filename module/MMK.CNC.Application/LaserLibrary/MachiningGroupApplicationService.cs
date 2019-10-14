@@ -41,7 +41,7 @@ namespace MMK.CNC.Application.LaserLibrary
 
         public override async Task<MachiningGroupDto> Create(CreateMachiningGroupDto input)
         {
-            var entity = AutoMapper.Mapper.Map<MachiningDataGroup>(input);
+            var entity = ObjectMapper.Map<MachiningDataGroup>(input);
             var groupId = await repository.InsertAndGetIdAsync(entity);
 
             for (int i = 0; i < MMKSmartSystemWebCommonConsts.LaserLibraryCuttingDataQuantity; i++)
@@ -63,7 +63,7 @@ namespace MMK.CNC.Application.LaserLibrary
             {
                 await SlopeControlRepository.InsertAsync(new SlopeControlData(i) { MachiningDataGroupId = groupId }); 
             }
-            return AutoMapper.Mapper.Map<MachiningGroupDto>(entity); 
+            return ObjectMapper.Map<MachiningGroupDto>(entity); 
         }
     }
 }
