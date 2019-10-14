@@ -79,7 +79,10 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                         }
                         else
                         {
-                            MaterialThickness = MaterialThickness.Remove(MaterialThickness.Length - 2, 1);
+                            if (MaterialThickness.Length > 0)
+                            {
+                                MaterialThickness = MaterialThickness.Remove(MaterialThickness.Length - 1, 1);
+                            }
                         }
                     }
                 });

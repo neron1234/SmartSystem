@@ -14,15 +14,6 @@
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/ComboBox/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="ComboBox">
-                <Setter Property="Foreground" Value="#848a8f"/>
-                <Setter Property="Background" Value="#202328"/>
-                <Setter Property="Effect">
-                    <Setter.Value>
-                        <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Black"/>
-                    </Setter.Value>
-                </Setter>
-            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -35,7 +26,7 @@
             <TextBlock Text="材料类型"/>
 
             <ComboBox Margin="0 12 0 0" ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="Id" DisplayMemberPath="Name_CN" 
-                          SelectedValue="{Binding SelectedMaterialId}" >
+                          SelectedValue="{Binding SelectedMaterialId}" BorderBrush="#121417" IsReadOnly="True">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>
@@ -49,7 +40,7 @@
             <TextBlock Text="材料厚度"/>
 
             <ComboBox Margin="0 12 0 0" ItemsSource="{Binding MaterialThicknessList}" SelectedValuePath="Id" DisplayMemberPath="MaterialThickness" 
-                          SelectedItem="{Binding SelectedMaterialTypeId}" >
+                          SelectedValue="{Binding SelectedMaterialTypeId}" BorderBrush="#121417" IsReadOnly="True">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <!--<i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>-->
@@ -60,10 +51,10 @@
                            DisplayMemberPath="Name" IsEditable="True" SelectedValuePath="ID" ItemsSource="{Binding MaterialThicknessList}"/>-->
         </StackPanel>
         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 38 10 10" Content="搜索" x:Name="SearchBtn" Click="SearchBtn_Click"/>
+            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 38 10 10" Content="搜索" x:Name="SearchBtn" Command="{Binding Searchommand}"/>
             <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10" Content="上传"/>
-            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10" Content="添加" x:Name="Add" Click="Add_Click"/>
-            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10" Content="删除" x:Name="Del" Click="Del_Click"/>
+            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10" Content="添加" x:Name="Add" Command="{Binding AddCommand}"/>
+            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10" Content="删除" />
         </StackPanel>
     </Grid>
 </UserControl>

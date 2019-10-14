@@ -51,6 +51,31 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         public int MachiningDataGroupId { get; set; }
 
         /// <summary>
+        /// 加工类型名称(外联字段)
+        /// </summary>
+        public string MachiningKindName { get; set; }
+
+        /// <summary>
+        /// 加工厚度(外联字段)
+        /// </summary>
+        public double MaterialThickness { get; set; }
+
+        /// <summary>
+        /// 加工材料名称(外联字段)
+        /// </summary>
+        public string MaterialName { get; set; }
+
+        /// <summary>
+        /// 加工气体名称(外联字段)
+        /// </summary>
+        public string GasName { set; get; }
+
+        /// <summary>
+        /// 割嘴名称(外联字段)
+        /// </summary>
+        public string NozzleKindName { get; set; }
+
+        /// <summary>
         /// E编号
         /// </summary>
         public short ENo { get; set; }
@@ -282,5 +307,10 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// 谷底功率
         /// </summary>
         public short PbPower { get; set; }
+    }
+
+    public class PiercingDataResultRequestDto : PagedResultRequestDto
+    {
+        public int MachiningDataGroupId { get; set; }
     }
 }

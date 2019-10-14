@@ -257,9 +257,13 @@
   <ItemGroup>
     <Compile Include="Base\AutoRefreshPage.cs" />
     <Compile Include="Base\SignalrPage.cs" />
+    <Compile Include="EventDatas\CuttingDataEventData.cs" />
+    <Compile Include="EventDatas\EdgeCuttingEventData.cs" />
     <Compile Include="EventDatas\MaterialEventData.cs" />
     <Compile Include="EventDatas\NavigateEventData.cs" />
     <Compile Include="EventDatas\OperationLogEventData.cs" />
+    <Compile Include="EventDatas\PiercingDataEventData.cs" />
+    <Compile Include="EventDatas\SlopeControlDataEventData.cs" />
     <Compile Include="EventDatas\UserConfigEventData.cs" />
     <Compile Include="Expands\GrantedPermission.cs" />
     <Compile Include="Expands\ObjectClone.cs" />
@@ -272,11 +276,15 @@
     <Compile Include="Model\SignalrQueryParmModel.cs" />
     <Compile Include="Model\SingalrResultMapModel.cs" />
     <Compile Include="Model\SystemMeunModel.cs" />
+    <Compile Include="SerivceProxy\CuttingDataClientServiceProxy.cs" />
+    <Compile Include="SerivceProxy\EdgeCuttingClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\GasClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\MachiningGroupClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\MachiningKindClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\MaterialClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\NozzleKindClientServiceProxy.cs" />
+    <Compile Include="SerivceProxy\PiercingDataClientServiceProxy.cs" />
+    <Compile Include="SerivceProxy\SlopeControlDataClientServiceProxy.cs" />
     <Compile Include="SignalrProxy\SignalrProxyClient.cs" />
     <Compile Include="SignalrProxy\SinglarCNCHubConsts.cs" />
     <Compile Include="ViewModel\BottomWarningLogViewModel.cs" />

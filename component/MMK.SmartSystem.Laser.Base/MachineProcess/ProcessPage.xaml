@@ -13,16 +13,72 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="Button" x:Key="TabBtn">
+            <Style TargetType="ToggleButton" x:Key="tBtn">
                 <Setter Property="Foreground" Value="#787b8c" />
                 <Setter Property="Background" Value="#202328" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="Margin" Value="10,0,0,0" />
-                <Style.Triggers>
-                    <Trigger Property="Button.IsPressed" Value="True">
-                        <Setter Property="Background" Value="Black"/>
-                    </Trigger>
-                </Style.Triggers>
+            </Style>
+            <LinearGradientBrush x:Key="CheckRadioFillNormal">
+                <GradientStop Color="#202328" Offset="0"/>
+                <GradientStop Color="#202328" Offset="1"/>
+            </LinearGradientBrush>
+            <LinearGradientBrush x:Key="CheckRadioStrokeNormal">
+                <GradientStop Color="#FF004C94" Offset="0"/>
+                <GradientStop Color="#FF003C74" Offset="1"/>
+            </LinearGradientBrush>
+            <Style x:Key="CheckRadioFocusVisual">
+                <Setter Property="Control.Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Rectangle Margin="14,0,0,0" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="RadioButtonColorStyle" TargetType="{x:Type RadioButton}">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                <Setter Property="Background" Value="{StaticResource CheckRadioFillNormal}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource CheckRadioStrokeNormal}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type RadioButton}">
+                            <Grid>
+                                <Rectangle x:Name="rectangle" Fill="#202328" Stroke="Black" Opacity="0.5"  StrokeThickness="0"/>
+                                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="27.137" FontSize="18.667" Foreground="#FF636A64" FontWeight="Bold"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="GroupName" Value=""/>
+                                <Trigger Property="GroupName" Value=""/>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Fill" TargetName="rectangle" Value="#141619"/>
+                                    <Setter Property="Opacity" TargetName="rectangle" Value="1"/>
+                                    <Setter Property="Foreground" TargetName="textBlock">
+                                        <Setter.Value>
+                                            <LinearGradientBrush>
+                                                <GradientStop Color="#FFD2D4D2" Offset="0"/>
+                                                <GradientStop Color="#FFFCC332" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Effect" TargetName="rectangle" Value="{x:Null}"/>
+                                    <Setter Property="Fill" TargetName="rectangle" Value="Black"/>
+                                </Trigger>
+                                <Trigger Property="HasContent" Value="true">
+                                    <Setter Property="FocusVisualStyle" Value="{StaticResource CheckRadioFocusVisual}"/>
+                                    <Setter Property="Padding" Value="2,0,0,0"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
         </ResourceDictionary>
     </Page.Resources>
@@ -39,17 +95,17 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Button Width="186" Height="50" Content="切割" Style="{StaticResource TabBtn}"/>
-                <Button Width="186" Height="50" Content="穿孔" Style="{StaticResource TabBtn}"/>
-                <Button Width="186" Height="50" Content="尖角切割" Style="{StaticResource TabBtn}"/>
-                <Button Width="186" Height="50" Content="功率控制" Style="{StaticResource TabBtn}"/>
+                <RadioButton Width="186" Height="50" Content="切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="CuttingDataListBtn" Command="{Binding CuttingDataCommand}" />
+                <RadioButton Width="186" Height="50" Content="穿孔" Style="{StaticResource RadioButtonColorStyle}" x:Name="PiercingDataListBtn" Command="{Binding PiercingDataCommand}" />
+                <RadioButton Width="186" Height="50" Content="尖角切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="EdgeCuttingBtn" Command="{Binding EdgeCuttingCommand}" />
+                <RadioButton Width="186" Height="50" Content="功率控制" Style="{StaticResource RadioButtonColorStyle}" x:Name="SlopeControlDataListBtn" Command="{Binding SlopeControlDatCommand}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="2">
-                <Button Style="{StaticResource BtnStyle}" Content="编辑" Height="35" Width="152" Margin="30 0 0 0"/>
+                <Button Style="{StaticResource BtnStyle}" Content="编辑" Height="35" Width="152" Margin="30 0 0 0" x:Name="Edit"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1">
-            <uc:InciseProcessControl />
+            <uc:ProcessListControl />
         </StackPanel>
         <StackPanel Grid.Row="2">
             <uc:ProcessOptionsControl />

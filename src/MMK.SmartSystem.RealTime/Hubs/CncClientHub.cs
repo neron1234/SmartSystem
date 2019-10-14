@@ -3,7 +3,9 @@ using Abp.Auditing;
 using Abp.Dependency;
 using Abp.RealTime;
 using Microsoft.AspNetCore.SignalR;
+using MMK.SmartSystem.CNC.Core;
 using MMK.SmartSystem.CNC.Core.Workers;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 using MMK.SmartSystem.WebCommon.HubModel;
 using System;
 using System.Collections.Generic;
@@ -44,7 +46,13 @@ namespace MMK.SmartSystem.RealTime.Hubs
         }
         public override Task OnConnectedAsync()
         {
-            var list = CncCoreWorker.m_EventDatas.ToList();
+            var list = SmartSystemCNCCoreConsts.PageCncEventDict.ToList().Select(d => new GroupEventData()
+            {
+                GroupName = d.Key,
+                Data = d.Value,
+                Operation = GroupEventOperationEnum.Add
+
+            });
             Clients.All.SendAsync(ClientGetCncEvent, list);
             return base.OnConnectedAsync();
         }

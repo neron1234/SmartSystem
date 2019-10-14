@@ -10,7 +10,7 @@ namespace MMK.SmartSystem.Common.EventDatas
 {
     public class MaterialInfoEventData: BaseErrorEventData
     {
-        public bool IsAll { get; set; }
+        public bool IsCheckSon { get; set; }
     }
 
     public class MachiningGroupInfoEventData: BaseErrorEventData
@@ -18,10 +18,23 @@ namespace MMK.SmartSystem.Common.EventDatas
         public int MaterialId { get; set; }
     }
 
-    public class AddMaterialEventData : BaseErrorEventData
+    public class AddMachiningInfoEventData : BaseErrorEventData
     {
-        public int MaterialId { get; set; }
-        public double MaterialThickness { get; set; }
+        public CreateMaterialDto CreateMaterial { get; set; }
     }
 
+    public class AddMachiningGroupInfoEventData : BaseErrorEventData
+    {
+        public CreateMachiningGroupDto CreateMachiningGroup { get; set; }
+    }
+
+    public class DeleteMachiningGroupInfoEventData : BaseErrorEventData
+    {
+        public int MachiningGroupId { get; set; }
+    }
+
+    public class DeleteMachiningInfoEventData : BaseErrorEventData
+    {
+        public int MaterialId { get; set; }
+    }
 }

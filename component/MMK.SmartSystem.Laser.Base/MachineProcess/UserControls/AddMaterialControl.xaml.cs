@@ -41,13 +41,12 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                 {
                     addMaterialViewModel.MaterialTypeList.Add(item);
                 }
+                if (addMaterialViewModel.MaterialTypeList.Count > 0)
+                {
+                    addMaterialViewModel.SelectedMaterialId = (int)addMaterialViewModel.MaterialTypeList.First()?.Id;
+                }
             });
-            Loaded += AddMaterialControl_Loaded; ;
-        }
-
-        private async void AddMaterialControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            await EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsAll = true });
+            EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = false });
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -61,10 +60,12 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                 }
             });
 
-            await EventBus.Default.TriggerAsync(new AddMaterialEventData
+            await EventBus.Default.TriggerAsync(new AddMachiningGroupInfoEventData
             {
-                MaterialThickness = Convert.ToDouble(addMaterialViewModel.MaterialThickness),
-                MaterialId = addMaterialViewModel.SelectedMaterialId,
+                CreateMachiningGroup = new CreateMachiningGroupDto { 
+                    MaterialThickness = Convert.ToDouble(addMaterialViewModel.MaterialThickness),
+                    MaterialId = addMaterialViewModel.SelectedMaterialId,
+                },
                 SuccessAction = SaveSuccessAction,
                 ErrorAction = SaveErrorAction
             });
@@ -79,6 +80,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
         private void SaveErrorAction()
         {
             Messenger.Default.Unregister<MainSystemNoticeModel>(this);
+            MessageBox.Show(Error);
         }
     }
 }

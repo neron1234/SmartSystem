@@ -148,20 +148,22 @@
                        AlternationCount="2" SelectionChanged="CarDataViewGrid_SelectionChanged" IsReadOnly="True" FontSize="13">
             </DataGrid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 10 10 10" Content="M文档" Click="Button_Click"/>
+                <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 10 10 10" Content="M文档" Command="{Binding LoadFileCommand}"/>
                 <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 10 10 10" Content="添加文档"/>
                 <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 10 10 10" Content="删除文档"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="10" Grid.Column="2">
             <TextBlock Text="程序缩略图显示" Margin="10,10,10,0"/>
-            <Canvas x:Name="Benchmark" Height="280" Margin="10">
-                <cc:ZoomableCanvas x:Name="MyCanvas" 
-                                    RealizationLimit="1000"
-                                    RealizationRate="10"
-                                    RealizationPriority="Background" >
-                </cc:ZoomableCanvas>
-            </Canvas>
+            <Grid>
+                <Canvas x:Name="Benchmark" Height="280" Width="360" Margin="10"  RenderTransformOrigin="1,1" ClipToBounds="True">
+                    <cc:ZoomableCanvas x:Name="MyCanvas" 
+                                        RealizationLimit="1000"
+                                        RealizationRate="10"
+                                        RealizationPriority="Background" Height="280" Width="360" >
+                    </cc:ZoomableCanvas>
+                </Canvas>
+            </Grid>
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

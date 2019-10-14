@@ -7,43 +7,43 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.SerivceProxy
 {
-    public partial interface IMaterialClient
+    public partial interface IEdgeCuttingDataClient
     {
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RequestResult<MaterialDto>> GetAsync(int? id);
+        System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> GetAsync(int? id);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RequestResult<MaterialDto>> GetAsync(int? id, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> GetAsync(int? id, System.Threading.CancellationToken cancellationToken);
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RequestResult<PagedResultDtoOfMaterialDto>> GetAllAsync(bool? IsCheckSon, int? skipCount, int? maxResultCount);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RequestResult<PagedResultDtoOfMaterialDto>> GetAllAsync(bool? IsCheckSon, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
-
-        /// <returns>Success</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RequestResult<MaterialDto>> CreateAsync(CreateMaterialDto input);
+        System.Threading.Tasks.Task<RequestResult<PagedResultDtoOfEdgeCuttingDataDto>> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RequestResult<MaterialDto>> CreateAsync(CreateMaterialDto input, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<RequestResult<PagedResultDtoOfEdgeCuttingDataDto>> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken);
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RequestResult<MaterialDto>> UpdateAsync(UpdateMaterialDto input);
+        System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> CreateAsync(CreateEdgeCuttingDataDto input);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<RequestResult<MaterialDto>> UpdateAsync(UpdateMaterialDto input, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> CreateAsync(CreateEdgeCuttingDataDto input, System.Threading.CancellationToken cancellationToken);
+
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> UpdateAsync(UpdateEdgeCuttingDataDto input);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> UpdateAsync(UpdateEdgeCuttingDataDto input, System.Threading.CancellationToken cancellationToken);
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -56,13 +56,13 @@ namespace MMK.SmartSystem.Common.SerivceProxy
 
     }
 
-    public partial class MaterialClientServiceProxy : IMaterialClient
+    public partial class EdgeCuttingClientServiceProxy : IEdgeCuttingDataClient
     {
         private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
-        public MaterialClientServiceProxy(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public EdgeCuttingClientServiceProxy(string baseUrl, System.Net.Http.HttpClient httpClient)
         {
             BaseUrl = baseUrl;
             _httpClient = httpClient;
@@ -89,7 +89,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<RequestResult<MaterialDto>> GetAsync(int? id)
+        public System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> GetAsync(int? id)
         {
             return GetAsync(id, System.Threading.CancellationToken.None);
         }
@@ -97,13 +97,13 @@ namespace MMK.SmartSystem.Common.SerivceProxy
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<RequestResult<MaterialDto>> GetAsync(int? id, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> GetAsync(int? id, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/Material/Get?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/EdgeCuttingData/Get?");
             if (id != null)
             {
-                urlBuilder_.Append("Id=").Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("Id") + "=").Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -135,7 +135,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200")
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<RequestResult<MaterialDto>>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<RequestResult<EdgeCuttingDataDto>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
@@ -145,7 +145,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
 
-                        return default;
+                        return default(RequestResult<EdgeCuttingDataDto>);
                     }
                     finally
                     {
@@ -161,30 +161,29 @@ namespace MMK.SmartSystem.Common.SerivceProxy
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<RequestResult<PagedResultDtoOfMaterialDto>> GetAllAsync(bool? IsCheckSon, int? skipCount, int? maxResultCount)
+        public System.Threading.Tasks.Task<RequestResult<PagedResultDtoOfEdgeCuttingDataDto>> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount)
         {
-            return GetAllAsync(IsCheckSon, skipCount, maxResultCount, System.Threading.CancellationToken.None);
+            return GetAllAsync(machiningDataGroupId,skipCount, maxResultCount, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<RequestResult<PagedResultDtoOfMaterialDto>> GetAllAsync(bool? IsCheckSon, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<RequestResult<PagedResultDtoOfEdgeCuttingDataDto>> GetAllAsync(int? machiningDataGroupId, int? skipCount, int? maxResultCount, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/Material/GetAll?");
-
-            if (IsCheckSon != null)
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/EdgeCuttingData/GetAll?");
+            if (machiningDataGroupId != null)
             {
-                urlBuilder_.Append("IsCheckSon=").Append(System.Uri.EscapeDataString(ConvertToString(IsCheckSon, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("MachiningDataGroupId") + "=").Append(System.Uri.EscapeDataString(ConvertToString(machiningDataGroupId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (skipCount != null)
             {
-                urlBuilder_.Append("SkipCount=").Append(System.Uri.EscapeDataString(ConvertToString(skipCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("SkipCount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(skipCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (maxResultCount != null)
             {
-                urlBuilder_.Append("MaxResultCount=").Append(System.Uri.EscapeDataString(ConvertToString(maxResultCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("MaxResultCount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(maxResultCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -216,7 +215,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200")
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<RequestResult<PagedResultDtoOfMaterialDto>>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<RequestResult<PagedResultDtoOfEdgeCuttingDataDto>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
@@ -242,7 +241,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<RequestResult<MaterialDto>> CreateAsync(CreateMaterialDto input)
+        public System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> CreateAsync(CreateEdgeCuttingDataDto input)
         {
             return CreateAsync(input, System.Threading.CancellationToken.None);
         }
@@ -250,10 +249,10 @@ namespace MMK.SmartSystem.Common.SerivceProxy
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<RequestResult<MaterialDto>> CreateAsync(CreateMaterialDto input, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> CreateAsync(CreateEdgeCuttingDataDto input, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/Material/Create");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/EdgeCuttingData/Create");
 
             var client_ = _httpClient;
             try
@@ -286,7 +285,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200")
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<RequestResult<MaterialDto>>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<RequestResult<EdgeCuttingDataDto>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
@@ -312,7 +311,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<RequestResult<MaterialDto>> UpdateAsync(UpdateMaterialDto input)
+        public System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> UpdateAsync(UpdateEdgeCuttingDataDto input)
         {
             return UpdateAsync(input, System.Threading.CancellationToken.None);
         }
@@ -320,10 +319,10 @@ namespace MMK.SmartSystem.Common.SerivceProxy
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<RequestResult<MaterialDto>> UpdateAsync(UpdateMaterialDto input, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<RequestResult<EdgeCuttingDataDto>> UpdateAsync(UpdateEdgeCuttingDataDto input, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/Material/Update");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/EdgeCuttingData/Update");
 
             var client_ = _httpClient;
             try
@@ -356,7 +355,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200")
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<RequestResult<MaterialDto>>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<RequestResult<EdgeCuttingDataDto>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
@@ -393,10 +392,10 @@ namespace MMK.SmartSystem.Common.SerivceProxy
         public async System.Threading.Tasks.Task DeleteAsync(int? id, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/Material/Delete?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/EdgeCuttingData/Delete?");
             if (id != null)
             {
-                urlBuilder_.Append("Id=").Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("Id") + "=").Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -541,5 +540,4 @@ namespace MMK.SmartSystem.Common.SerivceProxy
             return System.Convert.ToString(value, cultureInfo);
         }
     }
-   
 }

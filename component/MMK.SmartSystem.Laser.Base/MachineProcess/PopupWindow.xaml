@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="600" WindowStyle="None" WindowStartupLocation="CenterScreen"  MouseLeftButtonDown="Window_MouseLeftButtonDown"
-      Title="PopupWindowPage">
+      d:DesignHeight="400" d:DesignWidth="625" WindowStyle="None" WindowStartupLocation="CenterScreen"  MouseLeftButtonDown="Window_MouseLeftButtonDown"
+      Title="PopupWindowPage" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Grid Width="600" Height="400" Background="#2a2f34" x:Name="PopupGrid">
+        <Grid Width="625" Height="400" Background="#2a2f34" x:Name="PopupGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="auto" />
@@ -24,8 +24,8 @@
             <Border Background="Gainsboro" CornerRadius="5" Grid.Row="1">
                 <ContentControl x:Name="PopupContent" Content="{Binding PopupContent}"/>
             </Border>
-            <Grid Grid.Row="0" >
-                <TextBlock HorizontalAlignment="Left" Text="{Binding Title}"/>
+            <Grid Grid.Row="0" Background="#0e1013">
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Title}" Foreground="#787b8c" VerticalAlignment="Center" FontSize="18" Margin="15 0 0 0"/>
                 <cc:PathIconButton Style="{StaticResource IconBtn}"  Background="Transparent" Width="30" x:Name="btnClose" 
                                         PathData="{StaticResource Icon_Close}" HorizontalAlignment="Right"
                                         Margin="10" PathWidth="18" NormalPathColor="White"

@@ -25,7 +25,7 @@ namespace MMK.SmartSystem.CNC.Core.Workers
         public event Action<object> GetResultEvent;
         IIocManager iocManager;
 
-        public static BlockingCollection<CncEventData> m_EventDatas = new BlockingCollection<CncEventData>();
+        static BlockingCollection<CncEventData> m_EventDatas = new BlockingCollection<CncEventData>();
 
         public CncCoreWorker()
         {
@@ -122,7 +122,11 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
         private void HandlerExecute()
         {
-            List<CncEventData> tempEventDatas = new List<CncEventData>(m_EventDatas.ToArray());
+            List<CncEventData> tempEventDatas = new List<CncEventData>();
+            foreach (var item in SmartSystemCNCCoreConsts.PageCncEventDict)
+            {
+                tempEventDatas.AddRange(item.Value);
+            }
 
             foreach (var item in tempEventDatas)
             {

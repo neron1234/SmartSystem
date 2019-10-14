@@ -12,7 +12,7 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
     public class SignalrProxy
     {
         public event Action<string> CncErrorEvent;
-        public event Action<List<CncEventData>> GetCncEventData;
+        public event Action<List<GroupEventData>> GetCncEventData;
         HubConnection connection;
         bool isExit = false;
         public SignalrProxy()
@@ -48,12 +48,12 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
                     return await connection.InvokeAsync<T>(actionName, message);
 
                 }
-                return default(T);
+                return default;
             }
             catch (Exception ex)
             {
                 CncErrorEvent?.Invoke(ex.Message);
-                return default(T);
+                return default;
             }
        
            
@@ -111,7 +111,7 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
 
                 }
             };
-            connection.On<List<CncEventData>>(SmartSystemCNCHostConsts.ClientGetCncEvent, (message) =>
+            connection.On<List<GroupEventData>>(SmartSystemCNCHostConsts.ClientGetCncEvent, (message) =>
             {
                 GetCncEventData?.Invoke(message);
             });

@@ -224,6 +224,7 @@
     <Compile Include="CustomControl\ComboBox\Implementation\ZComboBox.cs" />
     <Compile Include="CustomControl\ControlEnum.cs" />
     <Compile Include="CustomControl\Decorator\AngleBorder.cs" />
+    <Compile Include="CustomControl\DrawGraphics.cs" />
     <Compile Include="CustomControl\ExtensionFunc\ItemsControlExtensions.cs" />
     <Compile Include="CustomControl\ExtensionFunc\PopupHelper.cs" />
     <Compile Include="CustomControl\ExtensionFunc\ScrollViewerBehavior.cs" />
@@ -276,7 +277,11 @@
     <Compile Include="CustomControl\ZoomableCanvas\RectExtensions.cs" />
     <Compile Include="CustomControl\ZoomableCanvas\VirtualPanel.cs" />
     <Compile Include="CustomControl\ZoomableCanvas\ZoomableCanvas.cs" />
+    <Compile Include="EventHandler\CuttingDataHandler.cs" />
+    <Compile Include="EventHandler\EdgeCuttingHandler.cs" />
     <Compile Include="EventHandler\MaterialInfoHandler.cs" />
+    <Compile Include="EventHandler\PiercingDataHandler.cs" />
+    <Compile Include="EventHandler\SlopeControlDataHandler.cs" />
     <Compile Include="MachineMonitor\ControlHelp\GridHelper.cs" />
     <Compile Include="MachineMonitor\CoordinateControl.xaml.cs">
       <DependentUpon>CoordinateControl.xaml</DependentUpon>
@@ -333,8 +338,8 @@
     <Compile Include="MachineProcess\UserControls\AddMaterialControl.xaml.cs">
       <DependentUpon>AddMaterialControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MachineProcess\UserControls\InciseProcessControl.xaml.cs">
-      <DependentUpon>InciseProcessControl.xaml</DependentUpon>
+    <Compile Include="MachineProcess\UserControls\ProcessListControl.xaml.cs">
+      <DependentUpon>ProcessListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MachineProcess\UserControls\ProcessOptionsControl.xaml.cs">
       <DependentUpon>ProcessOptionsControl.xaml</DependentUpon>
@@ -343,6 +348,7 @@
       <DependentUpon>ProcessPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MachineProcess\UserControls\ViewModel\AddMaterialViewModel.cs" />
+    <Compile Include="MachineProcess\UserControls\ViewModel\ProcessListViewModel.cs" />
     <Compile Include="MachineProcess\UserControls\ViewModel\ProcessOptionsViewModel.cs" />
     <Compile Include="MachineProcess\ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="MachineProcess\ViewModel\ProcessViewModel.cs" />
@@ -499,7 +505,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MachineProcess\UserControls\InciseProcessControl.xaml">
+    <Page Include="MachineProcess\UserControls\ProcessListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
