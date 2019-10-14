@@ -1,10 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
 {
@@ -54,7 +57,40 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
         public ProgramListViewModel()
         {
             this.SelectedName = "程序名称:";
+
+            if (Directory.Exists(@"C:\Users\wjj-yl\Desktop\测试用DXF"))
+            {
+                this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
+                GetFileName(this.Path);
+            }
         }
+
+        public void GetFileName(string path)
+        {
+            if (Directory.Exists(path))
+            {
+                DirectoryInfo root = new DirectoryInfo(path);
+                this.ProgramList = new ObservableCollection<ProgramInfo>();
+                foreach (FileInfo f in root.GetFiles())
+                {
+                    this.ProgramList.Add(new ProgramInfo
+                    {
+                        Name = f.Name,
+                        CreateTime = f.CreationTime.ToString(),
+                        Size = (f.Length / 1024).ToString() + "KB"
+                    });
+                }
+            }
+        }
+
+        public ICommand LoadFileCommand{
+            get{
+                return new RelayCommand(() => {
+                    GetFileName(this.Path);
+                });
+            }
+        }
+                
     }
     
     public class ProgramInfo

@@ -36,31 +36,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         private void ProgramListPage_Loaded(object sender, RoutedEventArgs e)
         {
-            programListViewModel = new ProgramListViewModel();
-            if (Directory.Exists(@"C:\Users\wjj-yl\Desktop\测试用DXF"))
-            {
-                programListViewModel.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
-                GetFileName(programListViewModel.Path);
-            }
-            this.DataContext = programListViewModel;
-        }
-
-        public void GetFileName(string path)
-        {
-            if (Directory.Exists(path))
-            {
-                DirectoryInfo root = new DirectoryInfo(path);
-                programListViewModel.ProgramList = new System.Collections.ObjectModel.ObservableCollection<ProgramInfo>();
-                foreach (FileInfo f in root.GetFiles())
-                {
-                    programListViewModel.ProgramList.Add(new ProgramInfo
-                    {
-                        Name = f.Name,
-                        CreateTime = f.CreationTime.ToString(),
-                        Size = (f.Length / 1024).ToString() + "KB"
-                    });
-                }
-            }
+            this.DataContext = programListViewModel = new ProgramListViewModel();
         }
 
         /// <summary>
@@ -107,21 +83,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         {
             var x = Math.Pow(2, e.Delta / 3.0 / Mouse.MouseWheelDeltaForOneLine);
             MyCanvas.Scale *= x;
-
             foreach (var p in MyCanvas.Children)
             {
                 if (p is System.Windows.Shapes.Path)
                 {
                     System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-                    //if (path.Name != "label")
-                    //{
                     path.StrokeThickness /= x;
-                    //}
                 }
             }
-
             var position = (Vector)e.GetPosition(Benchmark);
-
             MyCanvas.Offset = (System.Windows.Point)((Vector)
                 (MyCanvas.Offset + position) * x - position);
 
@@ -140,8 +110,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GetFileName(programListViewModel.Path);
-            return;
             //测试图片输出
             RenderTargetBitmap bmp = new RenderTargetBitmap(500, 500, 0, 0, PixelFormats.Pbgra32);
             bmp.Render(Benchmark);
