@@ -91,14 +91,15 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                 }
             });
             RegisterMaterial();
+            EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = true });
         }
 
         private void RegisterMaterial()
         {
-            Messenger.Default.Register<List<MaterialDto>>(this, (results) =>
+            Messenger.Default.Register<PagedResultDtoOfMaterialDto>(this, (results) =>
             {
                 this.MaterialTypeList.Clear();
-                foreach (var item in results)
+                foreach (var item in results.Items)
                 {
                     this.MaterialTypeList.Add(item);
                 }
@@ -108,7 +109,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                     this.MTypeSelectionCommand.Execute("");
                 }
             });
-            EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsAll = false });
         }
 
         public ICommand MTypeSelectionCommand{

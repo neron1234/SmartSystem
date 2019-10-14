@@ -31,7 +31,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
         {
             InitializeComponent();
             this.DataContext = processOptionsViewModel = new ProcessOptionsViewModel();
-            
         }
     }
 }

@@ -10,7 +10,7 @@ namespace MMK.SmartSystem.Common.EventDatas
 {
     public class MaterialInfoEventData: BaseErrorEventData
     {
-        public bool IsAll { get; set; }
+        public bool IsCheckSon { get; set; }
     }
 
     public class MachiningGroupInfoEventData: BaseErrorEventData

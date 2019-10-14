@@ -34,10 +34,10 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
 
             this.DataContext = addMaterialViewModel = new AddMaterialViewModel();
 
-            Messenger.Default.Register<List<MaterialDto>>(this, (results) =>
+            Messenger.Default.Register<PagedResultDtoOfMaterialDto>(this, (results) =>
             {
                 addMaterialViewModel.MaterialTypeList.Clear();
-                foreach (var item in results)
+                foreach (var item in results.Items)
                 {
                     addMaterialViewModel.MaterialTypeList.Add(item);
                 }
@@ -46,7 +46,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                     addMaterialViewModel.SelectedMaterialId = (int)addMaterialViewModel.MaterialTypeList.First()?.Id;
                 }
             });
-            EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsAll = true });
+            EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = false });
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)

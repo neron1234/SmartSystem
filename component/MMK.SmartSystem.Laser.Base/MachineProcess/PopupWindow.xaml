@@ -25,7 +25,7 @@
                 <ContentControl x:Name="PopupContent" Content="{Binding PopupContent}"/>
             </Border>
             <Grid Grid.Row="0" Background="#0e1013">
-                <TextBlock HorizontalAlignment="Left" Text="{Binding Title}"/>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Title}" Foreground="#787b8c" VerticalAlignment="Center" FontSize="18" Margin="15 0 0 0"/>
                 <cc:PathIconButton Style="{StaticResource IconBtn}"  Background="Transparent" Width="30" x:Name="btnClose" 
                                         PathData="{StaticResource Icon_Close}" HorizontalAlignment="Right"
                                         Margin="10" PathWidth="18" NormalPathColor="White"
