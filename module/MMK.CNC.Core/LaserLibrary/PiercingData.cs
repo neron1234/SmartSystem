@@ -145,5 +145,33 @@ namespace MMK.CNC.Core.LaserLibrary
         {
 
         }
+
+        public PiercingData(short index, int gasId, int machiningKindId, int nozzleKindId)
+        {
+            ENo = (short)(101 + index);
+            MachiningKindId = machiningKindId;
+            NozzleKindId = nozzleKindId;
+            NozzleDiameter = 0;
+            Power = 0;
+            Frequency = 0;
+            Duty = 0;
+            StepFrequency = 0;
+            StepDuty = 0;
+            StepTime = 0;
+            StepQuantity = 0;
+            PiercingTime = 0;
+            GasPressure = 0;
+            GasId = gasId;
+            GasSettingTime = 0;
+            StandardDisplacement = 0;
+            StandardDisplacement2 = 0;
+            GapAxis = '\u0001';
+            BeamSpot = 0;
+            FocalPosition = 0;
+            LiftDistance = 0;
+            PbPower = 0;
+
+            CreationTime = DateTime.Now;
+        }
     }
 }

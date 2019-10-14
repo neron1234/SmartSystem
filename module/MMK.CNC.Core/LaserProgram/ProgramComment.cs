@@ -93,10 +93,6 @@ namespace MMK.CNC.Core.LaserProgram
         /// </summary>
         public int ThumbnaiType { get; set; }
 
-        /// <summary>
-        /// 缩略图信息
-        /// </summary>
-        [StringLength(100)]
         public string ThumbnaiInfo { get; set; }
 
         /// <summary>

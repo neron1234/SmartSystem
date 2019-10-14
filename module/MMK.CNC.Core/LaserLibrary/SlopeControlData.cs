@@ -106,7 +106,6 @@ namespace MMK.CNC.Core.LaserLibrary
         /// </summary>
         public double LiftDistance { get; set; }
 
-
         public DateTime CreationTime { get; set; } = DateTime.Now;
 
         public SlopeControlData()
@@ -116,6 +115,30 @@ namespace MMK.CNC.Core.LaserLibrary
         public SlopeControlData(int index)
         {
 
+        }
+
+        public SlopeControlData(short index, int gasId, int machiningKindId, int nozzleKindId)
+        {
+            ENo = (short)(901 + index);
+            MachiningKindId = machiningKindId;
+            NozzleKindId = nozzleKindId;
+            NozzleDiameter = 0;
+            PowerMin = 0;
+            PowerSpeedZero = 0;
+            FrequencyMin = 0;
+            FrequencySpeedZero = 0;
+            DutyMin = 0;
+            DutySpeedZero = 0;
+            FeedrateR = 0;
+            PbPowerMin = 0;
+            PbPowerSpeedZero = 0;
+            GasPressMin = 0;
+            GasPressSpeedZero = 0;
+            BeamSpot = 0;
+            FocalPosition = 0;
+            LiftDistance = 0;
+
+            CreationTime = DateTime.Now;
         }
     }
 }

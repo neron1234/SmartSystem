@@ -145,5 +145,28 @@ namespace MMK.CNC.Core.LaserLibrary
         {
 
         }
+
+        public CuttingData(short index, int gasId, int machiningKindId, int nozzleKindId)
+        {
+            ENo = (short)(index + 1);
+            MachiningKindId = machiningKindId;
+            NozzleKindId = nozzleKindId;
+            NozzleDiameter = 10;
+            Feedrate = 100;
+            Power = 10;
+            Frequency = 10;
+            Duty = 10;
+            GasPressure = 10;
+            GasId = gasId;
+            GasSettingTime = 10;
+            StandardDisplacement = 0;
+            GapAxis = '\u0001';
+            BeamSpot = 10;
+            FocalPosition = 10;
+            LiftDistance = 10;
+            PbPower = 0;
+
+            CreationTime = DateTime.Now;
+        }
     }
 }

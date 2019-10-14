@@ -141,5 +141,32 @@ namespace MMK.CNC.Core.LaserLibrary
         {
 
         }
+
+        public EdgeCuttingData(short index, int gasId, int machiningKindId, int nozzleKindId)
+        {
+            ENo = (short)(index + 201);
+            MachiningKindId = machiningKindId;
+            NozzleKindId = nozzleKindId;
+            NozzleDiameter = 0;
+            Angle = 0;
+            Power = 0;
+            Frequency = 0;
+            Duty = 0;
+            GasPressure = 0;
+            GasId = gasId;
+            PiercingTime = 0;
+            RecoveryDistance = 0;
+            RecoveryFrequency = 0;
+            RecoveryFeedrate = 0;
+            RecoveryDuty = 0;
+            Gap = 0;
+            GapAxis = '\u0001';
+            BeamSpot = 0;
+            FocalPosition = 0;
+            LiftDistance = 0;
+            PbPower = 0;
+
+            CreationTime = DateTime.Now;
+        }
     }
 }
