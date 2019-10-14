@@ -29,13 +29,12 @@ namespace MMK.CNC.Application.LaserLibrary
         {
             List<Material> materials = new List<Material>();
             if (input.IsCheckSon){
-                var list1 = machiningGroupRepository.GetAllIncluding().GroupJoin(Repository.GetAllIncluding(), d => d.MaterialId, f => f.Id, (p, v) => v).ToList();
+                var list1 = machiningGroupRepository.GetAllIncluding().GroupJoin(Repository.GetAllIncluding(), d => d.MaterialCode, f => f.Code, (p, v) => v).ToList();
                 foreach (var item in list1){
                     foreach (var d in item){
                         if (materials.FindIndex(g => g.Id == d.Id) == -1){
                             materials.Add(d);
                         }
-
                     }
                 }
             }else{

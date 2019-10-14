@@ -78,6 +78,12 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             this.MaterialTypeList = new ObservableCollection<MaterialDto>();
             this.MaterialThicknessList = new ObservableCollection<MachiningGroupDto>();
 
+            RegisterMaterial();
+            EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = true });
+        }
+
+        private void RegisterMaterial()
+        {
             Messenger.Default.Register<PagedResultDtoOfMachiningGroupDto>(this, (result) =>
             {
                 this.MaterialThicknessList.Clear();
@@ -90,12 +96,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                     this.SelectedMaterialTypeId = (int)this.MaterialThicknessList.First()?.Id;
                 }
             });
-            RegisterMaterial();
-            EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = true });
-        }
 
-        private void RegisterMaterial()
-        {
             Messenger.Default.Register<PagedResultDtoOfMaterialDto>(this, (results) =>
             {
                 this.MaterialTypeList.Clear();
@@ -105,10 +106,16 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                 }
                 if (this.MaterialTypeList.Count > 0)
                 {
-                    this.SelectedMaterialId = (int)this.MaterialTypeList.First()?.Id;
+                    this.SelectedMaterialId = (int)this.MaterialTypeList.First()?.Code;
                     this.MTypeSelectionCommand.Execute("");
                 }
             });
+        }
+
+        private void UnRegisterMaterial()
+        {
+            Messenger.Default.Unregister<PagedResultDtoOfMachiningGroupDto>(this);
+            Messenger.Default.Unregister<PagedResultDtoOfMaterialDto>(this);
         }
 
         public ICommand MTypeSelectionCommand{
@@ -119,14 +126,15 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             }
         }
 
-        public ICommand AddCommand{
+        public ICommand EditCommand{
             get{
                 return new RelayCommand(() =>{
-                    Messenger.Default.Unregister<List<MaterialDto>>(this);
+                    UnRegisterMaterial();
 
                     new PopupWindow(new AddMaterialControl(), 650, 260, "添加工艺材料").ShowDialog();
 
                     RegisterMaterial();
+                    EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = true });
                 });
             }
         }
@@ -134,7 +142,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
         {
             get{
                 return new RelayCommand(() =>{
-                    System.Windows.MessageBox.Show(this.SelectedMaterialId + "|" + this.SelectedMaterialTypeId);
+                    Messenger.Default.Send(SelectedMaterialTypeId);
                 });
             }
         }

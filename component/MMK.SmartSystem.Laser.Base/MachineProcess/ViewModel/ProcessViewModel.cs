@@ -1,6 +1,7 @@
 ﻿using Abp.Events.Bus;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
 using System;
 using System.Collections.Generic;
@@ -14,17 +15,51 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
 {
     public class ProcessViewModel:ViewModelBase
     {
-        public int MchiningDataGroupId { get; set; }
-
         public ProcessViewModel()
         {
-
+            Messenger.Default.Register<int>(this, (result) =>
+            {
+                SearchGroupId = result;
+                SearchList();
+            });
+            CuttingDataCommand.Execute("");
+        }
+        public int SearchGroupId = 0;
+        //private BaseErrorEventData commandType { get; set; }
+        private int commandType { get; set; }
+        private void SearchList()
+        {
+            if (SearchGroupId == 0)
+            {
+                return;
+            }
+            switch (commandType)
+            {
+                case 1:
+                    EventBus.Default.TriggerAsync(new CuttingDataByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
+                    break;
+                case 2:
+                    EventBus.Default.TriggerAsync(new PiercingDataByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
+                    break;
+                case 3:
+                    EventBus.Default.TriggerAsync(new EdgeCuttingByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
+                    break;
+                case 4:
+                    EventBus.Default.TriggerAsync(new SlopeControlDataByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
+                    break;
+                default:
+                    break;
+            }
+            //EventBus.Default.TriggerAsync(Convert.ChangeType(commandType, commandType.GetType()));
         }
 
         public ICommand CuttingDataCommand{
             get{
                 return new RelayCommand(() => {
-                    EventBus.Default.TriggerAsync(new CuttingDataByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
+                    commandType = 1;
+                    SearchList();
+                    //commandType = new CuttingDataByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId };
+                    //EventBus.Default.TriggerAsync(new CuttingDataByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
                 });
             }
         }
@@ -32,21 +67,27 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
         public ICommand PiercingDataCommand{
             get{
                 return new RelayCommand(() => {
-                    EventBus.Default.TriggerAsync(new PiercingDataByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
+                    commandType = 2;
+                    SearchList();
+                    //EventBus.Default.TriggerAsync(new PiercingDataByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
                 });
             }
         }
         public ICommand EdgeCuttingCommand{
             get{
                 return new RelayCommand(() => {
-                    EventBus.Default.TriggerAsync(new EdgeCuttingByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
+                    commandType = 3;
+                    SearchList();
+                    //EventBus.Default.TriggerAsync(new EdgeCuttingByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
                 });
             }
         }
         public ICommand SlopeControlDatCommand{
             get{
                 return new RelayCommand(() => {
-                    EventBus.Default.TriggerAsync(new SlopeControlDataByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
+                    commandType = 4;
+                    SearchList();
+                    //EventBus.Default.TriggerAsync(new SlopeControlDataByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
                 });
             }
         }

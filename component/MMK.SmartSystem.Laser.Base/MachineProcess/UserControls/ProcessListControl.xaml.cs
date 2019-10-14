@@ -27,10 +27,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
         {
             InitializeComponent();
             this.DataContext = pcListVewModel = new ProcessListViewModel();
-            Messenger.Default.Register<Abp.Application.Services.Dto.PagedResultRequestDto>(this, (result) =>
-            {
-                pcListVewModel.ProcessDataList = result;
-            });
         }
 
         private void ProcessDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

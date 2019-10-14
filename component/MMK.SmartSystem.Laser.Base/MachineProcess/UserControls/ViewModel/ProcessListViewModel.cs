@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common;
 using System;
 using System.Collections.Generic;
@@ -11,18 +12,54 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
 {
     public class ProcessListViewModel:ViewModelBase
     {
-        private Abp.Application.Services.Dto.PagedResultRequestDto _ProcessDataList;
-        public Abp.Application.Services.Dto.PagedResultRequestDto ProcessDataList
+        private ObservableCollection<object> _PageListData;
+        public ObservableCollection<object> PageListData
         {
-            get { return _ProcessDataList; }
-            set     
+            get { return _PageListData; }
+            set
             {
-                if (_ProcessDataList != value)
+                if (_PageListData != value)
                 {
-                    _ProcessDataList = value;
-                    RaisePropertyChanged(() => ProcessDataList);
+                    _PageListData = value;
+                    RaisePropertyChanged(() => PageListData);
                 }
             }
+        }
+
+        public ProcessListViewModel()
+        {
+            Messenger.Default.Register<PagedResultDtoOfCuttingDataDto>(this, (result) =>
+            {
+                this.PageListData = new ObservableCollection<object>();
+                foreach (var item in result.Items)
+                {
+                    this.PageListData.Add(item);
+                }
+            });
+            Messenger.Default.Register<PagedResultDtoOfEdgeCuttingDataDto>(this, (result) =>
+            {
+                this.PageListData = new ObservableCollection<object>();
+                foreach (var item in result.Items)
+                {
+                    this.PageListData.Add(item);
+                }
+            });
+            Messenger.Default.Register<PagedResultDtoOfPiercingDataDto>(this, (result) =>
+            {
+                this.PageListData = new ObservableCollection<object>();
+                foreach (var item in result.Items)
+                {
+                    this.PageListData.Add(item);
+                }
+            });
+            Messenger.Default.Register<PagedResultDtoOfSlopeControlDataDto>(this, (result) =>
+            {
+                this.PageListData = new ObservableCollection<object>();
+                foreach (var item in result.Items)
+                {
+                    this.PageListData.Add(item);
+                }
+            });
         }
     }
 }

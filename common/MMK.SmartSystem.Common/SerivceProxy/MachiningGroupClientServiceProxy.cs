@@ -175,15 +175,15 @@ namespace MMK.SmartSystem.Common.SerivceProxy
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/MachiningGroup/GetAll?");
             if (materialId != null)
             {
-                urlBuilder_.Append("MaterialId=").Append(System.Uri.EscapeDataString(ConvertToString(materialId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("MaterialCode") + "=").Append(System.Uri.EscapeDataString(ConvertToString(materialId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (skipCount != null)
             {
-                urlBuilder_.Append("SkipCount=").Append(System.Uri.EscapeDataString(ConvertToString(skipCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("SkipCount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(skipCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             if (maxResultCount != null)
             {
-                urlBuilder_.Append("MaxResultCount=").Append(System.Uri.EscapeDataString(ConvertToString(maxResultCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("MaxResultCount") + "=").Append(System.Uri.EscapeDataString(ConvertToString(maxResultCount, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 

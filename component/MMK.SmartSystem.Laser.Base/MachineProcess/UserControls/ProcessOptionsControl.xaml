@@ -7,7 +7,7 @@
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              mc:Ignorable="d" 
-             d:DesignHeight="116" d:DesignWidth="1300" Background="#2a2f34" Foreground="#787b8c" FontSize="20">
+             d:DesignHeight="116" d:DesignWidth="1320" Background="#2a2f34" Foreground="#787b8c" FontSize="20">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -26,7 +26,7 @@
         <StackPanel Grid.Column="0" Margin="20">
             <TextBlock Text="材料类型"/>
 
-            <ComboBox Margin="0 12 0 0" ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="Id" DisplayMemberPath="Name_CN" 
+            <ComboBox Margin="0 12 0 0" ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
                           SelectedValue="{Binding SelectedMaterialId}" BorderBrush="#121417" IsReadOnly="True">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
@@ -64,8 +64,12 @@
                     <TextBlock Padding="8 0 0 0" TextWrapping="Wrap" Text="上传" Width="60" />
                 </WrapPanel>
             </Button>
-            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10" Content="添加" x:Name="Add" Command="{Binding AddCommand}"/>
-            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10" Content="删除" />
+            <Button Style="{StaticResource BtnStyle}" Width="150" Height="40" Margin="22 38 0 10"  x:Name="Edit" Command="{Binding EditCommand}">
+                <WrapPanel>
+                    <Path Data="{StaticResource EditBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill"/>
+                    <TextBlock Padding="8 0 0 0" TextWrapping="Wrap" Text="材料编辑" Width="90" />
+                </WrapPanel>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>
