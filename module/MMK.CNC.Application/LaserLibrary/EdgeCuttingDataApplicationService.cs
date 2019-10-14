@@ -39,7 +39,6 @@ namespace MMK.CNC.Application.LaserLibrary
             var resDto = ObjectMapper.Map<EdgeCuttingDataDto>(entity);
             resDto.GasName = GasRepository.FirstOrDefault(d => d.Code == resDto.GasCode)?.Name_CN;
 
-
             var mGroup = MachiningDataGroupRepository.FirstOrDefault(d => d.Id == resDto.MachiningDataGroupId);
 
             resDto.MachiningKindName = MachiningKindRepository.FirstOrDefault(d => d.Code == resDto.MachiningKindCode)?.Name_CN;
@@ -48,12 +47,6 @@ namespace MMK.CNC.Application.LaserLibrary
 
             resDto.MaterialThickness = (double)mGroup?.MaterialThickness;
             return resDto;
-        }
-
-     
-        public override Task<PagedResultDto<EdgeCuttingDataDto>> GetAll(EdgeCuttingDataResultRequestDto input)
-        {
-            return base.GetAll(input);
         }
     }
 }
