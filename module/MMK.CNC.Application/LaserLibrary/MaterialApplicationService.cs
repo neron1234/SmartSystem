@@ -29,7 +29,7 @@ namespace MMK.CNC.Application.LaserLibrary
 
         public override async Task<PagedResultDto<MaterialDto>> GetAll(MaterialResultRequestDto input)
         {
-            var list2 = machiningGroupRepository.GetAllIncluding().GroupJoin(Repository.GetAllIncluding(), d => d.MaterialId, f => f.Id, (p, v) => v).ToList();
+            var list2 = machiningGroupRepository.GetAllIncluding().GroupJoin(Repository.GetAllIncluding(), d => d.Code, f => f.Code, (p, v) => v).ToList();
             List<Material> materials = new List<Material>();
             foreach (var item in list2)
             {

@@ -13,6 +13,8 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
 
     public class NozzleKindDto : EntityDto<int>
     {
+        public short Code { get; set; }
+
         public string Name_EN { get; set; }
 
 

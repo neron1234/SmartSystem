@@ -18,6 +18,8 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// 加工类型名称（中文）
         /// </summary>
         public string Name_CN { get; set; }
+        public short Code { get; set; }
+
 
         /// <summary>
         /// 备注信息

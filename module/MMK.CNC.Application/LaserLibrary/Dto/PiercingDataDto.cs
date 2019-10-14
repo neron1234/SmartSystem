@@ -83,12 +83,12 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// <summary>
         /// 加工类型ID
         /// </summary>
-        public int MachiningKindId { get; set; }
+        public short MachiningKindCode { get; set; }
 
         /// <summary>
         /// 割嘴类型
         /// </summary>
-        public int NozzleKindId { get; set; }
+        public short NozzleKindCode { get; set; }
 
         /// <summary>
         /// 割嘴内径
@@ -143,7 +143,7 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// <summary>
         /// 辅助气体种类ID
         /// </summary>
-        public int GasId { get; set; }
+        public short GasCode { get; set; }
 
         /// <summary>
         /// 辅助气体上升时间（毫秒）
@@ -206,12 +206,12 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// <summary>
         /// 加工类型ID
         /// </summary>
-        public int MachiningKindId { get; set; }
+        public short MachiningKindCode { get; set; }
 
         /// <summary>
         /// 割嘴类型
         /// </summary>
-        public int NozzleKindId { get; set; }
+        public short NozzleKindCode { get; set; }
 
         /// <summary>
         /// 割嘴内径
@@ -266,7 +266,7 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// <summary>
         /// 辅助气体种类ID
         /// </summary>
-        public int GasId { get; set; }
+        public short GasCode { get; set; }
 
         /// <summary>
         /// 辅助气体上升时间（毫秒）

@@ -19,7 +19,7 @@ namespace MMK.CNC.Core.LaserLibrary
         /// <summary>
         /// 材料类型ID
         /// </summary>
-        public int MaterialId { get; set; }
+        public short MaterialCode { get; set; }
 
 
 

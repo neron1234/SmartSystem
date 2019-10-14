@@ -20,7 +20,7 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// <summary>
         /// 材料类型ID
         /// </summary>
-        public int MaterialId { get; set; }
+        public short MaterialCode { get; set; }
 
         /// <summary>
         /// 材料厚度
@@ -67,7 +67,7 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// <summary>
         /// 材料类型ID
         /// </summary>
-        public int MaterialId { get; set; }
+        public short MaterialCode { get; set; }
         /// <summary>
         /// 材料厚度
         /// </summary>
@@ -81,6 +81,6 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
 
     public class MachiningGroupResultRequestDto : PagedResultRequestDto
     {
-        public int MaterialId { get; set; }
+        public int MaterialCode { get; set; }
     }
 }

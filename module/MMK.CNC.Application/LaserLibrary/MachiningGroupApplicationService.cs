@@ -40,7 +40,7 @@ namespace MMK.CNC.Application.LaserLibrary
 
         protected override IQueryable<MachiningDataGroup> CreateFilteredQuery(MachiningGroupResultRequestDto input)
         {
-            return repository.GetAllIncluding().WhereIf(input.MaterialId != -1, d => d.MaterialId == input.MaterialId);
+            return repository.GetAllIncluding().WhereIf(input.MaterialCode != -1, d => d.Code == input.MaterialCode);
         }
 
         public override async Task<MachiningGroupDto> Create(CreateMachiningGroupDto input)
@@ -48,39 +48,25 @@ namespace MMK.CNC.Application.LaserLibrary
             var entity = ObjectMapper.Map<MachiningDataGroup>(input);
             var groupId = await repository.InsertAndGetIdAsync(entity);
 
-            var gas = GasRepository.GetAllIncluding().FirstOrDefault();
-            if (gas == null)
-            {
-                gas = new Gas()
-                {
-                    Code = 1,
-                    Name_CN = "空气",
-                    Name_EN = "空气",
-                    Description = "默认新增"
-
-                };
-                gas.Id = await GasRepository.InsertAndGetIdAsync(gas);
-            }
-
+         
             for (int i = 0; i < MMKSmartSystemWebCommonConsts.LaserLibraryCuttingDataQuantity; i++)
-            {
-               // new CuttingData(i,gas.Id,)
-                await CuttingRepository.InsertAsync(new CuttingData(i) { MachiningDataGroupId = groupId });
+            {               
+                await CuttingRepository.InsertAsync(new CuttingData((short)i, 1, (short)(i + 1), 1) { MachiningDataGroupId = groupId });
 
             }
             for (int i = 0; i < MMKSmartSystemWebCommonConsts.LaserLibraryEdgeCuttingDataQuantity; i++)
             {
-                await EdgeCuttingRepository.InsertAsync(new EdgeCuttingData(i) { MachiningDataGroupId = groupId });
+                await EdgeCuttingRepository.InsertAsync(new EdgeCuttingData((short)i, 1, (short)(i + 1), 1) { MachiningDataGroupId = groupId });
 
             }
             for (int i = 0; i < MMKSmartSystemWebCommonConsts.LaserLibraryPiercingDataQuantity; i++)
             {
-                await PiercingRepository.InsertAsync(new PiercingData(i) { MachiningDataGroupId = groupId });
+                await PiercingRepository.InsertAsync(new PiercingData((short)i, 1, (short)(i + 1), 1) { MachiningDataGroupId = groupId });
 
             }
             for (int i = 0; i < MMKSmartSystemWebCommonConsts.LaserLibrarySlopeControlDataQuantity; i++)
             {
-                await SlopeControlRepository.InsertAsync(new SlopeControlData(i) { MachiningDataGroupId = groupId });
+                await SlopeControlRepository.InsertAsync(new SlopeControlData((short)i, 1, (short)(i + 1), 1) { MachiningDataGroupId = groupId });
             }
             return ObjectMapper.Map<MachiningGroupDto>(entity);
         }
