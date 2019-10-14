@@ -30,7 +30,7 @@
                                         PathData="{StaticResource Icon_Close}" HorizontalAlignment="Right"
                                         Margin="10" PathWidth="18" NormalPathColor="White"
                                         MouseOverBackground="Transparent"
-                                        PressedBackground="Transparent" Click="BtnClose_Click"/>
+                                        PressedBackground="Transparent" Click="BtnClose_Click" />
             </Grid>
         </Grid>
     </Grid>
