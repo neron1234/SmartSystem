@@ -86,8 +86,8 @@
             <TextBlock Text="辅助"/>
         </StackPanel>
 
-        <DataGrid Grid.Row="1" x:Name="ProcessDataGrid" Margin="0 6 0 10" Background="#2a2f34" 
-                       AlternationCount="2" SelectionChanged="ProcessDataGrid_SelectionChanged" IsReadOnly="True" FontSize="13" ItemsSource="{Binding ProcessDataList}">
+        <DataGrid Grid.Row="1" x:Name="ProcessDataGrid" Margin="0 6 0 10" Background="#2a2f34"  Width="1300" Height="270" HeadersVisibility="None"
+                       AlternationCount="2" SelectionChanged="ProcessDataGrid_SelectionChanged" IsReadOnly="True" FontSize="13" ItemsSource="{Binding PageListData}">
         </DataGrid>
     </Grid>
 </UserControl>

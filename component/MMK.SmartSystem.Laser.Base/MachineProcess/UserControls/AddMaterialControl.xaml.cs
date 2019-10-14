@@ -33,54 +33,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
             InitializeComponent();
 
             this.DataContext = addMaterialViewModel = new AddMaterialViewModel();
-
-            Messenger.Default.Register<PagedResultDtoOfMaterialDto>(this, (results) =>
-            {
-                addMaterialViewModel.MaterialTypeList.Clear();
-                foreach (var item in results.Items)
-                {
-                    addMaterialViewModel.MaterialTypeList.Add(item);
-                }
-                if (addMaterialViewModel.MaterialTypeList.Count > 0)
-                {
-                    addMaterialViewModel.SelectedMaterialId = (int)addMaterialViewModel.MaterialTypeList.First()?.Id;
-                }
-            });
-            EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = false });
-        }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Messenger.Default.Register<MainSystemNoticeModel>(this, (ms) =>{
-                if (ms.Success){
-                    ms.SuccessAction?.Invoke();
-                }else{
-                    Error = ms.Error;
-                    ms.ErrorAction?.Invoke();
-                }
-            });
-
-            await EventBus.Default.TriggerAsync(new AddMachiningGroupInfoEventData
-            {
-                CreateMachiningGroup = new CreateMachiningGroupDto { 
-                    MaterialThickness = Convert.ToDouble(addMaterialViewModel.MaterialThickness),
-                    MaterialId = addMaterialViewModel.SelectedMaterialId,
-                },
-                SuccessAction = SaveSuccessAction,
-                ErrorAction = SaveErrorAction
-            });
-
-        }
-        private void SaveSuccessAction()
-        {
-            Messenger.Default.Unregister<MainSystemNoticeModel>(this);
-            Messenger.Default.Unregister<PagedResultDtoOfMaterialDto>(this);
-            Messenger.Default.Send("保存成功");
-        }
-        private void SaveErrorAction()
-        {
-            Messenger.Default.Unregister<MainSystemNoticeModel>(this);
-            MessageBox.Show(Error);
         }
     }
 }

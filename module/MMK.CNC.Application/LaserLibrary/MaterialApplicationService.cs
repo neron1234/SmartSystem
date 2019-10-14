@@ -35,7 +35,6 @@ namespace MMK.CNC.Application.LaserLibrary
                         if (materials.FindIndex(g => g.Id == d.Id) == -1){
                             materials.Add(d);
                         }
-
                     }
                 }
             }else{

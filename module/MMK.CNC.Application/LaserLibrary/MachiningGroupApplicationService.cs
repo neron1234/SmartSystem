@@ -40,7 +40,7 @@ namespace MMK.CNC.Application.LaserLibrary
 
         protected override IQueryable<MachiningDataGroup> CreateFilteredQuery(MachiningGroupResultRequestDto input)
         {
-            return repository.GetAllIncluding().WhereIf(input.MaterialCode != -1, d => d.Code == input.MaterialCode);
+            return repository.GetAllIncluding().WhereIf(input.MaterialCode != -1, d => d.MaterialCode == input.MaterialCode);
         }
 
         public override async Task<MachiningGroupDto> Create(CreateMachiningGroupDto input)

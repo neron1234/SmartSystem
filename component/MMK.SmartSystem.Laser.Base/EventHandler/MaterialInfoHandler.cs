@@ -110,7 +110,7 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
             string errorMessage = string.Empty;
             try
             {
-                var rs = machiningGroupClientServiceProxy.GetAllAsync(eventData.CreateMachiningGroup.MaterialId, 0, 50).Result;
+                var rs = machiningGroupClientServiceProxy.GetAllAsync(eventData.CreateMachiningGroup.MaterialCode, 0, 50).Result;
                 errorMessage = rs.Error?.Details;
                 if (rs.Success && !rs.Result.Items.Any(n => n.MaterialThickness == eventData.CreateMachiningGroup.MaterialThickness))
                 {
