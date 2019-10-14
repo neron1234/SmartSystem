@@ -12,11 +12,14 @@
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="17,17,17,17">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#5c6c72" Offset="0.02" />
+                                <GradientStop Color="#384146" Offset="0.05" />
                                 <GradientStop Color="#384146" Offset="0.1" />
                                 <GradientStop Color="#2d363b" Offset="0.3" />
-                                <GradientStop Color="#21292e" Offset="0.6" />
-                                <GradientStop Color="#1c2226" Offset="0.8" />
-                                <GradientStop Color="#181a1d" Offset="0.9" />
+                                <GradientStop Color="#21292e" Offset="0.5" />
+                                <GradientStop Color="#1c2226" Offset="0.7" />
+                                <GradientStop Color="#191e22" Offset="0.8" />
+                                <GradientStop Color="#141719" Offset="0.9" />
                             </LinearGradientBrush>
                         </Border.Background>
                         <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>

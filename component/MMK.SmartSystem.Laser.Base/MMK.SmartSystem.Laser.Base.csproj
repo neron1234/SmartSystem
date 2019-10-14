@@ -224,6 +224,7 @@
     <Compile Include="CustomControl\ComboBox\Implementation\ZComboBox.cs" />
     <Compile Include="CustomControl\ControlEnum.cs" />
     <Compile Include="CustomControl\Decorator\AngleBorder.cs" />
+    <Compile Include="CustomControl\DrawGraphics.cs" />
     <Compile Include="CustomControl\ExtensionFunc\ItemsControlExtensions.cs" />
     <Compile Include="CustomControl\ExtensionFunc\PopupHelper.cs" />
     <Compile Include="CustomControl\ExtensionFunc\ScrollViewerBehavior.cs" />

@@ -155,11 +155,11 @@
         </StackPanel>
         <StackPanel Margin="10" Grid.Column="2">
             <TextBlock Text="程序缩略图显示" Margin="10,10,10,0"/>
-            <Canvas x:Name="Benchmark" Height="280" Margin="10">
+            <Canvas x:Name="Benchmark" Height="280" Width="360" Margin="10" >
                 <cc:ZoomableCanvas x:Name="MyCanvas" 
                                     RealizationLimit="1000"
                                     RealizationRate="10"
-                                    RealizationPriority="Background" >
+                                    RealizationPriority="Background" Height="280" Width="360" >
                 </cc:ZoomableCanvas>
             </Canvas>
             <Grid Margin="10">

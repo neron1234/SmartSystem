@@ -22,10 +22,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess
     /// </summary>
     public partial class ProcessPage : Page, ITransientDependency
     {
-        //public ProcessViewModel viewModel { get; set; }
+       public ProcessViewModel processViewModel { get; set; }
         public ProcessPage()
         {
             InitializeComponent();
+            this.DataContext = processViewModel = new ProcessViewModel();
             Loaded += ProcessPage_Loaded;
         }
 

@@ -21,30 +21,11 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
             string errorMessage = string.Empty;
             try
             {
-                var rs = materialClientServiceProxy.GetAllAsync(0, 50).Result;
+                var rs = materialClientServiceProxy.GetAllAsync(eventData.IsCheckSon, 0, 50).Result;
                 errorMessage = rs.Error?.Details;
                 if (rs.Success)
                 {
-                    MachiningGroupClientServiceProxy machiningGroupClientServiceProxy = new MachiningGroupClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-
-                    List<MaterialDto> materials = new List<MaterialDto>();
-                    foreach (var item in rs.Result.Items)
-                    {
-                        if (!eventData.IsAll)
-                        {
-                            var mgrs = machiningGroupClientServiceProxy.GetAllAsync(item.Id, 0, 50).Result;
-                            errorMessage = rs.Error?.Details;
-                            if (mgrs.Success && mgrs.Result.Items.Count > 0)
-                            {
-                                materials.Add(item);
-                            }
-                        }
-                        else
-                        {
-                            materials.Add(item);
-                        }
-                    }
-                    Messenger.Default.Send(materials);
+                    Messenger.Default.Send(rs.Result.Items);
                 }
                 Messenger.Default.Send(new MainSystemNoticeModel
                 {
@@ -75,7 +56,7 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
             string errorMessage = string.Empty;
             try
             {
-                var rs = materialClientServiceProxy.GetAllAsync(0, 50).Result;
+                var rs = materialClientServiceProxy.GetAllAsync(false, 0, 50).Result;
                 errorMessage = rs.Error?.Details;
                 if (rs.Success)
                 {
