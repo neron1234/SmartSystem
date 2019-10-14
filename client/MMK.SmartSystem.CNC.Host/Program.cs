@@ -1,8 +1,10 @@
 ﻿using Abp;
 using Abp.Castle.Logging.Log4Net;
 using Castle.Facilities.Logging;
+using MMK.SmartSystem.CNC.Core;
 using MMK.SmartSystem.CNC.Core.Workers;
 using MMK.SmartSystem.CNC.Host.Proxy;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -95,14 +97,25 @@ namespace MMK.SmartSystem.CNC.Host
             await signalrProxy.Start();
         }
 
-        private static void SignalrProxy_GetCncEventData(List<WebCommon.DeviceModel.CncEventData> obj)
+        private static void SignalrProxy_GetCncEventData(List<GroupEventData> obj)
         {
             Console.WriteLine("【CncEventData】" + JArray.FromObject(obj).ToString());
 
             foreach (var item in obj)
             {
-                CncCoreWorker.m_EventDatas.Add(item);
-
+                if (item.Operation == GroupEventOperationEnum.Add)
+                {
+                    if (!SmartSystemCNCCoreConsts.PageCncEventDict.ContainsKey(item.GroupName))
+                    {
+                        SmartSystemCNCCoreConsts.PageCncEventDict.TryAdd(item.GroupName, new List<CncEventData>());
+                    }
+                    SmartSystemCNCCoreConsts.PageCncEventDict[item.GroupName].AddRange(item.Data);
+                }
+                else if (item.Operation == GroupEventOperationEnum.Remove)
+                {
+                    var res = new List<CncEventData>();
+                    SmartSystemCNCCoreConsts.PageCncEventDict.TryRemove(item.GroupName, out res);
+                }
             }
         }
 
