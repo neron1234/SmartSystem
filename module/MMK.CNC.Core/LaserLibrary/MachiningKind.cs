@@ -11,6 +11,8 @@ namespace MMK.CNC.Core.LaserLibrary
     [Table("LaserLibrary_MachiningKind")]
     public class MachiningKind : Entity<int>, IHasCreationTime
     {
+
+        public short Code { get; set; }
         /// <summary>
         /// 加工类型名称（英文）
         /// </summary>

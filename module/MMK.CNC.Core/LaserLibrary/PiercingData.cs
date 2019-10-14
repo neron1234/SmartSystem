@@ -24,12 +24,12 @@ namespace MMK.CNC.Core.LaserLibrary
         /// <summary>
         /// 加工类型ID
         /// </summary>
-        public int MachiningKindId { get; set; }
+        public int MachiningKindCode { get; set; }
 
         /// <summary>
         /// 割嘴类型
         /// </summary>
-        public int NozzleKindId { get; set; }
+        public int NozzleKindCode { get; set; }
 
         /// <summary>
         /// 割嘴内径
@@ -84,7 +84,7 @@ namespace MMK.CNC.Core.LaserLibrary
         /// <summary>
         /// 辅助气体种类ID
         /// </summary>
-        public int GasId { get; set; }
+        public int GasCode { get; set; }
 
         /// <summary>
         /// 辅助气体上升时间（毫秒）
@@ -146,11 +146,11 @@ namespace MMK.CNC.Core.LaserLibrary
 
         }
 
-        public PiercingData(short index, int gasId, int machiningKindId, int nozzleKindId)
+        public PiercingData(short index, int gasCode, int machiningKindCode, int nozzleKindCode)
         {
             ENo = (short)(101 + index);
-            MachiningKindId = machiningKindId;
-            NozzleKindId = nozzleKindId;
+            MachiningKindCode = machiningKindCode;
+            NozzleKindCode = nozzleKindCode;
             NozzleDiameter = 0;
             Power = 0;
             Frequency = 0;
@@ -161,7 +161,7 @@ namespace MMK.CNC.Core.LaserLibrary
             StepQuantity = 0;
             PiercingTime = 0;
             GasPressure = 0;
-            GasId = gasId;
+            GasCode = gasCode;
             GasSettingTime = 0;
             StandardDisplacement = 0;
             StandardDisplacement2 = 0;
