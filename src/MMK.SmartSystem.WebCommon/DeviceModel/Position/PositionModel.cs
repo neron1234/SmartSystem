@@ -34,19 +34,37 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
         Distance,
     }
-    public class ReadPositionTypeModel
+    public class ReadPositionTypeModel : IEquatable<ReadPositionTypeModel>
     {
         [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public CncPositionTypeEnum PositionType { get; set; }
 
+        public bool Equals(ReadPositionTypeModel other)
+        {
+            return PositionType == other.PositionType;
+        }
+        public override int GetHashCode()
+        {
+            return PositionType.GetHashCode();
+        }
     }
-    public class DecompReadPositionItemModel
+    public class DecompReadPositionItemModel : IEquatable<DecompReadPositionItemModel>
     {
         public string Id { get; set; }
 
         public CncPositionTypeEnum PositionType { get; set; }
 
         public int AxisNum { get; set; }
+
+        public bool Equals(DecompReadPositionItemModel other)
+        {
+            return Id == other.Id && PositionType == other.PositionType && AxisNum == other.AxisNum;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode() + AxisNum * 10;
+        }
     }
 
 }
