@@ -11,6 +11,8 @@ namespace MMK.CNC.Core.LaserLibrary
     [Table("LaserLibrary_NozzleKind")]
     public class NozzleKind : Entity<int>, IHasCreationTime
     {
+
+        public short Code { get; set; }
         /// <summary>
         /// 割嘴类型名称（英文）
         /// </summary>
