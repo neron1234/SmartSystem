@@ -1,7 +1,7 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
+using Abp.Linq.Extensions;
 using MMK.CNC.Application.LaserLibrary.Dto;
 using MMK.CNC.Core.LaserLibrary;
 using System;
@@ -20,24 +20,34 @@ namespace MMK.CNC.Application.LaserLibrary
 
     public class MaterialApplicationService : AsyncCrudAppService<Material, MaterialDto, int, MaterialResultRequestDto, CreateMaterialDto, UpdateMaterialDto>, IMaterialApplicationService
     {
-        IRepository<MachiningDataGroup, int> machiningGroupRepository;
-        IRepository<Material, int> repository;
+        public IRepository<MachiningDataGroup, int> machiningGroupRepository { set; get; }
         public MaterialApplicationService(IRepository<Material, int> repository) : base(repository)
         {
-            this.repository = repository;
         }
 
-        /// <summary>
-        /// 创建分页查询的筛选条件
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        protected override IQueryable<Material> CreateFilteredQuery(MaterialResultRequestDto input)
+
+
+        public override async Task<PagedResultDto<MaterialDto>> GetAll(MaterialResultRequestDto input)
         {
-            //var mIds = machiningGroupRepository.GetAll().Select(n => n.MaterialId);
-            //return repository.GetAllIncluding().WhereIf(input.IsCheckSon,n => mIds.Contains(n.Id)).ToList().AsQueryable();
-            return repository.GetAll();
+            var list2 = machiningGroupRepository.GetAllIncluding().GroupJoin(Repository.GetAllIncluding(), d => d.MaterialId, f => f.Id, (p, v) => v).ToList();
+            List<Material> materials = new List<Material>();
+            foreach (var item in list2)
+            {
+                foreach (var d in item)
+                {
+                    if (materials.FindIndex(g => g.Id == d.Id) == -1)
+                    {
+                        materials.Add(d);
+                    }
+
+                }
+            }
+            int total = materials.Count;
+            var listRes = materials.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+            var listDto = ObjectMapper.Map<List<MaterialDto>>(listRes);
+            await Task.CompletedTask;
+            return new PagedResultDto<MaterialDto>(total, listDto);
         }
     }
-   
+
 }

@@ -14,8 +14,9 @@ using System.Text;
 
 namespace MMK.SmartSystem.RealTime
 {
-    [DependsOn(typeof(AbpAspNetCoreSignalRModule),
-        typeof(SmartSytemCNCCoreModule))]
+    [DependsOn(typeof(AbpAspNetCoreSignalRModule)
+        //typeof(SmartSytemCNCCoreModule)
+        )]
     public class SmartSystemRealTimeModule : AbpModule
     {
         private IBackgroundJobManager _backgroundJobManager;

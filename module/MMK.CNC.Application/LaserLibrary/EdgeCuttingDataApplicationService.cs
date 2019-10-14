@@ -49,5 +49,11 @@ namespace MMK.CNC.Application.LaserLibrary
             resDto.MaterialThickness = (double)mGroup?.MaterialThickness;
             return resDto;
         }
+
+     
+        public override Task<PagedResultDto<EdgeCuttingDataDto>> GetAll(EdgeCuttingDataResultRequestDto input)
+        {
+            return base.GetAll(input);
+        }
     }
 }
