@@ -18,10 +18,11 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
             return ToString() == other.ToString();
         }
 
-        public int GetHashCode(ReadPmcTypeModel obj)
+        public override int GetHashCode()
         {
             return AdrType * 10002 * 2 + StartNum + 12 ^ 2 + DwordQuantity;
         }
+
 
         public override string ToString()
         {
