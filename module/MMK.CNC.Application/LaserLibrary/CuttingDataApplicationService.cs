@@ -43,7 +43,6 @@ namespace MMK.CNC.Application.LaserLibrary
 
             var resultDto = ObjectMapper.Map<List<CuttingDataDto>>(listRes);
 
-
             foreach (var item in resultDto)
             {
                 item.GasName = DataService.GetGas(item.GasCode).Name_CN;
@@ -56,9 +55,7 @@ namespace MMK.CNC.Application.LaserLibrary
                     item.MaterialName = DataService.GetMaterial(groupMachining.MaterialCode).Name_CN;
 
                 }
-
             }
-
             await Task.CompletedTask;
             return new PagedResultDto<CuttingDataDto>(count, resultDto);
         }

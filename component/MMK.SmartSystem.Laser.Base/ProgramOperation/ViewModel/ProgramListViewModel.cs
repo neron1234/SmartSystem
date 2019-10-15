@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,12 +8,27 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
 {
     public class ProgramListViewModel:ViewModelBase
     {
+        private UserControl _ControlInfo;
+        public UserControl ControlInfo
+        {
+            get { return _ControlInfo; }
+            set
+            {
+                if (_ControlInfo != value)
+                {
+                    _ControlInfo = value;
+                    RaisePropertyChanged(() => ControlInfo);
+                }
+            }
+        }
+
         private string _SelectedName;
         public string SelectedName
         {
@@ -56,6 +72,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
         }
         public ProgramListViewModel()
         {
+            this.ControlInfo = new CNCProgramListControl();
+
             this.SelectedName = "程序名称:";
 
             if (Directory.Exists(@"C:\Users\wjj-yl\Desktop\测试用DXF"))
@@ -90,7 +108,31 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
                 });
             }
         }
-                
+
+        public ICommand CNCListCommand{
+            get{
+                return new RelayCommand(() => {
+                    this.ControlInfo = new CNCProgramListControl();
+                });
+            }
+        }
+
+        public ICommand LocalListCommand{
+            get{
+                return new RelayCommand(() => {
+                    this.ControlInfo = new LocalProgramListControl();
+                });
+            }
+        }
+
+        public ICommand CNCInfoCommand{
+            get{
+                return new RelayCommand(() => {
+                    this.ControlInfo = new CNCInfoControl();
+                });
+            }
+        }
+
     }
     
     public class ProgramInfo
