@@ -374,6 +374,7 @@
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCInfoViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCProgramListViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\LocalProgramListViewModel.cs" />
+    <Compile Include="ProgramOperation\UserControls\ViewModel\ProgramViewModel.cs" />
     <Compile Include="ProgramOperation\ViewModel\ProgramListViewModel.cs" />
     <Compile Include="SmartSystemDeviceModule.cs" />
     <Page Include="App.xaml">

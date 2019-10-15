@@ -1,10 +1,13 @@
 ﻿using Abp.Dependency;
+using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.Base;
 using MMK.SmartSystem.Laser.Base.CustomControl;
+using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
 using MMK.SmartSystem.WebCommon.HubModel;
 using netDxf;
 using netDxf.Entities;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -34,25 +37,40 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         {
             InitializeComponent();
             this.DataContext = programListViewModel = new ProgramListViewModel();
-
+            RegisterDrawProgram();
         }
+
         protected override void PageSignlarLoaded()
         {
-            SendReaderWriter(new HubReadWriterModel()
-            {
+            SendReaderWriter(new HubReadWriterModel(){
                 ProxyName = "ProgramListInOut",
                 Action = "Reader",
                 Id = "",
                 Data = new object[] { "//CNC_MEM/USER/PATH1/" }
-
-
             });
         }
 
         protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
-            string IND = "";
+            JArray jArray = JArray.Parse(obj.Result.ToString());
+            var programList = new List<ProgramViewModel>();
+            foreach (var item in jArray)
+            {
+                JObject jObject = JObject.Parse(item.ToString());
+                if (jObject != null)
+                {
+                    programList.Add(new ProgramViewModel
+                    {
+                        Name = jObject["name"].ToString(),
+                        Size = jObject["size"].ToString(),
+                        CreateTime = jObject["createDateTime"].ToString(),
+                        Description = jObject["description"].ToString()
+                    }) ;
+                }
+            }
+            Messenger.Default.Send(programList);
         }
+
         public override bool IsRequestResponse => true;
 
         /// <summary>
@@ -60,25 +78,22 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CarDataViewGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void RegisterDrawProgram()
         {
-            var selected = ((DataGrid)sender).SelectedValue;
-            if (selected != null && selected is ProgramInfo)
-            {
-                var programInfo = (ProgramInfo)selected;
-                //程序名称:FJFDJS-001
-                programListViewModel.SelectedName = "程序名称:" + programInfo.Name;
+            Messenger.Default.Register<ProgramViewModel>(this, (pInfo) => {
+
+                programListViewModel.SelectedProgram = pInfo;
                 if (MyCanvas.Children.Count != 0)
                     MyCanvas.Children.Clear();
 
                 var dg = new DrawGraphics(ref this.MyCanvas, ref this.Benchmark);
-                if (programInfo.Name.Split('.')[1] == "dxf")
+                if (pInfo.Name.Split('.')[1] == "dxf")
                 {
-                    dg.Draw(programListViewModel.Path + @"\" + programInfo.Name);
+                    dg.Draw(programListViewModel.Path + @"\" + pInfo.Name);
                 }
                 else
                 {
-                    StreamReader reader = new StreamReader(programListViewModel.Path + @"\" + programInfo.Name);
+                    StreamReader reader = new StreamReader(programListViewModel.Path + @"\" + pInfo.Name);
                     string line = "";
                     List<System.Windows.Point> pointList = new List<System.Windows.Point>();
                     //List<string[]> pointList = new List<string[]>();
@@ -89,9 +104,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                         //pointList.Add(line.Split(','));
                         line = reader.ReadLine();
                     }
-                    dg.Draw(pointList, programInfo.Name.Split('.')[0]);
+                    dg.Draw(pointList, pInfo.Name.Split('.')[0]);
                 }
-            }
+            });
         }
 
         System.Windows.Point LastMousePosition;
