@@ -72,7 +72,7 @@ namespace MMK.SmartSystem.Web.Host.Startup
             {
                 options.SwaggerDoc("v1", new Info { Title = "SmartSystem API", Version = "v1" });
                 options.DocInclusionPredicate((docName, description) => true);
-
+                options.OperationFilter<SwaggerFileUploadFilter>();
                 // Define the BearerAuth scheme that's in use
                 options.AddSecurityDefinition("bearerAuth", new ApiKeyScheme()
                 {

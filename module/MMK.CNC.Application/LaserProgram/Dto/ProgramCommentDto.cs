@@ -1,8 +1,10 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using Microsoft.AspNetCore.Http;
 using MMK.CNC.Core.LaserProgram;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MMK.CNC.Application.LaserProgram.Dto
@@ -151,5 +153,11 @@ namespace MMK.CNC.Application.LaserProgram.Dto
         public double Thickness { get; set; }
 
         public string Gas { get; set; }
+    }
+
+    public class UploadProgramDto
+    {
+        [Required]
+        public IFormFile File { get; set; }
     }
 }
