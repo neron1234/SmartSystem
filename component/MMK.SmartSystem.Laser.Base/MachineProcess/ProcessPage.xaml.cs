@@ -27,12 +27,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess
         {
             InitializeComponent();
             this.DataContext = processViewModel = new ProcessViewModel();
-            Loaded += ProcessPage_Loaded;
-        }
-
-        private void ProcessPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }

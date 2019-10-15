@@ -246,6 +246,7 @@
     <Compile Include="CustomControl\Primitives\MyEventArgs\ItemMouseSingleClickEventArgs.cs" />
     <Compile Include="CustomControl\Primitives\NumberBox.cs" />
     <Compile Include="CustomControl\Primitives\ZTextBoxBase.cs" />
+    <Compile Include="CustomControl\SoftKeyBoard.cs" />
     <Compile Include="CustomControl\TextBox\Implementation\IconTextBox.cs" />
     <Compile Include="CustomControl\TextBox\Implementation\IpTextBox.cs" />
     <Compile Include="CustomControl\TextBox\Implementation\NumbericTextBox.cs" />
@@ -332,7 +333,7 @@
     <Compile Include="MachineOperation\ViewModel\CutCenterPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\CutterResetCheckPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\ManualFindSidePageViewModel.cs" />
-    <Compile Include="MachineProcess\PopupWindow.xaml.cs">
+    <Compile Include="PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MachineProcess\UserControls\AddMaterialControl.xaml.cs">
@@ -363,6 +364,9 @@
     </Compile>
     <Compile Include="ProgramOperation\UserControls\CNCProgramListControl.xaml.cs">
       <DependentUpon>CNCProgramListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramOperation\UserControls\EditProgramControl.xaml.cs">
+      <DependentUpon>EditProgramControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProgramOperation\UserControls\LocalProgramListControl.xaml.cs">
       <DependentUpon>LocalProgramListControl.xaml</DependentUpon>
@@ -512,7 +516,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MachineProcess\PopupWindow.xaml">
+    <Page Include="PopupWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -553,6 +557,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProgramOperation\UserControls\CNCProgramListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgramOperation\UserControls\EditProgramControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

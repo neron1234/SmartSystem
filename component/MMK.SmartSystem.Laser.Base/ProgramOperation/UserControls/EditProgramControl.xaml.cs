@@ -1,4 +1,5 @@
-﻿using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Laser.Base.CustomControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,20 +18,13 @@ using System.Windows.Shapes;
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 {
     /// <summary>
-    /// CNCListControl.xaml 的交互逻辑
+    /// EditProgramControl.xaml 的交互逻辑
     /// </summary>
-    public partial class CNCProgramListControl : UserControl
+    public partial class EditProgramControl : UserControl
     {
-        public CNCProgramListViewModel cpViewModel { get; set; }
-        public CNCProgramListControl()
+        public EditProgramControl()
         {
             InitializeComponent();
-            this.DataContext = cpViewModel = new CNCProgramListViewModel();
-        }
-
-        private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

@@ -9,9 +9,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
 {
@@ -77,38 +79,38 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
         {
             this.MaterialTypeList = new ObservableCollection<MaterialDto>();
             this.MaterialThicknessList = new ObservableCollection<MachiningGroupDto>();
-
             RegisterMaterial();
-            EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = true });
         }
 
         private void RegisterMaterial()
         {
-            Messenger.Default.Register<PagedResultDtoOfMachiningGroupDto>(this, (result) =>
-            {
-                this.MaterialThicknessList.Clear();
-                foreach (var item in result.Items)
+            Task.Factory.StartNew(() => { 
+                Messenger.Default.Register<PagedResultDtoOfMachiningGroupDto>(this, (result) =>
                 {
-                    this.MaterialThicknessList.Add(item);
-                }
-                if (this.MaterialThicknessList.Count > 0)
-                {
-                    this.SelectedMaterialTypeId = (int)this.MaterialThicknessList.First()?.Id;
-                }
-            });
+                    this.MaterialThicknessList.Clear();
+                    foreach (var item in result.Items)
+                    {
+                        this.MaterialThicknessList.Add(item);
+                    }
+                    if (this.MaterialThicknessList.Count > 0)
+                    {
+                        this.SelectedMaterialTypeId = (int)this.MaterialThicknessList.First()?.Id;
+                    }
+                });
 
-            Messenger.Default.Register<PagedResultDtoOfMaterialDto>(this, (results) =>
-            {
-                this.MaterialTypeList.Clear();
-                foreach (var item in results.Items)
+                Messenger.Default.Register<PagedResultDtoOfMaterialDto>(this, (results) =>
                 {
-                    this.MaterialTypeList.Add(item);
-                }
-                if (this.MaterialTypeList.Count > 0)
-                {
-                    this.SelectedMaterialId = (int)this.MaterialTypeList.First()?.Code;
-                    this.MTypeSelectionCommand.Execute("");
-                }
+                    this.MaterialTypeList.Clear();
+                    foreach (var item in results.Items)
+                    {
+                        this.MaterialTypeList.Add(item);
+                    }
+                    if (this.MaterialTypeList.Count > 0)
+                    {
+                        this.SelectedMaterialId = (int)this.MaterialTypeList.First()?.Code;
+                        this.MTypeSelectionCommand.Execute("");
+                    }
+                });
             });
         }
 
@@ -121,7 +123,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
         public ICommand MTypeSelectionCommand{
             get{
                 return  new RelayCommand(() => {
-                    EventBus.Default.TriggerAsync(new MachiningGroupInfoEventData() { MaterialId = this.SelectedMaterialId });
+                    Messenger.Default.Send("GetMachiningGroupInfo");
                 });
             }
         }
@@ -134,7 +136,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                     new PopupWindow(new AddMaterialControl(), 650, 260, "添加工艺材料").ShowDialog();
 
                     RegisterMaterial();
-                    EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = true });
+                    Messenger.Default.Send("GetMaterial");
                 });
             }
         }

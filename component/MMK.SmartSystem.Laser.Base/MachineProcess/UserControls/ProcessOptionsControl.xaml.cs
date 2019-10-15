@@ -31,6 +31,34 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
         {
             InitializeComponent();
             this.DataContext = processOptionsViewModel = new ProcessOptionsViewModel();
+
+            Messenger.Default.Register<string>(this,(str) => {
+                if (str == "GetMachiningGroupInfo")
+                {
+                    Task.Factory.StartNew(() =>
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            EventBus.Default.TriggerAsync(new MachiningGroupInfoEventData() { MaterialId = processOptionsViewModel.SelectedMaterialId });
+                        });
+                    });
+                }else{
+                    Task.Factory.StartNew(() =>
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            EventBus.Default.Trigger(new MaterialInfoEventData { IsCheckSon = true });
+                        });
+                    });
+                }
+            });
+
+            Task.Factory.StartNew(() => {
+                this.Dispatcher.InvokeAsync(async () =>
+                {
+                    await EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = true });
+                });
+            });
         }
     }
 }
