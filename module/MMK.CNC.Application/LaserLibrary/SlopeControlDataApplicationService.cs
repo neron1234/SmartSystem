@@ -42,7 +42,6 @@ namespace MMK.CNC.Application.LaserLibrary
 
             foreach (var item in resultDto)
             {
-                item.GasName = DataService.GetGas(item.GasCode).Name_CN;
                 item.MachiningKindName = DataService.GetMachiningKind(item.MachiningKindCode).Name_CN;
                 item.NozzleKindName = DataService.GetNozzleKind(item.NozzleKindCode).Name_CN;
                 var groupMachining = DataService.GetMachiningData(item.MachiningDataGroupId);

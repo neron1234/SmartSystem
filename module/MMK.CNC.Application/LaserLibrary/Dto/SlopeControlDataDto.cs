@@ -56,12 +56,7 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// 加工材料名称(外联字段)
         /// </summary>
         public string MaterialName { get; set; }
-
-        /// <summary>
-        /// 加工气体名称(外联字段)
-        /// </summary>
-        public string GasName { set; get; }
-
+      
         /// <summary>
         /// 割嘴名称(外联字段)
         /// </summary>
@@ -107,20 +102,6 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
         /// </summary>
         public short Duty { get; set; }
 
-        /// <summary>
-        /// 辅助气体压力(MPa)
-        /// </summary>
-        public double GasPressure { get; set; }
-
-        /// <summary>
-        /// 辅助气体种类ID
-        /// </summary>
-        public short GasCode { get; set; }
-
-        /// <summary>
-        /// 辅助气体上升时间（毫秒）
-        /// </summary>
-        public int GasSettingTime { get; set; }
 
         /// <summary>
         /// 基准偏移量
