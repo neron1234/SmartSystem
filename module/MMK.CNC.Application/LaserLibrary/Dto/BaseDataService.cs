@@ -32,7 +32,7 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
             {
                 return machining[id];
             }
-            return default;
+            return new MachiningDataGroup();
         }
 
         public Gas GetGas(short id)
@@ -42,7 +42,7 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
             {
                 return gas[id];
             }
-            return default;
+            return new Gas();
 
         }
 
@@ -53,7 +53,7 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
             {
                 return machiningKind[id];
             }
-            return default;
+            return new MachiningKind();
         }
 
         public Material GetMaterial(int id)
@@ -63,7 +63,7 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
             {
                 return material[id];
             }
-            return default;
+            return new Material();
         }
 
         public NozzleKind GetNozzleKind(short id)
@@ -73,7 +73,7 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
             {
                 return nozzleKind[id];
             }
-            return default;
+            return new NozzleKind();
         }
     }
 
