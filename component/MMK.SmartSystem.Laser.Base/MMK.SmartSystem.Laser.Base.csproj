@@ -338,6 +338,9 @@
     <Compile Include="MachineProcess\UserControls\AddMaterialControl.xaml.cs">
       <DependentUpon>AddMaterialControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MachineProcess\UserControls\EditMaterialControl.xaml.cs">
+      <DependentUpon>EditMaterialControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineProcess\UserControls\ProcessListControl.xaml.cs">
       <DependentUpon>ProcessListControl.xaml</DependentUpon>
     </Compile>
@@ -502,6 +505,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MachineProcess\UserControls\AddMaterialControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineProcess\UserControls\EditMaterialControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
