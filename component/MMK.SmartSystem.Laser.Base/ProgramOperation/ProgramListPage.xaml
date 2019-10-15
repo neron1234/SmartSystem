@@ -7,7 +7,7 @@
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="1200" Foreground="White" Background="#2a2f34" FontSize="16"
+      d:DesignHeight="650" d:DesignWidth="1200" Foreground="#787b8c" Background="#2a2f34" FontSize="20"
       Title="ProgramListPage">
     <Page.Resources>
         <ResourceDictionary>
@@ -35,6 +35,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
             <Style TargetType="Canvas">
                 <Setter Property="Background" Value="#202328"/>
                 <Setter Property="Effect">
@@ -66,9 +67,9 @@
             </Style>
 
             <Style TargetType="DataGridCell">
-                
+
             </Style>
-            
+
             <!--行样式触发-->
             <!--背景色改变必须先设置cellStyle 因为cellStyle会覆盖rowStyle样式-->
             <Style  TargetType="DataGridRow">
@@ -96,71 +97,33 @@
             </Style>
         </ResourceDictionary>
     </Page.Resources>
-    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="480"/>
+            <ColumnDefinition Width="720"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="10" Grid.Column="0">
-            <TextBlock Text="CNC已用程序数及容量" Margin="5"/>
-            <TextBox Margin="5,5,5,15" Text="程序数：4 容量：160MB"/>
-            <TextBlock Text="CNC已用程序存储目录树" Margin="5"/>
-            <RichTextBox Margin="5,5,5,15" FontSize="15" Height="120">
-                <FlowDocument>
-                    <Paragraph>
-                        <Run Text="--"/>
-                    </Paragraph>
-                </FlowDocument>
-            </RichTextBox>
-            <TextBlock Text="文件夹" Margin="5"/>
-            <TextBox Margin="5,5,5,15" Text="{Binding Path}" />
-            <TextBlock Text="IPC程序存储目录树" Margin="5"/>
-            <RichTextBox Margin="5,5,5,15" FontSize="15" Height="110">
-                <FlowDocument>
-                    <Paragraph>
-                        <Run Text="--"/>
-                    </Paragraph>
-                </FlowDocument>
-            </RichTextBox>
-        </StackPanel>
-        <StackPanel Margin="10" Grid.Column="1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Horizontal">
-                    <TextBlock Text="名称"  Margin="47,0,0,0" />
-                    <TextBlock Text="|" Margin="40,0,0,0"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <TextBlock Text="容量"  Margin="47,0,0,0"/>
-                    <TextBlock Text="|" Margin="40,0,0,0"/>
-                </StackPanel>
-                <StackPanel Grid.Column="2">
-                    <TextBlock Text="日期/时间" TextAlignment="Center"/>
-                </StackPanel>
-            </Grid>
-            <DataGrid ItemsSource="{Binding ProgramList}" x:Name="CarDataViewGrid" Margin="0 6 0 10" Height="360" Background="#2a2f34" Width="375" 
-                       AlternationCount="2" SelectionChanged="CarDataViewGrid_SelectionChanged" IsReadOnly="True" FontSize="13">
-            </DataGrid>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 10 10 10" Content="M文档" Command="{Binding LoadFileCommand}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 10 10 10" Content="添加文档"/>
-                <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 10 10 10" Content="删除文档"/>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="580"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <RadioButton Width="150" Height="50" Content="CNC程序" Style="{StaticResource RadioButtonColorStyle}" IsChecked="True" Command="{Binding CNCListCommand}"/>
+                <RadioButton Width="150" Height="50" Content="本地程序" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding LocalListCommand}" />
+                <RadioButton Width="150" Height="50" Content="CNC信息" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding CNCInfoCommand}" />
             </StackPanel>
-        </StackPanel>
+            <StackPanel Grid.Row="1">
+                <ContentControl x:Name="MyControl" Content="{Binding ControlInfo}" />
+            </StackPanel>
+        </Grid>
         <StackPanel Margin="10" Grid.Column="2">
-            <TextBlock Text="程序缩略图显示" Margin="10,10,10,0"/>
+            <TextBlock Text="程序缩略图显示" Margin="10,5,10,0"/>
             <Grid>
-                <Canvas x:Name="Benchmark" Height="280" Width="360" Margin="10"  RenderTransformOrigin="1,1" ClipToBounds="True">
+                <Canvas x:Name="Benchmark" Height="460" Margin="10"  RenderTransformOrigin="1,1" ClipToBounds="True">
                     <cc:ZoomableCanvas x:Name="MyCanvas" 
                                         RealizationLimit="1000"
                                         RealizationRate="10"
-                                        RealizationPriority="Background" Height="280" Width="360" >
+                                        RealizationPriority="Background" Height="460" Width="680" >
                     </cc:ZoomableCanvas>
                 </Canvas>
             </Grid>

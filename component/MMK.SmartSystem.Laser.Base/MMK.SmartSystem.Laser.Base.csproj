@@ -338,6 +338,9 @@
     <Compile Include="MachineProcess\UserControls\AddMaterialControl.xaml.cs">
       <DependentUpon>AddMaterialControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MachineProcess\UserControls\EditMaterialControl.xaml.cs">
+      <DependentUpon>EditMaterialControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineProcess\UserControls\ProcessListControl.xaml.cs">
       <DependentUpon>ProcessListControl.xaml</DependentUpon>
     </Compile>
@@ -355,6 +358,18 @@
     <Compile Include="ProgramOperation\ProgramListPage.xaml.cs">
       <DependentUpon>ProgramListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgramOperation\UserControls\CNCInfoControl.xaml.cs">
+      <DependentUpon>CNCInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramOperation\UserControls\CNCProgramListControl.xaml.cs">
+      <DependentUpon>CNCProgramListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramOperation\UserControls\LocalProgramListControl.xaml.cs">
+      <DependentUpon>LocalProgramListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramOperation\UserControls\ViewModel\CNCInfoViewModel.cs" />
+    <Compile Include="ProgramOperation\UserControls\ViewModel\CNCProgramListViewModel.cs" />
+    <Compile Include="ProgramOperation\UserControls\ViewModel\LocalProgramListViewModel.cs" />
     <Compile Include="ProgramOperation\ViewModel\ProgramListViewModel.cs" />
     <Compile Include="SmartSystemDeviceModule.cs" />
     <Page Include="App.xaml">
@@ -505,6 +520,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MachineProcess\UserControls\EditMaterialControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MachineProcess\UserControls\ProcessListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -526,6 +545,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ProgramOperation\ProgramListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgramOperation\UserControls\CNCInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgramOperation\UserControls\CNCProgramListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgramOperation\UserControls\LocalProgramListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
