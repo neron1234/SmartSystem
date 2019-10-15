@@ -13,5 +13,8 @@ namespace MMK.SmartSystem.CNC.Host
         public const string ClientGetCncEvent = "GetCncEvent";
         public const string ClientSuccessEvent = "PushCncDataMessage";
         public const string ClientErrorEvent = "PushErrorMessage";
+        public const string ClientReaderWriterResultEvent = "PushReadWriter";
+
+        public const string ClientReaderWriterEvent = "ReaderWriterEvent";
     }
 }

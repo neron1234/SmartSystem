@@ -24,8 +24,11 @@ namespace MMK.SmartSystem.Common.SignalrProxy
         public const string CNCErrorAction = "GetError";
 
         /// <summary>
-        /// 读取CNC程序列表
+        /// CNC读取写入代理
         /// </summary>
-        public const string ReadProgramListAction = "ReadProgramList";
+        public const string CNCReaderWriterAction = "SendReadWriter";
+
+
+        public const string GetCNCReaderWriterResultAction = "GetReadWriter";
     }
 }

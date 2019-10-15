@@ -5,6 +5,7 @@ using MMK.SmartSystem.Common.SignalrProxy;
 using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.WebCommon;
 using MMK.SmartSystem.WebCommon.DeviceModel;
+using MMK.SmartSystem.WebCommon.HubModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -22,8 +23,9 @@ namespace MMK.SmartSystem.Common.Base
     {
         SignalrProxyClient signalrProxyClient;
 
-        public abstract void PageSignlarLoaded();
 
+
+        public virtual bool IsRequestResponse { get; }
         public virtual string GetModule { get; }
         public IIocManager manager { set; get; }
         public abstract List<object> GetResultViewModelMap();
@@ -33,11 +35,20 @@ namespace MMK.SmartSystem.Common.Base
             signalrProxyClient = new SignalrProxyClient(this.GetType().FullName + "_" + Guid.NewGuid().ToString("N"));
             signalrProxyClient.CncErrorEvent += SignalrProxyClient_CncErrorEvent;
             signalrProxyClient.HubRefreshModelEvent += SignalrProxyClient_HubRefreshModelEvent;
+            signalrProxyClient.HubReaderWriterResultEvent += SignalrProxyClient_HubReaderWriterResultEvent;
             this.Loaded += SignalrPage_Loaded;
             this.Unloaded += SignalrPage_Unloaded;
 
         }
 
+        protected virtual void SignalrProxyClient_HubReaderWriterResultEvent(WebCommon.HubModel.HubReadWriterResultModel obj)
+        {
+
+        }
+        protected virtual void PageSignlarLoaded()
+        {
+
+        }
         protected async Task<T> SendProxyAction<T>(string actionName, object message)
         {
             return await signalrProxyClient.SendAction<T>(actionName, message);
@@ -83,6 +94,19 @@ namespace MMK.SmartSystem.Common.Base
 
             CncOnError(obj);
         }
+        public async void SendReaderWriter(HubReadWriterModel readWriterModel)
+        {
+            try
+            {
+                await signalrProxyClient.SendAction<string>(SinglarCNCHubConsts.CNCReaderWriterAction, readWriterModel);
+            }
+            catch (Exception ex)
+            {
+
+                SignalrProxyClient_CncErrorEvent(ex.Message);
+
+            }
+        }
         public virtual List<CncEventData> GetCncEventData()
         {
             var list = new List<CncEventData>();
@@ -117,15 +141,19 @@ namespace MMK.SmartSystem.Common.Base
         }
         private async void SignalrPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            PageSignlarLoaded();
+
             await signalrProxyClient.Start();
-
-            var cncEventDatas = GetCncEventData();
-            if (cncEventDatas != null && cncEventDatas.Count > 0)
+            PageSignlarLoaded();
+            if (!IsRequestResponse)
             {
-                signalrProxyClient.SendCncData(cncEventDatas);
+                var cncEventDatas = GetCncEventData();
+                if (cncEventDatas != null && cncEventDatas.Count > 0)
+                {
+                    signalrProxyClient.SendCncData(cncEventDatas);
 
+                }
             }
+
 
         }
     }

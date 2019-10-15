@@ -23,7 +23,7 @@ namespace MMK.SmartSystem.CNC.Host
         static SignalrProxy signalrProxy = new SignalrProxy();
         static DateTime currentTime = DateTime.Now;
         static DateTime currentErrorTime = DateTime.Now;
-
+        static CncReaderWriterWorker writerWorker;
         static void Main(string[] args)
         {
             _bootstrapper = AbpBootstrapper.Create<SmartSystemCNCHostModule>();
@@ -62,6 +62,7 @@ namespace MMK.SmartSystem.CNC.Host
             cncHandler = new CncCoreWorker(_bootstrapper.IocManager);
             cncHandler.ShowErrorLogEvent += CncHandler_ShowErrorLogEvent;
             cncHandler.GetResultEvent += CncHandler_GetResultEvent;
+            writerWorker = new CncReaderWriterWorker(_bootstrapper.IocManager);
         }
 
         private async static void CncHandler_GetResultEvent(object obj)
@@ -94,7 +95,19 @@ namespace MMK.SmartSystem.CNC.Host
         {
             signalrProxy.CncErrorEvent += SignalrProxy_CncErrorEvent;
             signalrProxy.GetCncEventData += SignalrProxy_GetCncEventData;
+            signalrProxy.GetClientReaderWriterEvent += SignalrProxy_GetClientReaderWriterEvent;
             await signalrProxy.Start();
+        }
+
+        private static async void SignalrProxy_GetClientReaderWriterEvent(WebCommon.HubModel.HubReadWriterModel obj)
+        {
+            var res = writerWorker.DoWork(obj);
+            if (!res.Success)
+            {
+                Console.WriteLine($"【{obj.ProxyName}-{obj.Action}】:【{DateTime.Now.ToString("HH:mm:ss")}】 {res.Error}");
+            }
+            await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientReaderWriterResultEvent, res);
+
         }
 
         private static void SignalrProxy_GetCncEventData(List<GroupEventData> obj)

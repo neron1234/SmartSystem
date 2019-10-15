@@ -1,6 +1,8 @@
 ﻿using Abp.Dependency;
+using MMK.SmartSystem.Common.Base;
 using MMK.SmartSystem.Laser.Base.CustomControl;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
+using MMK.SmartSystem.WebCommon.HubModel;
 using netDxf;
 using netDxf.Entities;
 using System;
@@ -25,19 +27,33 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
     /// <summary>
     /// ProgramListPage.xaml 的交互逻辑
     /// </summary>
-    public partial class ProgramListPage : Page, ITransientDependency
+    public partial class ProgramListPage : SignalrPage
     {
         private ProgramListViewModel programListViewModel { get; set; }
         public ProgramListPage()
         {
             InitializeComponent();
-            this.Loaded += ProgramListPage_Loaded;
+            this.DataContext = programListViewModel = new ProgramListViewModel();
+
+        }
+        protected override void PageSignlarLoaded()
+        {
+            SendReaderWriter(new HubReadWriterModel()
+            {
+                ProxyName = "ProgramListInOut",
+                Action = "Reader",
+                Id = "",
+                Data = new object[] { "//CNC_MEM/USER/PATH1/" }
+
+
+            });
         }
 
-        private void ProgramListPage_Loaded(object sender, RoutedEventArgs e)
+        protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
-            this.DataContext = programListViewModel = new ProgramListViewModel();
+            string IND = "";
         }
+        public override bool IsRequestResponse => true;
 
         /// <summary>
         /// 解析路径下的文件并进行绘制
@@ -73,7 +89,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                         //pointList.Add(line.Split(','));
                         line = reader.ReadLine();
                     }
-                    dg.Draw(pointList,programInfo.Name.Split('.')[0]);
+                    dg.Draw(pointList, programInfo.Name.Split('.')[0]);
                 }
             }
         }
@@ -121,6 +137,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             {
                 encoder.Save(stm);
             }
+        }
+
+        public override List<object> GetResultViewModelMap()
+        {
+            return default;
+        }
+
+        public override void CncOnError(string message)
+        {
         }
     }
 }

@@ -205,11 +205,14 @@
     <Compile Include="DeviceHelpers\ProgramTransferHelper.cs" />
     <Compile Include="DeviceHelpers\SpindleSpeedHelper.cs" />
     <Compile Include="DeviceHelpers\WorkpartNumHelper.cs" />
+    <Compile Include="DeviceInOut\BaseInOut.cs" />
+    <Compile Include="DeviceInOut\ProgramListInOut.cs" />
     <Compile Include="fwlib32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmartSystemCNCCoreConsts.cs" />
     <Compile Include="SmartSytemCNCCoreModule.cs" />
     <Compile Include="Workers\CncCoreWorker.cs" />
+    <Compile Include="Workers\CncReaderWriterWorker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

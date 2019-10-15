@@ -13,6 +13,8 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
     {
         public event Action<string> CncErrorEvent;
         public event Action<List<GroupEventData>> GetCncEventData;
+
+        public event Action<HubReadWriterModel> GetClientReaderWriterEvent;
         HubConnection connection;
         bool isExit = false;
         public SignalrProxy()
@@ -55,8 +57,8 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
                 CncErrorEvent?.Invoke(ex.Message);
                 return default;
             }
-       
-           
+
+
         }
 
         public async Task Close()
@@ -116,6 +118,10 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
                 GetCncEventData?.Invoke(message);
             });
 
+            connection.On<HubReadWriterModel>(SmartSystemCNCHostConsts.ClientReaderWriterEvent, (message) =>
+            {
+                GetClientReaderWriterEvent?.Invoke(message);
+            });
 
         }
     }
