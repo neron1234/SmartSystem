@@ -60,15 +60,16 @@ namespace MMK.SmartSystem.Laser.Base.CustomControl
             /// <summary>
             /// 打开软键盘。调用之前应先通过IsKeyboardOpen()来检查keyboard是否已经被打开，如果已经打开，就不要再打开了
             /// </summary>
-            public void OpenKeyBoard(int x = 0,int y = 0,int width = 1000,int height = 400)
+            public void OpenKeyBoard(int x = 0, int y = 0,int width = 1000,int height = 400)
             {
-                string oskFileName = Path.Combine(Environment.CurrentDirectory, "osk.exe");
+                //string oskFileName = Path.Combine(Environment.CurrentDirectory, "osk.exe");
+                string oskFileName = @"C:\Windows\System32\osk.exe";
 
-                if (!System.IO.File.Exists(oskFileName))
-                {
-                    MessageBox.Show("软键盘可执行文件osk.exe不存在！");
-                    return;
-                }
+                //if (!File.Exists(oskFileName))
+                //{
+                //    MessageBox.Show("软键盘可执行文件osk.exe不存在！");
+                //    return;
+                //}
                 try
                 {
                     // Start a process and raise an event when done.
@@ -93,12 +94,14 @@ namespace MMK.SmartSystem.Laser.Base.CustomControl
 
                 }
 
-                //设定键盘显示位置
-                NativeMethods.MoveWindow(_keyBoardWindowHwnd, x, y, width, height, true);
+                System.Windows.Interop.WindowInteropHelper winHelper = new System.Windows.Interop.WindowInteropHelper(Application.Current.MainWindow);
+                IntPtr mainWindowHandle = winHelper.Handle;
                 //将键盘设置于顶面
-                NativeMethods.SetWindowPos(_keyBoardWindowHwnd, -1, 0, 0, 0, 0, 1 | 2);
+                NativeMethods.SetWindowPos(_keyBoardWindowHwnd, mainWindowHandle, x, y, width, height, 1 | 2);
                 //设置软键盘到前端显示
                 NativeMethods.SetForegroundWindow(_keyBoardWindowHwnd);
+
+                NativeMethods.MoveWindow(_keyBoardWindowHwnd, x, y, width, height, true);
 
             }
             /// <summary>
@@ -176,13 +179,30 @@ namespace MMK.SmartSystem.Laser.Base.CustomControl
 
         public static class NativeMethods
         {
+            private const uint SWP_NOSIZE = 0x0001;
+            private const uint SWP_NOMOVE = 0x0002;
+            private const uint SWP_NOZORDER = 0x0004;
+            private const uint SWP_NOREDRAW = 0x0008;
+            private const uint SWP_NOACTIVATE = 0x0010;
+            private const uint SWP_FRAMECHANGED = 0x0020;
+            private const uint SWP_SHOWWINDOW = 0x0040;
+            private const uint SWP_HIDEWINDOW = 0x0080;
+            private const uint SWP_NOCOPYBITS = 0x0100;
+            private const uint SWP_NOOWNERZORDER = 0x0200;
+            private const uint SWP_NOSENDCHANGING = 0x0400;
+
+
+            [DllImport("user32.dll")]
+            public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X,
+                                    int Y, int cx, int cy, uint uFlags);
+
 
             [DllImport("User32.dll", EntryPoint = "FindWindow")]
             public extern static IntPtr FindWindow(string lpClassName, string lpWindowName);
+
             [System.Runtime.InteropServices.DllImportAttribute("user32.dll", EntryPoint = "MoveWindow")]
             public static extern bool MoveWindow(System.IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
-            [DllImport("user32.dll", CharSet = CharSet.Auto)]
-            public static extern int SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int y, int Width, int Height, int flags);
+
             [DllImport("user32.dll")]
             public static extern bool SetForegroundWindow(IntPtr hWnd);
             [DllImport("User32.dll", EntryPoint = "SendMessage")]

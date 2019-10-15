@@ -39,10 +39,6 @@ namespace MMK.SmartSystem.Laser.Base
                 MessageBox.Show(s);
                 this.Close();
             });
-            Messenger.Default.Register<bool>(this, (b) =>
-            {
-                sh.OpenKeyBoard();
-            });
         }
 
         private void PopupWindow_Closed(object sender, EventArgs e)

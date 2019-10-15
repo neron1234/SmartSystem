@@ -17,7 +17,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             get{
                 return new RelayCommand(() =>{
                     new PopupWindow(new EditProgramControl(), 800, 200, "上传CNC程序").ShowDialog();
-                    Messenger.Default.Send(true);
                 });
             }
         }
