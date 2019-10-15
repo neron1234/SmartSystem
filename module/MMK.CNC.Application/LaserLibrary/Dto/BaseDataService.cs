@@ -27,7 +27,7 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
 
         public MachiningDataGroup GetMachiningData(int id)
         {
-            var machining = _cacheManager.GetCache("MachiningDataGroup").Get("Default", () => MachiningDataGroupRepository.GetAllIncluding().ToDictionary(d => d.Id));
+            var machining = _cacheManager.GetCache("MachiningDataGroup").Get("Default_" + id, () => MachiningDataGroupRepository.GetAllIncluding().ToDictionary(d => d.Id));
             if (machining.ContainsKey(id))
             {
                 return machining[id];
