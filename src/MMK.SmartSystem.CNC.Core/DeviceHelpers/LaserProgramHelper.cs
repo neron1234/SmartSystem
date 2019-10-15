@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,6 +11,126 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
+    public class LaserProgramDemo
+    {
+        public void Dowork()
+        {
+            Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff"));
+
+            LaserProgramHelper helper = new LaserProgramHelper();
+
+            string progStr = "";
+            helper.GetProgramString(@"F:\Machine_Software\LE1.1\激光程序\0005", ref progStr);
+
+            ProgramCommentFromCncDto info = new ProgramCommentFromCncDto();
+            List<ProgramBlock> pBlocks = new List<ProgramBlock>();
+            helper.ProgramBlockDecompile(progStr, info, pBlocks);
+
+            List<DrawBlock> dBlocks = new List<DrawBlock>();
+            helper.ProgramBlockDraw(pBlocks, dBlocks);
+
+            double rWidth = 1000;
+            double rHeight = 1000;
+            if (info.PlateSize != null)
+            {
+                var rSize = info.PlateSize.Split('x');
+                if (rSize.Length == 2)
+                {
+                    rWidth = double.Parse(rSize[0]);
+                    rHeight = double.Parse(rSize[1]);
+                }
+            }
+
+            helper.DrawXYThumbnai(dBlocks, 0.2, 3000, 2000, rWidth, rHeight, @"F:\LaserPic.bmp");
+
+            Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff"));
+
+            Console.ReadKey();
+        }
+    }
+
+
+    public static class GraphicsAnglExtension
+    {
+        public static float ToGraphicsAngle(this float data)
+        {
+            if (data < 0) data = 360 + data;
+            //data = -1 * data;
+
+            //return data < 0 ? 360 + data : data;
+            return data;
+        }
+
+        public static float ToGraphicsSweep(this float start, float end, bool cw)
+        {
+            var temp_start = start.ToGraphicsAngle();
+            var temp_end = end.ToGraphicsAngle();
+
+            if (cw == true)
+            {
+                if (temp_start < temp_end)
+                {
+                    return 360 - (temp_end - temp_start);
+                }
+                else
+                {
+                    return temp_start - temp_end;
+                }
+            }
+            else
+            {
+                if (temp_start < temp_end)
+                {
+                    return -temp_end + temp_start;
+                }
+                else
+                {
+                    return (temp_start - temp_end) - 360;
+                }
+            }
+
+        }
+
+
+    }
+    public class ProgramCommentFromCncDto
+    {
+        public string Name { get; set; }
+
+        public string FullPath { get; set; }
+
+        public double Size { get; set; }
+
+        public string Material { get; set; }
+
+        public double Thickness { get; set; }
+
+        public string Gas { get; set; }
+
+        public double FocalPosition { get; set; }
+
+        public string NozzleKind { get; set; }
+
+        public double NozzleDiameter { get; set; }
+
+        public string PlateSize { get; set; }
+
+        public string UsedPlateSize { get; set; }
+
+        public double CuttingDistance { get; set; }
+
+        public int PiercingCount { get; set; }
+
+        public double CuttingTime { get; set; }
+
+        public int ThumbnaiType { get; set; }
+
+        public string ThumbnaiInfo { get; set; }
+
+        public DateTime UpdateTime { get; set; }
+
+    }
+
     public class ProgramBlock
     {
         public int G_Code_Count { get; set; }
@@ -56,165 +177,21 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
     }
 
-    public class LaserProgramHelper : BaseHelper
+    public class LaserProgramHelper
     {
-        public string GetProgramCommentInfo(string ncPath, ProgramCommentFromCncDto info)
+        private int LaserCommentLineCount = 10;
+
+        public string GetProgramString(string ncPath, ref string str)
         {
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
+            using (StreamReader sr = new StreamReader(ncPath))
             {
-                FreeConnect(flib);
-                return "获得程序信息失败，连接错误";
-            }
-
-            string str = "";
-            Focas1.cnc_upend4(flib);
-            var ret = Focas1.cnc_upstart4(flib, 0, ncPath);
-            if (ret != 0)
-            {
-                FreeConnect(flib);
-                return "获得程序信息失败," + GetGeneralErrorMessage(ret);
-            }
-
-            int len;
-            do
-            {
-                len = 1024;
-
-                StringBuilder buf = new StringBuilder(1024);
-                ret = Focas1.cnc_upload4(flib, ref len, buf);
-
-                if (ret == 10)
-                {
-                    continue;
-                }
-                if (ret == 0)
-                {
-                    string temp = buf.ToString(0, len);
-                    str += temp;
-
-                    if (str.Count(x => x == '\n') > LaserCommentLineCount)
-                    {
-                        break;
-                    }
-                }
-                if (buf[len - 1] == '%')
-                {
-                    break;
-                }
-
-            } while ((ret == 0) || (ret == 10));
-
-            Focas1.cnc_upend4(flib);
-            FreeConnect(flib);
-
-            if (ret != 0)
-            {
-                return "获得程序信息失败," + GetGeneralErrorMessage(ret);
-            }
-            
-            Regex matRegex = new Regex(@"(?<=\(#MATERIAL=)\w*(?=\))");
-            Match matMatch = matRegex.Match(str);
-            if (matMatch.Success == true) info.Material = matMatch.Value;
-
-            Regex thickRegex = new Regex(@"(?<=\(#THICKNESS=)\w*(?=\))");
-            Match thickMatch = thickRegex.Match(str);
-            if (thickMatch.Success == true) info.Thickness = double.Parse(thickMatch.Value);
-
-            Regex gasRegex = new Regex(@"(?<=\(#CUTTING_GAS_KIND=)\w*(?=\))");
-            Match gasMatch = gasRegex.Match(str);
-            if (gasMatch.Success == true) info.Gas = gasMatch.Value;
-
-            Regex focalRegex = new Regex(@"(?<=\(#FOCAL_POSITION=)\w*(?=\))");
-            Match focalMatch = focalRegex.Match(str);
-            if (focalMatch.Success == true) info.FocalPosition =double.Parse(focalMatch.Value);
-
-            Regex nozzleDiaRegex = new Regex(@"(?<=\(#NOZZLE_DIA=)\w*(?=\))");
-            Match nozzleDiaMatch = nozzleDiaRegex.Match(str);
-            if (nozzleDiaMatch.Success == true) info.NozzleDiameter = double.Parse(nozzleDiaMatch.Value);
-
-            Regex nozzleTypeRegex = new Regex(@"(?<=\(#NOZZLE_TYPE=)\w*(?=\))");
-            Match nozzleTypeMatch = nozzleTypeRegex.Match(str);
-            if (nozzleTypeMatch.Success == true) info.NozzleKind = nozzleTypeMatch.Value;
-
-            Regex plateSizeRegex = new Regex(@"(?<=\(#PLATE_SIZE=)\w*(?=\))");
-            Match plateSizeMatch = plateSizeRegex.Match(str);
-            if (plateSizeMatch.Success == true) info.PlateSize = plateSizeMatch.Value;
-
-            Regex usedPlateSizeRegex = new Regex(@"(?<=\(#USED_SIZE=)\w*(?=\))");
-            Match usedPlateSizeMatch = usedPlateSizeRegex.Match(str);
-            if (usedPlateSizeMatch.Success == true) info.UsedPlateSize = usedPlateSizeMatch.Value;
-
-            Regex cuttingDistanceRegex = new Regex(@"(?<=\(#CUTTING_DISTANCE=)\w*(?=\))");
-            Match cuttingDistanceMatch = cuttingDistanceRegex.Match(str);
-            if (cuttingDistanceMatch.Success == true) info.CuttingDistance = double.Parse(cuttingDistanceMatch.Value);
-
-            Regex piercingRegex = new Regex(@"(?<=\(#PIERCING_COUNT=)\w*(?=\))");
-            Match piercingMatch = piercingRegex.Match(str);
-            if (piercingMatch.Success == true) info.PiercingCount = int.Parse(piercingMatch.Value);
-
-            Regex cuttingTimeRegex = new Regex(@"(?<=\(#CUTTING_TIME=)\w*(?=\))");
-            Match cuttingTimeMatch = cuttingTimeRegex.Match(str);
-            if (cuttingTimeMatch.Success == true) info.CuttingTime = double.Parse(cuttingTimeMatch.Value);
-
-            return null;
-        }
-
-        public string GetProgramString(string ncPath, string str)
-        {
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "获得程序信息失败，连接错误";
-            }
-
-            Focas1.cnc_upend4(flib);
-            var ret = Focas1.cnc_upstart4(flib, 0, ncPath);
-            if (ret != 0)
-            {
-                FreeConnect(flib);
-                return "获得程序信息失败," + GetGeneralErrorMessage(ret);
-            }
-
-            int len;
-            do
-            {
-                len = 1024;
-
-                StringBuilder buf = new StringBuilder(1024);
-                ret = Focas1.cnc_upload4(flib, ref len, buf);
-
-                if (ret == 10)
-                {
-                    continue;
-                }
-                if (ret == 0)
-                {
-                    string temp = buf.ToString(0, len);
-                    str += temp;
-                }
-                if (buf[len - 1] == '%')
-                {
-                    break;
-                }
-
-            } while ((ret == 0) || (ret == 10));
-
-            Focas1.cnc_upend4(flib);
-            FreeConnect(flib);
-
-            if (ret != 0)
-            {
-                return "获得程序信息失败," + GetGeneralErrorMessage(ret);
+                str = sr.ReadToEnd();
             }
 
             return null;
         }
 
-        private void ProgramBlockDecompile(string str, ProgramCommentFromCncDto info, List<ProgramBlock> pBlocks)
+        public void ProgramBlockDecompile(string str, ProgramCommentFromCncDto info, List<ProgramBlock> pBlocks)
         {
             //str.Replace("\r\n", "\n");
             var progBlocks = str.Split('\n');
@@ -223,12 +200,14 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             foreach (var block in progBlocks)
             {
-                if(blockIndex< LaserCommentLineCount)
+                if (blockIndex < LaserCommentLineCount)
                 {
                     GetInfo(info, block);
                 }
 
-                var tempStr = Regex.Replace(block, @"(?<=\()\w*(?=\))", "").Replace(" ", "");
+                var tempStr = Regex.Replace(block, @"\(.*\)", "");
+                tempStr = Regex.Replace(tempStr, @"\<.*\>", "");
+                tempStr = tempStr.Replace(" ", "").Replace("\r", "");
 
                 var str_num = Regex.Replace(tempStr, @"[A-Z]", "_");
                 var nums = str_num.Split('_');
@@ -288,7 +267,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
         }
 
-        private void ProgramBlockDraw(List<ProgramBlock> pBlocks, List<DrawBlock> dBlocks)
+        public void ProgramBlockDraw(List<ProgramBlock> pBlocks, List<DrawBlock> dBlocks)
         {
             double lastG01Group = 0;// G01 G02 G03 G00
             double lastG03Group = 90;// G90 G91
@@ -306,7 +285,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                 }
 
                 var g01Group = pitem.G_Codes.Where(x => x.HasValue == true).Where(x => x.Value >= 0 && x.Value <= 3).FirstOrDefault();
-                if (g01Group!=null)
+                if (g01Group != null)
                 {
                     lastG01Group = g01Group.Value;
 
@@ -336,8 +315,12 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
                     dBlocks.Add(ditem);
 
+                    lastX = ditem.EndX;
+                    lastY = ditem.EndY;
+                    lastZ = ditem.EndZ;
+
                 }
-                else if (pitem.G_Code_Count==0 && pitem.M_Code_Count==0 && (pitem.X_Adr.HasValue || pitem.Y_Adr.HasValue || pitem.Z_Adr.HasValue))
+                else if (pitem.G_Code_Count == 0 && pitem.M_Code_Count == 0 && (pitem.X_Adr.HasValue || pitem.Y_Adr.HasValue || pitem.Z_Adr.HasValue))
                 {
                     if (lastG03Group == 91)
                     {
@@ -364,12 +347,21 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     ditem.R_Adr = pitem.R_Adr;
 
                     dBlocks.Add(ditem);
+
+                    lastX = ditem.EndX;
+                    lastY = ditem.EndY;
+                    lastZ = ditem.EndZ;
                 }
             }
         }
 
-        private void DrawXYThumbnai(List<DrawBlock> dBlocks, int picWidth, int picHeight, string path)
+        public void DrawXYThumbnai(List<DrawBlock> dBlocks, double inc, int picWidth, int picHeight, double rWidth, double rHeight, string path)
         {
+            float radioWidth = (float)(picWidth / rWidth);
+            float radioHeight = (float)(picHeight / rHeight);
+
+            float picradio = radioWidth > radioHeight ? radioHeight : radioWidth;
+
             //新建一个默认大小的图片
             Bitmap bmp = new Bitmap(picWidth, picHeight);
             //利用该图片对象生成画板
@@ -381,50 +373,84 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             //新建一个画刷
             SolidBrush brush = new SolidBrush(Color.Red);
             //定义一个红色、线条宽度为1的画笔
-            Pen pen = new Pen(Color.Red, (float)0.5);
-            
-            foreach(var item in dBlocks)
+            Pen pen = new Pen(Color.Red, (float)0.1);
+
+
+            foreach (var item in dBlocks)
             {
-                if(item.G01Group==1)
+                //if (item.G01Group == 0)
+                //{
+                //    DrawXYLine(item, graphic, pen, picradio);
+                //}
+                if (item.G01Group == 1)
                 {
-                    graphic.DrawLine(pen, (float)item.StartX, (float)item.StartY, (float)item.EndX, (float)item.EndY);
+                    DrawXYLine(item, graphic, pen, picradio);
                 }
-                else if(item.G01Group==2)
+                else if (item.G01Group == 2)
                 {
-                    List<Tuple<double, double>> tempPs = new List<Tuple<double, double>>();
-                    DrawXYCircle(0.2, false, item, tempPs);
-
-                    float? lastX=null;
-                    float? lastY = null;
-                    foreach(var p in tempPs)
+                    if (item.I_Adr.HasValue && item.J_Adr.HasValue)
                     {
-                        if(lastX.HasValue && lastY.HasValue)
-                        {
-                            graphic.DrawLine(pen, lastX.Value, lastY.Value, (float)p.Item1, (float)p.Item2);
-                        }
-
-                        lastX = (float)p.Item1;
-                        lastY = (float)p.Item2;
+                        DrawXYCircleWithIJ(item, graphic, pen, picradio);
+                    }
+                    else if (item.R_Adr.HasValue)
+                    {
+                        DrawXYCircleWithR(item, graphic, pen, picradio);
                     }
                 }
                 else if (item.G01Group == 3)
                 {
-                    List<Tuple<double, double>> tempPs = new List<Tuple<double, double>>();
-                    DrawXYCircle(0.2, true, item, tempPs);
-
-                    float? lastX = null;
-                    float? lastY = null;
-                    foreach (var p in tempPs)
+                    if (item.I_Adr.HasValue && item.J_Adr.HasValue)
                     {
-                        if (lastX.HasValue && lastY.HasValue)
-                        {
-                            graphic.DrawLine(pen, lastX.Value, lastY.Value, (float)p.Item1, (float)p.Item2);
-                        }
-
-                        lastX = (float)p.Item1;
-                        lastY = (float)p.Item2;
+                        DrawXYCircleWithIJ(item, graphic, pen, picradio);
+                    }
+                    else if (item.R_Adr.HasValue)
+                    {
+                        DrawXYCircleWithR(item, graphic, pen, picradio);
                     }
                 }
+
+                #region old
+                //else if (item.G01Group == 2)
+                //{
+                //    List<Tuple<double, double>> tempPs = new List<Tuple<double, double>>();
+
+                //    DrawXYCircle(inc, false, item, tempPs);
+
+                //    float? lastX = null;
+                //    float? lastY = null;
+                //    foreach (var p in tempPs)
+                //    {
+                //        if (lastX.HasValue && lastY.HasValue)
+                //        {
+                //            graphic.DrawLine(pen, (float)(lastX.Value * picradio), (float)(lastY.Value * picradio), (float)(p.Item1 * picradio), (float)(p.Item2 * picradio));
+                //        }
+
+                //        lastX = (float)p.Item1;
+                //        lastY = (float)p.Item2;
+                //    }
+                //}
+                //else if (item.G01Group == 3)
+                //{
+                //    //DrawXYCircleWithIJ(item, graphic, pen, picradio);
+
+                //    List<Tuple<double, double>> tempPs = new List<Tuple<double, double>>();
+
+                //    DrawXYCircle(inc, true, item, tempPs);
+
+                //    float? lastX = null;
+                //    float? lastY = null;
+                //    foreach (var p in tempPs)
+                //    {
+                //        if (lastX.HasValue && lastY.HasValue)
+                //        {
+                //            graphic.DrawLine(pen, (float)(lastX.Value * picradio), (float)(lastY.Value * picradio), (float)(p.Item1 * picradio), (float)(p.Item2 * picradio));
+                //        }
+
+                //        lastX = (float)p.Item1;
+                //        lastY = (float)p.Item2;
+                //    }
+                //}
+                #endregion
             }
 
             //释放资源
@@ -433,7 +459,197 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             bmp.Save(path, ImageFormat.Bmp);
         }
 
-        private void DrawXYCircle(double inc, bool cw_ccw, DrawBlock block, List<Tuple<double,double>> points)
+        private void DrawXYLine(DrawBlock block, Graphics graphic, Pen pen, double picRadio)
+        {
+            graphic.DrawLine(pen,
+                (float)(block.StartX * picRadio),
+                (float)(block.StartY * picRadio),
+                (float)(block.EndX * picRadio),
+                (float)(block.EndY * picRadio));
+        }
+
+        private void DrawXYCircleWithR(DrawBlock block, Graphics graphic, Pen pen, float picRadio)
+        {
+            double r_pow = block.R_Adr.Value * block.R_Adr.Value;
+
+            var e = (-2 * block.StartX + 2 * block.EndX) / (2 * block.StartY - 2 * block.EndY);
+            var f = (block.StartX * block.StartX - block.EndX * block.EndX + block.StartY * block.StartY - block.EndY * block.EndY) /
+                (2 * block.StartY - 2 * block.EndY);
+
+            var r = 1 + e * e;
+            var s = -2 * block.StartX + 2 * e * f - 2 * block.StartY * e;
+            var t = -r_pow + block.StartX * block.StartX + block.StartY * block.StartY + 2 * block.StartY * f;
+
+            var judge = s * s - 4 * r * t;
+            if (judge >= 0)
+            {
+                var center_x_1 = (-s + Math.Sqrt(s * s - 4 * r * t)) / 2 * s;
+                var center_y_1 = e * center_x_1 + f;
+
+                var center_x_2 = (-s - Math.Sqrt(s * s - 4 * r * t)) / 2 * s;
+                var center_y_2 = e * center_x_2 + f;
+
+                var arr_chord_x = block.EndX - block.StartX;
+                var arr_chord_y = block.EndY - block.StartY;
+
+                var arr_r_x_1 = center_x_1 - block.StartX;
+                var arr_r_y_1 = center_y_1 - block.StartY;
+
+                if (block.G01Group == 2)
+                {
+                    var temp = arr_chord_x * arr_r_y_1 - arr_chord_y * arr_r_x_1;
+                    if (temp <= 0)
+                    {
+                        block.I_Adr = center_x_1 - block.StartX;
+                        block.J_Adr = center_y_1 - block.StartX;
+
+                        double center_x = (block.StartX + block.I_Adr.Value) * picRadio;
+                        double center_y = (block.StartY + block.J_Adr.Value) * picRadio;
+                        double radio = Math.Sqrt(r_pow) * picRadio;
+
+                        float startArc = (float)(Math.Atan2(block.EndY * picRadio - center_y, block.EndX * picRadio - center_x) * 180 / Math.PI);
+                        startArc = startArc > 0 ? 360 - startArc : -startArc;
+                        float endArc = (float)(Math.Atan2(-block.J_Adr.Value * picRadio, -block.I_Adr.Value * picRadio) * 180 / Math.PI);
+                        endArc = endArc > 0 ? 360 - endArc : -endArc;
+
+                        graphic.DrawArc(
+                            pen,
+                            (float)(center_x - radio),
+                            (float)(center_y - radio),
+                            (float)radio * 2,
+                            (float)radio * 2,
+                            endArc,
+                            Math.Abs(startArc - endArc)
+                            );
+                    }
+                    else
+                    {
+                        block.I_Adr = center_x_2 - block.StartX;
+                        block.J_Adr = center_y_2 - block.StartX;
+
+                        double center_x = (block.StartX + block.I_Adr.Value) * picRadio;
+                        double center_y = (block.StartY + block.J_Adr.Value) * picRadio;
+                        double radio = Math.Sqrt(r_pow) * picRadio;
+
+                        float startArc = (float)(Math.Atan2(block.EndY * picRadio - center_y, block.EndX * picRadio - center_x) * 180 / Math.PI);
+                        startArc = startArc > 0 ? 360 - startArc : -startArc;
+                        float endArc = (float)(Math.Atan2(-block.J_Adr.Value * picRadio, -block.I_Adr.Value * picRadio) * 180 / Math.PI);
+                        endArc = endArc > 0 ? 360 - endArc : -endArc;
+
+                        graphic.DrawArc(
+                            pen,
+                            (float)(center_x - radio),
+                            (float)(center_y - radio),
+                            (float)radio * 2,
+                            (float)radio * 2,
+                            endArc,
+                            Math.Abs(startArc - endArc)
+                            );
+                    }
+                }
+                else
+                {
+                    var temp = arr_chord_x * arr_r_y_1 - arr_chord_y * arr_r_x_1;
+                    if (temp >= 0)
+                    {
+                        block.I_Adr = center_x_1 - block.StartX;
+                        block.J_Adr = center_y_1 - block.StartX;
+
+                        double center_x = (block.StartX + block.I_Adr.Value) * picRadio;
+                        double center_y = (block.StartY + block.J_Adr.Value) * picRadio;
+                        double radio = Math.Sqrt(Math.Pow(block.I_Adr.Value, 2) + Math.Pow(block.J_Adr.Value, 2)) * picRadio;
+
+                        float startArc = (float)(Math.Atan2(block.EndY * picRadio - center_y, block.EndX * picRadio - center_x) * 180 / Math.PI);
+                        startArc = startArc > 0 ? 360 - startArc : -startArc;
+                        float endArc = (float)(Math.Atan2(-block.J_Adr.Value * picRadio, -block.I_Adr.Value * picRadio) * 180 / Math.PI);
+                        endArc = endArc > 0 ? 360 - endArc : -endArc;
+
+                        graphic.DrawArc(
+                            pen,
+                            (float)(center_x - radio),
+                            (float)(center_y - radio),
+                            (float)radio * 2,
+                            (float)radio * 2,
+                            startArc,
+                            Math.Abs(endArc - startArc)
+                            );
+                    }
+                    else
+                    {
+                        block.I_Adr = center_x_2 - block.StartX;
+                        block.J_Adr = center_y_2 - block.StartX;
+
+                        double center_x = (block.StartX + block.I_Adr.Value) * picRadio;
+                        double center_y = (block.StartY + block.J_Adr.Value) * picRadio;
+                        double radio = Math.Sqrt(Math.Pow(block.I_Adr.Value, 2) + Math.Pow(block.J_Adr.Value, 2)) * picRadio;
+
+                        float startArc = (float)(Math.Atan2(block.EndY * picRadio - center_y, block.EndX * picRadio - center_x) * 180 / Math.PI);
+                        startArc = startArc > 0 ? 360 - startArc : -startArc;
+                        float endArc = (float)(Math.Atan2(-block.J_Adr.Value * picRadio, -block.I_Adr.Value * picRadio) * 180 / Math.PI);
+                        endArc = endArc > 0 ? 360 - endArc : -endArc;
+
+                        graphic.DrawArc(
+                            pen,
+                            (float)(center_x - radio),
+                            (float)(center_y - radio),
+                            (float)radio * 2,
+                            (float)radio * 2,
+                            startArc,
+                            Math.Abs(endArc - startArc)
+                            );
+                    }
+                }
+            }
+        }
+
+        private void DrawXYCircleWithIJ(DrawBlock block, Graphics graphic, Pen pen, float picRadio)
+        {
+
+            if (block.G01Group == 2)
+            {
+                double center_x = block.StartX + block.I_Adr.Value;
+                double center_y = block.StartY + block.J_Adr.Value;
+                double radius = Math.Round(Math.Sqrt(Math.Pow(block.I_Adr.Value, 2) + Math.Pow(block.J_Adr.Value, 2)), 2);
+
+                float startArc = (float)(Math.Atan2(-block.J_Adr.Value, -block.I_Adr.Value) * 180 / Math.PI);
+                float endArc = (float)(Math.Atan2(block.EndY - center_y, block.EndX - center_x) * 180 / Math.PI);
+
+                graphic.DrawArc(
+                    pen,
+                    (float)(center_x - radius) * picRadio,
+                    (float)(center_y - radius) * picRadio,
+                    (float)radius * 2 * picRadio,
+                    (float)radius * 2 * picRadio,
+                    endArc,
+                    startArc.ToGraphicsSweep(endArc, true)
+                    );
+
+            }
+            else if (block.G01Group == 3)
+            {
+                double center_x = block.StartX + block.I_Adr.Value;
+                double center_y = block.StartY + block.J_Adr.Value;
+                double radius = Math.Round(Math.Sqrt(Math.Pow(block.I_Adr.Value, 2) + Math.Pow(block.J_Adr.Value, 2)), 2);
+
+                float startArc = (float)(Math.Atan2(-block.J_Adr.Value, -block.I_Adr.Value) * 180 / Math.PI);
+                float endArc = (float)(Math.Atan2(block.EndY - center_y, block.EndX - center_x) * 180 / Math.PI);
+
+
+                graphic.DrawArc(
+                    pen,
+                    (float)(center_x - radius) * picRadio,
+                    (float)(center_y - radius) * picRadio,
+                    (float)radius * 2 * picRadio,
+                    (float)radius * 2 * picRadio,
+                    endArc,
+                    startArc.ToGraphicsSweep(endArc, false)
+                );
+
+
+            }
+        }
+
+        private void DrawXYCircle(double inc, bool cw_ccw, DrawBlock block, List<Tuple<double, double>> points)
         {
             double st_x = block.StartX;
             double st_y = block.StartY;
