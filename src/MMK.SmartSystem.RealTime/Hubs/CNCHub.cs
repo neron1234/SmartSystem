@@ -8,6 +8,7 @@ using MMK.SmartSystem.CNC.Core;
 using MMK.SmartSystem.CNC.Core.Workers;
 using MMK.SmartSystem.RealTime.Job;
 using MMK.SmartSystem.WebCommon.DeviceModel;
+using MMK.SmartSystem.WebCommon.HubModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,23 +20,26 @@ namespace MMK.SmartSystem.RealTime.Hubs
 {
     public class CNCHub : AbpCommonHub
     {
-        private IIocManager _iocManager;
         public const string GetDataAction = "GetCNCData";
         public const string GetErrorAction = "GetError";
+        public const string GetReadWriterAction = "GetReadWriter";
         IServiceProvider service;
-        public CNCHub(IOnlineClientManager onlineClientManager, IIocManager iocManager, IClientInfoProvider clientInfoProvider, IServiceProvider _service) :
+        public CNCHub(IOnlineClientManager onlineClientManager, IClientInfoProvider clientInfoProvider, IServiceProvider _service) :
           base(onlineClientManager, clientInfoProvider)
         {
-            _iocManager = iocManager;
-            this.service = _service;
+            service = _service;
 
         }
 
-        public BaseCNCResultModel<ReadProgramListItemResultModel> ReadProgramList(string folder)
+        public string SendReadWriter(HubReadWriterModel model)
         {
-
-            return new CncCoreWorker(_iocManager).ReadProgramList(folder);
-
+            var hubClient = service.GetService(typeof(IHubContext<CncClientHub>)) as IHubContext<CncClientHub>;
+            if (hubClient != null)
+            {
+                model.ConnectId = Context.ConnectionId;
+                hubClient.Clients.All.SendAsync(CncClientHub.ClientReadWriter, model);
+            }
+            return "True";
         }
 
         public Task Refresh(string info)
@@ -59,11 +63,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
                 }
 
                 Logger.Info($"【CncConfig】:{info}");
-                //foreach (var item in cncEvents)
-                //{
-                //    CncCoreWorker.m_EventDatas.Add(item);
 
-                //}
 
             }
             catch (Exception ex)

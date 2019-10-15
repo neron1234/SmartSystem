@@ -6,6 +6,7 @@ using MMK.SmartSystem.MultiTenancy;
 using MMK.CNC.Core.Managements;
 using MMK.CNC.Core.SystemClient;
 using MMK.CNC.Core.LaserLibrary;
+using MMK.CNC.Core.LaserProgram;
 
 namespace MMK.SmartSystem.EntityFrameworkCore
 {
@@ -34,6 +35,7 @@ namespace MMK.SmartSystem.EntityFrameworkCore
 
         public DbSet<SlopeControlData> SlopeControlDatas { set; get; }
 
+        public DbSet<ProgramComment> ProgramComments { set; get; }
         public SmartSystemDbContext(DbContextOptions<SmartSystemDbContext> options)
             : base(options)
         {

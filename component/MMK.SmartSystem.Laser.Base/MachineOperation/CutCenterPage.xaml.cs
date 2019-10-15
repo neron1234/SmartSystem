@@ -42,8 +42,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
             return default;
         }
 
-        public override void PageSignlarLoaded()
-        {
-        }
+        
     }
 }

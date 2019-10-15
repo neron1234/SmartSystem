@@ -18,6 +18,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
     public class CncClientHub : AbpCommonHub
     {
         public const string ClientGetCncEvent = "GetCncEvent";
+        public const string ClientReadWriter = "ReaderWriterEvent";
         IServiceProvider service;
         IHubContext<CNCHub> hubClient;
         public CncClientHub(IOnlineClientManager onlineClientManager, IServiceProvider _service, IClientInfoProvider clientInfoProvider) :
@@ -43,6 +44,11 @@ namespace MMK.SmartSystem.RealTime.Hubs
             hubClient.Clients.All.SendAsync(CNCHub.GetDataAction, res);
             return "True";
 
+        }
+        public string PushReadWriter(HubReadWriterResultModel model)
+        {
+            hubClient.Clients.Client(model.ConnectId).SendAsync(CNCHub.GetReadWriterAction, model);
+            return "True";
         }
         public override Task OnConnectedAsync()
         {
