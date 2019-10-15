@@ -2,6 +2,7 @@
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
+using Abp.Runtime.Caching;
 using MMK.CNC.Application.LaserLibrary.Dto;
 using MMK.CNC.Core.LaserLibrary;
 using System;
@@ -18,64 +19,40 @@ namespace MMK.CNC.Application.LaserLibrary
     }
     public class SlopeControlDataApplicationService : AsyncCrudAppService<SlopeControlData, SlopeControlDataDto, int, SlopeControlDataResultRequestDto, CreateCSlopeControlDataDto, UpdateSlopeControlDataDto>, ISlopeControlDataApplicationService
     {
-        public IRepository<Gas, int> GasRepository { set; get; }
-        public IRepository<Material, int> MaterialRepository { get; set; }
-        public IRepository<MachiningDataGroup, int> MachiningDataGroupRepository { get; set; }
-        public IRepository<MachiningKind, int> MachiningKindRepository { get; set; }
-        public IRepository<NozzleKind, int> NozzleKindRepository { get; set; }
-
-        IRepository<SlopeControlData, int> repository;
-        public SlopeControlDataApplicationService(IRepository<SlopeControlData, int> repository) : base(repository)
+        private readonly ICacheManager _cacheManager;
+        public BaseDataService DataService { set; get; }
+        public SlopeControlDataApplicationService(IRepository<SlopeControlData, int> repository, ICacheManager cacheManager) : base(repository)
         {
-            this.repository = repository;
+            _cacheManager = cacheManager;
         }
 
-        
-
-        public override async Task<PagedResultDto<SlopeControlDataDto>> GetAll(SlopeControlDataResultRequestDto input)
+        public override Task<PagedResultDto<SlopeControlDataDto>> GetAll(SlopeControlDataResultRequestDto input)
         {
-            var list = repository.GetAllIncluding().WhereIf(input.MachiningDataGroupId != -1, n => n.MachiningDataGroupId == input.MachiningDataGroupId);
+            var list = _cacheManager.GetCache("SlopeControlDataGetAll").Get(input.ToString(), () => GetDataFromDb(input));
+            return list;
+        }
+
+        private async Task<PagedResultDto<SlopeControlDataDto>> GetDataFromDb(SlopeControlDataResultRequestDto input)
+        {
+            var list = Repository.GetAllIncluding().WhereIf(input.MachiningDataGroupId != -1, n => n.MachiningDataGroupId == input.MachiningDataGroupId);
             int count = list.Count();
             var listRes = list.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
 
             var resultDto = ObjectMapper.Map<List<SlopeControlDataDto>>(listRes);
-            var gasNodes = GasRepository.GetAllIncluding().ToDictionary(d => d.Code);
-
-            var machining = MachiningDataGroupRepository.GetAllIncluding().ToDictionary(d => d.Id);
-
-            var machiningKind = MachiningKindRepository.GetAllIncluding().ToDictionary(d => d.Code);
-
-            var material = MaterialRepository.GetAllIncluding().ToDictionary(d => d.Code);
-
-            var nozzle = NozzleKindRepository.GetAllIncluding().ToDictionary(d => d.Code);
 
             foreach (var item in resultDto)
             {
-                if (gasNodes.ContainsKey(item.GasCode))
+                item.GasName = DataService.GetGas(item.GasCode).Name_CN;
+                item.MachiningKindName = DataService.GetMachiningKind(item.MachiningKindCode).Name_CN;
+                item.NozzleKindName = DataService.GetNozzleKind(item.NozzleKindCode).Name_CN;
+                var groupMachining = DataService.GetMachiningData(item.MachiningDataGroupId);
+                if (groupMachining.Id != 0)
                 {
-                    item.GasName = gasNodes[item.GasCode].Name_CN;
-                }
+                    item.MaterialThickness = groupMachining.MaterialThickness;
+                    item.MaterialName = DataService.GetMaterial(groupMachining.MaterialCode).Name_CN;
 
-                if (machining.ContainsKey(item.MachiningDataGroupId))
-                {
-                    var ma = machining[item.MachiningDataGroupId];
-                    item.MaterialThickness = machining[item.MachiningDataGroupId].MaterialThickness;
-                    if (material.ContainsKey(ma.MaterialCode))
-                    {
-                        item.MaterialName = material[ma.MaterialCode].Name_CN;
-                    }
-                }
-                if (machiningKind.ContainsKey(item.MachiningKindCode))
-                {
-                    item.MachiningKindName = machiningKind[item.NozzleKindCode].Name_CN;
-                }
-
-                if (nozzle.ContainsKey(item.NozzleKindCode))
-                {
-                    item.NozzleKindName = nozzle[item.NozzleKindCode].Name_CN;
                 }
             }
-
             await Task.CompletedTask;
             return new PagedResultDto<SlopeControlDataDto>(count, resultDto);
         }

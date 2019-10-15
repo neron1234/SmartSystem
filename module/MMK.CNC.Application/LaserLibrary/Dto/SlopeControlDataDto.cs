@@ -305,5 +305,9 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
     public class SlopeControlDataResultRequestDto : PagedResultRequestDto
     {
         public int MachiningDataGroupId { get; set; }
+        public override string ToString()
+        {
+            return $"{MachiningDataGroupId}{SkipCount}{MaxResultCount}";
+        }
     }
 }
