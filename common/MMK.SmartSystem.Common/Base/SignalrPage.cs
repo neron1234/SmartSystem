@@ -30,7 +30,7 @@ namespace MMK.SmartSystem.Common.Base
         public abstract void CncOnError(string message);
         public SignalrPage()
         {
-            signalrProxyClient = new SignalrProxyClient(this.GetType().FullName);
+            signalrProxyClient = new SignalrProxyClient(this.GetType().FullName + "_" + Guid.NewGuid().ToString("N"));
             signalrProxyClient.CncErrorEvent += SignalrProxyClient_CncErrorEvent;
             signalrProxyClient.HubRefreshModelEvent += SignalrProxyClient_HubRefreshModelEvent;
             this.Loaded += SignalrPage_Loaded;
