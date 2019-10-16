@@ -26,14 +26,16 @@ namespace MMK.SmartSystem.RealTime.EventHandlers
         }
         public void HandleEvent(UploadProgramEventData eventData)
         {
-            string savaPath = Path.Combine(_hostingEnvironment.WebRootPath, "Upload", "CNCProgram");
-            string savaFullName = "";
+            string savePath = Path.Combine(_hostingEnvironment.WebRootPath, "Upload", "CNCProgram");
+            string saveFullName = "";
 
-
-
-
-
-            hubContext.Clients.All.SendAsync(CncClientHub.ClientReadProgram, savaFullName);
+            if (Directory.Exists(savePath)){
+                DirectoryInfo root = new DirectoryInfo(savePath);
+                var nameCount = root.GetFiles().Where(n => n.Name == eventData.FullName).Count();
+                saveFullName = nameCount > 0 ? eventData.FullName + nameCount : eventData.FullName;
+                System.Runtime.Remoting.MetadataServices.MetaData.SaveStreamToFile(eventData.FileStream, Path.Combine(savePath, saveFullName));
+            }
+            hubContext.Clients.All.SendAsync(CncClientHub.ClientReadProgram, saveFullName);
 
         }
     }

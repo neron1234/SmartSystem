@@ -280,7 +280,10 @@
     <Compile Include="CustomControl\ZoomableCanvas\ZoomableCanvas.cs" />
     <Compile Include="EventHandler\CuttingDataHandler.cs" />
     <Compile Include="EventHandler\EdgeCuttingHandler.cs" />
+    <Compile Include="EventHandler\GasHandler.cs" />
+    <Compile Include="EventHandler\MachiningKindHandler.cs" />
     <Compile Include="EventHandler\MaterialInfoHandler.cs" />
+    <Compile Include="EventHandler\NozzleKindHandler.cs" />
     <Compile Include="EventHandler\PiercingDataHandler.cs" />
     <Compile Include="EventHandler\SlopeControlDataHandler.cs" />
     <Compile Include="MachineMonitor\ControlHelp\GridHelper.cs" />
@@ -365,6 +368,9 @@
     <Compile Include="ProgramOperation\UserControls\CNCProgramListControl.xaml.cs">
       <DependentUpon>CNCProgramListControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgramOperation\UserControls\UpLoadLocalProgramControl.xaml.cs">
+      <DependentUpon>UpLoadLocalProgramControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProgramOperation\UserControls\EditProgramControl.xaml.cs">
       <DependentUpon>EditProgramControl.xaml</DependentUpon>
     </Compile>
@@ -375,6 +381,7 @@
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCProgramListViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\LocalProgramListViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\ProgramViewModel.cs" />
+    <Compile Include="ProgramOperation\UserControls\ViewModel\UpLoadLocalProgramViewModel.cs" />
     <Compile Include="ProgramOperation\ViewModel\ProgramListViewModel.cs" />
     <Compile Include="SmartSystemDeviceModule.cs" />
     <Page Include="App.xaml">
@@ -560,6 +567,10 @@
     <Page Include="ProgramOperation\UserControls\CNCProgramListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgramOperation\UserControls\UpLoadLocalProgramControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ProgramOperation\UserControls\EditProgramControl.xaml">
       <SubType>Designer</SubType>

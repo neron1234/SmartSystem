@@ -3,7 +3,6 @@ using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Events.Bus;
 using Abp.Runtime.Caching;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using MMK.CNC.Application.LaserProgram.Dto;
 using MMK.CNC.Core.LaserProgram;
@@ -19,8 +18,6 @@ namespace MMK.CNC.Application.LaserProgram
 {
     public interface IProgramApplicationService : IAsyncCrudAppService<ProgramCommentFromCncDto, int, PagedResultRequestDto, CreateProgramDto, UpdateProgramDto>
     {
-
-
         Task<string> UploadProgram(IFormFile file);
 
     }
@@ -41,13 +38,11 @@ namespace MMK.CNC.Application.LaserProgram
 
         }
 
-
-
         public async Task<string> UploadProgram(IFormFile file)
         {
             var stream = file.OpenReadStream();
 
-            await EventBus.Default.TriggerAsync(new UploadProgramEventData() { FileStream = stream });
+            await EventBus.Default.TriggerAsync(new UploadProgramEventData() { FullName = file.FileName, FileStream = stream });
             return "True";
         }
     }

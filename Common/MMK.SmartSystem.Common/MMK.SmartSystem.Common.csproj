@@ -259,8 +259,11 @@
     <Compile Include="Base\SignalrPage.cs" />
     <Compile Include="EventDatas\CuttingDataEventData.cs" />
     <Compile Include="EventDatas\EdgeCuttingEventData.cs" />
+    <Compile Include="EventDatas\GasEventData.cs" />
+    <Compile Include="EventDatas\MachiningKindEventData.cs" />
     <Compile Include="EventDatas\MaterialEventData.cs" />
     <Compile Include="EventDatas\NavigateEventData.cs" />
+    <Compile Include="EventDatas\NozzleKindEventData.cs" />
     <Compile Include="EventDatas\OperationLogEventData.cs" />
     <Compile Include="EventDatas\PiercingDataEventData.cs" />
     <Compile Include="EventDatas\SlopeControlDataEventData.cs" />
@@ -284,6 +287,7 @@
     <Compile Include="SerivceProxy\MaterialClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\NozzleKindClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\PiercingDataClientServiceProxy.cs" />
+    <Compile Include="SerivceProxy\ProgramClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\SlopeControlDataClientServiceProxy.cs" />
     <Compile Include="SignalrProxy\SignalrProxyClient.cs" />
     <Compile Include="SignalrProxy\SinglarCNCHubConsts.cs" />

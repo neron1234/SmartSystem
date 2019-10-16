@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
@@ -50,6 +52,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                         Size = (f.Length / 1024).ToString() + "KB"
                     });
                 }
+            }
+        }
+        public ICommand UpLoadCommand
+        {
+            get
+            {
+                return new RelayCommand(() => {
+                    new PopupWindow(new EditProgramControl(), 500, 300, "上传本地程序").ShowDialog();
+                });
             }
         }
     }
