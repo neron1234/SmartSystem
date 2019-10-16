@@ -2,6 +2,7 @@
 using Abp.Castle.Logging.Log4Net;
 using Castle.Facilities.Logging;
 using MMK.SmartSystem.CNC.Core;
+using MMK.SmartSystem.CNC.Core.DeviceHelpers;
 using MMK.SmartSystem.CNC.Core.Workers;
 using MMK.SmartSystem.CNC.Host.Proxy;
 using MMK.SmartSystem.WebCommon.DeviceModel;
@@ -96,7 +97,16 @@ namespace MMK.SmartSystem.CNC.Host
             signalrProxy.CncErrorEvent += SignalrProxy_CncErrorEvent;
             signalrProxy.GetCncEventData += SignalrProxy_GetCncEventData;
             signalrProxy.GetClientReaderWriterEvent += SignalrProxy_GetClientReaderWriterEvent;
+            signalrProxy.GetClientProgramResovleEvent += SignalrProxy_GetClientProgramResovleEvent;
             await signalrProxy.Start();
+        }
+
+        private static async void SignalrProxy_GetClientProgramResovleEvent(WebCommon.EventModel.ProgramResovleDto obj)
+        {
+            var res = new LaserProgramDemo().ProgramResolve(obj);
+            Console.WriteLine($"【程序解析】:{res.BmpName}");
+            await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientRrogramRosolveResultEvent, res);
+
         }
 
         private static async void SignalrProxy_GetClientReaderWriterEvent(WebCommon.HubModel.HubReadWriterModel obj)

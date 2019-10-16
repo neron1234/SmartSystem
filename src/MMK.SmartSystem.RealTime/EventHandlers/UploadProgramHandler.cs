@@ -26,16 +26,23 @@ namespace MMK.SmartSystem.RealTime.EventHandlers
         }
         public void HandleEvent(UploadProgramEventData eventData)
         {
-            string savePath = Path.Combine(_hostingEnvironment.WebRootPath, "Upload", "CNCProgram");
-            string saveFullName = "";
-
-            if (Directory.Exists(savePath)){
+            string savaPath = Path.Combine(_hostingEnvironment.WebRootPath, "Upload", "CNCProgram");
+            string bmpPath = Path.Combine(_hostingEnvironment.WebRootPath, "Upload", "BMP");
+            string savaFullName = "";
+            if (Directory.Exists(savePath))
+            {
                 DirectoryInfo root = new DirectoryInfo(savePath);
                 var nameCount = root.GetFiles().Where(n => n.Name == eventData.FullName).Count();
                 saveFullName = nameCount > 0 ? eventData.FullName + nameCount : eventData.FullName;
                 System.Runtime.Remoting.MetadataServices.MetaData.SaveStreamToFile(eventData.FileStream, Path.Combine(savePath, saveFullName));
             }
-            hubContext.Clients.All.SendAsync(CncClientHub.ClientReadProgram, saveFullName);
+            hubContext.Clients.All.SendAsync(CncClientHub.ClientReadProgram, new ProgramResovleDto()
+            {
+                BmpPath = bmpPath,
+                FileName = "",  //从文件信息里面获取文件名不要后缀
+                FilePath = savaFullName,
+            });
+
 
         }
     }

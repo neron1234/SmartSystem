@@ -1,4 +1,6 @@
 ﻿using MMK.CNC.Application.LaserProgram.Dto;
+using MMK.SmartSystem.WebCommon.EventModel;
+using MMK.SmartSystem.WebCommon.HubModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,6 +16,43 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
     public class LaserProgramDemo
     {
+
+        public ProgramResolveResultDto ProgramResolve(ProgramResovleDto resovleDto)
+        {
+            LaserProgramHelper helper = new LaserProgramHelper();
+
+            string progStr = "";
+            helper.GetProgramString(resovleDto.FilePath, ref progStr);
+
+            ProgramDetailDto info = new ProgramDetailDto();
+            List<ProgramBlock> pBlocks = new List<ProgramBlock>();
+            helper.ProgramBlockDecompile(progStr, info, pBlocks);
+
+            List<DrawBlock> dBlocks = new List<DrawBlock>();
+            helper.ProgramBlockDraw(pBlocks, dBlocks);
+
+            double rWidth = 1000;
+            double rHeight = 1000;
+            if (info.PlateSize != null)
+            {
+                var rSize = info.PlateSize.Split('x');
+                if (rSize.Length == 2)
+                {
+                    rWidth = double.Parse(rSize[0]);
+                    rHeight = double.Parse(rSize[1]);
+                }
+            }
+            string saveFullName = $"{resovleDto.BmpPath}\\{resovleDto.FileName}.bmp";
+            helper.DrawXYThumbnai(dBlocks, 0.2, 680, 460, rWidth, rHeight, saveFullName);
+
+            return new ProgramResolveResultDto()
+            {
+                Data = info,
+                ImagePath = saveFullName,
+                BmpName = resovleDto.FileName + ".bmp"
+            };
+
+        }
         public void Dowork()
         {
             Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff"));
@@ -23,7 +62,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             string progStr = "";
             helper.GetProgramString(@"F:\Machine_Software\LE1.1\激光程序\0005", ref progStr);
 
-            ProgramCommentFromCncDto info = new ProgramCommentFromCncDto();
+            ProgramDetailDto info = new ProgramDetailDto();
             List<ProgramBlock> pBlocks = new List<ProgramBlock>();
             helper.ProgramBlockDecompile(progStr, info, pBlocks);
 
@@ -124,43 +163,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
 
     }
-    public class ProgramCommentFromCncDto
-    {
-        public string Name { get; set; }
 
-        public string FullPath { get; set; }
-
-        public double Size { get; set; }
-
-        public string Material { get; set; }
-
-        public double Thickness { get; set; }
-
-        public string Gas { get; set; }
-
-        public double FocalPosition { get; set; }
-
-        public string NozzleKind { get; set; }
-
-        public double NozzleDiameter { get; set; }
-
-        public string PlateSize { get; set; }
-
-        public string UsedPlateSize { get; set; }
-
-        public double CuttingDistance { get; set; }
-
-        public int PiercingCount { get; set; }
-
-        public double CuttingTime { get; set; }
-
-        public int ThumbnaiType { get; set; }
-
-        public string ThumbnaiInfo { get; set; }
-
-        public DateTime UpdateTime { get; set; }
-
-    }
 
     public class ProgramBlock
     {
@@ -222,7 +225,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             return null;
         }
 
-        public void ProgramBlockDecompile(string str, ProgramCommentFromCncDto info, List<ProgramBlock> pBlocks)
+        public void ProgramBlockDecompile(string str, ProgramDetailDto info, List<ProgramBlock> pBlocks)
         {
             //str.Replace("\r\n", "\n");
             var progBlocks = str.Split('\n');
@@ -1165,7 +1168,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
         }
 
-        private void GetInfo(ProgramCommentFromCncDto info, string blockStr)
+        private void GetInfo(ProgramDetailDto info, string blockStr)
         {
             Regex matRegex = new Regex(@"(?<=\(#MATERIAL=)\w*(?=\))");
             Match matMatch = matRegex.Match(blockStr);

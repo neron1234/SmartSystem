@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using MMK.SmartSystem.WebCommon.DeviceModel;
+using MMK.SmartSystem.WebCommon.EventModel;
 using MMK.SmartSystem.WebCommon.HubModel;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
         public event Action<List<GroupEventData>> GetCncEventData;
 
         public event Action<HubReadWriterModel> GetClientReaderWriterEvent;
+        public event Action<ProgramResovleDto> GetClientProgramResovleEvent;
+
         HubConnection connection;
         bool isExit = false;
         public SignalrProxy()
@@ -123,6 +126,10 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
                 GetClientReaderWriterEvent?.Invoke(message);
             });
 
+            connection.On<ProgramResovleDto>(SmartSystemCNCHostConsts.ClientProgramRosolveEvent, (node) =>
+            {
+                GetClientProgramResovleEvent?.Invoke(node);
+            });
         }
     }
 }

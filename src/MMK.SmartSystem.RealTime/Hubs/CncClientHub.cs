@@ -3,6 +3,8 @@ using Abp.Auditing;
 using Abp.Dependency;
 using Abp.RealTime;
 using Microsoft.AspNetCore.SignalR;
+using MMK.CNC.Application.LaserProgram;
+using MMK.CNC.Application.LaserProgram.Dto;
 using MMK.SmartSystem.CNC.Core;
 using MMK.SmartSystem.CNC.Core.Workers;
 using MMK.SmartSystem.WebCommon.DeviceModel;
@@ -17,6 +19,8 @@ namespace MMK.SmartSystem.RealTime.Hubs
 {
     public class CncClientHub : AbpCommonHub
     {
+        public IProgramApplicationService applicationService { set; get; }
+
         public const string ClientGetCncEvent = "GetCncEvent";
         public const string ClientReadWriter = "ReaderWriterEvent";
 
@@ -30,6 +34,14 @@ namespace MMK.SmartSystem.RealTime.Hubs
             service = _service;
             hubClient = service.GetService(typeof(IHubContext<CNCHub>)) as IHubContext<CNCHub>;
 
+        }
+
+        public string UpdateProgramProxy(ProgramResolveResultDto programResolve)
+        {
+            var entity = ObjectMapper.Map<UpdateProgramDto>(programResolve.Data);
+            entity.ThumbnaiInfo = programResolve.BmpName;
+            applicationService.Update(entity);
+            return "True";
         }
 
         public string PushErrorMessage(object info)
