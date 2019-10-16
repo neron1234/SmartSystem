@@ -34,7 +34,13 @@ namespace MMK.SmartSystem.RealTime.EventHandlers
                 DirectoryInfo root = new DirectoryInfo(savePath);
                 var nameCount = root.GetFiles().Where(n => n.Name == eventData.FullName).Count();
                 saveFullName = nameCount > 0 ? eventData.FullName + nameCount : eventData.FullName;
-                System.Runtime.Remoting.MetadataServices.MetaData.SaveStreamToFile(eventData.FileStream, Path.Combine(savePath, saveFullName));
+
+                using (var stream = new FileStream(Path.Combine(savePath, saveFullName), FileMode.Create))
+                {
+
+                    eventData.FileStream.CopyToAsync(stream).Wait();
+                }
+
             }
             hubContext.Clients.All.SendAsync(CncClientHub.ClientReadProgram, new ProgramResovleDto()
             {

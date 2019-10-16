@@ -103,8 +103,9 @@ namespace MMK.SmartSystem.CNC.Host
 
         private static async void SignalrProxy_GetClientProgramResovleEvent(WebCommon.EventModel.ProgramResovleDto obj)
         {
+           // obj.FilePath = "";
             var res = new LaserProgramDemo().ProgramResolve(obj);
-            Console.WriteLine($"【程序解析】:{res.BmpName}");
+            Console.WriteLine($"【程序解析】:{res.BmpName} {res.Data.ToString()}");
             await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientRrogramRosolveResultEvent, res);
 
         }

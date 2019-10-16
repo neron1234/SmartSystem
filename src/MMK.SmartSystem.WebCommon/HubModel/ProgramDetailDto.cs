@@ -49,5 +49,10 @@ namespace MMK.SmartSystem.WebCommon.HubModel
         public string ThumbnaiInfo { get; set; }
 
         public DateTime UpdateTime { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name} {FullPath} {ThumbnaiInfo} {Size}";
+        }
     }
 }
