@@ -64,7 +64,7 @@ namespace MMK.CNC.Application.LaserProgram
         {
             var stream = file.OpenReadStream();
 
-            await EventBus.Default.TriggerAsync(new UploadProgramEventData() { FileStream = stream });
+            await EventBus.Default.TriggerAsync(new UploadProgramEventData() { FullName = file.Name,FileStream = stream });
             return "True";
         }
     }
