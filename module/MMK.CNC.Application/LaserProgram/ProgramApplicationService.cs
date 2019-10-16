@@ -3,7 +3,6 @@ using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Events.Bus;
 using Abp.Runtime.Caching;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using MMK.CNC.Application.LaserProgram.Dto;
 using MMK.CNC.Core.LaserProgram;

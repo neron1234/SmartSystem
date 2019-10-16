@@ -15,4 +15,13 @@ namespace MMK.SmartSystem.WebCommon.EventModel
         public Stream FileStream { set; get; }
 
     }
+
+    public class ProgramResovleDto
+    {
+        public string FileName { get; set; }
+
+        public string FilePath { get; set; }
+
+        public string BmpPath { get; set; }
+    }
 }
