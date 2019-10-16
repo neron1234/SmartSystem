@@ -1,5 +1,5 @@
-﻿using Abp.Dependency;
-using MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Laser.Base.CustomControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,18 +15,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MMK.SmartSystem.Laser.Base.MachineProcess
+namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 {
     /// <summary>
-    /// ProcessPage.xaml 的交互逻辑
+    /// EditProgramControl.xaml 的交互逻辑
     /// </summary>
-    public partial class ProcessPage : Page, ITransientDependency
+    public partial class EditProgramControl : UserControl
     {
-       public ProcessViewModel processViewModel { get; set; }
-        public ProcessPage()
+        public EditProgramControl()
         {
             InitializeComponent();
-            this.DataContext = processViewModel = new ProcessViewModel();
         }
     }
 }

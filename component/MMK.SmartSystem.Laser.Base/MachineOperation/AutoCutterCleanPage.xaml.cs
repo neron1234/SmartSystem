@@ -34,10 +34,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
             InitializeComponent();
             //this.DataContext = new MainTranslateViewModel();
         }
-        public override void PageSignlarLoaded()
-        {
-
-        }
+      
 
         public override void CncOnError(string message)
         {

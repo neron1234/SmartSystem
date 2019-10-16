@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +22,30 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     /// </summary>
     public partial class CNCProgramListControl : UserControl
     {
+        public CNCProgramListViewModel cpViewModel { get; set; }
         public CNCProgramListControl()
         {
             InitializeComponent();
+            this.DataContext = cpViewModel = new CNCProgramListViewModel();
+            RegisterLoadProgram();
         }
 
         private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var selected = ((DataGrid)sender).SelectedValue;
+            if (selected != null && selected is ProgramViewModel){
+                Messenger.Default.Send((ProgramViewModel)selected);
+            }
+        }
 
+        private void RegisterLoadProgram()
+        {
+            Messenger.Default.Register<List<ProgramViewModel>>(this, (pList) => {
+                cpViewModel.ProgramList = new System.Collections.ObjectModel.ObservableCollection<ProgramViewModel>();
+                foreach (var item in pList){
+                    cpViewModel.ProgramList.Add(item);
+                }
+            });
         }
     }
 }

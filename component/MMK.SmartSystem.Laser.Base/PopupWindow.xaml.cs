@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Laser.Base.CustomControl;
 using MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MMK.SmartSystem.Laser.Base.MachineProcess
+namespace MMK.SmartSystem.Laser.Base
 {
     /// <summary>
     /// PopupPage.xaml 的交互逻辑
@@ -23,13 +24,13 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess
     public partial class PopupWindow : Window
     {
         private PopupWindowViewModel popupWindowViewModel { get; set; }
-
+        private SoftKeyBoard.SoftKeyHelper sh = new SoftKeyBoard.SoftKeyHelper();
         public PopupWindow(UserControl userControl, int width = 600, int height = 300,string title = "")
         {
             InitializeComponent();
             this.DataContext = popupWindowViewModel = new PopupWindowViewModel();
             popupWindowViewModel.PopupContent= userControl;
-            Loaded += PopupWindowControl_Loaded;
+            Closed += PopupWindow_Closed;
             this.Width = PopupGrid.Width = width;
             this.Height = PopupGrid.Height = height + 40;
             popupWindowViewModel.Title = title;
@@ -40,9 +41,10 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess
             });
         }
 
-        private void PopupWindowControl_Loaded(object sender, RoutedEventArgs e)
+        private void PopupWindow_Closed(object sender, EventArgs e)
         {
-            Loaded -= PopupWindowControl_Loaded;
+            sh.CloseKeyBoard();
+            Messenger.Default.Unregister<string>(this);
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)

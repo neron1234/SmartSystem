@@ -59,7 +59,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                 <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="主程序" />
                 <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="路径"/>
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="上传"/>
+                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="上传" Command="{Binding UpLoadCommand}"/>
                 <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="下载"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >

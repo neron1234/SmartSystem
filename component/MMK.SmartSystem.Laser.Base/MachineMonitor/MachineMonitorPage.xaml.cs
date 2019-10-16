@@ -38,13 +38,10 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
 
         private async void Btn_Click(object sender, RoutedEventArgs e)
         {
-            await SendProxyAction<BaseCNCResultModel<ReadProgramListItemResultModel>>(SinglarCNCHubConsts.ReadProgramListAction, "//CNC_MEM/USER/PATH1/");
+           // await SendProxyAction<BaseCNCResultModel<ReadProgramListItemResultModel>>(SinglarCNCHubConsts.ReadProgramListAction, "//CNC_MEM/USER/PATH1/");
         }
 
-        public override void PageSignlarLoaded()
-        {
-
-        }
+        
 
 
 

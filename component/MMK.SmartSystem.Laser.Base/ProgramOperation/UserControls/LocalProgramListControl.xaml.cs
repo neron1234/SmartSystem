@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     /// </summary>
     public partial class LocalProgramListControl : UserControl
     {
+        public LocalProgramListViewModel lpViewModel { get; set; }
         public LocalProgramListControl()
         {
             InitializeComponent();
@@ -27,7 +30,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var selected = ((DataGrid)sender).SelectedValue;
+            if (selected != null && selected is ProgramViewModel)
+            {
+                Messenger.Default.Send((ProgramViewModel)selected);
+            }
         }
     }
 }

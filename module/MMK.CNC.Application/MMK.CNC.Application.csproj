@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Abp" Version="4.9.0" />
     <PackageReference Include="Abp.AutoMapper" Version="4.9.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

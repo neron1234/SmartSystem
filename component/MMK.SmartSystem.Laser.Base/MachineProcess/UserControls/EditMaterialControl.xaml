@@ -16,6 +16,11 @@
                 <Setter Property="Background" Value="#20282c"/>
                 <Setter Property="Foreground" Value="#787b8c"/>
             </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Background" Value="#202328" />
+                <Setter Property="BorderBrush" Value="#121417" />
+                <Setter Property="Foreground" Value="#787b8c" />
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -33,18 +38,8 @@
             <TextBox />
             <TextBlock Text="1324112312"/>
             <TextBox />
-            <TextBlock Text="1324112312"/>
-            <TextBox />
-            <TextBlock Text="1324112312"/>
-            <TextBox />
-            <TextBlock Text="1324112312"/>
-            <TextBox />
-            <TextBlock Text="1324112312"/>
-            <TextBox />
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="10">
-            <TextBlock Text="1324112312"/>
-            <TextBox />
             <TextBlock Text="1324112312"/>
             <TextBox />
             <TextBlock Text="1324112312"/>
