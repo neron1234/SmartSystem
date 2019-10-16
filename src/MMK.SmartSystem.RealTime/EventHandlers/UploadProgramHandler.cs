@@ -29,6 +29,10 @@ namespace MMK.SmartSystem.RealTime.EventHandlers
             string savaPath = Path.Combine(_hostingEnvironment.WebRootPath, "Upload", "CNCProgram");
             string savaFullName = "";
 
+
+
+
+
             hubContext.Clients.All.SendAsync(CncClientHub.ClientReadProgram, savaFullName);
 
         }

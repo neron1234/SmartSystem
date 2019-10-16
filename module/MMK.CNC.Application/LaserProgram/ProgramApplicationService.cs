@@ -27,7 +27,7 @@ namespace MMK.CNC.Application.LaserProgram
     public class ProgramApplicationService : AsyncCrudAppService<ProgramComment, ProgramCommentFromCncDto, int, PagedResultRequestDto, CreateProgramDto, UpdateProgramDto>, IProgramApplicationService
     {
         private readonly ICacheManager _cacheManager;
-       
+
 
         public ProgramApplicationService(IRepository<ProgramComment, int> repository,
             ICacheManager cacheManager) : base(repository)
@@ -47,8 +47,8 @@ namespace MMK.CNC.Application.LaserProgram
         {
             var stream = file.OpenReadStream();
 
-            await EventBus.Default.TriggerAsync(new UploadProgramEventData() { FullName = "", FileStream = stream });
-            return "";
+            await EventBus.Default.TriggerAsync(new UploadProgramEventData() { FileStream = stream });
+            return "True";
         }
     }
 }
