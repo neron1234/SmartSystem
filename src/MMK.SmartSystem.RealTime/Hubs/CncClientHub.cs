@@ -19,6 +19,9 @@ namespace MMK.SmartSystem.RealTime.Hubs
     {
         public const string ClientGetCncEvent = "GetCncEvent";
         public const string ClientReadWriter = "ReaderWriterEvent";
+
+
+        public const string ClientReadProgram = "ReadProgramEvent";
         IServiceProvider service;
         IHubContext<CNCHub> hubClient;
         public CncClientHub(IOnlineClientManager onlineClientManager, IServiceProvider _service, IClientInfoProvider clientInfoProvider) :
