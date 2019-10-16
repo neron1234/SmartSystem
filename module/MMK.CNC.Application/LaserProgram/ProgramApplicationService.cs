@@ -16,9 +16,8 @@ namespace MMK.CNC.Application.LaserProgram
     public interface IProgramApplicationService : IAsyncCrudAppService<ProgramCommentFromCncDto, int, PagedResultRequestDto, CreateProgramDto, UpdateProgramDto>
     {
        
-        Task<string> UploadProgram([SwaggerFileUpload]UploadProgramDto input);
 
-        Task<string> UploadProgram2(IFormFile file);
+        Task<string> UploadProgram(IFormFile file);
 
     }
     public class ProgramApplicationService : AsyncCrudAppService<ProgramComment, ProgramCommentFromCncDto, int, PagedResultRequestDto, CreateProgramDto, UpdateProgramDto>, IProgramApplicationService
@@ -36,16 +35,13 @@ namespace MMK.CNC.Application.LaserProgram
 
         }
 
-        public async Task<string> UploadProgram([SwaggerFileUpload] UploadProgramDto input)
-        {
-            var stream = input.File.OpenReadStream();
-            await Task.CompletedTask;
-            return "";
-        }
+      
 
-        public async Task<string> UploadProgram2(IFormFile file)
+        public async Task<string> UploadProgram(IFormFile file)
         {
             var stream = file.OpenReadStream();
+
+
             await Task.CompletedTask;
             return "";
         }

@@ -20,43 +20,19 @@ namespace MMK.SmartSystem.Web.Host.Startup
             {
                 return;
             }
-            MethodInfo method = null;
-            var isAuthorized = context.ApiDescription.ActionAttributes().Any(a => a.GetType() == typeof(SwaggerFileUploadAttribute));
-            if (!isAuthorized)
+
+            FileUploadByFileType(operation, context);
+            SwaggerFileUploadByAttribute(operation, context);
+        }
+        void FileUploadByFileType(Operation operation, OperationFilterContext context)
+        {
+            var fileParameters = context.ApiDescription.ActionDescriptor.Parameters.Where(n => n.ParameterType == typeof(IFormFile)).ToList();
+
+            if (fileParameters.Count() <= 0)
             {
                 return;
             }
-            //var res = context.ApiDescription.TryGetMethodInfo(out method);
-            //if (!res)
-            //{
-            //    return;
-            //}
-            //var fileParameters = context.ApiDescription.ActionDescriptor.Parameters.Where(n => n.ParameterType == typeof(IFormFile)).ToList();
-            //if (fileParameters.Count <= 0)
-            //{
-            //    return;
-            //}
-            //foreach (var fileParameter in fileParameters)
-            //{
-
-            //    operation.Parameters.Add(new NonBodyParameter
-            //    {
-            //        Name = fileParameter.Name,
-            //        In = "formData",
-            //        Description = "File to upload",
-            //        Required = true,
-            //        Type = "file"
-            //    });
-            //}
-            //var fileUpload = method.GetCustomAttributes<SwaggerFileUploadAttribute>().FirstOrDefault();
-            //if (fileUpload != null)
-            //{
-            var fileParameters = method.GetParameters()[0].ParameterType.GetProperties().Where(d => d.PropertyType == typeof(IFormFile)).ToList();
-            // var fileParameters = context.ApiDescription.ActionDescriptor.Parameters.Where(n => n.ParameterType == typeof(IFormFile)).ToList();
-
-            operation.Consumes.Add("multipart/form-data");
-
-
+            operation.Parameters.Clear();
             foreach (var fileParameter in fileParameters)
             {
 
@@ -69,10 +45,38 @@ namespace MMK.SmartSystem.Web.Host.Startup
                     Type = "file"
                 });
             }
-            //}
+            operation.Consumes.Add("multipart/form-data");
+        }
 
+        void SwaggerFileUploadByAttribute(Operation operation, OperationFilterContext context)
+        {
 
+            MethodInfo method = null;
+            context.ApiDescription.TryGetMethodInfo(out method);
 
+            var listParm = method.GetParameters().Where(d => d.GetCustomAttribute<SwaggerFileUploadAttribute>() != null).FirstOrDefault();
+
+            if (listParm == null)
+            {
+                return;
+            }
+
+            var fileParameters = listParm.ParameterType.GetProperties().Where(d => d.PropertyType == typeof(IFormFile)).ToList();
+
+            operation.Parameters.Clear();
+            foreach (var fileParameter in fileParameters)
+            {
+
+                operation.Parameters.Add(new NonBodyParameter
+                {
+                    Name = fileParameter.Name,
+                    In = "formData",
+                    Description = "File to upload",
+                    Required = true,
+                    Type = "file"
+                });
+            }
+            operation.Consumes.Add("multipart/form-data");
         }
     }
 }
