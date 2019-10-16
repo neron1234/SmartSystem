@@ -27,13 +27,20 @@ namespace MMK.SmartSystem.RealTime.EventHandlers
         public void HandleEvent(UploadProgramEventData eventData)
         {
             string savaPath = Path.Combine(_hostingEnvironment.WebRootPath, "Upload", "CNCProgram");
+            string bmpPath = Path.Combine(_hostingEnvironment.WebRootPath, "Upload", "BMP");
+
             string savaFullName = "";
 
 
 
 
 
-            hubContext.Clients.All.SendAsync(CncClientHub.ClientReadProgram, savaFullName);
+            hubContext.Clients.All.SendAsync(CncClientHub.ClientReadProgram, new ProgramResovleDto()
+            {
+                BmpPath = bmpPath,
+                FileName = ""  ,  //从文件信息里面获取文件名不要后缀
+                FilePath = savaFullName,
+            });
 
         }
     }

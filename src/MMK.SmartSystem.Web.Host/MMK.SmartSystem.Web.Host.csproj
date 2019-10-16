@@ -54,6 +54,9 @@
     <ProjectReference Include="..\MMK.SmartSystem.Web.Core\MMK.SmartSystem.Web.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="wwwroot\Upload\BMP\readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\Upload\CNCProgram\Readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
