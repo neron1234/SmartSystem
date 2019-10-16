@@ -86,25 +86,28 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 if (MyCanvas.Children.Count != 0)
                     MyCanvas.Children.Clear();
 
-                var dg = new DrawGraphics(ref this.MyCanvas, ref this.Benchmark);
-                if (pInfo.Name.Split('.')[1] == "dxf")
+                if (pInfo.Name.Split('.').Count() > 1)
                 {
-                    dg.Draw(programListViewModel.Path + @"\" + pInfo.Name);
-                }
-                else
-                {
-                    StreamReader reader = new StreamReader(programListViewModel.Path + @"\" + pInfo.Name);
-                    string line = "";
-                    List<System.Windows.Point> pointList = new List<System.Windows.Point>();
-                    //List<string[]> pointList = new List<string[]>();
-                    line = reader.ReadLine();
-                    while (line != null)
+                    var dg = new DrawGraphics(ref this.MyCanvas, ref this.Benchmark);
+                    if (pInfo.Name.Split('.')[1] == "dxf")
                     {
-                        pointList.Add(new System.Windows.Point(Convert.ToDouble(line.Split(',')[0]), Convert.ToDouble(line.Split(',')[1])));
-                        //pointList.Add(line.Split(','));
-                        line = reader.ReadLine();
+                        dg.Draw(programListViewModel.Path + @"\" + pInfo.Name);
                     }
-                    dg.Draw(pointList, pInfo.Name.Split('.')[0]);
+                    else
+                    {
+                        StreamReader reader = new StreamReader(programListViewModel.Path + @"\" + pInfo.Name);
+                        string line = "";
+                        List<System.Windows.Point> pointList = new List<System.Windows.Point>();
+                        //List<string[]> pointList = new List<string[]>();
+                        line = reader.ReadLine();
+                        while (line != null)
+                        {
+                            pointList.Add(new System.Windows.Point(Convert.ToDouble(line.Split(',')[0]), Convert.ToDouble(line.Split(',')[1])));
+                            //pointList.Add(line.Split(','));
+                            line = reader.ReadLine();
+                        }
+                        dg.Draw(pointList, pInfo.Name.Split('.')[0]);
+                    }
                 }
             });
         }

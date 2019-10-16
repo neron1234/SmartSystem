@@ -26,6 +26,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         public LocalProgramListControl()
         {
             InitializeComponent();
+            this.DataContext = lpViewModel = new LocalProgramListViewModel();
         }
 
         private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
