@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
@@ -47,6 +48,36 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             Console.ReadKey();
         }
+
+        public void DoWork2()
+        {
+            //LaserProgramHelper helper = new LaserProgramHelper();
+
+            //string progStr = "";
+            //helper.GetProgramString(@"F:\Machine_Software\LE1.1\激光程序\0005", ref progStr);
+
+            //ProgramCommentFromCncDto info = new ProgramCommentFromCncDto();
+            //List<ProgramBlock> pBlocks = new List<ProgramBlock>();
+            //helper.ProgramBlockDecompile(progStr, info, pBlocks);
+
+            //List<DrawBlock> dBlocks = new List<DrawBlock>();
+            //helper.ProgramBlockDraw(pBlocks, dBlocks);
+
+            //double rWidth = 1000;
+            //double rHeight = 1000;
+            //if (info.PlateSize != null)
+            //{
+            //    var rSize = info.PlateSize.Split('x');
+            //    if (rSize.Length == 2)
+            //    {
+            //        rWidth = double.Parse(rSize[0]);
+            //        rHeight = double.Parse(rSize[1]);
+            //    }
+            //}
+
+            //helper.DrawXYCanvasOneShot(dBlocks, 0.2, 3000, 2000, rWidth, rHeight, drawPanel);
+        }
+
     }
 
 
@@ -1182,4 +1213,80 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
         }
 
     }
+
+    //public void DrawXYCanvasOneShot(List<DrawBlock> dBlocks, double inc, int picWidth, int picHeight, double rWidth, double rHeight, Canvas canvas)
+    //{
+    //    float radioWidth = (float)(picWidth / rWidth);
+    //    float radioHeight = (float)(picHeight / rHeight);
+
+    //    float picradio = radioWidth > radioHeight ? radioHeight : radioWidth;
+
+    //    foreach (var item in dBlocks)
+    //    {
+    //        //if (item.G01Group == 0)
+    //        //{
+    //        //    DrawXYLine(item, graphic, pen, picradio);
+    //        //}
+    //        if (item.G01Group == 1)
+    //        {
+    //            var line = new System.Windows.Shapes.Line();
+    //            line.X1 = (int)(item.StartX * picradio);
+    //            line.Y1 = (int)(item.StartY * picradio);
+    //            line.X2 = (int)(item.EndX * picradio);
+    //            line.Y2 = (int)(item.EndY * picradio);
+    //            line.Stroke = System.Windows.Media.Brushes.Black;
+    //            line.StrokeThickness = 1;
+
+    //            canvas.Children.Add(line);
+    //        }
+    //        else if (item.G01Group == 2)
+    //        {
+    //            //double center_x = item.StartX + item.I_Adr.Value;
+    //            //double center_y = item.StartY + item.J_Adr.Value;
+    //            double radius = Math.Round(Math.Sqrt(Math.Pow(item.I_Adr.Value, 2) + Math.Pow(item.J_Adr.Value, 2)), 2);
+
+    //            //float startArc = (float)(Math.Atan2(-item.J_Adr.Value, -item.I_Adr.Value) * 180 / Math.PI);
+    //            //float endArc = (float)(Math.Atan2(item.EndY - center_y, item.EndX - center_x) * 180 / Math.PI);
+
+    //            Path path = new Path();
+    //            PathGeometry pathGeometry = new PathGeometry();
+    //            ArcSegment arc = new ArcSegment(
+    //                new System.Windows.Point((int)(item.EndX * picradio), (int)(item.EndY * picradio)),
+    //                new System.Windows.Size((int)Math.Abs(radius * picradio), (int)Math.Abs(radius * picradio)),
+    //                0, false, SweepDirection.Counterclockwise, true);
+    //            PathFigure figure = new PathFigure();
+    //            figure.StartPoint = new System.Windows.Point((int)(item.StartX * picradio), (int)(item.StartY * picradio));
+    //            figure.Segments.Add(arc);
+    //            pathGeometry.Figures.Add(figure);
+    //            path.Data = pathGeometry;
+    //            path.Stroke = System.Windows.Media.Brushes.Black;
+    //            path.StrokeThickness = 1;
+    //            canvas.Children.Add(path);
+    //        }
+    //        else if (item.G01Group == 3)
+    //        {
+    //            //    double center_x = item.StartX + item.I_Adr.Value;
+    //            //    double center_y = item.StartY + item.J_Adr.Value;
+    //            double radius = Math.Round(Math.Sqrt(Math.Pow(item.I_Adr.Value, 2) + Math.Pow(item.J_Adr.Value, 2)), 2);
+
+    //            //    float startArc = (float)(Math.Atan2(-item.J_Adr.Value, -item.I_Adr.Value) * 180 / Math.PI);
+    //            //    float endArc = (float)(Math.Atan2(item.EndY - center_y, item.EndX - center_x) * 180 / Math.PI);
+
+    //            Path path = new Path();
+    //            PathGeometry pathGeometry = new PathGeometry();
+    //            ArcSegment arc = new ArcSegment(new System.Windows.Point((int)(item.EndX * picradio), (int)(item.EndY * picradio)),
+    //                new System.Windows.Size((int)(radius * picradio), (int)(radius * picradio)),
+    //                0, false, SweepDirection.Clockwise, true);
+    //            PathFigure figure = new PathFigure();
+    //            figure.StartPoint = new System.Windows.Point((int)(item.StartX * picradio), (int)(item.StartY * picradio));
+    //            figure.Segments.Add(arc);
+    //            pathGeometry.Figures.Add(figure);
+    //            path.Data = pathGeometry;
+    //            path.Stroke = System.Windows.Media.Brushes.Black;
+    //            path.StrokeThickness = 1;
+    //            canvas.Children.Add(path);
+    //        }
+    //    }
+
+    //}
 }
