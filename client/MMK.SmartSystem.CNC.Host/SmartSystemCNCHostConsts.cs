@@ -16,5 +16,8 @@ namespace MMK.SmartSystem.CNC.Host
         public const string ClientReaderWriterResultEvent = "PushReadWriter";
 
         public const string ClientReaderWriterEvent = "ReaderWriterEvent";
+        public const string ClientProgramRosolveEvent = "ReadProgramEvent";
+
+        public const string ClientRrogramRosolveResultEvent = "UpdateProgramProxy";
     }
 }

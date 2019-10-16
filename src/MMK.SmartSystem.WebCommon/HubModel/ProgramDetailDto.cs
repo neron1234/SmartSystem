@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WebCommon.HubModel
 {
-    public class ProgramResolveDto
+    public class ProgramResolveResultDto
     {
         public string ImagePath { get; set; }
 
+        public string BmpName { get; set; }
         public ProgramDetailDto Data { get; set; }
     }
 

@@ -17,7 +17,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
     public class LaserProgramDemo
     {
 
-        public ProgramResolveDto ProgramResolve(ProgramResovleDto resovleDto)
+        public ProgramResolveResultDto ProgramResolve(ProgramResovleDto resovleDto)
         {
             LaserProgramHelper helper = new LaserProgramHelper();
 
@@ -45,10 +45,11 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             string saveFullName = $"{resovleDto.BmpPath}\\{resovleDto.FileName}.bmp";
             helper.DrawXYThumbnai(dBlocks, 0.2, 680, 460, rWidth, rHeight, saveFullName);
 
-            return new ProgramResolveDto()
+            return new ProgramResolveResultDto()
             {
                 Data = info,
-                ImagePath = saveFullName
+                ImagePath = saveFullName,
+                BmpName = resovleDto.FileName + ".bmp"
             };
 
         }

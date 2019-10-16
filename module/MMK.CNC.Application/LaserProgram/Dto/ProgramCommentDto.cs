@@ -153,6 +153,36 @@ namespace MMK.CNC.Application.LaserProgram.Dto
         public double Thickness { get; set; }
 
         public string Gas { get; set; }
+        public double FocalPosition { get; set; }
+
+     
+        public string NozzleKind { get; set; }
+
+       
+        public double NozzleDiameter { get; set; }
+
+      
+        public string PlateSize { get; set; }
+
+        
+        public string UsedPlateSize { get; set; }
+
+      
+        
+        public double CuttingDistance { get; set; }
+
+       
+        public int PiercingCount { get; set; }
+
+        public double CuttingTime { get; set; }
+
+      
+        public int ThumbnaiType { get; set; }
+
+        public string ThumbnaiInfo { get; set; }
+
+       
+        public DateTime UpdateTime { get; set; }
     }
 
     public class UploadProgramDto
