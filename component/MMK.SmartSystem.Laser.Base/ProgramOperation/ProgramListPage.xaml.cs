@@ -45,30 +45,38 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             SendReaderWriter(new HubReadWriterModel(){
                 ProxyName = "ProgramListInOut",
                 Action = "Reader",
-                Id = "",
+                Id = "123",
                 Data = new object[] { "//CNC_MEM/USER/PATH1/" }
             });
+            programListViewModel.ConnectId = this.CurrentConnectId;
         }
 
         protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
-            JArray jArray = JArray.Parse(obj.Result.ToString());
-            var programList = new List<ProgramViewModel>();
-            foreach (var item in jArray)
-            {
-                JObject jObject = JObject.Parse(item.ToString());
-                if (jObject != null)
+            if (obj.Id == "123") {
+                JArray jArray = JArray.Parse(obj.Result.ToString());
+                var programList = new List<ProgramViewModel>();
+                foreach (var item in jArray)
                 {
-                    programList.Add(new ProgramViewModel
+                    JObject jObject = JObject.Parse(item.ToString());
+                    if (jObject != null)
                     {
-                        Name = jObject["name"].ToString(),
-                        Size = jObject["size"].ToString(),
-                        CreateTime = jObject["createDateTime"].ToString(),
-                        Description = jObject["description"].ToString()
-                    }) ;
+                        programList.Add(new ProgramViewModel
+                        {
+                            Name = jObject["name"].ToString(),
+                            Size = jObject["size"].ToString(),
+                            CreateTime = jObject["createDateTime"].ToString(),
+                            Description = jObject["description"].ToString()
+                        });
+                    }
                 }
+                Messenger.Default.Send(programList);
             }
-            Messenger.Default.Send(programList);
+            else
+            {
+
+            }
+           
         }
 
         public override bool IsRequestResponse => true;

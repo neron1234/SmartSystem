@@ -19,7 +19,6 @@ namespace MMK.SmartSystem.RealTime.Hubs
 {
     public class CncClientHub : AbpCommonHub
     {
-        public IProgramApplicationService applicationService { set; get; }
 
         public const string ClientGetCncEvent = "GetCncEvent";
         public const string ClientReadWriter = "ReaderWriterEvent";
@@ -38,29 +37,13 @@ namespace MMK.SmartSystem.RealTime.Hubs
 
         public string UpdateProgramProxy(ProgramResolveResultDto programResolve)
         {
-            var entity = new UpdateProgramDto()
+            hubClient.Clients.Client(programResolve.ConnectId).SendAsync(CNCHub.GetReadWriterAction, new HubReadWriterResultModel()
             {
-                CuttingDistance = programResolve.Data.CuttingDistance,
-                CuttingTime = programResolve.Data.CuttingTime,
-                FocalPosition = programResolve.Data.FocalPosition,
-                FullPath = programResolve.Data.FullPath,
-                Gas = programResolve.Data.Gas,
-                Material = programResolve.Data.Material,
-                Name = programResolve.Data.Name,
-                NozzleDiameter = programResolve.Data.NozzleDiameter,
-                NozzleKind = programResolve.Data.NozzleKind,
-                PiercingCount = programResolve.Data.PiercingCount,
-                PlateSize = programResolve.Data.PlateSize,
-                Size = programResolve.Data.Size,
-                Thickness = programResolve.Data.Thickness,
-                ThumbnaiInfo = programResolve.BmpName,
-                ThumbnaiType = programResolve.Data.ThumbnaiType,
-                UpdateTime = programResolve.Data.UpdateTime,
-                UsedPlateSize = programResolve.Data.UsedPlateSize
-
-            };
-
-            applicationService.Update(entity);
+                Result = programResolve.Data,
+                Id = CncClientHub.ClientReadProgram,
+                ConnectId = programResolve.ConnectId,
+                Success = true
+            });
             return "True";
         }
 
@@ -69,6 +52,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
             hubClient.Clients.All.SendAsync(CNCHub.GetErrorAction, info);
             return "True";
         }
+
         public string PushCncDataMessage(object info)
         {
             var res = new HubResultModel
@@ -80,11 +64,13 @@ namespace MMK.SmartSystem.RealTime.Hubs
             return "True";
 
         }
+
         public string PushReadWriter(HubReadWriterResultModel model)
         {
             hubClient.Clients.Client(model.ConnectId).SendAsync(CNCHub.GetReadWriterAction, model);
             return "True";
         }
+
         public override Task OnConnectedAsync()
         {
             var list = SmartSystemCNCCoreConsts.PageCncEventDict.ToList().Select(d => new GroupEventData()

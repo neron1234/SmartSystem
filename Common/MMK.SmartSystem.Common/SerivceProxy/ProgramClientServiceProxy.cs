@@ -21,13 +21,13 @@ namespace MMK.SmartSystem.Common.SerivceProxy
         /// <param name="file">File to upload</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<string> UploadProgramAsync(FileParameter file);
+        System.Threading.Tasks.Task<RequestResult<string>> UploadProgramAsync(FileParameter file, string connnectId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <param name="file">File to upload</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<string> UploadProgramAsync(FileParameter file, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<RequestResult<string>> UploadProgramAsync(FileParameter file,string connnectId, System.Threading.CancellationToken cancellationToken);
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -172,19 +172,24 @@ namespace MMK.SmartSystem.Common.SerivceProxy
         /// <param name="file">File to upload</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<string> UploadProgramAsync(FileParameter file)
+        public System.Threading.Tasks.Task<RequestResult<string>> UploadProgramAsync(FileParameter file, string connnectId)
         {
-            return UploadProgramAsync(file, System.Threading.CancellationToken.None);
+            return UploadProgramAsync(file,connnectId, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <param name="file">File to upload</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<string> UploadProgramAsync(FileParameter file, System.Threading.CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task<RequestResult<string>> UploadProgramAsync(FileParameter file, string connnectId, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/Program/UploadProgram");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/services/app/Program/UploadProgram?");
+            if (connnectId != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("ConnectId") + "=").Append(System.Uri.EscapeDataString(ConvertToString(connnectId, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            urlBuilder_.Length--;
 
             var client_ = _httpClient;
             try
@@ -228,7 +233,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                         var status_ = ((int)response_.StatusCode).ToString();
                         if (status_ == "200")
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<string>(response_, headers_).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<RequestResult<string>>(response_, headers_).ConfigureAwait(false);
                             return objectResponse_.Object;
                         }
                         else
@@ -238,7 +243,7 @@ namespace MMK.SmartSystem.Common.SerivceProxy
                             throw new ApiException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
 
-                        return default(string);
+                        return default;
                     }
                     finally
                     {

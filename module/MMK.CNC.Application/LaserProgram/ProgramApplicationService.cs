@@ -20,7 +20,7 @@ namespace MMK.CNC.Application.LaserProgram
     {
 
 
-        Task<string> UploadProgram(IFormFile file);
+        Task<string> UploadProgram(IFormFile file, string connectId);
 
     }
     public class ProgramApplicationService : AsyncCrudAppService<ProgramComment, ProgramCommentFromCncDto, int, PagedResultRequestDto, CreateProgramDto, UpdateProgramDto>, IProgramApplicationService
@@ -60,11 +60,11 @@ namespace MMK.CNC.Application.LaserProgram
         }
 
 
-        public async Task<string> UploadProgram(IFormFile file)
+        public async Task<string> UploadProgram(IFormFile file, string connectId)
         {
             var stream = file.OpenReadStream();
 
-            await EventBus.Default.TriggerAsync(new UploadProgramEventData() { FullName = file.FileName, FileStream = stream });
+            await EventBus.Default.TriggerAsync(new UploadProgramEventData() { FullName = file.FileName, FileStream = stream, ConnectId = connectId });
             return "True";
         }
     }

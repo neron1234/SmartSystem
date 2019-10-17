@@ -13,6 +13,48 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
     public class UpLoadLocalProgramViewModel:ViewModelBase
     {
+        private int _SelectedMaterialId;
+        public int SelectedMaterialId
+        {
+            get { return _SelectedMaterialId; }
+            set
+            {
+                if (_SelectedMaterialId != value)
+                {
+                    _SelectedMaterialId = value;
+                    RaisePropertyChanged(() => SelectedMaterialId);
+                }
+            }
+        }
+
+        private ObservableCollection<MaterialDto> _MaterialTypeList;
+        public ObservableCollection<MaterialDto> MaterialTypeList
+        {
+            get { return _MaterialTypeList; }
+            set
+            {
+                if (_MaterialTypeList != value)
+                {
+                    _MaterialTypeList = value;
+                    RaisePropertyChanged(() => MaterialTypeList);
+                }
+            }
+        }
+
+        private string _LocalProgramPath;
+        public string LocalProgramPath
+        {
+            get { return _LocalProgramPath; }
+            set
+            {
+                if (_LocalProgramPath != value)
+                {
+                    _LocalProgramPath = value;
+                    RaisePropertyChanged(() => LocalProgramPath);
+                }
+            }
+        }
+
         private int _SelectedNozzleKindCode;
         public int SelectedNozzleKindCode
         {

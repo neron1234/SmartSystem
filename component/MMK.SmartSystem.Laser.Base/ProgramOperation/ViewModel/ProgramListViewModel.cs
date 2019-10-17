@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
 using System;
@@ -58,9 +59,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
             }
         }
 
+        public string ConnectId { get; set; }
         public ProgramListViewModel()
         {
             this.ControlInfo = new CNCProgramListControl();
+            Messenger.Default.Register<ProgramPath>(this, (str => {
+                this.Path = str.Path;
+            }));
         }
 
         public ICommand LoadFileCommand{
@@ -82,7 +87,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
         public ICommand LocalListCommand{
             get{
                 return new RelayCommand(() => {
-                    this.ControlInfo = new LocalProgramListControl();
+                    this.ControlInfo = new LocalProgramListControl(this.ConnectId);
                 });
             }
         }

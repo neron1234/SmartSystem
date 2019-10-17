@@ -14,6 +14,7 @@ namespace MMK.SmartSystem.Common.SignalrProxy
 
         public event Action<string> CncErrorEvent;
         public event Action<HubResultModel> HubRefreshModelEvent;
+        public string ConnectId;
 
         public event Action<HubReadWriterResultModel> HubReaderWriterResultEvent;
         HubConnection connection;
@@ -30,7 +31,7 @@ namespace MMK.SmartSystem.Common.SignalrProxy
             try
             {
                 await connection.StartAsync();
-
+                ConnectId = connection.ConnectionId;
             }
             catch (Exception ex)
             {
@@ -76,7 +77,7 @@ namespace MMK.SmartSystem.Common.SignalrProxy
             }
         }
 
-      
+
         private void initEvent()
         {
             connection.Closed += async (error) =>
@@ -107,9 +108,7 @@ namespace MMK.SmartSystem.Common.SignalrProxy
             {
                 HubRefreshModelEvent?.Invoke(data);
             });
-            connection.On<HubReadWriterResultModel>(SinglarCNCHubConsts.GetCNCReaderWriterResultAction, data =>
-            {
-
+            connection.On<HubReadWriterResultModel>(SinglarCNCHubConsts.GetCNCReaderWriterResultAction, data =>{
                 HubReaderWriterResultEvent?.Invoke(data);
             });
         }

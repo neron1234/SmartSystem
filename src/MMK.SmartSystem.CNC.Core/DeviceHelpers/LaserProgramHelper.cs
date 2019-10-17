@@ -47,6 +47,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             return new ProgramResolveResultDto()
             {
+                ConnectId = resovleDto.ConnectId,
                 Data = info,
                 ImagePath = saveFullName,
                 BmpName = resovleDto.FileName + ".bmp"

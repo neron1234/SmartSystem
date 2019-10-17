@@ -40,10 +40,10 @@ namespace MMK.SmartSystem.RealTime.EventHandlers
 
                     eventData.FileStream.CopyToAsync(stream).Wait();
                 }
-
             }
             hubContext.Clients.All.SendAsync(CncClientHub.ClientReadProgram, new ProgramResovleDto()
             {
+                ConnectId = eventData.ConnectId,
                 BmpPath = bmpPath,
                 FileName = saveFullName,  //从文件信息里面获取文件名不要后缀
                 FilePath = Path.Combine(savePath, saveFullName),

@@ -9,7 +9,7 @@ namespace MMK.SmartSystem.WebCommon.HubModel
     public class ProgramResolveResultDto
     {
         public string ImagePath { get; set; }
-
+        public string ConnectId { get; set; }
         public string BmpName { get; set; }
         public ProgramDetailDto Data { get; set; }
     }

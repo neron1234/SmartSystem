@@ -103,11 +103,11 @@ namespace MMK.SmartSystem.CNC.Host
 
         private static async void SignalrProxy_GetClientProgramResovleEvent(WebCommon.EventModel.ProgramResovleDto obj)
         {
-           // obj.FilePath = "";
+            obj.FilePath = @"C:\Users\wjj-yl\Desktop\测试用DXF\0001";
+            obj.BmpPath = @"C:\Users\wjj-yl\Desktop\测试用DXF\";
             var res = new LaserProgramDemo().ProgramResolve(obj);
             Console.WriteLine($"【程序解析】:{res.BmpName} {res.Data.ToString()}");
             await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientRrogramRosolveResultEvent, res);
-
         }
 
         private static async void SignalrProxy_GetClientReaderWriterEvent(WebCommon.HubModel.HubReadWriterModel obj)

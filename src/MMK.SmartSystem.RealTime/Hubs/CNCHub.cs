@@ -23,6 +23,8 @@ namespace MMK.SmartSystem.RealTime.Hubs
         public const string GetDataAction = "GetCNCData";
         public const string GetErrorAction = "GetError";
         public const string GetReadWriterAction = "GetReadWriter";
+        public const string GetReadProgramDetailAction = "GetReadProgramDetal";
+
         IServiceProvider service;
         public CNCHub(IOnlineClientManager onlineClientManager, IClientInfoProvider clientInfoProvider, IServiceProvider _service) :
           base(onlineClientManager, clientInfoProvider)

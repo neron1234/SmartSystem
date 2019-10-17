@@ -266,6 +266,7 @@
     <Compile Include="EventDatas\NozzleKindEventData.cs" />
     <Compile Include="EventDatas\OperationLogEventData.cs" />
     <Compile Include="EventDatas\PiercingDataEventData.cs" />
+    <Compile Include="EventDatas\ProgramClientEventData.cs" />
     <Compile Include="EventDatas\SlopeControlDataEventData.cs" />
     <Compile Include="EventDatas\UserConfigEventData.cs" />
     <Compile Include="Expands\GrantedPermission.cs" />

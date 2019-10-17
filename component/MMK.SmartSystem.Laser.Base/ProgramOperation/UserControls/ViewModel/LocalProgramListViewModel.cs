@@ -1,5 +1,8 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Abp.Events.Bus;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common.EventDatas;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,14 +16,22 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
     public class LocalProgramListViewModel:ViewModelBase
     {
+        private ProgramViewModel _SelectedProgramViewModel;
+        public ProgramViewModel SelectedProgramViewModel{
+            get { return _SelectedProgramViewModel; }
+            set{
+                if (_SelectedProgramViewModel != value){
+                    _SelectedProgramViewModel = value;
+                    RaisePropertyChanged(() => SelectedProgramViewModel);
+                }
+            }
+        }
+
         private ObservableCollection<ProgramViewModel> _ProgramList;
-        public ObservableCollection<ProgramViewModel> ProgramList
-        {
+        public ObservableCollection<ProgramViewModel> ProgramList{
             get { return _ProgramList; }
-            set
-            {
-                if (_ProgramList != value)
-                {
+            set{
+                if (_ProgramList != value){
                     _ProgramList = value;
                     RaisePropertyChanged(() => ProgramList);
                 }
@@ -35,6 +46,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             {
                 this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
                 GetFileName(this.Path);
+                Messenger.Default.Send(new ProgramPath(this.Path));
             }
         }
         public void GetFileName(string path)
@@ -54,14 +66,51 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 }
             }
         }
+
+        public string ConnectId { get; set; }
         public ICommand UpLoadCommand
         {
-            get
-            {
+            get{
                 return new RelayCommand(() => {
-                    new PopupWindow(new EditProgramControl(), 500, 300, "上传本地程序").ShowDialog();
+                    var stream = FileToStream();
+                    Task.Factory.StartNew(new Action(() => {
+                        EventBus.Default.TriggerAsync(new UpLoadProgramClientEventData
+                        {
+                            ConnectId = ConnectId,
+                            FileParameter = new Common.FileParameter(stream, this.SelectedProgramViewModel.Name)
+                        });
+                    }));
+                    new PopupWindow(new UpLoadLocalProgramControl(this.Path), 900, 590, "上传本地程序").ShowDialog();
                 });
             }
+        }
+
+        public Stream FileToStream()
+        {
+            using (var fileStream = new FileStream(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name), FileMode.Open, FileAccess.Read, FileShare.Read)){
+                byte[] bytes = new byte[fileStream.Length];
+                fileStream.Read(bytes, 0, bytes.Length);
+                fileStream.Close();
+                Stream stream = new MemoryStream(bytes);
+                return stream;
+            }
+        }
+    }
+
+    public class ProgramPath
+    {
+        public string Path { get; set; }
+        public ProgramPath(string path)
+        {
+            Path = path;
+        }
+    }
+    public class PageConnect
+    {
+        public string ConnectId { get; set; }
+        public PageConnect(string cId)
+        {
+            ConnectId = cId;
         }
     }
 }

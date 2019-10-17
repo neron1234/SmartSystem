@@ -78,15 +78,14 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
                 else
                 {
                     errorMessage = "保存失败";
+                    Messenger.Default.Send(new MainSystemNoticeModel
+                    {
+                        Tagret = eventData.Tagret,
+                        Error = errorMessage,
+                        ErrorAction = eventData.ErrorAction,
+                        HashCode = eventData.HashCode
+                    });
                 }
-
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
             }
             catch (Exception ex)
             {
@@ -130,16 +129,15 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
                     }
                 }
                 else {
-                    errorMessage = "保存失败";
+                    errorMessage = "保存失败"; 
+                    Messenger.Default.Send(new MainSystemNoticeModel
+                    {
+                        Tagret = eventData.Tagret,
+                        Error = errorMessage,
+                        ErrorAction = eventData.ErrorAction,
+                        HashCode = eventData.HashCode
+                    });
                 }
-
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
             }
             catch (Exception ex)
             {

@@ -24,7 +24,7 @@ namespace MMK.SmartSystem.Common.Base
         SignalrProxyClient signalrProxyClient;
 
 
-
+        protected string CurrentConnectId;
         public virtual bool IsRequestResponse { get; }
         public virtual string GetModule { get; }
         public IIocManager manager { set; get; }
@@ -107,6 +107,7 @@ namespace MMK.SmartSystem.Common.Base
 
             }
         }
+
         public virtual List<CncEventData> GetCncEventData()
         {
             var list = new List<CncEventData>();
@@ -143,6 +144,7 @@ namespace MMK.SmartSystem.Common.Base
         {
 
             await signalrProxyClient.Start();
+            CurrentConnectId = signalrProxyClient.ConnectId;
             PageSignlarLoaded();
             if (!IsRequestResponse)
             {

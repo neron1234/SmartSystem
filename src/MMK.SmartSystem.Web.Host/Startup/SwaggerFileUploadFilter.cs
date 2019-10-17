@@ -32,18 +32,41 @@ namespace MMK.SmartSystem.Web.Host.Startup
             {
                 return;
             }
+            fileParameters= context.ApiDescription.ActionDescriptor.Parameters.ToList();
             operation.Parameters.Clear();
-            foreach (var fileParameter in fileParameters)
-            {
 
-                operation.Parameters.Add(new NonBodyParameter
+            foreach (var item in fileParameters)
+            {
+                if (item.ParameterType == typeof(IFormFile))
                 {
-                    Name = fileParameter.Name,
-                    In = "formData",
-                    Description = "File to upload",
-                    Required = true,
-                    Type = "file"
-                });
+                    operation.Parameters.Add(new NonBodyParameter
+                    {
+                        Name = item.Name,
+                        In = "formData",
+                        Description = "File to upload",
+                        Required = true,
+                        Type = "file"
+                    });
+                }
+                else
+                {
+                    //operation.Parameters.Add(new Parameter()
+                    //{
+                    //    Name = item.Name,
+                    //    In = item.Name + "form",
+                    //    Description = "",
+                    //    Required = false,
+                    //    Type = item.ParameterType.Name
+                    //});
+                }
+                //operation.Parameters.Add(new NonBodyParameter
+                //{
+                //    Name = fileParameter.Name,
+                //    In = "formData",
+                //    Description = "File to upload",
+                //    Required = true,
+                //    Type = "file"
+                //});
             }
             operation.Consumes.Add("multipart/form-data");
         }
@@ -64,18 +87,44 @@ namespace MMK.SmartSystem.Web.Host.Startup
             var fileParameters = listParm.ParameterType.GetProperties().Where(d => d.PropertyType == typeof(IFormFile)).ToList();
 
             operation.Parameters.Clear();
-            foreach (var fileParameter in fileParameters)
-            {
 
-                operation.Parameters.Add(new NonBodyParameter
+            foreach (var item in listParm.ParameterType.GetProperties())
+            {
+                if (item.PropertyType == typeof(IFormFile))
                 {
-                    Name = fileParameter.Name,
-                    In = "formData",
-                    Description = "File to upload",
-                    Required = true,
-                    Type = "file"
-                });
+                    operation.Parameters.Add(new NonBodyParameter
+                    {
+                        Name = item.Name,
+                        In = "formData",
+                        Description = "File to upload",
+                        Required = true,
+                        Type = "file"
+                    });
+                }
+                else
+                {
+                    operation.Parameters.Add(new NonBodyParameter()
+                    {
+                        Name = item.Name,
+                        In = item.Name+"form",
+                        Description = "",
+                        Required = true,
+                        Type = item.PropertyType.Name
+                    });
+                }
             }
+            //foreach (var fileParameter in fileParameters)
+            //{
+
+            //    operation.Parameters.Add(new NonBodyParameter
+            //    {
+            //        Name = fileParameter.Name,
+            //        In = "formData",
+            //        Description = "File to upload",
+            //        Required = true,
+            //        Type = "file"
+            //    });
+            //}
             operation.Consumes.Add("multipart/form-data");
         }
     }

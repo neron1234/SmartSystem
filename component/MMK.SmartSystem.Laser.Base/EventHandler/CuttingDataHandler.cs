@@ -34,13 +34,16 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
                         HashCode = eventData.HashCode
                     });
                 }
-                Messenger.Default.Send(new MainSystemNoticeModel
+                else
                 {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
+                    Messenger.Default.Send(new MainSystemNoticeModel
+                    {
+                        Tagret = eventData.Tagret,
+                        Error = errorMessage,
+                        ErrorAction = eventData.ErrorAction,
+                        HashCode = eventData.HashCode
+                    });
+                }
             }
             catch (Exception ex)
             {

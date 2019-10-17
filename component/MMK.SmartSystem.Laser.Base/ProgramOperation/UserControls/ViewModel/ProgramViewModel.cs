@@ -17,7 +17,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             {
                 if (_Name != value)
                 {
-                    _Name = "程序名称:" + value;
+                    _Name = value;
                     RaisePropertyChanged(() => Name);
                 }
             }

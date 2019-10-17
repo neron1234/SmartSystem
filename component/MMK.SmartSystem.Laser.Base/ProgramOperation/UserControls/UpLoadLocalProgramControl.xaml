@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              mc:Ignorable="d" 
-            d:DesignHeight="300" d:DesignWidth="500" Background="#2a2f34" Foreground="#787b8c" FontSize="20">
+            d:DesignHeight="590" d:DesignWidth="900" Background="#2a2f34" Foreground="#787b8c" FontSize="20">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -26,25 +26,111 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="3*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="20">
-            <TextBlock Text="CNC路径"/>
-            <TextBox />
-            <TextBlock Text="割嘴类型" Margin="0,10,0,0"/>
-            <ComboBox Margin="0 12 0 0" ItemsSource="{Binding MaterialThicknessList}" SelectedValuePath="Id" DisplayMemberPath="MaterialThickness" 
-                          SelectedValue="{Binding SelectedMaterialTypeId}" BorderBrush="#121417" IsReadOnly="True">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <!--<i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>-->
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </ComboBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Margin="25" >
-            <Button Style="{StaticResource BtnStyle}" Width="120" Height="35" Content="保存" />
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition />
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Row="0" Margin="10,5,10,5">
+                <TextBlock Text="CNC路径" />
+                <TextBox Text="{Binding LocalProgramPath}"/>
+            </StackPanel>
+
+            <Grid Grid.Row="1" Margin="10 0 10 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" >
+                    <TextBlock Text="板材尺寸(W)" Margin="0,10,0,0" />
+                    <TextBox />
+
+                    <TextBlock Text="加工最大尺寸(W)" Margin="0,10,0,0"/>
+                    <TextBox />
+
+                    <TextBlock Text="材料类型" Margin="0,10,0,0" />
+                    <ComboBox Margin="0,10,0,0" ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
+                          SelectedValue="{Binding SelectedMaterialId}" BorderBrush="#121417" IsReadOnly="True" Height="28">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+
+                    <TextBlock Text="切割长度" Margin="0,10,0,0" />
+                    <TextBox />
+
+                    <TextBlock Text="割嘴类型" Margin="0,10,0,0" />
+                    <ComboBox Margin="0 10 0 0" ItemsSource="{Binding NozzleKindList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
+                          SelectedValue="{Binding SelectedNozzleKindCode}" BorderBrush="#121417" IsReadOnly="True" Height="28">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <!--<i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>-->
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+                    
+                    <TextBlock Text="循环时间" Margin="0,10,0,0" />
+                    <TextBox />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                    <TextBlock Text="板材尺寸(H)" Margin="0,10,0,0" />
+                    <TextBox />
+                    <TextBlock Text="加工最大尺寸(H)" Margin="0,10,0,0" />
+                    <TextBox />
+                    <TextBlock Text="材料厚度" Margin="0,10,0,0" />
+                    <TextBox />
+                    <TextBlock Text="穿孔次数" Margin="0,10,0,0" />
+                    <TextBox />
+                    <TextBlock Text="割嘴内径" Margin="0,10,0,0" />
+                    <TextBox />
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Grid.Row="2" Margin="18" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource BtnStyle}" Width="120" Height="42" Content="保存" Margin="0 0 10 0"/>
+                <Button Style="{StaticResource BtnStyle}" Width="120" Height="42" Content="取消" Margin="10 0 0 0"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.RowSpan="2" Grid.Column="2" Margin="1 20 5 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="0" Margin="1" Grid.Row="0">
+                <Button Height="110" Content="7" Command="{Binding InputCommand}" CommandParameter="7"/>
+                <Button Height="110" Content="4" Command="{Binding InputCommand}" CommandParameter="4"/>
+                <Button Height="110" Content="1" Command="{Binding InputCommand}" CommandParameter="1"/>
+                <Button Height="110" Content="⬅" Command="{Binding InputCommand}" CommandParameter="d"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="1">
+                <Button Height="110" Content="8" Command="{Binding InputCommand}" CommandParameter="8"/>
+                <Button Height="110" Content="5" Command="{Binding InputCommand}" CommandParameter="5"/>
+                <Button Height="110" Content="2" Command="{Binding InputCommand}" CommandParameter="2"/>
+                <Button Height="110" Content="0" Command="{Binding InputCommand}" CommandParameter="0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Margin="1">
+                <Button Height="110" Content="9" Command="{Binding InputCommand}" CommandParameter="9"/>
+                <Button Height="110" Content="6" Command="{Binding InputCommand}" CommandParameter="6"/>
+                <Button Height="110" Content="3" Command="{Binding InputCommand}" CommandParameter="3"/>
+                <Button Height="110" Content="." Command="{Binding InputCommand}" CommandParameter="."/>
+            </StackPanel>
+            <StackPanel Grid.ColumnSpan="3" Grid.Row="1" Orientation="Horizontal" Margin="1" HorizontalAlignment="Center" >
+                <Button Height="60" Width="160" Content="上一项" Command="{Binding InputCommand}" CommandParameter="9" Margin="10 0 0 0"/>
+                <Button Height="60" Width="160" Content="下一项" Command="{Binding InputCommand}" CommandParameter="6" Margin="10 0 0 0"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

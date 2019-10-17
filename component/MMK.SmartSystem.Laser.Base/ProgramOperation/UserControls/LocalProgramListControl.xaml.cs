@@ -23,10 +23,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     public partial class LocalProgramListControl : UserControl
     {
         public LocalProgramListViewModel lpViewModel { get; set; }
-        public LocalProgramListControl()
+        public LocalProgramListControl(string connectId)
         {
             InitializeComponent();
             this.DataContext = lpViewModel = new LocalProgramListViewModel();
+            lpViewModel.ConnectId = connectId;
         }
 
         private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -34,7 +35,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             var selected = ((DataGrid)sender).SelectedValue;
             if (selected != null && selected is ProgramViewModel)
             {
-                Messenger.Default.Send((ProgramViewModel)selected);
+                lpViewModel.SelectedProgramViewModel = (ProgramViewModel)selected;
+                Messenger.Default.Send(lpViewModel.SelectedProgramViewModel);
             }
         }
     }

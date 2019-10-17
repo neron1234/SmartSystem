@@ -285,6 +285,7 @@
     <Compile Include="EventHandler\MaterialInfoHandler.cs" />
     <Compile Include="EventHandler\NozzleKindHandler.cs" />
     <Compile Include="EventHandler\PiercingDataHandler.cs" />
+    <Compile Include="EventHandler\ProgramClientHandler.cs" />
     <Compile Include="EventHandler\SlopeControlDataHandler.cs" />
     <Compile Include="MachineMonitor\ControlHelp\GridHelper.cs" />
     <Compile Include="MachineMonitor\CoordinateControl.xaml.cs">
@@ -384,6 +385,7 @@
     <Compile Include="ProgramOperation\UserControls\ViewModel\UpLoadLocalProgramViewModel.cs" />
     <Compile Include="ProgramOperation\ViewModel\ProgramListViewModel.cs" />
     <Compile Include="SmartSystemDeviceModule.cs" />
+    <Compile Include="SmartSystemLaserBaseConsts.cs" />
     <Page Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
