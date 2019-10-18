@@ -221,6 +221,9 @@
     <Compile Include="CustomControl\Button\Implementation\PathButton.cs" />
     <Compile Include="CustomControl\Button\Implementation\PathIconButton.cs" />
     <Compile Include="CustomControl\Button\Implementation\PathTextButton.cs" />
+    <Compile Include="CustomControl\CascaderBox\Implementation\Cascader.cs" />
+    <Compile Include="CustomControl\CascaderBox\Implementation\CascaderItem.cs" />
+    <Compile Include="CustomControl\CascaderBox\Implementation\CascaderListBox.cs" />
     <Compile Include="CustomControl\ComboBox\Implementation\ZComboBox.cs" />
     <Compile Include="CustomControl\ControlEnum.cs" />
     <Compile Include="CustomControl\Decorator\AngleBorder.cs" />
@@ -246,6 +249,7 @@
     <Compile Include="CustomControl\Primitives\MyEventArgs\ItemMouseSingleClickEventArgs.cs" />
     <Compile Include="CustomControl\Primitives\NumberBox.cs" />
     <Compile Include="CustomControl\Primitives\ZTextBoxBase.cs" />
+    <Compile Include="CustomControl\ScrollViewer\Implementation\ZScrollViewer.cs" />
     <Compile Include="CustomControl\SoftKeyBoard.cs" />
     <Compile Include="CustomControl\TextBox\Implementation\IconTextBox.cs" />
     <Compile Include="CustomControl\TextBox\Implementation\IpTextBox.cs" />
@@ -411,6 +415,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CustomControl\CascaderBox\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CustomControl\ComboBox\Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -424,6 +432,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomControl\PopupWindowControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\ScrollViewer\Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

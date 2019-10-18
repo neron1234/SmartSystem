@@ -83,52 +83,342 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public UpLoadLocalProgramViewModel(){
+        private ProgramDetailViewModel _ProgramDetail;
+        public ProgramDetailViewModel ProgramDetail
+        {
+            get { return _ProgramDetail; }
+            set
+            {
+                if (_ProgramDetail != value)
+                {
+                    _ProgramDetail = value;
+                    RaisePropertyChanged(() => ProgramDetail);
+                }
+            }
+        }
 
+        private ReadProgramFolderItemViewModel _ProgramFolders;
+        public ReadProgramFolderItemViewModel ProgramFolders
+        {
+            get { return _ProgramFolders; }
+            set
+            {
+                if (_ProgramFolders != value)
+                {
+                    _ProgramFolders = value;
+                    RaisePropertyChanged(() => ProgramFolders);
+                }
+            }
+        }
+
+        private ReadProgramFolderItemViewModel _SelectedProgramFolders;
+        public ReadProgramFolderItemViewModel SelectedProgramFolders
+        {
+            get { return _SelectedProgramFolders; }
+            set{
+                if (_SelectedProgramFolders != value){
+                    _SelectedProgramFolders = value;
+                    RaisePropertyChanged(() => SelectedProgramFolders);
+                }
+            }
+        }
+
+        public void GetTreeViewData(System.IO.DirectoryInfo dir, ReadProgramFolderItemViewModel node)
+        {
+            System.IO.DirectoryInfo[] allDs = dir.GetDirectories();
+            node.Nodes = new ObservableCollection<ReadProgramFolderItemViewModel>();
+            for (int i = 0; i < allDs.Length; i++)
+            {
+                ReadProgramFolderItemViewModel child = new ReadProgramFolderItemViewModel();
+                child.Name = allDs[i].Name;
+                child.Folder = allDs[i].FullName;
+                node.Nodes.Add(child);
+                GetTreeViewData(allDs[i], child);
+            }
+        }
+
+        public UpLoadLocalProgramViewModel(){
+            ProgramFolders = new ReadProgramFolderItemViewModel();
+            SelectedProgramFolders = new ReadProgramFolderItemViewModel();
+
+            GetTreeViewData(new System.IO.DirectoryInfo(@"C:\Users\wjj-yl\Desktop\测试用DXF"), ProgramFolders);
+
+            if (ProgramFolders.Nodes.Count > 0)
+            {
+                SelectedProgramFolders = ProgramFolders.Nodes[0];
+            }
         }
     }
 
-    public class ProgramDetailViewModel
+    public class ProgramDetailViewModel : ViewModelBase
     {
-        public string Name { get; set; }
+        private string _Name;
+        public string Name
+        {
+            get { return _Name; }
+            set
+            {
+                if (_Name != value)
+                {
+                    _Name = value;
+                    RaisePropertyChanged(() => Name);
+                }
+            }
+        }
 
-        public string FullPath { get; set; }
+        private string _FullPath;
+        public string FullPath
+        {
+            get { return _FullPath; }
+            set
+            {
+                if (_FullPath != value)
+                {
+                    _FullPath = value;
+                    RaisePropertyChanged(() => FullPath);
+                }
+            }
+        }
 
-        public double Size { get; set; }
+        private double _Size;
+        public double Size
+        {
+            get { return _Size; }
+            set
+            {
+                if (_Size != value)
+                {
+                    _Size = value;
+                    RaisePropertyChanged(() => Size);
+                }
+            }
+        }
 
-        public string Material { get; set; }
+        private string _Material;
+        public string Material
+        {
+            get { return _Material; }
+            set
+            {
+                if (_Material != value)
+                {
+                    _Material = value;
+                    RaisePropertyChanged(() => Material);
+                }
+            }
+        }
 
-        public double Thickness { get; set; }
+        private double _Thickness;
+        public double Thickness
+        {
+            get { return _Thickness; }
+            set
+            {
+                if (_Thickness != value)
+                {
+                    _Thickness = value;
+                    RaisePropertyChanged(() => Thickness);
+                }
+            }
+        }
 
-        public string Gas { get; set; }
+        private string _Gas;
+        public string Gas
+        {
+            get { return _Gas; }
+            set
+            {
+                if (_Gas != value)
+                {
+                    _Gas = value;
+                    RaisePropertyChanged(() => Gas);
+                }
+            }
+        }
 
-        public double FocalPosition { get; set; }
+        private double _FocalPosition;
+        public double FocalPosition
+        {
+            get { return _FocalPosition; }
+            set
+            {
+                if (_FocalPosition != value)
+                {
+                    _FocalPosition = value;
+                    RaisePropertyChanged(() => FocalPosition);
+                }
+            }
+        }
 
-        public string NozzleKind { get; set; }
+        private string _NozzleKind;
+        public string NozzleKind
+        {
+            get { return _NozzleKind; }
+            set
+            {
+                if (_NozzleKind != value)
+                {
+                    _NozzleKind = value;
+                    RaisePropertyChanged(() => NozzleKind);
+                }
+            }
+        }
 
-        public double NozzleDiameter { get; set; }
+        private double _NozzleDiameter;
+        public double NozzleDiameter
+        {
+            get { return _NozzleDiameter; }
+            set
+            {
+                if (_NozzleDiameter != value)
+                {
+                    _NozzleDiameter = value;
+                    RaisePropertyChanged(() => NozzleDiameter);
+                }
+            }
+        }
 
-        public string PlateSize { get; set; }
+        private string  _PlateSize;
+        public string  PlateSize
+        {
+            get { return _PlateSize; }
+            set
+            {
+                if (_PlateSize != value)
+                {
+                    _PlateSize = value;
+                    RaisePropertyChanged(() => PlateSize);
+                }
+            }
+        }
 
-        public string UsedPlateSize { get; set; }
+        private string _UsedPlateSize;
+        public string UsedPlateSize
+        {
+            get { return _UsedPlateSize; }
+            set
+            {
+                if (_UsedPlateSize != value)
+                {
+                    _UsedPlateSize = value;
+                    RaisePropertyChanged(() => UsedPlateSize);
+                }
+            }
+        }
 
-        public double CuttingDistance { get; set; }
+        private double _CuttingDistance;
+        public double CuttingDistance
+        {
+            get { return _CuttingDistance; }
+            set
+            {
+                if (_CuttingDistance != value)
+                {
+                    _CuttingDistance = value;
+                    RaisePropertyChanged(() => CuttingDistance);
+                }
+            }
+        }
 
-        public int PiercingCount { get; set; }
+        private int _PiercingCount;
+        public int PiercingCount
+        {
+            get { return _PiercingCount; }
+            set
+            {
+                if (_PiercingCount != value)
+                {
+                    _PiercingCount = value;
+                    RaisePropertyChanged(() => PiercingCount);
+                }
+            }
+        }
 
-        public double CuttingTime { get; set; }
+        private double _CuttingTime;
+        public double CuttingTime
+        {
+            get { return _CuttingTime; }
+            set
+            {
+                if (_CuttingTime != value)
+                {
+                    _CuttingTime = value;
+                    RaisePropertyChanged(() => CuttingTime);
+                }
+            }
+        }
 
-        public int ThumbnaiType { get; set; }
+        private int _ThumbnaiType;
+        public int ThumbnaiType
+        {
+            get { return _ThumbnaiType; }
+            set
+            {
+                if (_ThumbnaiType != value)
+                {
+                    _ThumbnaiType = value;
+                    RaisePropertyChanged(() => ThumbnaiType);
+                }
+            }
+        }
 
-        public string ThumbnaiInfo { get; set; }
+        private string _ThumbnaiInfo;
+        public string ThumbnaiInfo
+        {
+            get { return _ThumbnaiInfo; }
+            set
+            {
+                if (_ThumbnaiInfo != value)
+                {
+                    _ThumbnaiInfo = value;
+                    RaisePropertyChanged(() => ThumbnaiInfo);
+                }
+            }
+        }
     }
 
-    public class ReadProgramFolderItemViewModel
+    public class ReadProgramFolderItemViewModel:ViewModelBase
     {
-        public string Name { get; set; }
+        private string _Name;
+        public string Name
+        {
+            get { return _Name; }
+            set
+            {
+                if (_Name != value)
+                {
+                    _Name = value;
+                    RaisePropertyChanged(() => Name);
+                }
+            }
+        }
 
-        public string Folder { get; set; }
+        private string _Folder;
+        public string Folder
+        {
+            get { return _Folder; }
+            set
+            {
+                if (_Folder != value)
+                {
+                    _Folder = value;
+                    RaisePropertyChanged(() => Folder);
+                }
+            }
+        }
 
-        public List<ReadProgramFolderItemViewModel> Nodes { get; set; } = new List<ReadProgramFolderItemViewModel>();
+        private ObservableCollection<ReadProgramFolderItemViewModel> _Nodes;
+        public ObservableCollection<ReadProgramFolderItemViewModel> Nodes
+        {
+            get { return _Nodes; }
+            set
+            {
+                if (_Nodes != value)
+                {
+                    _Nodes = value;
+                    RaisePropertyChanged(() => Nodes);
+                }
+            }
+        }
     }
 }

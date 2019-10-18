@@ -72,6 +72,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             get{
                 return new RelayCommand(() => {
+                    if (this.SelectedProgramViewModel == null)
+                    {
+                        return;
+                    }
                     var stream = FileToStream();
                     var fileHash = FileHashHelper.ComputeMD5(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
                     Task.Factory.StartNew(new Action(() => {

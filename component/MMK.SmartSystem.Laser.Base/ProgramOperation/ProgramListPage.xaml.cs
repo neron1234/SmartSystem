@@ -138,7 +138,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                     {
                         dg.Draw(programListViewModel.Path + @"\" + pInfo.Name);
                     }
-                    else
+                    else if(pInfo.Name.Split('.')[1] == "csv")
                     {
                         StreamReader reader = new StreamReader(programListViewModel.Path + @"\" + pInfo.Name);
                         string line = "";

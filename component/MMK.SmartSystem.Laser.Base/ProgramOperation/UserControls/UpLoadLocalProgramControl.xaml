@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
             d:DesignHeight="590" d:DesignWidth="900" Background="#2a2f34" Foreground="#787b8c" FontSize="20">
     <UserControl.Resources>
@@ -12,6 +13,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/ComboBox/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/ScrollViewer/Themes/Generic.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/CascaderBox/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="Button">
                 <Setter Property="Background" Value="#20282c"/>
@@ -22,6 +25,41 @@
                 <Setter Property="BorderBrush" Value="#121417" />
                 <Setter Property="Foreground" Value="#787b8c" />
                 <Setter Property="Margin" Value="0 10 0 0" />
+            </Style>
+            <PathGeometry x:Key="Icon_Right" Figures="M8.59,16.58L13.17,12 8.59,7.41 10,6 16,12 10,18 8.59,16.58z" />
+            <Style TargetType="{x:Type RadioButton}">
+                <Setter Property="Focusable" Value="False" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type RadioButton}">
+                            <Border x:Name="Bd" Grid.Column="1" Background="Transparent" Padding="5">
+                                <Path x:Name="ExpandPath" Data="{StaticResource Icon_Right}" Fill="Black"
+                                  HorizontalAlignment="Right" VerticalAlignment="Center" Stretch="Uniform"
+                                  Width="5" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="Bd" Property="Background" Value="#F3F3F3" />
+                                    <Setter TargetName="ExpandPath" Property="Fill" Value="#FF595959" />
+                                    <Setter TargetName="ExpandPath" Property="Stroke" Value="#FF262626" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="ExpandPath" Property="Stroke" Value="#FF27C7F7" />
+                                    <Setter TargetName="ExpandPath" Property="Fill" Value="#FFCCEEFB" />
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsMouseOver" Value="True" />
+                                        <Condition Property="IsChecked" Value="True" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="ExpandPath" Property="Stroke" Value="#FF1CC4F7" />
+                                    <Setter TargetName="ExpandPath" Property="Fill" Value="#FF82DFFB" />
+                                </MultiTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -39,7 +77,8 @@
             
             <StackPanel Grid.Row="0" Margin="10,5,10,5">
                 <TextBlock Text="CNC路径" />
-                <TextBox Text="{Binding LocalProgramPath}"/>
+                <cc:Cascader x:Name="CNCPathCascader" VerticalAlignment="Center" Height="28"  ItemsSource="{Binding ProgramFolders.Nodes}" 
+                             ChildMemberPath="Nodes" DisplayMemberPath="Name" SelectedItem="{Binding SelectedProgramFolders}"/>
             </StackPanel>
 
             <Grid Grid.Row="1" Margin="10 0 10 5">

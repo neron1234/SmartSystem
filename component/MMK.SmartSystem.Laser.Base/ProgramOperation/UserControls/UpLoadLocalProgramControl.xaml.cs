@@ -57,6 +57,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                     upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.First()?.Code;
                 }
             });
+            Messenger.Default.Register<ProgramDetailViewModel>(this, (pds) =>
+            {
+
+            });
 
             Task.Factory.StartNew(new Action(() =>
             {
@@ -66,6 +70,22 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                     EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = false });
                 });
             }));
+
+            this.CNCPathCascader.SelectedItem = upLoadProViewModel.SelectedProgramFolders;
         }
+
+        //private void DirectoryToTree(string path, TreeNodeCollection nodes)
+        //{
+        //     foreach (string item in Directory.GetDirectories(path))
+        //     {
+        //         TreeNode node = nodes.Add(Path.GetFileName(item));
+        //         DirectoryToTree(item, node.Nodes);
+        //     }
+        //     string[] strFiles = Directory.GetFiles(path);
+        //     foreach (string str in strFiles)
+        //     {
+        //         nodes.Add(Path.GetFileName(str));
+        //     }
+        // }
     }
 }
