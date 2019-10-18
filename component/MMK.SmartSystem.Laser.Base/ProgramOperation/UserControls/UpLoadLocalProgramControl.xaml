@@ -25,6 +25,7 @@
                 <Setter Property="BorderBrush" Value="#121417" />
                 <Setter Property="Foreground" Value="#787b8c" />
                 <Setter Property="Margin" Value="0 10 0 0" />
+                <Setter Property="IsReadOnly" Value="True" />
             </Style>
             <PathGeometry x:Key="Icon_Right" Figures="M8.59,16.58L13.17,12 8.59,7.41 10,6 16,12 10,18 8.59,16.58z" />
             <Style TargetType="{x:Type RadioButton}">
@@ -78,20 +79,20 @@
             <StackPanel Grid.Row="0" Margin="10,5,10,5">
                 <TextBlock Text="CNC路径" />
                 <cc:Cascader x:Name="CNCPathCascader" VerticalAlignment="Center" Height="28"  ItemsSource="{Binding ProgramFolders.Nodes}" 
-                             ChildMemberPath="Nodes" DisplayMemberPath="Name" SelectedItem="{Binding SelectedProgramFolders}"/>
+                             ChildMemberPath="Nodes" DisplayMemberPath="Name" SelectedItem="{Binding SelectedProgramFolders}" />
             </StackPanel>
 
-            <Grid Grid.Row="1" Margin="10 0 10 5">
+            <Grid Grid.Row="1" Margin="10 0 10 5" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" >
+                <StackPanel Grid.Column="0" x:Name="TbPanel1">
                     <TextBlock Text="板材尺寸(W)" Margin="0,10,0,0" />
-                    <TextBox />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="True" GotFocus="TextBox_GotFocus"/>
 
                     <TextBlock Text="加工最大尺寸(W)" Margin="0,10,0,0"/>
-                    <TextBox />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" GotFocus="TextBox_GotFocus" />
 
                     <TextBlock Text="材料类型" Margin="0,10,0,0" />
                     <ComboBox Margin="0,10,0,0" ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
@@ -104,7 +105,7 @@
                     </ComboBox>
 
                     <TextBlock Text="切割长度" Margin="0,10,0,0" />
-                    <TextBox />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.CuttingDistance}" GotFocus="TextBox_GotFocus" />
 
                     <TextBlock Text="割嘴类型" Margin="0,10,0,0" />
                     <ComboBox Margin="0 10 0 0" ItemsSource="{Binding NozzleKindList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
@@ -117,25 +118,26 @@
                     </ComboBox>
                     
                     <TextBlock Text="循环时间" Margin="0,10,0,0" />
-                    <TextBox />
+                    <!--<TextBox cc:TextBoxFocusBehavior.IsFocused="{Binding CuttingTimeIsFocuse}" Text="{Binding ProgramDetail.CuttingTime}"/>-->
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.CuttingTime}" GotFocus="TextBox_GotFocus"/>
                 </StackPanel>
-                <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                <StackPanel Grid.Column="1" Margin="10,0,0,0" x:Name="TbPanel2">
                     <TextBlock Text="板材尺寸(H)" Margin="0,10,0,0" />
-                    <TextBox />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="" GotFocus="TextBox_GotFocus"/>
                     <TextBlock Text="加工最大尺寸(H)" Margin="0,10,0,0" />
-                    <TextBox />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="" GotFocus="TextBox_GotFocus"/>
                     <TextBlock Text="材料厚度" Margin="0,10,0,0" />
-                    <TextBox />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.Thickness}" GotFocus="TextBox_GotFocus"/>
                     <TextBlock Text="穿孔次数" Margin="0,10,0,0" />
-                    <TextBox />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.PiercingCount}" GotFocus="TextBox_GotFocus"/>
                     <TextBlock Text="割嘴内径" Margin="0,10,0,0" />
-                    <TextBox />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.NozzleDiameter}" GotFocus="TextBox_GotFocus"/>
                 </StackPanel>
             </Grid>
 
             <StackPanel Grid.Row="2" Margin="18" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Style="{StaticResource BtnStyle}" Width="120" Height="42" Content="保存" Margin="0 0 10 0"/>
-                <Button Style="{StaticResource BtnStyle}" Width="120" Height="42" Content="取消" Margin="10 0 0 0"/>
+                <Button Style="{StaticResource BtnStyle}" Width="120" Height="42" Content="取消" Margin="10 0 0 0" x:Name="Cancel" Click="Cancel_Click"/>
             </StackPanel>
         </Grid>
         <Grid Grid.RowSpan="2" Grid.Column="2" Margin="1 20 5 0">
@@ -167,8 +169,8 @@
                 <Button Height="110" Content="." Command="{Binding InputCommand}" CommandParameter="."/>
             </StackPanel>
             <StackPanel Grid.ColumnSpan="3" Grid.Row="1" Orientation="Horizontal" Margin="1" HorizontalAlignment="Center" >
-                <Button Height="60" Width="160" Content="上一项" Command="{Binding InputCommand}" CommandParameter="9" Margin="10 0 0 0"/>
-                <Button Height="60" Width="160" Content="下一项" Command="{Binding InputCommand}" CommandParameter="6" Margin="10 0 0 0"/>
+                <Button Height="60" Width="160" Content="上一项" Margin="10 0 0 0" x:Name="LastOptionBtn" Click="LastOptionBtn_Click"/>
+                <Button Height="60" Width="160" Content="下一项" Margin="10 0 0 0" x:Name="NextOptionBtn" Click="NextOptionBtn_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

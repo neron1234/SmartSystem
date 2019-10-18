@@ -117,7 +117,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
         {
             Messenger.Default.Unregister<MainSystemNoticeModel>(this);
             Messenger.Default.Unregister<PagedResultDtoOfMaterialDto>(this);
-            Messenger.Default.Send("保存成功");
+            Messenger.Default.Send(new PopupMsg("保存成功", true));
         }
         private void SaveErrorAction()
         {

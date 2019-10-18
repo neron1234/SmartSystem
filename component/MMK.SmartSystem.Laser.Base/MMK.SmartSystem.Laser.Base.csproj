@@ -260,6 +260,7 @@
     <Compile Include="CustomControl\TextBox\Implementation\ValidateTextBox.cs" />
     <Compile Include="CustomControl\TextBox\Implementation\ZPasswordBox.cs" />
     <Compile Include="CustomControl\TextBox\Implementation\ZTextBox.cs" />
+    <Compile Include="CustomControl\TextFocusBehavior.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\AnimationButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\FlatToggleButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\IconToggleButton.cs" />
@@ -362,7 +363,7 @@
     <Compile Include="MachineProcess\UserControls\ViewModel\AddMaterialViewModel.cs" />
     <Compile Include="MachineProcess\UserControls\ViewModel\ProcessListViewModel.cs" />
     <Compile Include="MachineProcess\UserControls\ViewModel\ProcessOptionsViewModel.cs" />
-    <Compile Include="MachineProcess\ViewModel\PopupWindowViewModel.cs" />
+    <Compile Include="ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="MachineProcess\ViewModel\ProcessViewModel.cs" />
     <Compile Include="ProgramOperation\ProgramListPage.xaml.cs">
       <DependentUpon>ProgramListPage.xaml</DependentUpon>
@@ -718,7 +719,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomControl\Popup\Themes\" />
-    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

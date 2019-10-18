@@ -59,8 +59,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             });
             Messenger.Default.Register<ProgramDetailViewModel>(this, (pds) =>
             {
-
+                upLoadProViewModel.ProgramDetail = pds;
+                upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.FirstOrDefault(n => n.Name_CN == pds.Material)?.Code;
+                upLoadProViewModel.SelectedNozzleKindCode = (int)upLoadProViewModel.NozzleKindList.FirstOrDefault(n => n.Name_CN == pds.NozzleKind)?.Code;
             });
+
+            Messenger.Default.Register<KeyCode>(this, (kCode) => InputTextBox(kCode));
 
             Task.Factory.StartNew(new Action(() =>
             {
@@ -71,21 +75,86 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 });
             }));
 
-            this.CNCPathCascader.SelectedItem = upLoadProViewModel.SelectedProgramFolders;
+            Loaded += UpLoadLocalProgramControl_Loaded;
+            //this.CNCPathCascader.SelectedItem = upLoadProViewModel.SelectedProgramFolders;
         }
 
-        //private void DirectoryToTree(string path, TreeNodeCollection nodes)
-        //{
-        //     foreach (string item in Directory.GetDirectories(path))
-        //     {
-        //         TreeNode node = nodes.Add(Path.GetFileName(item));
-        //         DirectoryToTree(item, node.Nodes);
-        //     }
-        //     string[] strFiles = Directory.GetFiles(path);
-        //     foreach (string str in strFiles)
-        //     {
-        //         nodes.Add(Path.GetFileName(str));
-        //     }
-        // }
+        private void UpLoadLocalProgramControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            tbList = new List<TextBox>();
+            foreach (var item in TbPanel1.Children)
+            {
+                if (item is TextBox)
+                {
+                    tbList.Add(item as TextBox);
+                }
+            }
+            foreach (var item in TbPanel2.Children)
+            {
+                if (item is TextBox)
+                {
+                    tbList.Add(item as TextBox);
+                }
+            }
+            Loaded -= UpLoadLocalProgramControl_Loaded;
+        }
+
+        private void InputTextBox(KeyCode keyCode)
+        {
+            if (FocusTb == null){
+                if(Keyboard.FocusedElement is TextBox){
+                    FocusTb = Keyboard.FocusedElement as TextBox;
+                }else{
+                    return;
+                }
+            }
+
+            var number = 0;
+            if (int.TryParse(keyCode.Code, out number)){
+                FocusTb.Text += number;
+            }else{
+                if (keyCode.Code == "." && !FocusTb.Text.Contains(".")){
+                    FocusTb.Text += keyCode.Code;
+                }else{
+                    if (FocusTb.Text.Length > 0){
+                        FocusTb.Text = FocusTb.Text.Remove(FocusTb.Text.Length - 1, 1);
+                    }
+                }
+            }
+        }
+
+        public TextBox FocusTb { get; set; }
+        public List<TextBox> tbList { get; set; }
+        private void NextOptionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (FocusTb == null){
+                FocusTb = tbList[0];
+            }else if (tbList.IndexOf(FocusTb) + 1 < tbList.Count){
+                FocusTb = tbList[tbList.IndexOf(FocusTb) + 1];
+            }
+            Keyboard.Focus(FocusTb);
+        }
+
+        private void LastOptionBtn_Click(object sender, RoutedEventArgs e){
+            if (FocusTb == null)
+            {
+                FocusTb = tbList[0];
+            }
+            else if (tbList.IndexOf(FocusTb) - 1 >= 0)
+            {
+                FocusTb = tbList[tbList.IndexOf(FocusTb) - 1];
+            }
+            Keyboard.Focus(FocusTb);
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            FocusTb = sender as TextBox;
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Send(new PopupMsg("", true));
+        }
     }
 }

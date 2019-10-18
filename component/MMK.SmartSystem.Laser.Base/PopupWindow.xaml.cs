@@ -1,6 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using MMK.SmartSystem.Laser.Base.CustomControl;
-using MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +22,7 @@ namespace MMK.SmartSystem.Laser.Base
     public partial class PopupWindow : Window
     {
         private PopupWindowViewModel popupWindowViewModel { get; set; }
-        private SoftKeyBoard.SoftKeyHelper sh = new SoftKeyBoard.SoftKeyHelper();
+        //private SoftKeyBoard.SoftKeyHelper sh = new SoftKeyBoard.SoftKeyHelper();
         public PopupWindow(UserControl userControl, int width = 600, int height = 300,string title = "")
         {
             InitializeComponent();
@@ -35,15 +33,21 @@ namespace MMK.SmartSystem.Laser.Base
             this.Height = PopupGrid.Height = height + 40;
             popupWindowViewModel.Title = title;
 
-            Messenger.Default.Register<string>(this,(s) => {
-                MessageBox.Show(s);
-                this.Close();
+            Messenger.Default.Register<PopupMsg>(this,(s) => {
+                if (!string.IsNullOrEmpty(s.Msg))
+                {
+                    MessageBox.Show(s.Msg);
+                }
+                if (s.IsClose)
+                {
+                    this.Close();
+                }
             });
         }
 
         private void PopupWindow_Closed(object sender, EventArgs e)
         {
-            sh.CloseKeyBoard();
+            //sh.CloseKeyBoard();
             Messenger.Default.Unregister<string>(this);
         }
 

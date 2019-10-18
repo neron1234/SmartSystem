@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
+namespace MMK.SmartSystem.Laser.Base
 {
     public class PopupWindowViewModel:ViewModelBase
     {
@@ -36,6 +36,17 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
                     RaisePropertyChanged(() => Title);
                 }
             }
+        }
+    }
+
+    public class PopupMsg
+    {
+        public string Msg { get; set; }
+        public bool IsClose { get; set; }
+        public PopupMsg(string msg,bool close)
+        {
+            Msg = msg;
+            IsClose = close;
         }
     }
 }

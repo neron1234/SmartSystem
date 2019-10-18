@@ -195,7 +195,7 @@
                             </Popup>
                             <TextBox x:Name="PART_TextBox" Grid.Column="0"
                                      Margin="{TemplateBinding Padding}"
-                                     VerticalContentAlignment="Center"
+                                     VerticalContentAlignment="Center" IsReadOnly="True"
                                      BorderThickness="0" Foreground="{TemplateBinding Foreground}" />
                             <ToggleButton x:Name="PART_ToggleButton"
                                           Grid.Column="1"

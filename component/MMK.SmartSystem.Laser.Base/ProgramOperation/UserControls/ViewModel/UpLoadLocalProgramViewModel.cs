@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common;
 using System;
 using System.Collections.Generic;
@@ -120,6 +121,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                     _SelectedProgramFolders = value;
                     RaisePropertyChanged(() => SelectedProgramFolders);
                 }
+            }
+        }
+
+        public ICommand InputCommand{
+            get{
+                return new RelayCommand<string>((str) => {
+                    Messenger.Default.Send(new KeyCode { Code = str });
+                });
             }
         }
 
@@ -420,5 +429,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 }
             }
         }
+    }
+
+    public class KeyCode
+    {
+        public string Code { get; set; }
     }
 }
