@@ -20,7 +20,7 @@ namespace MMK.CNC.Application.LaserProgram
     {
 
 
-        Task<string> UploadProgram(IFormFile file, string connectId);
+        Task<string> UploadProgram(IFormFile file, string connectId,string fileHashCode);
 
     }
     public class ProgramApplicationService : AsyncCrudAppService<ProgramComment, ProgramCommentFromCncDto, int, PagedResultRequestDto, CreateProgramDto, UpdateProgramDto>, IProgramApplicationService
@@ -39,9 +39,10 @@ namespace MMK.CNC.Application.LaserProgram
             return _cacheManager.GetCache("ProgramApplicationGet").Get(input.Id.ToString(), () => base.Get(input));
 
         }
+
         public override async Task<ProgramCommentFromCncDto> Update(UpdateProgramDto input)
         {
-            var defaultCode = Repository.FirstOrDefault(d => d.Name == input.Name);
+            var defaultCode = Repository.FirstOrDefault(d => d.FileHash == input.FileHash);
             var entity = ObjectMapper.Map<ProgramComment>(input);
 
             if (defaultCode == null)
@@ -60,11 +61,11 @@ namespace MMK.CNC.Application.LaserProgram
         }
 
 
-        public async Task<string> UploadProgram(IFormFile file, string connectId)
+        public async Task<string> UploadProgram(IFormFile file, string connectId,string fileHashCode)
         {
             var stream = file.OpenReadStream();
 
-            await EventBus.Default.TriggerAsync(new UploadProgramEventData() { FullName = file.FileName, FileStream = stream, ConnectId = connectId });
+            await EventBus.Default.TriggerAsync(new UploadProgramEventData() { FullName = file.FileName, FileStream = stream, ConnectId = connectId, FileHash = fileHashCode });
             return "True";
         }
     }

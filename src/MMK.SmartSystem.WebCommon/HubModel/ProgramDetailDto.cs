@@ -16,6 +16,7 @@ namespace MMK.SmartSystem.WebCommon.HubModel
 
     public class ProgramDetailDto
     {
+        public string FileHash { get; set; }
         public string Name { get; set; }
 
         public string FullPath { get; set; }

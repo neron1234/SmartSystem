@@ -380,6 +380,7 @@
     </Compile>
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCInfoViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCProgramListViewModel.cs" />
+    <Compile Include="ProgramOperation\UserControls\ViewModel\FileHashHelper.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\LocalProgramListViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\ProgramViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\UpLoadLocalProgramViewModel.cs" />

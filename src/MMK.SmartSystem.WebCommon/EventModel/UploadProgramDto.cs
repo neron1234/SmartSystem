@@ -15,6 +15,8 @@ namespace MMK.SmartSystem.WebCommon.EventModel
         public Stream FileStream { set; get; }
 
         public string  ConnectId { get; set; }
+
+        public string FileHash { get; set; }
     }
 
     public class ProgramResovleDto
@@ -25,6 +27,8 @@ namespace MMK.SmartSystem.WebCommon.EventModel
 
         public string BmpPath { get; set; }
         public string ConnectId { get; set; }
+
+        public string FileHash { get; set; }
 
     }
 }

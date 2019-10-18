@@ -12,6 +12,12 @@ namespace MMK.CNC.Core.LaserProgram
     public class ProgramComment : Entity<int>, IHasCreationTime
     {
         /// <summary>
+        /// 文件唯一标识
+        /// </summary>
+        [StringLength(100)]
+        public string FileHash { get; set; }
+
+        /// <summary>
         /// 程序名称
         /// </summary>
         [StringLength(100)]

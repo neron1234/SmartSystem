@@ -45,7 +45,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             SendReaderWriter(new HubReadWriterModel(){
                 ProxyName = "ProgramListInOut",
                 Action = "Reader",
-                Id = "123",
+                Id = "getProgramList",
+                Data = new object[] { "//CNC_MEM/USER/PATH1/" }
+            });
+
+            SendReaderWriter(new HubReadWriterModel()
+            {
+                ProxyName = "ProgramFolderInOut",
+                Action = "Reader",
+                Id = "getProgramFolder",
                 Data = new object[] { "//CNC_MEM/USER/PATH1/" }
             });
             programListViewModel.ConnectId = this.CurrentConnectId;
@@ -53,7 +61,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
-            if (obj.Id == "123") {
+            if (!obj.Success) return;
+
+            if (obj.Id == "getProgramList") {
                 JArray jArray = JArray.Parse(obj.Result.ToString());
                 var programList = new List<ProgramViewModel>();
                 foreach (var item in jArray)
@@ -72,9 +82,36 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 }
                 Messenger.Default.Send(programList);
             }
+            else if (obj.Id == "getProgramFolder")
+            {
+                JObject jObject = JObject.Parse(obj.Result.ToString());
+                if (jObject != null)
+                {
+
+                }
+            }
             else
             {
-
+                JObject jObject = JObject.Parse(obj.Result.ToString());
+                if (jObject != null)
+                {
+                    Messenger.Default.Send(new ProgramDetailViewModel
+                    {
+                        Name = jObject["name"].ToString(),
+                        FullPath = jObject["fullPath"].ToString(),
+                        Size = Convert.ToDouble(jObject["size"].ToString()),
+                        Material = jObject["material"].ToString(),
+                        Thickness = Convert.ToDouble(jObject["thickness"]),
+                        Gas = jObject["gas"].ToString(),
+                        FocalPosition = Convert.ToDouble(jObject["focalPosition"]),
+                        NozzleKind = jObject["nozzleKind"].ToString(),
+                        NozzleDiameter = Convert.ToDouble(jObject["nozzleDiameter"]),
+                        PlateSize = jObject["plateSize"].ToString(),
+                        UsedPlateSize = jObject["usedPlateSize"].ToString(),
+                        CuttingDistance = Convert.ToDouble(jObject["cuttingDistance"]),
+                        PiercingCount = Convert.ToInt32(jObject["piercingCount"])
+                    });
+                }
             }
            
         }

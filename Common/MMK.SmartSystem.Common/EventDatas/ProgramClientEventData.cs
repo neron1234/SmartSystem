@@ -10,5 +10,6 @@ namespace MMK.SmartSystem.Common.EventDatas
     {
         public FileParameter FileParameter { get; set; }
         public string ConnectId { get; set; }
+        public string FileHashCode { get; set; }
     }
 }

@@ -81,15 +81,12 @@ namespace MMK.SmartSystem.CNC.Host
         private async static void CncHandler_ShowErrorLogEvent(string obj)
         {
             await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientErrorEvent, obj);
-
             if ((DateTime.Now - currentErrorTime).TotalSeconds >= 5)
             {
                 currentErrorTime = DateTime.Now;
 
                 Console.WriteLine($"【Worker Error】【{DateTime.Now.ToString("HH: mm:ss")}】" + obj);
             }
-
-
         }
 
         static async void StartSignalr()
@@ -105,9 +102,11 @@ namespace MMK.SmartSystem.CNC.Host
         {
             obj.FilePath = @"C:\Users\wjj-yl\Desktop\测试用DXF\0001";
             obj.BmpPath = @"C:\Users\wjj-yl\Desktop\测试用DXF\";
+
             var res = new LaserProgramDemo().ProgramResolve(obj);
-            Console.WriteLine($"【程序解析】:{res.BmpName} {res.Data.ToString()}");
+            res.Data.FileHash = obj.FileHash;
             await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientRrogramRosolveResultEvent, res);
+            Console.WriteLine($"【程序解析】:{res.BmpName} | {res.Data.ToString()} | {obj.ConnectId} | {obj.FileHash}");
         }
 
         private static async void SignalrProxy_GetClientReaderWriterEvent(WebCommon.HubModel.HubReadWriterModel obj)

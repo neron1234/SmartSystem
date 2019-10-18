@@ -73,11 +73,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             get{
                 return new RelayCommand(() => {
                     var stream = FileToStream();
+                    var fileHash = FileHashHelper.ComputeMD5(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
                     Task.Factory.StartNew(new Action(() => {
                         EventBus.Default.TriggerAsync(new UpLoadProgramClientEventData
                         {
+                            FileParameter = new Common.FileParameter(stream, this.SelectedProgramViewModel.Name),
                             ConnectId = ConnectId,
-                            FileParameter = new Common.FileParameter(stream, this.SelectedProgramViewModel.Name)
+                            FileHashCode = fileHash
                         });
                     }));
                     new PopupWindow(new UpLoadLocalProgramControl(this.Path), 900, 590, "上传本地程序").ShowDialog();
@@ -88,6 +90,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public Stream FileToStream()
         {
             using (var fileStream = new FileStream(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name), FileMode.Open, FileAccess.Read, FileShare.Read)){
+
                 byte[] bytes = new byte[fileStream.Length];
                 fileStream.Read(bytes, 0, bytes.Length);
                 fileStream.Close();

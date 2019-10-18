@@ -12,6 +12,7 @@ namespace MMK.CNC.Application.LaserProgram.Dto
     [AutoMap(typeof(ProgramComment))]
     public class ProgramCommentFromCncDto : EntityDto<int>
     {
+        public string FileHash { get; set; }
         public string Name { get; set; }
 
         public string FullPath { get; set; }
@@ -51,6 +52,7 @@ namespace MMK.CNC.Application.LaserProgram.Dto
     [AutoMap(typeof(ProgramComment))]
     public class CreateProgramDto
     {
+        public string FileHash { get; set; }
         /// <summary>
         /// 程序名称
         /// </summary>
@@ -142,6 +144,7 @@ namespace MMK.CNC.Application.LaserProgram.Dto
     [AutoMap(typeof(ProgramComment))]
     public class UpdateProgramDto : EntityDto<int>
     {
+        public string FileHash { get; set; }
         public string Name { get; set; }
 
         public string FullPath { get; set; }

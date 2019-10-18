@@ -16,7 +16,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
     public class LaserProgramDemo
     {
-
         public ProgramResolveResultDto ProgramResolve(ProgramResovleDto resovleDto)
         {
             LaserProgramHelper helper = new LaserProgramHelper();

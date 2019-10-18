@@ -21,7 +21,7 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
             string errorMessage = string.Empty;
             try
             {
-                var rs = programClientService.UploadProgramAsync(eventData.FileParameter,eventData.ConnectId).Result;
+                var rs = programClientService.UploadProgramAsync(eventData.FileParameter,eventData.ConnectId,eventData.FileHashCode).Result;
                 errorMessage = rs.Error?.Details;
                 if (rs.Success)
                 {
