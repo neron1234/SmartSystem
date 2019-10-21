@@ -113,6 +113,7 @@ namespace MMK.SmartSystem.Web.Host.Startup
                 routes.MapHub<RouteHub>("/hubs-routeHub");
                 routes.MapHub<CNCHub>("/hubs-cncHub");
                 routes.MapHub<CncClientHub>("/hubs-cncClientHub");
+                routes.MapHub<CNCWebClient>("/hubs-cncWebClient");
 
             });
 

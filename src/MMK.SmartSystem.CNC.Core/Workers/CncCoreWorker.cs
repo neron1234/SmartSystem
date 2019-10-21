@@ -213,14 +213,9 @@ namespace MMK.SmartSystem.CNC.Core.Workers
         {
 
             HandlerExecute();
-            // HandlerSwitchExecute();
         }
 
-        #region 请求合并
-        private ConcurrentDictionary<string, List<CncPollEventData>> m_PagePollRequests = new ConcurrentDictionary<string, List<CncPollEventData>>();
-
-
-        #endregion
+       
 
         #region OLD 取消的
         private void HandlerSwitchExecute()
