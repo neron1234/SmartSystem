@@ -1,6 +1,7 @@
 ﻿using Abp.AspNetCore.SignalR.Hubs;
 using Abp.Auditing;
 using Abp.RealTime;
+using Microsoft.AspNetCore.SignalR;
 using MMK.SmartSystem.CNC.Core;
 using MMK.SmartSystem.CNC.Core.Configs;
 using MMK.SmartSystem.WebCommon.DeviceModel;
@@ -15,10 +16,12 @@ namespace MMK.SmartSystem.RealTime.Hubs
     public class CNCWebClient : AbpCommonHub
     {
         const string DefaultGroupName = "Home-Config";
-        public CNCWebClient(IOnlineClientManager onlineClientManager, IClientInfoProvider clientInfoProvider) :
+        IServiceProvider service;
+
+        public CNCWebClient(IOnlineClientManager onlineClientManager, IClientInfoProvider clientInfoProvider, IServiceProvider _service) :
         base(onlineClientManager, clientInfoProvider)
         {
-
+            service = _service;
         }
 
         public string PageOnLoad()
@@ -27,7 +30,14 @@ namespace MMK.SmartSystem.RealTime.Hubs
             {
                 if (!SmartSystemCNCCoreConsts.PageCncEventDict.ContainsKey(DefaultGroupName))
                 {
-                    SmartSystemCNCCoreConsts.PageCncEventDict.TryAdd(DefaultGroupName, new HomeEventDataConfig().GetInitEventData());
+                    var list = new HomeEventDataConfig().GetInitEventData();
+                    SmartSystemCNCCoreConsts.PageCncEventDict.TryAdd(DefaultGroupName, list);
+                    var hubClient = service.GetService(typeof(IHubContext<CncClientHub>)) as IHubContext<CncClientHub>;
+                    if (hubClient != null)
+                    {
+                        hubClient.Clients.All.SendAsync(CncClientHub.ClientGetCncEvent, new List<GroupEventData>() {
+                            new GroupEventData() { GroupName = DefaultGroupName, Data = list,Operation=GroupEventOperationEnum.Add } });
+                    }
                 }
             }
             catch (Exception ex)
@@ -46,6 +56,19 @@ namespace MMK.SmartSystem.RealTime.Hubs
                 {
                     var list = new List<CncEventData>();
                     SmartSystemCNCCoreConsts.PageCncEventDict.TryRemove(DefaultGroupName, out list);
+                  
+                    var hubClient = service.GetService(typeof(IHubContext<CncClientHub>)) as IHubContext<CncClientHub>;
+                    if (hubClient != null)
+                    {
+                        hubClient.Clients.All.SendAsync(CncClientHub.ClientGetCncEvent,
+                            new List<GroupEventData>()
+                            {
+                              new GroupEventData()
+                              {
+                                  GroupName = DefaultGroupName,
+                                  Operation =GroupEventOperationEnum.Remove
+                              } });
+                    }
                 }
             }
             catch (Exception ex)
