@@ -22,7 +22,6 @@ namespace MMK.SmartSystem.Laser.Base
     public partial class PopupWindow : Window
     {
         private PopupWindowViewModel popupWindowViewModel { get; set; }
-        //private SoftKeyBoard.SoftKeyHelper sh = new SoftKeyBoard.SoftKeyHelper();
         public PopupWindow(UserControl userControl, int width = 600, int height = 300,string title = "")
         {
             InitializeComponent();
@@ -47,8 +46,7 @@ namespace MMK.SmartSystem.Laser.Base
 
         private void PopupWindow_Closed(object sender, EventArgs e)
         {
-            //sh.CloseKeyBoard();
-            Messenger.Default.Unregister<string>(this);
+            Messenger.Default.Unregister<PopupMsg>(this);
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)

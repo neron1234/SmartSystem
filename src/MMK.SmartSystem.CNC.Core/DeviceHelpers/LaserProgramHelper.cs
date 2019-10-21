@@ -42,7 +42,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                 }
             }
             string saveFullName = $"{resovleDto.BmpPath}\\{resovleDto.FileName}.bmp";
-            helper.DrawXYThumbnai(dBlocks, 0.2, 680, 460, rWidth, rHeight, saveFullName);
+            //helper.DrawXYThumbnai(dBlocks, 0.2, 680, 460, rWidth, rHeight, saveFullName);
 
             return new ProgramResolveResultDto()
             {

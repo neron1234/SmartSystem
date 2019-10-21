@@ -100,8 +100,8 @@ namespace MMK.SmartSystem.CNC.Host
 
         private static async void SignalrProxy_GetClientProgramResovleEvent(WebCommon.EventModel.ProgramResovleDto obj)
         {
-            obj.FilePath = @"C:\Users\wjj-yl\Desktop\测试用DXF\0001";
-            obj.BmpPath = @"C:\Users\wjj-yl\Desktop\测试用DXF\";
+            //obj.FilePath = @"C:\Users\wjj-yl\Desktop\测试用DXF\0001";
+            //obj.BmpPath = @"C:\Users\wjj-yl\Desktop\测试用DXF\";
 
             var res = new LaserProgramDemo().ProgramResolve(obj);
             res.Data.FileHash = obj.FileHash;

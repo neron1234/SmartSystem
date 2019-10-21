@@ -10,10 +10,10 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
 {
     public class BaseInOut : Abp.Dependency.ITransientDependency
     {
-        protected static ushort flib = 0;
+        protected ushort flib = 0;
 
         protected bool ConnectSuccess = true;
-        static bool IsConnect = false;
+        bool IsConnect = false;
 
         public event Action<string> ConnectFailEvent;
         public BaseInOut()

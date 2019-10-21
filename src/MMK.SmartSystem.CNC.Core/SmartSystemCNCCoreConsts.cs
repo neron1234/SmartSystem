@@ -9,7 +9,7 @@ namespace MMK.SmartSystem.CNC.Core
 {
     public class SmartSystemCNCCoreConsts
     {
-        public const string CncIP = "192.168.21.134";
+        public const string CncIP = "192.168.21.148";
 
         public const int CncPort = 8193;
 

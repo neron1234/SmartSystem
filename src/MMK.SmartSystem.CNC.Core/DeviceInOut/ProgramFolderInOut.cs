@@ -11,9 +11,11 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
 {
     public class ProgramFolderInOut : BaseInOut
     {
-        public HubReadWriterResultModel Reader()
+        public HubReadWriterResultModel Reader(HubReadWriterModel hubRead)
         {
             ReadProgramFolderItemModel data = new ReadProgramFolderItemModel();
+            data.Folder = hubRead.Data[0].ToString();
+            data.RegNum = 0;
             var res = ProgramFolderHelper.ReadProgramFolder(flib, ref data);
             return new HubReadWriterResultModel()
             {

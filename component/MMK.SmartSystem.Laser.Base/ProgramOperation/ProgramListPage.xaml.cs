@@ -54,7 +54,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 ProxyName = "ProgramFolderInOut",
                 Action = "Reader",
                 Id = "getProgramFolder",
-                Data = new object[] { "//CNC_MEM/USER/PATH1/" }
+                Data = new object[] { "//CNC_MEM/" }
             });
             programListViewModel.ConnectId = this.CurrentConnectId;
         }

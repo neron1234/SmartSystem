@@ -11,6 +11,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
     {
         public static Tuple<short, string> ReadProgramFolder(ushort flib, ref ReadProgramFolderItemModel data)
         {
+            //data.RegNum = 0;
             var ret = ReadSubProgramFolder(flib, true, ref data);
             if (ret == 0)
             {
@@ -28,7 +29,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             var pdf_adir_out = new Focas1.PRGFOLDER();
 
             var pdf_adir_in = new Focas1.IDBPDFADIR();
-            pdf_adir_in.req_num = 0;
+            pdf_adir_in.req_num = data.RegNum;
             pdf_adir_in.size_kind = 2;
             pdf_adir_in.type = 0;
             pdf_adir_in.path = data.Folder;
@@ -51,7 +52,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                             var item = new ReadProgramFolderItemModel()
                             {
                                 Name = data.Folder + name + @"/",
-                                Folder = data.Folder + name + @"/"
+                                Folder = data.Folder + name + @"/",
+                                RegNum= (short)(data.RegNum+1)
+
                             };
 
                             if(drill ==true)
