@@ -175,6 +175,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configs\HomeEventDataConfig.cs" />
     <Compile Include="DeviceHandlers\AlarmHandler.cs" />
     <Compile Include="DeviceHandlers\BaseCNCHandler.cs" />
     <Compile Include="DeviceHandlers\MacroHandler.cs" />
