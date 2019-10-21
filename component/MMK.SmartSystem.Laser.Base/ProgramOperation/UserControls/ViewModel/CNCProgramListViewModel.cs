@@ -23,10 +23,29 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand UpLoadCommand{
-            get{
-                return new RelayCommand(() =>{
-                    new PopupWindow(new EditProgramControl(), 800, 200, "上传CNC程序").ShowDialog();
+        private string _CNCPath;
+        public string CNCPath
+        {
+            get { return _CNCPath; }
+            set
+            {
+                if (_CNCPath != value)
+                {
+                    _CNCPath = value;
+                    RaisePropertyChanged(() => CNCPath);
+                }
+            }
+        }
+
+        public ReadProgramFolderItemViewModel ProgramFolderList { get; set; }
+
+        public ICommand CNCPathCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    new PopupWindow(new CNCPathControl(this.ProgramFolderList), 680, 240, "修改CNC路径").ShowDialog();
                 });
             }
         }

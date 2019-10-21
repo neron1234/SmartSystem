@@ -35,7 +35,6 @@ namespace MMK.SmartSystem.CNC.Core.Workers
                         Success = false,
                         Id = hubRead.Id
                     };
-
                 }
                 var methodInfo = handlerType.GetMethod(hubRead.Action);
                 var res = methodInfo.Invoke(handler, new object[] { hubRead }) as HubReadWriterResultModel ?? new HubReadWriterResultModel();

@@ -62,6 +62,9 @@ namespace MMK.SmartSystem.Common.Base
         {
             JObject jobject = JObject.Parse(obj.Data.ToString());
             var listMap = GetResultViewModelMap();
+            if (listMap == null){
+                return;
+            }
             foreach (var d in listMap)
             {
                 var item = d as dynamic;

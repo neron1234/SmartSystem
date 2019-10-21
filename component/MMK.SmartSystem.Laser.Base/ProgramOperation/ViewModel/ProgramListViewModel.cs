@@ -17,55 +17,55 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
 {
     public class ProgramListViewModel:ViewModelBase
     {
-        private ProgramViewModel _SelectedProgram;
-        public ProgramViewModel SelectedProgram
+        private UserControl _ListControl;
+        public UserControl ListControl
         {
-            get { return _SelectedProgram; }
+            get { return _ListControl; }
             set
             {
-                if (_SelectedProgram != value)
+                if (_ListControl != value)
                 {
-                    _SelectedProgram = value;
-                    RaisePropertyChanged(() => SelectedProgram);
+                    _ListControl = value;
+                    RaisePropertyChanged(() => ListControl);
                 }
             }
         }
 
-        private UserControl _ControlInfo;
-        public UserControl ControlInfo
+        private UserControl _InfoControl;
+        public UserControl InfoControl
         {
-            get { return _ControlInfo; }
+            get { return _InfoControl; }
             set
             {
-                if (_ControlInfo != value)
+                if (_InfoControl != value)
                 {
-                    _ControlInfo = value;
-                    RaisePropertyChanged(() => ControlInfo);
+                    _InfoControl = value;
+                    RaisePropertyChanged(() => InfoControl);
                 }
             }
         }
 
-        private string _Path;
-        public string Path
+        private string _CNCPath;
+        public string CNCPath
         {
-            get { return _Path; }
+            get { return _CNCPath; }
             set
             {
-                if (_Path != value)
+                if (_CNCPath != value)
                 {
-                    _Path = value;
-                    RaisePropertyChanged(() => Path);
+                    _CNCPath = value;
+                    RaisePropertyChanged(() => CNCPath);
                 }
             }
         }
+
 
         public string ConnectId { get; set; }
         public ProgramListViewModel()
         {
-            this.ControlInfo = new CNCProgramListControl();
-            Messenger.Default.Register<ProgramPath>(this, (str => {
-                this.Path = str.Path;
-            }));
+            this.ListControl = new CNCProgramListControl(this.ProgramFolderInfo);
+            this.InfoControl = new CNCProgramInfoControl();
+            this.CNCPath = "//CNC_MEM/USER/PATH1/";
         }
 
         public ICommand LoadFileCommand{
@@ -79,7 +79,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
         public ICommand CNCListCommand{
             get{
                 return new RelayCommand(() => {
-                    this.ControlInfo = new CNCProgramListControl();
+                    this.ListControl = new CNCProgramListControl(this.ProgramFolderInfo);
+                    this.InfoControl = new CNCProgramInfoControl();
                 });
             }
         }
@@ -87,7 +88,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
         public ICommand LocalListCommand{
             get{
                 return new RelayCommand(() => {
-                    this.ControlInfo = new LocalProgramListControl(this.ConnectId);
+                    this.ListControl = new LocalProgramListControl(this.ConnectId, this.ProgramFolderInfo);
+                    this.InfoControl = new LocalProgramInfoControl();
                 });
             }
         }
@@ -95,10 +97,50 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
         public ICommand CNCInfoCommand{
             get{
                 return new RelayCommand(() => {
-                    this.ControlInfo = new CNCInfoControl();
+                    this.ListControl = new CNCInfoControl();
+                    this.InfoControl = new UserControl();
                 });
             }
         }
 
+        private ReadProgramFolderItemViewModel _ProgramFolderInfo;
+        public ReadProgramFolderItemViewModel ProgramFolderInfo
+        {
+            get { return _ProgramFolderInfo; }
+            set
+            {
+                if (_ProgramFolderInfo != value)
+                {
+                    _ProgramFolderInfo = value;
+                    RaisePropertyChanged(() => ProgramFolderInfo);
+                }
+            }
+        }
+    }
+    public class LocalProgramPath
+    {
+        public string Path { get; set; }
+        public LocalProgramPath(string path)
+        {
+            Path = path;
+        }
+    }
+
+    public class CNCProgramPath
+    {
+        public string Path { get; set; }
+        public CNCProgramPath(string path)
+        {
+            Path = path;
+        }
+    }
+
+    public class PageConnect
+    {
+        public string ConnectId { get; set; }
+        public PageConnect(string cId)
+        {
+            ConnectId = cId;
+        }
     }
 }

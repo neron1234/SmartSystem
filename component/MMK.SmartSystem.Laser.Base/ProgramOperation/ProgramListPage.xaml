@@ -14,9 +14,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="#707374"/>
-            </Style>
+            
             <Style TargetType="TextBox">
                 <Setter Property="Foreground" Value="#848a8f"/>
                 <Setter Property="Background" Value="#202328"/>
@@ -28,15 +26,6 @@
             </Style>
             <Style TargetType="RichTextBox">
                 <Setter Property="Foreground" Value="#848a8f"/>
-                <Setter Property="Background" Value="#202328"/>
-                <Setter Property="Effect">
-                    <Setter.Value>
-                        <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Black"/>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style TargetType="Canvas">
                 <Setter Property="Background" Value="#202328"/>
                 <Setter Property="Effect">
                     <Setter.Value>
@@ -113,38 +102,11 @@
                 <RadioButton Width="150" Height="50" Content="CNC信息" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding CNCInfoCommand}" />
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <ContentControl x:Name="MyControl" Content="{Binding ControlInfo}" />
+                <ContentControl x:Name="MyListControl" Content="{Binding ListControl}" />
             </StackPanel>
         </Grid>
         <StackPanel Margin="10" Grid.Column="2">
-            <TextBlock Text="程序缩略图显示" Margin="10,5,10,0"/>
-            <Grid>
-                <Canvas x:Name="Benchmark" Height="460" Margin="10"  RenderTransformOrigin="1,1" ClipToBounds="True">
-                    <cc:ZoomableCanvas x:Name="MyCanvas" 
-                                        RealizationLimit="1000"
-                                        RealizationRate="10"
-                                        RealizationPriority="Background" Height="460" Width="680" >
-                    </cc:ZoomableCanvas>
-                </Canvas>
-            </Grid>
-            <Grid Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="{Binding SelectedProgram.Name}" Margin="0 0 0 8" FontSize="12"/>
-                    <TextBlock Text="材料类型:合成金属" Margin="0 0 0 8" FontSize="12"/>
-                    <TextBlock Text="板材厚度:28mm" Margin="0 0 0 8" FontSize="12"/>
-                    <TextBlock Text="板材尺寸:150cm*250cm" Margin="0 0 0 8" FontSize="12"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="已用尺寸:99cm/150cm" Margin="0 0 0 8" FontSize="12"/>
-                    <TextBlock Text="切割总长度:21cm/250cm" Margin="0 0 0 8" FontSize="12"/>
-                    <TextBlock Text="穿孔次数:6" Margin="0 0 0 8" FontSize="13"/>
-                    <TextBlock Text="加工时间:8小时35分47秒" Margin="0 0 0 8" FontSize="12"/>
-                </StackPanel>
-            </Grid>
+            <ContentControl x:Name="MyInfoControl" Content="{Binding InfoControl}" />
         </StackPanel>
     </Grid>
 </base:SignalrPage>

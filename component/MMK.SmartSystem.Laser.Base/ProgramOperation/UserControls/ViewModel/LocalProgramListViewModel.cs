@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,22 +39,49 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
+        private ReadProgramFolderItemViewModel _ProgramFolderInfo;
+        public ReadProgramFolderItemViewModel ProgramFolderInfo
+        {
+            get { return _ProgramFolderInfo; }
+            set
+            {
+                if (_ProgramFolderInfo != value)
+                {
+                    _ProgramFolderInfo = value;
+                    RaisePropertyChanged(() => ProgramFolderInfo);
+                }
+            }
+        }
+
         public string Path { get; set; }
+
+
+        private string _LocalPath;
+        public string LocalPath
+        {
+            get { return _LocalPath; }
+            set
+            {
+                if (_LocalPath != value)
+                {
+                    _LocalPath = value;
+                    RaisePropertyChanged(() => LocalPath);
+                }
+            }
+        }
 
         public LocalProgramListViewModel()
         {
-            if (Directory.Exists(@"C:\Users\wjj-yl\Desktop\测试用DXF"))
-            {
-                this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
-                GetFileName(this.Path);
-                Messenger.Default.Send(new ProgramPath(this.Path));
-            }
+            this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
+
+            GetFileName();
         }
-        public void GetFileName(string path)
+
+        public void GetFileName()
         {
-            if (Directory.Exists(path))
+            if (Directory.Exists(this.Path))
             {
-                DirectoryInfo root = new DirectoryInfo(path);
+                DirectoryInfo root = new DirectoryInfo(this.Path);
                 this.ProgramList = new ObservableCollection<ProgramViewModel>();
                 foreach (FileInfo f in root.GetFiles())
                 {
@@ -64,6 +92,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                         Size = (f.Length / 1024).ToString() + "KB"
                     });
                 }
+                this.LocalPath = this.Path;
+                Messenger.Default.Send(new LocalProgramPath(this.Path));
             }
         }
 
@@ -86,7 +116,19 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                             FileHashCode = fileHash
                         });
                     }));
-                    new PopupWindow(new UpLoadLocalProgramControl(this.Path), 900, 590, "上传本地程序").ShowDialog();
+                    new PopupWindow(new UpLoadLocalProgramControl(this.Path, this.ProgramFolderInfo), 900, 590, "上传本地程序").ShowDialog();
+                });
+            }
+        }
+
+        public ICommand LocalPathCommand{
+            get{
+                return new RelayCommand(() => {
+                    System.Windows.Forms.FolderBrowserDialog folderDialog = new System.Windows.Forms.FolderBrowserDialog();
+                    if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK){
+                        this.Path = folderDialog.SelectedPath.Trim();
+                        GetFileName();
+                    }
                 });
             }
         }
@@ -101,23 +143,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 Stream stream = new MemoryStream(bytes);
                 return stream;
             }
-        }
-    }
-
-    public class ProgramPath
-    {
-        public string Path { get; set; }
-        public ProgramPath(string path)
-        {
-            Path = path;
-        }
-    }
-    public class PageConnect
-    {
-        public string ConnectId { get; set; }
-        public PageConnect(string cId)
-        {
-            ConnectId = cId;
         }
     }
 }

@@ -28,10 +28,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     public partial class UpLoadLocalProgramControl : UserControl
     {
         public UpLoadLocalProgramViewModel upLoadProViewModel { get; set; }
-        public UpLoadLocalProgramControl(string programPath)
+        public UpLoadLocalProgramControl(string programPath, ReadProgramFolderItemViewModel programFolderInfo)
         {
             InitializeComponent();
-            this.DataContext = upLoadProViewModel = new UpLoadLocalProgramViewModel();
+            this.DataContext = upLoadProViewModel = new UpLoadLocalProgramViewModel(programFolderInfo);
             upLoadProViewModel.LocalProgramPath = programPath;
             Messenger.Default.Register<PagedResultDtoOfNozzleKindDto>(this, (results) =>
             {
@@ -60,8 +60,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             Messenger.Default.Register<ProgramDetailViewModel>(this, (pds) =>
             {
                 upLoadProViewModel.ProgramDetail = pds;
-                upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.FirstOrDefault(n => n.Name_CN == pds.Material)?.Code;
-                upLoadProViewModel.SelectedNozzleKindCode = (int)upLoadProViewModel.NozzleKindList.FirstOrDefault(n => n.Name_CN == pds.NozzleKind)?.Code;
+                if (!string.IsNullOrEmpty(pds.Material)){
+                    upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.FirstOrDefault(n => n.Name_CN == pds.Material)?.Code;
+                }
+                if (!string.IsNullOrEmpty(pds.NozzleKind))
+                {
+                    upLoadProViewModel.SelectedNozzleKindCode = (int)upLoadProViewModel.NozzleKindList.FirstOrDefault(n => n.Name_CN == pds.NozzleKind)?.Code;
+                }
             });
 
             Messenger.Default.Register<KeyCode>(this, (kCode) => InputTextBox(kCode));
@@ -150,11 +155,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             FocusTb = sender as TextBox;
-        }
-
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            Messenger.Default.Send(new PopupMsg("", true));
         }
     }
 }
