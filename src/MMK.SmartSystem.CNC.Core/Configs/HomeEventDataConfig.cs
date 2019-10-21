@@ -11,7 +11,12 @@ namespace MMK.SmartSystem.CNC.Core.Configs
     {
         public List<CncEventData> GetInitEventData()
         {
-            return new List<CncEventData>() { GetPositionEventData() };
+            return new List<CncEventData>()
+            {
+                GetPositionEventData(),
+                GetProgramEventData(),
+                GetFeedrateEventData()
+            };
         }
 
         private CncEventData GetPositionEventData()
@@ -22,15 +27,54 @@ namespace MMK.SmartSystem.CNC.Core.Configs
                 Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadPositionModel()
                 {
                     Decompilers = new List<DecompReadPositionItemModel>()
-                            {
-                                new DecompReadPositionItemModel() {Id="positonX", AxisNum=1,PositionType=CncPositionTypeEnum.Absolute },
-                                new DecompReadPositionItemModel() {Id="positonY", AxisNum=2,PositionType=CncPositionTypeEnum.Absolute  },
-                                new DecompReadPositionItemModel() {Id="positonZ",AxisNum=3,PositionType=CncPositionTypeEnum.Absolute }                     
-                            },
+                     {
+                          new DecompReadPositionItemModel() {Id="positonX", AxisNum=1,PositionType=CncPositionTypeEnum.Absolute },
+                          new DecompReadPositionItemModel() {Id="positonY", AxisNum=2,PositionType=CncPositionTypeEnum.Absolute  },
+                          new DecompReadPositionItemModel() {Id="positonZ",AxisNum=3,PositionType=CncPositionTypeEnum.Absolute }
+                     },
                     Readers = new List<ReadPositionTypeModel>()
-                            {
-                                new ReadPositionTypeModel(){ PositionType=CncPositionTypeEnum.Absolute}
-                            }
+                    {
+                          new ReadPositionTypeModel(){ PositionType=CncPositionTypeEnum.Absolute}
+                    }
+                })
+            };
+        }
+
+        private CncEventData GetProgramEventData()
+        {
+            return new CncEventData()
+            {
+                Kind = CncEventEnum.ReadProgramStr,
+                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadProgramStrModel()
+                {
+                    Decompilers = new List<string>()
+                    {
+                        "Home-Program"
+                    },
+                    Readers = new List<string>()
+                    {
+                        "programStrControl"
+                    }
+                })
+            };
+        }
+
+        private CncEventData GetFeedrateEventData()
+        {
+            return new CncEventData()
+            {
+
+                Kind = CncEventEnum.ReadFeedrate,
+                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadFeedrateModel()
+                {
+                    Decompilers = new List<string>()
+                    {
+                        "Home-Feedrate"
+                    },
+                    Readers = new List<string>()
+                    {
+                        "homeFeedrate"
+                    }
                 })
             };
         }

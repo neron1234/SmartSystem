@@ -36,9 +36,12 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
         //ReadProgramFolder,
         ReadProgramInfo,
         ReadModalInfo,
+        [CncCustomEvent("CycleTimeHandler")]
         ReadCycleTime,
         ReadWorkpartNum,
         ReadSpindleSpeed,
+
+        [CncCustomEvent("FeedrateHandler")]
         ReadFeedrate,
     }
 }
