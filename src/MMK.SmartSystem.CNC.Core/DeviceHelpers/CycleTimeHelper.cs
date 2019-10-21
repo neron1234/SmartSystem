@@ -15,7 +15,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             if (ret_cy1 == 0 && ret_cy2 == 0)
             {
-                data.TotalSeconds = param1.u.ldata / 1000 + param2.u.ldata * 60;
+                data.Value = param1.u.ldata / 1000 + param2.u.ldata * 60;
 
                 return new Tuple<short, string>(0, null);
             }
