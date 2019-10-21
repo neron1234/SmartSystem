@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
-    public class ReadCycleTimeModel
+    public class ReadCycleTimeModel : CncReadDecoplilersModel<string, string>
     {
-        public List<string> Decompilers { get; set; } = new List<string>();
+    }
+
+    public class ReadCycleTimeResultModel : BaseCncResultModel
+    {
+        [Newtonsoft.Json.JsonProperty("id")]
+        public string Id { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("value")]
+        public int Value { get; set; }
     }
 }
