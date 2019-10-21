@@ -47,13 +47,13 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                 <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="路径" Command="{Binding LocalPathCommand}"/>
                 <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="上传" Command="{Binding UpLoadCommand}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="编辑"/>
+                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="编辑" Command="{Binding OpenFileCommand}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="搜索"/>
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="删除"/>
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="上一页"/>
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="下一页"/>
+                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="搜索" Command="{Binding SearchCommand}"/>
+                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="删除" Command="{Binding DeleteFileCommand}"/>
+                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="上一页" Command="{Binding LastPageCommand}" IsEnabled="{Binding LastIsEnable}"/>
+                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="下一页" Command="{Binding NextPageCommand}" IsEnabled="{Binding NextIsEnable}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

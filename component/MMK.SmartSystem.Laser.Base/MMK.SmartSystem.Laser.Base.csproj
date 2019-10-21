@@ -373,9 +373,13 @@
     <Compile Include="ProgramOperation\UserControls\LocalProgramInfoControl.xaml.cs">
       <DependentUpon>LocalProgramInfoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgramOperation\UserControls\SearchControl.xaml.cs">
+      <DependentUpon>SearchControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCPathViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCProgramInfoViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\LocalProgramInfoViewModel.cs" />
+    <Compile Include="ProgramOperation\UserControls\ViewModel\SearchViewModel.cs" />
     <Compile Include="ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="MachineProcess\ViewModel\ProcessViewModel.cs" />
     <Compile Include="ProgramOperation\ProgramListPage.xaml.cs">
@@ -403,6 +407,7 @@
     <Compile Include="SmartSystemDeviceModule.cs" />
     <Compile Include="SmartSystemLaserBaseConsts.cs" />
     <Compile Include="ViewModel\ReadProgramFolderItemViewModel.cs" />
+    <Compile Include="ViewModel\SearchInfo.cs" />
     <Page Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -604,6 +609,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProgramOperation\UserControls\LocalProgramInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgramOperation\UserControls\SearchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

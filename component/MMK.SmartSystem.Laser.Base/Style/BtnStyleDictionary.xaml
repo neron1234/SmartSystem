@@ -49,6 +49,9 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
+            <Trigger Property="Button.IsEnabled" Value="false">
+                <Setter Property="Background" Value="#FF8C8C8C"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 

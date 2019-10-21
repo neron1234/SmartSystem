@@ -1,4 +1,5 @@
-﻿using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         {
             InitializeComponent();
             this.DataContext = cncPathVM = new CNCPathViewModel(readProgramFolder);
+        }
+
+        private void SaveCNCPathBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var folder = ((ReadProgramFolderItemViewModel)this.CNCPathCascader.SelectedValues[this.CNCPathCascader.SelectedValues.Count - 1]).Folder;
+            Messenger.Default.Send(new CNCProgramPath(folder));
+            Messenger.Default.Send(new PopupMsg("保存CNC路径成功", true));
         }
     }
 }

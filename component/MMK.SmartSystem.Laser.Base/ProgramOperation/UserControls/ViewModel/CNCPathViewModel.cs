@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +42,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public CNCPathViewModel(ReadProgramFolderItemViewModel programFolderInfo){
             ProgramFolders = programFolderInfo;
-            SelectedProgramFolders = new ReadProgramFolderItemViewModel();
+            SelectedProgramFolders = programFolderInfo;
         }
 
         public ICommand SaveCNCPathCommand

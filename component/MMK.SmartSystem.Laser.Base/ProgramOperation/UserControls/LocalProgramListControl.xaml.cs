@@ -38,7 +38,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             if (selected != null && selected is ProgramViewModel)
             {
                 lpViewModel.SelectedProgramViewModel = (ProgramViewModel)selected;
-                Messenger.Default.Send(lpViewModel.SelectedProgramViewModel);
+                //Messenger.Default.Send(lpViewModel.SelectedProgramViewModel);
 
                 System.IO.StreamReader reader = new System.IO.StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name);
                 var line = reader.ReadLine();

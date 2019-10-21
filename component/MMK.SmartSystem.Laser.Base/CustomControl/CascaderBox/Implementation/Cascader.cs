@@ -139,7 +139,9 @@ namespace MMK.SmartSystem.Laser.Base.CustomControl
         public object SelectedItem
         {
             get { return (object)GetValue(SelectedItemProperty); }
-            set { SetValue(SelectedItemProperty, value); }
+            set { 
+                SetValue(SelectedItemProperty, value); 
+            }
         }
         
         public static readonly DependencyProperty SelectedItemProperty =
