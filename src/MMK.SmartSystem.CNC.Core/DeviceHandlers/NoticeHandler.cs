@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
 {
-    public class NoticeHandle : BasePollCNCHandler<ReadNoticeModel, ReadNoticeResultModel, string, string>
+    public class NoticeHandler : BasePollCNCHandler<ReadNoticeModel, ReadNoticeResultModel, string, string>
     {
         List<ReadNoticeResultItemModel> temp;
         private string message { get; set; }
-        public NoticeHandle()
+        public NoticeHandler()
         {
             temp = new List<ReadNoticeResultItemModel>();
         }

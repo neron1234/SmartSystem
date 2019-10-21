@@ -8,9 +8,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
     public class PmcHelper : BaseHelper
     {
         //PMC;adr_type;adr;num
-        public Tuple<short, string> ReadPmcRange(ushort flib, short adr_type, ushort adr, ushort num,ref int[] data)
+        public Tuple<short, string> ReadPmcRange(ushort flib, short adr_type, ushort adr, int num,ref int[] data)
         {
-            if (num > 10) return new Tuple<short, string>(-100, "读取PMC信号错误,读取数量超限");
+            if (num > 1000) return new Tuple<short, string>(-100, "读取PMC信号错误,读取数量超限");
             if (data.Length < num) return new Tuple<short, string>(-100, "读取PMC信号错误,数据存储区域过小");
 
             Focas1.IODBPMC2 buf = new Focas1.IODBPMC2();

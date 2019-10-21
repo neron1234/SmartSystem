@@ -13,7 +13,11 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
     public class ReadMacroTypeModel:IEquatable<ReadMacroTypeModel>
     {
+        public CncMacroTypeEnum Type { get; set; }
+
         public ushort StartNum { get; set; }
+
+        public ushort EndNum { get; set; }
 
         public int Quantity { get; set; }
 
@@ -27,7 +31,9 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
     {
         public string Id { get; set; }
 
-        public short StartNum { get; set; }
+        public CncMacroTypeEnum Type { get; set; }
+
+        public ushort StartNum { get; set; }
 
         public short RelStartNum { get; set; }
 
@@ -42,5 +48,18 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
         public string Id { get; set; }
 
         public double Value { get; set; }
+    }
+
+    public enum CncMacroTypeEnum
+    {
+        LOCAL,
+        ARRAY_TYPE,
+        VOLATILE,
+        NONVOLATILE,
+        LASER_COMMON,
+        PCODE_CONTROL,
+        PCODE,
+        EXTENDED_PCODE,
+        OTHER,
     }
 }

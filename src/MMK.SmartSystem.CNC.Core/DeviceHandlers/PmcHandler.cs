@@ -35,8 +35,10 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
 
         protected override Tuple<short, string> PollRead(ReadPmcTypeModel inputModel)
         {
-            int[] data = new int[inputModel.DwordQuantity];
-            var ret = new PmcHelper().ReadPmcRange(flib, inputModel.AdrType, inputModel.StartNum, inputModel.DwordQuantity, ref data);
+
+            var dwQty = (inputModel.EndNum - inputModel.StartNum) % 4;
+            int[] data = new int[dwQty];
+            var ret = new PmcHelper().ReadPmcRange(flib, inputModel.AdrType, inputModel.StartNum, dwQty, ref data);
             if (ret.Item1 == 0)
             {
                 if (datas.ContainsKey(inputModel.AdrType))
@@ -54,43 +56,97 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
 
         public override ReadPmcModel MargePollRequest(ReadPmcModel pre, ReadPmcModel current)
         {
-            Dictionary<short, ushort> startInfo = new Dictionary<short, ushort>();
-
-            foreach (var read in current.Readers)
+            foreach (var item in current.Decompilers)
             {
-                var temp_read = pre.Readers.Where(x => x.AdrType == read.AdrType).FirstOrDefault();
-                if (temp_read != null)
+                ushort temp_itemStartAdr = (ushort)((item.StartAdr % 4) * 4);
+                ushort temp_itemEndAdr = (ushort)((item.StartAdr % 4) * 4 + 3);
+
+                var pre_item = pre.Readers.Where(x => x.AdrType == item.AdrType).FirstOrDefault();
+                if (pre_item != null)
                 {
-                    var start = temp_read.StartNum < read.StartNum ? temp_read.StartNum : read.StartNum;
-                    var end = (temp_read.StartNum + temp_read.DwordQuantity) > (read.StartNum + read.DwordQuantity) ? (temp_read.StartNum + temp_read.DwordQuantity) : (read.StartNum + read.DwordQuantity);
-
-                    temp_read.StartNum = start;
-                    temp_read.DwordQuantity = (ushort)(end - start);
-
-                    if (!startInfo.ContainsKey(read.AdrType))
+                    pre.Decompilers.Add(new DecompReadPmcItemModel()
                     {
-                        return pre;
+                        Id = item.Id,
+                        StartAdr = item.StartAdr,
+                        DataType = item.DataType,
+                        Bit = item.Bit,
+                        AdrType = item.AdrType,
+                        RelStartAdr = (short)(item.StartAdr - pre_item.StartNum)
+                    });
 
+
+                    if (pre_item.StartNum > temp_itemStartAdr)
+                    {
+                        pre_item.StartNum = temp_itemStartAdr;
+
+                        var decomps = pre.Decompilers.Where(x => x.AdrType == item.AdrType).ToList() ?? new List<DecompReadPmcItemModel>();
+                        foreach (var dItem in decomps)
+                        {
+                            item.RelStartAdr = (short)(dItem.StartAdr - pre_item.StartNum);
+                        }
                     }
-                    startInfo[read.AdrType] = start;
+
+                    pre_item.EndNum = pre_item.EndNum < temp_itemEndAdr ? temp_itemEndAdr : pre_item.EndNum;
                 }
                 else
                 {
-                    pre.Readers.Add(read);
-                    startInfo.Add(read.AdrType, read.StartNum);
+                    pre.Readers.Add(new ReadPmcTypeModel()
+                    {
+
+                        StartNum = temp_itemStartAdr,
+                        EndNum = temp_itemEndAdr,
+                        AdrType= item.AdrType,
+                    });
+
+                    pre.Decompilers.Add(new DecompReadPmcItemModel()
+                    {
+                        Id = item.Id,
+                        StartAdr = item.StartAdr,
+                        DataType = item.DataType,
+                        Bit = item.Bit,
+                        AdrType = item.AdrType,
+                        RelStartAdr = 0
+                    });
                 }
             }
 
-            pre.Decompilers.AddRange(current.Decompilers);
+            //Dictionary<short, ushort> startInfo = new Dictionary<short, ushort>();
 
-            foreach (var item in pre.Decompilers)
-            {
-                if (!startInfo.ContainsKey(item.AdrType))
-                {
-                    return pre;
-                }
-                item.RelStartAdr = (short)(item.StartAdr - startInfo[item.AdrType]);
-            }
+            //foreach (var read in current.Readers)
+            //{
+            //    var temp_read = pre.Readers.Where(x => x.AdrType == read.AdrType).FirstOrDefault();
+            //    if (temp_read != null)
+            //    {
+            //        var start = temp_read.StartNum < read.StartNum ? temp_read.StartNum : read.StartNum;
+            //        var end = (temp_read.StartNum + temp_read.DwordQuantity) > (read.StartNum + read.DwordQuantity) ? (temp_read.StartNum + temp_read.DwordQuantity) : (read.StartNum + read.DwordQuantity);
+
+            //        temp_read.StartNum = start;
+            //        temp_read.DwordQuantity = (ushort)(end - start);
+
+            //        if (!startInfo.ContainsKey(read.AdrType))
+            //        {
+            //            return pre;
+
+            //        }
+            //        startInfo[read.AdrType] = start;
+            //    }
+            //    else
+            //    {
+            //        pre.Readers.Add(read);
+            //        startInfo.Add(read.AdrType, read.StartNum);
+            //    }
+            //}
+
+            //pre.Decompilers.AddRange(current.Decompilers);
+
+            //foreach (var item in pre.Decompilers)
+            //{
+            //    if (!startInfo.ContainsKey(item.AdrType))
+            //    {
+            //        return pre;
+            //    }
+            //    item.RelStartAdr = (short)(item.StartAdr - startInfo[item.AdrType]);
+            //}
 
             return pre;
         }
