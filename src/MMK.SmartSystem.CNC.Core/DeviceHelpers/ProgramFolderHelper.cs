@@ -29,7 +29,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             var pdf_adir_out = new Focas1.PRGFOLDER();
 
             var pdf_adir_in = new Focas1.IDBPDFADIR();
-            pdf_adir_in.req_num = data.RegNum;
+            pdf_adir_in.req_num = 0;
             pdf_adir_in.size_kind = 2;
             pdf_adir_in.type = 0;
             pdf_adir_in.path = data.Folder;
@@ -72,6 +72,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     return -100;
                 }
             }
+            else if (ret == 3) return 0;
 
             return ret;
 
