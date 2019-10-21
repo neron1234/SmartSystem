@@ -7530,7 +7530,7 @@ public class Focas1
         [FieldOffset(6)]
         public short datano_e;  /* end PMC address */
         [FieldOffset(8),
-        MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)]
+        MarshalAs(UnmanagedType.ByValArray, SizeConst = 1000)]
         public int[] ldata;
     } /* In case that the number of data is 5 */
 

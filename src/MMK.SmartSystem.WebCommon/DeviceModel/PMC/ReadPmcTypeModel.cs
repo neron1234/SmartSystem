@@ -10,6 +10,8 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
         public ushort StartNum { get; set; }
 
+        public ushort EndNum { get; set; }
+
         public ushort DwordQuantity { get; set; }
 
 

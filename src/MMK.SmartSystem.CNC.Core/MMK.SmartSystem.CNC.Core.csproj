@@ -190,6 +190,7 @@
     <Compile Include="DeviceHelpers\ConnectHelper.cs" />
     <Compile Include="DeviceHelpers\CycleTimeHelper.cs" />
     <Compile Include="DeviceHelpers\FeedrateHelper.cs" />
+    <Compile Include="DeviceHelpers\LaserDataHelper.cs" />
     <Compile Include="DeviceHelpers\LaserLibraryHelper.cs" />
     <Compile Include="DeviceHelpers\LaserProgramHelper.cs" />
     <Compile Include="DeviceHelpers\MacroHelper.cs" />
