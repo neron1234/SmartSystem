@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using MMK.SmartSystem.Laser.Base.CustomControl;
+﻿using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
+using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +18,15 @@ using System.Windows.Shapes;
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 {
     /// <summary>
-    /// EditProgramControl.xaml 的交互逻辑
+    /// CNCPathControl.xaml 的交互逻辑
     /// </summary>
-    public partial class EditProgramControl : UserControl
+    public partial class CNCPathControl : UserControl
     {
-        public EditProgramControl()
+        public CNCPathViewModel cncPathVM { get; set; }
+        public CNCPathControl(ReadProgramFolderItemViewModel readProgramFolder)
         {
             InitializeComponent();
+            this.DataContext = cncPathVM = new CNCPathViewModel(readProgramFolder);
         }
     }
 }

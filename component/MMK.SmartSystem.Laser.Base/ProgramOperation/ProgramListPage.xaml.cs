@@ -37,17 +37,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         {
             InitializeComponent();
             this.DataContext = programListViewModel = new ProgramListViewModel();
-            RegisterDrawProgram();
+            Messenger.Default.Register<CNCProgramPath>(this, (cncPath) => {
+                programListViewModel.CNCPath = cncPath.Path;
+                SendQurayProgramList();
+            });
         }
 
         protected override void PageSignlarLoaded()
         {
-            SendReaderWriter(new HubReadWriterModel(){
-                ProxyName = "ProgramListInOut",
-                Action = "Reader",
-                Id = "getProgramList",
-                Data = new object[] { "//CNC_MEM/USER/PATH1/" }
-            });
+            SendQurayProgramList();
 
             SendReaderWriter(new HubReadWriterModel()
             {
@@ -59,11 +57,23 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             programListViewModel.ConnectId = this.CurrentConnectId;
         }
 
+        private void SendQurayProgramList()
+        {
+            SendReaderWriter(new HubReadWriterModel()
+            {
+                ProxyName = "ProgramListInOut",
+                Action = "Reader",
+                Id = "getProgramList",
+                Data = new object[] { programListViewModel.CNCPath }
+            });
+        }
+
         protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
             if (!obj.Success) return;
 
             if (obj.Id == "getProgramList") {
+                //读取CNC程序列表
                 JArray jArray = JArray.Parse(obj.Result.ToString());
                 var programList = new List<ProgramViewModel>();
                 foreach (var item in jArray)
@@ -84,14 +94,20 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             }
             else if (obj.Id == "getProgramFolder")
             {
+                //读取CNC路径
                 JObject jObject = JObject.Parse(obj.Result.ToString());
+                ReadProgramFolderItemViewModel readProgramFolder = new ReadProgramFolderItemViewModel();
                 if (jObject != null)
                 {
-
+                    readProgramFolder.RegNum = (int)jObject["regNum"];
+                    readProgramFolder.Name = jObject["name"].ToString();
+                    readProgramFolder.Folder = jObject["folder"].ToString();
+                    var jArray = JArray.Parse(jObject["nodes"].ToString());
+                    ReadProgramFolderNode(jArray, readProgramFolder);
+                    this.programListViewModel.ProgramFolderInfo = readProgramFolder;
                 }
-            }
-            else
-            {
+            }else{
+                //读取上传到服务器的本地程序解析结果（CNC还未上传）
                 JObject jObject = JObject.Parse(obj.Result.ToString());
                 if (jObject != null)
                 {
@@ -113,94 +129,27 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                     });
                 }
             }
-           
+        }
+
+        private void ReadProgramFolderNode(JArray jArray, ReadProgramFolderItemViewModel node)
+        {
+            if (jArray == null) return;
+
+            node.Nodes = new System.Collections.ObjectModel.ObservableCollection<ReadProgramFolderItemViewModel>();
+            foreach (var item in jArray)
+            {
+                var childNode = new ReadProgramFolderItemViewModel
+                {
+                    RegNum = (int)item["regNum"],
+                    Name = item["name"].ToString(),
+                    Folder = item["folder"].ToString(),
+                };
+                node.Nodes.Add(childNode);
+                ReadProgramFolderNode(JArray.Parse(item["nodes"].ToString()), childNode);
+            }
         }
 
         public override bool IsRequestResponse => true;
-
-        /// <summary>
-        /// 解析路径下的文件并进行绘制
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RegisterDrawProgram()
-        {
-            Messenger.Default.Register<ProgramViewModel>(this, (pInfo) => {
-
-                programListViewModel.SelectedProgram = pInfo;
-                if (MyCanvas.Children.Count != 0)
-                    MyCanvas.Children.Clear();
-
-                if (pInfo.Name.Split('.').Count() > 1)
-                {
-                    var dg = new DrawGraphics(ref this.MyCanvas, ref this.Benchmark);
-                    if (pInfo.Name.Split('.')[1] == "dxf")
-                    {
-                        dg.Draw(programListViewModel.Path + @"\" + pInfo.Name);
-                    }
-                    else if(pInfo.Name.Split('.')[1] == "csv")
-                    {
-                        StreamReader reader = new StreamReader(programListViewModel.Path + @"\" + pInfo.Name);
-                        string line = "";
-                        List<System.Windows.Point> pointList = new List<System.Windows.Point>();
-                        //List<string[]> pointList = new List<string[]>();
-                        line = reader.ReadLine();
-                        while (line != null)
-                        {
-                            pointList.Add(new System.Windows.Point(Convert.ToDouble(line.Split(',')[0]), Convert.ToDouble(line.Split(',')[1])));
-                            //pointList.Add(line.Split(','));
-                            line = reader.ReadLine();
-                        }
-                        dg.Draw(pointList, pInfo.Name.Split('.')[0]);
-                    }
-                }
-            });
-        }
-
-        System.Windows.Point LastMousePosition;
-        protected override void OnMouseWheel(MouseWheelEventArgs e)
-        {
-            var x = Math.Pow(2, e.Delta / 3.0 / Mouse.MouseWheelDeltaForOneLine);
-            MyCanvas.Scale *= x;
-            foreach (var p in MyCanvas.Children)
-            {
-                if (p is System.Windows.Shapes.Path)
-                {
-                    System.Windows.Shapes.Path path = (System.Windows.Shapes.Path)p;
-                    path.StrokeThickness /= x;
-                }
-            }
-            var position = (Vector)e.GetPosition(Benchmark);
-            MyCanvas.Offset = (System.Windows.Point)((Vector)
-                (MyCanvas.Offset + position) * x - position);
-
-            e.Handled = true;
-        }
-
-        protected override void OnMouseMove(MouseEventArgs e)
-        {
-            var position = e.GetPosition(Benchmark);
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                MyCanvas.Offset -= position - LastMousePosition;
-            }
-            LastMousePosition = position;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //测试图片输出
-            RenderTargetBitmap bmp = new RenderTargetBitmap(500, 500, 0, 0, PixelFormats.Pbgra32);
-            bmp.Render(Benchmark);
-            string file = @"C:\Users\wjj-yl\Desktop\测试用DXF\test.jpg";
-            string Extension = System.IO.Path.GetExtension(file).ToLower();
-            BitmapEncoder encoder = new JpegBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(bmp));
-            using (Stream stm = File.Create(file))
-            {
-                encoder.Save(stm);
-            }
-        }
 
         public override List<object> GetResultViewModelMap()
         {

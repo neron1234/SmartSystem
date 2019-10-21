@@ -23,10 +23,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     public partial class CNCProgramListControl : UserControl
     {
         public CNCProgramListViewModel cpViewModel { get; set; }
-        public CNCProgramListControl()
+        public CNCProgramListControl(ReadProgramFolderItemViewModel readProgramFolder)
         {
             InitializeComponent();
             this.DataContext = cpViewModel = new CNCProgramListViewModel();
+            cpViewModel.ProgramFolderList = readProgramFolder;
             RegisterLoadProgram();
         }
 

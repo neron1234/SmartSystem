@@ -36,28 +36,16 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel Margin="5">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Horizontal">
-                    <TextBlock Text="名称"  Margin="47,0,0,0" />
-                    <TextBlock Text="|" Margin="40,0,0,0"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <TextBlock Text="容量"  Margin="47,0,0,0"/>
-                    <TextBlock Text="|" Margin="40,0,0,0"/>
-                </StackPanel>
-                <StackPanel Grid.Column="2">
-                    <TextBlock Text="日期/时间" TextAlignment="Center"/>
-                </StackPanel>
-            </Grid>
-            <DataGrid ItemsSource="{Binding ProgramList}" x:Name="ProgramGrid" Margin="5" Height="380" Background="#2a2f34" 
+            <Border BorderBrush="#787b8c">
+                <DataGrid ItemsSource="{Binding ProgramList}" x:Name="ProgramGrid" Margin="5" Height="380" Background="#2a2f34" 
                        AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="13"/>
+            </Border>
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="当前文件夹: "/>
+                <TextBlock Text="{Binding LocalPath}" />
+            </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="路径"/>
+                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="路径" Command="{Binding LocalPathCommand}"/>
                 <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="上传" Command="{Binding UpLoadCommand}"/>
                 <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="编辑"/>
             </StackPanel>

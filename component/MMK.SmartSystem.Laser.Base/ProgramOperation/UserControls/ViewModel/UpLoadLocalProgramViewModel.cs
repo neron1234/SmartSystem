@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common;
+using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -132,6 +133,16 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
+        public ICommand CancelCommand
+        {
+            get
+            {
+                return new RelayCommand<string>((str) => {
+                    Messenger.Default.Send(new PopupMsg("", true));
+                });
+            }
+        }
+
         public void GetTreeViewData(System.IO.DirectoryInfo dir, ReadProgramFolderItemViewModel node)
         {
             System.IO.DirectoryInfo[] allDs = dir.GetDirectories();
@@ -146,16 +157,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public UpLoadLocalProgramViewModel(){
-            ProgramFolders = new ReadProgramFolderItemViewModel();
+        public UpLoadLocalProgramViewModel(ReadProgramFolderItemViewModel programFolderInfo){
+            ProgramFolders = programFolderInfo;
             SelectedProgramFolders = new ReadProgramFolderItemViewModel();
 
-            GetTreeViewData(new System.IO.DirectoryInfo(@"C:\Users\wjj-yl\Desktop\测试用DXF"), ProgramFolders);
-
-            if (ProgramFolders.Nodes.Count > 0)
-            {
-                SelectedProgramFolders = ProgramFolders.Nodes[0];
-            }
+            //GetTreeViewData(new System.IO.DirectoryInfo(@"C:\Users\wjj-yl\Desktop\测试用DXF"), ProgramFolders);
+            //if (ProgramFolders.Nodes.Count > 0)
+            //{
+            //    SelectedProgramFolders = ProgramFolders.Nodes[0];
+            //}
         }
     }
 
@@ -381,51 +391,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 {
                     _ThumbnaiInfo = value;
                     RaisePropertyChanged(() => ThumbnaiInfo);
-                }
-            }
-        }
-    }
-
-    public class ReadProgramFolderItemViewModel:ViewModelBase
-    {
-        private string _Name;
-        public string Name
-        {
-            get { return _Name; }
-            set
-            {
-                if (_Name != value)
-                {
-                    _Name = value;
-                    RaisePropertyChanged(() => Name);
-                }
-            }
-        }
-
-        private string _Folder;
-        public string Folder
-        {
-            get { return _Folder; }
-            set
-            {
-                if (_Folder != value)
-                {
-                    _Folder = value;
-                    RaisePropertyChanged(() => Folder);
-                }
-            }
-        }
-
-        private ObservableCollection<ReadProgramFolderItemViewModel> _Nodes;
-        public ObservableCollection<ReadProgramFolderItemViewModel> Nodes
-        {
-            get { return _Nodes; }
-            set
-            {
-                if (_Nodes != value)
-                {
-                    _Nodes = value;
-                    RaisePropertyChanged(() => Nodes);
                 }
             }
         }
