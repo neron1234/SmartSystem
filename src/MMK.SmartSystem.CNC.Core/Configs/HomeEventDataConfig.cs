@@ -15,7 +15,10 @@ namespace MMK.SmartSystem.CNC.Core.Configs
             {
                 GetPositionEventData(),
                 GetProgramEventData(),
-                GetFeedrateEventData()
+                GetProgramNameEventData(),
+                GetProgramBlockEventData(),
+                GetFeedrateEventData(),
+                GetMacroEventData()
             };
         }
 
@@ -59,6 +62,38 @@ namespace MMK.SmartSystem.CNC.Core.Configs
             };
         }
 
+        private CncEventData GetProgramNameEventData()
+        {
+            return new CncEventData()
+            {
+                Kind = CncEventEnum.ReadProgramName,
+                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadProgramNameModel()
+                {
+
+                    Decompilers = new List<string>()
+                    {
+                        "Home-ProgramName"
+                    }
+                })
+            };
+        }
+
+        private CncEventData GetProgramBlockEventData()
+        {
+            return new CncEventData()
+            {
+                Kind = CncEventEnum.ReadProgramBlock,
+                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadProgramBlockModel()
+                {
+
+                    Decompilers = new List<string>()
+                    {
+                        "Home-ProgramBlock"
+                    }
+                })
+            };
+
+        }
         private CncEventData GetFeedrateEventData()
         {
             return new CncEventData()
@@ -74,6 +109,24 @@ namespace MMK.SmartSystem.CNC.Core.Configs
                     Readers = new List<string>()
                     {
                         "homeFeedrate"
+                    }
+                })
+            };
+        }
+
+        private CncEventData GetMacroEventData()
+        {
+            return new CncEventData()
+            {
+                Kind = CncEventEnum.ReadMacro,
+                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadMacroModel()
+                {
+                    Decompilers = new List<DecompReadMacroItemModel>()
+                    {
+                        new DecompReadMacroItemModel(){ Id="macroPc",StartNum=500},
+                        new DecompReadMacroItemModel(){ Id="macroFr",StartNum=501},
+                        new DecompReadMacroItemModel(){ Id="macroDu",StartNum=502},
+                        new DecompReadMacroItemModel(){ Id="macroPa",StartNum=503}
                     }
                 })
             };

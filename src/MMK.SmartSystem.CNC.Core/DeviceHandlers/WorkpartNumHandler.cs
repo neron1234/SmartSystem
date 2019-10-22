@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
 {
-    public class WorkpartNumHandle : BasePollCNCHandler<ReadWorkpartNumModel, ReadWorkpartNumResultModel, string, string>
+    public class WorkpartNumHandler : BasePollCNCHandler<ReadWorkpartNumModel, ReadWorkpartNumResultModel, string, string>
     {
         ReadWorkpartNumResultModel res;
         private string message { get; set; }
-        public WorkpartNumHandle()
+        public WorkpartNumHandler()
         {
             res = new ReadWorkpartNumResultModel();
         }
