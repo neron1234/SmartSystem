@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
 {
-    public class ProgramBlockHandle : BasePollCNCHandler<ReadProgramBlockModel, ReadProgramBlockResultModel, string, string>
+    public class ProgramBlockHandler : BasePollCNCHandler<ReadProgramBlockModel, ReadProgramBlockResultModel, string, string>
     {
         ReadProgramBlockResultModel temp;
         private string message { get; set; }
-        public ProgramBlockHandle()
+        public ProgramBlockHandler()
         {
             temp = new ReadProgramBlockResultModel();
         }

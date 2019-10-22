@@ -27,7 +27,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             
             if (data[itemModel.Type].Length <= itemModel.RelStartNum) return "无法获得信息,变量地址超出读取范围";
 
-            val = data[itemModel.Type][itemModel.RelStartNum];
+            val = double.IsNaN(data[itemModel.Type][itemModel.RelStartNum]) ? 0 : data[itemModel.Type][itemModel.RelStartNum];
 
             return null;
         }

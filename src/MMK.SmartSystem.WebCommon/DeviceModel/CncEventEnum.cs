@@ -29,6 +29,8 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
         [CncCustomEvent("ProgramNameHandler")]
         ReadProgramName,
+        [CncCustomEvent("ProgramBlockHandler")]
+
         ReadProgramBlock,
         [CncCustomEvent("ProgramStrHandler")]
         ReadProgramStr,
