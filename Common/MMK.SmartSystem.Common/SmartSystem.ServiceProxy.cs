@@ -10091,7 +10091,7 @@ namespace MMK.SmartSystem.Common
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.23.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class CuttingDataDto 
+    public partial class CuttingDataDto
     {
         [Newtonsoft.Json.JsonProperty("machiningDataGroupId", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? MachiningDataGroupId { get; set; }

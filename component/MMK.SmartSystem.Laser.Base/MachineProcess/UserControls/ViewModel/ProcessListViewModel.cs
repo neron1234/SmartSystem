@@ -26,40 +26,32 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             }
         }
 
+        public Dictionary<string,string> ColumnArray { get; set; }
+
         public ProcessListViewModel()
         {
-            Messenger.Default.Register<PagedResultDtoOfCuttingDataDto>(this, (result) =>
-            {
-                this.PageListData = new ObservableCollection<object>();
-                foreach (var item in result.Items)
-                {
-                    this.PageListData.Add(item);
-                }
-            });
-            Messenger.Default.Register<PagedResultDtoOfEdgeCuttingDataDto>(this, (result) =>
-            {
-                this.PageListData = new ObservableCollection<object>();
-                foreach (var item in result.Items)
-                {
-                    this.PageListData.Add(item);
-                }
-            });
-            Messenger.Default.Register<PagedResultDtoOfPiercingDataDto>(this, (result) =>
-            {
-                this.PageListData = new ObservableCollection<object>();
-                foreach (var item in result.Items)
-                {
-                    this.PageListData.Add(item);
-                }
-            });
-            Messenger.Default.Register<PagedResultDtoOfSlopeControlDataDto>(this, (result) =>
-            {
-                this.PageListData = new ObservableCollection<object>();
-                foreach (var item in result.Items)
-                {
-                    this.PageListData.Add(item);
-                }
-            });
+            ColumnArray = new Dictionary<string, string>();
+            ColumnArray.Add("ENo", "E编号");
+            ColumnArray.Add("MachiningKindName", "加工类型");
+            ColumnArray.Add("MaterialName", "材料类型");
+            ColumnArray.Add("MaterialThickness", "材料厚度");
+            ColumnArray.Add("FocalPosition", "焦点位置");
+            ColumnArray.Add("BeamSpot", "焦斑直径");
+            ColumnArray.Add("LiftDistance", "蛙跳高度");
+            ColumnArray.Add("NozzleKindName", "割嘴类型");
+            ColumnArray.Add("NozzleDiameter", "割嘴内径");
+            ColumnArray.Add("Feedrate", "速度");
+            ColumnArray.Add("Power", "功率");
+            ColumnArray.Add("Frequency", "频率");
+            ColumnArray.Add("Duty", "占空比");
+            ColumnArray.Add("GasPressure", "辅助气体压力");
+            ColumnArray.Add("GasName", "辅助气体种类");
+            ColumnArray.Add("GasSettingTime", "辅助气体时间");
+            ColumnArray.Add("StandardDisplacement", "基准偏移量");
+            ColumnArray.Add("Supple", "补偿量");
+            ColumnArray.Add("EdgeSlt", "尖角");
+            ColumnArray.Add("ApprSlt", "起始");
+            ColumnArray.Add("PwrCtrl", "功率控制");
         }
     }
 }

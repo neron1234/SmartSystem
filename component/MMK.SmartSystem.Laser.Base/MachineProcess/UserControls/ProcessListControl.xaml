@@ -5,12 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcess.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="320" d:DesignWidth="1300" Background="#2a2f34" Foreground="#787b8c" FontSize="20">
+             d:DesignHeight="320" d:DesignWidth="1300" Background="#3b3b3b" Foreground="#787b8c" FontSize="20">
     <UserControl.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="Margin" Value="17 10 10 10"/>
-        </Style>
-
         <!--DataGrid样式-->
         <Style TargetType="DataGrid">
             <!--网格线颜色-->
@@ -18,29 +14,14 @@
             <Setter Property="CanUserDeleteRows" Value="False" />
             <Setter Property="CanUserResizeColumns" Value="false"/>
             <Setter Property="Background" Value="#FFF7EDAD" />
-            <Setter Property="BorderBrush" Value="Transparent" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="HorizontalGridLinesBrush">
-                <Setter.Value>
-                    <SolidColorBrush Color="#d6c79b"/>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="VerticalGridLinesBrush">
-                <Setter.Value>
-                    <SolidColorBrush Color="#d6c79b"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="DataGridCell">
-
+            <Setter Property="GridLinesVisibility" Value="None" />
         </Style>
 
         <!--行样式触发-->
         <!--背景色改变必须先设置cellStyle 因为cellStyle会覆盖rowStyle样式-->
         <Style  TargetType="DataGridRow">
             <Setter Property="Background" Value="#F2F2F2" />
-            <Setter Property="Height" Value="25"/>
+            <Setter Property="Height" Value="35"/>
             <Setter Property="Foreground" Value="#CDD3D7" />
             <Setter Property="BorderThickness" Value="0" />
             <Style.Triggers>
@@ -49,45 +30,90 @@
                     <Setter Property="Background" Value="#202328" />
                 </Trigger>
                 <Trigger Property="AlternationIndex" Value="1" >
-                    <Setter Property="Background" Value="#2a2f34" />
+                    <Setter Property="Background" Value="#3b3b3b" />
                 </Trigger>
 
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#1600A3"/>
-                    <!--<Setter Property="Foreground" Value="White"/>-->
                 </Trigger>
 
+                <!--<Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridRow}" >
+                                <Border BorderBrush="#FDCD00" BorderThickness="0,1,0,1">
+                                    <Grid>
+                                        <Grid.Background>
+                                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                            <GradientStop Color="#926B00" Offset="0.1" />
+                                            <GradientStop Color="#644A00" Offset="0.3" />
+                                            <GradientStop Color="#3A2A00" Offset="0.4" />
+                                            <GradientStop Color="#271D00" Offset="0.6" />
+                                            <GradientStop Color="#2F2300" Offset="0.7" />
+                                            <GradientStop Color="#513B00" Offset="0.9" />
+                                        </LinearGradientBrush>
+                                        </Grid.Background>
+                                        <Label Content="{TemplateBinding }"   Width="{TemplateBinding Width }"   HorizontalAlignment="Center"    HorizontalContentAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>-->
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}" >
+                                <Border BorderBrush="#FDCD00" BorderThickness="0,1,0,1">
+                                    <Grid>
+                                        <Grid.Background>
+                                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                <GradientStop Color="#926B00" Offset="0.1" />
+                                                <GradientStop Color="#644A00" Offset="0.3" />
+                                                <GradientStop Color="#3A2A00" Offset="0.4" />
+                                                <GradientStop Color="#271D00" Offset="0.6" />
+                                                <GradientStop Color="#2F2300" Offset="0.7" />
+                                                <GradientStop Color="#513B00" Offset="0.9" />
+                                            </LinearGradientBrush>
+                                        </Grid.Background>
+                                        <Label Content="{TemplateBinding Content}"   Width="{TemplateBinding Width }" />
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="42"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="ENO."/>
-            <TextBlock Text="加工类型"/>
-            <TextBlock Text="材料类型"/>
-            <TextBlock Text="材料厚度"/>
-            <TextBlock Text="焦点位置"/>
-            <TextBlock Text="焦斑直径"/>
-            <TextBlock Text="蛙跳高度"/>
-            <TextBlock Text="割嘴类型"/>
-            <TextBlock Text="割嘴内径"/>
-            <TextBlock Text="速度"/>
-            <TextBlock Text="功率"/>
-            <TextBlock Text="频率"/>
-            <TextBlock Text="占空比"/>
-            <TextBlock Text="辅助"/>
-        </StackPanel>
+        <DataGrid x:Name="ProcessDataGrid"  Background="#3b3b3b"  Width="1290" Height="310" 
+                  AlternationCount="2" AutoGenerateColumns="False"
+                  SelectionChanged="ProcessDataGrid_SelectionChanged" 
+                  IsReadOnly="True" FontSize="15" BorderThickness="0"
+                  ItemsSource="{Binding}" DataContext="{Binding PageListData}" Margin="5">
 
-        <DataGrid Grid.Row="1" x:Name="ProcessDataGrid" Margin="0 6 0 10" Background="#2a2f34"  Width="1300" Height="270" HeadersVisibility="None"
-                       AlternationCount="2" SelectionChanged="ProcessDataGrid_SelectionChanged" IsReadOnly="True" FontSize="13" ItemsSource="{Binding PageListData}">
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Background" Value="#3b3b3b" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="Height" Value="18" />
+                    <Setter Property="Margin" Value="2 0 2 2" />
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
         </DataGrid>
     </Grid>
 </UserControl>
