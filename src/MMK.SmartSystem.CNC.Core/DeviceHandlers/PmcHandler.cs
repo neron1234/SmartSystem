@@ -98,6 +98,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
                         AdrType= item.AdrType,
                     });
 
+
                     pre.Decompilers.Add(new DecompReadPmcItemModel()
                     {
                         Id = item.Id,
@@ -105,7 +106,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
                         DataType = item.DataType,
                         Bit = item.Bit,
                         AdrType = item.AdrType,
-                        RelStartAdr = 0
+                        RelStartAdr = (short)(item.StartAdr- temp_itemStartAdr)
                     });
                 }
             }
