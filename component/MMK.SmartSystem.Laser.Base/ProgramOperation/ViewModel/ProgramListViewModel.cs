@@ -80,7 +80,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
         public ICommand LocalListCommand{
             get{
                 return new RelayCommand(() => {
-                    this.ListControl = new LocalProgramListControl(this.ConnectId);
+                    this.ListControl = new LocalProgramListControl(this.ConnectId,this.ProgramFolder);
                     this.InfoControl = new LocalProgramInfoControl();
                 });
             }

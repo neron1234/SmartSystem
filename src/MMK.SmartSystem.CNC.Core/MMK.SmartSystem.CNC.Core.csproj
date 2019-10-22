@@ -213,6 +213,7 @@
     <Compile Include="DeviceInOut\BaseInOut.cs" />
     <Compile Include="DeviceInOut\ProgramFolderInOut.cs" />
     <Compile Include="DeviceInOut\ProgramListInOut.cs" />
+    <Compile Include="DeviceInOut\ProgramTransferInOut.cs" />
     <Compile Include="fwlib32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmartSystemCNCCoreConsts.cs" />

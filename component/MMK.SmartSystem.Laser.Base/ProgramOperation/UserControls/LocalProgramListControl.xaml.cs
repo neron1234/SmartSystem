@@ -24,11 +24,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     public partial class LocalProgramListControl : UserControl
     {
         public LocalProgramListViewModel lpViewModel { get; set; }
-        public LocalProgramListControl(string connectId)
+        public LocalProgramListControl(string connectId, ReadProgramFolderItemViewModel readProgramFolder)
         {
             InitializeComponent();
             this.DataContext = lpViewModel = new LocalProgramListViewModel();
             lpViewModel.ConnectId = connectId;
+            lpViewModel.ProgramFolderInfo = readProgramFolder;
         }
 
         private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
