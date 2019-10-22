@@ -16,14 +16,13 @@
                 <Setter Property="BorderBrush" Value="#121417" />
                 <Setter Property="Foreground" Value="#787b8c" />
                 <Setter Property="Margin" Value="0 10 0 0" />
-                <Setter Property="IsReadOnly" Value="True" />
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <StackPanel>
         <StackPanel Margin="20">
             <TextBlock Text="搜索内容:" Margin="10 10 10 12"/>
-            <TextBox x:Name="SearchTxt" VerticalAlignment="Center" Height="35" />
+            <TextBox x:Name="SearchTxt" VerticalAlignment="Center" Height="35" Text="{Binding SearchText}"/>
         </StackPanel>
         <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Style="{StaticResource BtnStyle}" Width="140" Height="45" Content="搜索" Margin="0 0 15 0"  Command="{Binding SearchCommand}"/>

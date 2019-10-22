@@ -40,9 +40,11 @@
                 <Setter Property="CanUserAddRows" Value="False" />
                 <Setter Property="CanUserDeleteRows" Value="False" />
                 <Setter Property="CanUserResizeColumns" Value="false"/>
+                <Setter Property="CanUserSortColumns" Value="False"/>
                 <Setter Property="Background" Value="#FFF7EDAD" />
                 <Setter Property="BorderBrush" Value="Transparent" />
-                <Setter Property="HeadersVisibility" Value="None" />
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="HeadersVisibility" Value="Column" />
                 <Setter Property="HorizontalGridLinesBrush">
                     <Setter.Value>
                         <SolidColorBrush Color="#d6c79b"/>
@@ -54,16 +56,11 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
-            <Style TargetType="DataGridCell">
-
-            </Style>
-
             <!--行样式触发-->
             <!--背景色改变必须先设置cellStyle 因为cellStyle会覆盖rowStyle样式-->
             <Style  TargetType="DataGridRow">
                 <Setter Property="Background" Value="#F2F2F2" />
-                <Setter Property="Height" Value="25"/>
+                <Setter Property="Height" Value="30"/>
                 <Setter Property="Foreground" Value="#CDD3D7" />
                 <Style.Triggers>
                     <!--隔行换色-->
@@ -78,7 +75,6 @@
                         <Setter Property="Background" Value="#1600A3"/>
                         <!--<Setter Property="Foreground" Value="White"/>-->
                     </Trigger>
-
                     <Trigger Property="IsSelected" Value="True">
                         <Setter Property="Foreground" Value="Black"/>
                     </Trigger>

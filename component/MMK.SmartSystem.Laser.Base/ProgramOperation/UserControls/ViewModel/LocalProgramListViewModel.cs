@@ -79,14 +79,18 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public LocalProgramListViewModel()
         {
-            this.LocalProgramList = new List<ProgramViewModel>();
             this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
             GetFileName();
             Messenger.Default.Register<SearchInfo>(this, (sInfo) => {
-                ProgramList.Clear();
+                this.ProgramList.Clear();
+                if (string.IsNullOrEmpty(sInfo.Search))
+                {
+                    DataPaging(1);
+                    return;
+                }
                 foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(sInfo.Search)))
                 {
-                    ProgramList.Add(item);
+                    this.ProgramList.Add(item);
                 }
             });
         }
@@ -95,6 +99,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             if (Directory.Exists(this.Path)){
                 DirectoryInfo root = new DirectoryInfo(this.Path);
+                LocalProgramList = new List<ProgramViewModel>();
                 foreach (FileInfo f in root.GetFiles())
                 {
                     var program = new ProgramViewModel
@@ -113,7 +118,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public int CurrentPage { get; set; }
         public int TotalPage { get; set; }
-        public int PageNumber = 14;
+        public int PageNumber = 10;
         public void DataPaging(int page)
         {
             int count = LocalProgramList.Count;
@@ -134,7 +139,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             
             this.ProgramList = new ObservableCollection<ProgramViewModel>(LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList());
         }
-
 
         private bool _NextIsEnable;
         public bool NextIsEnable
