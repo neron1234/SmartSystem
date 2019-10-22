@@ -40,7 +40,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                         if (itemModel.Bit.HasValue == false) message = "无法获得信息,Bool型地址没有配置BIT位";
                         else
                         {
-                            var area = (int)Math.Ceiling((double)itemModel.RelStartAdr / 4.0);
+                            var area = (int)Math.Floor((double)itemModel.RelStartAdr / 4.0);
                             if (area >= data.Length)
                             {
                                 message = "无法获得信息,Bool型地址超出读取范围";
@@ -62,7 +62,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     break;
                 case DataTypeEnum.Byte:
                     {
-                        var area = (int)Math.Ceiling((double)itemModel.RelStartAdr / 4.0);
+                        var area = (int)Math.Floor((double)itemModel.RelStartAdr / 4.0);
                         if (area >= data.Length)
                         {
                             message = "无法获得信息,Byte型地址超出读取范围";
@@ -82,7 +82,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     break;
                 case DataTypeEnum.Int16:
                     {
-                        var area = (int)Math.Ceiling((double)itemModel.RelStartAdr / 4.0);
+                        var area = (int)Math.Floor((double)itemModel.RelStartAdr / 4.0);
                         if (area >= data.Length)
                         {
                             message = "无法获得信息,Word型地址超出读取范围";
@@ -113,7 +113,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     break;
                 case DataTypeEnum.Int32:
                     {
-                        var area = (int)Math.Ceiling((double)itemModel.RelStartAdr / 4.0);
+                        var area = (int)Math.Floor((double)itemModel.RelStartAdr / 4.0);
                         if (area >= data.Length)
                         {
                             message = "无法获得信息,Word型地址超出读取范围";
