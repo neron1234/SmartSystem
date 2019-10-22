@@ -58,8 +58,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
         {
             foreach (var item in current.Decompilers)
             {
-                ushort temp_itemStartAdr = (ushort)(Math.Ceiling(item.StartAdr / 4.0) * 4);
-                ushort temp_itemEndAdr = (ushort)(Math.Ceiling(item.StartAdr / 4.0) * 4 + 3);
+                ushort temp_itemStartAdr = (ushort)(Math.Floor(item.StartAdr / 4.0) * 4);
+                ushort temp_itemEndAdr = (ushort)(Math.Floor(item.StartAdr / 4.0) * 4 + 3);
 
                 var pre_item = pre.Readers.Where(x => x.AdrType == item.AdrType).FirstOrDefault();
                 if (pre_item != null)
