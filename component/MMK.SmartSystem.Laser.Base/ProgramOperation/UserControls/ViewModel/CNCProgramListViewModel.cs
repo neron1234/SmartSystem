@@ -37,6 +37,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
+        public CNCProgramListViewModel()
+        {
+            
+        }
+        
         public ReadProgramFolderItemViewModel ProgramFolderList { get; set; }
 
         public ICommand CNCPathCommand

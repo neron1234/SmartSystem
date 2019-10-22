@@ -26,7 +26,7 @@
             <TextBlock Text="程序预览显示" Margin="10,5,10,0"/>
         </StackPanel>
         <Grid Grid.Row="1" x:Name="programPathGrid">
-            <RichTextBox Margin="20" Background="#202328" Foreground="#67686d" FontSize="15">
+            <RichTextBox Margin="20" Background="#202328" Foreground="#67686d" FontSize="15" IsReadOnly="True">
                 <FlowDocument>
                     <Paragraph>
                         <Run Text="{Binding PreviewText}"/>

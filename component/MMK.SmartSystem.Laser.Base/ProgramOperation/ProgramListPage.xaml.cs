@@ -105,6 +105,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                     var jArray = JArray.Parse(jObject["nodes"].ToString());
                     ReadProgramFolderNode(jArray, readProgramFolder);
                     this.programListViewModel.ProgramFolderInfo = readProgramFolder;
+                    this.programListViewModel.ListControl = new UserControls.CNCProgramListControl(this.programListViewModel.ProgramFolderInfo);
                 }
             }else{
                 //读取上传到服务器的本地程序解析结果（CNC还未上传）

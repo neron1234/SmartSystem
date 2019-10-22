@@ -66,6 +66,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
             this.ListControl = new CNCProgramListControl(this.ProgramFolderInfo);
             this.InfoControl = new CNCProgramInfoControl();
             this.CNCPath = "//CNC_MEM/USER/PATH1/";
+            Messenger.Default.Send(new CNCProgramPath(this.CNCPath));
         }
 
         public ICommand LoadFileCommand{

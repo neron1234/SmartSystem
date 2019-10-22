@@ -28,6 +28,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
+        /// <summary>
+        /// 原数据
+        /// </summary>
+        public List<ProgramViewModel> LocalProgramList { get; set; }
+
+        /// <summary>
+        /// 显示数据
+        /// </summary>
         private ObservableCollection<ProgramViewModel> _ProgramList;
         public ObservableCollection<ProgramViewModel> ProgramList{
             get { return _ProgramList; }
@@ -55,7 +63,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public string Path { get; set; }
 
-
         private string _LocalPath;
         public string LocalPath
         {
@@ -72,28 +79,88 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public LocalProgramListViewModel()
         {
+            this.LocalProgramList = new List<ProgramViewModel>();
             this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
-
             GetFileName();
+            Messenger.Default.Register<SearchInfo>(this, (sInfo) => {
+                ProgramList.Clear();
+                foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(sInfo.Search)))
+                {
+                    ProgramList.Add(item);
+                }
+            });
         }
 
         public void GetFileName()
         {
-            if (Directory.Exists(this.Path))
-            {
+            if (Directory.Exists(this.Path)){
                 DirectoryInfo root = new DirectoryInfo(this.Path);
-                this.ProgramList = new ObservableCollection<ProgramViewModel>();
                 foreach (FileInfo f in root.GetFiles())
                 {
-                    this.ProgramList.Add(new ProgramViewModel
+                    var program = new ProgramViewModel
                     {
                         Name = f.Name,
                         CreateTime = f.CreationTime.ToString(),
                         Size = (f.Length / 1024).ToString() + "KB"
-                    });
+                    };
+                    this.LocalProgramList.Add(program);
                 }
+                DataPaging(1);
                 this.LocalPath = this.Path;
                 Messenger.Default.Send(new LocalProgramPath(this.Path));
+            }
+        }
+
+        public int CurrentPage { get; set; }
+        public int TotalPage { get; set; }
+        public int PageNumber = 14;
+        public void DataPaging(int page)
+        {
+            int count = LocalProgramList.Count;
+            int pageSize = 0;  
+            if (count % PageNumber == 0)
+            {
+                pageSize = count / PageNumber;
+            }
+            else
+            {
+                pageSize = count / PageNumber + 1;
+            }
+            TotalPage = pageSize;
+            CurrentPage = page;
+            
+            LastIsEnable = CurrentPage > 1;
+            NextIsEnable = CurrentPage < TotalPage;
+            
+            this.ProgramList = new ObservableCollection<ProgramViewModel>(LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList());
+        }
+
+
+        private bool _NextIsEnable;
+        public bool NextIsEnable
+        {
+            get { return _NextIsEnable; }
+            set
+            {
+                if (_NextIsEnable != value)
+                {
+                    _NextIsEnable = value;
+                    RaisePropertyChanged(() => NextIsEnable);
+                }
+            }
+        }
+
+        private bool _LastIsEnable;
+        public bool LastIsEnable
+        {
+            get { return _LastIsEnable; }
+            set
+            {
+                if (_LastIsEnable != value)
+                {
+                    _LastIsEnable = value;
+                    RaisePropertyChanged(() => LastIsEnable);
+                }
             }
         }
 
@@ -128,6 +195,63 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                     if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK){
                         this.Path = folderDialog.SelectedPath.Trim();
                         GetFileName();
+                    }
+                });
+            }
+        }
+
+        public ICommand DeleteFileCommand{
+            get{
+                return new RelayCommand(() =>{
+                    if (File.Exists(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name))) { 
+                        File.Delete(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
+                        GetFileName();
+                    }
+                });
+            }
+        }
+
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    new PopupWindow(new SearchControl(), 680, 240, "搜索本地程序").ShowDialog();
+                });
+            }
+        }
+
+        public ICommand OpenFileCommand
+        {
+            get{
+                return new RelayCommand(() => {
+                    System.Diagnostics.Process.Start(@"Notepad.exe", System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
+                });
+            }
+        }
+
+        public ICommand LastPageCommand
+        {
+            get
+            {
+                return new RelayCommand(() => {
+                    if (CurrentPage > 1)
+                    {
+                        DataPaging(--CurrentPage);
+                    }
+                });
+            }
+        }
+
+        public ICommand NextPageCommand
+        {
+            get
+            {
+                return new RelayCommand(() => {
+                    if (CurrentPage < TotalPage)
+                    {
+                        DataPaging(++CurrentPage);
                     }
                 });
             }
