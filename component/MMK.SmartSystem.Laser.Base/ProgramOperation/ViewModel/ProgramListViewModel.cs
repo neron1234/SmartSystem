@@ -17,6 +17,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
 {
     public class ProgramListViewModel:ViewModelBase
     {
+        public List<ProgramViewModel> CNCProgramViews { get; set; }
+
         private UserControl _ListControl;
         public UserControl ListControl
         {
@@ -45,8 +47,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
             }
         }
 
-        private string _CNCPath;
-        public string CNCPath
+
+
+        private CNCProgramPath _CNCPath;
+        public CNCProgramPath CNCPath
         {
             get { return _CNCPath; }
             set
@@ -59,14 +63,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
             }
         }
 
-
         public string ConnectId { get; set; }
         public ProgramListViewModel()
         {
-            this.ListControl = new CNCProgramListControl(this.ProgramFolderInfo);
-            this.InfoControl = new CNCProgramInfoControl();
-            this.CNCPath = "//CNC_MEM/USER/PATH1/";
-            Messenger.Default.Send(new CNCProgramPath(this.CNCPath));
+            
         }
 
         public ICommand LoadFileCommand{
@@ -80,8 +80,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
         public ICommand CNCListCommand{
             get{
                 return new RelayCommand(() => {
-                    this.ListControl = new CNCProgramListControl(this.ProgramFolderInfo);
+                    this.ListControl = new CNCProgramListControl(this.ProgramFolderInfo, this.CNCProgramViews);
                     this.InfoControl = new CNCProgramInfoControl();
+                    Messenger.Default.Send(this.CNCPath);
                 });
             }
         }

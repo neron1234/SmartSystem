@@ -31,6 +31,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             get{
                 return new RelayCommand(() =>{
                     Messenger.Default.Send(new SearchInfo(this.SearchText));
+                    Messenger.Default.Send(new PopupMsg("", true));
                 });
             }
         }

@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.Base;
 using MMK.SmartSystem.Laser.Base.CustomControl;
+using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
 using MMK.SmartSystem.WebCommon.HubModel;
@@ -37,8 +38,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         {
             InitializeComponent();
             this.DataContext = programListViewModel = new ProgramListViewModel();
+
+            programListViewModel.ListControl = new CNCProgramListControl(programListViewModel.ProgramFolderInfo, programListViewModel.CNCProgramViews);
+            programListViewModel.InfoControl = new CNCProgramInfoControl();
+            programListViewModel.CNCPath = new CNCProgramPath("//CNC_MEM/USER/PATH1/");
+            Messenger.Default.Send(programListViewModel.CNCPath);
+
             Messenger.Default.Register<CNCProgramPath>(this, (cncPath) => {
-                programListViewModel.CNCPath = cncPath.Path;
+                programListViewModel.CNCPath = cncPath;
                 SendQurayProgramList();
             });
         }
@@ -70,19 +77,18 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
-            if (!obj.Success) return;
-
             if (obj.Id == "getProgramList") {
+                if (!obj.Success){
+                    this.programListViewModel.CNCProgramViews = new List<ProgramViewModel>();
+                    return;
+                }
                 //读取CNC程序列表
                 JArray jArray = JArray.Parse(obj.Result.ToString());
-                var programList = new List<ProgramViewModel>();
-                foreach (var item in jArray)
-                {
+                this.programListViewModel.CNCProgramViews = new List<ProgramViewModel>();
+                foreach (var item in jArray){
                     JObject jObject = JObject.Parse(item.ToString());
-                    if (jObject != null)
-                    {
-                        programList.Add(new ProgramViewModel
-                        {
+                    if (jObject != null){
+                        this.programListViewModel.CNCProgramViews.Add(new ProgramViewModel{
                             Name = jObject["name"].ToString(),
                             Size = jObject["size"].ToString(),
                             CreateTime = jObject["createDateTime"].ToString(),
@@ -90,24 +96,27 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                         });
                     }
                 }
-                Messenger.Default.Send(programList);
-            }
-            else if (obj.Id == "getProgramFolder")
-            {
+                programListViewModel.CNCListCommand.Execute(0);
+            }else if (obj.Id == "getProgramFolder"){
+                if (!obj.Success){
+                    this.programListViewModel.ProgramFolderInfo = new ReadProgramFolderItemViewModel();
+                    return;
+                }
                 //读取CNC路径
                 JObject jObject = JObject.Parse(obj.Result.ToString());
                 ReadProgramFolderItemViewModel readProgramFolder = new ReadProgramFolderItemViewModel();
-                if (jObject != null)
-                {
+                if (jObject != null){
                     readProgramFolder.RegNum = (int)jObject["regNum"];
                     readProgramFolder.Name = jObject["name"].ToString();
                     readProgramFolder.Folder = jObject["folder"].ToString();
                     var jArray = JArray.Parse(jObject["nodes"].ToString());
                     ReadProgramFolderNode(jArray, readProgramFolder);
                     this.programListViewModel.ProgramFolderInfo = readProgramFolder;
-                    this.programListViewModel.ListControl = new UserControls.CNCProgramListControl(this.programListViewModel.ProgramFolderInfo);
                 }
             }else{
+                if (!obj.Success){
+                    return;
+                }
                 //读取上传到服务器的本地程序解析结果（CNC还未上传）
                 JObject jObject = JObject.Parse(obj.Result.ToString());
                 if (jObject != null)

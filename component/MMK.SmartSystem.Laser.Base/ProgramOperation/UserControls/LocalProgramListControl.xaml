@@ -37,10 +37,28 @@
     <Grid>
         <StackPanel Margin="5">
             <Border BorderBrush="#787b8c">
-                <DataGrid ItemsSource="{Binding ProgramList}" x:Name="ProgramGrid" Margin="5" Height="380" Background="#2a2f34" 
-                       AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="13"/>
+                <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}" AutoGenerateColumns="False" x:Name="ProgramGrid" Margin="5" Height="380" Background="#2a2f34" 
+                       AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="Background" Value="#2a2f34" />
+                            <Setter Property="Foreground" Value="#787b8c" />
+                            <Setter Property="FontSize" Value="20" />
+                            <Setter Property="Margin" Value="10 10 10 10" />
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="45*" />
+                        <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="20*" />
+                        <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="35*" />
+                    </DataGrid.Columns>
+                </DataGrid>
             </Border>
-            <StackPanel Orientation="Horizontal" Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="10 0 10 12">
                 <TextBlock Text="当前文件夹: "/>
                 <TextBlock Text="{Binding LocalPath}" />
             </StackPanel>

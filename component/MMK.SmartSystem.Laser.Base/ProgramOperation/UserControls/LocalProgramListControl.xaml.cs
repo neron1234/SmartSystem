@@ -39,17 +39,19 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             {
                 lpViewModel.SelectedProgramViewModel = (ProgramViewModel)selected;
                 //Messenger.Default.Send(lpViewModel.SelectedProgramViewModel);
-
-                System.IO.StreamReader reader = new System.IO.StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name);
-                var line = reader.ReadLine();
                 StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < 30; i++)
+                using (System.IO.StreamReader reader = new System.IO.StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name))
                 {
-                    if (line != null)
+                    var line = reader.ReadLine();
+                    for (int i = 0; i < 30; i++)
                     {
-                        line = reader.ReadLine();
-                        sb.AppendLine(line);
+                        if (line != null)
+                        {
+                            line = reader.ReadLine();
+                            sb.AppendLine(line);
+                        }
                     }
+                    reader.Dispose();
                 }
                 Messenger.Default.Send(sb);
             }

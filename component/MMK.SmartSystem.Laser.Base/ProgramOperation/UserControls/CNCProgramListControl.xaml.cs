@@ -24,21 +24,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     public partial class CNCProgramListControl : UserControl
     {
         public CNCProgramListViewModel cpViewModel { get; set; }
-        public CNCProgramListControl(ReadProgramFolderItemViewModel readProgramFolder)
+        public CNCProgramListControl(ReadProgramFolderItemViewModel readProgramFolder, List<ProgramViewModel> programList)
         {
             InitializeComponent();
-            this.DataContext = cpViewModel = new CNCProgramListViewModel();
-            cpViewModel.ProgramFolderList = readProgramFolder;
-            Messenger.Default.Register<CNCProgramPath>(this, (cncPath) => {
-                this.cpViewModel.CNCPath = cncPath.Path;
-            });
-            Messenger.Default.Register<List<ProgramViewModel>>(this, (pList) => {
-                cpViewModel.ProgramList = new System.Collections.ObjectModel.ObservableCollection<ProgramViewModel>();
-                foreach (var item in pList)
-                {
-                    cpViewModel.ProgramList.Add(item);
-                }
-            });
+            this.DataContext = cpViewModel = new CNCProgramListViewModel(readProgramFolder);
+            cpViewModel.LocalProgramList = programList;
+            cpViewModel.DataPaging(1);
         }
 
         private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
