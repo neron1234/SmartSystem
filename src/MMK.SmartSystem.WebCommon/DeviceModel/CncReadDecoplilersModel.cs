@@ -9,7 +9,7 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 {
     public class CncReadDecoplilersModel<R, D> : Abp.Dependency.ITransientDependency
     {
-        public List<R> Readers { get; set; } = new List<R>();
+        public List<R> Readers { get; set; } = new List<R>() ;
 
         public List<D> Decompilers { get; set; } = new List<D>();
 

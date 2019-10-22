@@ -20,7 +20,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             if (ret == 0)
             {
-                buf.ldata.CopyTo(data, 0);
+                Array.Copy(buf.ldata, 0, data, 0, num);
+              //  buf.ldata.Copy(data, 0);
                 return new Tuple<short, string>(0, null);
             }
 

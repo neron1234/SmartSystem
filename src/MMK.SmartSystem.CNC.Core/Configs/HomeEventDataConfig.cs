@@ -18,7 +18,8 @@ namespace MMK.SmartSystem.CNC.Core.Configs
                 GetProgramNameEventData(),
                 GetProgramBlockEventData(),
                 GetFeedrateEventData(),
-                GetMacroEventData()
+                GetMacroEventData(),
+                GetPmcEventData()
             };
         }
 
@@ -73,7 +74,8 @@ namespace MMK.SmartSystem.CNC.Core.Configs
                     Decompilers = new List<string>()
                     {
                         "Home-ProgramName"
-                    }
+                    },
+                    Readers = new List<string>() { "programName" }
                 })
             };
         }
@@ -89,7 +91,8 @@ namespace MMK.SmartSystem.CNC.Core.Configs
                     Decompilers = new List<string>()
                     {
                         "Home-ProgramBlock"
-                    }
+                    },
+                    Readers = new List<string>() { "programBlock" }
                 })
             };
 
@@ -123,11 +126,38 @@ namespace MMK.SmartSystem.CNC.Core.Configs
                 {
                     Decompilers = new List<DecompReadMacroItemModel>()
                     {
-                        new DecompReadMacroItemModel(){ Id="macroPc",StartNum=500},
-                        new DecompReadMacroItemModel(){ Id="macroFr",StartNum=501},
-                        new DecompReadMacroItemModel(){ Id="macroDu",StartNum=502},
-                        new DecompReadMacroItemModel(){ Id="macroPa",StartNum=503}
+                        new DecompReadMacroItemModel(){ Id="Home-macroPc",StartNum=1},
+                        new DecompReadMacroItemModel(){ Id="Home-macroFr",StartNum=501},
+                        new DecompReadMacroItemModel(){ Id="Home-macroDu",StartNum=502},
+                        new DecompReadMacroItemModel(){ Id="Home-macroPa",StartNum=503}
+                    },
+                    Readers = new List<ReadMacroTypeModel>()
+                    {
+                        new ReadMacroTypeModel(){ }
                     }
+                })
+            };
+        }
+
+        private CncEventData GetPmcEventData()
+        {
+
+            return new CncEventData()
+            {
+                Kind = CncEventEnum.ReadPmc,
+                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadPmcModel()
+                {
+                    Decompilers = new List<DecompReadPmcItemModel>()
+                    {
+                        new DecompReadPmcItemModel(){Id="Home-alarmState",AdrType=12,DataType=DataTypeEnum.Boolean,StartAdr= 1002,Bit=3 },
+                        new DecompReadPmcItemModel(){Id="Home-cncState",AdrType=12,DataType=DataTypeEnum.Int16,StartAdr= 1000,Bit=0},
+                        new DecompReadPmcItemModel(){Id="Home-xState",AdrType=12,DataType=DataTypeEnum.Boolean,StartAdr= 1002,Bit=0},
+                        new DecompReadPmcItemModel(){Id="Home-yState",AdrType=12,DataType=DataTypeEnum.Boolean,StartAdr= 1002,Bit=1},
+                        new DecompReadPmcItemModel(){Id="Home-zState",AdrType=12,DataType=DataTypeEnum.Boolean,StartAdr= 1002,Bit=2},
+                        new DecompReadPmcItemModel(){Id="Home-feedov",AdrType=12,DataType=DataTypeEnum.Int16,StartAdr= 1004,Bit=0},
+                        new DecompReadPmcItemModel(){Id="Home-finshTime",AdrType=12,DataType=DataTypeEnum.Int32,StartAdr= 1008,Bit=0}
+                    },
+                    Readers = new List<ReadPmcTypeModel>() { new ReadPmcTypeModel() }
                 })
             };
         }

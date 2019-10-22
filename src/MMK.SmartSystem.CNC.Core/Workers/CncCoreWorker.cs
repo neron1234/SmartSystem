@@ -181,7 +181,7 @@ namespace MMK.SmartSystem.CNC.Core.Workers
                 catch (Exception ex)
                 {
 
-                    ShowErrorLogEvent?.Invoke(ex.Message);
+                    ShowErrorLogEvent?.Invoke($"CncCustomEnum:【{item.Key}】{ex.Message}");
                 }
             }
 
@@ -195,17 +195,27 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
                     if (!string.IsNullOrEmpty(jObject["ErrorMessage"]?.ToString()))
                     {
-                        ShowErrorLogEvent?.Invoke(jObject["ErrorMessage"]?.ToString());
+                        string message = jObject["ErrorMessage"]?.ToString();
+                        string error = "\r\n==============Begin【Hander Exception】==============\n";
+                        error += $"Hander:【{item.Handler.ToString()}】 Method:【{item.Method.Name}】\n";
+                        error += $"【HanderError】:{message}\n";
+                        error += "==============End【Hander Exception】==============\r\n";
+                        ShowErrorLogEvent?.Invoke(error);
                         continue;
                     }
                     GetResultEvent(info);
                 }
                 catch (Exception ex)
                 {
-
-                    ShowErrorLogEvent?.Invoke(ex.Message);
+                    string error = "\r\n==============Begin【Hander Exception】==============\n";
+                    error += $"Hander:【{item.Handler.ToString()}】 Method:【{item.Method.Name}】\n";
+                    error += $"【Exception】:{ex.Message}\n";
+                    error += $"【InnerException】:{ex.InnerException?.Message}\n";
+                    error += "==============End【Hander Exception】==============\r\n";
+                    ShowErrorLogEvent?.Invoke(error);
+                    
                 }
-              
+
             }
         }
 
@@ -215,7 +225,7 @@ namespace MMK.SmartSystem.CNC.Core.Workers
             HandlerExecute();
         }
 
-       
+
 
         #region OLD 取消的
         private void HandlerSwitchExecute()

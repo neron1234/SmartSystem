@@ -1,5 +1,6 @@
 ﻿using Abp;
 using Abp.Castle.Logging.Log4Net;
+using Castle.Core.Logging;
 using Castle.Facilities.Logging;
 using MMK.SmartSystem.CNC.Core;
 using MMK.SmartSystem.CNC.Core.DeviceHelpers;
@@ -23,14 +24,18 @@ namespace MMK.SmartSystem.CNC.Host
         static CncCoreWorker cncHandler;
         static SignalrProxy signalrProxy = new SignalrProxy();
         static DateTime currentTime = DateTime.Now;
+        static Dictionary<string, DateTime> dictConsole = new Dictionary<string, DateTime>();
         static DateTime currentErrorTime = DateTime.Now;
         static CncReaderWriterWorker writerWorker;
+        public static ILogger Logger { get; set; }
+
         static void Main(string[] args)
         {
             _bootstrapper = AbpBootstrapper.Create<SmartSystemCNCHostModule>();
             _bootstrapper.IocManager.IocContainer.AddFacility<LoggingFacility>(
                 f => f.UseAbpLog4Net().WithConfig("log4net.config"));
             _bootstrapper.Initialize();
+            Logger = _bootstrapper.IocManager.Resolve<ILogger>();
             StartWorker();
             Task.Factory.StartNew(StartSignalr);
             Task.Factory.StartNew(() =>
@@ -69,11 +74,16 @@ namespace MMK.SmartSystem.CNC.Host
         private async static void CncHandler_GetResultEvent(object obj)
         {
             await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientSuccessEvent, obj);
-
-            if ((DateTime.Now - currentTime).TotalSeconds >= 5)
+            var jobj = JObject.FromObject(obj);
+            string key = jobj["FullNamespace"].ToString();
+            if (!dictConsole.ContainsKey(key))
+            {
+                dictConsole.Add(key, DateTime.Now);
+            }
+            if ((DateTime.Now - dictConsole[key]).TotalSeconds >= 5)
             {
                 Console.WriteLine($"【Worker Data】【{DateTime.Now.ToString("HH:mm:ss")}】" + JObject.FromObject(obj).ToString());
-                currentTime = DateTime.Now;
+                dictConsole[key] = DateTime.Now;
             }
 
         }
@@ -84,7 +94,7 @@ namespace MMK.SmartSystem.CNC.Host
             if ((DateTime.Now - currentErrorTime).TotalSeconds >= 5)
             {
                 currentErrorTime = DateTime.Now;
-
+                Logger.Error(obj);
                 Console.WriteLine($"【Worker Error】【{DateTime.Now.ToString("HH: mm:ss")}】" + obj);
             }
         }
