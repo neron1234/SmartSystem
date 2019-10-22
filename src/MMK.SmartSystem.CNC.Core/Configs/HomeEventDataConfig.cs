@@ -19,7 +19,8 @@ namespace MMK.SmartSystem.CNC.Core.Configs
                 GetProgramBlockEventData(),
                 GetFeedrateEventData(),
                 GetMacroEventData(),
-                GetPmcEventData()
+                GetPmcEventData(),
+                GetCycleTimeEventData()
             };
         }
 
@@ -159,6 +160,23 @@ namespace MMK.SmartSystem.CNC.Core.Configs
                     },
                     Readers = new List<ReadPmcTypeModel>() { new ReadPmcTypeModel() }
                 })
+            };
+        }
+
+        private CncEventData GetCycleTimeEventData()
+        {
+
+            return new CncEventData()
+            {
+                Kind = CncEventEnum.ReadCycleTime,
+                Para = Newtonsoft.Json.JsonConvert.SerializeObject(new ReadCycleTimeModel()
+                {
+                    Decompilers = new List<string>() { "Home-cycleTime" },
+                    Readers = new List<string>() { "homeCycleTime" }
+
+
+                })
+
             };
         }
     }
