@@ -39,7 +39,13 @@ namespace MMK.SmartSystem.LE.Host
             this.iocManager = iocManager;
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
+            this.Closed += MainWindow_Closed;
             this.DataContext = MainViewModel;
+        }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -49,9 +55,6 @@ namespace MMK.SmartSystem.LE.Host
             Messenger.Default.Register<PageChangeModel>(this, (type) =>
             {
                 Dispatcher.BeginInvoke(new Action(() => pageChange(type)));
-
-
-
             });
 
             Messenger.Default.Register<UserControl>(this, (control) =>

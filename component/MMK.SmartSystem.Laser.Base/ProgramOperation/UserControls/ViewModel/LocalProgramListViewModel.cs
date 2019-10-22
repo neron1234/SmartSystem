@@ -85,13 +85,17 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 this.ProgramList.Clear();
                 if (string.IsNullOrEmpty(sInfo.Search))
                 {
-                    DataPaging(1);
+                    DataPaging(false);
                     return;
                 }
                 foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(sInfo.Search)))
                 {
                     this.ProgramList.Add(item);
                 }
+            });
+            Messenger.Default.Register<ReadProgramFolderItemViewModel>(this, (pfs) =>
+            {
+                this.ProgramFolderInfo = pfs;
             });
         }
 
@@ -110,7 +114,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                     };
                     this.LocalProgramList.Add(program);
                 }
-                DataPaging(1);
+                DataPaging(false);
                 this.LocalPath = this.Path;
                 Messenger.Default.Send(new LocalProgramPath(this.Path));
             }
@@ -119,53 +123,23 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public int CurrentPage { get; set; }
         public int TotalPage { get; set; }
         public int PageNumber = 10;
-        public void DataPaging(int page)
+        public void DataPaging(bool next)
         {
             int count = LocalProgramList.Count;
             int pageSize = 0;  
-            if (count % PageNumber == 0)
-            {
+            if (count % PageNumber == 0){
                 pageSize = count / PageNumber;
-            }
-            else
-            {
+            }else{
                 pageSize = count / PageNumber + 1;
             }
             TotalPage = pageSize;
-            CurrentPage = page;
             
-            LastIsEnable = CurrentPage > 1;
-            NextIsEnable = CurrentPage < TotalPage;
-            
+            if (next && CurrentPage >= 1 && CurrentPage < TotalPage){
+                CurrentPage++;
+            }else{
+                CurrentPage = 1;
+            }
             this.ProgramList = new ObservableCollection<ProgramViewModel>(LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList());
-        }
-
-        private bool _NextIsEnable;
-        public bool NextIsEnable
-        {
-            get { return _NextIsEnable; }
-            set
-            {
-                if (_NextIsEnable != value)
-                {
-                    _NextIsEnable = value;
-                    RaisePropertyChanged(() => NextIsEnable);
-                }
-            }
-        }
-
-        private bool _LastIsEnable;
-        public bool LastIsEnable
-        {
-            get { return _LastIsEnable; }
-            set
-            {
-                if (_LastIsEnable != value)
-                {
-                    _LastIsEnable = value;
-                    RaisePropertyChanged(() => LastIsEnable);
-                }
-            }
         }
 
         public string ConnectId { get; set; }
@@ -235,28 +209,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand LastPageCommand
-        {
-            get
-            {
-                return new RelayCommand(() => {
-                    if (CurrentPage > 1)
-                    {
-                        DataPaging(--CurrentPage);
-                    }
-                });
-            }
-        }
-
         public ICommand NextPageCommand
         {
             get
             {
                 return new RelayCommand(() => {
-                    if (CurrentPage < TotalPage)
-                    {
-                        DataPaging(++CurrentPage);
-                    }
+                    DataPaging(true);
                 });
             }
         }

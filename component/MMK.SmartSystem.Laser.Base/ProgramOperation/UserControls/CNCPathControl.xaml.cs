@@ -33,7 +33,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         private void SaveCNCPathBtn_Click(object sender, RoutedEventArgs e)
         {
             var folder = ((ReadProgramFolderItemViewModel)this.CNCPathCascader.SelectedValues[this.CNCPathCascader.SelectedValues.Count - 1]).Folder;
-            Messenger.Default.Send(new CNCProgramPath(folder));
+            Messenger.Default.Send(new CNCProgramPath(folder,"Page"));
             Messenger.Default.Send(new PopupMsg("保存CNC路径成功", true));
         }
     }

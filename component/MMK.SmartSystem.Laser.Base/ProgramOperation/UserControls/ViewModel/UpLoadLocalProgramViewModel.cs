@@ -133,6 +133,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
+        public ICommand UpLoadCommand {
+            get{
+                return new RelayCommand(() => { 
+                     
+                });
+            }
+        }
+
         public ICommand CancelCommand
         {
             get

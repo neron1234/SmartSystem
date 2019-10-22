@@ -47,7 +47,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
             }
         }
 
-
+        public ReadProgramFolderItemViewModel ProgramFolder { get; set; }
 
         private CNCProgramPath _CNCPath;
         public CNCProgramPath CNCPath
@@ -77,20 +77,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
             }
         }
 
-        public ICommand CNCListCommand{
-            get{
-                return new RelayCommand(() => {
-                    this.ListControl = new CNCProgramListControl(this.ProgramFolderInfo, this.CNCProgramViews);
-                    this.InfoControl = new CNCProgramInfoControl();
-                    Messenger.Default.Send(this.CNCPath);
-                });
-            }
-        }
-
         public ICommand LocalListCommand{
             get{
                 return new RelayCommand(() => {
-                    this.ListControl = new LocalProgramListControl(this.ConnectId, this.ProgramFolderInfo);
+                    this.ListControl = new LocalProgramListControl(this.ConnectId);
                     this.InfoControl = new LocalProgramInfoControl();
                 });
             }
@@ -102,20 +92,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
                     this.ListControl = new CNCInfoControl();
                     this.InfoControl = new UserControl();
                 });
-            }
-        }
-
-        private ReadProgramFolderItemViewModel _ProgramFolderInfo;
-        public ReadProgramFolderItemViewModel ProgramFolderInfo
-        {
-            get { return _ProgramFolderInfo; }
-            set
-            {
-                if (_ProgramFolderInfo != value)
-                {
-                    _ProgramFolderInfo = value;
-                    RaisePropertyChanged(() => ProgramFolderInfo);
-                }
             }
         }
     }
@@ -130,10 +106,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
 
     public class CNCProgramPath
     {
+        public string Page { get; set; }
         public string Path { get; set; }
-        public CNCProgramPath(string path)
+        public CNCProgramPath(string path,string page)
         {
             Path = path;
+            Page = page;
         }
     }
 

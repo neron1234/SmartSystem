@@ -17,20 +17,20 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
     {
         public ProcessViewModel()
         {
+            this.commandType = 1;
             Messenger.Default.Register<int>(this, (result) =>
             {
-                SearchGroupId = result;
+                this.SearchGroupId = result;
                 Task.Factory.StartNew(new Action(() => {
                     SearchList();
                 }));
             });
-            CuttingDataCommand.Execute("");
         }
 
         public int SearchGroupId = 0;
         //private BaseErrorEventData commandType { get; set; }
         private int commandType { get; set; }
-        private async void SearchList()
+        public async void SearchList()
         {
             if (SearchGroupId == 0){
                 return;

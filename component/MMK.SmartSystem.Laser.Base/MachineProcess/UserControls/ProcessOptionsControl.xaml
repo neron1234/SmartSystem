@@ -52,7 +52,7 @@
                            DisplayMemberPath="Name" IsEditable="True" SelectedValuePath="ID" ItemsSource="{Binding MaterialThicknessList}"/>-->
         </StackPanel>
         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 38 10 10" x:Name="SearchBtn" Command="{Binding Searchommand}" >
+            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 38 10 10" x:Name="SearchBtn" Command="{Binding SearchCommand}" >
                 <WrapPanel Height="40" Width="110">
                     <Path Data="{StaticResource searchBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill" Margin="18 8 0 0"/>
                     <TextBlock Padding="8 5 0 0" TextWrapping="Wrap" Text="搜索" Width="60" />

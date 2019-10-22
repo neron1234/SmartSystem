@@ -1,4 +1,5 @@
 ﻿using Abp.Dependency;
+using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,20 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess
         {
             InitializeComponent();
             this.DataContext = processViewModel = new ProcessViewModel();
+            Loaded += ProcessPage_Loaded;
+        }
+
+        private async void ProcessPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Search();
+            Loaded -= ProcessPage_Loaded;
+        }
+
+        private async Task Search()
+        {
+            await Task.Factory.StartNew(new Action(() => {
+                processViewModel.SearchList();
+            }));
         }
     }
 }

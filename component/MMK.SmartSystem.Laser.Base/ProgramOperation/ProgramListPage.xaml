@@ -93,7 +93,7 @@
                 <RowDefinition Height="580"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0">
-                <RadioButton Width="150" Height="50" Content="CNC程序" Style="{StaticResource RadioButtonColorStyle}" IsChecked="True" Command="{Binding CNCListCommand}"/>
+                <RadioButton Width="150" Height="50" Content="CNC程序" Style="{StaticResource RadioButtonColorStyle}" IsChecked="True" x:Name="CNCProgramListBtn" Click="CNCProgramListBtn_Click"/>
                 <RadioButton Width="150" Height="50" Content="本地程序" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding LocalListCommand}" />
                 <RadioButton Width="150" Height="50" Content="CNC信息" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding CNCInfoCommand}" />
             </StackPanel>

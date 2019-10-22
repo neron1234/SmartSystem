@@ -40,64 +40,32 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        private bool _NextIsEnable;
-        public bool NextIsEnable
-        {
-            get { return _NextIsEnable; }
-            set
-            {
-                if (_NextIsEnable != value)
-                {
-                    _NextIsEnable = value;
-                    RaisePropertyChanged(() => NextIsEnable);
-                }
-            }
-        }
-
-        private bool _LastIsEnable;
-        public bool LastIsEnable
-        {
-            get { return _LastIsEnable; }
-            set
-            {
-                if (_LastIsEnable != value)
-                {
-                    _LastIsEnable = value;
-                    RaisePropertyChanged(() => LastIsEnable);
-                }
-            }
-        }
-
         public int CurrentPage { get; set; }
         public int TotalPage { get; set; }
         public int PageNumber = 10;
-        public void DataPaging(int page)
+        public void DataPaging(bool next = false)
         {
             if (LocalProgramList == null){
                 return;
             }
             int count = LocalProgramList.Count;
             int pageSize = 0;
-            if (count % PageNumber == 0)
-            {
+            if (count % PageNumber == 0){
                 pageSize = count / PageNumber;
-            }
-            else
-            {
+            }else{
                 pageSize = count / PageNumber + 1;
             }
             TotalPage = pageSize;
-            CurrentPage = page;
-
-            LastIsEnable = CurrentPage > 1;
-            NextIsEnable = CurrentPage < TotalPage;
-
+            if (next && CurrentPage >= 1 && CurrentPage < TotalPage){
+                CurrentPage++;
+            }else{
+                CurrentPage = 1;
+            }
             this.ProgramList = new ObservableCollection<ProgramViewModel>(LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList());
         }
 
-        public CNCProgramListViewModel(ReadProgramFolderItemViewModel readProgramFolder)
+        public CNCProgramListViewModel()
         {
-            this.ProgramFolderList = readProgramFolder;
             LocalProgramList = new List<ProgramViewModel>();
             Messenger.Default.Register<CNCProgramPath>(this, (cncPath) => {
                 this.CNCPath = cncPath.Path;
@@ -105,12 +73,19 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             Messenger.Default.Register<SearchInfo>(this, (sInfo) => {
                 this.ProgramList.Clear();
                 if (string.IsNullOrEmpty(sInfo.Search)){
-                    DataPaging(1);
+                    DataPaging();
                     return;
                 }
                 foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(sInfo.Search))){
                     this.ProgramList.Add(item);
                 }
+            });
+            Messenger.Default.Register<ReadProgramFolderItemViewModel>(this, (pfs) =>{
+                 this.ProgramFolderList = pfs;
+             });
+            Messenger.Default.Register<List<ProgramViewModel>>(this, (pvList) =>{
+                this.LocalProgramList = pvList;
+                this.DataPaging();
             });
         }
         
@@ -136,6 +111,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 });
             }
         }
+
         public ICommand DowloadCommand
         {
             get
@@ -145,6 +121,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 });
             }
         }
+
         public ICommand SearchCommand
         {
             get
@@ -166,28 +143,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand LastPageCommand
-        {
-            get
-            {
-                return new RelayCommand(() => {
-                    if (CurrentPage > 1)
-                    {
-                        DataPaging(--CurrentPage);
-                    }
-                });
-            }
-        }
-
         public ICommand NextPageCommand
         {
             get
             {
                 return new RelayCommand(() => {
-                    if (CurrentPage < TotalPage)
-                    {
-                        DataPaging(++CurrentPage);
-                    }
+                    DataPaging(true);
                 });
             }
         }

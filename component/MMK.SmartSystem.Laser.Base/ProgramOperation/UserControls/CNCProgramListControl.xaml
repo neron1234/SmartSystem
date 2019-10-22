@@ -58,20 +58,19 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Border>
-            <StackPanel Orientation="Horizontal" Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="10 0 10 12">
                 <TextBlock Text="当前CNC路径: "/>
                 <TextBlock Text="{Binding CNCPath}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="主程序" Command="{Binding MainProgramCommand}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="路径" Command="{Binding CNCPathCommand}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="下载" Command="{Binding DowloadCommand}"/>
+                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="主程序" Command="{Binding MainProgramCommand}"/>
+                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="路径" Command="{Binding CNCPathCommand}"/>
+                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="下载" Command="{Binding DowloadCommand}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="搜索" Command="{Binding SearchCommand}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="删除" Command="{Binding DeleteFileCommand}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="上一页" Command="{Binding LastPageCommand}" IsEnabled="{Binding LastIsEnable}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="100" Height="40" Margin="5 10 5 10" Content="下一页" Command="{Binding NextPageCommand}" IsEnabled="{Binding NextIsEnable}"/>
+                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="搜索" Command="{Binding SearchCommand}"/>
+                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="删除" Command="{Binding DeleteFileCommand}"/>
+                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="翻页" Command="{Binding NextPageCommand}" />
             </StackPanel>
         </StackPanel>
     </Grid>

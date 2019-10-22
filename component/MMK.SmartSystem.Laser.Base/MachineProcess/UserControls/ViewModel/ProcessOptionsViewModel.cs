@@ -140,7 +140,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                 });
             }
         }
-        public ICommand Searchommand
+        public ICommand SearchCommand
         {
             get{
                 return new RelayCommand(() =>{

@@ -24,11 +24,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     public partial class LocalProgramListControl : UserControl
     {
         public LocalProgramListViewModel lpViewModel { get; set; }
-        public LocalProgramListControl(string connectId,ReadProgramFolderItemViewModel readProgramFolder)
+        public LocalProgramListControl(string connectId)
         {
             InitializeComponent();
             this.DataContext = lpViewModel = new LocalProgramListViewModel();
-            lpViewModel.ProgramFolderInfo = readProgramFolder;
             lpViewModel.ConnectId = connectId;
         }
 
@@ -43,7 +42,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 using (System.IO.StreamReader reader = new System.IO.StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name))
                 {
                     var line = reader.ReadLine();
-                    for (int i = 0; i < 30; i++)
+                    for (int i = 0; i < 28; i++)
                     {
                         if (line != null)
                         {
