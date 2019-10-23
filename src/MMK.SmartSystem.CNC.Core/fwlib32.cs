@@ -6091,16 +6091,16 @@ public class Focas1
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public class IODBPSCD2
     {
-        public IODBPSCD2_data data1 = new IODBPSCD2_data();
-        public IODBPSCD2_data data2 = new IODBPSCD2_data();
-        public IODBPSCD2_data data3 = new IODBPSCD2_data();
-        public IODBPSCD2_data data4 = new IODBPSCD2_data();
-        public IODBPSCD2_data data5 = new IODBPSCD2_data();
-        public IODBPSCD2_data data6 = new IODBPSCD2_data();
-        public IODBPSCD2_data data7 = new IODBPSCD2_data();
-        public IODBPSCD2_data data8 = new IODBPSCD2_data();
-        public IODBPSCD2_data data9 = new IODBPSCD2_data();
-        public IODBPSCD2_data data10 = new IODBPSCD2_data();
+        public IODBPSCD2_data data1 {get;set;}=new IODBPSCD2_data();
+        public IODBPSCD2_data data2 {get;set;}=new IODBPSCD2_data();
+        public IODBPSCD2_data data3 {get;set;}=new IODBPSCD2_data();
+        public IODBPSCD2_data data4 {get;set;}=new IODBPSCD2_data();
+        public IODBPSCD2_data data5 {get;set;}=new IODBPSCD2_data();
+        public IODBPSCD2_data data6 {get;set;}=new IODBPSCD2_data();
+        public IODBPSCD2_data data7 {get;set;}=new IODBPSCD2_data();
+        public IODBPSCD2_data data8 {get;set;}=new IODBPSCD2_data();
+        public IODBPSCD2_data data9 {get;set;}=new IODBPSCD2_data();
+        public IODBPSCD2_data data10 { get; set; } = new IODBPSCD2_data();
     } /* In case that the number of data is 10 */
 
     /* cnc_rdpscdpirc:read processing condition file (piercing data) */
@@ -6129,9 +6129,9 @@ public class Focas1
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public class IODBPIRC
     {
-        public IODBPIRC_data data1 = new IODBPIRC_data();
-        public IODBPIRC_data data2 = new IODBPIRC_data();
-        public IODBPIRC_data data3 = new IODBPIRC_data();
+        public IODBPIRC_data data1{get;set;}= new IODBPIRC_data();
+        public IODBPIRC_data data2{get;set;}= new IODBPIRC_data();
+        public IODBPIRC_data data3 { get; set; } = new IODBPIRC_data();
     }
 
     /* cnc_rdpscdedge:read processing condition file (edging data) */
@@ -6196,11 +6196,11 @@ public class Focas1
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public class IODBEDGE2
     {
-        public IODBEDGE2_data data1 = new IODBEDGE2_data();
-        public IODBEDGE2_data data2 = new IODBEDGE2_data();
-        public IODBEDGE2_data data3 = new IODBEDGE2_data();
-        public IODBEDGE2_data data4 = new IODBEDGE2_data();
-        public IODBEDGE2_data data5 = new IODBEDGE2_data();
+        public IODBEDGE2_data data1{get;set;}= new IODBEDGE2_data();
+        public IODBEDGE2_data data2{get;set;}= new IODBEDGE2_data();
+        public IODBEDGE2_data data3{get;set;}= new IODBEDGE2_data();
+        public IODBEDGE2_data data4{get;set;}= new IODBEDGE2_data();
+        public IODBEDGE2_data data5 { get; set; } = new IODBEDGE2_data();
     }
 
 
@@ -6229,11 +6229,11 @@ public class Focas1
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public class IODBPWRCTL
     {
-        public IODBPWRCTL_data data1 = new IODBPWRCTL_data();
-        public IODBPWRCTL_data data2 = new IODBPWRCTL_data();
-        public IODBPWRCTL_data data3 = new IODBPWRCTL_data();
-        public IODBPWRCTL_data data4 = new IODBPWRCTL_data();
-        public IODBPWRCTL_data data5 = new IODBPWRCTL_data();
+        public IODBPWRCTL_data data1{get;set;}= new IODBPWRCTL_data();
+        public IODBPWRCTL_data data2{get;set;}= new IODBPWRCTL_data();
+        public IODBPWRCTL_data data3{get;set;}= new IODBPWRCTL_data();
+        public IODBPWRCTL_data data4{get;set;}= new IODBPWRCTL_data();
+        public IODBPWRCTL_data data5 { get; set; } = new IODBPWRCTL_data();
     }
 
 

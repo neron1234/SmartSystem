@@ -291,6 +291,7 @@
     <Compile Include="SerivceProxy\ProgramClientServiceProxy.cs" />
     <Compile Include="SerivceProxy\SlopeControlDataClientServiceProxy.cs" />
     <Compile Include="SignalrProxy\SignalrProxyClient.cs" />
+    <Compile Include="SignalrProxy\SignalrRouteProxyClient.cs" />
     <Compile Include="SignalrProxy\SinglarCNCHubConsts.cs" />
     <Compile Include="ViewModel\BottomWarningLogViewModel.cs" />
     <Compile Include="ViewModel\CncResultViewModel.cs" />

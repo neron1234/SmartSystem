@@ -30,5 +30,8 @@ namespace MMK.SmartSystem.Common.SignalrProxy
 
 
         public const string GetCNCReaderWriterResultAction = "GetReadWriter";
+
+
+        public const string GetRouterNavAvtion = "GetRouterNav";
     }
 }
