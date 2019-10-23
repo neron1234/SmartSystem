@@ -31,6 +31,7 @@ namespace MMK.CNC.Application.LaserLibrary
             {
                 var list1 = machiningGroupRepository.GetAllIncluding().Join(Repository.GetAllIncluding(), d => d.MaterialCode, f => f.Code, (p, v) => new MeterialThicknessDto
                 {
+                    Id = p.Id,
                     Code = p.Code,
                     MaterialCode = p.MaterialCode,
                     MaterialThickness = p.MaterialThickness,
@@ -46,7 +47,7 @@ namespace MMK.CNC.Application.LaserLibrary
                     MaterialCode = key.MaterialCode,
                     Name_CN = key.Name_CN,
                     Name_EN = key.Name_EN,
-                    ThicknessNodes = value.Select(d => d.MaterialThickness)
+                    ThicknessNodes = value.Select(d => new ThicknessItem() { Id = d.Id, Thickness = d.MaterialThickness })
 
 
                 }).ToList();

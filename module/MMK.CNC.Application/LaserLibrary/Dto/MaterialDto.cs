@@ -43,11 +43,19 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
 
         public string Name_CN { get; set; }
 
-        public IEnumerable<double> ThicknessNodes { get; set; }
+        public IEnumerable<ThicknessItem> ThicknessNodes { get; set; }
+    }
+
+    public class ThicknessItem
+    {
+        public int Id { get; set; }
+
+        public double Thickness { get; set; }
     }
     public class MeterialThicknessDto : IEquatable<MeterialThicknessDto>
     {
 
+        public int Id { get; set; }
         public int Code { get; set; }
 
         public short MaterialCode { get; set; }
