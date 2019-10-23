@@ -35,17 +35,19 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
 
             this.DataContext = addMaterialViewModel = new AddMaterialViewModel();
 
-            Messenger.Default.Register<PagedResultDtoOfMaterialDto>(this, (results) =>
+            Messenger.Default.Register<PagedResultDtoOfMeterialGroupThicknessDto>(this, (results) =>
             {
-                addMaterialViewModel.MaterialTypeList = new ObservableCollection<MaterialDto>();
+                addMaterialViewModel.MaterialTypeList = new ObservableCollection<MeterialGroupThicknessDto>();
                 foreach (var item in results.Items)
                 {
                     addMaterialViewModel.MaterialTypeList.Add(item);
                 }
                 if (addMaterialViewModel.MaterialTypeList.Count > 0)
                 {
-                    addMaterialViewModel.SelectedMaterialId = (int)addMaterialViewModel.MaterialTypeList.First()?.Code;
+                    addMaterialViewModel.SelectedMaterialId = (int)addMaterialViewModel.MaterialTypeList.First()?.MaterialCode;
                 }
+
+                Messenger.Default.Unregister<PagedResultDtoOfMeterialGroupThicknessDto>(this);
             });
 
 

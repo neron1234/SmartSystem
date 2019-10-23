@@ -7,7 +7,7 @@
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              mc:Ignorable="d" 
-             d:DesignHeight="116" d:DesignWidth="1320" Background="#2a2f34" Foreground="#787b8c" FontSize="20">
+             d:DesignHeight="90" d:DesignWidth="1320" Background="#3b3b3b" Foreground="#787b8c" FontSize="20">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,19 +15,26 @@
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/ComboBox/Themes/Generic.xaml" />
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button" x:Key="ListBtnStyle">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Foreground" Value="#959595" />
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Margin="20">
-            <TextBlock Text="材料类型"/>
+        <StackPanel Grid.Column="0" Margin="20" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="材料类型  " Margin="0 6,0,0"/>
 
-            <ComboBox Margin="0 12 0 0" ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
-                          SelectedValue="{Binding SelectedMaterialId}" BorderBrush="#121417" IsReadOnly="True">
+            <ComboBox ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="MaterialCode" DisplayMemberPath="Name_CN" 
+                          SelectedValue="{Binding SelectedMaterialId}" BorderBrush="#121417" IsReadOnly="True" Width="195" Height="40">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>
@@ -37,11 +44,11 @@
             <!--<cc:ZComboBox Width="300" Height="33" Margin="0 12 0 0" CornerRadius="0" HorizontalAlignment="Left"
                            DisplayMemberPath="Name" IsEditable="True" SelectedValuePath="ID" ItemsSource="{Binding MaterialTypeList}"/>-->
         </StackPanel>
-        <StackPanel Grid.Column="1" Margin="20">
-            <TextBlock Text="材料厚度"/>
+        <StackPanel Grid.Column="1" Margin="20" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="材料厚度  "  Margin="0 6,0,0"/>
 
-            <ComboBox Margin="0 12 0 0" ItemsSource="{Binding MaterialThicknessList}" SelectedValuePath="Id" DisplayMemberPath="MaterialThickness" 
-                          SelectedValue="{Binding SelectedMaterialTypeId}" BorderBrush="#121417" IsReadOnly="True">
+            <ComboBox ItemsSource="{Binding MaterialThicknessList}" SelectedValuePath="Id" DisplayMemberPath="Thickness" 
+                          SelectedValue="{Binding SelectedMaterialGroupId}" BorderBrush="#121417"  IsReadOnly="True" Width="195" Height="40" >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <!--<i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>-->
@@ -52,22 +59,28 @@
                            DisplayMemberPath="Name" IsEditable="True" SelectedValuePath="ID" ItemsSource="{Binding MaterialThicknessList}"/>-->
         </StackPanel>
         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="5 38 10 10" x:Name="SearchBtn" Command="{Binding SearchCommand}" >
+            <Button  Width="110" Height="40" Margin="5 4 10 0" x:Name="SearchBtn" Command="{Binding SearchCommand}" Style="{StaticResource ListBtnStyle}">
                 <WrapPanel Height="40" Width="110">
                     <Path Data="{StaticResource searchBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill" Margin="18 8 0 0"/>
-                    <TextBlock Padding="8 5 0 0" TextWrapping="Wrap" Text="搜索" Width="60" />
+                    <TextBlock Padding="4 7 0 0" TextWrapping="Wrap" Text="搜索" Width="60" />
                 </WrapPanel>
             </Button>
-            <Button Style="{StaticResource BtnStyle}" Width="110" Height="40" Margin="22 38 0 10"  >
-                <WrapPanel>
-                    <Path Data="{StaticResource uploadBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill" Margin="10 0 0 0"/>
-                    <TextBlock Padding="8 0 0 0" TextWrapping="Wrap" Text="上传" Width="60" />
-                </WrapPanel>
-            </Button>
-            <Button Style="{StaticResource BtnStyle}" Width="150" Height="40" Margin="22 38 0 10"  x:Name="Edit" Command="{Binding EditCommand}">
+            <Button Width="150" Height="40" Margin="5 4 10 0"  x:Name="Edit" Command="{Binding EditCommand}" Style="{StaticResource ListBtnStyle}">
                 <WrapPanel>
                     <Path Data="{StaticResource EditBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill"/>
-                    <TextBlock Padding="8 0 0 0" TextWrapping="Wrap" Text="材料编辑" Width="90" />
+                    <TextBlock Padding="4 0 0 0" TextWrapping="Wrap" Text="材料编辑" Width="90" />
+                </WrapPanel>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,0">
+            <Button Style="{StaticResource IconBtnStyle}" Width="50" Height="50" Margin="5 4 10 0" Command="{Binding LastColumnsCommand}">
+                <WrapPanel>
+                    <Path Data="{StaticResource LeftTriangleIcon}" Width="25" Height="25" Fill="#202020" Stretch="Fill"/>
+                </WrapPanel>
+            </Button>
+            <Button Style="{StaticResource IconBtnStyle}" Width="50" Height="50" Margin="5 4 10 0" Command="{Binding NestColumnsCommand}">
+                <WrapPanel>
+                    <Path Data="{StaticResource RightTriangleIcon}" Width="30" Height="30" Fill="#202020" Stretch="Fill"/>
                 </WrapPanel>
             </Button>
         </StackPanel>

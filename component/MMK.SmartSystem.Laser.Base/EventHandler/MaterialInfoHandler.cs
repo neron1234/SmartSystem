@@ -21,7 +21,7 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
             string errorMessage = string.Empty;
             try
             {
-                var rs = materialClientServiceProxy.GetAllAsync(eventData.IsCheckSon, 0, 50).Result;
+                var rs = materialClientServiceProxy.GetMaterialAllAsync(eventData.IsCheckSon, 0, 50).Result;
                 errorMessage = rs.Error?.Details;
                 if (rs.Success)
                 {

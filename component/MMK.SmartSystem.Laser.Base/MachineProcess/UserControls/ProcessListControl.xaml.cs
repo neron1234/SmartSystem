@@ -29,50 +29,114 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
         {
             InitializeComponent();
             this.DataContext = pcListVewModel = new ProcessListViewModel();
+            this.TotolWidth = this.ProcessDataGrid.Width;
             Messenger.Default.Register<PagedResultDtoOfCuttingDataDto>(this, (result) =>{
-                pcListVewModel.PageListData = new ObservableCollection<object>();
-                foreach (var item in result.Items){
-                    pcListVewModel.PageListData.Add(item);
-                }
-                if (result.Items.Count > 0){
-                    var types = result.Items.First().GetType().GetProperties();
-                    this.ProcessDataGrid.Dispatcher.Invoke(new Action(() => {
-                        foreach (var item in types){
-                            if (pcListVewModel.ColumnArray.ContainsKey(item.Name)){
-                                ProcessDataGrid.Columns.Add(new DataGridTextColumn(){
-                                    Header = pcListVewModel.ColumnArray[item.Name],
-                                    Binding = new Binding(item.Name),
-                                    Width = 80
-                                });
-                            }
-                        }
-                    }));
-                }
+                pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
+                LoadColum();
             });
             Messenger.Default.Register<PagedResultDtoOfEdgeCuttingDataDto>(this, (result) =>
             {
-                pcListVewModel.PageListData = new ObservableCollection<object>();
-                foreach (var item in result.Items)
-                {
-                    pcListVewModel.PageListData.Add(item);
-                }
+                pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
+                LoadColum();
             });
             Messenger.Default.Register<PagedResultDtoOfPiercingDataDto>(this, (result) =>
             {
-                pcListVewModel.PageListData = new ObservableCollection<object>();
-                foreach (var item in result.Items)
-                {
-                    pcListVewModel.PageListData.Add(item);
-                }
+                pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
+                LoadColum();
             });
             Messenger.Default.Register<PagedResultDtoOfSlopeControlDataDto>(this, (result) =>
             {
-                pcListVewModel.PageListData = new ObservableCollection<object>();
-                foreach (var item in result.Items)
+                pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
+                LoadColum();
+            });
+            Messenger.Default.Register<string>(this, (str) => {
+                if (str == "NextColumns")
                 {
-                    pcListVewModel.PageListData.Add(item);
+                    SetDtaColumHeader(true);
+                }
+                else if(str == "LastColumns")
+                {
+                    SetDtaColumHeader(false);
                 }
             });
+        }
+
+        private List<DataColumn> DataColumns { get; set; }
+
+        /// <summary>
+        /// DataGrid宽度
+        /// </summary>
+        private double TotolWidth = 1290;
+        private int ColumWidth = 100;
+        private int PageNumber = 0;
+        private int TotalPage = 0;
+        private int CurrentPage = 0;
+        private void SetDtaColumHeader(bool next)
+        {              
+            int count = DataColumns.Count;
+            int pageSize = 0;
+            
+            if (count % PageNumber == 0){
+                pageSize = count / PageNumber;
+            }else{
+                pageSize = count / PageNumber + 1;
+            }
+            TotalPage = pageSize;
+            if (next && CurrentPage >= 1 && CurrentPage < TotalPage){
+                CurrentPage++;
+            }else{
+                CurrentPage = 1;
+            }
+            this.ProcessDataGrid.Dispatcher.Invoke(new Action(() => {
+                var list = DataColumns.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList();
+                ProcessDataGrid.Columns.Clear();
+                foreach (var item in list)
+                {
+                    ProcessDataGrid.Columns.Add(new DataGridTextColumn()
+                    {
+                        Header = item.Header,
+                        Binding = new Binding(item.BindingName),
+                        Width = item.Width
+                    }) ;
+                }
+            }));
+        }
+
+        private void LoadColum()
+        {
+            if (pcListVewModel.PageListData.Count == 0){
+                return;
+            }
+            DataColumns = new List<DataColumn>();
+            var properties = pcListVewModel.PageListData.First().GetType().GetProperties();
+            foreach (var item in properties)
+            {
+                if (pcListVewModel.ColumnArray.ContainsKey(item.Name))
+                {
+                    var headerName = pcListVewModel.ColumnArray[item.Name];
+                    if (headerName.Length < 4)
+                    {
+                        ColumWidth = 80;
+                    }
+                    DataColumns.Add(new DataColumn()
+                    {
+                        Header = headerName,
+                        BindingName = item.Name,
+                        Width = ColumWidth
+                    });
+                }
+            }
+            PageNumber = 0;
+            var nowTotolWidth = TotolWidth;
+            foreach (var item in DataColumns)
+            {
+                nowTotolWidth -= item.Width;
+                if (nowTotolWidth > item.Width)
+                {
+                    PageNumber++;
+                }
+            }
+            SetDtaColumHeader(false);
         }
 
         private void ProcessDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

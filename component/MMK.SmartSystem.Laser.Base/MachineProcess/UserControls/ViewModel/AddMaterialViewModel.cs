@@ -31,8 +31,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             }
         }
 
-        private ObservableCollection<MaterialDto> _MaterialTypeList;
-        public ObservableCollection<MaterialDto> MaterialTypeList
+        private ObservableCollection<MeterialGroupThicknessDto> _MaterialTypeList;
+        public ObservableCollection<MeterialGroupThicknessDto> MaterialTypeList
         {
             get { return _MaterialTypeList; }
             set

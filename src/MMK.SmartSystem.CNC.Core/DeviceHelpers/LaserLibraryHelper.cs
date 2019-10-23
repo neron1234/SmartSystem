@@ -92,6 +92,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             short i = 0;
             foreach (var prop in list.GetType().GetProperties())
             {
+                if (i >= cuttings.Count()) break;
                 var feed = cuttings[i].Feedrate.GetDecimals();
                 var disp = cuttings[i].StandardDisplacement.GetDecimalsWithReference(cuttings[i].StandardDisplacement2);
                 var disp2 = cuttings[i].StandardDisplacement2.GetDecimalsWithReference(cuttings[i].StandardDisplacement);
@@ -276,6 +277,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             int i = 0;
             foreach (var prop in list.GetType().GetProperties())
             {
+                if (i >= edgeCuttings.Count()) break;
+
                 var angle = edgeCuttings[i].Angle.GetDecimals();
                 var gap = edgeCuttings[i].Gap.GetDecimals();
                 var r_len = edgeCuttings[i].RecoveryDistance.GetDecimals();
@@ -453,6 +456,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             short i = 0;
             foreach (var prop in list.GetType().GetProperties())
             {
+                if (i >= piercings.Count()) break;
+
                 var def_pos = piercings[i].StandardDisplacement.GetDecimalsWithReference(piercings[i].StandardDisplacement2);
                 var def_pos2 = piercings[i].StandardDisplacement2.GetDecimalsWithReference(piercings[i].StandardDisplacement);
 
@@ -624,6 +629,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             short i = 0;
             foreach (var prop in list.GetType().GetProperties())
             {
+                if (i >= slopeControls.Count()) break;
+
                 var feed_r = slopeControls[i].FeedrateR.GetDecimals();
 
                 prop.SetValue(list, new Focas1.IODBPWRCTL_data()
