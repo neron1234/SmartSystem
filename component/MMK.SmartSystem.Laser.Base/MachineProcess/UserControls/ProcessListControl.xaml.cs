@@ -32,37 +32,66 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
             this.TotolWidth = this.ProcessDataGrid.Width;
             Messenger.Default.Register<PagedResultDtoOfCuttingDataDto>(this, (result) =>{
                 pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
-                LoadColum();
+                LoadAllDataColum();
             });
             Messenger.Default.Register<PagedResultDtoOfEdgeCuttingDataDto>(this, (result) =>
             {
                 pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
-                LoadColum();
+                LoadAllDataColum();
             });
             Messenger.Default.Register<PagedResultDtoOfPiercingDataDto>(this, (result) =>
             {
                 pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
-                LoadColum();
+                LoadAllDataColum();
             });
             Messenger.Default.Register<PagedResultDtoOfSlopeControlDataDto>(this, (result) =>
             {
                 pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
-                LoadColum();
+                LoadAllDataColum();
             });
             Messenger.Default.Register<string>(this, (str) => {
                 if (str == "NextColumns")
                 {
-                    SetDtaColumHeader(true);
+                    MoveDataGridHeader(true);
                 }
                 else if(str == "LastColumns")
                 {
-                    SetDtaColumHeader(false);
+                    MoveDataGridHeader(false);
                 }
             });
         }
 
-        private List<DataColumn> DataColumns { get; set; }
+        private void LoadAllDataColum()
+        {
+            var properties = pcListVewModel.PageListData.First().GetType().GetProperties();
+            this.ProcessDataGrid.Dispatcher.Invoke(new Action(() => {
+                ProcessDataGrid.Columns.Clear();
+                foreach (var item in properties)
+                {
+                    if (pcListVewModel.ColumnArray.ContainsKey(item.Name))
+                    {
+                        var headerName = pcListVewModel.ColumnArray[item.Name];
+                        if (headerName.Length < 4)
+                        {
+                            ColumWidth = 80;
+                        }
+                        else if (headerName.Length > 4)
+                        {
+                            ColumWidth = 120;
+                        }
+                        ProcessDataGrid.Columns.Add(new DataGridTextColumn()
+                        {
+                            Header = headerName,
+                            Binding = new Binding(item.Name),
+                            Width = ColumWidth
+                        });
+                    }
+                }
+            }));
+            MoveDataGridHeader(false);
+        }
 
+        #region 表头分页(未来使用)
         /// <summary>
         /// DataGrid宽度
         /// </summary>
@@ -71,6 +100,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
         private int PageNumber = 0;
         private int TotalPage = 0;
         private int CurrentPage = 0;
+        private List<DataColumn> DataColumns { get; set; }
+
         private void SetDtaColumHeader(bool next)
         {              
             int count = DataColumns.Count;
@@ -118,6 +149,10 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                     {
                         ColumWidth = 80;
                     }
+                    else if(headerName.Length > 4)
+                    {
+                        ColumWidth = 120;
+                    }
                     DataColumns.Add(new DataColumn()
                     {
                         Header = headerName,
@@ -136,12 +171,35 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                     PageNumber++;
                 }
             }
+            PageNumber += 5;
             SetDtaColumHeader(false);
         }
+        #endregion
 
-        private void ProcessDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MoveDataGridHeader(bool next)
         {
+            this.ProcessDataGrid.Dispatcher.Invoke(new Action(() =>
+            {
+                if (ProcessDataGrid.Columns.Count == 0) {
+                    return;
+                }
+                if (next) {
+                    ProcessDataGrid.ScrollIntoView(null, ProcessDataGrid.Columns.Last());
+                } else {
+                    ProcessDataGrid.ScrollIntoView(null, ProcessDataGrid.Columns.First());
+                }
+            }));
+        }
 
+        private void ProcessDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e){
+            var selected = ((DataGrid)sender).SelectedValue;
+            if (selected == null) return;
+
+            Messenger.Default.Send(new ProcessData
+            {
+                Data = selected,
+                Type = selected.GetType().Name
+            });
         }
     }
 }

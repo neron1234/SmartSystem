@@ -82,7 +82,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             RegisterMaterial();
         }
 
-        private void RegisterMaterial()
+        public void RegisterMaterial()
         {
             Task.Factory.StartNew(() => { 
                 Messenger.Default.Register<PagedResultDtoOfMeterialGroupThicknessDto>(this, (results) =>{
@@ -102,7 +102,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             });
         }
 
-        private void UnRegisterMaterial()
+        public void UnRegisterMaterial()
         {
             Messenger.Default.Unregister<PagedResultDtoOfMeterialGroupThicknessDto>(this);
         }
@@ -120,18 +120,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             }
         }
 
-        public ICommand EditCommand{
-            get{
-                return new RelayCommand(() =>{
-                    UnRegisterMaterial();
-
-                    new PopupWindow(new AddMaterialControl(), 650, 260, "添加工艺材料").ShowDialog();
-
-                    RegisterMaterial();
-                    Messenger.Default.Send("GetMaterial");
-                });
-            }
-        }
         public ICommand SearchCommand
         {
             get{

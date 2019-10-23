@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MMK.SmartSystem.Common;
+using MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,24 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
     /// </summary>
     public partial class EditMaterialControl : UserControl
     {
-        public EditMaterialControl()
+        public EditMaterialViewModel EditVM { get; set; }
+        public EditMaterialControl(ProcessData mData)
         {
             InitializeComponent();
+            this.DataContext = EditVM = new EditMaterialViewModel();
+            switch (mData.Type)
+            {
+                case "CuttingDataDto":
+                    break;
+                case "EdgeCuttingDataDto":
+                    break;
+                case "PiercingDataDto":
+                    break;
+                case "SlopeControlDataDto":
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

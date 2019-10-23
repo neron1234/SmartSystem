@@ -29,7 +29,7 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Margin="10">
+        <StackPanel Grid.Column="0" Margin="10" x:Name="SPanel1">
             <TextBlock Text="1324112312"/>
             <TextBox />
             <TextBlock Text="1324112312"/>
@@ -39,7 +39,7 @@
             <TextBlock Text="1324112312"/>
             <TextBox />
         </StackPanel>
-        <StackPanel Grid.Column="1" Margin="10">
+        <StackPanel Grid.Column="1" Margin="10" x:Name="SPanel2">
             <TextBlock Text="1324112312"/>
             <TextBox />
             <TextBlock Text="1324112312"/>
