@@ -13,13 +13,10 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
 {
-    public class ProcessViewModel:ViewModelBase
-    {
-        public ProcessViewModel()
-        {
+    public class ProcessViewModel:ViewModelBase{
+        public ProcessViewModel(){
             this.commandType = 1;
-            Messenger.Default.Register<int>(this, (result) =>
-            {
+            Messenger.Default.Register<int>(this, (result) => {
                 this.SearchGroupId = result;
                 Task.Factory.StartNew(new Action(() => {
                     SearchList();
@@ -28,15 +25,12 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
         }
 
         public int SearchGroupId = 0;
-        //private BaseErrorEventData commandType { get; set; }
         private int commandType { get; set; }
-        public async void SearchList()
-        {
+        public async void SearchList(){
             if (SearchGroupId == 0){
                 return;
             }
-            switch (commandType)
-            {
+            switch (commandType){
                 case 1:
                     await EventBus.Default.TriggerAsync(new CuttingDataByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
                     break;
@@ -52,7 +46,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
                 default:
                     break;
             }
-            //EventBus.Default.TriggerAsync(Convert.ChangeType(commandType, commandType.GetType()));
         }
 
         public ICommand CuttingDataCommand{
@@ -62,8 +55,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
                     Task.Factory.StartNew(new Action(() => {
                         SearchList();
                     }));
-                    //commandType = new CuttingDataByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId };
-                    //EventBus.Default.TriggerAsync(new CuttingDataByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
                 });
             }
         }
@@ -75,7 +66,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
                     Task.Factory.StartNew(new Action(() => {
                         SearchList();
                     }));
-                    //EventBus.Default.TriggerAsync(new PiercingDataByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
                 });
             }
         }
@@ -87,7 +77,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
                     Task.Factory.StartNew(new Action(() => {
                         SearchList();
                     }));
-                    //EventBus.Default.TriggerAsync(new EdgeCuttingByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
                 });
             }
         }
@@ -99,7 +88,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
                     Task.Factory.StartNew(new Action(() => {
                         SearchList();
                     }));
-                    //EventBus.Default.TriggerAsync(new SlopeControlDataByGroupIdEventData() { machiningDataGroupId = this.MchiningDataGroupId });
                 });
             }
         }

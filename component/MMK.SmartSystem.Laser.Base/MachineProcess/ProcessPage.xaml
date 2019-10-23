@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcess"
       xmlns:uc="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcess.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="510" d:DesignWidth="1300" Background="#2a2f34" Foreground="#787b8c" FontSize="20"
+      d:DesignHeight="658" d:DesignWidth="1300" Background="#2a2f34" Foreground="#787b8c" FontSize="20"
       Title="ProcessPage">
     <Page.Resources>
         <ResourceDictionary>
@@ -14,31 +14,43 @@
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml" />
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button" x:Key="ListBtnStyle">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Foreground" Value="#959595" />
+            </Style>
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="75"/>
-            <RowDefinition />
-            <RowDefinition Height="116"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="528"/>
+            <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="7*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="25*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <RadioButton Width="186" Height="50" Content="切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="CuttingDataListBtn" Command="{Binding CuttingDataCommand}" IsChecked="True"/>
-                <RadioButton Width="186" Height="50" Content="穿孔" Style="{StaticResource RadioButtonColorStyle}" x:Name="PiercingDataListBtn" Command="{Binding PiercingDataCommand}" />
-                <RadioButton Width="186" Height="50" Content="尖角切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="EdgeCuttingBtn" Command="{Binding EdgeCuttingCommand}" />
-                <RadioButton Width="186" Height="50" Content="功率控制" Style="{StaticResource RadioButtonColorStyle}" x:Name="SlopeControlDataListBtn" Command="{Binding SlopeControlDatCommand}" />
+            <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Bottom">
+                <RadioButton Width="186" Height="40" Content="切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="CuttingDataListBtn" Command="{Binding CuttingDataCommand}" IsChecked="True"/>
+                <RadioButton Width="186" Height="40" Content="穿孔" Style="{StaticResource RadioButtonColorStyle}" x:Name="PiercingDataListBtn" Command="{Binding PiercingDataCommand}" />
+                <RadioButton Width="186" Height="40" Content="尖角切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="EdgeCuttingBtn" Command="{Binding EdgeCuttingCommand}" />
+                <RadioButton Width="186" Height="40" Content="功率控制" Style="{StaticResource RadioButtonColorStyle}" x:Name="SlopeControlDataListBtn" Command="{Binding SlopeControlDatCommand}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="2">
-                <Button Style="{StaticResource BtnStyle}" Height="35" Width="152" Margin="30 0 0 0" x:Name="Edit" >
+                <Button Style="{StaticResource ListBtnStyle}" Height="40" Width="120" Margin="30 0 0 0" x:Name="Edit" >
                     <WrapPanel>
                         <Path Data="{StaticResource EditBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill"/>
                         <TextBlock Padding="8 0 0 0" TextWrapping="Wrap" Text="编辑" Width="50" />
+                    </WrapPanel>
+                </Button>
+                <Button Style="{StaticResource ListBtnStyle}" Width="120" Height="40" Margin="10 0 0 0"  >
+                    <WrapPanel>
+                        <Path Data="{StaticResource uploadBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill" Margin="10 0 0 0"/>
+                        <TextBlock Padding="8 0 0 0" TextWrapping="Wrap" Text="上传" Width="60" />
                     </WrapPanel>
                 </Button>
             </StackPanel>
