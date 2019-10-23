@@ -102,17 +102,7 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
                 await Task.Delay(5000);
                 if (!isExit)
                 {
-                    try
-                    {
-                        await connection.StartAsync();
-
-                    }
-                    catch (Exception ex)
-                    {
-
-                        CncErrorEvent?.Invoke(ex.Message);
-
-                    }
+                    await Start();
 
                 }
             };

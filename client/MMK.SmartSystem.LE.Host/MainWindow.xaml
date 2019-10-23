@@ -3,70 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host"
-        xmlns:cc="clr-namespace:MMK.SmartSystem.LE.Host.CustomControl"
-        xmlns:systemControl="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
-        xmlns:accountControl="clr-namespace:MMK.SmartSystem.LE.Host.AccountControl"
-                           xmlns:embed="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl.Embed"
+        xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
+        xmlns:embed="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl.Embed"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1400" WindowState="Maximized" WindowStartupLocation="CenterOwner" WindowStyle="None">
-    
+        Title="MainWindow" Height="768" Width="1366"
+        WindowStartupLocation="CenterScreen" WindowStyle="None" >
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition MaxHeight="30" />
-            <RowDefinition Height="50"/>
             <RowDefinition Height="*" />
-            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="3"  Background="#2a2f34" >
-            <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMinWindow" 
-                                        PathData="{StaticResource minWindowIcon}" HorizontalAlignment="Right"
-                                        Margin="5 5 58 5" PathWidth="18" NormalPathColor="White"
-                                        MouseOverBackground="Transparent"
-                                        PressedBackground="Transparent" Click="btnMinWindow_Click" />
-
-            <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMaxWindow" 
-                                        PathData="{StaticResource normalWindowIcon}" HorizontalAlignment="Right"
-                                        Margin="5 5 33 5" PathWidth="18" NormalPathColor="White"
-                                        MouseOverBackground="Transparent"
-                                        PressedBackground="Transparent" Click="btnMaxWindow_Click" />
-
-            <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnCloseWindow" 
-                                        PathData="{StaticResource closeWindowIcon}" HorizontalAlignment="Right"
-                                        Margin="5 5 8 5" PathWidth="18" NormalPathColor="White"
-                                        MouseOverBackground="Transparent"
-                                        PressedBackground="Transparent" Click="btnCloseWindow_Click" />
-        </Grid>
-        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0">
-            <systemControl:ModuleMenuControl />
-        </StackPanel>
-        <Border Grid.Column="1" Grid.Row="2">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <embed:AppContainer x:Name="ctnTest" />
-                <Viewbox Stretch="None" x:Name="viewBox">
-                    <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                </Viewbox>
-            </Grid>
-
-            <!--<Frame x:Name="mainFrame" Content="{Binding MainFrame}"/>-->
-        </Border>
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <systemControl:HeaderMenuControl />
-            <accountControl:UserInfoControl />
-            <Button Content="Web" Height="25" Width="50" Margin="10,0,0,0" x:Name="webBtn" Click="WebBtn_Click"></Button>
-        </StackPanel>
-        <StackPanel Grid.Row="1">
-            <ContentControl x:Name="popupControl" Content="{Binding PopupControl}"/>
-        </StackPanel>
-        <Grid Grid.Row="3" Grid.ColumnSpan="2" >
-            <systemControl:BottomWarningLogControl />
-        </Grid>
+        <embed:AppContainer x:Name="ctnTest"  Width="1366" Height="768" BorderThickness="0"/>
+        <Viewbox Stretch="None" x:Name="viewBox" Width="1366" Height="768">
+            <local:MainHomeControl x:Name="mainHome"></local:MainHomeControl>
+        </Viewbox>
     </Grid>
 </Window>
