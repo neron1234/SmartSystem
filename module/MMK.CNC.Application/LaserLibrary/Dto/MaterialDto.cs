@@ -33,6 +33,48 @@ namespace MMK.CNC.Application.LaserLibrary.Dto
 
         public DateTime CreationTime { get; set; }
     }
+
+    public class MeterialGroupThicknessDto
+    {
+        public int Code { get; set; }
+
+        public short MaterialCode { get; set; }
+        public string Name_EN { get; set; }
+
+        public string Name_CN { get; set; }
+
+        public IEnumerable<ThicknessItem> ThicknessNodes { get; set; }
+    }
+
+    public class ThicknessItem
+    {
+        public int Id { get; set; }
+
+        public double Thickness { get; set; }
+    }
+    public class MeterialThicknessDto : IEquatable<MeterialThicknessDto>
+    {
+
+        public int Id { get; set; }
+        public int Code { get; set; }
+
+        public short MaterialCode { get; set; }
+        public string Name_EN { get; set; }
+
+        public string Name_CN { get; set; }
+
+        public double MaterialThickness { get; set; }
+
+        public bool Equals(MeterialThicknessDto other)
+        {
+            return Code == other.Code && MaterialCode == other.MaterialCode && Name_CN == other.Name_CN && MaterialThickness == other.MaterialThickness;
+        }
+
+        public override int GetHashCode()
+        {
+            return $"{Code}_{MaterialThickness}_{MaterialCode}_{Name_CN}".GetHashCode();
+        }
+    }
     [AutoMap(typeof(Material))]
 
     public class UpdateMaterialDto : EntityDto<int>

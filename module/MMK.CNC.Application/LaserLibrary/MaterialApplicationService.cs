@@ -15,7 +15,7 @@ namespace MMK.CNC.Application.LaserLibrary
 
     public interface IMaterialApplicationService : IAsyncCrudAppService<MaterialDto, int, MaterialResultRequestDto, CreateMaterialDto, UpdateMaterialDto>
     {
-
+        PagedResultDto<MeterialGroupThicknessDto> GetMaterialAll(MaterialResultRequestDto input);
     }
 
     public class MaterialApplicationService : AsyncCrudAppService<Material, MaterialDto, int, MaterialResultRequestDto, CreateMaterialDto, UpdateMaterialDto>, IMaterialApplicationService
@@ -25,32 +25,48 @@ namespace MMK.CNC.Application.LaserLibrary
         {
         }
 
-        public override async Task<PagedResultDto<MaterialDto>> GetAll(MaterialResultRequestDto input)
+        public PagedResultDto<MeterialGroupThicknessDto> GetMaterialAll(MaterialResultRequestDto input)
         {
-            List<Material> materials = new List<Material>();
             if (input.IsCheckSon)
             {
-                var list1 = machiningGroupRepository.GetAllIncluding().GroupJoin(Repository.GetAllIncluding(), d => d.MaterialCode, f => f.Code, (p, v) => v).ToList();
-                foreach (var item in list1)
+                var list1 = machiningGroupRepository.GetAllIncluding().Join(Repository.GetAllIncluding(), d => d.MaterialCode, f => f.Code, (p, v) => new MeterialThicknessDto
                 {
-                    foreach (var d in item)
-                    {
-                        if (materials.FindIndex(g => g.Id == d.Id) == -1)
-                        {
-                            materials.Add(d);
-                        }
-                    }
-                }
+                    Id = p.Id,
+                    Code = p.Code,
+                    MaterialCode = p.MaterialCode,
+                    MaterialThickness = p.MaterialThickness,
+                    Name_CN = v.Name_CN,
+                    Name_EN = v.Name_EN
+
+                }).Distinct();
+                int total = list1.Count();
+                var listRes = list1.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+                var groupList = listRes.GroupBy(d => new { d.MaterialCode, d.Name_CN, d.Name_EN }, (key, value) => new MeterialGroupThicknessDto()
+                {
+                    Code = key.MaterialCode,
+                    MaterialCode = key.MaterialCode,
+                    Name_CN = key.Name_CN,
+                    Name_EN = key.Name_EN,
+                    ThicknessNodes = value.Select(d => new ThicknessItem() { Id = d.Id, Thickness = d.MaterialThickness })
+
+
+                }).ToList();
+                return new PagedResultDto<MeterialGroupThicknessDto>(total, groupList);
+
             }
             else
             {
-                materials = Repository.GetAllIncluding().ToList();
+                int total = Repository.GetAllIncluding().Count();
+                var listRes = Repository.GetAllIncluding().Select(d => new MeterialGroupThicknessDto()
+                {
+
+                    Name_CN = d.Name_CN,
+                    Name_EN = d.Name_EN,
+                    Code = d.Code
+
+                }).Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
+                return new PagedResultDto<MeterialGroupThicknessDto>(total, listRes);
             }
-            int total = materials.Count;
-            var listRes = materials.Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
-            var listDto = ObjectMapper.Map<List<MaterialDto>>(listRes);
-            await Task.CompletedTask;
-            return new PagedResultDto<MaterialDto>(total, listDto);
         }
     }
 
