@@ -33,8 +33,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             }
         }
 
-        private ObservableCollection<MaterialDto> _MaterialTypeList;
-        public ObservableCollection<MaterialDto> MaterialTypeList
+        private ObservableCollection<MeterialGroupThicknessDto> _MaterialTypeList;
+        public ObservableCollection<MeterialGroupThicknessDto> MaterialTypeList
         {
             get { return _MaterialTypeList; }
             set
@@ -47,22 +47,22 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             }
         }
 
-        private int _SelectedMaterialTypeId;
-        public int SelectedMaterialTypeId
+        private int _SelectedMaterialGroupId;
+        public int SelectedMaterialGroupId
         {
-            get { return _SelectedMaterialTypeId; }
+            get { return _SelectedMaterialGroupId; }
             set
             {
-                if (_SelectedMaterialTypeId != value)
+                if (_SelectedMaterialGroupId != value)
                 {
-                    _SelectedMaterialTypeId = value;
-                    RaisePropertyChanged(() => SelectedMaterialTypeId);
+                    _SelectedMaterialGroupId = value;
+                    RaisePropertyChanged(() => SelectedMaterialGroupId);
                 }
             }
         }
 
-        private ObservableCollection<MachiningGroupDto> _MaterialThicknessList;
-        public ObservableCollection<MachiningGroupDto> MaterialThicknessList
+        private ObservableCollection<ThicknessItem> _MaterialThicknessList;
+        public ObservableCollection<ThicknessItem> MaterialThicknessList
         {
             get { return _MaterialThicknessList; }
             set
@@ -77,38 +77,26 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
 
         public ProcessOptionsViewModel()
         {
-            this.MaterialTypeList = new ObservableCollection<MaterialDto>();
-            this.MaterialThicknessList = new ObservableCollection<MachiningGroupDto>();
+            this.MaterialTypeList = new ObservableCollection<MeterialGroupThicknessDto>();
+            this.MaterialThicknessList = new ObservableCollection<ThicknessItem>();
             RegisterMaterial();
         }
 
         private void RegisterMaterial()
         {
             Task.Factory.StartNew(() => { 
-                Messenger.Default.Register<PagedResultDtoOfMachiningGroupDto>(this, (result) =>
-                {
-                    this.MaterialThicknessList.Clear();
-                    foreach (var item in result.Items)
-                    {
-                        this.MaterialThicknessList.Add(item);
-                    }
-                    if (this.MaterialThicknessList.Count > 0)
-                    {
-                        this.SelectedMaterialTypeId = (int)this.MaterialThicknessList.First()?.Id;
-                    }
-                });
-
-                Messenger.Default.Register<PagedResultDtoOfMaterialDto>(this, (results) =>
-                {
+                Messenger.Default.Register<PagedResultDtoOfMeterialGroupThicknessDto>(this, (results) =>{
                     this.MaterialTypeList.Clear();
-                    foreach (var item in results.Items)
-                    {
+                    foreach (var item in results.Items){
                         this.MaterialTypeList.Add(item);
                     }
-                    if (this.MaterialTypeList.Count > 0)
-                    {
-                        this.SelectedMaterialId = (int)this.MaterialTypeList.First()?.Code;
-                        this.MTypeSelectionCommand.Execute("");
+                    if (this.MaterialTypeList.Count > 0){
+                        var fistMtList = this.MaterialTypeList.First();
+                        this.MaterialThicknessList = new ObservableCollection<ThicknessItem>(fistMtList.ThicknessNodes.ToList());
+                        this.SelectedMaterialId = (int)fistMtList.MaterialCode;
+                        this.SelectedMaterialGroupId = (int)fistMtList.ThicknessNodes.First().Id;
+
+                        Messenger.Default.Send(this.SelectedMaterialGroupId);
                     }
                 });
             });
@@ -116,14 +104,18 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
 
         private void UnRegisterMaterial()
         {
-            Messenger.Default.Unregister<PagedResultDtoOfMachiningGroupDto>(this);
-            Messenger.Default.Unregister<PagedResultDtoOfMaterialDto>(this);
+            Messenger.Default.Unregister<PagedResultDtoOfMeterialGroupThicknessDto>(this);
         }
 
         public ICommand MTypeSelectionCommand{
             get{
-                return  new RelayCommand(() => {
-                    Messenger.Default.Send("GetMachiningGroupInfo");
+                return new RelayCommand(() => {
+                    if (this.MaterialTypeList.Count > 0)
+                    {
+                        var tNodes = this.MaterialTypeList.FirstOrDefault(n => n.MaterialCode == this.SelectedMaterialId).ThicknessNodes.ToList();
+                        this.MaterialThicknessList = new ObservableCollection<ThicknessItem>(tNodes);
+                        this.SelectedMaterialGroupId = (int)tNodes.First().Id;
+                    }
                 });
             }
         }
@@ -144,7 +136,25 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
         {
             get{
                 return new RelayCommand(() =>{
-                    Messenger.Default.Send(SelectedMaterialTypeId);
+                    Messenger.Default.Send(this.SelectedMaterialGroupId);
+                });
+            }
+        }
+        public ICommand LastColumnsCommand
+        {
+            get
+            {
+                return new RelayCommand(() => {
+                    Messenger.Default.Send("LastColumns");
+                });
+            }
+        }
+        public ICommand NestColumnsCommand
+        {
+            get
+            {
+                return new RelayCommand(() => {
+                    Messenger.Default.Send("NextColumns");
                 });
             }
         }

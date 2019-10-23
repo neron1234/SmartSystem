@@ -52,6 +52,37 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             ColumnArray.Add("EdgeSlt", "尖角");
             ColumnArray.Add("ApprSlt", "起始");
             ColumnArray.Add("PwrCtrl", "功率控制");
+
+            ColumnArray.Add("Angle", "角度");
+            ColumnArray.Add("RecoveryDistance", "返回距离");
+            ColumnArray.Add("RecoveryFeedrate", "返回速度");
+            ColumnArray.Add("RecoveryFrequency", "返回频率");
+            ColumnArray.Add("RecoveryDuty", "返回占空比");
+
+            //Piercing(未完成)
+            //ColumnArray.Add("Frequency", "初始值频率");
+            //ColumnArray.Add("Duty", "初始值占空比");
+            ColumnArray.Add("StepFrequency", "增量频率");
+            ColumnArray.Add("StepDuty", "增量占空比");
+            ColumnArray.Add("StepTime", "步 时间");
+            ColumnArray.Add("StepQuantity", "步 数");
+            ColumnArray.Add("PiercingTime", "穿孔时间");
+
+            //SlopeControl(未完成)
+            ColumnArray.Add("PowerMin", "功率 最小");
+            ColumnArray.Add("PwrSpZr", "功率 速度0");
+            ColumnArray.Add("FreqMin", "频率 最小");
+            ColumnArray.Add("FreqSpZr", "频率 速度0");
+            ColumnArray.Add("DutyMin", "占空比 最小");
+            ColumnArray.Add("DutySpZr", "占空比 速度0");
+            ColumnArray.Add("FeedRDec", "速度变化允许量");
         }
+    }
+
+    public class DataColumn
+    {
+        public string Header { get; set; }
+        public string BindingName { get; set; }
+        public double Width { get; set; }
     }
 }
