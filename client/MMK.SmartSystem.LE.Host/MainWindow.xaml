@@ -14,8 +14,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <embed:AppContainer x:Name="ctnTest"  Width="1366" Height="768" BorderThickness="0"/>
-        <Viewbox Stretch="None" x:Name="viewBox" Width="1366" Height="768">
-            <local:MainHomeControl x:Name="mainHome" Height="768" Width="1366" ></local:MainHomeControl>
+        <Viewbox Stretch="None" x:Name="viewBox" Width="{Binding ActualWidth, ElementName=window, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=window, Mode=OneWay}">
+            <local:MainHomeControl x:Name="mainHome" Width="{Binding ActualWidth, ElementName=window, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=window, Mode=OneWay}" ></local:MainHomeControl>
         </Viewbox>
     </Grid>
 </Window>
