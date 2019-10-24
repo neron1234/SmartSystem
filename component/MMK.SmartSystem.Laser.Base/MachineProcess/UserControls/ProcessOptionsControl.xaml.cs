@@ -39,6 +39,10 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                             EventBus.Default.Trigger(new MaterialInfoEventData { IsCheckSon = true });
                         });
                     });
+                }else if(str == "UnRegisterMaterial"){
+                    processOptionsViewModel.UnRegisterMaterial();
+                } else if(str == "RegisterMaterial"){
+                    processOptionsViewModel.RegisterMaterial();
                 }
             });
 

@@ -2,8 +2,10 @@
 using Abp.Events.Bus;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
+using MMK.SmartSystem.Common.SignalrProxy;
 using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.LE.Host.CustomControl;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
@@ -32,73 +34,108 @@ namespace MMK.SmartSystem.LE.Host
     public partial class MainWindow : Window, ISingletonDependency
     {
         IIocManager iocManager;
-        public MainWindowViewModel MainViewModel = new MainWindowViewModel();
-        private Notifiaction notifiaction = new Notifiaction();
+        SignalrRouteProxyClient signalrRouteProxyClient;
         public MainWindow(IIocManager iocManager)
         {
             this.iocManager = iocManager;
+            AllowsTransparency = true;
+
             InitializeComponent();
+            signalrRouteProxyClient = new SignalrRouteProxyClient();
+            signalrRouteProxyClient.RouteErrorEvent += SignalrRouteProxyClient_RouteErrorEvent;
+            signalrRouteProxyClient.GetHomeEvent += SignalrRouteProxyClient_GetHomeEvent;
             this.Loaded += MainWindow_Loaded;
             this.Closed += MainWindow_Closed;
-            this.DataContext = MainViewModel;
         }
 
-        private void MainWindow_Closed(object sender, EventArgs e)
+        private void SignalrRouteProxyClient_GetHomeEvent(string obj)
         {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                ctnTest.Visibility = Visibility.Collapsed;
+                viewBox.Visibility = Visibility.Visible;
+
+            }));
+         
+        }
+
+        private void SignalrRouteProxyClient_RouteErrorEvent(string obj)
+        {
+
+        }
+
+        private async void MainWindow_Closed(object sender, EventArgs e)
+        {
+            await signalrRouteProxyClient.Close();
             Environment.Exit(0);
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+
             ctnTest.Visibility = Visibility.Visible;
             viewBox.Visibility = Visibility.Collapsed;
+            mainHome.InitMessenger(iocManager);
+            Messenger.Default.Register<MainSystemNoticeModel>(this, (model) =>
+            {
+                if (model.HashCode == this.GetHashCode())
+                {
+                    model.SuccessAction?.Invoke();
+                }
+            });
             Messenger.Default.Register<PageChangeModel>(this, (type) =>
             {
                 Dispatcher.BeginInvoke(new Action(() => pageChange(type)));
             });
-
-            Messenger.Default.Register<UserControl>(this, (control) =>
+            await Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
+            await AutoLogin();
+            await signalrRouteProxyClient.Start();
+            Messenger.Default.Register<WindowStatus>(this, (ws) =>
             {
-                MainViewModel.PopupControl = control;
-            });
-
-            Messenger.Default.Register<Common.AuthenticateResultModel>(this, (userConfig) =>
-            {
-                MainViewModel.MainFrame = null;
-            });
-            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(() =>
-            {
-                new LoginWindow().ShowDialog();
-               // loadWebApp();
-            }
-            ))));
-
-            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
-
-            //loadWebApp();
-            //消息通知
-            Messenger.Default.Register<NotifiactionModel>(this, (nm) => {
-                notifiaction.AddNotifiaction(nm);
+                switch (ws)
+                {
+                    case WindowStatus.Max:
+                        if (this.WindowState == WindowState.Maximized){
+                            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                            this.WindowState = WindowState.Normal;
+                            Messenger.Default.Send((PathGeometry)FindResource("maxWindowIcon"));
+                        }else{
+                            this.WindowState = WindowState.Maximized;
+                            Messenger.Default.Send((PathGeometry)FindResource("normalWindowIcon"));
+                        }
+                        mainHome.Width = this.Width;
+                        mainHome.Height = this.Height;
+                        viewBox.Width = this.Width;
+                        viewBox.Height = this.Height;
+                        break;
+                    case WindowStatus.Min:
+                        this.WindowState = WindowState.Minimized;
+                        break;
+                    default:
+                        break;
+                }
             });
         }
+        private async Task AutoLogin()
+        {
+            await EventBus.Default.TriggerAsync(new UserLoginEventData()
+            {
+                UserName = SmartSystemLEConsts.DefaultUser,
+                Pwd = SmartSystemLEConsts.DefaultPwd,
+                Tagret = ErrorTagretEnum.Window,
+                HashCode = this.GetHashCode(),
+                SuccessAction = LoginSuccess
+            });
 
+        }
         void pageChange(PageChangeModel changeModel)
         {
             if (changeModel.Page == PageEnum.WPFPage)
             {
-                try
-                {
-                    var page = iocManager.Resolve(changeModel.FullType);
-                    MainViewModel.MainFrame = page;
-                    ctnTest.Visibility = Visibility.Collapsed;
-                    viewBox.Visibility = Visibility.Visible;
-                }
-                catch (Exception)
-                {
+                ctnTest.Visibility = Visibility.Collapsed;
+                viewBox.Visibility = Visibility.Visible;
+                mainHome.ChangeWPFPage(changeModel);
 
-                    
-                }
-              
             }
             else if (changeModel.Page == PageEnum.WebPage)
             {
@@ -110,10 +147,15 @@ namespace MMK.SmartSystem.LE.Host
                 }));
             }
         }
+        public void LoginSuccess()
+        {
+            EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
+            App.CloseScreen();
+            ///AllowsTransparency = false;
+        }
 
         void loadWebApp()
         {
-            //Thread.Sleep(5000);
             string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "WebApp", "cncapp.exe");
             if (System.IO.File.Exists(path))
             {
@@ -122,35 +164,8 @@ namespace MMK.SmartSystem.LE.Host
             }
         }
 
-        private void WebBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
-        }
 
-        private void btnMaxWindow_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Maximized)
-            {
-                this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                this.WindowState = WindowState.Normal;
-                ((PathIconButton)sender).PathData = (PathGeometry)FindResource("maxWindowIcon");
-            }
-            else
-            {
-                this.WindowState = WindowState.Maximized;
-                ((PathIconButton)sender).PathData = (PathGeometry)FindResource("normalWindowIcon");
-            }
-            //this.WindowState = this.WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
-        }
 
-        private void btnMinWindow_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
 
-        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
     }
 }

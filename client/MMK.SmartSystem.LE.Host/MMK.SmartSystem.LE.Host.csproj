@@ -319,6 +319,9 @@
     <Compile Include="SystemControl\HeaderMenuControl.xaml.cs">
       <DependentUpon>HeaderMenuControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemControl\MainHomeControl.xaml.cs">
+      <DependentUpon>MainHomeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemControl\ModuleMenuControl.xaml.cs">
       <DependentUpon>ModuleMenuControl.xaml</DependentUpon>
     </Compile>
@@ -516,6 +519,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SystemControl\MainHomeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SystemControl\ModuleMenuControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -564,9 +571,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <SplashScreen Include="big21009.png" />
     <Content Include="Configs\Readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="loading.gif" />
     <Content Include="Plugins\Readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

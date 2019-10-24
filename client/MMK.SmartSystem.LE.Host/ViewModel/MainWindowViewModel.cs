@@ -43,6 +43,11 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
                 }
             }
         }
+    }
 
+    public enum WindowStatus
+    {
+        Max,
+        Min
     }
 }

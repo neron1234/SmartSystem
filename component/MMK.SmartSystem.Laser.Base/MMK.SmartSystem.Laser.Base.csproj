@@ -343,6 +343,7 @@
     <Compile Include="MachineOperation\ViewModel\CutCenterPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\CutterResetCheckPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\ManualFindSidePageViewModel.cs" />
+    <Compile Include="MachineProcess\UserControls\ViewModel\EditMaterialViewModel.cs" />
     <Compile Include="PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>

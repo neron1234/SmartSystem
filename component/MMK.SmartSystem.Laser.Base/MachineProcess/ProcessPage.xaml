@@ -40,17 +40,17 @@
                 <RadioButton Width="186" Height="40" Content="尖角切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="EdgeCuttingBtn" Command="{Binding EdgeCuttingCommand}" />
                 <RadioButton Width="186" Height="40" Content="功率控制" Style="{StaticResource RadioButtonColorStyle}" x:Name="SlopeControlDataListBtn" Command="{Binding SlopeControlDatCommand}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="2">
-                <Button Style="{StaticResource ListBtnStyle}" Height="40" Width="120" Margin="30 0 0 0" x:Name="Edit" >
-                    <WrapPanel>
-                        <Path Data="{StaticResource EditBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill"/>
-                        <TextBlock Padding="8 0 0 0" TextWrapping="Wrap" Text="编辑" Width="50" />
-                    </WrapPanel>
-                </Button>
-                <Button Style="{StaticResource ListBtnStyle}" Width="120" Height="40" Margin="10 0 0 0"  >
+            <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
+                <Button Style="{StaticResource ListBtnStyle}" Width="95" Height="40" Margin="0 0 0 0" Command="{Binding UpLoadCommand}">
                     <WrapPanel>
                         <Path Data="{StaticResource uploadBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill" Margin="10 0 0 0"/>
-                        <TextBlock Padding="8 0 0 0" TextWrapping="Wrap" Text="上传" Width="60" />
+                        <TextBlock Padding="4 0 0 0" TextWrapping="Wrap" Text="上传" Width="60" />
+                    </WrapPanel>
+                </Button>
+                <Button Width="120" Height="40" Margin="10 0 0 0" x:Name="Edit" Style="{StaticResource ListBtnStyle}" Command="{Binding EditCommand}" >
+                    <WrapPanel>
+                        <Path Data="{StaticResource EditBtnIcon}" Width="20" Height="20" Fill="#d3ab07" Stretch="Fill"/>
+                        <TextBlock Padding="4 0 0 0" TextWrapping="Wrap" Text="材料编辑" Width="90" />
                     </WrapPanel>
                 </Button>
             </StackPanel>

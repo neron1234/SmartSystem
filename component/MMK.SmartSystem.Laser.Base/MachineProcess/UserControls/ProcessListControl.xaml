@@ -69,6 +69,7 @@
         <Style TargetType="DataGridCell">
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#CDD3D7" />
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
                     <Setter Property="Height" Value="45"/>
