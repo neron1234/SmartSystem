@@ -39,7 +39,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
 
         public void InitMessenger(IIocManager _iocManager)
         {
-            iocManager = _iocManager;         
+            iocManager = _iocManager;
 
             Messenger.Default.Register<UserControl>(this, (control) =>
             {
@@ -71,7 +71,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         public void ChangeWPFPage(PageChangeModel pageChange)
         {
 
-            if (pageChange.Page == PageEnum.WPFPage)
+            if (pageChange.Page == PageEnum.WPFPage && pageChange.FullType != null)
             {
                 try
                 {
