@@ -62,11 +62,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
                  //btnMaxWindow.PathData = pg;
              });
 
-            var module = SmartSystemLEConsts.SystemModules.FirstOrDefault(n => n.ModuleName == "MachineProcess");
-            var mmv = module.MainMenuViews.First();
-            var page = iocManager.Resolve(mmv.PageType);
-            MainViewModel.MainFrame = page;
-
         }
         public void ChangeWPFPage(PageChangeModel pageChange)
         {

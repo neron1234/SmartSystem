@@ -12,22 +12,22 @@
         "Icon": "machining",
         "Sort": 1
       },
-      {
-        "Id": "Home.technology",
-        "Title": "工艺",
-        "FullName": "",
-        "IsAuth": false,
-        "Icon": "technology",
-        "Sort": 2
-      },
-      {
-        "Id": "Home.program",
-        "Title": "程序",
-        "FullName": "",
-        "IsAuth": false,
-        "Icon": "program",
-        "Sort": 3
-      },
+        {
+            "Id": "Home.technology",
+            "Title": "工艺",
+            "FullName": "MMK.SmartSystem.Laser.Base.MachineProcess.ProcessPage",
+            "IsAuth": false,
+            "Icon": "technology",
+            "Sort": 2
+        },
+        {
+            "Id": "Home.program",
+            "Title": "程序",
+            "FullName": "MMK.SmartSystem.Laser.Base.ProgramOperation.ProgramListPage",
+            "IsAuth": false,
+            "Icon": "program",
+            "Sort": 3
+        },
       {
         "Id": "Home.casing",
         "Title": "套料",

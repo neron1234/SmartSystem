@@ -29,7 +29,7 @@
         </Grid>
         
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" >
-            <systemControl:ModuleMenuControl />
+            <systemControl:ModuleMenuControl Height="723"/>
         </StackPanel>
 
         <Border Grid.Column="0" Grid.Row="2" Height="660" Width="1265">
