@@ -82,7 +82,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 
         private void TimeTimer_Tick(object sender, EventArgs e)
         {
-            this.SystemTime = DateTime.Now.ToString();
+            this.SystemTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
         public ICommand ShutDownCommand

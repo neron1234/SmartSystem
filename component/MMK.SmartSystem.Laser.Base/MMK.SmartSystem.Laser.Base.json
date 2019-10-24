@@ -4,14 +4,14 @@
     "BackColor": "#36a35b",
     "Sort": 1,
     "Pages": [
-      {
-        "Id": "Home.maching",
-        "Title": "加工",
-        "FullName": "",
-        "IsAuth": false,
-        "Icon": "machining",
-        "Sort": 1
-      },
+        {
+            "Id": "Home.maching",
+            "Title": "加工",
+            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.LaserStatePage",
+            "IsAuth": false,
+            "Icon": "machining",
+            "Sort": 1
+        },
         {
             "Id": "Home.technology",
             "Title": "工艺",
