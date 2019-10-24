@@ -60,7 +60,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             //修改图标
             Messenger.Default.Register<PathGeometry>(this, (pg) =>
              {
-                 btnMaxWindow.PathData = pg;
+                 //btnMaxWindow.PathData = pg;
              });
         }
         public void ChangeWPFPage(PageChangeModel pageChange)

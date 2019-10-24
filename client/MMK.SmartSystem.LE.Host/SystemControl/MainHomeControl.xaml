@@ -8,56 +8,168 @@
              xmlns:systemControl="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
              xmlns:accountControl="clr-namespace:MMK.SmartSystem.LE.Host.AccountControl"
              mc:Ignorable="d" 
-             d:DesignHeight="768" d:DesignWidth="1366">
+             d:DesignHeight="768" d:DesignWidth="1366" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3" Background="#FF3B3B3B">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition MaxHeight="30" />
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="63" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="3"  Background="#2a2f34" >
-            <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMinWindow" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="111"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Row="0" Grid.ColumnSpan="2"  Background="#FF2D2D2D">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="60*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/Logo.png" Width="245.6" Height="15.6" Margin="30 16 0 0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="机床状态" Margin="14 14 6 14" FontSize="14"/>
+                <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/Status_Red.png" Width="13" Height="13" Margin="0 11 0 14"/>
+
+                <TextBlock Text="伺服" Margin="14 14 6 14" FontSize="14"/>
+                <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/Status_Green.png" Width="13" Height="13" Margin="0 11 0 14"/>
+
+                <TextBlock Text="激光" Margin="14 14 6 14" FontSize="14"/>
+                <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/Status_Blue.png" Width="13" Height="13" Margin="0 11 30 14"/>
+
+                <TextBlock Text="2019.10.24 12:59:04" Margin="14 14 20 14" FontSize="14" />
+                <!--<cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMinWindow" 
                                         PathData="{StaticResource minWindowIcon}" HorizontalAlignment="Right"
-                                        Margin="5 5 58 5" PathWidth="18" NormalPathColor="White"
+                                        Margin="5" PathWidth="18" NormalPathColor="White"
                                         MouseOverBackground="Transparent"
                                         PressedBackground="Transparent" Click="btnMinWindow_Click" />
 
-            <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMaxWindow" 
+                <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMaxWindow" 
                                         PathData="{StaticResource normalWindowIcon}" HorizontalAlignment="Right"
-                                        Margin="5 5 33 5" PathWidth="18" NormalPathColor="White"
+                                        Margin="5" PathWidth="18" NormalPathColor="White"
                                         MouseOverBackground="Transparent"
-                                        PressedBackground="Transparent" Click="btnMaxWindow_Click" />
+                                        PressedBackground="Transparent" Click="btnMaxWindow_Click" />-->
 
-            <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnCloseWindow" 
-                                        PathData="{StaticResource closeWindowIcon}" HorizontalAlignment="Right"
-                                        Margin="5 5 8 5" PathWidth="18" NormalPathColor="White"
+                <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnCloseWindow" 
+                                        PathData="{StaticResource ShutDownIcon}" HorizontalAlignment="Right"
+                                        Margin="5 5 10 5" PathWidth="18" NormalPathColor="White"
                                         MouseOverBackground="Transparent"
                                         PressedBackground="Transparent" Click="btnCloseWindow_Click" />
+            </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0">
-            <systemControl:ModuleMenuControl />
+        
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="/MMK.SmartSystem.LE.Host;component/Resources/Images/TitleBg.png"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70*"/>
+                <ColumnDefinition Width="30*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/TitleIcon.png" Width="4" Height="20" Margin="30 0 0 0"/>
+                <TextBlock Text="加工" FontSize="26" Margin="10 0 0 0"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="09100" FontSize="28"/>
+                <StackPanel Width="240" Height="32" Orientation="Horizontal" VerticalAlignment="Center" Margin="36 0 0 0">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/MMK.SmartSystem.LE.Host;component/Resources/Images/WarningBg.png"/>
+                    </StackPanel.Background>
+                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/WarningIcon.png" Width="29" Height="24" Margin="17 0 0 0"/>
+                    <TextBlock Text="机器出现严重问题" Margin="15 5 0 0" FontSize="18"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" >
+            <StackPanel.Background>
+                <ImageBrush ImageSource="/MMK.SmartSystem.LE.Host;component/Resources/Images/MenuBg.png" />
+            </StackPanel.Background>
+            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_加工_未点击@1x.png" Width="42" Height="37" />
+                    <TextBlock Text="加工" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
+                </WrapPanel>
+            </Button>
+            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_工艺_未点击@1x.png" Width="42" Height="37" />
+                    <TextBlock Text="工艺" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
+                </WrapPanel>
+            </Button>
+            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_程序_未点击@1x.png" Width="42" Height="37" />
+                    <TextBlock Text="程序" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
+                </WrapPanel>
+            </Button>
+            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_套料_未点击@1x.png" Width="42" Height="37" />
+                    <TextBlock Text="套料" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
+                </WrapPanel>
+            </Button>
+            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_手动_未点击@1x.png" Width="42" Height="37" />
+                    <TextBlock Text="手动" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
+                </WrapPanel>
+            </Button>
+            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_激光_未点击@1x.png" Width="42" Height="37" />
+                    <TextBlock Text="激光" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
+                </WrapPanel>
+            </Button>
+            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_维护_未点击@1x.png" Width="42" Height="37" />
+                    <TextBlock Text="维护" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
+                </WrapPanel>
+            </Button>
+            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_CNC_未点击@1x.png" Width="42" Height="37" />
+                    <TextBlock Text="CNC" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
+                </WrapPanel>
+            </Button>
         </StackPanel>
-        <Border Grid.Column="1" Grid.Row="2">
+
+        <Border Grid.Column="0" Grid.Row="2" Height="660" Width="1265">
             <Viewbox Stretch="None" x:Name="viewBox">
                 <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             </Viewbox>
-
-            <!--<Frame x:Name="mainFrame" Content="{Binding MainFrame}"/>-->
         </Border>
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        
+        <!--模块功能区-->
+        <!--<StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0">
+            <systemControl:ModuleMenuControl />
+        </StackPanel>-->
+        
+        <!--功能显示区-->
+        <!--<Border Grid.Column="1" Grid.Row="2">
+            <Viewbox Stretch="None" x:Name="viewBox">
+                <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Viewbox>
+        </Border>-->
+
+        <!--头部菜单-->
+        <!--<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <systemControl:HeaderMenuControl />
             <accountControl:UserInfoControl />
-        </StackPanel>
-        <StackPanel Grid.Row="1">
+        </StackPanel>-->
+        
+        <!--蒙板弹窗-->
+        <!--<StackPanel Grid.Row="1">
             <ContentControl x:Name="popupControl" Content="{Binding PopupControl}"/>
-        </StackPanel>
-        <Grid Grid.Row="3" Grid.ColumnSpan="2" >
+        </StackPanel>-->
+        
+        <!--底部菜单-->
+        <!--<Grid Grid.Row="3" Grid.ColumnSpan="2" >
             <systemControl:BottomWarningLogControl />
-        </Grid>
+        </Grid>-->
     </Grid>
 </UserControl>

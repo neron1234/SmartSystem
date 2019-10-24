@@ -587,13 +587,38 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Close.png" />
+    <Resource Include="Resources\Images\Logo.png" />
+    <Resource Include="Resources\Images\MenuBg.png" />
+    <Resource Include="Resources\Images\TitleBg.png" />
+    <Resource Include="Resources\Images\btn_CNC_未点击%401x.png" />
+    <Resource Include="Resources\Images\btn_CNC_点击%401x.png" />
+    <Resource Include="Resources\Images\btn_加工_未点击%401x.png" />
+    <Resource Include="Resources\Images\btn_加工_点击%401x.png" />
+    <Resource Include="Resources\Images\btn_套料_未点击%401x.png" />
+    <Resource Include="Resources\Images\btn_套料_点击%401x.png" />
+    <Resource Include="Resources\Images\btn_工艺_未点击%401x.png" />
+    <Resource Include="Resources\Images\btn_工艺_点击%401x.png" />
+    <Resource Include="Resources\Images\btn_手动_未点击%401x.png" />
+    <Resource Include="Resources\Images\btn_手动_点击%401x.png" />
+    <Resource Include="Resources\Images\btn_激光_未点击%401x.png" />
+    <Resource Include="Resources\Images\btn_激光_点击%401x.png" />
+    <Resource Include="Resources\Images\btn_程序_未点击%401x.png" />
+    <Resource Include="Resources\Images\btn_程序_点击%401x.png" />
+    <Resource Include="Resources\Images\btn_维护_未点击%401x.png" />
+    <Resource Include="Resources\Images\btn_维护_点击%401x.png" />
+    <Resource Include="Resources\Images\TitleIcon.png" />
+    <Resource Include="Resources\Images\WarningBg.png" />
+    <Resource Include="Resources\Images\WarningIcon.png" />
+    <Resource Include="Resources\Images\Status_Red.png" />
+    <Resource Include="Resources\Images\Status_Green.png" />
+    <Resource Include="Resources\Images\Status_Blue.png" />
     <Content Include="WebApp\Readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomControl\Popup\Themes\" />
-    <Folder Include="Resources\Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
