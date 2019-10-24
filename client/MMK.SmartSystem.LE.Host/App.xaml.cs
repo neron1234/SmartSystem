@@ -31,18 +31,19 @@ namespace MMK.SmartSystem.LE.Host
                 f => f.UseAbpLog4Net().WithConfig("log4net.config"));
         }
 
-    
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            
+
 
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins");
             _bootstrapper.PlugInSources.AddFolder(path);
             _bootstrapper.Initialize();
             DispatcherHelper.Initialize();
-            _bootstrapper.IocManager.Resolve<MainWindow>().Show();
-        
             LoadPluginAssemblies();
+
+            _bootstrapper.IocManager.Resolve<MainWindow>().Show();
+
         }
 
         private void LoadPluginAssemblies()
@@ -53,7 +54,7 @@ namespace MMK.SmartSystem.LE.Host
                 {
                     SmartSystemLEConsts.SystemModules.ToList().ForEach((s) => s.MainMenuViews.Where(d => !d.IsLoad).ToList().ForEach(d =>
                     {
-                        if (!d.WebPage && d.Page != null)
+                        if (!d.WebPage && !string.IsNullOrEmpty(d.Page))
                         {
                             var type = item.GetType(d.Page);
                             if (type != null)

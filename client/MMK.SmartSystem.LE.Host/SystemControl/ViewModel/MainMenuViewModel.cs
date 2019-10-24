@@ -40,7 +40,20 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         public string Url { get; set; }
         public string Permission { get; set; }
 
-        public string Icon { get; set; }
+        private string _icon;
+        public string Icon
+        {
+            get { return _icon; }
+            set
+            {
+                if (_icon != value)
+                {
+                    _icon = value;
+                    RaisePropertyChanged(() => Icon);
+                }
+            }
+        }
+
         public string BackColor { get; set; }
 
         private Visibility _Show;
@@ -70,11 +83,22 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
                         return;
                     }
                     Messenger.Default.Send(new PageChangeModel() { FullType = s.PageType, Page = PageEnum.WPFPage });
-
+                    MenuClickEvent?.Invoke(this);
                 });
             }
         }
 
+
+        public event Action<MainMenuViewModel> MenuClickEvent;
+        public void MenuActive()
+        {
+            Icon = _icon + "-active";
+        }
+        public void MenuClearActive()
+        {
+            Icon = _icon.Replace("-active", "");
+
+        }
         public MainMenuViewModel()
         {
             _Show = Visibility.Collapsed;

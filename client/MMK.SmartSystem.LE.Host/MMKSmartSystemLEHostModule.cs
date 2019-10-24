@@ -32,9 +32,17 @@ namespace MMK.SmartSystem.LE.Host
             listModule.ForEach(d =>
             {
                 var pages = new List<MainMenuViewModel>();
+                var menu = new SystemMenuModuleViewModel()
+                {
+                    BackColor = d.BackColor,
+                    Icon = d.Icon,
+                    ModuleName = d.ModuleName,
+                    ModuleKey = d.ModuleName,
+                    Sort = d.Sort
+                };
                 d.Pages.OrderBy(f => f.Sort).ToList().ForEach(g =>
                 {
-                    pages.Add(new MainMenuViewModel()
+                    var page = new MainMenuViewModel()
                     {
                         Id = g.Id,
                         Title = g.Title,
@@ -44,19 +52,15 @@ namespace MMK.SmartSystem.LE.Host
                         PageKey = g.Title,
                         Url = g.Url,
                         WebPage = g.WebPage,
+                        Icon = g.Icon,
                         BackColor = d.BackColor,
                         Sort = g.Sort
-                    });
+                    };
+                    page.MenuClickEvent += menu.MenuItemClick;
+                    pages.Add(page);
                 });
-                SmartSystemLEConsts.SystemModules.Add(new SystemMenuModuleViewModel()
-                {
-                    BackColor = d.BackColor,
-                    Icon = d.Icon,
-                    ModuleName = d.ModuleName,
-                    MainMenuViews = new ObservableCollection<MainMenuViewModel>(pages),
-                    ModuleKey = d.ModuleName,
-                    Sort = d.Sort
-                });
+                menu.MainMenuViews = new ObservableCollection<MainMenuViewModel>(pages);
+                SmartSystemLEConsts.SystemModules.Add(menu);
             });
             var listSignalrParm = Configuration.GetOrCreate(SmartSystemCommonConsts.ModuleQueryParmKey, () => new List<SignalrQueryParmModel>());
             SmartSystemCommonConsts.SignalrQueryParmModels = listSignalrParm;

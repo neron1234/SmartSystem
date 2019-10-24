@@ -1,147 +1,198 @@
 [
-    {
-        "ModuleName": "MachineOperation",
-        "BackColor": "#46d36a",
-        "Sort": 1,
-        "Pages": [
-            {
-                "Id": "MachineOperation.AutoFindSide",
-                "Title": "MachineOperation.AutoFindSideBtn",
-                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage",
-                "IsAuth": false,
-                "Permission": "MachineOperation.AutoFindSidePage",
-                "Sort": 1
-            },
-            {
-                "Id": "MachineOperation.AuxGasCheck",
-                "Title": "MachineOperation.AuxGasCheckBtn",
-                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AuxGasCheckPage",
-                "Permission": "MachineOperation.AuxGasCheck",
-                "IsAuth": false,
-                "Sort": 2
-            },
-            {
-                "Id": "MachineOperation.ManualFindSidePage",
-                "Title": "MachineOperation.ManualFindSideBtn",
-                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.ManualFindSidePage",
-                "IsAuth": false,
-                "Permission": "MachineOperation.ManualFindSidePage",
-                "Sort": 3
-            },
-            {
-                "Id": "MachineOperation.LaserStatePage",
-                "Title": "LaserStatePage",
-                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.LaserStatePage",
-                "IsAuth": false,
-                "Permission": "MachineOperation.LaserStatePage",
-                "Sort": 4
-            },
-            {
-                "Id": "MachineMonitor.MachineMonitorPage",
-                "Title": "MachineMonitorPage",
-                "FullName": "MMK.SmartSystem.Laser.Base.MachineMonitor.MachineMonitorPage",
-                "IsAuth": false,
-                "Permission": "MachineMonitor.MachineMonitorPage",
-                "Sort": 5
-            }
-        ]
-    },
-    {
-        "ModuleName": "ManualFindSide",
-        "BackColor": "#1ebef2",
-        "Sort": 2,
-        "Pages": [
-            {
-                "Id": "MachineOperation.CutterResetCheckPage",
-                "Title": "ManualFindSide.CutterResetCheckBtn",
-                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.CutterResetCheckPage",
-                "IsAuth": false,
-                "Permission": "MachineOperation.CutterResetCheckPage",
-                "Sort": 1
-            },
-            {
-                "Id": "MachineOperation.AutoCutterCleanPage",
-                "Title": "ManualFindSide.AutoCutterCleanBtn",
-                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AutoCutterCleanPage",
-                "IsAuth": false,
-                "Permission": "MachineOperation.AutoCutterCleanPage",
-                "Sort": 2
-            },
-            {
-                "Id": "MachineOperation.CutCenterPage",
-                "Title": "ManualFindSide.CutCenterBtn",
-                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.CutCenterPage",
-                "IsAuth": false,
-                "Permission": "MachineOperation.CutCenterPage",
-                "Sort": 3
-            },
-            {
-                "Id": "MachineOperation.ManuelChangeWorkStationPage",
-                "Title": "ManualFindSide.ManuelChangeWorkStation",
-                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.ManuelChangeWorkStationPage",
-                "IsAuth": false,
-                "Permission": "MachineOperation.ManuelChangeWorkStationPage",
-                "Sort": 4
-            },
-            {
-                "Id": "MachineOperation.RemainCutPage",
-                "Title": "ManualFindSide.RemainCut",
-                "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.RemainCutPage",
-                "IsAuth": false,
-                "Permission": "MachineOperation.RemainCutPage",
-                "Sort": 5
-            }
-        ]
-    },
-    {
-        "ModuleName": "ProgramOperation",
-        "BackColor": "#36a35b",
-        "Sort": 3,
-        "Pages": [
-            {
-                "Id": "ProgramOperation.ProgramListPage",
-                "Title": "ProgramOperation.ProgramList",
-                "FullName": "MMK.SmartSystem.Laser.Base.ProgramOperation.ProgramListPage",
-                "IsAuth": false,
-                "Permission": "ProgramOperation.ProgramListPage",
-                "Sort": 1
-            }
-        ]
-    },
-    {
-        "ModuleName": "MachineProcess",
-        "BackColor": "#36a35b",
-        "Sort": 4,
-        "Pages": [
-            {
-                "Id": "MachineProcess.ProcessPage",
-                "Title": "MachineProcess.Process",
-                "FullName": "MMK.SmartSystem.Laser.Base.MachineProcess.ProcessPage",
-                "IsAuth": false,
-                "Permission": "MachineProcess.ProcessPage",
-                "Sort": 1
-            }
-        ]
-    },
-    {
-        "ModuleName": "WebModule",
-        "BackColor": "#f2be2d",
-        "Sort": 3,
-        "Pages": [
-            {
-                "Id": "web1",
-                "Title": "Baidu",
-                "WebPage": true,
-                "Url": "http://www.baidu.com",
-                "Sort": 1
-            },
-            {
-                "Id": "web2",
-                "Title": "QQ",
-                "WebPage": true,
-                "Url": "http://www.qq.com",
-                "Sort": 2
-            }
-        ]
-    }
+  {
+    "ModuleName": "MainHome",
+    "BackColor": "#36a35b",
+    "Sort": 1,
+    "Pages": [
+      {
+        "Id": "Home.maching",
+        "Title": "加工",
+        "FullName": "",
+        "IsAuth": false,
+        "Icon": "machining",
+        "Sort": 1
+      },
+      {
+        "Id": "Home.technology",
+        "Title": "工艺",
+        "FullName": "",
+        "IsAuth": false,
+        "Icon": "technology",
+        "Sort": 2
+      },
+      {
+        "Id": "Home.program",
+        "Title": "程序",
+        "FullName": "",
+        "IsAuth": false,
+        "Icon": "program",
+        "Sort": 3
+      },
+      {
+        "Id": "Home.casing",
+        "Title": "套料",
+        "FullName": "",
+        "IsAuth": false,
+        "Icon": "casing",
+        "Sort": 4
+      },
+      {
+        "Id": "Home.manual",
+        "Title": "手动",
+        "FullName": "",
+        "IsAuth": false,
+        "Icon": "manual",
+        "Sort": 5
+      },
+      {
+        "Id": "Home.laser",
+        "Title": "激光",
+        "FullName": "",
+        "IsAuth": false,
+        "Icon": "laser",
+        "Sort": 6
+      },
+      {
+        "Id": "Home.handing",
+        "Title": "维护",
+        "FullName": "",
+        "IsAuth": false,
+        "Icon": "handing",
+        "Sort": 7
+      },
+      {
+        "Id": "Home.cnc",
+        "Title": "CNC",
+        "FullName": "",
+        "IsAuth": false,
+        "Icon": "casing",
+        "Sort": 8
+      }
+    ]
+  }
+  //{
+  //    "ModuleName": "MachineOperation",
+  //    "BackColor": "#46d36a",
+  //    "Sort": 1,
+  //    "Pages": [
+  //        {
+  //            "Id": "MachineOperation.AutoFindSide",
+  //            "Title": "MachineOperation.AutoFindSideBtn",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage",
+  //            "IsAuth": false,
+  //            "Permission": "MachineOperation.AutoFindSidePage",
+  //            "Sort": 1
+  //        },
+  //        {
+  //            "Id": "MachineOperation.AuxGasCheck",
+  //            "Title": "MachineOperation.AuxGasCheckBtn",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AuxGasCheckPage",
+  //            "Permission": "MachineOperation.AuxGasCheck",
+  //            "IsAuth": false,
+  //            "Sort": 2
+  //        },
+  //        {
+  //            "Id": "MachineOperation.ManualFindSidePage",
+  //            "Title": "MachineOperation.ManualFindSideBtn",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.ManualFindSidePage",
+  //            "IsAuth": false,
+  //            "Permission": "MachineOperation.ManualFindSidePage",
+  //            "Sort": 3
+  //        },
+  //        {
+  //            "Id": "MachineOperation.LaserStatePage",
+  //            "Title": "LaserStatePage",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.LaserStatePage",
+  //            "IsAuth": false,
+  //            "Permission": "MachineOperation.LaserStatePage",
+  //            "Sort": 4
+  //        },
+  //        {
+  //            "Id": "MachineMonitor.MachineMonitorPage",
+  //            "Title": "MachineMonitorPage",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.MachineMonitor.MachineMonitorPage",
+  //            "IsAuth": false,
+  //            "Permission": "MachineMonitor.MachineMonitorPage",
+  //            "Sort": 5
+  //        }
+  //    ]
+  //},
+  //{
+  //    "ModuleName": "ManualFindSide",
+  //    "BackColor": "#1ebef2",
+  //    "Sort": 2,
+  //    "Pages": [
+  //        {
+  //            "Id": "MachineOperation.CutterResetCheckPage",
+  //            "Title": "ManualFindSide.CutterResetCheckBtn",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.CutterResetCheckPage",
+  //            "IsAuth": false,
+  //            "Permission": "MachineOperation.CutterResetCheckPage",
+  //            "Sort": 1
+  //        },
+  //        {
+  //            "Id": "MachineOperation.AutoCutterCleanPage",
+  //            "Title": "ManualFindSide.AutoCutterCleanBtn",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.AutoCutterCleanPage",
+  //            "IsAuth": false,
+  //            "Permission": "MachineOperation.AutoCutterCleanPage",
+  //            "Sort": 2
+  //        },
+  //        {
+  //            "Id": "MachineOperation.CutCenterPage",
+  //            "Title": "ManualFindSide.CutCenterBtn",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.CutCenterPage",
+  //            "IsAuth": false,
+  //            "Permission": "MachineOperation.CutCenterPage",
+  //            "Sort": 3
+  //        },
+  //        {
+  //            "Id": "MachineOperation.ManuelChangeWorkStationPage",
+  //            "Title": "ManualFindSide.ManuelChangeWorkStation",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.ManuelChangeWorkStationPage",
+  //            "IsAuth": false,
+  //            "Permission": "MachineOperation.ManuelChangeWorkStationPage",
+  //            "Sort": 4
+  //        },
+  //        {
+  //            "Id": "MachineOperation.RemainCutPage",
+  //            "Title": "ManualFindSide.RemainCut",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.RemainCutPage",
+  //            "IsAuth": false,
+  //            "Permission": "MachineOperation.RemainCutPage",
+  //            "Sort": 5
+  //        }
+  //    ]
+  //},
+  //{
+  //    "ModuleName": "ProgramOperation",
+  //    "BackColor": "#36a35b",
+  //    "Sort": 3,
+  //    "Pages": [
+  //        {
+  //            "Id": "ProgramOperation.ProgramListPage",
+  //            "Title": "ProgramOperation.ProgramList",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.ProgramOperation.ProgramListPage",
+  //            "IsAuth": false,
+  //            "Permission": "ProgramOperation.ProgramListPage",
+  //            "Sort": 1
+  //        }
+  //    ]
+  //},
+  //{
+  //    "ModuleName": "MachineProcess",
+  //    "BackColor": "#36a35b",
+  //    "Sort": 4,
+  //    "Pages": [
+  //        {
+  //            "Id": "MachineProcess.ProcessPage",
+  //            "Title": "MachineProcess.Process",
+  //            "FullName": "MMK.SmartSystem.Laser.Base.MachineProcess.ProcessPage",
+  //            "IsAuth": false,
+  //            "Permission": "MachineProcess.ProcessPage",
+  //            "Sort": 1
+  //        }
+  //    ]
+  //}
+
 ]

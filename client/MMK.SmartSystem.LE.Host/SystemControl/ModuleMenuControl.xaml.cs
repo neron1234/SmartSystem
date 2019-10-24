@@ -25,14 +25,10 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
     /// </summary>
     public partial class ModuleMenuControl : UserControl
     {
-        public ModuleMenuViewModel SysViewModel { get; set; }
         public ModuleMenuControl()
         {
             InitializeComponent();
-            this.DataContext = SysViewModel = new ModuleMenuViewModel();
-            Messenger.Default.Register<ObservableCollection<SystemMenuModuleViewModel>>(this, (views) => {
-                SysViewModel.SysModuleViews = views;
-            });
+            this.menuItem.ItemsSource= SmartSystemLEConsts.SystemModules;
         }
     }
 }

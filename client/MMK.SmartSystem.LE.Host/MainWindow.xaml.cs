@@ -183,7 +183,7 @@ namespace MMK.SmartSystem.LE.Host
                 HashCode = this.GetHashCode(),
                 SuccessAction = () =>
                 {
-                    EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.MainWindow });
+                    EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
                 }
             });
 

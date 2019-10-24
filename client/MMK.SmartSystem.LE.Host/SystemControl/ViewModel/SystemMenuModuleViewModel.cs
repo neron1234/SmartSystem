@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {
-    public class SystemMenuModuleViewModel : ViewModelBase, INotifyPropertyChanged
+    public class SystemMenuModuleViewModel : ViewModelBase
     {
         private string moduleName;
 
@@ -35,7 +35,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         private Visibility _Show;
         public Visibility Show
         {
-            get { return _Show; }
+            get
+            {
+
+                return MainMenuViews?.Count() > 0 ? Visibility.Visible : Visibility.Collapsed;
+            }
             set
             {
                 if (_Show != value)
@@ -50,24 +54,13 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         public string BackColor { get; set; }
         public int Sort { get; set; }
 
-        private ObservableCollection<MainMenuViewModel> mainMenuViews;
-        public ObservableCollection<MainMenuViewModel> MainMenuViews
+        public ObservableCollection<MainMenuViewModel> MainMenuViews { set; get; }
+
+        public void MenuItemClick(MainMenuViewModel item)
         {
-            get { return mainMenuViews; }
-            set
-            {
-                mainMenuViews = value;
-                //if (mainMenuViews.Count(n => n.Show == Visibility.Visible) > 0)
-                if (mainMenuViews.Count() > 0)
-                {
-                    this.Show = Visibility.Visible;
-                }
-                else
-                {
-                    this.Show = Visibility.Hidden;
-                }
-                RaisePropertyChanged(() => MainMenuViews);
-            }
+            MainMenuViews.ToList().ForEach(d=>d.MenuClearActive());
+            item.MenuActive();
+            
         }
 
         public ICommand OpenCommand

@@ -83,59 +83,8 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" >
-            <StackPanel.Background>
-                <ImageBrush ImageSource="/MMK.SmartSystem.LE.Host;component/Resources/Images/MenuBg.png" />
-            </StackPanel.Background>
-            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
-                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
-                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_加工_未点击@1x.png" Width="42" Height="37" />
-                    <TextBlock Text="加工" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
-                </WrapPanel>
-            </Button>
-            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
-                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
-                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_工艺_未点击@1x.png" Width="42" Height="37" />
-                    <TextBlock Text="工艺" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
-                </WrapPanel>
-            </Button>
-            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
-                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
-                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_程序_未点击@1x.png" Width="42" Height="37" />
-                    <TextBlock Text="程序" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
-                </WrapPanel>
-            </Button>
-            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
-                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
-                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_套料_未点击@1x.png" Width="42" Height="37" />
-                    <TextBlock Text="套料" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
-                </WrapPanel>
-            </Button>
-            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
-                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
-                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_手动_未点击@1x.png" Width="42" Height="37" />
-                    <TextBlock Text="手动" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
-                </WrapPanel>
-            </Button>
-            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
-                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
-                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_激光_未点击@1x.png" Width="42" Height="37" />
-                    <TextBlock Text="激光" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
-                </WrapPanel>
-            </Button>
-            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
-                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
-                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_维护_未点击@1x.png" Width="42" Height="37" />
-                    <TextBlock Text="维护" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
-                </WrapPanel>
-            </Button>
-            <Button Background="Transparent" Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0">
-                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
-                    <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/btn_CNC_未点击@1x.png" Width="42" Height="37" />
-                    <TextBlock Text="CNC" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />
-                </WrapPanel>
-            </Button>
+            <systemControl:ModuleMenuControl />
         </StackPanel>
 
         <Border Grid.Column="0" Grid.Row="2" Height="660" Width="1265">
