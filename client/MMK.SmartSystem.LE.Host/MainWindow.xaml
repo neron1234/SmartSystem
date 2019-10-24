@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
         xmlns:embed="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl.Embed"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1366"
-        WindowStartupLocation="CenterScreen" WindowStyle="None" >
+        WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF2B2B2B"  AllowsTransparency="True" Topmost="False">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,5 +19,7 @@
         <Viewbox Stretch="None" x:Name="viewBox" Width="{Binding ActualWidth, ElementName=window, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=window, Mode=OneWay}">
             <local:MainHomeControl x:Name="mainHome" Width="{Binding ActualWidth, ElementName=window, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=window, Mode=OneWay}" ></local:MainHomeControl>
         </Viewbox>
+        <Image gif:ImageBehavior.AnimatedSource="main-loading.gif" Width="400" Height="400" x:Name="loadImage"/>
+
     </Grid>
 </Window>

@@ -33,12 +33,12 @@ namespace MMK.SmartSystem.LE.Host
     /// </summary>
     public partial class MainWindow : Window, ISingletonDependency
     {
+        int loadTask = 0;
         IIocManager iocManager;
         SignalrRouteProxyClient signalrRouteProxyClient;
         public MainWindow(IIocManager iocManager)
         {
             this.iocManager = iocManager;
-            AllowsTransparency = true;
 
             InitializeComponent();
             signalrRouteProxyClient = new SignalrRouteProxyClient();
@@ -56,7 +56,7 @@ namespace MMK.SmartSystem.LE.Host
                 viewBox.Visibility = Visibility.Visible;
 
             }));
-         
+
         }
 
         private void SignalrRouteProxyClient_RouteErrorEvent(string obj)
@@ -70,36 +70,37 @@ namespace MMK.SmartSystem.LE.Host
             Environment.Exit(0);
         }
 
-        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
-            ctnTest.Visibility = Visibility.Visible;
+            ctnTest.Visibility = Visibility.Hidden;
             viewBox.Visibility = Visibility.Collapsed;
             mainHome.InitMessenger(iocManager);
-            Messenger.Default.Register<MainSystemNoticeModel>(this, (model) =>
-            {
-                if (model.HashCode == this.GetHashCode())
-                {
-                    model.SuccessAction?.Invoke();
-                }
-            });
+            InitMessager();
+
+            Task.Factory.StartNew(async () => await signalrRouteProxyClient.Start());
+            Task.Factory.StartNew(async () => await AutoLogin());
+            Task.Factory.StartNew(new Action(() => loadWebApp()));
+        }
+
+        private void InitMessager()
+        {
             Messenger.Default.Register<PageChangeModel>(this, (type) =>
             {
                 Dispatcher.BeginInvoke(new Action(() => pageChange(type)));
             });
-            await Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
-            await AutoLogin();
-            await signalrRouteProxyClient.Start();
             Messenger.Default.Register<WindowStatus>(this, (ws) =>
             {
                 switch (ws)
                 {
                     case WindowStatus.Max:
-                        if (this.WindowState == WindowState.Maximized){
+                        if (this.WindowState == WindowState.Maximized)
+                        {
                             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                             this.WindowState = WindowState.Normal;
                             Messenger.Default.Send((PathGeometry)FindResource("maxWindowIcon"));
-                        }else{
+                        }
+                        else
+                        {
                             this.WindowState = WindowState.Maximized;
                             Messenger.Default.Send((PathGeometry)FindResource("normalWindowIcon"));
                         }
@@ -115,20 +116,16 @@ namespace MMK.SmartSystem.LE.Host
                         break;
                 }
             });
-        }
-        private async Task AutoLogin()
-        {
-            await EventBus.Default.TriggerAsync(new UserLoginEventData()
+            Messenger.Default.Register<MainSystemNoticeModel>(this, (model) =>
             {
-                UserName = SmartSystemLEConsts.DefaultUser,
-                Pwd = SmartSystemLEConsts.DefaultPwd,
-                Tagret = ErrorTagretEnum.Window,
-                HashCode = this.GetHashCode(),
-                SuccessAction = LoginSuccess
+                if (model.HashCode == GetHashCode())
+                {
+                    model.SuccessAction?.Invoke();
+                    ShowHomePanel();
+                }
             });
-
         }
-        void pageChange(PageChangeModel changeModel)
+        private void pageChange(PageChangeModel changeModel)
         {
             if (changeModel.Page == PageEnum.WPFPage)
             {
@@ -147,25 +144,50 @@ namespace MMK.SmartSystem.LE.Host
                 }));
             }
         }
-        public void LoginSuccess()
-        {
-            EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
-            App.CloseScreen();
-            ///AllowsTransparency = false;
-        }
 
-        void loadWebApp()
+
+        private void loadWebApp()
         {
             string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "WebApp", "cncapp.exe");
             if (System.IO.File.Exists(path))
             {
+                ctnTest.StartAndEmbedProcess(path, Dispatcher);
 
-                ctnTest.StartAndEmbedProcess(path);
+                ShowHomePanel();
+
             }
         }
 
+        private void ShowHomePanel()
+        {
+            loadTask++;
+            if (loadTask > 1)
+            {
+                Thread.Sleep(1000);
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    ctnTest.Visibility = Visibility.Visible;
+                    loadImage.Visibility = Visibility.Collapsed;
 
+                }));
+            }
 
+        }
+        private async Task AutoLogin()
+        {
+            await EventBus.Default.TriggerAsync(new UserLoginEventData()
+            {
+                UserName = SmartSystemLEConsts.DefaultUser,
+                Pwd = SmartSystemLEConsts.DefaultPwd,
+                Tagret = ErrorTagretEnum.Window,
+                HashCode = this.GetHashCode(),
+                SuccessAction = () =>
+                {
+                    EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.MainWindow });
+                }
+            });
+
+        }
 
     }
 }

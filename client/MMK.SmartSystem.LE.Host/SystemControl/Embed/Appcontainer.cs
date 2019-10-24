@@ -36,7 +36,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
             }
         }
 
-        public bool StartAndEmbedProcess(string processPath)
+        public bool StartAndEmbedProcess(string processPath, System.Windows.Threading.Dispatcher dispatcher = null)
         {
             var isStartAndEmbedSuccess = false;
             _eventDone.Reset();
@@ -46,8 +46,8 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
             _process.StartInfo.FileName = processPath;
             //_process.StartInfo.UseShellExecute = false;
             //_process.StartInfo.RedirectStandardInput = true;
-            //_process.StartInfo.CreateNoWindow = true;
-            //_process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;//加上这句效果更好 
+            _process.StartInfo.CreateNoWindow = true;
+            _process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Minimized;//加上这句效果更好 
             // Start the process 
             _process.Start();
             System.Threading.Thread.Sleep(200);
@@ -77,7 +77,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
             //嵌入进程
             if (_eventDone.WaitOne(10000))
             {
-                isStartAndEmbedSuccess = EmbedApp(_process);
+                isStartAndEmbedSuccess = EmbedApp(_process,dispatcher);
                 if (!isStartAndEmbedSuccess)
                 {
                     CloseApp(_process);
@@ -96,14 +96,27 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
         /// 将外进程嵌入到当前程序
         /// </summary>
         /// <param name="process"></param>
-        private bool EmbedApp(Process process)
+        private bool EmbedApp(Process process, System.Windows.Threading.Dispatcher dispatcher = null)
         {
             //是否嵌入成功标志，用作返回值
             var isEmbedSuccess = false;
             //外进程句柄
             var processHwnd = process.MainWindowHandle;
             //容器句柄
-            var panelHwnd = _hostPanel.Handle;
+            IntPtr panelHwnd = (IntPtr)0;
+            if (dispatcher != null)
+            {
+                dispatcher.Invoke(new Action(() =>
+                {
+                    panelHwnd = _hostPanel.Handle;
+
+                }));
+            }
+            else
+            {
+                panelHwnd = _hostPanel.Handle;
+
+            }
 
             if (processHwnd != (IntPtr)0 && panelHwnd != (IntPtr)0)
             {
