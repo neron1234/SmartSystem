@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="MMK.SmartSystem.LE.Host.SystemControl.HeaderStatusControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
+             xmlns:cc="clr-namespace:MMK.SmartSystem.LE.Host.CustomControl"
+             xmlns:Converters="clr-namespace:MMK.SmartSystem.LE.Host.Converters" 
+             mc:Ignorable="d" 
+             d:DesignHeight="45" d:DesignWidth="1366" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3" Background="#FF3B3B3B">
+
+    <UserControl.Resources>
+        <Converters:StringToImageSourceConverter x:Key="ImageConverter" />
+    </UserControl.Resources>
+
+    <Grid Grid.Row="0" Grid.ColumnSpan="2"  Background="#FF2D2D2D">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+            <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/Logo.png" Width="245.6" Height="15.6" Margin="30 0 0 0"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="机床状态" Margin="14 14 6 14" FontSize="14"/>
+            <Image Source="{Binding Path=MachineImg,Converter={StaticResource ImageConverter}}" Width="13" Height="13" Margin="0 11 0 14"/>
+
+            <TextBlock Text="伺服" Margin="14 14 6 14" FontSize="14"/>
+            <Image Source="{Binding Path=ServoImg,Converter={StaticResource ImageConverter}}" Width="13" Height="13" Margin="0 11 0 14"/>
+
+            <TextBlock Text="激光" Margin="14 14 6 14" FontSize="14"/>
+            <Image Source="{Binding Path=LaserImg,Converter={StaticResource ImageConverter}}" Width="13" Height="13" Margin="0 11 30 14" />
+
+            <TextBlock Text="{Binding SystemTime}" Margin="14 14 20 14" FontSize="14" />
+            <!--<cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMinWindow" 
+                                        PathData="{StaticResource minWindowIcon}" HorizontalAlignment="Right"
+                                        Margin="5" PathWidth="18" NormalPathColor="White"
+                                        MouseOverBackground="Transparent"
+                                        PressedBackground="Transparent" Click="btnMinWindow_Click" />-->
+
+            <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMaxWindow" 
+                                    PathData="{StaticResource HomeIcon}" HorizontalAlignment="Right"
+                                    Margin="5" PathWidth="18" NormalPathColor="White"
+                                    MouseOverBackground="Transparent"
+                                    PressedBackground="Transparent" Command="{Binding HomeCommand}"/>
+
+            <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnCloseWindow" 
+                                        PathData="{StaticResource ShutDownIcon}" HorizontalAlignment="Right"
+                                        Margin="5 5 10 5" PathWidth="18" NormalPathColor="White"
+                                        MouseOverBackground="Transparent"
+                                        PressedBackground="Transparent" Command="{Binding ShutDownCommand}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
