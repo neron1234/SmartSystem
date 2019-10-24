@@ -21,7 +21,23 @@
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.ColumnSpan="3"  Background="#2a2f34" >
-          
+            <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMinWindow" 
+                                        PathData="{StaticResource minWindowIcon}" HorizontalAlignment="Right"
+                                        Margin="5 5 58 5" PathWidth="18" NormalPathColor="White"
+                                        MouseOverBackground="Transparent"
+                                        PressedBackground="Transparent" Click="btnMinWindow_Click" />
+
+            <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMaxWindow" 
+                                        PathData="{StaticResource normalWindowIcon}" HorizontalAlignment="Right"
+                                        Margin="5 5 33 5" PathWidth="18" NormalPathColor="White"
+                                        MouseOverBackground="Transparent"
+                                        PressedBackground="Transparent" Click="btnMaxWindow_Click" />
+
+            <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnCloseWindow" 
+                                        PathData="{StaticResource closeWindowIcon}" HorizontalAlignment="Right"
+                                        Margin="5 5 8 5" PathWidth="18" NormalPathColor="White"
+                                        MouseOverBackground="Transparent"
+                                        PressedBackground="Transparent" Click="btnCloseWindow_Click" />
         </Grid>
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0">
             <systemControl:ModuleMenuControl />

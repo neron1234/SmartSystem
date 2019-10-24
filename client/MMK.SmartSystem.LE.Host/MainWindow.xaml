@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <embed:AppContainer x:Name="ctnTest"  Width="1366" Height="768" BorderThickness="0"/>
         <Viewbox Stretch="None" x:Name="viewBox" Width="1366" Height="768">
-            <local:MainHomeControl x:Name="mainHome"></local:MainHomeControl>
+            <local:MainHomeControl x:Name="mainHome" Height="768" Width="1366" ></local:MainHomeControl>
         </Viewbox>
     </Grid>
 </Window>

@@ -90,6 +90,31 @@ namespace MMK.SmartSystem.LE.Host
             await Task.Factory.StartNew(new Action(() => Dispatcher.BeginInvoke(new Action(loadWebApp))));
             await AutoLogin();
             await signalrRouteProxyClient.Start();
+            Messenger.Default.Register<WindowStatus>(this, (ws) =>
+            {
+                switch (ws)
+                {
+                    case WindowStatus.Max:
+                        if (this.WindowState == WindowState.Maximized){
+                            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                            this.WindowState = WindowState.Normal;
+                            Messenger.Default.Send((PathGeometry)FindResource("maxWindowIcon"));
+                        }else{
+                            this.WindowState = WindowState.Maximized;
+                            Messenger.Default.Send((PathGeometry)FindResource("normalWindowIcon"));
+                        }
+                        mainHome.Width = this.Width;
+                        mainHome.Height = this.Height;
+                        viewBox.Width = this.Width;
+                        viewBox.Height = this.Height;
+                        break;
+                    case WindowStatus.Min:
+                        this.WindowState = WindowState.Minimized;
+                        break;
+                    default:
+                        break;
+                }
+            });
         }
         private async Task AutoLogin()
         {

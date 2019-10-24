@@ -56,6 +56,12 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             Messenger.Default.Register<NotifiactionModel>(this, (nm) =>
             {
             });
+
+            //修改图标
+            Messenger.Default.Register<PathGeometry>(this, (pg) =>
+             {
+                 btnMaxWindow.PathData = pg;
+             });
         }
         public void ChangeWPFPage(PageChangeModel pageChange)
         {
@@ -73,9 +79,22 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
                     notifiaction.AddNotifiaction(new NotifiactionModel() { Content = ex.Message, Title = ex.Source });
 
                 }
-
             }
         }
 
+        private void btnMaxWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Send(WindowStatus.Max);
+        }
+
+        private void btnMinWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Send(WindowStatus.Min);
+        }
+
+        private void btnCloseWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
