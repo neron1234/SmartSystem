@@ -20,82 +20,14 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
         {
             LaserProgramHelper helper = new LaserProgramHelper();
 
-            string progStr = "";
-            helper.GetProgramString(resovleDto.FilePath, ref progStr);
-
+            LaserSimulater laser = new LaserSimulater(48,1000,96,12000);
             ProgramDetailDto info = new ProgramDetailDto();
-            List<ProgramBlock> pBlocks = new List<ProgramBlock>();
-            helper.ProgramBlockDecompile(progStr, info, pBlocks);
-
-            List<DrawBlock> dBlocks = new List<DrawBlock>();
-            helper.ProgramBlockDraw(pBlocks, dBlocks);
-
-            double rWidth = 1000;
-            double rHeight = 1000;
-            if (info.PlateSize != null)
-            {
-                var rSize = info.PlateSize.Split('x');
-                if (rSize.Length == 2)
-                {
-                    rWidth = double.Parse(rSize[0]);
-                    rHeight = double.Parse(rSize[1]);
-                }
-            }
-            string saveFullName = $"{resovleDto.BmpPath}\\{resovleDto.FileName}.bmp";
-            //helper.DrawXYThumbnai(dBlocks, 0.2, 680, 460, rWidth, rHeight, saveFullName);
-
-            return new ProgramResolveResultDto()
-            {
-                ConnectId = resovleDto.ConnectId,
-                Data = info,
-                ImagePath = saveFullName,
-                BmpName = resovleDto.FileName + ".bmp"
-            };
-
-        }
-        public void Dowork()
-        {
-            Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff"));
-
-            LaserProgramHelper helper = new LaserProgramHelper();
-
-            string progStr = "";
-            helper.GetProgramString(@"F:\Machine_Software\LE1.1\激光程序\0005", ref progStr);
-
-            ProgramDetailDto info = new ProgramDetailDto();
-            List<ProgramBlock> pBlocks = new List<ProgramBlock>();
-            helper.ProgramBlockDecompile(progStr, info, pBlocks);
-
-            List<DrawBlock> dBlocks = new List<DrawBlock>();
-            helper.ProgramBlockDraw(pBlocks, dBlocks);
-
-            double rWidth = 1000;
-            double rHeight = 1000;
-            if (info.PlateSize != null)
-            {
-                var rSize = info.PlateSize.Split('x');
-                if (rSize.Length == 2)
-                {
-                    rWidth = double.Parse(rSize[0]);
-                    rHeight = double.Parse(rSize[1]);
-                }
-            }
-
-            helper.DrawXYThumbnai(dBlocks, 0.2, 3000, 2000, rWidth, rHeight, @"F:\LaserPic.bmp");
-
-            Console.WriteLine(DateTime.Now.ToString("HH:mm:ss.fff"));
-
-            Console.ReadKey();
-        }
-
-        public void DoWork2()
-        {
-            //LaserProgramHelper helper = new LaserProgramHelper();
+            helper.GetProgramCommentInfo(laser, resovleDto.FilePath, info);
 
             //string progStr = "";
-            //helper.GetProgramString(@"F:\Machine_Software\LE1.1\激光程序\0005", ref progStr);
+            //helper.GetProgramString(resovleDto.FilePath, ref progStr);
 
-            //ProgramCommentFromCncDto info = new ProgramCommentFromCncDto();
+            
             //List<ProgramBlock> pBlocks = new List<ProgramBlock>();
             //helper.ProgramBlockDecompile(progStr, info, pBlocks);
 
@@ -113,12 +45,171 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             //        rHeight = double.Parse(rSize[1]);
             //    }
             //}
+            //string saveFullName = $"{resovleDto.BmpPath}\\{resovleDto.FileName}.bmp";
+            //helper.DrawXYThumbnai(dBlocks, 0.2, 680, 460, rWidth, rHeight, saveFullName);
 
-            //helper.DrawXYCanvasOneShot(dBlocks, 0.2, 3000, 2000, rWidth, rHeight, drawPanel);
+            return new ProgramResolveResultDto()
+            {
+                ConnectId = resovleDto.ConnectId,
+                Data = info,
+                ImagePath = "",
+                BmpName = "",
+            };
+
+        }
+    }
+
+    public class LaserSimulater
+    {
+        private double _feedAccTime = 32;//sec
+        public double FeedAccTime//msec
+        {
+            get
+            {
+                return _feedAccTime * 1000.0;
+            }
+            set
+            {
+                if (value != _feedAccTime * 1000.0)
+                {
+                    _feedAccTime = value / 1000.0;
+
+                    _feedAcc = _feedSpeed / _feedAccTime;
+                    _wholeMinFeedAccTravel = _feedAcc * _feedAccTime * _feedAccTime;
+                }
+            }
+        }
+
+        private double _feedSpeed = 1000;//mm/sec
+        public int FeedSpeed//mm/min
+        {
+            get
+            {
+                return (int)(_feedSpeed * 60);
+            }
+            set
+            {
+                if (value != _feedSpeed * 60)
+                {
+                    _feedSpeed = value / 60.0;
+
+                    _feedAcc = _feedSpeed / _feedAccTime;
+                    _wholeMinFeedAccTravel = _feedAcc * _feedAccTime * _feedAccTime;
+                }
+            }
+        }
+
+        private double _feedAcc;// mm/(sec*sec)
+        private double _wholeMinFeedAccTravel = 0;//mm
+
+        private double _rapidAccTime = 24;//sec
+        public double RapidAccTime//msec
+        {
+            get
+            {
+                return _rapidAccTime * 1000.0;
+            }
+            set
+            {
+                if (value != _rapidAccTime * 1000)
+                {
+                    _rapidAccTime = value / 1000.0;
+
+                    _rapidAcc = _rapidSpeed / _rapidAccTime;
+                    _wholeMinRapidAccTravel = _rapidAcc * _rapidAccTime * _rapidAccTime;
+                }
+            }
+        }
+
+        private double _rapidSpeed = 8000;//mm/sec
+        public int RapidSpeed//mm/min
+        {
+            get
+            {
+                return (int)(_rapidSpeed * 60);
+            }
+            set
+            {
+                if (value != _rapidSpeed * 60)
+                {
+                    _rapidSpeed = value / 60.0;
+
+                    _rapidAcc = _rapidSpeed / _rapidAccTime;
+                    _wholeMinRapidAccTravel = _rapidAcc * _rapidAccTime * _rapidAccTime;
+
+                }
+            }
+        }
+
+        private double _rapidAcc;// mm/(sec*sec)
+        private double _wholeMinRapidAccTravel = 0;//mm
+
+        public LaserSimulater(double feedAcc, int feedSpeed, double rapidAcc, int rapidSpeed)
+        {
+            FeedAccTime = feedAcc;
+            FeedSpeed = feedSpeed;
+            RapidAccTime = rapidAcc;
+            RapidSpeed = rapidSpeed;
+        }
+
+        public double GetFeedTime(double length)
+        {
+            if (length <= _wholeMinFeedAccTravel)
+            {
+                return Math.Sqrt(length / _feedAcc) * 2;
+            }
+
+            return (length - _wholeMinFeedAccTravel) / ((double)_feedSpeed) + _feedAccTime * 2;
+        }
+
+        public double GetRapidTime(double length)
+        {
+            if (length <= _wholeMinRapidAccTravel)
+            {
+                return Math.Sqrt(length / _rapidAcc) * 2;
+            }
+
+            return (length - _wholeMinRapidAccTravel) / ((double)_rapidSpeed) + _rapidAccTime * 2;
+        }
+    }
+
+    public class ProgramBlock
+    {
+        public int G_Code_Count { get; set; }
+        public int M_Code_Count { get; set; }
+
+        public int BlockNum { get; set; }
+        public double?[] G_Codes { get; set; }
+        public double?[] M_Codes { get; set; }
+
+        public double? X_Adr { get; set; }
+        public double? Y_Adr { get; set; }
+        public double? Z_Adr { get; set; }
+        public double? I_Adr { get; set; }
+        public double? J_Adr { get; set; }
+        public double? K_Adr { get; set; }
+        public double? R_Adr { get; set; }
+
+        public double? S_Adr { get; set; }
+
+        public double? P_Adr { get; set; }
+
+        public double? Q_Adr { get; set; }
+
+        public double? F_Adr { get; set; }
+
+        public double? H_Adr { get; set; }
+
+        public ProgramBlock()
+        {
+            G_Codes = new double?[3];
+            M_Codes = new double?[3];
+
+            G_Code_Count = 0;
+            M_Code_Count = 0;
         }
 
     }
-
 
     public static class GraphicsAnglExtension
     {
@@ -164,38 +255,10 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
     }
 
-
-    public class ProgramBlock
-    {
-        public int G_Code_Count { get; set; }
-        public int M_Code_Count { get; set; }
-
-        public int BlockNum { get; set; }
-        public double?[] G_Codes { get; set; }
-        public double?[] M_Codes { get; set; }
-
-        public double? X_Adr { get; set; }
-        public double? Y_Adr { get; set; }
-        public double? Z_Adr { get; set; }
-        public double? I_Adr { get; set; }
-        public double? J_Adr { get; set; }
-        public double? K_Adr { get; set; }
-        public double? R_Adr { get; set; }
-
-        public ProgramBlock()
-        {
-            G_Codes = new double?[3];
-            M_Codes = new double?[3];
-
-            G_Code_Count = 0;
-            M_Code_Count = 0;
-        }
-
-    }
-
     public class DrawBlock
     {
         public double G01Group { get; set; }
+        public double? G00Group { get; set; }
 
         public double StartX { get; set; }
         public double StartY { get; set; }
@@ -209,25 +272,32 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
         public double? K_Adr { get; set; }
         public double? R_Adr { get; set; }
 
+        public double? S_Adr { get; set; }
+
+        public double? P_Adr { get; set; }
+
+        public double? Q_Adr { get; set; }
+
+        public double? F_Adr { get; set; }
+
+        public double? H_Adr { get; set; }
+
     }
 
     public class LaserProgramHelper
     {
         private int LaserCommentLineCount = 10;
 
-        public string GetProgramString(string ncPath, ref string str)
+        private void GetProgramString(string ncPath, ref string str)
         {
             using (StreamReader sr = new StreamReader(ncPath))
             {
                 str = sr.ReadToEnd();
             }
-
-            return null;
         }
 
-        public void ProgramBlockDecompile(string str, ProgramDetailDto info, List<ProgramBlock> pBlocks)
+        private void ProgramBlockPreDecompile(string str, ProgramDetailDto info, List<ProgramBlock> pBlocks)
         {
-            //str.Replace("\r\n", "\n");
             var progBlocks = str.Split('\n');
 
             int blockIndex = 0;
@@ -285,6 +355,21 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                         case 'R':
                             dblock.R_Adr = double.Parse(nums[i + 1]);
                             break;
+                        case 'F':
+                            dblock.F_Adr = double.Parse(nums[i + 1]);
+                            break;
+                        case 'S':
+                            dblock.S_Adr = double.Parse(nums[i + 1]);
+                            break;
+                        case 'P':
+                            dblock.P_Adr = double.Parse(nums[i + 1]);
+                            break;
+                        case 'Q':
+                            dblock.Q_Adr = double.Parse(nums[i + 1]);
+                            break;
+                        case 'H':
+                            dblock.F_Adr = double.Parse(nums[i + 1]);
+                            break;
                         default:
                             break;
 
@@ -298,10 +383,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                 blockIndex++;
             }
 
-
         }
 
-        public void ProgramBlockDraw(List<ProgramBlock> pBlocks, List<DrawBlock> dBlocks)
+        private void ProgramBlockDecompile(List<ProgramBlock> pBlocks, List<DrawBlock> dBlocks)
         {
             double lastG01Group = 0;// G01 G02 G03 G00
             double lastG03Group = 90;// G90 G91
@@ -309,9 +393,14 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             double lastX = 0;
             double lastY = 0;
             double lastZ = 0;
+            double lastF = 1000;
 
             foreach (var pitem in pBlocks)
             {
+
+
+                if (pitem.F_Adr != null) lastF = pitem.F_Adr.Value;
+
                 var g03Group = pitem.G_Codes.Where(x => x.HasValue == true).Where(x => x.Value == 91 || x.Value == 90).FirstOrDefault();
                 if (g03Group != null)
                 {
@@ -321,7 +410,10 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                 var g01Group = pitem.G_Codes.Where(x => x.HasValue == true).Where(x => x.Value >= 0 && x.Value <= 3).FirstOrDefault();
                 if (g01Group != null)
                 {
-                    lastG01Group = g01Group.Value;
+                    if (g01Group.Value == 1 || g01Group.Value == 0)
+                    {
+                        lastG01Group = g01Group.Value;
+                    }
 
                     if (lastG03Group == 91)
                     {
@@ -335,7 +427,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     if (!pitem.Z_Adr.HasValue) pitem.Z_Adr = lastZ;
 
                     var ditem = new DrawBlock();
-                    ditem.G01Group = lastG01Group;
+                    ditem.G01Group = g01Group.Value;
                     ditem.StartX = lastX;
                     ditem.StartY = lastY;
                     ditem.StartZ = lastZ;
@@ -346,6 +438,10 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     ditem.J_Adr = pitem.J_Adr;
                     ditem.K_Adr = pitem.K_Adr;
                     ditem.R_Adr = pitem.R_Adr;
+                    ditem.F_Adr = lastF;
+                    ditem.S_Adr = pitem.S_Adr;
+                    ditem.P_Adr = pitem.P_Adr;
+                    ditem.Q_Adr = pitem.Q_Adr;
 
                     dBlocks.Add(ditem);
 
@@ -379,6 +475,10 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     ditem.J_Adr = pitem.J_Adr;
                     ditem.K_Adr = pitem.K_Adr;
                     ditem.R_Adr = pitem.R_Adr;
+                    ditem.F_Adr = lastF;
+                    ditem.S_Adr = pitem.S_Adr;
+                    ditem.P_Adr = pitem.P_Adr;
+                    ditem.Q_Adr = pitem.Q_Adr;
 
                     dBlocks.Add(ditem);
 
@@ -386,9 +486,174 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     lastY = ditem.EndY;
                     lastZ = ditem.EndZ;
                 }
+
+                var g24group = pitem.G_Codes.Where(x => x.HasValue == true).Where(x => x.Value == 24).FirstOrDefault();
+                if (g24group != null)
+                {
+                    var ditem = new DrawBlock();
+                    ditem.G01Group = lastG01Group;
+                    ditem.G00Group = g24group.Value;
+                    ditem.StartX = lastX;
+                    ditem.StartY = lastY;
+                    ditem.StartZ = lastZ;
+                    ditem.EndX = lastX;
+                    ditem.EndY = lastY;
+                    ditem.EndZ = lastZ;
+                    ditem.I_Adr = pitem.I_Adr;
+                    ditem.J_Adr = pitem.J_Adr;
+                    ditem.K_Adr = pitem.K_Adr;
+                    ditem.S_Adr = pitem.S_Adr;
+                    ditem.P_Adr = pitem.P_Adr;
+                    ditem.Q_Adr = pitem.Q_Adr;
+                    ditem.H_Adr = pitem.H_Adr;
+                    ditem.R_Adr = pitem.R_Adr;
+                    dBlocks.Add(ditem);
+                }
             }
         }
 
+        private void ProgramInfoAnalysis(LaserSimulater laser, ProgramDetailDto info, List<DrawBlock> dBlocks)
+        {
+            int total_pericing_count = 0;
+            double total_cutting_length = 0;
+            double total_cycletime = 0;
+
+            foreach (var block in dBlocks)
+            {
+                if (block.G01Group == 0)
+                {
+                    var length = Math.Sqrt(Math.Pow((block.EndX - block.StartX), 2) + Math.Pow((block.EndY - block.StartY), 2) + Math.Pow((block.EndZ - block.StartZ), 2));
+                    total_cycletime += laser.GetRapidTime(length);
+                }
+                else if (block.G01Group == 1)
+                {
+                    laser.FeedSpeed = (int)block.F_Adr.Value;
+                    var length = Math.Sqrt(Math.Pow((block.EndX - block.StartX), 2) + Math.Pow((block.EndY - block.StartY), 2));
+                    total_cycletime += laser.GetFeedTime(length);
+                    total_cutting_length += length;
+                }
+                else if (block.G01Group == 2 && !block.R_Adr.HasValue)
+                {
+                    double center_x = block.StartX + block.I_Adr.Value;
+                    double center_y = block.StartY + block.J_Adr.Value;
+                    double radius = Math.Round(Math.Sqrt(Math.Pow(block.I_Adr.Value, 2) + Math.Pow(block.J_Adr.Value, 2)), 2);
+
+                    float startArc = (float)(Math.Atan2(-block.J_Adr.Value, -block.I_Adr.Value) * 180 / Math.PI);
+                    float endArc = (float)(Math.Atan2(block.EndY - center_y, block.EndX - center_x) * 180 / Math.PI);
+
+                    var angle = startArc.ToGraphicsSweep(endArc, true);
+                    var length = Math.PI * radius * 2 * angle / 360;
+                    total_cycletime += laser.GetFeedTime(length);
+                    total_cutting_length += length;
+                }
+                else if (block.G01Group == 2 && block.R_Adr.HasValue)
+                {
+                    var chord = Math.Sqrt((block.EndX - block.StartX) * (block.EndX - block.StartX) + (block.EndY - block.StartY) * (block.EndY - block.StartY));
+                    var angle = Math.Asin(chord / 2 / block.R_Adr.Value) * 2;
+
+                    var length = block.R_Adr.Value * angle;
+                    total_cycletime += laser.GetFeedTime(length);
+                    total_cutting_length += length;
+                }
+                else if (block.G01Group == 3 && !block.R_Adr.HasValue)
+                {
+                    double center_x = block.StartX + block.I_Adr.Value;
+                    double center_y = block.StartY + block.J_Adr.Value;
+                    double radius = Math.Round(Math.Sqrt(Math.Pow(block.I_Adr.Value, 2) + Math.Pow(block.J_Adr.Value, 2)), 2);
+
+                    float startArc = (float)(Math.Atan2(-block.J_Adr.Value, -block.I_Adr.Value) * 180 / Math.PI);
+                    float endArc = (float)(Math.Atan2(block.EndY - center_y, block.EndX - center_x) * 180 / Math.PI);
+
+                    var angle = -startArc.ToGraphicsSweep(endArc, false);
+                    var length = radius * 2 * angle / Math.PI;
+                    total_cycletime += laser.GetFeedTime(length);
+                    total_cutting_length += length;
+                }
+                else if (block.G01Group == 3 && block.R_Adr.HasValue)
+                {
+                    var chord = Math.Sqrt((block.EndX - block.StartX) * (block.EndX - block.StartX) + (block.EndY - block.StartY) * (block.EndY - block.StartY));
+                    var angle = Math.Asin(chord / 2 / block.R_Adr.Value) * 2;
+
+                    var length = block.R_Adr.Value * angle;
+                    total_cycletime += laser.GetFeedTime(length);
+                    total_cutting_length += length;
+                }
+                else if (block.G00Group == 24)
+                {
+                    total_pericing_count++;
+                }
+            }
+
+            info.CuttingTime = total_cycletime;
+            info.CuttingDistance = total_cutting_length;
+            info.PiercingCount = total_pericing_count;
+        }
+
+        private void GetInfo(ProgramDetailDto info, string blockStr)
+        {
+            Regex matRegex = new Regex(@"(?<=\(#MATERIAL=)\w*(?=\))");
+            Match matMatch = matRegex.Match(blockStr);
+            if (matMatch.Success == true) info.Material = matMatch.Value;
+
+            Regex thickRegex = new Regex(@"(?<=\(#THICKNESS=)\w*(?=\))");
+            Match thickMatch = thickRegex.Match(blockStr);
+            if (thickMatch.Success == true) info.Thickness = double.Parse(thickMatch.Value);
+
+            Regex gasRegex = new Regex(@"(?<=\(#CUTTING_GAS_KIND=)\w*(?=\))");
+            Match gasMatch = gasRegex.Match(blockStr);
+            if (gasMatch.Success == true) info.Gas = gasMatch.Value;
+
+            Regex focalRegex = new Regex(@"(?<=\(#FOCAL_POSITION=)\w*(?=\))");
+            Match focalMatch = focalRegex.Match(blockStr);
+            if (focalMatch.Success == true) info.FocalPosition = double.Parse(focalMatch.Value);
+
+            Regex nozzleDiaRegex = new Regex(@"(?<=\(#NOZZLE_DIA=)\w*(?=\))");
+            Match nozzleDiaMatch = nozzleDiaRegex.Match(blockStr);
+            if (nozzleDiaMatch.Success == true) info.NozzleDiameter = double.Parse(nozzleDiaMatch.Value);
+
+            Regex nozzleTypeRegex = new Regex(@"(?<=\(#NOZZLE_TYPE=)\w*(?=\))");
+            Match nozzleTypeMatch = nozzleTypeRegex.Match(blockStr);
+            if (nozzleTypeMatch.Success == true) info.NozzleKind = nozzleTypeMatch.Value;
+
+            Regex plateSizeRegex = new Regex(@"(?<=\(#PLATE_SIZE=)\w*(?=\))");
+            Match plateSizeMatch = plateSizeRegex.Match(blockStr);
+            if (plateSizeMatch.Success == true) info.PlateSize = plateSizeMatch.Value;
+
+            Regex usedPlateSizeRegex = new Regex(@"(?<=\(#USED_SIZE=)\w*(?=\))");
+            Match usedPlateSizeMatch = usedPlateSizeRegex.Match(blockStr);
+            if (usedPlateSizeMatch.Success == true) info.UsedPlateSize = usedPlateSizeMatch.Value;
+
+            Regex cuttingDistanceRegex = new Regex(@"(?<=\(#CUTTING_DISTANCE=)\w*(?=\))");
+            Match cuttingDistanceMatch = cuttingDistanceRegex.Match(blockStr);
+            if (cuttingDistanceMatch.Success == true) info.CuttingDistance = double.Parse(cuttingDistanceMatch.Value);
+
+            Regex piercingRegex = new Regex(@"(?<=\(#PIERCING_COUNT=)\w*(?=\))");
+            Match piercingMatch = piercingRegex.Match(blockStr);
+            if (piercingMatch.Success == true) info.PiercingCount = int.Parse(piercingMatch.Value);
+
+            Regex cuttingTimeRegex = new Regex(@"(?<=\(#CUTTING_TIME=)\w*(?=\))");
+            Match cuttingTimeMatch = cuttingTimeRegex.Match(blockStr);
+            if (cuttingTimeMatch.Success == true) info.CuttingTime = double.Parse(cuttingTimeMatch.Value);
+        }
+
+        public void GetProgramCommentInfo(LaserSimulater laser, string ncPath, ProgramDetailDto info)
+        {
+            string str = "";
+            GetProgramString(ncPath, ref str);
+
+            List<ProgramBlock> pBlocks = new List<ProgramBlock>();
+            ProgramBlockPreDecompile(str, info, pBlocks);
+
+            List<DrawBlock> dBlocks = new List<DrawBlock>();
+            ProgramBlockDecompile(pBlocks, dBlocks);
+
+            ProgramInfoAnalysis(laser, info, dBlocks);
+        }
+
+    }
+
+    public class LaserProgramThumbnai
+    {
         public void DrawXYThumbnai(List<DrawBlock> dBlocks, double inc, int picWidth, int picHeight, double rWidth, double rHeight, string path)
         {
             float radioWidth = (float)(picWidth / rWidth);
@@ -442,49 +707,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                         DrawXYCircleWithR(item, graphic, pen, picradio);
                     }
                 }
-
-                #region old
-                //else if (item.G01Group == 2)
-                //{
-                //    List<Tuple<double, double>> tempPs = new List<Tuple<double, double>>();
-
-                //    DrawXYCircle(inc, false, item, tempPs);
-
-                //    float? lastX = null;
-                //    float? lastY = null;
-                //    foreach (var p in tempPs)
-                //    {
-                //        if (lastX.HasValue && lastY.HasValue)
-                //        {
-                //            graphic.DrawLine(pen, (float)(lastX.Value * picradio), (float)(lastY.Value * picradio), (float)(p.Item1 * picradio), (float)(p.Item2 * picradio));
-                //        }
-
-                //        lastX = (float)p.Item1;
-                //        lastY = (float)p.Item2;
-                //    }
-                //}
-                //else if (item.G01Group == 3)
-                //{
-                //    //DrawXYCircleWithIJ(item, graphic, pen, picradio);
-
-                //    List<Tuple<double, double>> tempPs = new List<Tuple<double, double>>();
-
-                //    DrawXYCircle(inc, true, item, tempPs);
-
-                //    float? lastX = null;
-                //    float? lastY = null;
-                //    foreach (var p in tempPs)
-                //    {
-                //        if (lastX.HasValue && lastY.HasValue)
-                //        {
-                //            graphic.DrawLine(pen, (float)(lastX.Value * picradio), (float)(lastY.Value * picradio), (float)(p.Item1 * picradio), (float)(p.Item2 * picradio));
-                //        }
-
-                //        lastX = (float)p.Item1;
-                //        lastY = (float)p.Item2;
-                //    }
-                //}
-                #endregion
             }
 
             //释放资源
@@ -682,614 +904,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             }
         }
-
-        private void DrawXYCircle(double inc, bool cw_ccw, DrawBlock block, List<Tuple<double, double>> points)
-        {
-            double st_x = block.StartX;
-            double st_y = block.StartY;
-
-            double center_x = st_x + block.I_Adr.Value;
-            double center_y = st_y + block.J_Adr.Value;
-
-            double r_pow = Math.Pow(block.I_Adr.Value, 2) + Math.Pow(block.J_Adr.Value, 2);
-            double inc_pow = Math.Pow(inc, 2);
-            double splitQ = Math.Sqrt(r_pow) / Math.Sqrt(2);
-
-            double last_x_move2zero = st_x - center_x;
-            double last_y_move2zero = st_y - center_y;
-
-            double fin_x_move2zero = block.EndX - center_x;
-            double fin_y_move2zero = block.EndY - center_y;
-
-
-            if (cw_ccw == false)//G02 CW 顺时针
-            {
-                double? last_d11 = new double?();
-                double? last_d12 = new double?();
-                double? last_d21 = new double?();
-                double? last_d22 = new double?();
-                double? last_d31 = new double?();
-                double? last_d32 = new double?();
-                double? last_d41 = new double?();
-                double? last_d42 = new double?();
-
-                while (Math.Abs(fin_x_move2zero - last_x_move2zero) > inc * 5 || Math.Abs(fin_y_move2zero - last_y_move2zero) > inc * 5)
-                {
-                    last_x_move2zero = Math.Round(last_x_move2zero, 2);
-                    last_y_move2zero = Math.Round(last_y_move2zero, 2);
-
-                    if (last_x_move2zero > splitQ && last_y_move2zero > 0) //第一象限 1
-                    {
-                        var next_x_m = last_x_move2zero + inc / 2;
-                        var next_y = last_y_move2zero - inc;
-
-                        if (!last_d12.HasValue)
-                        {
-                            last_d12 = Math.Pow(next_x_m, 2) + Math.Pow(next_y, 2) - r_pow;
-                        }
-
-                        if (last_d12 > 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x, last_y_move2zero + center_x - inc));
-                            last_d12 += 2 * inc * -last_y_move2zero + 3 * inc_pow;
-
-
-                            last_y_move2zero = last_y_move2zero - inc;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_x - inc));
-                            last_d12 += 2 * inc * (last_x_move2zero - last_y_move2zero) + 5 * inc_pow;
-
-                            last_x_move2zero = last_x_move2zero + inc;
-                            last_y_move2zero = last_y_move2zero - inc;
-                        }
-                    }
-                    else if (last_x_move2zero > 0 && last_x_move2zero <= splitQ && last_y_move2zero > 0) //第一象限 1
-                    {
-                        var next_x = last_x_move2zero + inc;
-                        var next_y_m = last_y_move2zero - inc / 2;
-
-                        if (!last_d11.HasValue)
-                        {
-                            last_d11 = Math.Pow(next_x, 2) + Math.Pow(next_y_m, 2) - r_pow;
-                        }
-
-                        if (last_d11 < 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_y));
-                            last_d11 += 2 * inc * last_x_move2zero + 3 * inc_pow;
-
-                            last_x_move2zero = last_x_move2zero + inc;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_y - inc));
-                            last_d11 += 2 * inc * (last_x_move2zero - last_y_move2zero) + 5 * inc_pow;
-
-                            last_x_move2zero = last_x_move2zero + inc;
-                            last_y_move2zero = last_y_move2zero - inc;
-                        }
-                    }
-                    else if (last_x_move2zero < 0 && last_x_move2zero >= -splitQ && last_y_move2zero >= 0)//第二象限 2
-                    {
-                        var next_x = last_x_move2zero + inc;
-                        var next_y_m = last_y_move2zero + inc / 2;
-
-                        if (!last_d22.HasValue)
-                        {
-                            last_d22 = Math.Pow(next_x, 2) + Math.Pow(next_y_m, 2) - r_pow;
-                        }
-
-                        if (last_d22 > 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_y));
-                            last_d22 += 2 * inc * (last_x_move2zero) + 3 * inc_pow;
-
-                            last_x_move2zero = last_x_move2zero + inc;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_y + inc));
-                            last_d22 += 2 * inc * (last_x_move2zero + last_y_move2zero) + 5 * inc_pow;
-
-                            last_x_move2zero = last_x_move2zero + inc;
-                            last_y_move2zero = last_y_move2zero + inc;
-                        }
-                    }
-                    else if (last_x_move2zero < -splitQ && last_y_move2zero >= 0)//第二象限 1
-                    {
-                        var next_x_m = last_x_move2zero + inc / 2;
-                        var next_y = last_y_move2zero + inc;
-
-                        if (!last_d21.HasValue)
-                        {
-                            last_d21 = Math.Pow(next_x_m, 2) + Math.Pow(next_y, 2) - r_pow;
-                        }
-
-                        if (last_d21 < 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x, last_y_move2zero + center_y + inc));
-                            last_y_move2zero = last_y_move2zero + inc;
-
-                            last_d21 += 2 * inc * last_y_move2zero + 3 * inc_pow;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_y + inc));
-                            last_x_move2zero = last_x_move2zero + inc;
-                            last_y_move2zero = last_y_move2zero + inc;
-
-                            last_d21 += 2 * inc * (last_x_move2zero + last_y_move2zero) + 5 * inc_pow;
-                        }
-                    }
-                    else if (last_x_move2zero < -splitQ && last_y_move2zero < 0)//第三象限 1
-                    {
-                        var next_x_m = last_x_move2zero - inc / 2;
-                        var next_y = last_y_move2zero + inc;
-
-                        if (!last_d31.HasValue)
-                        {
-                            last_d31 = Math.Pow(next_x_m, 2) + Math.Pow(next_y, 2) - r_pow;
-                        }
-
-                        if (last_d31 > 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x, last_y_move2zero + center_y + inc));
-                            last_y_move2zero = last_y_move2zero + inc;
-
-                            last_d31 += 2 * inc * last_y_move2zero + 3 * inc_pow;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y + inc));
-                            last_d31 += 2 * inc * (-last_x_move2zero + last_y_move2zero) + 5 * inc_pow;
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                            last_y_move2zero = last_y_move2zero + inc;
-                        }
-                    }
-                    else if (last_x_move2zero < 0 && last_x_move2zero >= -splitQ && last_y_move2zero < 0)//第三象限 2
-                    {
-                        var next_x = last_x_move2zero - inc;
-                        var next_y_m = last_y_move2zero + inc / 2;
-
-                        if (!last_d32.HasValue)
-                        {
-                            last_d32 = Math.Pow(next_x, 2) + Math.Pow(next_y_m, 2) - r_pow;
-                        }
-
-                        if (last_d32 < 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y));
-                            last_d32 += 2 * inc * (-last_x_move2zero) + 3 * inc_pow;
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y + inc));
-                            last_d32 += 2 * inc * (-last_x_move2zero + last_y_move2zero) + 5 * inc_pow;
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                            last_y_move2zero = last_y_move2zero + inc;
-                        }
-                    }
-                    else if (last_x_move2zero > 0 && last_x_move2zero <= +splitQ && last_y_move2zero < 0)//第四象限 1
-                    {
-                        var next_x = last_x_move2zero - inc;
-                        var next_y_m = last_y_move2zero - inc / 2;
-
-                        if (!last_d41.HasValue)
-                        {
-                            last_d41 = Math.Pow(next_x, 2) + Math.Pow(next_y_m, 2) - r_pow;
-                        }
-
-                        if (last_d41 > 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y));
-                            last_d41 += 2 * inc * (-last_x_move2zero) + 3 * inc_pow;
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y - inc));
-                            last_d41 += 2 * inc * (-last_x_move2zero - last_y_move2zero) + 5 * inc_pow;
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                            last_y_move2zero = last_y_move2zero - inc;
-                        }
-                    }
-                    else if (last_x_move2zero > +splitQ && last_y_move2zero < 0)//第四象限 2
-                    {
-                        var next_x_m = last_x_move2zero - inc / 2;
-                        var next_y = last_y_move2zero - inc;
-
-                        if (!last_d42.HasValue)
-                        {
-                            last_d42 = Math.Pow(next_x_m, 2) + Math.Pow(next_y, 2) - r_pow;
-                        }
-
-                        if (last_d42 < 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x, last_y_move2zero + center_y - inc));
-                            last_d42 += 2 * inc * (-last_y_move2zero) + 3 * inc_pow;
-
-                            last_y_move2zero = last_y_move2zero - inc;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y - inc));
-                            last_d42 += 2 * inc * (-last_x_move2zero - last_y_move2zero) + 5 * inc_pow;
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                            last_y_move2zero = last_y_move2zero - inc;
-                        }
-                    }
-
-                }
-            }
-            else//G03 CW 逆时针
-            {
-                double? last_d11 = new double?();
-                double? last_d12 = new double?();
-                double? last_d21 = new double?();
-                double? last_d22 = new double?();
-                double? last_d31 = new double?();
-                double? last_d32 = new double?();
-                double? last_d41 = new double?();
-                double? last_d42 = new double?();
-
-                while (Math.Abs(fin_x_move2zero - last_x_move2zero) > inc * 2 || Math.Abs(fin_y_move2zero - last_y_move2zero) > inc * 2)
-                {
-
-
-
-                    //Console.WriteLine(Math.Abs(fin_x_move2zero - last_x_move2zero) + "     " + Math.Abs(fin_y_move2zero - last_y_move2zero));
-
-                    last_x_move2zero = Math.Round(last_x_move2zero, 2);
-                    last_y_move2zero = Math.Round(last_y_move2zero, 2);
-
-                    if (last_x_move2zero > splitQ && last_y_move2zero >= 0) //第一象限 2
-                    {
-                        var next_x_m = last_x_move2zero - inc / 2;
-                        var next_y = last_y_move2zero + inc;
-
-                        if (!last_d12.HasValue)
-                        {
-                            last_d12 = Math.Pow(next_x_m, 2) + Math.Pow(next_y, 2) - r_pow;
-                        }
-
-                        if (last_d12 < 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x, last_y_move2zero + center_y + inc));
-                            last_y_move2zero = last_y_move2zero + inc;
-                            last_d12 += 2 * inc * last_y_move2zero + 3 * inc_pow;
-
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y + inc));
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                            last_y_move2zero = last_y_move2zero + inc;
-                            last_d12 += 2 * inc * (-last_x_move2zero + last_y_move2zero) + 5 * inc_pow;
-
-                        }
-                    }
-                    else if (last_x_move2zero > 0 && last_x_move2zero <= splitQ && last_y_move2zero > 0) //第一象限 1
-                    {
-                        var next_x = last_x_move2zero - inc;
-                        var next_y_m = last_y_move2zero + inc / 2;
-
-                        if (!last_d11.HasValue)
-                        {
-                            last_d11 = Math.Pow(next_x, 2) + Math.Pow(next_y_m, 2) - r_pow;
-                        }
-
-                        if (last_d11 > 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y));
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                            last_d11 += 2 * inc * (-last_x_move2zero) + 3 * inc_pow;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y + inc));
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                            last_y_move2zero = last_y_move2zero + inc;
-                            last_d11 += 2 * inc * (-last_x_move2zero + last_y_move2zero) + 5 * inc_pow;
-
-                        }
-                    }
-                    else if (last_x_move2zero <= 0 && last_x_move2zero > -splitQ && last_y_move2zero > 0)//第二象限 2
-                    {
-                        var next_x = last_x_move2zero - inc;
-                        var next_y_m = last_y_move2zero - inc / 2;
-
-                        if (!last_d22.HasValue)
-                        {
-                            last_d22 = Math.Pow(next_x, 2) + Math.Pow(next_y_m, 2) - r_pow;
-                        }
-
-                        if (last_d22 < 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y));
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                            last_d22 += 2 * inc * (-last_x_move2zero) + 3 * inc_pow;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y - inc));
-
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                            last_y_move2zero = last_y_move2zero - inc;
-                            last_d22 += 2 * inc * (-last_x_move2zero - last_y_move2zero) + 5 * inc_pow;
-                        }
-                    }
-                    else if (last_x_move2zero <= -splitQ && last_y_move2zero > 0)//第二象限 1
-                    {
-                        var next_x_m = last_x_move2zero - inc / 2;
-                        var next_y = last_y_move2zero - inc;
-
-                        if (!last_d21.HasValue)
-                        {
-                            last_d21 = Math.Pow(next_x_m, 2) + Math.Pow(next_y, 2) - r_pow;
-                        }
-
-                        if (last_d21 > 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x, last_y_move2zero + center_y - inc));
-
-                            last_y_move2zero = last_y_move2zero - inc;
-                            last_d21 += 2 * inc * (-last_y_move2zero) + 3 * inc_pow;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x - inc, last_y_move2zero + center_y - inc));
-
-                            last_x_move2zero = last_x_move2zero - inc;
-                            last_y_move2zero = last_y_move2zero - inc;
-                            last_d21 += 2 * inc * (-last_x_move2zero - last_y_move2zero) + 5 * inc_pow;
-                        }
-                    }
-                    else if (last_x_move2zero < -splitQ && last_y_move2zero <= 0)//第三象限 2
-                    {
-                        var next_x_m = last_x_move2zero + inc / 2;
-                        var next_y = last_y_move2zero - inc;
-
-                        if (!last_d32.HasValue)
-                        {
-                            last_d32 = Math.Pow(next_x_m, 2) + Math.Pow(next_y, 2) - r_pow;
-                        }
-
-                        if (last_d32 < 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x, last_y_move2zero + center_y - inc));
-
-                            last_y_move2zero = last_y_move2zero - inc;
-                            last_d32 += 2 * inc * (-last_y_move2zero) + 3 * inc_pow;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_y - inc));
-
-                            last_x_move2zero = last_x_move2zero + inc;
-                            last_y_move2zero = last_y_move2zero - inc;
-                            last_d32 += 2 * inc * (last_x_move2zero - last_y_move2zero) + 5 * inc_pow;
-                        }
-                    }
-                    else if (last_x_move2zero < 0 && last_x_move2zero >= -splitQ && last_y_move2zero < 0)//第三象限 1
-                    {
-                        var next_x = last_x_move2zero + inc;
-                        var next_y_m = last_y_move2zero - inc / 2;
-
-                        if (!last_d31.HasValue)
-                        {
-                            last_d31 = Math.Pow(next_x, 2) + Math.Pow(next_y_m, 2) - r_pow;
-                        }
-
-                        if (last_d31 > 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_y));
-
-                            last_x_move2zero = last_x_move2zero + inc;
-                            last_d31 += 2 * inc * (last_x_move2zero) + 3 * inc_pow;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_y - inc));
-
-                            last_x_move2zero = last_x_move2zero + inc;
-                            last_y_move2zero = last_y_move2zero - inc;
-                            last_d31 += 2 * inc * (last_x_move2zero - last_y_move2zero) + 5 * inc_pow;
-                        }
-                    }
-                    else if (last_x_move2zero >= 0 && last_x_move2zero < splitQ && last_y_move2zero < 0)//第四象限 2
-                    {
-                        var next_x = last_x_move2zero + inc;
-                        var next_y_m = last_y_move2zero + inc / 2;
-
-                        if (!last_d42.HasValue)
-                        {
-                            last_d42 = Math.Pow(next_x, 2) + Math.Pow(next_y_m, 2) - r_pow;
-                        }
-
-                        if (last_d42 < 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_y));
-
-                            last_x_move2zero = last_x_move2zero + inc;
-                            last_d42 += 2 * inc * (last_x_move2zero) + 3 * inc_pow;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_y + inc));
-                            last_x_move2zero = last_x_move2zero + inc;
-                            last_y_move2zero = last_y_move2zero + inc;
-                            last_d42 += 2 * inc * (last_x_move2zero + last_y_move2zero) + 5 * inc_pow;
-                        }
-                    }
-                    else if (last_x_move2zero >= splitQ && last_y_move2zero <= 0)//第四象限 1
-                    {
-                        var next_x_m = last_x_move2zero + inc / 2;
-                        var next_y = last_y_move2zero + inc;
-
-                        if (!last_d41.HasValue)
-                        {
-                            last_d41 = Math.Pow(next_x_m, 2) + Math.Pow(next_y, 2) - r_pow;
-                        }
-
-                        if (last_d41 > 0)
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x, last_y_move2zero + center_y + inc));
-
-                            last_y_move2zero = last_y_move2zero + inc;
-                            last_d41 += 2 * inc * (last_y_move2zero) + 3 * inc_pow;
-                        }
-                        else
-                        {
-                            points.Add(new Tuple<double, double>(last_x_move2zero + center_x + inc, last_y_move2zero + center_y + inc));
-
-                            last_x_move2zero = last_x_move2zero + inc;
-                            last_y_move2zero = last_y_move2zero + inc;
-                            last_d41 += 2 * inc * (last_x_move2zero + last_y_move2zero) + 5 * inc_pow;
-                        }
-                    }
-
-                }
-            }
-
-
-        }
-
-        private void GetInfo(ProgramDetailDto info, string blockStr)
-        {
-            Regex matRegex = new Regex(@"(?<=\(#MATERIAL=)\w*(?=\))");
-            Match matMatch = matRegex.Match(blockStr);
-            if (matMatch.Success == true) info.Material = matMatch.Value;
-
-            Regex thickRegex = new Regex(@"(?<=\(#THICKNESS=)\w*(?=\))");
-            Match thickMatch = thickRegex.Match(blockStr);
-            if (thickMatch.Success == true) info.Thickness = double.Parse(thickMatch.Value);
-
-            Regex gasRegex = new Regex(@"(?<=\(#CUTTING_GAS_KIND=)\w*(?=\))");
-            Match gasMatch = gasRegex.Match(blockStr);
-            if (gasMatch.Success == true) info.Gas = gasMatch.Value;
-
-            Regex focalRegex = new Regex(@"(?<=\(#FOCAL_POSITION=)\w*(?=\))");
-            Match focalMatch = focalRegex.Match(blockStr);
-            if (focalMatch.Success == true) info.FocalPosition = double.Parse(focalMatch.Value);
-
-            Regex nozzleDiaRegex = new Regex(@"(?<=\(#NOZZLE_DIA=)\w*(?=\))");
-            Match nozzleDiaMatch = nozzleDiaRegex.Match(blockStr);
-            if (nozzleDiaMatch.Success == true) info.NozzleDiameter = double.Parse(nozzleDiaMatch.Value);
-
-            Regex nozzleTypeRegex = new Regex(@"(?<=\(#NOZZLE_TYPE=)\w*(?=\))");
-            Match nozzleTypeMatch = nozzleTypeRegex.Match(blockStr);
-            if (nozzleTypeMatch.Success == true) info.NozzleKind = nozzleTypeMatch.Value;
-
-            Regex plateSizeRegex = new Regex(@"(?<=\(#PLATE_SIZE=)\w*(?=\))");
-            Match plateSizeMatch = plateSizeRegex.Match(blockStr);
-            if (plateSizeMatch.Success == true) info.PlateSize = plateSizeMatch.Value;
-
-            Regex usedPlateSizeRegex = new Regex(@"(?<=\(#USED_SIZE=)\w*(?=\))");
-            Match usedPlateSizeMatch = usedPlateSizeRegex.Match(blockStr);
-            if (usedPlateSizeMatch.Success == true) info.UsedPlateSize = usedPlateSizeMatch.Value;
-
-            Regex cuttingDistanceRegex = new Regex(@"(?<=\(#CUTTING_DISTANCE=)\w*(?=\))");
-            Match cuttingDistanceMatch = cuttingDistanceRegex.Match(blockStr);
-            if (cuttingDistanceMatch.Success == true) info.CuttingDistance = double.Parse(cuttingDistanceMatch.Value);
-
-            Regex piercingRegex = new Regex(@"(?<=\(#PIERCING_COUNT=)\w*(?=\))");
-            Match piercingMatch = piercingRegex.Match(blockStr);
-            if (piercingMatch.Success == true) info.PiercingCount = int.Parse(piercingMatch.Value);
-
-            Regex cuttingTimeRegex = new Regex(@"(?<=\(#CUTTING_TIME=)\w*(?=\))");
-            Match cuttingTimeMatch = cuttingTimeRegex.Match(blockStr);
-            if (cuttingTimeMatch.Success == true) info.CuttingTime = double.Parse(cuttingTimeMatch.Value);
-        }
-
     }
 
-    //public void DrawXYCanvasOneShot(List<DrawBlock> dBlocks, double inc, int picWidth, int picHeight, double rWidth, double rHeight, Canvas canvas)
-    //{
-    //    float radioWidth = (float)(picWidth / rWidth);
-    //    float radioHeight = (float)(picHeight / rHeight);
-
-    //    float picradio = radioWidth > radioHeight ? radioHeight : radioWidth;
-
-    //    foreach (var item in dBlocks)
-    //    {
-    //        //if (item.G01Group == 0)
-    //        //{
-    //        //    DrawXYLine(item, graphic, pen, picradio);
-    //        //}
-    //        if (item.G01Group == 1)
-    //        {
-    //            var line = new System.Windows.Shapes.Line();
-    //            line.X1 = (int)(item.StartX * picradio);
-    //            line.Y1 = (int)(item.StartY * picradio);
-    //            line.X2 = (int)(item.EndX * picradio);
-    //            line.Y2 = (int)(item.EndY * picradio);
-    //            line.Stroke = System.Windows.Media.Brushes.Black;
-    //            line.StrokeThickness = 1;
-
-    //            canvas.Children.Add(line);
-    //        }
-    //        else if (item.G01Group == 2)
-    //        {
-    //            //double center_x = item.StartX + item.I_Adr.Value;
-    //            //double center_y = item.StartY + item.J_Adr.Value;
-    //            double radius = Math.Round(Math.Sqrt(Math.Pow(item.I_Adr.Value, 2) + Math.Pow(item.J_Adr.Value, 2)), 2);
-
-    //            //float startArc = (float)(Math.Atan2(-item.J_Adr.Value, -item.I_Adr.Value) * 180 / Math.PI);
-    //            //float endArc = (float)(Math.Atan2(item.EndY - center_y, item.EndX - center_x) * 180 / Math.PI);
-
-    //            Path path = new Path();
-    //            PathGeometry pathGeometry = new PathGeometry();
-    //            ArcSegment arc = new ArcSegment(
-    //                new System.Windows.Point((int)(item.EndX * picradio), (int)(item.EndY * picradio)),
-    //                new System.Windows.Size((int)Math.Abs(radius * picradio), (int)Math.Abs(radius * picradio)),
-    //                0, false, SweepDirection.Counterclockwise, true);
-    //            PathFigure figure = new PathFigure();
-    //            figure.StartPoint = new System.Windows.Point((int)(item.StartX * picradio), (int)(item.StartY * picradio));
-    //            figure.Segments.Add(arc);
-    //            pathGeometry.Figures.Add(figure);
-    //            path.Data = pathGeometry;
-    //            path.Stroke = System.Windows.Media.Brushes.Black;
-    //            path.StrokeThickness = 1;
-    //            canvas.Children.Add(path);
-    //        }
-    //        else if (item.G01Group == 3)
-    //        {
-    //            //    double center_x = item.StartX + item.I_Adr.Value;
-    //            //    double center_y = item.StartY + item.J_Adr.Value;
-    //            double radius = Math.Round(Math.Sqrt(Math.Pow(item.I_Adr.Value, 2) + Math.Pow(item.J_Adr.Value, 2)), 2);
-
-    //            //    float startArc = (float)(Math.Atan2(-item.J_Adr.Value, -item.I_Adr.Value) * 180 / Math.PI);
-    //            //    float endArc = (float)(Math.Atan2(item.EndY - center_y, item.EndX - center_x) * 180 / Math.PI);
-
-    //            Path path = new Path();
-    //            PathGeometry pathGeometry = new PathGeometry();
-    //            ArcSegment arc = new ArcSegment(new System.Windows.Point((int)(item.EndX * picradio), (int)(item.EndY * picradio)),
-    //                new System.Windows.Size((int)(radius * picradio), (int)(radius * picradio)),
-    //                0, false, SweepDirection.Clockwise, true);
-    //            PathFigure figure = new PathFigure();
-    //            figure.StartPoint = new System.Windows.Point((int)(item.StartX * picradio), (int)(item.StartY * picradio));
-    //            figure.Segments.Add(arc);
-    //            pathGeometry.Figures.Add(figure);
-    //            path.Data = pathGeometry;
-    //            path.Stroke = System.Windows.Media.Brushes.Black;
-    //            path.StrokeThickness = 1;
-    //            canvas.Children.Add(path);
-    //        }
-    //    }
-
-    //}
 }
