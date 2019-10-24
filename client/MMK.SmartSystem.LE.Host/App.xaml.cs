@@ -35,14 +35,12 @@ namespace MMK.SmartSystem.LE.Host
         protected override void OnStartup(StartupEventArgs e)
         {
             
-
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins");
             _bootstrapper.PlugInSources.AddFolder(path);
             _bootstrapper.Initialize();
             DispatcherHelper.Initialize();
-            _bootstrapper.IocManager.Resolve<MainWindow>().Show();
-        
             LoadPluginAssemblies();
+            _bootstrapper.IocManager.Resolve<MainWindow>().Show();
         }
 
         private void LoadPluginAssemblies()

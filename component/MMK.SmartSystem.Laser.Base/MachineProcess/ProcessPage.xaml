@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcess"
       xmlns:uc="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcess.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="658" d:DesignWidth="1300" Background="#2a2f34" Foreground="#787b8c" FontSize="20"
+      d:DesignHeight="658" d:DesignWidth="1260" Background="#2a2f34" Foreground="#787b8c" FontSize="20"
       Title="ProcessPage">
     <Page.Resources>
         <ResourceDictionary>

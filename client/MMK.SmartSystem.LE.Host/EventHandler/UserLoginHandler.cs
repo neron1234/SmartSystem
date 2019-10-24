@@ -99,22 +99,22 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                 if (ts.Success)
                 {
                     SmartSystemCommonConsts.AuthenticateModel = ts.Result;
-                    var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
-                    errorMessage = obj2.Error?.Details;
-                    if (obj2.Success)
-                    {
-                        SmartSystemCommonConsts.UserConfiguration = obj2.Result;
-                        Translate();
-                        Messenger.Default.Send(new MainSystemNoticeModel
-                        {
-                            Tagret = eventData.Tagret,
-                            Error = "",
-                            Success = true,
-                            SuccessAction = eventData.SuccessAction,
-                            HashCode = eventData.HashCode
-                        });
-                        return;
-                    }
+                    //var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
+                    //errorMessage = obj2.Error?.Details;
+                    //if (obj2.Success)
+                    //{
+                    //    SmartSystemCommonConsts.UserConfiguration = obj2.Result;
+                    //    Translate();
+                    //    Messenger.Default.Send(new MainSystemNoticeModel
+                    //    {
+                    //        Tagret = eventData.Tagret,
+                    //        Error = "",
+                    //        Success = true,
+                    //        SuccessAction = eventData.SuccessAction,
+                    //        HashCode = eventData.HashCode
+                    //    });
+                    //    return;
+                    //}
                 }
                 Messenger.Default.Send(new MainSystemNoticeModel
                 {

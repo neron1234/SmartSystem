@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcess.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="528" d:DesignWidth="1300" Background="#3b3b3b" Foreground="#787b8c" FontSize="20">
+             d:DesignHeight="528" d:DesignWidth="1260" Background="#3b3b3b" Foreground="#787b8c" FontSize="20">
     <UserControl.Resources>
         <!--DataGrid样式-->
         <Style TargetType="DataGrid">
@@ -100,7 +100,7 @@
 
     </UserControl.Resources>
     <Grid>
-        <DataGrid x:Name="ProcessDataGrid"  Background="#3b3b3b"  Width="1290" Height="526" 
+        <DataGrid x:Name="ProcessDataGrid"  Background="#3b3b3b"  Width="1250" Height="526" 
                   AlternationCount="2" AutoGenerateColumns="False"
                   SelectionChanged="ProcessDataGrid_SelectionChanged" 
                   IsReadOnly="True" FontSize="18" BorderThickness="0"

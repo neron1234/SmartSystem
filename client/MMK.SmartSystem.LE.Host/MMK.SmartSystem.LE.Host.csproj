@@ -245,6 +245,7 @@
     <Compile Include="AccountControl\ViewModel\UpdatePasswordControlViewModel.cs" />
     <Compile Include="AccountControl\ViewModel\UserInfoControlViewModel.cs" />
     <Compile Include="Converters\OffsetConverter.cs" />
+    <Compile Include="Converters\StringToImageSourceConverter.cs" />
     <Compile Include="CustomControl\Behaviors\MaskLayerBehavior.cs" />
     <Compile Include="CustomControl\Behaviors\TextCompleteDisplayBehavior.cs" />
     <Compile Include="CustomControl\Button\Implementation\FlatButton.cs" />
@@ -319,8 +320,14 @@
     <Compile Include="SystemControl\FunctionConfigControl.xaml.cs">
       <DependentUpon>FunctionConfigControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemControl\HeaderStatusControl.xaml.cs">
+      <DependentUpon>HeaderStatusControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemControl\HeaderMenuControl.xaml.cs">
       <DependentUpon>HeaderMenuControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemControl\HeaderTitleWarnControl.xaml.cs">
+      <DependentUpon>HeaderTitleWarnControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="SystemControl\MainHomeControl.xaml.cs">
       <DependentUpon>MainHomeControl.xaml</DependentUpon>
@@ -335,7 +342,9 @@
       <DependentUpon>ReadDxfControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="SystemControl\ViewModel\FunctionConfigViewModel.cs" />
+    <Compile Include="SystemControl\ViewModel\HeaderStatusViewModel .cs" />
     <Compile Include="SystemControl\ViewModel\HeaderMenuViewModel.cs" />
+    <Compile Include="SystemControl\ViewModel\HeaderTitleMenuViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\MainMenuViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\ModuleMenuViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\PageChangeModel.cs" />
@@ -514,7 +523,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SystemControl\HeaderStatusControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SystemControl\HeaderMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\HeaderTitleWarnControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
