@@ -66,11 +66,12 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
             string errorMessage = string.Empty;
             try
             {
-                var rs = piercingDataClientServiceProxy.GetAllAsync(eventData.machiningDataGroupId,0,50).Result;
+                var rs = piercingDataClientServiceProxy.GetAllAsync(eventData.machiningDataGroupId, 0, 50).Result;
                 errorMessage = rs.Error?.Details;
                 if (rs.Success)
                 {
-                    Messenger.Default.Send(rs.Result);
+                    eventData.SuccessAction?.Invoke(rs.Result.Items.ToList());
+                    return;
                 }
                 Messenger.Default.Send(new MainSystemNoticeModel
                 {

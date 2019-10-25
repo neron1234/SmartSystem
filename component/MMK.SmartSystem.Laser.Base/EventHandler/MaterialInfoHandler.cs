@@ -25,7 +25,8 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
                 errorMessage = rs.Error?.Details;
                 if (rs.Success)
                 {
-                    Messenger.Default.Send(rs.Result);
+                    eventData.SuccessAction?.Invoke(rs.Result.Items.ToList());
+                    return;
                 }
                 Messenger.Default.Send(new MainSystemNoticeModel
                 {

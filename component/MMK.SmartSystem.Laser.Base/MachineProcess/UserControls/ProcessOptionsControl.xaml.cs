@@ -26,32 +26,52 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
     /// </summary>
     public partial class ProcessOptionsControl : UserControl
     {
-        private ProcessOptionsViewModel processOptionsViewModel { get; set; }
+        private ProcessOptionsViewModel processOptionsViewModel;
+
+        public event Action<int> MaterialGroupChangeEvent;
+        public event Action<bool> MoveGridHeadEvent;
         public ProcessOptionsControl()
         {
             InitializeComponent();
-            this.DataContext = processOptionsViewModel = new ProcessOptionsViewModel();
+            DataContext = processOptionsViewModel = new ProcessOptionsViewModel();
+            processOptionsViewModel.MaterialGroupChangeEvent += ProcessOptionsViewModel_MaterialGroupChangeEvent;
+            Loaded += ProcessOptionsControl_Loaded;
+            processOptionsViewModel.MoveGridHeadEvent += ProcessOptionsViewModel_MoveGridHeadEvent; 
+        }
 
-            Messenger.Default.Register<string>(this,(str) => {
-                if (str == "GetMaterial"){
-                    Task.Factory.StartNew(() =>{
-                        this.Dispatcher.Invoke(() =>{
-                            EventBus.Default.Trigger(new MaterialInfoEventData { IsCheckSon = true });
-                        });
-                    });
-                }else if(str == "UnRegisterMaterial"){
-                    processOptionsViewModel.UnRegisterMaterial();
-                } else if(str == "RegisterMaterial"){
-                    processOptionsViewModel.RegisterMaterial();
-                }
-            });
+        private void ProcessOptionsViewModel_MoveGridHeadEvent(bool obj)
+        {
+            MoveGridHeadEvent?.Invoke(obj);
+        }
 
-            Task.Factory.StartNew(() => {
-                this.Dispatcher.InvokeAsync(async () =>
-                {
-                    await EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = true });
-                });
-            });
+        private void ProcessOptionsViewModel_MaterialGroupChangeEvent(int obj)
+        {
+            MaterialGroupChangeEvent?.Invoke(obj);
+        }
+
+        public void RefreshData()
+        {
+            var model = new MaterialInfoEventData { IsCheckSon = true, SuccessAction = LoadData };
+            Task.Factory.StartNew(new Action(() =>
+            {
+                EventBus.Default.Trigger(model);
+
+            }));
+
+        }
+        private void ProcessOptionsControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void LoadData(List<MeterialGroupThicknessDto> list)
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                processOptionsViewModel.InitMaterialData(list);
+
+            }));
+
         }
     }
 }

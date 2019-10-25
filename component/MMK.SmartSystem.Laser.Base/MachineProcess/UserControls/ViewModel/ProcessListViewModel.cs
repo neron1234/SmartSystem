@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
 {
-    public class ProcessListViewModel:ViewModelBase
+    public class ProcessListViewModel : ViewModelBase
     {
-        public ObservableCollection<object> PageListData { get; set; }
+        public ObservableCollection<object> PageListData { get; set; } = new ObservableCollection<object>();
 
-        public Dictionary<string,string> ColumnArray { get; set; }
+        public Dictionary<string, string> ColumnArray { get; set; }
 
         public ProcessListViewModel()
         {
@@ -64,7 +64,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
         public double Width { get; set; }
     }
 
-    public class ProcessData{
+    public class ProcessData
+    {
         public Object Data { get; set; }
         public string Type { get; set; }
     }

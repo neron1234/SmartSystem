@@ -35,10 +35,10 @@
                 <ColumnDefinition Width="25*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Bottom">
-                <RadioButton Width="186" Height="40" Content="切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="CuttingDataListBtn" Command="{Binding CuttingDataCommand}" IsChecked="True"/>
-                <RadioButton Width="186" Height="40" Content="穿孔" Style="{StaticResource RadioButtonColorStyle}" x:Name="PiercingDataListBtn" Command="{Binding PiercingDataCommand}" />
-                <RadioButton Width="186" Height="40" Content="尖角切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="EdgeCuttingBtn" Command="{Binding EdgeCuttingCommand}" />
-                <RadioButton Width="186" Height="40" Content="功率控制" Style="{StaticResource RadioButtonColorStyle}" x:Name="SlopeControlDataListBtn" Command="{Binding SlopeControlDatCommand}"/>
+                <RadioButton Width="186" Height="40" Content="切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="CuttingDataListBtn" Command="{Binding DataChangeCommand}" CommandParameter="1" IsChecked="True"/>
+                <RadioButton Width="186" Height="40" Content="穿孔" Style="{StaticResource RadioButtonColorStyle}" x:Name="PiercingDataListBtn" Command="{Binding DataChangeCommand}" CommandParameter="2" />
+                <RadioButton Width="186" Height="40" Content="尖角切割" Style="{StaticResource RadioButtonColorStyle}" x:Name="EdgeCuttingBtn" Command="{Binding DataChangeCommand}"  CommandParameter="3"/>
+                <RadioButton Width="186" Height="40" Content="功率控制" Style="{StaticResource RadioButtonColorStyle}" x:Name="SlopeControlDataListBtn" Command="{Binding DataChangeCommand}" CommandParameter="4"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Right">
                 <Button Style="{StaticResource ListBtnStyle}" Width="95" Height="40" Margin="0 0 0 0" Command="{Binding UpLoadCommand}">
@@ -56,10 +56,10 @@
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1">
-            <uc:ProcessListControl />
+            <uc:ProcessListControl x:Name="processList"/>
         </StackPanel>
         <StackPanel Grid.Row="2">
-            <uc:ProcessOptionsControl />
+            <uc:ProcessOptionsControl x:Name="processOption"/>
         </StackPanel>
     </Grid>
 </Page>

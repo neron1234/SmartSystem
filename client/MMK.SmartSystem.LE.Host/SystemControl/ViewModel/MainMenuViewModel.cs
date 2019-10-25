@@ -53,7 +53,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
                 }
             }
         }
-
+        private bool IsActive = false;
         public string BackColor { get; set; }
 
         private Visibility _Show;
@@ -77,6 +77,10 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
             {
                 return new RelayCommand<MainMenuViewModel>((s) =>
                 {
+                    if (IsActive)
+                    {
+                        return;
+                    }
                     if (s.WebPage)
                     {
                         Messenger.Default.Send(new PageChangeModel() { Url = s.Url, Page = PageEnum.WebPage });
@@ -93,9 +97,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         public void MenuActive()
         {
             Icon = _icon + "-active";
+            IsActive = true;
         }
         public void MenuClearActive()
         {
+            IsActive = false;
             Icon = _icon.Replace("-active", "");
 
         }

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public class MaterialInfoEventData: BaseErrorEventData
+    public class MaterialInfoEventData : BaseApiEventData<List<MeterialGroupThicknessDto>>
     {
         public bool IsCheckSon { get; set; }
     }
 
-    public class MachiningGroupInfoEventData: BaseErrorEventData
+    public class MachiningGroupInfoEventData : BaseErrorEventData
     {
         public int MaterialId { get; set; }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public class SlopeControlDataByGroupIdEventData : BaseErrorEventData
+    public class SlopeControlDataByGroupIdEventData : BaseApiEventData<List<SlopeControlDataDto>>
     {
         public int machiningDataGroupId { get; set; }
     }

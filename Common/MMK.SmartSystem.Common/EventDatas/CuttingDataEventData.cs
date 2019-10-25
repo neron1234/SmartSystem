@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public class CuttingDataByGroupIdEventData : BaseErrorEventData
+    public class CuttingDataByGroupIdEventData : BaseApiEventData<List<CuttingDataDto>>
     {
         public int machiningDataGroupId { get; set; }
     }

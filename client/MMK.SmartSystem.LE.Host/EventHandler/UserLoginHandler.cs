@@ -99,6 +99,7 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
                 if (ts.Success)
                 {
                     SmartSystemCommonConsts.AuthenticateModel = ts.Result;
+                  //  return;
                     //var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
                     //errorMessage = obj2.Error?.Details;
                     //if (obj2.Success)

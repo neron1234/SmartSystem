@@ -1,5 +1,8 @@
 ﻿using Abp.Dependency;
+using Abp.Events.Bus;
 using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common;
+using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -23,24 +26,25 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess
     /// </summary>
     public partial class ProcessPage : Page, ITransientDependency
     {
-       public ProcessViewModel processViewModel { get; set; }
+        public ProcessViewModel processViewModel { get; set; }
         public ProcessPage()
         {
             InitializeComponent();
             this.DataContext = processViewModel = new ProcessViewModel();
-            Loaded += ProcessPage_Loaded;
+            processViewModel.RefreshCuttingDataEvent += ProcessViewModel_RefreshDataEvent<CuttingDataByGroupIdEventData, CuttingDataDto>;
+            processViewModel.RefreshEdgeCuttingDataEvent += ProcessViewModel_RefreshDataEvent<EdgeCuttingByGroupIdEventData, EdgeCuttingDataDto>;
+            processViewModel.RefreshPiercingDataEvent += ProcessViewModel_RefreshDataEvent<PiercingDataByGroupIdEventData, PiercingDataDto>;
+            processViewModel.RefreshSlopeControlDataEvent += ProcessViewModel_RefreshDataEvent<SlopeControlDataByGroupIdEventData, SlopeControlDataDto>;
+            processOption.MaterialGroupChangeEvent += processViewModel.RefreshGroupData;
+            processOption.MoveGridHeadEvent += processList.MoveDataGridHeader;
         }
 
-        private async void ProcessPage_Loaded(object sender, RoutedEventArgs e)
+        private void ProcessViewModel_RefreshDataEvent<T, U>(T obj) where T : BaseApiEventData<List<U>>
         {
-            await Search();
-            Loaded -= ProcessPage_Loaded;
-        }
-
-        private async Task Search()
-        {
-            await Task.Factory.StartNew(new Action(() => {
-                processViewModel.SearchList();
+            obj.SuccessAction = (s) => processList.RefreshGroupData(s);
+            Task.Factory.StartNew(new Action(() =>
+            {
+                EventBus.Default.Trigger(obj);
             }));
         }
     }

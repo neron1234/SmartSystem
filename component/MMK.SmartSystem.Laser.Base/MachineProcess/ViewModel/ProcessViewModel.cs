@@ -2,102 +2,88 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Laser.Base.MachineProcess.UserControls;
 using MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
 {
-    public class ProcessViewModel:ViewModelBase{
+    public class ProcessViewModel : ViewModelBase
+    {
         public ProcessData SelectedData { get; set; }
 
-        public ProcessViewModel(){
-            this.commandType = 1;
-            Messenger.Default.Register<int>(this, (result) => {
-                this.SearchGroupId = result;
-                Task.Factory.StartNew(new Action(() => {
-                    SearchList();
-                }));
-            });
-            Messenger.Default.Register<ProcessData>(this, (pd) => {
-                SelectedData = pd;
-            });
+        public ProcessViewModel()
+        {
+
+            //Messenger.Default.Register<ProcessData>(this, (pd) =>
+            //{
+            //    SelectedData = pd;
+            //});
         }
 
         public int SearchGroupId = 0;
-        private int commandType { get; set; }
-        public async void SearchList(){
-            if (SearchGroupId == 0){
+
+        private int currentType = 1;
+
+        public void RefreshGroupData(int groupId)
+        {
+            SearchGroupId = groupId;
+            InitGroup(currentType);
+
+        }
+        private void InitGroup(int type)
+        {
+            if (SearchGroupId == 0)
+            {
                 return;
             }
-            switch (commandType){
-                case 1:
-                    await EventBus.Default.TriggerAsync(new CuttingDataByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
-                    break;
-                case 2:
-                    await EventBus.Default.TriggerAsync(new PiercingDataByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
-                    break;
-                case 3:
-                    await EventBus.Default.TriggerAsync(new EdgeCuttingByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
-                    break;
-                case 4:
-                    await EventBus.Default.TriggerAsync(new SlopeControlDataByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
-                    break;
-                default:
-                    break;
+            currentType = type;
+            if (type == 1)
+            {
+                RefreshCuttingDataEvent?.Invoke(new CuttingDataByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
+                return;
+            }
+            if (type == 2)
+            {
+                RefreshPiercingDataEvent?.Invoke(new PiercingDataByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
+                return;
+            }
+            if (type == 3)
+            {
+                RefreshEdgeCuttingDataEvent?.Invoke(new EdgeCuttingByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
+                return;
+            }
+            if (type == 4)
+            {
+                RefreshSlopeControlDataEvent?.Invoke(new SlopeControlDataByGroupIdEventData() { machiningDataGroupId = SearchGroupId });
+                return;
+            }
+        }
+        public event Action<CuttingDataByGroupIdEventData> RefreshCuttingDataEvent;
+        public event Action<PiercingDataByGroupIdEventData> RefreshPiercingDataEvent;
+        public event Action<EdgeCuttingByGroupIdEventData> RefreshEdgeCuttingDataEvent;
+        public event Action<SlopeControlDataByGroupIdEventData> RefreshSlopeControlDataEvent;
+
+        public ICommand DataChangeCommand
+        {
+            get
+            {
+                return new RelayCommand<string>((s) => InitGroup(Convert.ToInt32(s)));
             }
         }
 
-        public ICommand CuttingDataCommand{
-            get{
-                return new RelayCommand(() => {
-                    commandType = 1;
-                    Task.Factory.StartNew(new Action(() => {
-                        SearchList();
-                    }));
-                });
-            }
-        }
 
-        public ICommand PiercingDataCommand{
-            get{
-                return new RelayCommand(() => {
-                    commandType = 2;
-                    Task.Factory.StartNew(new Action(() => {
-                        SearchList();
-                    }));
-                });
-            }
-        }
-
-        public ICommand EdgeCuttingCommand{
-            get{
-                return new RelayCommand(() => {
-                    commandType = 3;
-                    Task.Factory.StartNew(new Action(() => {
-                        SearchList();
-                    }));
-                });
-            }
-        }
-
-        public ICommand SlopeControlDatCommand{
-            get{
-                return new RelayCommand(() => {
-                    commandType = 4;
-                    Task.Factory.StartNew(new Action(() => {
-                        SearchList();
-                    }));
-                });
-            }
-        }
-        
-        public ICommand UpLoadCommand{
-            get{
-                return new RelayCommand(() => {
+        public ICommand UpLoadCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
                     new PopupWindow(new EditMaterialControl(SelectedData), 900, 590, "上传工艺库").ShowDialog();
                 });
             }
@@ -107,15 +93,16 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
         {
             get
             {
-                return new RelayCommand(() => {
-                    Messenger.Default.Send("UnRegisterMaterial");
+                return new RelayCommand(() =>
+                {
+                    // Messenger.Default.Send("UnRegisterMaterial");
                     //UnRegisterMaterial();
 
                     new PopupWindow(new AddMaterialControl(), 650, 260, "添加工艺材料").ShowDialog();
 
-                    Messenger.Default.Send("RegisterMaterial");
+                    //  Messenger.Default.Send("RegisterMaterial");
                     //RegisterMaterial();
-                    Messenger.Default.Send("GetMaterial");
+                    //  Messenger.Default.Send("GetMaterial");
                 });
             }
         }

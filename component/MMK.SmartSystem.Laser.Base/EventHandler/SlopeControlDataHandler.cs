@@ -25,7 +25,6 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
                 errorMessage = rs.Error?.Details;
                 if (rs.Success)
                 {
-                    //Messenger.Default.Send(rs.Result);
                     Messenger.Default.Send(new MainSystemNoticeModel
                     {
                         Tagret = eventData.Tagret,
@@ -33,15 +32,9 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
                         SuccessAction = eventData.SuccessAction,
                         HashCode = eventData.HashCode
                     });
-                }else{
-                    Messenger.Default.Send(new MainSystemNoticeModel
-                    {
-                        Tagret = eventData.Tagret,
-                        Error = errorMessage,
-                        ErrorAction = eventData.ErrorAction,
-                        HashCode = eventData.HashCode
-                    });
+                    return;
                 }
+            
             }
             catch (Exception ex)
             {
@@ -64,11 +57,12 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
             string errorMessage = string.Empty;
             try
             {
-                var rs = slopeControlDataClientServiceProxy.GetAllAsync(eventData.machiningDataGroupId,0,50).Result;
+                var rs = slopeControlDataClientServiceProxy.GetAllAsync(eventData.machiningDataGroupId, 0, 50).Result;
                 errorMessage = rs.Error?.Details;
                 if (rs.Success)
                 {
-                    Messenger.Default.Send(rs.Result);
+                    eventData.SuccessAction?.Invoke(rs.Result.Items.ToList());
+                    return;
                 }
                 Messenger.Default.Send(new MainSystemNoticeModel
                 {

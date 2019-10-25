@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public class PiercingDataByGroupIdEventData : BaseErrorEventData
+    public class PiercingDataByGroupIdEventData : BaseApiEventData<List<PiercingDataDto>>
     {
         public int machiningDataGroupId { get; set; }
     }
