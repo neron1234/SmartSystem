@@ -33,19 +33,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             }
         }
 
-        private ObservableCollection<MeterialGroupThicknessDto> _MaterialTypeList;
-        public ObservableCollection<MeterialGroupThicknessDto> MaterialTypeList
-        {
-            get { return _MaterialTypeList; }
-            set
-            {
-                if (_MaterialTypeList != value)
-                {
-                    _MaterialTypeList = value;
-                    RaisePropertyChanged(() => MaterialTypeList);
-                }
-            }
-        }
+        public ObservableCollection<MeterialGroupThicknessDto> MaterialTypeList { get; set; }
 
         private int _SelectedMaterialGroupId;
         public int SelectedMaterialGroupId
@@ -61,19 +49,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             }
         }
 
-        private ObservableCollection<ThicknessItem> _MaterialThicknessList;
-        public ObservableCollection<ThicknessItem> MaterialThicknessList
-        {
-            get { return _MaterialThicknessList; }
-            set
-            {
-                if (_MaterialThicknessList != value)
-                {
-                    _MaterialThicknessList = value;
-                    RaisePropertyChanged(() => MaterialThicknessList);
-                }
-            }
-        }
+        public ObservableCollection<ThicknessItem> MaterialThicknessList { get; set; }
 
         public ProcessOptionsViewModel()
         {

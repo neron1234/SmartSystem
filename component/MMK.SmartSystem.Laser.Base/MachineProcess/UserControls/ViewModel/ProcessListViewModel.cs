@@ -12,19 +12,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
 {
     public class ProcessListViewModel:ViewModelBase
     {
-        private ObservableCollection<object> _PageListData;
-        public ObservableCollection<object> PageListData
-        {
-            get { return _PageListData; }
-            set
-            {
-                if (_PageListData != value)
-                {
-                    _PageListData = value;
-                    RaisePropertyChanged(() => PageListData);
-                }
-            }
-        }
+        public ObservableCollection<object> PageListData { get; set; }
 
         public Dictionary<string,string> ColumnArray { get; set; }
 

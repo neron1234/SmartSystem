@@ -29,19 +29,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        private ObservableCollection<MaterialDto> _MaterialTypeList;
-        public ObservableCollection<MaterialDto> MaterialTypeList
-        {
-            get { return _MaterialTypeList; }
-            set
-            {
-                if (_MaterialTypeList != value)
-                {
-                    _MaterialTypeList = value;
-                    RaisePropertyChanged(() => MaterialTypeList);
-                }
-            }
-        }
+        public ObservableCollection<MaterialDto> MaterialTypeList { get; set; }
 
         private string _LocalProgramPath;
         public string LocalProgramPath
@@ -71,19 +59,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        private ObservableCollection<NozzleKindDto> _NozzleKindList;
-        public ObservableCollection<NozzleKindDto> NozzleKindList
-        {
-            get { return _NozzleKindList; }
-            set
-            {
-                if (_NozzleKindList != value)
-                {
-                    _NozzleKindList = value;
-                    RaisePropertyChanged(() => NozzleKindList);
-                }
-            }
-        }
+        public ObservableCollection<NozzleKindDto> NozzleKindList { get; set; }
 
         private ProgramDetailViewModel _ProgramDetail;
         public ProgramDetailViewModel ProgramDetail

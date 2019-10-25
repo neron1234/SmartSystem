@@ -13,16 +13,7 @@ using System.Windows.Input;
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
     public class CNCProgramListViewModel:ViewModelBase{
-        private ObservableCollection<ProgramViewModel> _ProgramList;
-        public ObservableCollection<ProgramViewModel> ProgramList{
-            get { return _ProgramList; }
-            set{
-                if (_ProgramList != value){
-                    _ProgramList = value;
-                    RaisePropertyChanged(() => ProgramList);
-                }
-            }
-        }
+        public ObservableCollection<ProgramViewModel> ProgramList { get; set; }
 
         public List<ProgramViewModel> LocalProgramList { get; set; }
 

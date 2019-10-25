@@ -52,18 +52,6 @@ namespace MMK.SmartSystem.Laser.Base
             }
         }
 
-        private ObservableCollection<ReadProgramFolderItemViewModel> _Nodes;
-        public ObservableCollection<ReadProgramFolderItemViewModel> Nodes
-        {
-            get { return _Nodes; }
-            set
-            {
-                if (_Nodes != value)
-                {
-                    _Nodes = value;
-                    RaisePropertyChanged(() => Nodes);
-                }
-            }
-        }
+        public ObservableCollection<ReadProgramFolderItemViewModel> Nodes { get; set; }
     }
 }

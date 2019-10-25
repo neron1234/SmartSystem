@@ -36,16 +36,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         /// <summary>
         /// 显示数据
         /// </summary>
-        private ObservableCollection<ProgramViewModel> _ProgramList;
-        public ObservableCollection<ProgramViewModel> ProgramList{
-            get { return _ProgramList; }
-            set{
-                if (_ProgramList != value){
-                    _ProgramList = value;
-                    RaisePropertyChanged(() => ProgramList);
-                }
-            }
-        }
+        public ObservableCollection<ProgramViewModel> ProgramList { get; set; }
 
         private ReadProgramFolderItemViewModel _ProgramFolderInfo;
         public ReadProgramFolderItemViewModel ProgramFolderInfo
