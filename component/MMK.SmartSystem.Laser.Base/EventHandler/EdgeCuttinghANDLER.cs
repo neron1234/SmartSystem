@@ -13,84 +13,30 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Laser.Base.EventHandler
 {
-    public class UpdateEdgeCuttingHandler : IEventHandler<UpdateEdgeCuttingEventData>, ITransientDependency
+    public class UpdateEdgeCuttingHandler : BaseEventHandler<UpdateEdgeCuttingEventData, EdgeCuttingDataDto>
     {
-        public void HandleEvent(UpdateEdgeCuttingEventData eventData)
+        public override RequestResult<EdgeCuttingDataDto> WebRequest(UpdateEdgeCuttingEventData eventData)
         {
-            EdgeCuttingClientServiceProxy edgeCuttingClientServiceProxy = new EdgeCuttingClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            string errorMessage = string.Empty;
-            try
-            {
-                var rs = edgeCuttingClientServiceProxy.UpdateAsync(eventData.UpdateEdgeCuttingData).Result;
-                errorMessage = rs.Error?.Details;
-                if (rs.Success)
-                {
-                    //Messenger.Default.Send(rs.Result);
-                    Messenger.Default.Send(new MainSystemNoticeModel
-                    {
-                        Tagret = eventData.Tagret,
-                        Success = true,
-                        SuccessAction = eventData.SuccessAction,
-                        HashCode = eventData.HashCode
-                    });
-                }
-                else
-                {
-                    Messenger.Default.Send(new MainSystemNoticeModel
-                    {
-                        Tagret = eventData.Tagret,
-                        Error = errorMessage,
-                        ErrorAction = eventData.ErrorAction,
-                        HashCode = eventData.HashCode
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.ToString(),
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
+            EdgeCuttingClientServiceProxy edgeCuttingClientServiceProxy = new EdgeCuttingClientServiceProxy(apiHost, httpClient);
+            return edgeCuttingClientServiceProxy.UpdateAsync(eventData.UpdateEdgeCuttingData).Result;
         }
     }
 
-    public class EdgeCuttingHandler : IEventHandler<EdgeCuttingByGroupIdEventData>, ITransientDependency
+    public class EdgeCuttingHandler : BaseEventHandler<EdgeCuttingByGroupIdEventData, List<EdgeCuttingDataDto>>
     {
-        public void HandleEvent(EdgeCuttingByGroupIdEventData eventData)
+        public override RequestResult<List<EdgeCuttingDataDto>> WebRequest(EdgeCuttingByGroupIdEventData eventData)
         {
-            EdgeCuttingClientServiceProxy edgeCuttingClientServiceProxy = new EdgeCuttingClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            string errorMessage = string.Empty;
-            try
+            EdgeCuttingClientServiceProxy edgeCuttingClientServiceProxy = new EdgeCuttingClientServiceProxy(apiHost, httpClient);
+            var res = edgeCuttingClientServiceProxy.GetAllAsync(eventData.machiningDataGroupId, 0, 50).Result;
+            return new RequestResult<List<EdgeCuttingDataDto>>()
             {
-                var rs = edgeCuttingClientServiceProxy.GetAllAsync(eventData.machiningDataGroupId, 0, 50).Result;
-                errorMessage = rs.Error?.Details;
-                if (rs.Success)
-                {
-                    eventData.SuccessAction?.Invoke(rs.Result.Items.ToList());
-                    return;
-                }
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.ToString(),
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
+                Result = res.Result.Items.ToList(),
+                Error = res.Error,
+                Success = res.Success,
+                TargetUrl = res.TargetUrl,
+                UnAuthorizedRequest = res.UnAuthorizedRequest
+            };
         }
     }
+
 }

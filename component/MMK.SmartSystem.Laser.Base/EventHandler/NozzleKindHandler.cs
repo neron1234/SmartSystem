@@ -6,41 +6,25 @@ using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SerivceProxy;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MMK.SmartSystem.Laser.Base.EventHandler
 {
-    public class NozzleKindHandler : IEventHandler<NozzleKindEventData>, ITransientDependency
+    public class NozzleKindHandler : BaseEventHandler<NozzleKindEventData, List<NozzleKindDto>>
     {
-        public void HandleEvent(NozzleKindEventData eventData)
+        public override RequestResult<List<NozzleKindDto>> WebRequest(NozzleKindEventData eventData)
         {
-            NozzleKindClientServiceProxy nozzleKindClient = new NozzleKindClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            string errorMessage = string.Empty;
-            try
+            NozzleKindClientServiceProxy nozzleKindClient = new NozzleKindClientServiceProxy(apiHost, httpClient);
+            var res = nozzleKindClient.GetAllAsync(0, 50).Result;
+            return new RequestResult<List<NozzleKindDto>>()
             {
-                var rs = nozzleKindClient.GetAllAsync(0, 50).Result;
-                errorMessage = rs.Error?.Details;
-                if (rs.Success)
-                {
-                    Messenger.Default.Send(rs.Result);
-                }
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.Message,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
+                Result = res.Result.Items.ToList(),
+                Error = res.Error,
+                Success = res.Success,
+                TargetUrl = res.TargetUrl,
+                UnAuthorizedRequest = res.UnAuthorizedRequest
+            };
         }
     }
 }

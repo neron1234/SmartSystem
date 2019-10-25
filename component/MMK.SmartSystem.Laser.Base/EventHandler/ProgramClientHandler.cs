@@ -13,46 +13,20 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Laser.Base.EventHandler
 {
-    public class UpLoadProgramClientHandler : IEventHandler<UpLoadProgramClientEventData>, ITransientDependency
+    public class UpLoadProgramClientHandler : BaseEventHandler<UpLoadProgramClientEventData, object>
     {
-        public void HandleEvent(UpLoadProgramClientEventData eventData)
+        public override RequestResult<object> WebRequest(UpLoadProgramClientEventData eventData)
         {
-            ProgramClientServiceProxy programClientService = new ProgramClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            string errorMessage = string.Empty;
-            try
+            ProgramClientServiceProxy programClientService = new ProgramClientServiceProxy(apiHost, httpClient);
+            var res = programClientService.UploadProgramAsync(eventData.FileParameter, eventData.ConnectId, eventData.FileHashCode).Result;
+            return new RequestResult<object>()
             {
-                var rs = programClientService.UploadProgramAsync(eventData.FileParameter,eventData.ConnectId,eventData.FileHashCode).Result;
-                errorMessage = rs.Error?.Details;
-                if (rs.Success)
-                {
-                    //Messenger.Default.Send(rs.Result);
-                    Messenger.Default.Send(new MainSystemNoticeModel
-                    {
-                        Tagret = eventData.Tagret,
-                        Success = true,
-                        SuccessAction = eventData.SuccessAction,
-                        HashCode = eventData.HashCode
-                    });
-                } else { 
-                    Messenger.Default.Send(new MainSystemNoticeModel
-                    {
-                        Tagret = eventData.Tagret,
-                        Error = errorMessage,
-                        ErrorAction = eventData.ErrorAction,
-                        HashCode = eventData.HashCode
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.ToString(),
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
+                Success = res.Success,
+                Error = res.Error,
+                Result = res.Result,
+                TargetUrl = res.TargetUrl,
+                UnAuthorizedRequest = res.UnAuthorizedRequest
+            };
         }
     }
 }

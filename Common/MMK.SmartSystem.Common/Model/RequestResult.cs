@@ -23,6 +23,7 @@ namespace MMK.SmartSystem.Common.Model
         [JsonProperty("unAuthorizedRequest", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
 
         public bool UnAuthorizedRequest { get; set; }
+
     }
 
 

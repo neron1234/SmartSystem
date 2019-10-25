@@ -10,7 +10,7 @@ namespace MMK.SmartSystem.Common.EventDatas
     {
         public int machiningDataGroupId { get; set; }
     }
-    public class UpdatePiercingDataEventData : BaseErrorEventData
+    public class UpdatePiercingDataEventData : BaseApiEventData<PiercingDataDto>
     {
         public UpdatePiercingDataDto UpdatePiercingData { get; set; }
     }

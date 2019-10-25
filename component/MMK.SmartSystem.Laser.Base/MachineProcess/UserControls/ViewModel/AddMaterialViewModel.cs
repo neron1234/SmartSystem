@@ -59,12 +59,12 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                     Messenger.Default.Register<MainSystemNoticeModel>(this, (ms) => {
                         if (ms.Success)
                         {
-                            ms.SuccessAction?.Invoke();
+                            //ms.SuccessAction?.Invoke();
                         }
                         else
                         {
                             Error = ms.Error;
-                            ms.ErrorAction?.Invoke();
+                            //ms.ErrorAction?.Invoke();
                         }
                     });
 
@@ -75,7 +75,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                             MaterialThickness = Convert.ToDouble(this.MaterialThickness),
                             MaterialCode = this.SelectedMaterialId,
                         },
-                        SuccessAction = SaveSuccessAction,
+                     //   SuccessAction = SaveSuccessAction,
                         ErrorAction = SaveErrorAction
                     });
                 });

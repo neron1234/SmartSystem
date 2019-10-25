@@ -13,27 +13,27 @@ namespace MMK.SmartSystem.Common.EventDatas
         public bool IsCheckSon { get; set; }
     }
 
-    public class MachiningGroupInfoEventData : BaseErrorEventData
+    public class MachiningGroupInfoEventData : BaseApiEventData<List<MachiningGroupDto>>
     {
         public int MaterialId { get; set; }
     }
 
-    public class AddMachiningInfoEventData : BaseErrorEventData
+    public class AddMachiningInfoEventData : BaseApiEventData<MaterialDto>
     {
         public CreateMaterialDto CreateMaterial { get; set; }
     }
 
-    public class AddMachiningGroupInfoEventData : BaseErrorEventData
+    public class AddMachiningGroupInfoEventData : BaseApiEventData<MachiningGroupDto>
     {
         public CreateMachiningGroupDto CreateMachiningGroup { get; set; }
     }
 
-    public class DeleteMachiningGroupInfoEventData : BaseErrorEventData
+    public class DeleteMachiningGroupInfoEventData : BaseApiEventData<object>
     {
         public int MachiningGroupId { get; set; }
     }
 
-    public class DeleteMachiningInfoEventData : BaseErrorEventData
+    public class DeleteMachiningInfoEventData : BaseApiEventData<object>
     {
         public int MaterialId { get; set; }
     }

@@ -13,75 +13,31 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Laser.Base.EventHandler
 {
-    public class UpdateSlopeControlDataHandler : IEventHandler<UpdateSlopeControlDataEventData>, ITransientDependency
+    public class UpdateSlopeControlDataHandler : BaseEventHandler<UpdateSlopeControlDataEventData, SlopeControlDataDto>
     {
-        public void HandleEvent(UpdateSlopeControlDataEventData eventData)
+        public override RequestResult<SlopeControlDataDto> WebRequest(UpdateSlopeControlDataEventData eventData)
         {
-            SlopeControlDataClientServiceProxy slopeControlDataClientServiceProxy = new SlopeControlDataClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            string errorMessage = string.Empty;
-            try
-            {
-                var rs = slopeControlDataClientServiceProxy.UpdateAsync(eventData.UpdateSlopeControlData).Result;
-                errorMessage = rs.Error?.Details;
-                if (rs.Success)
-                {
-                    Messenger.Default.Send(new MainSystemNoticeModel
-                    {
-                        Tagret = eventData.Tagret,
-                        Success = true,
-                        SuccessAction = eventData.SuccessAction,
-                        HashCode = eventData.HashCode
-                    });
-                    return;
-                }
-            
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.ToString(),
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
+            SlopeControlDataClientServiceProxy slopeControlDataClientServiceProxy = new SlopeControlDataClientServiceProxy(apiHost, httpClient);
+            return slopeControlDataClientServiceProxy.UpdateAsync(eventData.UpdateSlopeControlData).Result;
         }
     }
 
-    public class SlopeControlDataHandler : IEventHandler<SlopeControlDataByGroupIdEventData>, ITransientDependency
+    public class SlopeControlDataHandler : BaseEventHandler<SlopeControlDataByGroupIdEventData, List<SlopeControlDataDto>>
     {
-        public void HandleEvent(SlopeControlDataByGroupIdEventData eventData)
+        public override RequestResult<List<SlopeControlDataDto>> WebRequest(SlopeControlDataByGroupIdEventData eventData)
         {
-            SlopeControlDataClientServiceProxy slopeControlDataClientServiceProxy = new SlopeControlDataClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            string errorMessage = string.Empty;
-            try
+            SlopeControlDataClientServiceProxy slopeControlDataClientServiceProxy = new SlopeControlDataClientServiceProxy(apiHost, httpClient);
+            var res = slopeControlDataClientServiceProxy.GetAllAsync(eventData.machiningDataGroupId, 0, 50).Result;
+            return new RequestResult<List<SlopeControlDataDto>>()
             {
-                var rs = slopeControlDataClientServiceProxy.GetAllAsync(eventData.machiningDataGroupId, 0, 50).Result;
-                errorMessage = rs.Error?.Details;
-                if (rs.Success)
-                {
-                    eventData.SuccessAction?.Invoke(rs.Result.Items.ToList());
-                    return;
-                }
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.ToString(),
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
+                Result = res.Result.Items.ToList(),
+                Error = res.Error,
+                Success = res.Success,
+                TargetUrl = res.TargetUrl,
+                UnAuthorizedRequest = res.UnAuthorizedRequest
+            };
         }
+
+
     }
 }

@@ -6,41 +6,26 @@ using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SerivceProxy;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MMK.SmartSystem.Laser.Base.EventHandler
 {
-    public class GasHandler : IEventHandler<GasEventData>, ITransientDependency
+    public class GasHandler : BaseEventHandler<GasEventData, List<GasDto>>
     {
-        public void HandleEvent(GasEventData eventData)
+        public override RequestResult<List<GasDto>> WebRequest(GasEventData eventData)
         {
-            GasClientServiceProxy gasClientService = new GasClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            string errorMessage = string.Empty;
-            try
+            GasClientServiceProxy gasClientService = new GasClientServiceProxy(apiHost, httpClient);
+            var res = gasClientService.GetAllAsync(0, 50).Result;
+            return new RequestResult<List<GasDto>>()
             {
-                var rs = gasClientService.GetAllAsync(0, 50).Result;
-                errorMessage = rs.Error?.Details;
-                if (rs.Success)
-                {
-                    Messenger.Default.Send(rs.Result);
-                }
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.Message,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
+                Result = res.Result.Items.ToList(),
+                Error = res.Error,
+                Success = res.Success,
+                TargetUrl = res.TargetUrl,
+                UnAuthorizedRequest = res.UnAuthorizedRequest
+            };
+
         }
     }
 }

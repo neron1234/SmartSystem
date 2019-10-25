@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public class MachiningKindEventData: BaseErrorEventData
+    public class MachiningKindEventData: BaseApiEventData<List<MachiningKindDto>>
     {
 
     }

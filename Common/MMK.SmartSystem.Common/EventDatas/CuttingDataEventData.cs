@@ -11,7 +11,7 @@ namespace MMK.SmartSystem.Common.EventDatas
         public int machiningDataGroupId { get; set; }
     }
 
-    public class UpdateCuttingDataEventData : BaseErrorEventData
+    public class UpdateCuttingDataEventData : BaseApiEventData<CuttingDataDto>
     {
        public UpdateCuttingDataDto UpdateCuttingData { get; set; }
     }

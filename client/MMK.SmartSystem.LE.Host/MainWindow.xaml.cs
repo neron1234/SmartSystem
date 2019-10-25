@@ -116,13 +116,11 @@ namespace MMK.SmartSystem.LE.Host
                         break;
                 }
             });
+
+            // 获取全局系统通知
             Messenger.Default.Register<MainSystemNoticeModel>(this, (model) =>
             {
-                if (model.HashCode == GetHashCode())
-                {
-                    model.SuccessAction?.Invoke();
-                    ShowHomePanel();
-                }
+                
             });
         }
         private void pageChange(PageChangeModel changeModel)
@@ -181,9 +179,11 @@ namespace MMK.SmartSystem.LE.Host
                 Pwd = SmartSystemLEConsts.DefaultPwd,
                 Tagret = ErrorTagretEnum.Window,
                 HashCode = this.GetHashCode(),
-                SuccessAction = () =>
+                SuccessAction = (s) =>
                 {
+                    ShowHomePanel();
                     EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
+                  
                 }
             });
 

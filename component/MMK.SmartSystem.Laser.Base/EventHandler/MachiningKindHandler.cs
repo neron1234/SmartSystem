@@ -6,41 +6,25 @@ using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SerivceProxy;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MMK.SmartSystem.Laser.Base.EventHandler
 {
-    public class MachiningKindHandler : IEventHandler<MachiningKindEventData>, ITransientDependency
+    public class MachiningKindHandler : BaseEventHandler<MachiningKindEventData, List<MachiningKindDto>>
     {
-        public void HandleEvent(MachiningKindEventData eventData)
+        public override RequestResult<List<MachiningKindDto>> WebRequest(MachiningKindEventData eventData)
         {
-            MachiningKindClientServiceProxy machiningKindClient = new MachiningKindClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            string errorMessage = string.Empty;
-            try
+            MachiningKindClientServiceProxy machiningKindClient = new MachiningKindClientServiceProxy(apiHost,httpClient);
+            var res = machiningKindClient.GetAllAsync(0, 50).Result;
+            return new RequestResult<List<MachiningKindDto>>()
             {
-                var rs = machiningKindClient.GetAllAsync(0, 50).Result;
-                errorMessage = rs.Error?.Details;
-                if (rs.Success)
-                {
-                    Messenger.Default.Send(rs.Result);
-                }
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.Message,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
+                Result = res.Result.Items.ToList(),
+                Error = res.Error,
+                Success = res.Success,
+                TargetUrl = res.TargetUrl,
+                UnAuthorizedRequest = res.UnAuthorizedRequest
+            };
         }
     }
 }

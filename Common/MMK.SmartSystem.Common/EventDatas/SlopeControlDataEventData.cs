@@ -10,7 +10,7 @@ namespace MMK.SmartSystem.Common.EventDatas
     {
         public int machiningDataGroupId { get; set; }
     }
-    public class UpdateSlopeControlDataEventData : BaseErrorEventData
+    public class UpdateSlopeControlDataEventData : BaseApiEventData<SlopeControlDataDto>
     {
         public UpdateSlopeControlDataDto UpdateSlopeControlData { get; set; }
     }

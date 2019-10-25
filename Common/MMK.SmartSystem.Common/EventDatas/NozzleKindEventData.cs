@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public class NozzleKindEventData: BaseErrorEventData
+    public class NozzleKindEventData: BaseApiEventData<List<NozzleKindDto>>
     {
 
     }

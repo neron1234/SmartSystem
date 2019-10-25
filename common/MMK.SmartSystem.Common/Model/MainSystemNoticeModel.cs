@@ -26,14 +26,11 @@ namespace MMK.SmartSystem.Common.Model
         public ErrorTagretEnum Tagret { get; set; }
 
         public EventEnum EventType { get; set; }
-        public int HashCode { get; set; }
         public string Error { get; set; }
 
         public bool Success { set; get; }
 
-        public Action SuccessAction { set; get; }
-
-        public Action ErrorAction { set; get; }
+      
 
     }
 }
