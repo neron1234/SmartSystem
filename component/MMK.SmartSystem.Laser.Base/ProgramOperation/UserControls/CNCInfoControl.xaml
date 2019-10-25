@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="560" d:DesignWidth="450" Background="#2a2f34" Foreground="#787b8c" FontSize="20">
+             d:DesignHeight="560" d:DesignWidth="450" Background="#FF3B3B3B" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,19 +16,19 @@
             </Style>
             <Style TargetType="TextBox">
                 <Setter Property="Foreground" Value="#848a8f"/>
-                <Setter Property="Background" Value="#202328"/>
+                <Setter Property="Background" Value="#282620"/>
                 <Setter Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Black"/>
+                        <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="#171612"/>
                     </Setter.Value>
                 </Setter>
             </Style>
             <Style TargetType="RichTextBox">
                 <Setter Property="Foreground" Value="#848a8f"/>
-                <Setter Property="Background" Value="#202328"/>
+                <Setter Property="Background" Value="#282620"/>
                 <Setter Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Black"/>
+                        <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="#171612"/>
                     </Setter.Value>
                 </Setter>
             </Style>

@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="560" d:DesignWidth="450" Background="#2a2f34" Foreground="#787b8c" FontSize="20">
+             d:DesignHeight="560" d:DesignWidth="450"  Background="#FF3B3B3B" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button" BasedOn="{StaticResource IconBtnStyle}" />
             <Style TargetType="TextBlock">
                 <Setter Property="Foreground" Value="#707374"/>
             </Style>
@@ -39,18 +40,7 @@
             <Border BorderBrush="#787b8c">
                 <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}"  AutoGenerateColumns="False" x:Name="ProgramGrid" Margin="5" Height="380" Background="#2a2f34" 
                        AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16">
-                    <DataGrid.ColumnHeaderStyle>
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-                            <Setter Property="VerticalContentAlignment" Value="Center"/>
-                            <Setter Property="BorderThickness" Value="0"/>
-                            <Setter Property="BorderBrush" Value="Transparent" />
-                            <Setter Property="Background" Value="#2a2f34" />
-                            <Setter Property="Foreground" Value="#787b8c" />
-                            <Setter Property="FontSize" Value="20" />
-                            <Setter Property="Margin" Value="10 10 10 10" />
-                        </Style>
-                    </DataGrid.ColumnHeaderStyle>
+                    
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="45*" />
                         <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="20*" />
@@ -63,14 +53,14 @@
                 <TextBlock Text="{Binding CNCPath}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="主程序" Command="{Binding MainProgramCommand}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="路径" Command="{Binding CNCPathCommand}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="下载" Command="{Binding DowloadCommand}"/>
+                <Button Width="120" Height="45" Margin="5 10 5 10" Content="主程序" Command="{Binding MainProgramCommand}"/>
+                <Button Width="120" Height="45" Margin="5 10 5 10" Content="路径" Command="{Binding CNCPathCommand}"/>
+                <Button Width="120" Height="45" Margin="5 10 5 10" Content="下载" Command="{Binding DowloadCommand}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="搜索" Command="{Binding SearchCommand}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="删除" Command="{Binding DeleteFileCommand}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="120" Height="45" Margin="5 10 5 10" Content="翻页" Command="{Binding NextPageCommand}" />
+                <Button Width="120" Height="45" Margin="5 10 5 10" Content="搜索" Command="{Binding SearchCommand}"/>
+                <Button Width="120" Height="45" Margin="5 10 5 10" Content="删除" Command="{Binding DeleteFileCommand}"/>
+                <Button Width="120" Height="45" Margin="5 10 5 10" Content="翻页" Command="{Binding NextPageCommand}" />
             </StackPanel>
         </StackPanel>
     </Grid>

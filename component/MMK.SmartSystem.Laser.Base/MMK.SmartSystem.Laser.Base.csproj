@@ -340,6 +340,9 @@
     <Compile Include="MachineOperation\RemainCutPage.xaml.cs">
       <DependentUpon>RemainCutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MachineOperation\UserControls\ManualioControl.xaml.cs">
+      <DependentUpon>ManualioControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineOperation\ViewModel\AutoCutterCleanViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AutoFindSidePageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AuxGasCheckPageViewModel.cs" />
@@ -564,6 +567,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MachineOperation\UserControls\ManualioControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PopupWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -684,6 +691,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Style\DataGridDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Style\MainColors.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -707,6 +718,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\ControlTop.png" />
+    <Resource Include="Resources\Images\ControlBottom.png" />
+    <Resource Include="Resources\Images\ControlRight.png" />
+    <Resource Include="Resources\Images\ControlLeft.png" />
     <Resource Include="Resources\Images\afs.png" />
     <Resource Include="Resources\Images\cac.png" />
     <Resource Include="Resources\Images\cc.png" />

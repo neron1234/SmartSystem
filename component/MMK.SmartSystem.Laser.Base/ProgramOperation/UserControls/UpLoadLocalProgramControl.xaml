@@ -7,7 +7,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
-            d:DesignHeight="590" d:DesignWidth="900" Background="#2a2f34" Foreground="#787b8c" FontSize="20">
+            d:DesignHeight="590" d:DesignWidth="900"  Background="#FF3B3B3B" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -137,8 +137,8 @@
             </Grid>
 
             <StackPanel Grid.Row="2" Margin="18" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource BtnStyle}" Width="120" Height="42" Content="保存" Margin="0 0 10 0" Command="{Binding UpLoadCommand}"/>
-                <Button Style="{StaticResource BtnStyle}" Width="120" Height="42" Content="取消" Margin="10 0 0 0" Command="{Binding CancelCommand}"/>
+                <Button Style="{StaticResource IconBtnStyle}" Width="120" Height="42" Content="保存" Margin="0 0 10 0" Command="{Binding UpLoadCommand}"/>
+                <Button Style="{StaticResource IconBtnStyle}" Width="120" Height="42" Content="取消" Margin="10 0 0 0" Command="{Binding CancelCommand}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.RowSpan="2" Grid.Column="2" Margin="1 20 5 0">

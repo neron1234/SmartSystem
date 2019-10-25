@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="240" d:DesignWidth="680" Background="#2a2f34" Foreground="#787b8c" FontSize="20">
+             d:DesignHeight="240" d:DesignWidth="680"  Background="#FF3B3B3B" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -25,8 +25,8 @@
             <TextBox x:Name="SearchTxt" VerticalAlignment="Center" Height="35" Text="{Binding SearchText}"/>
         </StackPanel>
         <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Style="{StaticResource BtnStyle}" Width="140" Height="45" Content="搜索" Margin="0 0 15 0"  Command="{Binding SearchCommand}"/>
-            <Button Style="{StaticResource BtnStyle}" Width="140" Height="42" Content="取消" Margin="15 0 0 0"  Command="{Binding CancelCommand}"/>
+            <Button Style="{StaticResource IconBtnStyle}" Width="140" Height="45" Content="搜索" Margin="0 0 15 0"  Command="{Binding SearchCommand}"/>
+            <Button Style="{StaticResource IconBtnStyle}" Width="140" Height="42" Content="取消" Margin="15 0 0 0"  Command="{Binding CancelCommand}"/>
 
         </StackPanel>
     </StackPanel>

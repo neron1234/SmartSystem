@@ -7,12 +7,13 @@
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="1200" Foreground="#787b8c" Background="#2a2f34" FontSize="20"
+      d:DesignHeight="658" d:DesignWidth="1260" Background="#2a2f34"  FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
       Title="ProgramListPage">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/DataGridDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             
             <Style TargetType="TextBox">
@@ -34,58 +35,12 @@
                 </Setter>
             </Style>
 
-            <!--DataGrid样式-->
-            <Style TargetType="DataGrid">
-                <!--网格线颜色-->
-                <Setter Property="CanUserAddRows" Value="False" />
-                <Setter Property="CanUserDeleteRows" Value="False" />
-                <Setter Property="CanUserResizeColumns" Value="false"/>
-                <Setter Property="CanUserSortColumns" Value="False"/>
-                <Setter Property="Background" Value="#FFF7EDAD" />
-                <Setter Property="BorderBrush" Value="Transparent" />
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="HeadersVisibility" Value="Column" />
-                <Setter Property="HorizontalGridLinesBrush">
-                    <Setter.Value>
-                        <SolidColorBrush Color="#d6c79b"/>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="VerticalGridLinesBrush">
-                    <Setter.Value>
-                        <SolidColorBrush Color="#d6c79b"/>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <!--行样式触发-->
-            <!--背景色改变必须先设置cellStyle 因为cellStyle会覆盖rowStyle样式-->
-            <Style  TargetType="DataGridRow">
-                <Setter Property="Background" Value="#F2F2F2" />
-                <Setter Property="Height" Value="30"/>
-                <Setter Property="Foreground" Value="#CDD3D7" />
-                <Style.Triggers>
-                    <!--隔行换色-->
-                    <Trigger Property="AlternationIndex" Value="0" >
-                        <Setter Property="Background" Value="#202328" />
-                    </Trigger>
-                    <Trigger Property="AlternationIndex" Value="1" >
-                        <Setter Property="Background" Value="#2a2f34" />
-                    </Trigger>
-
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="#1600A3"/>
-                        <!--<Setter Property="Foreground" Value="White"/>-->
-                    </Trigger>
-                    <Trigger Property="IsSelected" Value="True">
-                        <Setter Property="Foreground" Value="Black"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="480"/>
-            <ColumnDefinition Width="720"/>
+            <ColumnDefinition Width="780"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
@@ -101,7 +56,7 @@
                 <ContentControl x:Name="MyListControl" Content="{Binding ListControl}" />
             </StackPanel>
         </Grid>
-        <StackPanel Margin="10" Grid.Column="2">
+        <StackPanel Margin="10" Grid.Column="2" >
             <ContentControl x:Name="MyInfoControl" Content="{Binding InfoControl}" />
         </StackPanel>
     </Grid>

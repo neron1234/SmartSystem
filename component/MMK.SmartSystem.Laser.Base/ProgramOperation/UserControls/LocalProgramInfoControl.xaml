@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="720" Foreground="#787b8c" Background="#2a2f34" FontSize="20">
+             d:DesignHeight="650" d:DesignWidth="720" Background="#FF3B3B3B" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <Style TargetType="Canvas">
             <Setter Property="Background" Value="#202328"/>
@@ -26,7 +26,7 @@
             <TextBlock Text="程序预览显示" Margin="10,5,10,0"/>
         </StackPanel>
         <Grid Grid.Row="1" x:Name="programPathGrid">
-            <RichTextBox Margin="20" Background="#202328" Foreground="#67686d" FontSize="15" IsReadOnly="True">
+            <RichTextBox Margin="20" Background="#282620" Foreground="#67686d" FontSize="15" IsReadOnly="True">
                 <FlowDocument>
                     <Paragraph>
                         <Run Text="{Binding PreviewText}"/>

@@ -36,14 +36,14 @@
         "Icon": "casing",
         "Sort": 4
       },
-      {
-        "Id": "Home.manual",
-        "Title": "手动",
-        "FullName": "",
-        "IsAuth": false,
-        "Icon": "manual",
-        "Sort": 5
-      },
+        {
+            "Id": "Home.manual",
+            "Title": "手动",
+            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.MainMachineOperationPage",
+            "IsAuth": false,
+            "Icon": "manual",
+            "Sort": 5
+        },
       {
         "Id": "Home.laser",
         "Title": "激光",

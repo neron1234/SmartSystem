@@ -75,24 +75,45 @@
 
     <Style x:Key="IconBtnStyle"  TargetType="Button">
         <Setter Property="Background" Value="#7b7979"/>
-        <Setter Property="Foreground" Value="#FF898A8B" />
+        <Setter Property="Foreground" Value="#282620" />
+        <Setter Property="FontFamily" Value="SourceHanSansCN-Bold"/>
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#303030" Direction="280" ShadowDepth="2" Opacity="0.5" BlurRadius="5"/>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}" >
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                <GradientStop Color="#b1b1b1" Offset="0.1" />
-                                <GradientStop Color="#a5a5a5" Offset="0.2" />
+                                <GradientStop Color="#dbdbdb" Offset="0.01" />
+                                <GradientStop Color="#b2b2b2" Offset="0.03" />
+                                <GradientStop Color="#a8a8a8" Offset="0.2" />
                                 <GradientStop Color="#9a9a9a" Offset="0.4" />
-                                <GradientStop Color="#7b7979" Offset="0.5" />
-                                <GradientStop Color="#716f6f" Offset="0.7" />
-                                <GradientStop Color="#646262" Offset="0.9" />
+                                <GradientStop Color="#8e8e8e" Offset="0.5" />
+                                <GradientStop Color="#878787" Offset="0.6" />
+                                <GradientStop Color="#7e7e7e" Offset="0.7" />
+                                <GradientStop Color="#727272" Offset="0.8" />
+                                <GradientStop Color="#696969" Offset="0.9" />
                             </LinearGradientBrush>
                         </Border.Background>
-                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                            <ContentPresenter.Resources>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Color="#DDDDDD" Direction="280" ShadowDepth="1.5" Opacity="1" BlurRadius="1" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -106,15 +127,91 @@
                             <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5">
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                        <GradientStop Color="#FF7C7A7A" Offset="0.1" />
-                                        <GradientStop Color="#FF919191" Offset="0.2" />
-                                        <GradientStop Color="#FF797979" Offset="0.4" />
-                                        <GradientStop Color="#FF5D5D5D" Offset="0.5" />
-                                        <GradientStop Color="#FF857F7F" Offset="0.7" />
-                                        <GradientStop Color="#FF777373" Offset="0.9" />
+                                        <GradientStop Color="#888888" Offset="0.1" />
+                                        <GradientStop Color="#6a6a6a" Offset="0.2" />
+                                        <GradientStop Color="#606060" Offset="0.5" />
+                                        <GradientStop Color="#555454" Offset="0.7" />
+                                        <GradientStop Color="#494848" Offset="0.9" />
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                </ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ControlBtnStyle"  TargetType="Button" BasedOn="{StaticResource IconBtnStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                        <Path x:Name="Path"
+                                  Data="M7876 16855l-5132 -5132c4725,-4725 12386,-4725 17112,0l-4964 4964c-1894,-1893 -4964,-1892 -6857,2 -55,54 -108,110 -159,166z "
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Uniform" >
+                            <Path.Fill>
+                                <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                    <GradientStop Color="#a8a8a8" Offset="0.1" />
+                                    <GradientStop Color="#9a9a9a" Offset="0.3" />
+                                    <GradientStop Color="#8e8e8e" Offset="0.5" />
+                                    <GradientStop Color="#878787" Offset="0.7" />
+                                    <GradientStop Color="#7e7e7e" Offset="0.9" />
+                                </LinearGradientBrush>
+                                
+                            </Path.Fill>
+                        </Path>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                                <Path x:Name="Path"
+                                  Data="M7876 16855l-5132 -5132c4725,-4725 12386,-4725 17112,0l-4964 4964c-1894,-1893 -4964,-1892 -6857,2 -55,54 -108,110 -159,166z"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Uniform" >
+                                    <Path.Fill>
+                                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                            <GradientStop Color="#888888" Offset="0.1" />
+                                            <GradientStop Color="#6a6a6a" Offset="0.2" />
+                                            <GradientStop Color="#606060" Offset="0.5" />
+                                            <GradientStop Color="#555454" Offset="0.7" />
+                                            <GradientStop Color="#494848" Offset="0.9" />
+                                        </LinearGradientBrush>
+                                    </Path.Fill>
+                                </Path>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                                <Path x:Name="Path"
+                                  Data="M7876 16855l-5132 -5132c4725,-4725 12386,-4725 17112,0l-4964 4964c-1894,-1893 -4964,-1892 -6857,2 -55,54 -108,110 -159,166z"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Uniform" >
+                                    <Path.Fill>
+                                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                            <GradientStop Color="#686868" Offset="0.1" />
+                                            <GradientStop Color="#5C5B5B" Offset="0.2" />
+                                            <GradientStop Color="#606060" Offset="0.5" />
+                                            <GradientStop Color="#555454" Offset="0.7" />
+                                            <GradientStop Color="#494848" Offset="0.9" />
+                                        </LinearGradientBrush>
+                                    </Path.Fill>
+                                </Path>
                             </Border>
                         </ControlTemplate>
                     </Setter.Value>
