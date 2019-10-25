@@ -21,7 +21,7 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
 
     public class BaseTranslate
     {
-        protected void Translate()
+        public void Translate()
         {
             var dict = SmartSystemCommonConsts.UserConfiguration.Localization.Values?.SmartSystem;
             if (dict != null)
@@ -87,54 +87,32 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
         }
 
     }
-    public class UserLoginHandler : BaseTranslate, IEventHandler<UserLoginEventData>, ITransientDependency
-    {
-        public void HandleEvent(UserLoginEventData eventData)
-        {
-            TokenAuthClient tokenAuthClient = new TokenAuthClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            try
-            {
-                var ts = tokenAuthClient.AuthenticateAsync(new AuthenticateModel() { UserNameOrEmailAddress = eventData.UserName, Password = eventData.Pwd }).Result;
-                string errorMessage = ts.Error?.Details;
-                if (ts.Success)
-                {
-                    SmartSystemCommonConsts.AuthenticateModel = ts.Result;
-                    //var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
-                    //errorMessage = obj2.Error?.Details;
-                    //if (obj2.Success)
-                    //{
-                    //    SmartSystemCommonConsts.UserConfiguration = obj2.Result;
-                    //    Translate();
-                    //    Messenger.Default.Send(new MainSystemNoticeModel
-                    //    {
-                    //        Tagret = eventData.Tagret,
-                    //        Error = "",
-                    //        Success = true,
-                    //        SuccessAction = eventData.SuccessAction,
-                    //        HashCode = eventData.HashCode
-                    //    });
-                    //    return;
-                    //}
-                }
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.Message,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
-        }
 
+    public class UserLoginHandler : BaseEventHandler<UserLoginEventData, AuthenticateResultModel>
+    {
+        public override RequestResult<AuthenticateResultModel> WebRequest(UserLoginEventData eventData)
+        {
+            TokenAuthClient tokenAuthClient = new TokenAuthClient(apiHost, httpClient);
+            return tokenAuthClient.AuthenticateAsync(new AuthenticateModel() { UserNameOrEmailAddress = eventData.UserName, Password = eventData.Pwd }).Result;
+            // 后续增加获取用户数据的 successAction
+            //var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
+            //errorMessage = obj2.Error?.Details;
+            //if (obj2.Success)
+            //{
+            //    SmartSystemCommonConsts.UserConfiguration = obj2.Result;
+            //    Translate();
+            //    Messenger.Default.Send(new MainSystemNoticeModel
+            //    {
+            //        Tagret = eventData.Tagret,
+            //        Error = "",
+            //        Success = true,
+            //        SuccessAction = eventData.SuccessAction,
+            //        HashCode = eventData.HashCode
+            //    });
+            //    return;
+            //}
+        }
     }
+
+
 }

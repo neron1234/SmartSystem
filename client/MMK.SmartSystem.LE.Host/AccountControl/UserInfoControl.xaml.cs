@@ -45,23 +45,17 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
 
             userViewModel.ChangeUserEvent += UserViewModel_ChangeUserEvent;
 
-            Messenger.Default.Register<MainSystemNoticeModel>(this, (model) => {
-                if (model.HashCode == this.GetHashCode()){
-                    if (model.Success){
-                        model.SuccessAction?.Invoke();
-                    }
-                }
-            });
+ 
         }
 
         private void UserViewModel_ChangeUserEvent(){
-            EventBus.Default.TriggerAsync(new UserLoginEventData(){
-                UserName = SmartSystemLEConsts.DefaultUser,
-                Pwd = SmartSystemLEConsts.DefaultPwd,
-                Tagret = ErrorTagretEnum.Window,
-                HashCode = this.GetHashCode(),
-                SuccessAction = LoginSuccess
-            });
+            //EventBus.Default.TriggerAsync(new UserLoginEventData(){
+            //    UserName = SmartSystemLEConsts.DefaultUser,
+            //    Pwd = SmartSystemLEConsts.DefaultPwd,
+            //    Tagret = ErrorTagretEnum.Window,
+            //    HashCode = this.GetHashCode(),
+            //    SuccessAction = LoginSuccess
+            //});
             WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
             webRouteClient.NavigateAsync("/");
             Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
@@ -69,7 +63,7 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
 
         public void LoginSuccess()
         {
-            EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
+           // EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
         }
 
         private void UpdatePwdBtn_Click(object sender, RoutedEventArgs e)

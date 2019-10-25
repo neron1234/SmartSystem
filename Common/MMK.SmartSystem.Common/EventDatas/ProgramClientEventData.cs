@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public class UpLoadProgramClientEventData : BaseErrorEventData
+    public class UpLoadProgramClientEventData : BaseApiEventData<object>
     {
         public FileParameter FileParameter { get; set; }
         public string ConnectId { get; set; }

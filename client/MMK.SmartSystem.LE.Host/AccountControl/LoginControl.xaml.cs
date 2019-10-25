@@ -44,29 +44,7 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
                 IsLogin = false
             };
             this.DataContext = LoginModel;
-            //Messenger.Default.Register<UserInfo>(this, (u) =>
-            // {
-            //     this.Dispatcher.InvokeAsync(() =>
-            //     {
-            //         Close();
-            //     });
-            // });
-
-            Messenger.Default.Register<MainSystemNoticeModel>(this, (ms) =>
-            {
-                if (ms.HashCode == this.GetHashCode())
-                {
-                    if (ms.Success)
-                    {
-                        ms.SuccessAction?.Invoke();
-                    }
-                    else
-                    {
-                        Error = ms.Error;
-                        ms.ErrorAction?.Invoke();
-                    }
-                }
-            });
+      
             Loaded += UserControl_Loaded;
 
         }
@@ -94,15 +72,7 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
         {
             var msg = string.Empty;
 
-            EventBus.Default.TriggerAsync(new UserLoginEventData()
-            {
-                UserName = LoginModel.Account,
-                Pwd = LoginModel.Pwd,
-                HashCode = this.GetHashCode(),
-                SuccessAction = SuccessAction,
-                Tagret = ErrorTagretEnum.UserControl,
-                ErrorAction = ErrorAction
-            });
+         
         }
 
         private void ErrorAction()
@@ -114,14 +84,6 @@ namespace MMK.SmartSystem.LE.Host.AccountControl
         {
             this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, false);
         }
-        private void SuccessAction()
-        {
-            EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
-            this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, false);
-            Messenger.Default.Send(new MainSystemNoticeModel() { EventType = EventEnum.RefreshAuth });
-            //WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            //webRouteClient.NavigateAsync("/");
-            //Messenger.Default.Send(new PageChangeModel() { Page = PageEnum.WebPage });
-        }
+      
     }
 }

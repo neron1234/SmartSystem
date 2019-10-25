@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public class GasEventData: BaseErrorEventData
+    public class GasEventData: BaseApiEventData<List<GasDto>>
     {
 
     }

@@ -17,65 +17,24 @@ using TokenAuthClient = MMK.SmartSystem.Common.SerivceProxy.TokenAuthClient;
 
 namespace MMK.SmartSystem.LE.Host.EventHandler
 {
-    public class UserLanguageHandler : BaseTranslate,IEventHandler<UserLanguageEventData>, ITransientDependency
+    public class UserLanguageHandler : BaseEventHandler<UserLanguageEventData, AbpUserConfiguration>
     {
-
-        public void HandleEvent(UserLanguageEventData eventData)
+        public override RequestResult<AbpUserConfiguration> WebRequest(UserLanguageEventData eventData)
         {
             if (string.IsNullOrEmpty(eventData.Culture))
             {
-                return;
+                return null;
             }
-
-            UserClientServiceProxy userClientService = new UserClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            try
+            UserClientServiceProxy userClientService = new UserClientServiceProxy(apiHost, httpClient);
+            userClientService.ChangeLanguageAsync(new ChangeUserLanguageDto() { LanguageName = eventData.Culture }).Wait();
+            var tokenAuthClient = new TokenAuthClient(apiHost, httpClient);
+            var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
+            if (obj2.Success)
             {
-                userClientService.ChangeLanguageAsync(new ChangeUserLanguageDto() { LanguageName = eventData.Culture }).Wait();
-                var tokenAuthClient = new TokenAuthClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-
-
-                var obj2 = tokenAuthClient.GetUserConfiguraionAsync().Result;
-                if (obj2.Success)
-                {
-                    SmartSystemCommonConsts.UserConfiguration = obj2.Result;
-                    Translate();
-                }
-                else
-                {
-                    Messenger.Default.Send(new MainSystemNoticeModel
-                    {
-                        Tagret = eventData.Tagret,
-                        Error = obj2.Error?.Message,
-                        ErrorAction = eventData.ErrorAction,
-                        HashCode = eventData.HashCode
-
-                    });
-                }
+                SmartSystemCommonConsts.UserConfiguration = obj2.Result;
+                new BaseTranslate().Translate();
             }
-            catch (ApiException apiExcaption)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = apiExcaption.Message,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-
-                });
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.Message,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-
-                });
-
-            }
-
+            return obj2;
         }
     }
 }

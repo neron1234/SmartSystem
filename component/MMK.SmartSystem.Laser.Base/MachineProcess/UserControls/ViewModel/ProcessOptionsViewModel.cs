@@ -17,7 +17,7 @@ using System.Windows.Threading;
 
 namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
 {
-    public class ProcessOptionsViewModel:ViewModelBase
+    public class ProcessOptionsViewModel : ViewModelBase
     {
         private int _SelectedMaterialId;
         public int SelectedMaterialId
@@ -28,12 +28,20 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                 if (_SelectedMaterialId != value)
                 {
                     _SelectedMaterialId = value;
+                    var node = MaterialTypeList.FirstOrDefault(d => d.MaterialCode == _SelectedMaterialId);
+                    MaterialThicknessList.Clear();
+                    if (node != null && node.ThicknessNodes.Count > 0)
+                    {
+                        node.ThicknessNodes.ToList().ForEach(d => MaterialThicknessList.Add(d));
+                        if (MaterialThicknessList.Count > 0)
+                        {
+                            SelectedMaterialGroupId = (int)MaterialThicknessList.First().Id;
+                        }
+                    }
                     RaisePropertyChanged(() => SelectedMaterialId);
                 }
             }
         }
-
-        public ObservableCollection<MeterialGroupThicknessDto> MaterialTypeList { get; set; }
 
         private int _SelectedMaterialGroupId;
         public int SelectedMaterialGroupId
@@ -45,71 +53,28 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                 {
                     _SelectedMaterialGroupId = value;
                     RaisePropertyChanged(() => SelectedMaterialGroupId);
+                    MaterialGroupChangeEvent?.Invoke(SelectedMaterialGroupId);
                 }
             }
         }
-
-        public ObservableCollection<ThicknessItem> MaterialThicknessList { get; set; }
-
-        public ProcessOptionsViewModel()
-        {
-            this.MaterialTypeList = new ObservableCollection<MeterialGroupThicknessDto>();
-            this.MaterialThicknessList = new ObservableCollection<ThicknessItem>();
-            RegisterMaterial();
-        }
-
-        public void RegisterMaterial()
-        {
-            Task.Factory.StartNew(() => { 
-                Messenger.Default.Register<PagedResultDtoOfMeterialGroupThicknessDto>(this, (results) =>{
-                    this.MaterialTypeList.Clear();
-                    foreach (var item in results.Items){
-                        this.MaterialTypeList.Add(item);
-                    }
-                    if (this.MaterialTypeList.Count > 0){
-                        var fistMtList = this.MaterialTypeList.First();
-                        this.MaterialThicknessList = new ObservableCollection<ThicknessItem>(fistMtList.ThicknessNodes.ToList());
-                        this.SelectedMaterialId = (int)fistMtList.MaterialCode;
-                        this.SelectedMaterialGroupId = (int)fistMtList.ThicknessNodes.First().Id;
-
-                        Messenger.Default.Send(this.SelectedMaterialGroupId);
-                    }
-                });
-            });
-        }
-
-        public void UnRegisterMaterial()
-        {
-            Messenger.Default.Unregister<PagedResultDtoOfMeterialGroupThicknessDto>(this);
-        }
-
-        public ICommand MTypeSelectionCommand{
-            get{
-                return new RelayCommand(() => {
-                    if (this.MaterialTypeList.Count > 0)
-                    {
-                        var tNodes = this.MaterialTypeList.FirstOrDefault(n => n.MaterialCode == this.SelectedMaterialId).ThicknessNodes.ToList();
-                        this.MaterialThicknessList = new ObservableCollection<ThicknessItem>(tNodes);
-                        this.SelectedMaterialGroupId = (int)tNodes.First().Id;
-                    }
-                });
-            }
-        }
-
         public ICommand SearchCommand
         {
-            get{
-                return new RelayCommand(() =>{
-                    Messenger.Default.Send(this.SelectedMaterialGroupId);
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    MaterialGroupChangeEvent?.Invoke(SelectedMaterialGroupId);
                 });
             }
         }
+
         public ICommand LastColumnsCommand
         {
             get
             {
-                return new RelayCommand(() => {
-                    Messenger.Default.Send("LastColumns");
+                return new RelayCommand(() =>
+                {
+                    MoveGridHeadEvent?.Invoke(false);
                 });
             }
         }
@@ -117,10 +82,35 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
         {
             get
             {
-                return new RelayCommand(() => {
-                    Messenger.Default.Send("NextColumns");
+                return new RelayCommand(() =>
+                {
+                    MoveGridHeadEvent?.Invoke(true);
                 });
             }
         }
+
+        public event Action<bool> MoveGridHeadEvent;
+        public event Action<int> MaterialGroupChangeEvent;
+        public ObservableCollection<MeterialGroupThicknessDto> MaterialTypeList { get; set; }
+        public ObservableCollection<ThicknessItem> MaterialThicknessList { get; set; }
+        public ProcessOptionsViewModel()
+        {
+            MaterialTypeList = new ObservableCollection<MeterialGroupThicknessDto>();
+            MaterialThicknessList = new ObservableCollection<ThicknessItem>();
+        }
+
+        public void InitMaterialData(List<MeterialGroupThicknessDto> list)
+        {
+            MaterialTypeList.Clear();
+            list.ForEach(d => MaterialTypeList.Add(d));
+            MaterialThicknessList.Clear();
+            if (list.Count > 0)
+            {
+                SelectedMaterialId = (int)list[0].MaterialCode;
+             
+            }
+        }
     }
+
+
 }

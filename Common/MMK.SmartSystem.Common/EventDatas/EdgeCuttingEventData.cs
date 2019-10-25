@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public class EdgeCuttingByGroupIdEventData : BaseErrorEventData
+    public class EdgeCuttingByGroupIdEventData : BaseApiEventData<List<EdgeCuttingDataDto>>
     {
-        public int machiningDataGroupId { get; set; }   
+        public int machiningDataGroupId { get; set; }
     }
-    public class UpdateEdgeCuttingEventData : BaseErrorEventData
+    public class UpdateEdgeCuttingEventData : BaseApiEventData<EdgeCuttingDataDto>
     {
         public UpdateEdgeCuttingDataDto UpdateEdgeCuttingData { get; set; }
     }

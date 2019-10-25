@@ -8,31 +8,30 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-  
-    public class BaseErrorEventData : EventData
+
+    public class BaseApiEventData<T> : EventData
     {
         public ErrorTagretEnum Tagret { get; set; }
 
         public int HashCode { get; set; }
-
-        public Action SuccessAction { set; get; }
+        public Action<T> SuccessAction { set; get; }
 
         public Action ErrorAction { set; get; }
-
     }
-   
-    public class UserInfoEventData : BaseErrorEventData
+
+
+    public class UserInfoEventData : BaseApiEventData<UserInfo>
     {
         public int UserId { get; set; }
     }
-    public class UserLoginEventData : BaseErrorEventData
+    public class UserLoginEventData : BaseApiEventData<AuthenticateResultModel>
     {
         public string UserName { get; set; }
 
         public string Pwd { get; set; }
     }
 
-    public class UserLanguageEventData : BaseErrorEventData
+    public class UserLanguageEventData : BaseApiEventData<AbpUserConfiguration>
     {
         public string Culture { get; set; }
 

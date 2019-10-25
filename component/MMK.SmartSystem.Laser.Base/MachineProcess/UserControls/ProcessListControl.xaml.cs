@@ -25,69 +25,58 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
     public partial class ProcessListControl : UserControl
     {
         public ProcessListViewModel pcListVewModel { get; set; }
+
+
         public ProcessListControl()
         {
             InitializeComponent();
             this.DataContext = pcListVewModel = new ProcessListViewModel();
             this.TotolWidth = this.ProcessDataGrid.Width;
-            Messenger.Default.Register<PagedResultDtoOfCuttingDataDto>(this, (result) =>{
-                pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
-                LoadAllDataColum();
-            });
-            Messenger.Default.Register<PagedResultDtoOfEdgeCuttingDataDto>(this, (result) =>
+
+        }
+
+        public void RefreshGroupData<T>(List<T> data)
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
             {
-                pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
-                LoadAllDataColum();
-            });
-            Messenger.Default.Register<PagedResultDtoOfPiercingDataDto>(this, (result) =>
-            {
-                pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
-                LoadAllDataColum();
-            });
-            Messenger.Default.Register<PagedResultDtoOfSlopeControlDataDto>(this, (result) =>
-            {
-                pcListVewModel.PageListData = new ObservableCollection<object>(result.Items.ToList());
-                LoadAllDataColum();
-            });
-            Messenger.Default.Register<string>(this, (str) => {
-                if (str == "NextColumns")
+                pcListVewModel.PageListData.Clear();
+                data.ForEach(d =>
                 {
-                    MoveDataGridHeader(true);
-                }
-                else if(str == "LastColumns")
-                {
-                    MoveDataGridHeader(false);
-                }
-            });
+                    pcListVewModel.PageListData.Add(d);
+
+                });
+                LoadAllDataColum();
+
+            }));
+
         }
 
         private void LoadAllDataColum()
         {
             var properties = pcListVewModel.PageListData.First().GetType().GetProperties();
-            this.ProcessDataGrid.Dispatcher.Invoke(new Action(() => {
-                ProcessDataGrid.Columns.Clear();
-                foreach (var item in properties)
+            ProcessDataGrid.Columns.Clear();
+            foreach (var item in properties)
+            {
+                if (pcListVewModel.ColumnArray.ContainsKey(item.Name))
                 {
-                    if (pcListVewModel.ColumnArray.ContainsKey(item.Name))
+                    var headerName = pcListVewModel.ColumnArray[item.Name];
+                    if (headerName.Length < 4)
                     {
-                        var headerName = pcListVewModel.ColumnArray[item.Name];
-                        if (headerName.Length < 4)
-                        {
-                            ColumWidth = 80;
-                        }
-                        else if (headerName.Length > 4)
-                        {
-                            ColumWidth = 120;
-                        }
-                        ProcessDataGrid.Columns.Add(new DataGridTextColumn()
-                        {
-                            Header = headerName,
-                            Binding = new Binding(item.Name),
-                            Width = ColumWidth
-                        });
+                        ColumWidth = 80;
                     }
+                    else if (headerName.Length > 4)
+                    {
+                        ColumWidth = 120;
+                    }
+                    ProcessDataGrid.Columns.Add(new DataGridTextColumn()
+                    {
+                        Header = headerName,
+                        Binding = new Binding(item.Name),
+                        Width = ColumWidth
+                    });
                 }
-            }));
+            }
+
             MoveDataGridHeader(false);
         }
 
@@ -103,22 +92,29 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
         private List<DataColumn> DataColumns { get; set; }
 
         private void SetDtaColumHeader(bool next)
-        {              
+        {
             int count = DataColumns.Count;
             int pageSize = 0;
-            
-            if (count % PageNumber == 0){
+
+            if (count % PageNumber == 0)
+            {
                 pageSize = count / PageNumber;
-            }else{
+            }
+            else
+            {
                 pageSize = count / PageNumber + 1;
             }
             TotalPage = pageSize;
-            if (next && CurrentPage >= 1 && CurrentPage < TotalPage){
+            if (next && CurrentPage >= 1 && CurrentPage < TotalPage)
+            {
                 CurrentPage++;
-            }else{
+            }
+            else
+            {
                 CurrentPage = 1;
             }
-            this.ProcessDataGrid.Dispatcher.Invoke(new Action(() => {
+            this.ProcessDataGrid.Dispatcher.Invoke(new Action(() =>
+            {
                 var list = DataColumns.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList();
                 ProcessDataGrid.Columns.Clear();
                 foreach (var item in list)
@@ -128,14 +124,15 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                         Header = item.Header,
                         Binding = new Binding(item.BindingName),
                         Width = item.Width
-                    }) ;
+                    });
                 }
             }));
         }
 
         private void LoadColum()
         {
-            if (pcListVewModel.PageListData.Count == 0){
+            if (pcListVewModel.PageListData.Count == 0)
+            {
                 return;
             }
             DataColumns = new List<DataColumn>();
@@ -149,7 +146,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                     {
                         ColumWidth = 80;
                     }
-                    else if(headerName.Length > 4)
+                    else if (headerName.Length > 4)
                     {
                         ColumWidth = 120;
                     }
@@ -176,22 +173,24 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
         }
         #endregion
 
-        private void MoveDataGridHeader(bool next)
+        public void MoveDataGridHeader(bool next)
         {
-            this.ProcessDataGrid.Dispatcher.Invoke(new Action(() =>
+            if (ProcessDataGrid.Columns.Count == 0)
             {
-                if (ProcessDataGrid.Columns.Count == 0) {
-                    return;
-                }
-                if (next) {
-                    ProcessDataGrid.ScrollIntoView(null, ProcessDataGrid.Columns.Last());
-                } else {
-                    ProcessDataGrid.ScrollIntoView(null, ProcessDataGrid.Columns.First());
-                }
-            }));
+                return;
+            }
+            if (next)
+            {
+                ProcessDataGrid.ScrollIntoView(null, ProcessDataGrid.Columns.Last());
+            }
+            else
+            {
+                ProcessDataGrid.ScrollIntoView(null, ProcessDataGrid.Columns.First());
+            }
         }
 
-        private void ProcessDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e){
+        private void ProcessDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
             var selected = ((DataGrid)sender).SelectedValue;
             if (selected == null) return;
 

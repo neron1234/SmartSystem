@@ -256,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\AutoRefreshPage.cs" />
+    <Compile Include="Base\BaseEventHandler.cs" />
     <Compile Include="Base\SignalrPage.cs" />
     <Compile Include="EventDatas\CuttingDataEventData.cs" />
     <Compile Include="EventDatas\EdgeCuttingEventData.cs" />

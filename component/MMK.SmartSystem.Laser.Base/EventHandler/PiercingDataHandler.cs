@@ -13,83 +13,29 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Laser.Base.EventHandler
 {
-    public class UpdatePiercingDataHandler : IEventHandler<UpdatePiercingDataEventData>, ITransientDependency
+    public class UpdatePiercingDataHandler : BaseEventHandler<UpdatePiercingDataEventData, PiercingDataDto>
     {
-        public void HandleEvent(UpdatePiercingDataEventData eventData)
+        public override RequestResult<PiercingDataDto> WebRequest(UpdatePiercingDataEventData eventData)
         {
-            PiercingDataClientServiceProxy piercingDataClientServiceProxy = new PiercingDataClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            string errorMessage = string.Empty;
-            try
-            {
-                var rs = piercingDataClientServiceProxy.UpdateAsync(eventData.UpdatePiercingData).Result;
-                errorMessage = rs.Error?.Details;
-                if (rs.Success)
-                {
-                    //Messenger.Default.Send(rs.Result);
-                    Messenger.Default.Send(new MainSystemNoticeModel
-                    {
-                        Tagret = eventData.Tagret,
-                        Success = true,
-                        SuccessAction = eventData.SuccessAction,
-                        HashCode = eventData.HashCode
-                    });
-                }
-                else
-                {
-                    Messenger.Default.Send(new MainSystemNoticeModel
-                    {
-                        Tagret = eventData.Tagret,
-                        Error = errorMessage,
-                        ErrorAction = eventData.ErrorAction,
-                        HashCode = eventData.HashCode
-                    });
-                }
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.ToString(),
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
+            PiercingDataClientServiceProxy piercingDataClientServiceProxy = new PiercingDataClientServiceProxy(apiHost, httpClient);
+            return piercingDataClientServiceProxy.UpdateAsync(eventData.UpdatePiercingData).Result;
         }
     }
 
-    public class PiercingDataHandler : IEventHandler<PiercingDataByGroupIdEventData>, ITransientDependency
+    public class PiercingDataHandler : BaseEventHandler<PiercingDataByGroupIdEventData, List<PiercingDataDto>>
     {
-        public void HandleEvent(PiercingDataByGroupIdEventData eventData)
+        public override RequestResult<List<PiercingDataDto>> WebRequest(PiercingDataByGroupIdEventData eventData)
         {
-            PiercingDataClientServiceProxy piercingDataClientServiceProxy = new PiercingDataClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            string errorMessage = string.Empty;
-            try
+            PiercingDataClientServiceProxy piercingDataClientServiceProxy = new PiercingDataClientServiceProxy(apiHost, httpClient);
+            var res = piercingDataClientServiceProxy.GetAllAsync(eventData.machiningDataGroupId, 0, 50).Result;
+            return new RequestResult<List<PiercingDataDto>>()
             {
-                var rs = piercingDataClientServiceProxy.GetAllAsync(eventData.machiningDataGroupId,0,50).Result;
-                errorMessage = rs.Error?.Details;
-                if (rs.Success)
-                {
-                    Messenger.Default.Send(rs.Result);
-                }
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.ToString(),
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-                });
-            }
+                Result = res.Result.Items.ToList(),
+                Error = res.Error,
+                Success = res.Success,
+                TargetUrl = res.TargetUrl,
+                UnAuthorizedRequest = res.UnAuthorizedRequest
+            };
         }
     }
 }

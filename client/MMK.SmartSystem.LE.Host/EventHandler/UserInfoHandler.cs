@@ -9,48 +9,24 @@ using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.LE.Host.EventHandler
 {
-    public class UserInfoHandler : IEventHandler<UserInfoEventData>, ITransientDependency
+    public class UserInfoHandler : BaseEventHandler<UserInfoEventData, UserInfo>
     {
-        public void HandleEvent(UserInfoEventData eventData)
+        public override RequestResult<UserInfo> WebRequest(UserInfoEventData eventData)
         {
-            UserClientServiceProxy userClientService = new UserClientServiceProxy(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            string errorMessage = "";
-            try
+            UserClientServiceProxy userClientService = new UserClientServiceProxy(apiHost, httpClient);
+            var res = userClientService.GetAsync(eventData.UserId).Result;
+            if (res.Success)
             {
-                var rs = userClientService.GetAsync(eventData.UserId).Result;
-                errorMessage = rs.Error?.Details;
-
-                if (rs.Success)
-                {
-                    SmartSystemCommonConsts.UserInfo = rs.Result;
-                    Messenger.Default.Send(SmartSystemCommonConsts.UserInfo);
-                    return;
-                }
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = errorMessage,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-
-                });
+                SmartSystemCommonConsts.UserInfo = res.Result;
+                Messenger.Default.Send(SmartSystemCommonConsts.UserInfo);
             }
-            catch (Exception ex)
-            {
-                Messenger.Default.Send(new MainSystemNoticeModel
-                {
-                    Tagret = eventData.Tagret,
-                    Error = ex.Message,
-                    ErrorAction = eventData.ErrorAction,
-                    HashCode = eventData.HashCode
-
-                });
-            }
+            return res;
         }
     }
 }
