@@ -328,6 +328,9 @@
     <Compile Include="MachineOperation\LaserStatePage.xaml.cs">
       <DependentUpon>LaserStatePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MachineOperation\MainMachineOperationPage.xaml.cs">
+      <DependentUpon>MainMachineOperationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineOperation\ManualFindSidePage.xaml.cs">
       <DependentUpon>ManualFindSidePage.xaml</DependentUpon>
     </Compile>
@@ -542,6 +545,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MachineOperation\LaserStatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineOperation\MainMachineOperationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
