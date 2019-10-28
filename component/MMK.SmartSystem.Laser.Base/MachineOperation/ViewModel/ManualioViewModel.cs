@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MMK.SmartSystem.Laser.Base.MachineOperation.UserControls.ViewModel
+namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
 {
     public class ManualioViewModel:ViewModelBase
     {

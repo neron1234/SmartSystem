@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation"
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="1200" Foreground="White" Background="#2a2f34" FontSize="18"
+      xmlns:usercontrols="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
+       d:DesignHeight="658" d:DesignWidth="1260" Background="#3b3b3b" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
       Title="ManualFindSidePage">
 
     <Page.Resources>
@@ -19,11 +20,14 @@
     
     <Grid Margin="5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="260"/>
             <RowDefinition Height="180"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4">
+            <usercontrols:ManualHeaderControl />
+        </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="350"/>

@@ -5,8 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation"
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
+      xmlns:usercontrols="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="1200" Foreground="White" Background="#2a2f34" FontSize="18"
+       d:DesignHeight="658" d:DesignWidth="1260" Background="#3b3b3b" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
       Title="AutoCutterCleanPage">
 
     <Page.Resources>
@@ -17,17 +18,20 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Margin="5">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
+            <RowDefinition Height="40" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4">
+            <usercontrols:ManualHeaderControl />
+        </StackPanel>
 
-        <Grid Grid.Row="1" Grid.Column="0">
+        <Grid Grid.Column="0"  Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="360"/>
                 <RowDefinition Height="50"/>
@@ -41,7 +45,7 @@
                         HorizontalAlignment="Center" />
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="2" Margin="15,0,0,0">
+        <Grid Grid.Column="1" Grid.Row="1" Margin="15,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="30"/>

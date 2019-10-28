@@ -10,6 +10,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.LE.Host;component/Resources/PathGeometry.xaml"/>
                 <ResourceDictionary Source="/MMK.SmartSystem.LE.Host;component/Resources/BtnStyle.xaml"/>
+                <ResourceDictionary Source="/MMK.SmartSystem.LE.Host;component/Resources/DefaultStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

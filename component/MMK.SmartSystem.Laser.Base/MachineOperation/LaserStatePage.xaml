@@ -8,8 +8,8 @@
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       xmlns:custom="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
       mc:Ignorable="d" 
-      d:DesignHeight="860" d:DesignWidth="1600"
-      Title="LaserStatePage" Background="#2a2f34">
+      d:DesignHeight="658" d:DesignWidth="1260" Background="#3b3b3b" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
+      Title="LaserStatePage" >
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

@@ -39,7 +39,7 @@
         {
             "Id": "Home.manual",
             "Title": "手动",
-            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.MainMachineOperationPage",
+            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.MaualioPage",
             "IsAuth": false,
             "Icon": "manual",
             "Sort": 5

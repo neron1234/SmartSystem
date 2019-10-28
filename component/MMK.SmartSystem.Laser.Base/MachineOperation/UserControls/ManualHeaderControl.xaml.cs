@@ -1,4 +1,4 @@
-﻿using Abp.Dependency;
+﻿using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +14,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MMK.SmartSystem.Laser.Base.MachineOperation
+namespace MMK.SmartSystem.Laser.Base.MachineOperation.UserControls
 {
     /// <summary>
-    /// MainMachineOperationPage.xaml 的交互逻辑
+    /// ManualHeaderControl.xaml 的交互逻辑
     /// </summary>
-    public partial class MainMachineOperationPage : Page, ITransientDependency
+    public partial class ManualHeaderControl : UserControl
     {
-        public MainMachineOperationPage()
+        public ManualHeaderControl()
         {
             InitializeComponent();
         }

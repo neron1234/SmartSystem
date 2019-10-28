@@ -329,22 +329,19 @@
     <Compile Include="MachineOperation\LaserStatePage.xaml.cs">
       <DependentUpon>LaserStatePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MachineOperation\MainMachineOperationPage.xaml.cs">
-      <DependentUpon>MainMachineOperationPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MachineOperation\ManualFindSidePage.xaml.cs">
       <DependentUpon>ManualFindSidePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MachineOperation\ManuelChangeWorkStationPage.xaml.cs">
-      <DependentUpon>ManuelChangeWorkStationPage.xaml</DependentUpon>
+    <Compile Include="MachineOperation\MaualioPage.xaml.cs">
+      <DependentUpon>MaualioPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MachineOperation\RemainCutPage.xaml.cs">
       <DependentUpon>RemainCutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MachineOperation\UserControls\ManualioControl.xaml.cs">
-      <DependentUpon>ManualioControl.xaml</DependentUpon>
+    <Compile Include="MachineOperation\UserControls\ManualHeaderControl.xaml.cs">
+      <DependentUpon>ManualHeaderControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MachineOperation\UserControls\ViewModel\ManualioViewModel.cs" />
+    <Compile Include="MachineOperation\ViewModel\ManualioViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AutoCutterCleanViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AutoFindSidePageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AuxGasCheckPageViewModel.cs" />
@@ -553,15 +550,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MachineOperation\MainMachineOperationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MachineOperation\ManualFindSidePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MachineOperation\ManuelChangeWorkStationPage.xaml">
+    <Page Include="MachineOperation\MaualioPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -569,7 +562,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MachineOperation\UserControls\ManualioControl.xaml">
+    <Page Include="MachineOperation\UserControls\ManualHeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -795,6 +788,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomControl\Popup\Themes\" />
+    <Folder Include="MachineOperation\UserControls\ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

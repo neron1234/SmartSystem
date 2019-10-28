@@ -6,4 +6,20 @@
         <ResourceDictionary Source="ContextMenuStyle.xaml" />
         <ResourceDictionary Source="ComboBoxStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="NoMouseOverButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

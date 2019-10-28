@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="720"  Background="#FF3B3B3B" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3">
+             d:DesignHeight="650" d:DesignWidth="720"  Background="#FF3B3B3B" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#939393">
     <UserControl.Resources>
         <Style TargetType="Canvas">
             <Setter Property="Background" Value="#282620"/>
@@ -16,10 +16,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <StackPanel Margin="10">
-            <TextBlock Text="程序缩略图显示" Margin="10,5,10,0"/>
+            <TextBlock Text="程序缩略图显示" Margin="10,5,10,0" FontSize="20"/>
             <Grid>
                 <Canvas x:Name="Benchmark" Height="460" Margin="10"  RenderTransformOrigin="1,1" ClipToBounds="True">
                     <cc:ZoomableCanvas x:Name="MyCanvas" 
@@ -30,22 +33,52 @@
                 </Canvas>
             </Grid>
             <Grid Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="{Binding SelectedProgram.Name}" Margin="0 0 0 8" FontSize="12"/>
-                    <TextBlock Text="材料类型:合成金属" Margin="0 0 0 8" FontSize="12"/>
-                    <TextBlock Text="板材厚度:28mm" Margin="0 0 0 8" FontSize="12"/>
-                    <TextBlock Text="板材尺寸:150cm*250cm" Margin="0 0 0 8" FontSize="12"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="已用尺寸:99cm/150cm" Margin="0 0 0 8" FontSize="12"/>
-                    <TextBlock Text="切割总长度:21cm/250cm" Margin="0 0 0 8" FontSize="12"/>
-                    <TextBlock Text="穿孔次数:6" Margin="0 0 0 8" FontSize="13"/>
-                    <TextBlock Text="加工时间:8小时35分47秒" Margin="0 0 0 8" FontSize="12"/>
-                </StackPanel>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" >
+                    <Border BorderThickness="0 0 0 1" BorderBrush="#575757">
+                        <WrapPanel Orientation="Horizontal">
+                            <TextBlock Text="程序名称: " Width="54" Margin="0 5 0 5"/>
+                            <TextBlock Text="{Binding SelectedProgram.Name}" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
+                            <TextBlock Text="已用尺寸: " Margin="200 5 0 5" />
+                            <TextBlock Text="99cm/150cm" Margin="0 5 0 5" Foreground="#fdcd00"/>
+                        </WrapPanel>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="1" >
+                    <Border BorderThickness="0 0 0 1" BorderBrush="#575757">
+                        <WrapPanel Orientation="Horizontal">
+                            <TextBlock Text="材料类型: " Margin="0 5 0 5" />
+                            <TextBlock Text="合成金属" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
+                            <TextBlock Text="切割总长度:" Margin="200 5 0 5" />
+                            <TextBlock Text=" 21cm/250cm" Margin="0 5 0 5"  Width="150" Foreground="#fdcd00"/>
+                        </WrapPanel>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="2" >
+                    <Border BorderThickness="0 0 0 1" BorderBrush="#575757">
+                        <WrapPanel Orientation="Horizontal">
+                            <TextBlock Text="板材厚度: " Margin="0 5 0 5" />
+                            <TextBlock Text="28mm" Margin="0 5 0 5"  Width="96" Foreground="#fdcd00"/>
+                            <TextBlock Text="穿孔次数: " Margin="200 5 0 5" />
+                            <TextBlock Text="6" Margin="0 5 0 5"  Width="96" Foreground="#fdcd00"/>
+                        </WrapPanel>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="3">
+                    <Border BorderThickness="0 0 0 1" BorderBrush="#575757">
+                        <WrapPanel Orientation="Horizontal">
+                            <TextBlock Text="板材尺寸: " Margin="0 5 0 5" />
+                            <TextBlock Text="150cm * 250cm" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
+                            <TextBlock Text="加工时间: " Margin="200 5 0 5" />
+                            <TextBlock Text="8小时35分47秒" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
+                        </WrapPanel>
+                    </Border>
+                </Grid>
             </Grid>
         </StackPanel>
     </Grid>

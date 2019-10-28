@@ -1,5 +1,5 @@
-﻿using MMK.SmartSystem.Common.Base;
-using MMK.SmartSystem.WebCommon.DeviceModel;
+﻿using Abp.Dependency;
+using MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,28 +18,15 @@ using System.Windows.Shapes;
 namespace MMK.SmartSystem.Laser.Base.MachineOperation
 {
     /// <summary>
-    /// ManuelChangeWorkStationPage.xaml 的交互逻辑
+    /// MaualioPage.xaml 的交互逻辑
     /// </summary>
-    public partial class ManuelChangeWorkStationPage : SignalrPage
+    public partial class MaualioPage : Page, ITransientDependency
     {
-        /// <summary>
-        /// 手动交换工作台
-        /// </summary>
-        public ManuelChangeWorkStationPage()
+        public ManualioViewModel mioVm { get; set; }
+        public MaualioPage()
         {
             InitializeComponent();
-        }
-       
-
-    
-
-        public override List<object> GetResultViewModelMap()
-        {
-            return default;
-        }
-
-        public override void CncOnError(string message)
-        {
+            this.DataContext = mioVm = new ManualioViewModel();
         }
     }
 }

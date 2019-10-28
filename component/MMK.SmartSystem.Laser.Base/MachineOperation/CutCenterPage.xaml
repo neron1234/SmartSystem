@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation"
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       mc:Ignorable="d" 
-       d:DesignHeight="500" d:DesignWidth="1200" Foreground="White" Background="#2a2f34" FontSize="18"
+       xmlns:usercontrols="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
+       d:DesignHeight="658" d:DesignWidth="1260" Background="#3b3b3b" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
       Title="CutCenterPage">
 
     <Page.Resources>
@@ -17,83 +18,67 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Margin="5">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <Grid Grid.Row="1" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="360"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="100*"/>
-            </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4">
+            <usercontrols:ManualHeaderControl />
+        </StackPanel>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="72*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="28*"/>
+            </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderBrush="#FF323232" BorderThickness="0" Background="Transparent">
                 <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/cc.png"/>
             </Border>
-
-            <Button Grid.Row="2" Width="200" Height="60" VerticalAlignment="Center" Content="MANUALSTART" 
-                        HorizontalAlignment="Center" Style="{StaticResource BtnStyle}"/>
+            <StackPanel Background="#000000" Grid.Column="1" />
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition MaxHeight="58"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="5 10 0 5">
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="功率(W): " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="频率(Hz): " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="占空比(%): " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="时间(sec): " VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="0 10 5 5">
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="2000" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="1500" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="45" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="0.8" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource IconBtnStyle}" Content="割嘴对中" FontSize="24" Height="59" Width="358" />
+                </StackPanel>
+            </Grid>
         </Grid>
-
-        <Grid Grid.Column="1" Grid.Row="2" Margin="15,0,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="POWER" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="2" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding PC}" Foreground="Yellow" />
-
-            <StackPanel Grid.Row="3"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="FREQ" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="4" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                      Text="{Binding FR}" Foreground="Yellow" />
-
-            <StackPanel Grid.Row="5"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="DUTYCYCLE" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="6" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                      Text="{Binding DU}" Foreground="Yellow" />
-
-            <StackPanel Grid.Row="7"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="TIME" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="8" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                      Text="{Binding TIME}" Foreground="Yellow" />
-        </Grid>
-
     </Grid>
 </base:SignalrPage>
