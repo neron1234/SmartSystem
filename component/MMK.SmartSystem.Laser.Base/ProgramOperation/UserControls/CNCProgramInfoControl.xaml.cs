@@ -39,6 +39,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         /// <param name="e"></param>
         private void RegisterDrawProgram()
         {
+            Image image = new Image();
+            image.Source = new BitmapImage(new Uri("pack://application:,,,/MMK.SmartSystem.Laser.Base;component/Resources/Images/缩略图.bmp"));
+            ImageBrush ib = new ImageBrush();
+            ib.ImageSource = image.Source;
+            MyCanvas.Background = ib;
+
+
             Messenger.Default.Register<ProgramViewModel>(this, (pInfo) => {
 
                 cncProgramVm.SelectedProgram = pInfo;

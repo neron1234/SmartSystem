@@ -25,7 +25,7 @@
                     <cc:ZoomableCanvas x:Name="MyCanvas" 
                                         RealizationLimit="1000"
                                         RealizationRate="10"
-                                        RealizationPriority="Background" Height="460" Width="680" >
+                                        RealizationPriority="Background" Height="460" Width="680"  >
                     </cc:ZoomableCanvas>
                 </Canvas>
             </Grid>

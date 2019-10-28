@@ -63,21 +63,29 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             });
             Messenger.Default.Register<SearchInfo>(this, (sInfo) => {
                 this.ProgramList.Clear();
-                if (string.IsNullOrEmpty(sInfo.Search)){
+                if (string.IsNullOrEmpty(sInfo.Search)) {
                     DataPaging();
                     return;
                 }
-                foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(sInfo.Search))){
+                foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(sInfo.Search))) {
                     this.ProgramList.Add(item);
                 }
             });
-            Messenger.Default.Register<ReadProgramFolderItemViewModel>(this, (pfs) =>{
-                 this.ProgramFolderList = pfs;
-             });
-            Messenger.Default.Register<List<ProgramViewModel>>(this, (pvList) =>{
+            Messenger.Default.Register<ReadProgramFolderItemViewModel>(this, (pfs) => {
+                this.ProgramFolderList = pfs;
+            });
+            Messenger.Default.Register<List<ProgramViewModel>>(this, (pvList) => {
                 this.LocalProgramList = pvList;
                 this.DataPaging();
             });
+
+            this.ProgramList = new ObservableCollection<ProgramViewModel> { 
+                new ProgramViewModel { Name = "0005", CreateTime = "2019-10-26 14:28:04", Size = "865KB" },
+                new ProgramViewModel { Name = "0004", CreateTime = "2019-10-26 14:32:04", Size = "610KB" },
+                new ProgramViewModel { Name = "0003", CreateTime = "2019-10-26 14:50:04", Size = "1298KB" },
+                new ProgramViewModel { Name = "0002", CreateTime = "2019-10-27 10:05:04", Size = "511KB" },
+                new ProgramViewModel { Name = "0001", CreateTime = "2019-10-27 18:28:04", Size = "215KB" }
+            };
         }
         
         public ReadProgramFolderItemViewModel ProgramFolderList { get; set; }

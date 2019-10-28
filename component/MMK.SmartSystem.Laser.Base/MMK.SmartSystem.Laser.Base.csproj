@@ -720,6 +720,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\缩略图.bmp" />
     <Resource Include="Resources\Images\Manual_io\Auto.png" />
     <Resource Include="Resources\Images\Manual_io\Auto_Active.png" />
     <Resource Include="Resources\Images\Manual_io\CutterReset.png" />

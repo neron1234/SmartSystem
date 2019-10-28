@@ -35,27 +35,27 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        
-            <ItemsControl ItemsSource="{Binding IoBtnList}" Grid.Column="0" Margin="27 10 0 10" >
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <!--<Image Source="{Binding Path= Icon,Converter={StaticResource imageConvert}}" Width="42" Height="37" />-->
-                        <StackPanel Margin="15 5 30 10">
-                            <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100" Visibility="{Binding BtnVisibility}" Command="{Binding IoBtnCommand}" >
-                                <Image Source="{Binding Path= Icon,Converter={StaticResource ImageConverter}}" Width="60" Height="60" />
-                            </Button>
-                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Margin="0 10 0 0" Visibility="{Binding BtnVisibility}"/>
-                            <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/NoBtn.png" Width="100" Height="100" Visibility="{Binding BgVisibility}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        
+
+        <ItemsControl ItemsSource="{Binding IoBtnList}" Grid.Column="0" Margin="27 10 0 10" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <!--<Image Source="{Binding Path= Icon,Converter={StaticResource imageConvert}}" Width="42" Height="37" />-->
+                    <StackPanel Margin="15 5 30 10">
+                        <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100" Visibility="{Binding BtnVisibility}" Command="{Binding IoBtnCommand}" >
+                            <Image Source="{Binding Path= Icon,Converter={StaticResource ImageConverter}}" Width="60" Height="60" />
+                        </Button>
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Margin="0 10 0 0" Visibility="{Binding BtnVisibility}"/>
+                        <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/NoBtn.png" Width="100" Height="100" Visibility="{Binding BgVisibility}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
         <!--<StackPanel Margin="15 5 30 10">
                 <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
                     <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/Switchboard.png" Width="60" Height="60"/>
@@ -159,7 +159,7 @@
 
                 <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/NoBtn.png" Width="100" Height="100" Visibility="Visible"/>
             </StackPanel>-->
-        
+
 
         <StackPanel Background="#000000" Grid.Column="1"/>
 
@@ -173,9 +173,8 @@
                 <ColumnDefinition Width="40*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="0" Grid.Column="0" Margin="0,50,0.4,135.6" Grid.RowSpan="2">
-                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/Controller.png" Margin="78,78,71.8,117" Stretch="Fill"/>
-                <Button Width="167" Height="76" Style="{StaticResource ControlBtnStyle}" Margin="111,88,108.8,268" x:Name="TopBtn" />
-                <Button Width="146" Height="84" Style="{StaticResource ControlBtnStyle}" Margin="82,269,158.8,79">
+                <Button Width="167" Height="77" Style="{StaticResource ControlBtnStyle}" Margin="113,87,106.8,268" IsEnabled="False"/>
+                <Button Width="154" Height="91" Style="{StaticResource ControlBtnStyle}" Margin="76,274,156.8,67" IsEnabled="False">
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -186,7 +185,42 @@
                     </Button.RenderTransform>
                 </Button>
 
-                <Button Width="156" Height="75" Style="{StaticResource ControlBtnStyle}" Margin="273,305,-42.2,52">
+                <Button Width="156" Height="83" Style="{StaticResource ControlBtnStyle}" Margin="273,310,-42.2,39" IsEnabled="False">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="181"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+
+                <Button Width="154" Height="83" Style="{StaticResource ControlBtnStyle}" Margin="312,120,-79.2,229" IsEnabled="False">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="91"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+
+
+                <Button Width="167" Height="76" Style="{StaticResource ControlBtnStyle}" Margin="113,90,106.8,266" />
+                <Button Width="150" Height="92" Style="{StaticResource ControlBtnStyle}" Margin="78,271,158.8,69">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="271"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+
+                <Button Width="156" Height="75" Style="{StaticResource ControlBtnStyle}" Margin="273,306,-42.2,51">
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -217,7 +251,6 @@
 
             <Grid Grid.Row="0" Grid.Column="1" >
                 <Button Width="95" Height="89" Style="{StaticResource ControlBtnStyle2}" Margin="36,128,125.2,218" IsEnabled="False"/>
-
                 <Button Width="99" Height="106" Style="{StaticResource ControlBtnStyle2}" Margin="134,382,24.6,-56" IsEnabled="False">
                     <Button.RenderTransform>
                         <TransformGroup>

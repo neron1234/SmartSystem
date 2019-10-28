@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="560" d:DesignWidth="450" Background="#FF3B3B3B" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3">
+             d:DesignHeight="560"  d:DesignWidth="450" Background="#FF3B3B3B" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,6 +17,7 @@
             <Style TargetType="TextBox">
                 <Setter Property="Foreground" Value="#848a8f"/>
                 <Setter Property="Background" Value="#282620"/>
+                <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="Effect">
                     <Setter.Value>
                         <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="#171612"/>
@@ -26,6 +27,7 @@
             <Style TargetType="RichTextBox">
                 <Setter Property="Foreground" Value="#848a8f"/>
                 <Setter Property="Background" Value="#282620"/>
+                <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="Effect">
                     <Setter.Value>
                         <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="#171612"/>
@@ -49,7 +51,7 @@
             <TextBlock Text="文件夹" Margin="5"/>
             <TextBox Margin="5,5,5,15" Text="{Binding Path}" />
             <TextBlock Text="IPC程序存储目录树" Margin="5"/>
-            <RichTextBox Margin="5,5,5,15" FontSize="15" Height="110">
+            <RichTextBox Margin="5,5,4.6,15" FontSize="15" Height="169">
                 <FlowDocument>
                     <Paragraph>
                         <Run Text="--"/>

@@ -37,17 +37,17 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel Margin="5">
-            <Border BorderBrush="#787b8c">
-                <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}" AutoGenerateColumns="False" x:Name="ProgramGrid" Margin="5" Height="380" Background="#2a2f34" 
-                       AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16">
+            
+            <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}" AutoGenerateColumns="False" x:Name="ProgramGrid" Margin="5" Height="380" Background="#2a2f34" 
+                    AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16" BorderThickness="0">
                    
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="45*" />
-                        <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="20*" />
-                        <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="35*" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Border>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="45*" />
+                    <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="20*" />
+                    <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="35*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            
             <StackPanel Orientation="Horizontal" Margin="10 0 10 12">
                 <TextBlock Text="当前文件夹: "/>
                 <TextBlock Text="{Binding LocalPath}" />

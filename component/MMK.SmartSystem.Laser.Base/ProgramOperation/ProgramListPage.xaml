@@ -7,7 +7,7 @@
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
       mc:Ignorable="d" 
-      d:DesignHeight="658" d:DesignWidth="1260" Background="#2a2f34"  FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
+      d:DesignHeight="658" d:DesignWidth="1260" Background="#141619"  FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
       Title="ProgramListPage">
     <Page.Resources>
         <ResourceDictionary>
@@ -15,7 +15,7 @@
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/DataGridDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            
+
             <Style TargetType="TextBox">
                 <Setter Property="Foreground" Value="#848a8f"/>
                 <Setter Property="Background" Value="#202328"/>
@@ -57,7 +57,7 @@
             </StackPanel>
         </Grid>
         <StackPanel Margin="10" Grid.Column="2" >
-            <ContentControl x:Name="MyInfoControl" Content="{Binding InfoControl}" />
+            <ContentControl x:Name="MyInfoControl" Content="{Binding InfoControl}" Height="638"/>
         </StackPanel>
     </Grid>
 </base:SignalrPage>

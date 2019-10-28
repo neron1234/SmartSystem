@@ -29,14 +29,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
         /// <summary>
-        /// 原数据
-        /// </summary>
-        public List<ProgramViewModel> LocalProgramList { get; set; }
-
-        /// <summary>
         /// 显示数据
         /// </summary>
+        public ObservableCollection<ProgramViewModel> LocalProgramList { get; set; }
+
+        /// <summary>
+        /// 原数据
+        /// </summary>
         public ObservableCollection<ProgramViewModel> ProgramList { get; set; }
+
 
         private ReadProgramFolderItemViewModel _ProgramFolderInfo;
         public ReadProgramFolderItemViewModel ProgramFolderInfo
@@ -70,6 +71,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public LocalProgramListViewModel()
         {
+            ProgramList = new ObservableCollection<ProgramViewModel>();
             this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
             GetFileName();
             Messenger.Default.Register<SearchInfo>(this, (sInfo) => {
@@ -94,7 +96,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             if (Directory.Exists(this.Path)){
                 DirectoryInfo root = new DirectoryInfo(this.Path);
-                LocalProgramList = new List<ProgramViewModel>();
+                LocalProgramList = new ObservableCollection<ProgramViewModel>();
                 foreach (FileInfo f in root.GetFiles())
                 {
                     var program = new ProgramViewModel
@@ -113,7 +115,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public int CurrentPage { get; set; }
         public int TotalPage { get; set; }
-        public int PageNumber = 10;
+        public int PageNumber = 8;
         public void DataPaging(bool next)
         {
             int count = LocalProgramList.Count;
@@ -130,7 +132,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }else{
                 CurrentPage = 1;
             }
-            this.ProgramList = new ObservableCollection<ProgramViewModel>(LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList());
+            this.ProgramList.Clear();
+            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList())
+            {
+                this.ProgramList.Add(item);
+            }
         }
 
         public string ConnectId { get; set; }

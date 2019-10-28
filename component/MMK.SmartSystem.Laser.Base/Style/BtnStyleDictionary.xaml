@@ -226,6 +226,22 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
+            <Trigger Property="Button.IsEnabled" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                                <Path x:Name="Path"
+                                  Data="M7876 16855l-5132 -5132c4725,-4725 12386,-4725 17112,0l-4964 4964c-1894,-1893 -4964,-1892 -6857,2 -55,54 -108,110 -159,166z"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Fill="#242424"
+                                  Stretch="Uniform" >
+                                </Path>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
         </Style.Triggers>
     </Style>
 
