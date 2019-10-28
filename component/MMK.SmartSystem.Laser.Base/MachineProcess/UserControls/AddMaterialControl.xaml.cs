@@ -28,35 +28,59 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
     public partial class AddMaterialControl : UserControl
     {
         private AddMaterialViewModel addMaterialViewModel { get; set; }
-        private string Error { get; set; }
         public AddMaterialControl()
         {
             InitializeComponent();
 
             this.DataContext = addMaterialViewModel = new AddMaterialViewModel();
+            addMaterialViewModel.SaveMachiningEvent += AddMaterialViewModel_SaveMachiningEvent;
+            this.Loaded += AddMaterialControl_Loaded;
 
-            Messenger.Default.Register<PagedResultDtoOfMeterialGroupThicknessDto>(this, (results) =>
-            {
-                addMaterialViewModel.MaterialTypeList = new ObservableCollection<MeterialGroupThicknessDto>();
-                foreach (var item in results.Items)
-                {
-                    addMaterialViewModel.MaterialTypeList.Add(item);
-                }
-                if (addMaterialViewModel.MaterialTypeList.Count > 0)
-                {
-                    addMaterialViewModel.SelectedMaterialId = (int)addMaterialViewModel.MaterialTypeList.First()?.MaterialCode;
-                }
+        }
 
-                Messenger.Default.Unregister<PagedResultDtoOfMeterialGroupThicknessDto>(this);
-            });
-
-
+        private void AddMaterialViewModel_SaveMachiningEvent(CreateMachiningGroupDto obj)
+        {
             Task.Factory.StartNew(new Action(() =>
             {
-                this.Dispatcher.Invoke(() =>
+                EventBus.Default.Trigger(new AddMachiningGroupInfoEventData()
                 {
-                    EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = false });
+                    CreateMachiningGroup = obj,
+                    SuccessAction = (s) =>
+                    {
+                        addMaterialViewModel.SaveText = "保存";
+                        addMaterialViewModel.MaterialThickness = "";                      
+                        Messenger.Default.Send(new PopupMsg("保存成功", true));
+
+                    }
                 });
+            }));
+        }
+
+        private void AddMaterialControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Task.Factory.StartNew(new Action(() =>
+            {
+                EventBus.Default.Trigger(new MaterialInfoEventData
+                {
+                    IsCheckSon = false,
+                    SuccessAction = (d) =>
+                    {
+                        Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            foreach (var item in d)
+                            {
+                                addMaterialViewModel.MaterialTypeList.Add(item);
+                            }
+                            if (addMaterialViewModel.MaterialTypeList.Count > 0)
+                            {
+                                addMaterialViewModel.SelectedMaterialId = (int)addMaterialViewModel.MaterialTypeList.First()?.Code;
+                            }
+                        }));
+
+
+                    }
+                });
+
             }));
         }
     }

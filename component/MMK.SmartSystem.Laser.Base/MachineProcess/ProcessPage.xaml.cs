@@ -3,6 +3,7 @@ using Abp.Events.Bus;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
+using MMK.SmartSystem.Laser.Base.MachineProcess.UserControls;
 using MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -35,8 +36,20 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess
             processViewModel.RefreshEdgeCuttingDataEvent += ProcessViewModel_RefreshDataEvent<EdgeCuttingByGroupIdEventData, EdgeCuttingDataDto>;
             processViewModel.RefreshPiercingDataEvent += ProcessViewModel_RefreshDataEvent<PiercingDataByGroupIdEventData, PiercingDataDto>;
             processViewModel.RefreshSlopeControlDataEvent += ProcessViewModel_RefreshDataEvent<SlopeControlDataByGroupIdEventData, SlopeControlDataDto>;
+            processViewModel.AddMaterialEvent += ProcessViewModel_AddMaterialEvent;
             processOption.MaterialGroupChangeEvent += processViewModel.RefreshGroupData;
             processOption.MoveGridHeadEvent += processList.MoveDataGridHeader;
+        }
+
+        private void ProcessViewModel_AddMaterialEvent()
+        {
+            var popup = new PopupWindow(new AddMaterialControl(), 650, 260, "添加工艺材料");
+            popup.UserControlFinishEvent += () =>
+            {
+                processOption.RefreshData();
+            };
+            popup.ShowDialog();
+
         }
 
         private void ProcessViewModel_RefreshDataEvent<T, U>(T obj) where T : BaseApiEventData<List<U>>

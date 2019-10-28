@@ -101,13 +101,15 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
 
         public void InitMaterialData(List<MeterialGroupThicknessDto> list)
         {
+            _SelectedMaterialId = -1;
+            _SelectedMaterialGroupId = -1;
             MaterialTypeList.Clear();
             list.ForEach(d => MaterialTypeList.Add(d));
             MaterialThicknessList.Clear();
             if (list.Count > 0)
             {
                 SelectedMaterialId = (int)list[0].MaterialCode;
-             
+
             }
         }
     }

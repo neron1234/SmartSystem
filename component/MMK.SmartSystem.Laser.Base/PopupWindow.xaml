@@ -20,6 +20,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="40" />
+
             </Grid.RowDefinitions>
             <Border Background="Gainsboro" CornerRadius="5" Grid.Row="1">
                 <ContentControl x:Name="PopupContent" Content="{Binding PopupContent}"/>
@@ -31,6 +33,9 @@
                                         Margin="10" PathWidth="18" NormalPathColor="White"
                                         MouseOverBackground="Transparent"
                                         PressedBackground="Transparent" Click="BtnClose_Click" />
+            </Grid>
+            <Grid Grid.Row="2">
+                <TextBlock Text="{Binding Message}"  TextAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="Green"/>
             </Grid>
         </Grid>
     </Grid>

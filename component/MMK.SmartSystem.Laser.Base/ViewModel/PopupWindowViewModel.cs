@@ -37,6 +37,20 @@ namespace MMK.SmartSystem.Laser.Base
                 }
             }
         }
+
+        private string _message;
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                if (_message != value)
+                {
+                    _message = value;
+                    RaisePropertyChanged(() => Message);
+                }
+            }
+        }
     }
 
     public class PopupMsg

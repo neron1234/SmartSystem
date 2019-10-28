@@ -69,6 +69,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
         public event Action<EdgeCuttingByGroupIdEventData> RefreshEdgeCuttingDataEvent;
         public event Action<SlopeControlDataByGroupIdEventData> RefreshSlopeControlDataEvent;
 
+        public event Action AddMaterialEvent;
         public ICommand DataChangeCommand
         {
             get
@@ -95,14 +96,9 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    // Messenger.Default.Send("UnRegisterMaterial");
-                    //UnRegisterMaterial();
 
-                    new PopupWindow(new AddMaterialControl(), 650, 260, "添加工艺材料").ShowDialog();
+                    AddMaterialEvent?.Invoke();
 
-                    //  Messenger.Default.Send("RegisterMaterial");
-                    //RegisterMaterial();
-                    //  Messenger.Default.Send("GetMaterial");
                 });
             }
         }
