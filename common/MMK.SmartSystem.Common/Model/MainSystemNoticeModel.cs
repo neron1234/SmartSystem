@@ -18,8 +18,10 @@ namespace MMK.SmartSystem.Common.Model
     public enum EventEnum
     {
         NavHome,
-        RefreshAuth
-        
+        RefreshAuth,
+        StartLoad,
+        EndLoad
+
     }
     public class MainSystemNoticeModel : ViewModelBase
     {
@@ -30,7 +32,7 @@ namespace MMK.SmartSystem.Common.Model
 
         public bool Success { set; get; }
 
-      
+
 
     }
 }

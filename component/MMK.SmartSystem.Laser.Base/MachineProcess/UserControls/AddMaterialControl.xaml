@@ -36,11 +36,11 @@
         <StackPanel Margin="20 40 20 20"  Grid.Column="1" Grid.Row="0">
             <ComboBox Margin="0,15,0,0" ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
                           SelectedValue="{Binding SelectedMaterialId}" BorderBrush="#121417">
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </ComboBox>
 
             <TextBox Margin="0,30,0,0" Height="30" IsReadOnly="True" x:Name="InputThickness" Text="{Binding MaterialThickness}" Background="#202328" BorderBrush="#121417" Foreground="#787b8c"/>
@@ -71,7 +71,7 @@
             </StackPanel>
         </Grid>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Style="{StaticResource BtnStyle}" IsEnabled="{Binding CanSave}" Width="120" Height="35" Content="{Binding SaveText}" Command="{Binding SaveCommand}"/>
+            <Button Style="{StaticResource BtnStyle}" IsEnabled="{Binding CanSave}" Width="120" Height="35" Content="保存" Command="{Binding SaveCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

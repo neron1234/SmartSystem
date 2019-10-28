@@ -33,9 +33,11 @@ namespace MMK.SmartSystem.LE.Host
     /// </summary>
     public partial class MainWindow : Window, ISingletonDependency
     {
+        private const int LoadMaxTime = 10;
         int loadTask = 0;
         IIocManager iocManager;
         SignalrRouteProxyClient signalrRouteProxyClient;
+         LoadWindow loadWindow;
         public MainWindow(IIocManager iocManager)
         {
             this.iocManager = iocManager;
@@ -120,9 +122,52 @@ namespace MMK.SmartSystem.LE.Host
             // 获取全局系统通知
             Messenger.Default.Register<MainSystemNoticeModel>(this, (model) =>
             {
-                
+                LoadNotice(model);
             });
         }
+        private void LoadNotice(MainSystemNoticeModel model)
+        {
+            Action loadCloseAction = () =>
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    if (loadWindow != null)
+                    {
+                        loadWindow.Close();
+                        loadWindow = null;
+                    }
+                  
+
+                }));
+               
+            };
+
+            if (model.EventType == EventEnum.StartLoad)
+            {
+                if (loadWindow == null)
+                {
+                    loadWindow = new LoadWindow();
+                    Task.Factory.StartNew(new Action(async () =>
+                    {
+                        await Task.Delay(LoadMaxTime * 1000);
+                        loadCloseAction();
+
+                    }));
+                    Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        loadWindow.ShowDialog();
+
+                    }));
+                }
+                return;
+            }
+            if (model.EventType == EventEnum.EndLoad)
+            {
+                Thread.Sleep(1000);
+                loadCloseAction();
+            }
+        }
+
         private void pageChange(PageChangeModel changeModel)
         {
             if (changeModel.Page == PageEnum.WPFPage)
@@ -183,7 +228,7 @@ namespace MMK.SmartSystem.LE.Host
                 {
                     ShowHomePanel();
                     EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
-                  
+
                 }
             });
 

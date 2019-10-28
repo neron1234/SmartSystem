@@ -40,6 +40,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
 
         private void AddMaterialViewModel_SaveMachiningEvent(CreateMachiningGroupDto obj)
         {
+            Messenger.Default.Send(new MainSystemNoticeModel() { EventType = EventEnum.StartLoad });
             Task.Factory.StartNew(new Action(() =>
             {
                 EventBus.Default.Trigger(new AddMachiningGroupInfoEventData()
@@ -47,9 +48,9 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                     CreateMachiningGroup = obj,
                     SuccessAction = (s) =>
                     {
-                        addMaterialViewModel.SaveText = "保存";
-                        addMaterialViewModel.MaterialThickness = "";                      
+                        addMaterialViewModel.MaterialThickness = "";
                         Messenger.Default.Send(new PopupMsg("保存成功", true));
+                        Messenger.Default.Send(new MainSystemNoticeModel() { EventType = EventEnum.EndLoad });
 
                     }
                 });

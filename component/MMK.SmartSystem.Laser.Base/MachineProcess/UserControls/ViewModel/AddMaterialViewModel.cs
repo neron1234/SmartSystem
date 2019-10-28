@@ -61,22 +61,9 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             }
         }
 
-        private string _saveText;
-        public string SaveText
-        {
-            get { return _saveText; }
-            set
-            {
-                if (_saveText != value)
-                {
-                    _saveText = value;
-                    RaisePropertyChanged(() => SaveText);
-                }
-            }
-        }
+
         public AddMaterialViewModel()
         {
-            SaveText = "保存";
         }
 
         public string Error { get; set; }
@@ -88,16 +75,13 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    SaveText = "保存中...";
-                    CanSave = false;
+
                     SaveMachiningEvent?.Invoke(new CreateMachiningGroupDto
                     {
                         MaterialThickness = Convert.ToDouble(this.MaterialThickness),
                         MaterialCode = this.SelectedMaterialId,
-                    }
-                );
+                    });
                 });
-
             }
         }
 

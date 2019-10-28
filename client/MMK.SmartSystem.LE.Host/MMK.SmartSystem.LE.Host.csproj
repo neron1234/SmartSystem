@@ -312,6 +312,9 @@
     <Compile Include="EventHandler\UserInfoHandler.cs" />
     <Compile Include="EventHandler\UserLanguageHandler.cs" />
     <Compile Include="EventHandler\UserLoginHandler.cs" />
+    <Compile Include="LoadWindow.xaml.cs">
+      <DependentUpon>LoadWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SmartSystemLEConsts.cs" />
     <Compile Include="SystemControl\BottomWarningLogControl.xaml.cs">
       <DependentUpon>BottomWarningLogControl.xaml</DependentUpon>
@@ -450,6 +453,10 @@
     <Page Include="CustomControl\ToolTip\Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LoadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
