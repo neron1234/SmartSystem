@@ -4,43 +4,221 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
+             xmlns:convert="clr-namespace:MMK.SmartSystem.Laser.Base.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="618" d:DesignWidth="1260" Background="#3b3b3b" Foreground="#787b8c" FontSize="20">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+            <convert:StringToImageSourceConverter x:Key="ImageConverter" />
+            <Style TargetType="TextBox">
+                <Setter Property="Foreground" Value="#FDCD00" />
+                <Setter Property="FontFamily" Value="SourceHanSansCN-Bold" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Background" Value="#2b2b2b"/>
+                <Setter Property="BorderThickness" Value="0 0 0 2" />
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid Height="618">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="610"/>
+            <ColumnDefinition MaxWidth="5" />
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
 
-        </StackPanel>
-        <Grid Grid.Column="1">
+        
+            <ItemsControl ItemsSource="{Binding IoBtnList}" Grid.Column="0" Margin="27 10 0 10" >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!--<Image Source="{Binding Path= Icon,Converter={StaticResource imageConvert}}" Width="42" Height="37" />-->
+                        <StackPanel Margin="15 5 30 10">
+                            <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100" Visibility="{Binding BtnVisibility}" Command="{Binding IoBtnCommand}" >
+                                <Image Source="{Binding Path= Icon,Converter={StaticResource ImageConverter}}" Width="60" Height="60" />
+                            </Button>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Margin="0 10 0 0" Visibility="{Binding BtnVisibility}"/>
+                            <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/NoBtn.png" Width="100" Height="100" Visibility="{Binding BgVisibility}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        
+        <!--<StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/Switchboard.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="交换台" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/NoBtn.png" Width="100" Height="100" Visibility="Collapsed"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/CutterReset.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="割嘴复归" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/NoBtn.png" Width="100" Height="100" Visibility="Collapsed"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/NoBtn.png" Width="100" Height="100" Visibility="Collapsed"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/NoBtn.png" Width="100" Height="100" Visibility="Collapsed"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/NoBtn.png" Width="100" Height="100" Visibility="Collapsed"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/交换台.png" Width="60" Height="60"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0"/>
+            </StackPanel>
+            <StackPanel Margin="15 5 30 10">
+                <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100" IsEnabled="False" Visibility="Collapsed">
+                    <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/Switchboard.png" Width="60" Height="60" Visibility="Collapsed"/>
+                </Button>
+                <TextBlock Text="增量" HorizontalAlignment="Center" Margin="0 10 0 0" Visibility="Collapsed"/>
+
+                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/NoBtn.png" Width="100" Height="100" Visibility="Visible"/>
+            </StackPanel>-->
+        
+
+        <StackPanel Background="#000000" Grid.Column="1"/>
+
+        <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70*"/>
                 <RowDefinition Height="30*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Button Width="90" Height="85" Style="{StaticResource ControlBtnStyle}" Margin="126,104,414.4,243" x:Name="TopBtn">
-                </Button>
-                <Button Width="90" Height="85" Style="{StaticResource ControlBtnStyle}" Margin="87,234,453.4,113">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Margin="0,50,0.4,135.6" Grid.RowSpan="2">
+                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/Controller.png" Margin="78,78,71.8,117" Stretch="Fill"/>
+                <Button Width="167" Height="76" Style="{StaticResource ControlBtnStyle}" Margin="111,88,108.8,268" x:Name="TopBtn" />
+                <Button Width="146" Height="84" Style="{StaticResource ControlBtnStyle}" Margin="82,269,158.8,79">
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
-                            <RotateTransform Angle="270"/>
+                            <RotateTransform Angle="271"/>
                             <TranslateTransform/>
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
 
-                <Button Width="90" Height="85" Style="{StaticResource ControlBtnStyle}" Margin="218,273,322.4,74">
+                <Button Width="156" Height="75" Style="{StaticResource ControlBtnStyle}" Margin="273,305,-42.2,52">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="181"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+
+                <Button Width="154" Height="76" Style="{StaticResource ControlBtnStyle}" Margin="305,120,-72.2,236">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="91"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
+
+                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/ControlTop.png" Margin="186,130,183.8,291" Stretch="Fill" IsHitTestVisible="False"/>
+                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/ControlBottom.png" Margin="183,251,181.8,165" Stretch="Fill" IsHitTestVisible="False"/>
+                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/ControlLeft.png" Margin="130,188,236.8,232" Stretch="Fill" Width="20" IsHitTestVisible="False"/>
+                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/ControlRight.png" Margin="245,189,123.8,230" Stretch="Fill" IsHitTestVisible="False"/>
+
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1" >
+                <Button Width="95" Height="89" Style="{StaticResource ControlBtnStyle2}" Margin="36,128,125.2,218" IsEnabled="False"/>
+
+                <Button Width="99" Height="106" Style="{StaticResource ControlBtnStyle2}" Margin="134,382,24.6,-56" IsEnabled="False">
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -51,21 +229,70 @@
                     </Button.RenderTransform>
                 </Button>
 
-                <Button Width="90" Height="82" Style="{StaticResource ControlBtnStyle}" Margin="255,143,285.4,207">
+                <Button Width="90" Height="84" Style="{StaticResource ControlBtnStyle2}" Margin="36,130,125.2,218" />
+                <Button Width="90" Height="85" Style="{StaticResource ControlBtnStyle2}" Margin="126,370,35.2,-23" >
                     <Button.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
                             <SkewTransform/>
-                            <RotateTransform Angle="90"/>
+                            <RotateTransform Angle="180"/>
                             <TranslateTransform/>
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
 
-                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/ControlTop.png" Margin="162,138,447.4,278" Width="15" Height="15"/>
-                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/ControlBottom.png" Margin="164,223,445.4,193" Width="15" Height="15"/>
-                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/ControlLeft.png" Margin="123,182,486.4,234" Width="15" Height="15"/>
-                <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/ControlRight.png" Margin="203,181,406.4,235" Width="15" Height="15"/>
+                <TextBlock Text="+Z" Margin="66,167,145.2,245" Width="40" Height="20" Foreground="#2B2B2B" IsHitTestVisible="False"/>
+                <TextBlock Text="-Z" Margin="66,309,141.2,103" Width="40" Height="20" Foreground="#2B2B2B" IsHitTestVisible="False"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Pc" FontSize="26" FontFamily="SourceHanSansCN-Bold" FontWeight="Bold"/>
+                    <Grid Margin="0 10 0 0 ">
+                        <TextBox Margin="10,-2,32.8,1.6" TextAlignment="Center" VerticalContentAlignment="Center" Text="30%">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="-" FontSize="35" Margin="6,-2,129.2,1.6" />
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="+" FontSize="35" Margin="106,-2,29.2,1.6"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Fr" FontSize="26" FontFamily="SourceHanSansCN-Bold" FontWeight="Bold"/>
+                    <Grid Margin="0 10 0 0 ">
+                        <TextBox Margin="9,-2,33,1.6" TextAlignment="Center" VerticalContentAlignment="Center" Text="30%">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="-" FontSize="35" Margin="6,-2,129.2,1.6" />
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="+" FontSize="35" Margin="106,-2,29.2,1.6"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Du" FontSize="26" FontFamily="SourceHanSansCN-Bold" FontWeight="Bold"/>
+                    <Grid Margin="0 10 0 0 ">
+                        <TextBox Margin="9,-2,32,1.6" TextAlignment="Center" VerticalContentAlignment="Center" Text="30%">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="-" FontSize="35" Margin="6,-2,129.2,1.6" />
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="+" FontSize="35" Margin="106,-2,29.2,1.6"/>
+                    </Grid>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

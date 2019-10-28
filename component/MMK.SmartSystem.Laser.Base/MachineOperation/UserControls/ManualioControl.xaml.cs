@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.Laser.Base.MachineOperation.UserControls.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.UserControls
     /// </summary>
     public partial class ManualioControl : UserControl
     {
+        public ManualioViewModel mioVm { get; set; }
         public ManualioControl()
         {
             InitializeComponent();
+            this.DataContext = mioVm = new ManualioViewModel();
         }
     }
 }

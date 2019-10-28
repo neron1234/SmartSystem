@@ -215,6 +215,7 @@
     <Compile Include="Converters\MopBackgroundColorConverter.cs" />
     <Compile Include="Converters\OffsetConverter.cs" />
     <Compile Include="Converters\StringIsEmptyConverter.cs" />
+    <Compile Include="Converters\StringToImageSourceConverter.cs" />
     <Compile Include="Converters\ValueIsZeroConverter.cs" />
     <Compile Include="CustomControl\Behaviors\MaskLayerBehavior.cs" />
     <Compile Include="CustomControl\Behaviors\TextCompleteDisplayBehavior.cs" />
@@ -343,6 +344,7 @@
     <Compile Include="MachineOperation\UserControls\ManualioControl.xaml.cs">
       <DependentUpon>ManualioControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MachineOperation\UserControls\ViewModel\ManualioViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AutoCutterCleanViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AutoFindSidePageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AuxGasCheckPageViewModel.cs" />
@@ -718,10 +720,32 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="Resources\Images\ControlTop.png" />
-    <Resource Include="Resources\Images\ControlBottom.png" />
-    <Resource Include="Resources\Images\ControlRight.png" />
-    <Resource Include="Resources\Images\ControlLeft.png" />
+    <Resource Include="Resources\Images\Manual_io\Auto.png" />
+    <Resource Include="Resources\Images\Manual_io\Auto_Active.png" />
+    <Resource Include="Resources\Images\Manual_io\CutterReset.png" />
+    <Resource Include="Resources\Images\Manual_io\CutterReset_Active.png" />
+    <Resource Include="Resources\Images\Manual_io\Edit.png" />
+    <Resource Include="Resources\Images\Manual_io\Edit_Active.png" />
+    <Resource Include="Resources\Images\Manual_io\HandWheel.png" />
+    <Resource Include="Resources\Images\Manual_io\HandWheel_Active.png" />
+    <Resource Include="Resources\Images\Manual_io\Incremental.png" />
+    <Resource Include="Resources\Images\Manual_io\Incremental_Active.png" />
+    <Resource Include="Resources\Images\Manual_io\Manual.png" />
+    <Resource Include="Resources\Images\Manual_io\Manual_Active.png" />
+    <Resource Include="Resources\Images\Manual_io\MDI.png" />
+    <Resource Include="Resources\Images\Manual_io\MDI_Active.png" />
+    <Resource Include="Resources\Images\Manual_io\Remote.png" />
+    <Resource Include="Resources\Images\Manual_io\Remote_Active.png" />
+    <Resource Include="Resources\Images\Manual_io\RPoint.png" />
+    <Resource Include="Resources\Images\Manual_io\RPoint_Active.png" />
+    <Resource Include="Resources\Images\Manual_io\Switchboard.png" />
+    <Resource Include="Resources\Images\Manual_io\Switchboard_Active.png" />
+    <Resource Include="Resources\Images\Manual_io\NoBtn.png" />
+    <Resource Include="Resources\Images\Manual_io\Controller.png" />
+    <Resource Include="Resources\Images\Manual_io\ControlTop.png" />
+    <Resource Include="Resources\Images\Manual_io\ControlBottom.png" />
+    <Resource Include="Resources\Images\Manual_io\ControlRight.png" />
+    <Resource Include="Resources\Images\Manual_io\ControlLeft.png" />
     <Resource Include="Resources\Images\afs.png" />
     <Resource Include="Resources\Images\cac.png" />
     <Resource Include="Resources\Images\cc.png" />
