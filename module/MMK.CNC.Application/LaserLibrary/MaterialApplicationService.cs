@@ -62,7 +62,8 @@ namespace MMK.CNC.Application.LaserLibrary
 
                     Name_CN = d.Name_CN,
                     Name_EN = d.Name_EN,
-                    Code = d.Code
+                    Code = d.Code,
+                    MaterialCode=(short)d.Code
 
                 }).Skip(input.SkipCount).Take(input.MaxResultCount).ToList();
                 return new PagedResultDto<MeterialGroupThicknessDto>(total, listRes);

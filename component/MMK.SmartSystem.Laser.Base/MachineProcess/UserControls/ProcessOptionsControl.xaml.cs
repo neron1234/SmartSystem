@@ -51,6 +51,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
 
         public void RefreshData()
         {
+            Messenger.Default.Send(new MainSystemNoticeModel() { EventType = EventEnum.StartLoad });
+
             var model = new MaterialInfoEventData { IsCheckSon = true, SuccessAction = LoadData };
             Task.Factory.StartNew(new Action(() =>
             {
@@ -66,6 +68,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
 
         private void LoadData(List<MeterialGroupThicknessDto> list)
         {
+            Messenger.Default.Send(new MainSystemNoticeModel() { EventType = EventEnum.EndLoad });
+
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 processOptionsViewModel.InitMaterialData(list);

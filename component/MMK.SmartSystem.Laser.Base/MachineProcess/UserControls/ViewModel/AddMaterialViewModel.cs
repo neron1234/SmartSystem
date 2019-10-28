@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
 {
-    public class AddMaterialViewModel:ViewModelBase
+    public class AddMaterialViewModel : ViewModelBase
     {
         private int _SelectedMaterialId;
         public int SelectedMaterialId
@@ -31,7 +31,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             }
         }
 
-        public ObservableCollection<MeterialGroupThicknessDto> MaterialTypeList { get; set; }
+        public ObservableCollection<MeterialGroupThicknessDto> MaterialTypeList { get; set; } = new ObservableCollection<MeterialGroupThicknessDto>();
 
         private string _MaterialThickness;
         public string MaterialThickness
@@ -42,57 +42,70 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                 if (_MaterialThickness != value)
                 {
                     _MaterialThickness = value;
+                    CanSave = _MaterialThickness.Length > 0;
                     RaisePropertyChanged(() => MaterialThickness);
                 }
             }
         }
+        private bool _canSave;
+        public bool CanSave
+        {
+            get { return _canSave; }
+            set
+            {
+                if (_canSave != value)
+                {
+                    _canSave = value;
+                    RaisePropertyChanged(() => CanSave);
+                }
+            }
+        }
+
 
         public AddMaterialViewModel()
         {
-            
         }
 
         public string Error { get; set; }
-        public ICommand SaveCommand{
-            get{
-                return new RelayCommand(() => {
-                    Messenger.Default.Register<MainSystemNoticeModel>(this, (ms) => {
-                        if (ms.Success)
-                        {
-                            //ms.SuccessAction?.Invoke();
-                        }
-                        else
-                        {
-                            Error = ms.Error;
-                            //ms.ErrorAction?.Invoke();
-                        }
-                    });
 
-                    EventBus.Default.TriggerAsync(new AddMachiningGroupInfoEventData
+        public event Action<CreateMachiningGroupDto> SaveMachiningEvent;
+        public ICommand SaveCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+
+                    SaveMachiningEvent?.Invoke(new CreateMachiningGroupDto
                     {
-                        CreateMachiningGroup = new CreateMachiningGroupDto
-                        {
-                            MaterialThickness = Convert.ToDouble(this.MaterialThickness),
-                            MaterialCode = this.SelectedMaterialId,
-                        },
-                     //   SuccessAction = SaveSuccessAction,
-                        ErrorAction = SaveErrorAction
+                        MaterialThickness = Convert.ToDouble(this.MaterialThickness),
+                        MaterialCode = this.SelectedMaterialId,
                     });
                 });
             }
         }
 
-        public ICommand InputCommand{
-            get{
-                return new RelayCommand<string>((str) =>{
+        public ICommand InputCommand
+        {
+            get
+            {
+                return new RelayCommand<string>((str) =>
+                {
                     var number = 0;
-                    if (int.TryParse(str,out number)){
+                    if (int.TryParse(str, out number))
+                    {
                         MaterialThickness += number;
-                    }else{
-                        if (str == "." && !MaterialThickness.Contains(".")){
+                    }
+                    else
+                    {
+                        if (str == "." && !MaterialThickness.Contains("."))
+                        {
                             MaterialThickness += str;
-                        }else{
-                            if (MaterialThickness.Length > 0){
+                        }
+                        else
+                        {
+                            if (MaterialThickness.Length > 0)
+                            {
                                 MaterialThickness = MaterialThickness.Remove(MaterialThickness.Length - 1, 1);
                             }
                         }
@@ -101,16 +114,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             }
         }
 
-        private void SaveSuccessAction()
-        {
-            Messenger.Default.Unregister<MainSystemNoticeModel>(this);
-            Messenger.Default.Unregister<PagedResultDtoOfMaterialDto>(this);
-            Messenger.Default.Send(new PopupMsg("保存成功", true));
-        }
-        private void SaveErrorAction()
-        {
-            Messenger.Default.Unregister<MainSystemNoticeModel>(this);
-            System.Windows.MessageBox.Show(Error);
-        }
+
     }
 }

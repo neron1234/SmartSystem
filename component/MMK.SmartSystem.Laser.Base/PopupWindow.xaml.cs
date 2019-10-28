@@ -22,25 +22,21 @@ namespace MMK.SmartSystem.Laser.Base
     public partial class PopupWindow : Window
     {
         private PopupWindowViewModel popupWindowViewModel { get; set; }
-        public PopupWindow(UserControl userControl, int width = 600, int height = 300,string title = "")
+        public event Action UserControlFinishEvent;
+        public PopupWindow(UserControl userControl, int width = 600, int height = 300, string title = "")
         {
             InitializeComponent();
             this.DataContext = popupWindowViewModel = new PopupWindowViewModel();
-            popupWindowViewModel.PopupContent= userControl;
+            popupWindowViewModel.PopupContent = userControl;
             Closed += PopupWindow_Closed;
             this.Width = PopupGrid.Width = width;
-            this.Height = PopupGrid.Height = height + 40;
+            this.Height = PopupGrid.Height = height + 80;
             popupWindowViewModel.Title = title;
 
-            Messenger.Default.Register<PopupMsg>(this,(s) => {
-                if (!string.IsNullOrEmpty(s.Msg))
-                {
-                    MessageBox.Show(s.Msg);
-                }
-                if (s.IsClose)
-                {
-                    this.Close();
-                }
+            Messenger.Default.Register<PopupMsg>(this, (s) =>
+            {
+                popupWindowViewModel.Message = s.Msg;
+                UserControlFinishEvent?.Invoke();
             });
         }
 
