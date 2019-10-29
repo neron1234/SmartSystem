@@ -25,7 +25,7 @@
         </Grid>
         
         <Grid Grid.Row="1">
-            <local:HeaderTitleWarnControl />
+            <local:HeaderTitleWarnControl x:Name="headTitle" />
         </Grid>
         
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" >

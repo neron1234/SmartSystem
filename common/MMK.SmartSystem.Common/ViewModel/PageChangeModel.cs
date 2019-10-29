@@ -17,6 +17,7 @@ namespace MMK.SmartSystem.Common.ViewModel
 
         public PageEnum Page { get; set; }
 
+        public string Title { get; set; }
         public string Url { get; set; }
 
     }

@@ -21,11 +21,20 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
     /// </summary>
     public partial class HeaderTitleWarnControl : UserControl
     {
-        public HeaderTitleMenuViewModel headerVM { get; set; }
+        private HeaderTitleMenuViewModel headerVM;
         public HeaderTitleWarnControl()
         {
             InitializeComponent();
             this.DataContext = headerVM = new HeaderTitleMenuViewModel();
+        }
+
+        public void UpdateTitle(string title)
+        {
+
+            if (headerVM != null)
+            {
+                headerVM.Title = title;
+            }
         }
     }
 }

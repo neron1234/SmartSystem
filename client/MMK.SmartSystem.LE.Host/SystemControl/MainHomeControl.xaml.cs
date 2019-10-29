@@ -70,6 +70,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             {
                 try
                 {
+                    headTitle.UpdateTitle(pageChange.Title);
                     var page = iocManager.Resolve(pageChange.FullType);
                     MainViewModel.MainFrame = page;
 
