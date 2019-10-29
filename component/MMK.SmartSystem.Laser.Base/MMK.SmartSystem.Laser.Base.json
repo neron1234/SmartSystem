@@ -40,6 +40,7 @@
             "Id": "Home.manual",
             "Title": "手动",
             "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.MaualioPage",
+            //"FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.CutterResetCheckPage",
             "IsAuth": false,
             "Icon": "manual",
             "Sort": 5

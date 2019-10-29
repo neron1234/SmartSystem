@@ -7,7 +7,7 @@
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
       mc:Ignorable="d" 
-      d:DesignHeight="658" d:DesignWidth="1260" Background="#141619"  FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
+      d:DesignHeight="658" d:DesignWidth="1268" Background="#141619"  FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
       Title="ProgramListPage">
     <Page.Resources>
         <ResourceDictionary>
@@ -39,25 +39,25 @@
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="480"/>
-            <ColumnDefinition Width="780"/>
+            <ColumnDefinition Width="484"/>
+            <ColumnDefinition Width="784"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-                <RowDefinition Height="580"/>
+                <RowDefinition Height="598"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0">
-                <RadioButton Width="150" Height="50" Content="CNC程序" Style="{StaticResource RadioButtonColorStyle}" IsChecked="True" x:Name="CNCProgramListBtn" Click="CNCProgramListBtn_Click"/>
-                <RadioButton Width="150" Height="50" Content="本地程序" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding LocalListCommand}" />
-                <RadioButton Width="150" Height="50" Content="CNC信息" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding CNCInfoCommand}" />
+                <RadioButton Width="160"  Height="60" Content="CNC程序" Style="{StaticResource RadioButtonColorStyle}" IsChecked="True" x:Name="CNCProgramListBtn" Click="CNCProgramListBtn_Click" />
+                <RadioButton Width="160" Height="60" Content="本地程序" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding LocalListCommand}" />
+                <RadioButton Width="160" Height="60" Content="CNC信息" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding CNCInfoCommand}" />
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <ContentControl x:Name="MyListControl" Content="{Binding ListControl}" />
+                <ContentControl x:Name="MyListControl" Content="{Binding ListControl}" Height="598"/>
             </StackPanel>
         </Grid>
-        <StackPanel Margin="10" Grid.Column="2" >
-            <ContentControl x:Name="MyInfoControl" Content="{Binding InfoControl}" Height="638"/>
+        <StackPanel Margin="2 0 0 0" Grid.Column="2" >
+            <ContentControl x:Name="MyInfoControl" Content="{Binding InfoControl}" Height="658"/>
         </StackPanel>
     </Grid>
 </base:SignalrPage>

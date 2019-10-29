@@ -611,7 +611,7 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Close.png" />
     <Resource Include="Resources\Images\Logo.png" />
-    <Resource Include="Resources\Images\MenuBg.png" />
+    <Resource Include="Resources\Images\MenuBg2.png" />
     <Resource Include="Resources\Images\TitleBg.png" />
     <Resource Include="Resources\Images\menu-cnc.png" />
     <Resource Include="Resources\Images\menu-cnc-active.png" />

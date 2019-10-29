@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
              xmlns:convert="clr-namespace:MMK.SmartSystem.LE.Host.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="640" d:DesignWidth="200">
+             d:DesignHeight="640" d:DesignWidth="97">
     <UserControl.Resources>
         <ResourceDictionary>
 
@@ -16,7 +16,7 @@
     </UserControl.Resources>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/MMK.SmartSystem.LE.Host;component/Resources/Images/MenuBg.png" />
+            <ImageBrush ImageSource="/MMK.SmartSystem.LE.Host;component/Resources/Images/MenuBg2.png" />
 
         </Grid.Background>
 
@@ -31,12 +31,12 @@
                     <ItemsControl ItemsSource="{Binding MainMenuViews}" >
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel/>
+                                <StackPanel HorizontalAlignment="Center"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button Background="Transparent"  Width="44" Height="60" Margin="10,9,0,9" BorderThickness="0" Command="{Binding OpenCommand}" CommandParameter="{Binding .}" Style="{StaticResource NoMouseOverButtonStyle}">
+                                <Button Background="Transparent"  Width="44" Height="60" Margin="0,9,0,9" BorderThickness="0" Command="{Binding OpenCommand}" CommandParameter="{Binding .}" Style="{StaticResource NoMouseOverButtonStyle}">
                                     <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
                                         <Image Source="{Binding Path= Icon,Converter={StaticResource imageConvert}}" Width="42" Height="37" />
                                         <TextBlock Text="{Binding Title}" FontSize="14" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 5 0 0" />

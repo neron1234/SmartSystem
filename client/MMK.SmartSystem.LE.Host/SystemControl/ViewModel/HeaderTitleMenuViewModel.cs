@@ -53,7 +53,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 
         public HeaderTitleMenuViewModel()
         {
-            this.Title = "工艺";
+            this.Title = "手动";
             this.ProgramName = "09100";
             this.WarnStr = "机器出现一般故障";
         }
