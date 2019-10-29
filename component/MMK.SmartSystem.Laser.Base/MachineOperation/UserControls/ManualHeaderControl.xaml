@@ -15,16 +15,19 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" x:Name="GroupBtnPanel">
-            <RadioButton Width="125" Height="40" Content="I/O" Style="{StaticResource RadioButtonColorStyle}" />
-            <RadioButton Width="125" Height="40" Content="简易轮廓" Style="{StaticResource RadioButtonColorStyle}" Command=""/>
-            <RadioButton Width="125" Height="40" Content="自动巡边" Style="{StaticResource RadioButtonColorStyle}" Command=""/>
-            <RadioButton Width="125" Height="40" Content="手动寻边" Style="{StaticResource RadioButtonColorStyle}" Command=""/>
-            <RadioButton Width="125" Height="40" Content="割嘴清洁" Style="{StaticResource RadioButtonColorStyle}" Command="" IsChecked="True"/>
-            <RadioButton Width="125" Height="40" Content="余料切割" Style="{StaticResource RadioButtonColorStyle}" Command=""/>
-            <RadioButton Width="125" Height="40" Content="割嘴复归" Style="{StaticResource RadioButtonColorStyle}" Command=""/>
-            <RadioButton Width="125" Height="40" Content="割嘴对中" Style="{StaticResource RadioButtonColorStyle}" Command=""/>
-            <RadioButton Width="125" Height="40" Content="简易套料" Style="{StaticResource RadioButtonColorStyle}" Command=""/>
-            <RadioButton Width="125" Height="40" Content="辅助气体" Style="{StaticResource RadioButtonColorStyle}" Command=""/>
-        </StackPanel>
+            <ItemsControl x:Name="headerItems">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"/>
+                    </ItemsPanelTemplate>
+                    
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton Width="125" Height="40" Content="{Binding Title}" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding ChangePageCommand}" IsChecked="{Binding IsCheck}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            </StackPanel>
     </Grid>
 </UserControl>

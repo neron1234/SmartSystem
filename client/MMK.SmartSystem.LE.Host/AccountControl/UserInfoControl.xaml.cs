@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
+using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.LE.Host.AccountControl.ViewModel;
 using MMK.SmartSystem.LE.Host.SystemControl;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;

@@ -341,6 +341,7 @@
     <Compile Include="MachineOperation\UserControls\ManualHeaderControl.xaml.cs">
       <DependentUpon>ManualHeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MachineOperation\UserControls\ViewModel\ManualHeaderViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\ManualioViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AutoCutterCleanViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\AutoFindSidePageViewModel.cs" />
@@ -789,7 +790,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomControl\Popup\Themes\" />
-    <Folder Include="MachineOperation\UserControls\ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

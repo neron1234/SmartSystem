@@ -298,6 +298,7 @@
     <Compile Include="ViewModel\CncResultViewModel.cs" />
     <Compile Include="ViewModel\MainTranslateViewModel.cs" />
     <Compile Include="ViewModel\NotifiactionModel.cs" />
+    <Compile Include="ViewModel\PageChangeModel.cs" />
     <Compile Include="ViewModel\SystemTranslate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerivceProxy\BaseAuthClient.cs" />

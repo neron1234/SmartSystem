@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
+namespace MMK.SmartSystem.Common.ViewModel
 {
     public enum PageEnum
-    { 
+    {
         WPFPage,
         WebPage
     }

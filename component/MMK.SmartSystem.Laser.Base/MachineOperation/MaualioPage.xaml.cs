@@ -27,6 +27,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         {
             InitializeComponent();
             this.DataContext = mioVm = new ManualioViewModel();
+            manualControl.SetHeaderActive(this);
         }
     }
 }

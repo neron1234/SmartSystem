@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Laser.Base.MachineOperation.UserControls.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,21 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.UserControls
     /// </summary>
     public partial class ManualHeaderControl : UserControl
     {
+        List<ManualHeaderViewModel> manualHeaders;
         public ManualHeaderControl()
         {
             InitializeComponent();
+            headerItems.ItemsSource = manualHeaders = ManualHeaderViewModel.GetHeaderNodes();
+        }
+
+        public void SetHeaderActive(object type)
+        {
+            string name = type.GetType().Name;
+            var obj = manualHeaders.FirstOrDefault(d => d.FullName == name);
+            if (obj != null)
+            {
+                obj.IsCheck = true;
+            }
         }
     }
 }
