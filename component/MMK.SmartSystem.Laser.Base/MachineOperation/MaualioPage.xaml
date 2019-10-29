@@ -32,20 +32,20 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="511*"/>
-            <RowDefinition Height="67*"/>
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="618"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="610"/>
-            <ColumnDefinition MaxWidth="5" />
-            <ColumnDefinition/>
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="645"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="4">
+        
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="3">
             <usercontrols:ManualHeaderControl />
         </StackPanel>
-        <ItemsControl ItemsSource="{Binding IoBtnList}" Grid.Column="0" Margin="27,10,0.4,9.6" Grid.RowSpan="3" Grid.Row="1">
+        
+        <ItemsControl ItemsSource="{Binding IoBtnList}" Grid.Column="0" Margin="27,10,0.4,9.6" Grid.RowSpan="2" Grid.Row="1">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
@@ -65,9 +65,9 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <StackPanel Background="#000000" Grid.ColumnSpan="2" Margin="610,0,0.2,-0.4" Grid.RowSpan="3" Grid.Row="1"/>
+        <StackPanel Background="#000000"  Grid.Column="1" Grid.Row="1"/>
 
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Margin="4.6,0,0,-0.4" Grid.RowSpan="3" Grid.Row="1">
+        <Grid  Margin="4.6,0,0,-0.4"  Grid.Row="1" Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70*"/>
                 <RowDefinition Height="30*"/>
