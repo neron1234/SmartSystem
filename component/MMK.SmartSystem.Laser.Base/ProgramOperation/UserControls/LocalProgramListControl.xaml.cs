@@ -39,6 +39,33 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             {
                 lpViewModel.SelectedProgramViewModel = (ProgramViewModel)selected;
                 //Messenger.Default.Send(lpViewModel.SelectedProgramViewModel);
+
+                //if (lpViewModel.SelectedProgramViewModel.Name.Split('.').Count() > 1)
+                //{
+                //    if (lpViewModel.SelectedProgramViewModel.Name.Split('.')[1] == "dxf")
+                //    {
+
+                //    }
+                //    else if (lpViewModel.SelectedProgramViewModel.Name.Split('.')[1] == "csv")
+                //    {
+                //        System.IO.StreamReader reader = new System.IO.StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name);
+                //        string line = "";
+                //        List<System.Windows.Point> pointList = new List<System.Windows.Point>();
+                //        //List<string[]> pointList = new List<string[]>();
+                //        StringBuilder sb1 = new StringBuilder();
+                //        line = reader.ReadLine();
+                //        while (line != null)
+                //        {
+                //            //pointList.Add(new System.Windows.Point(Convert.ToDouble(line.Split(',')[0]), Convert.ToDouble(line.Split(',')[1])));
+
+                //            sb1.AppendLine("{'X': '" + Convert.ToDouble(line.Split(',')[0]) + "','Y': '" + Convert.ToDouble(line.Split(',')[1]) + "'},");
+                //            //pointList.Add(line.Split(','));
+                //            line = reader.ReadLine();
+                //        }
+                //    }
+                //}
+
+
                 StringBuilder sb = new StringBuilder();
                 using (System.IO.StreamReader reader = new System.IO.StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name))
                 {

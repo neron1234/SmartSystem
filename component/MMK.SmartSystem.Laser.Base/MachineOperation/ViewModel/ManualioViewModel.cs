@@ -15,8 +15,30 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
     {
         public ObservableCollection<IoBtnInfo> IoBtnList { get; set; }
 
+
+        private ActionBtnInfo _ActionBtnInfo;
+        public ActionBtnInfo ActionBtnInfo
+        {
+            get { return _ActionBtnInfo; }
+            set
+            {
+                if (_ActionBtnInfo != value)
+                {
+                    _ActionBtnInfo = value;
+                    RaisePropertyChanged(() => ActionBtnInfo);
+                }
+            }
+        }
+
+
         public ManualioViewModel()
         {
+            ActionBtnInfo = new ActionBtnInfo
+            {
+                Color = "#000000",
+                IsActive = false
+            };
+
             IoBtnList = new ObservableCollection<IoBtnInfo> {
                 new IoBtnInfo { Name = "交换台", Icon = "/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/Switchboard.png",BtnVisibility=Visibility.Visible,BgVisibility=Visibility.Collapsed,IsActive =false},
                 new IoBtnInfo { Name = "割嘴复归", Icon = "/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/CutterReset.png",BtnVisibility=Visibility.Visible,BgVisibility=Visibility.Collapsed,IsActive =false},
@@ -99,6 +121,47 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
                         }else{
                             this.Icon = this.Icon.Replace("_Active", "");
                             this.IsActive = false;
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    public class ActionBtnInfo : ViewModelBase {
+        private string _Color;
+        public string Color
+        {
+            get { return _Color; }
+            set
+            {
+                if (_Color != value)
+                {
+                    _Color = value;
+                    RaisePropertyChanged(() => Color);
+                }
+            }
+        }
+
+        public string OldColor { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public ICommand ActionBtnCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (!string.IsNullOrEmpty(this.Color))
+                    {
+                        if (!IsActive)
+                        {
+                            this.Color = OldColor;
+                        }
+                        else
+                        {
+                            this.Color = "#fdcd00";
                         }
                     }
                 });

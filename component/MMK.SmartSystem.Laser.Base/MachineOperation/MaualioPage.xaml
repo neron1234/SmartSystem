@@ -77,7 +77,6 @@
                 <ColumnDefinition Width="40*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="0" Grid.Column="0" Margin="0,50,0.4,135.6" Grid.RowSpan="2">
-                <!--<Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/Controller.png" Width="240" Height="240" Margin="73,84,70.6,108"/>-->
 
                 <Button Style="{StaticResource ControlBtnStyle01}" Height="90" Width="197" Margin="100,52,0,0" IsEnabled="False" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                 <Button Style="{StaticResource ControlBtnStyle02}" Height="174" Width="92" Margin="70,91,0,0" IsEnabled="False" VerticalAlignment="Top" HorizontalAlignment="Left"/>
@@ -90,47 +89,10 @@
                 <Button Style="{StaticResource ControlBtnStyle03}" Height="85.943" Width="168.713" Margin="115.086,211.69,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                 <Button Style="{StaticResource ControlBtnStyle04}" Height="168.713"  Width="86.109" Margin="232.691,93.919,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-                <Path Data="M262,262z M0,0z M220,130L208.7846,143.8919 208.7846,116.1081z" Stretch="Fill" Fill="Black" Margin="62.605,90.933,49.862,167.667" IsHitTestVisible="False"/>
+                <Path Data="M262,262z M0,0z M220,130L208.7846,143.8919 208.7846,116.1081z" Stretch="Fill" Fill="#fdcd00" Margin="62.605,90.933,49.862,167.667" IsHitTestVisible="False"/>
                 <Path Data="M262,262z M0,0z M40,130L51.2154,116.1081 51.2154,143.8919z" Stretch="Fill" Fill="Black" Margin="62.605,90.933,49.862,167.667" IsHitTestVisible="False"/>
                 <Path Data="M262,262z M0,0z M130,40L143.8919,51.2154 116.1081,51.2154z" Stretch="Fill" Fill="Black" Margin="86.145,57.784,71.789,165.083" IsHitTestVisible="False"/>
                 <Path Data="M262,262z M0,0z M130,220L116.1081,208.7846 143.8919,208.7846z" Stretch="Fill" Fill="Black" Margin="84.011,88.717,73.523,134.15" IsHitTestVisible="False"/>
-                <!--<Button Margin="82,50,199.6,293" Background="Transparent" Style="{StaticResource NoMouseOverButtonStyle}">
-                    <Button.Content>
-                        <Canvas Width="100" Height="100" Margin="0" >
-                            <Path Data="M262,262z M0,0z M214.8528,45.1472L221.9239,38.0761A130,130,0,0,1,221.9239,221.9239L214.8528,214.8528A120,120,0,0,0,214.8528,45.1472z" Stretch="Fill" Canvas.Left="0" Canvas.Top="0" Fill="Black"  Height="100" Width="100">
-                            </Path>
-                            <Path Data="M262,262z M0,0z M165.3553,94.6447L214.8528,45.1472A120,120,0,0,1,214.8528,214.8528L165.3553,165.3553A50,50,0,0,0,165.3553,94.6447z" Stretch="Fill" Canvas.Left="0" Canvas.Top="0" Fill="White" Height="100" Width="100"/>
-                            
-                        </Canvas>
-                    </Button.Content>
-                </Button>
-                <Button Margin="82,50,199.6,293" Background="Transparent" Style="{StaticResource NoMouseOverButtonStyle}">
-                    <Button.Content>
-                        <Canvas Width="100" Height="100" Margin="0">
-                            <Path Data="M262,262z M0,0z M214.8528,214.8528L221.9239,221.9239A130,130,0,0,1,38.0761,221.9239L45.1472,214.8528A120,120,0,0,0,214.8528,214.8528z" Stretch="Fill" Canvas.Left="0" Canvas.Top="0" Fill="Black"  Height="100" Width="100"/>
-                            <Path Data="M262,262z M0,0z M165.3553,165.3553L214.8528,214.8528A120,120,0,0,1,45.1472,214.8528L94.6447,165.3553A50,50,0,0,0,165.3553,165.3553z" Stretch="Fill" Canvas.Left="0" Canvas.Top="0" Fill="White" Height="100" Width="100"/>
-                            <Path Data="M262,262z M0,0z M130,220L116.1081,208.7846 143.8919,208.7846z" Stretch="Fill" Canvas.Left="0" Canvas.Top="0" Fill="Black" Height="100" Width="100"/>
-                        </Canvas>
-                    </Button.Content>
-                </Button>
-                <Button Margin="82,50,199.6,293" Background="Transparent" Style="{StaticResource NoMouseOverButtonStyle}">
-                    <Button.Content>
-                        <Canvas Width="100" Height="100" Margin="0">
-                            <Path Data="M262,262z M0,0z M45.1472,214.8528L38.0761,221.9239A130,130,0,0,1,38.0761,38.0761L45.1472,45.1472A120,120,0,0,0,45.1472,214.8528z" Stretch="Fill" Canvas.Left="0" Canvas.Top="0" Fill="Black"  Height="100" Width="100"/>
-                            <Path Data="M262,262z M0,0z M94.6447,165.3553L45.1472,214.8528A120,120,0,0,1,45.1472,45.1472L94.6447,94.6447A50,50,0,0,0,94.6447,165.3553z" Stretch="Fill" Canvas.Left="0" Canvas.Top="0" Fill="White" Height="100" Width="100"/>                            
-                        </Canvas>
-                    </Button.Content>
-                </Button>
-                <Button Margin="82,50,199.6,293" Background="Transparent" Style="{StaticResource NoMouseOverButtonStyle}">
-                    <Button.Content>
-                        <Canvas Width="100" Height="100" Margin="0">
-                            <Path Data="M262,262z M0,0z M45.1472,45.1472L38.0761,38.0761A130,130,0,0,1,221.9239,38.0761L214.8528,45.1472A120,120,0,0,0,45.1472,45.1472z" Stretch="Fill" Canvas.Left="0" Canvas.Top="0" Fill="Black"  Height="100" Width="100"/>
-                            <Path Data="M262,262z M0,0z M94.6447,94.6447L45.1472,45.1472A120,120,0,0,1,214.8528,45.1472L165.3553,94.6447A50,50,0,0,0,94.6447,94.6447z" Stretch="Fill" Canvas.Left="0" Canvas.Top="0" Fill="YellowGreen" Height="100" Width="100"/>
-
-                            <Path Data="M262,262z M0,0z M130,40L143.8919,51.2154 116.1081,51.2154z" Stretch="Fill" Canvas.Left="0" Canvas.Top="0" Fill="Black" Height="100" Width="100"/>
-                        </Canvas>
-                    </Button.Content>
-                </Button>-->
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="1" >
@@ -160,7 +122,7 @@
                 </Button>
 
                 <TextBlock Text="+Z" Margin="87,132,129,280" Width="40" Height="20" Foreground="#2B2B2B" IsHitTestVisible="False"/>
-                <TextBlock Text="-Z" Margin="90,278,126,134" Width="40" Height="20" Foreground="#2B2B2B" IsHitTestVisible="False"/>
+                <TextBlock Text="-Z" Margin="90,278,126,134" Width="40" Height="20" Foreground="#fdcd00" IsHitTestVisible="False" />
 
                 <!--<Button Width="156" Height="128" Style="{StaticResource ControlBtnStyle3}" Margin="90,15,11.6,289" />-->
 
@@ -183,7 +145,7 @@
                             </TextBox.Resources>
                         </TextBox>
                         <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="-" FontSize="35" Margin="6,-2,129.2,1.6" />
-                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="+" FontSize="35" Margin="106,-2,29.2,1.6"/>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="+" FontSize="35" Margin="106,-2,29.2,1.6" Foreground="#fdcd00"/>
                     </Grid>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
