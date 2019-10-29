@@ -84,10 +84,10 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
                     }
                     if (s.WebPage)
                     {
-                        Messenger.Default.Send(new PageChangeModel() { Url = s.Url, Page = PageEnum.WebPage });
+                        Messenger.Default.Send(new PageChangeModel() { Url = s.Url, Page = PageEnum.WebPage, Title = s.Title });
                         return;
                     }
-                    Messenger.Default.Send(new PageChangeModel() { FullType = s.PageType, Page = PageEnum.WPFPage });
+                    Messenger.Default.Send(new PageChangeModel() { FullType = s.PageType, Page = PageEnum.WPFPage, Title = s.Title });
                     MenuClickEvent?.Invoke(this);
                 });
             }
