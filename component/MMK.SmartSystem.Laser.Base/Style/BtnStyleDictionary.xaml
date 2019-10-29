@@ -153,13 +153,13 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ControlBtnStyle"  TargetType="Button" BasedOn="{StaticResource IconBtnStyle}">
+    <Style x:Key="ControlBtnStyle01"  TargetType="Button" BasedOn="{StaticResource IconBtnStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}" >
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
                         <Path x:Name="Path"
-                                  Data="M7876 16855l-5132 -5132c4725,-4725 12386,-4725 17112,0l-4964 4964c-1894,-1893 -4964,-1892 -6857,2 -55,54 -108,110 -159,166z "
+                                  Data="M83.545365,0.5 C114.24822,0.50000006 143.73289,12.315537 165.9202,33.428566 L166.46572,33.960728 115.09805,85.3284 113.51431,83.95237 C105.37428,77.193642 94.916397,73.129913 83.509369,73.129913 71.341881,73.129913 60.2543,77.753532 51.90773,85.339645 L51.830544,85.413239 0.5,34.082695 1.1705538,33.428566 C23.357865,12.315537 52.842511,0.50000006 83.545365,0.5 z"
                                   RenderTransformOrigin="0.5,0.5"
                                   Stretch="Uniform" >
                             <Path.Fill>
@@ -170,7 +170,6 @@
                                     <GradientStop Color="#878787" Offset="0.7" />
                                     <GradientStop Color="#7e7e7e" Offset="0.9" />
                                 </LinearGradientBrush>
-                                
                             </Path.Fill>
                         </Path>
                     </Border>
@@ -184,16 +183,16 @@
                         <ControlTemplate TargetType="{x:Type Button}" >
                             <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
                                 <Path x:Name="Path"
-                                  Data="M7876 16855l-5132 -5132c4725,-4725 12386,-4725 17112,0l-4964 4964c-1894,-1893 -4964,-1892 -6857,2 -55,54 -108,110 -159,166z"
+                                  Data="M83.545365,0.5 C114.24822,0.50000006 143.73289,12.315537 165.9202,33.428566 L166.46572,33.960728 115.09805,85.3284 113.51431,83.95237 C105.37428,77.193642 94.916397,73.129913 83.509369,73.129913 71.341881,73.129913 60.2543,77.753532 51.90773,85.339645 L51.830544,85.413239 0.5,34.082695 1.1705538,33.428566 C23.357865,12.315537 52.842511,0.50000006 83.545365,0.5 z"
                                   RenderTransformOrigin="0.5,0.5"
                                   Stretch="Uniform" >
                                     <Path.Fill>
                                         <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
-                                            <GradientStop Color="#888888" Offset="0.1" />
-                                            <GradientStop Color="#6a6a6a" Offset="0.2" />
-                                            <GradientStop Color="#606060" Offset="0.5" />
-                                            <GradientStop Color="#555454" Offset="0.7" />
-                                            <GradientStop Color="#494848" Offset="0.9" />
+                                            <GradientStop Color="#a8a8a8" Offset="0.1" />
+                                            <GradientStop Color="#9a9a9a" Offset="0.3" />
+                                            <GradientStop Color="#8e8e8e" Offset="0.5" />
+                                            <GradientStop Color="#878787" Offset="0.7" />
+                                            <GradientStop Color="#7e7e7e" Offset="0.9" />
                                         </LinearGradientBrush>
                                     </Path.Fill>
                                 </Path>
@@ -208,7 +207,7 @@
                         <ControlTemplate TargetType="{x:Type Button}" >
                             <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
                                 <Path x:Name="Path"
-                                  Data="M7876 16855l-5132 -5132c4725,-4725 12386,-4725 17112,0l-4964 4964c-1894,-1893 -4964,-1892 -6857,2 -55,54 -108,110 -159,166z"
+                                  Data="M83.545365,0.5 C114.24822,0.50000006 143.73289,12.315537 165.9202,33.428566 L166.46572,33.960728 115.09805,85.3284 113.51431,83.95237 C105.37428,77.193642 94.916397,73.129913 83.509369,73.129913 71.341881,73.129913 60.2543,77.753532 51.90773,85.339645 L51.830544,85.413239 0.5,34.082695 1.1705538,33.428566 C23.357865,12.315537 52.842511,0.50000006 83.545365,0.5 z"
                                   RenderTransformOrigin="0.5,0.5"
                                   Stretch="Uniform" >
                                     <Path.Fill>
@@ -232,7 +231,7 @@
                         <ControlTemplate TargetType="{x:Type Button}" >
                             <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
                                 <Path x:Name="Path"
-                                  Data="M7876 16855l-5132 -5132c4725,-4725 12386,-4725 17112,0l-4964 4964c-1894,-1893 -4964,-1892 -6857,2 -55,54 -108,110 -159,166z"
+                                  Data="M83.545365,0.5 C114.24822,0.50000006 143.73289,12.315537 165.9202,33.428566 L166.46572,33.960728 115.09805,85.3284 113.51431,83.95237 C105.37428,77.193642 94.916397,73.129913 83.509369,73.129913 71.341881,73.129913 60.2543,77.753532 51.90773,85.339645 L51.830544,85.413239 0.5,34.082695 1.1705538,33.428566 C23.357865,12.315537 52.842511,0.50000006 83.545365,0.5 z"
                                   RenderTransformOrigin="0.5,0.5"
                                   Fill="#242424"
                                   Stretch="Uniform" >
@@ -244,14 +243,14 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-    <Style x:Key="ControlBtnStyle3"  TargetType="Button" BasedOn="{StaticResource IconBtnStyle}">
+    
+    <Style x:Key="ControlBtnStyle02"  TargetType="Button" BasedOn="{StaticResource IconBtnStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}" >
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
                         <Path x:Name="Path"
-                                  Data="M 336.5677 265.9001 L 387.7624 218.1602 A 120 120 0 0 1 387.7624 381.8398 L 336.5677 334.0999 A 50 50 0 0 0 336.5677 265.9001 Z"
+                                  Data="M34.125679,0.5 L85.451813,51.826133 85.17379,52.117744 C77.587662,60.464313 72.964035,71.551894 72.964035,83.719383 72.964035,95.126411 77.027763,105.58429 83.786507,113.72433 L85.16246,115.30801 33.960751,166.50972 33.428616,165.96422 C12.315557,143.7769 0.50000042,114.29224 0.5,83.589393 0.50000042,52.886531 12.315557,23.401878 33.428619,1.2145665 z"
                                   RenderTransformOrigin="0.5,0.5"
                                   Stretch="Uniform" >
                             <Path.Fill>
@@ -262,7 +261,6 @@
                                     <GradientStop Color="#878787" Offset="0.7" />
                                     <GradientStop Color="#7e7e7e" Offset="0.9" />
                                 </LinearGradientBrush>
-
                             </Path.Fill>
                         </Path>
                     </Border>
@@ -276,16 +274,16 @@
                         <ControlTemplate TargetType="{x:Type Button}" >
                             <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
                                 <Path x:Name="Path"
-                                  Data="M 336.5677 265.9001 L 387.7624 218.1602 A 120 120 0 0 1 387.7624 381.8398 L 336.5677 334.0999 A 50 50 0 0 0 336.5677 265.9001 Z"
+                                  Data="M34.125679,0.5 L85.451813,51.826133 85.17379,52.117744 C77.587662,60.464313 72.964035,71.551894 72.964035,83.719383 72.964035,95.126411 77.027763,105.58429 83.786507,113.72433 L85.16246,115.30801 33.960751,166.50972 33.428616,165.96422 C12.315557,143.7769 0.50000042,114.29224 0.5,83.589393 0.50000042,52.886531 12.315557,23.401878 33.428619,1.2145665 z"
                                   RenderTransformOrigin="0.5,0.5"
                                   Stretch="Uniform" >
                                     <Path.Fill>
                                         <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
-                                            <GradientStop Color="#888888" Offset="0.1" />
-                                            <GradientStop Color="#6a6a6a" Offset="0.2" />
-                                            <GradientStop Color="#606060" Offset="0.5" />
-                                            <GradientStop Color="#555454" Offset="0.7" />
-                                            <GradientStop Color="#494848" Offset="0.9" />
+                                            <GradientStop Color="#a8a8a8" Offset="0.1" />
+                                            <GradientStop Color="#9a9a9a" Offset="0.3" />
+                                            <GradientStop Color="#8e8e8e" Offset="0.5" />
+                                            <GradientStop Color="#878787" Offset="0.7" />
+                                            <GradientStop Color="#7e7e7e" Offset="0.9" />
                                         </LinearGradientBrush>
                                     </Path.Fill>
                                 </Path>
@@ -300,7 +298,7 @@
                         <ControlTemplate TargetType="{x:Type Button}" >
                             <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
                                 <Path x:Name="Path"
-                                  Data="M 336.5677 265.9001 L 387.7624 218.1602 A 120 120 0 0 1 387.7624 381.8398 L 336.5677 334.0999 A 50 50 0 0 0 336.5677 265.9001 Z"
+                                  Data="M34.125679,0.5 L85.451813,51.826133 85.17379,52.117744 C77.587662,60.464313 72.964035,71.551894 72.964035,83.719383 72.964035,95.126411 77.027763,105.58429 83.786507,113.72433 L85.16246,115.30801 33.960751,166.50972 33.428616,165.96422 C12.315557,143.7769 0.50000042,114.29224 0.5,83.589393 0.50000042,52.886531 12.315557,23.401878 33.428619,1.2145665 z"
                                   RenderTransformOrigin="0.5,0.5"
                                   Stretch="Uniform" >
                                     <Path.Fill>
@@ -324,7 +322,98 @@
                         <ControlTemplate TargetType="{x:Type Button}" >
                             <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
                                 <Path x:Name="Path"
-                                  Data="M7876 16855l-5132 -5132c4725,-4725 12386,-4725 17112,0l-4964 4964c-1894,-1893 -4964,-1892 -6857,2 -55,54 -108,110 -159,166z"
+                                  Data="M34.125679,0.5 L85.451813,51.826133 85.17379,52.117744 C77.587662,60.464313 72.964035,71.551894 72.964035,83.719383 72.964035,95.126411 77.027763,105.58429 83.786507,113.72433 L85.16246,115.30801 33.960751,166.50972 33.428616,165.96422 C12.315557,143.7769 0.50000042,114.29224 0.5,83.589393 0.50000042,52.886531 12.315557,23.401878 33.428619,1.2145665 z"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Fill="#242424"
+                                  Stretch="Uniform" >
+                                </Path>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style x:Key="ControlBtnStyle03"  TargetType="Button" BasedOn="{StaticResource IconBtnStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                        <Path x:Name="Path"
+                                  Data="M51.695577,0.5 L52.076787,0.86344969 C60.423352,8.4495765 71.51093,13.073197 83.678418,13.073196 95.845906,13.073197 106.93349,8.4495765 115.28006,0.86344969 L115.57169,0.58541393 166.54894,51.562666 167.94127,50.170328 168.21343,50.442476 C145.80291,72.85309 115.40769,85.443224 83.714429,85.443224 53.011567,85.443224 23.526914,73.62768 1.3396032,52.514616 L0.5,51.695578 z"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Uniform" >
+                            <Path.Fill>
+                                <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                    <GradientStop Color="#a8a8a8" Offset="0.1" />
+                                    <GradientStop Color="#9a9a9a" Offset="0.3" />
+                                    <GradientStop Color="#8e8e8e" Offset="0.5" />
+                                    <GradientStop Color="#878787" Offset="0.7" />
+                                    <GradientStop Color="#7e7e7e" Offset="0.9" />
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                                <Path x:Name="Path"
+                                  Data="M51.695577,0.5 L52.076787,0.86344969 C60.423352,8.4495765 71.51093,13.073197 83.678418,13.073196 95.845906,13.073197 106.93349,8.4495765 115.28006,0.86344969 L115.57169,0.58541393 166.54894,51.562666 167.94127,50.170328 168.21343,50.442476 C145.80291,72.85309 115.40769,85.443224 83.714429,85.443224 53.011567,85.443224 23.526914,73.62768 1.3396032,52.514616 L0.5,51.695578 z"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Uniform" >
+                                    <Path.Fill>
+                                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                            <GradientStop Color="#a8a8a8" Offset="0.1" />
+                                            <GradientStop Color="#9a9a9a" Offset="0.3" />
+                                            <GradientStop Color="#8e8e8e" Offset="0.5" />
+                                            <GradientStop Color="#878787" Offset="0.7" />
+                                            <GradientStop Color="#7e7e7e" Offset="0.9" />
+                                        </LinearGradientBrush>
+                                    </Path.Fill>
+                                </Path>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsPressed" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                                <Path x:Name="Path"
+                                  Data="M51.695577,0.5 L52.076787,0.86344969 C60.423352,8.4495765 71.51093,13.073197 83.678418,13.073196 95.845906,13.073197 106.93349,8.4495765 115.28006,0.86344969 L115.57169,0.58541393 166.54894,51.562666 167.94127,50.170328 168.21343,50.442476 C145.80291,72.85309 115.40769,85.443224 83.714429,85.443224 53.011567,85.443224 23.526914,73.62768 1.3396032,52.514616 L0.5,51.695578 z"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Uniform" >
+                                    <Path.Fill>
+                                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                            <GradientStop Color="#686868" Offset="0.1" />
+                                            <GradientStop Color="#5C5B5B" Offset="0.2" />
+                                            <GradientStop Color="#606060" Offset="0.5" />
+                                            <GradientStop Color="#555454" Offset="0.7" />
+                                            <GradientStop Color="#494848" Offset="0.9" />
+                                        </LinearGradientBrush>
+                                    </Path.Fill>
+                                </Path>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Button.IsEnabled" Value="False">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                                <Path x:Name="Path"
+                                  Data="M51.695577,0.5 L52.076787,0.86344969 C60.423352,8.4495765 71.51093,13.073197 83.678418,13.073196 95.845906,13.073197 106.93349,8.4495765 115.28006,0.86344969 L115.57169,0.58541393 166.54894,51.562666 167.94127,50.170328 168.21343,50.442476 C145.80291,72.85309 115.40769,85.443224 83.714429,85.443224 53.011567,85.443224 23.526914,73.62768 1.3396032,52.514616 L0.5,51.695578 z"
                                   RenderTransformOrigin="0.5,0.5"
                                   Fill="#242424"
                                   Stretch="Uniform" >
@@ -337,17 +426,93 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="ControlBtnStyle4"  TargetType="Button" >
-       
+    <Style x:Key="ControlBtnStyle04"  TargetType="Button" BasedOn="{StaticResource IconBtnStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                        <Path x:Name="Path"
+                                  Data="M51.861533,0.5 L52.680595,1.3396314 C73.79362,23.526941 85.609149,53.011587 85.609149,83.714441 85.609149,115.40772 73.019031,145.80293 50.608459,168.21346 L50.336276,167.94127 51.77209,166.50546 0.78991175,115.52329 0.86350489,115.4461 C8.4496157,107.09952 13.073238,96.011942 13.073235,83.844446 13.073238,71.676958 8.4496243,60.589377 0.86350799,52.242808 L0.5,51.861536 z"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Uniform" >
+                            <Path.Fill>
+                                <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                    <GradientStop Color="#a8a8a8" Offset="0.1" />
+                                    <GradientStop Color="#9a9a9a" Offset="0.3" />
+                                    <GradientStop Color="#8e8e8e" Offset="0.5" />
+                                    <GradientStop Color="#878787" Offset="0.7" />
+                                    <GradientStop Color="#7e7e7e" Offset="0.9" />
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Style.Triggers>
             <Trigger Property="Button.IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                                <Path x:Name="Path"
+                                  Data="M51.861533,0.5 L52.680595,1.3396314 C73.79362,23.526941 85.609149,53.011587 85.609149,83.714441 85.609149,115.40772 73.019031,145.80293 50.608459,168.21346 L50.336276,167.94127 51.77209,166.50546 0.78991175,115.52329 0.86350489,115.4461 C8.4496157,107.09952 13.073238,96.011942 13.073235,83.844446 13.073238,71.676958 8.4496243,60.589377 0.86350799,52.242808 L0.5,51.861536 z"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Uniform" >
+                                    <Path.Fill>
+                                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                            <GradientStop Color="#a8a8a8" Offset="0.1" />
+                                            <GradientStop Color="#9a9a9a" Offset="0.3" />
+                                            <GradientStop Color="#8e8e8e" Offset="0.5" />
+                                            <GradientStop Color="#878787" Offset="0.7" />
+                                            <GradientStop Color="#7e7e7e" Offset="0.9" />
+                                        </LinearGradientBrush>
+                                    </Path.Fill>
+                                </Path>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="Button.IsPressed" Value="True">
-                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                                <Path x:Name="Path"
+                                  Data="M51.861533,0.5 L52.680595,1.3396314 C73.79362,23.526941 85.609149,53.011587 85.609149,83.714441 85.609149,115.40772 73.019031,145.80293 50.608459,168.21346 L50.336276,167.94127 51.77209,166.50546 0.78991175,115.52329 0.86350489,115.4461 C8.4496157,107.09952 13.073238,96.011942 13.073235,83.844446 13.073238,71.676958 8.4496243,60.589377 0.86350799,52.242808 L0.5,51.861536 z"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Uniform" >
+                                    <Path.Fill>
+                                        <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                            <GradientStop Color="#686868" Offset="0.1" />
+                                            <GradientStop Color="#5C5B5B" Offset="0.2" />
+                                            <GradientStop Color="#606060" Offset="0.5" />
+                                            <GradientStop Color="#555454" Offset="0.7" />
+                                            <GradientStop Color="#494848" Offset="0.9" />
+                                        </LinearGradientBrush>
+                                    </Path.Fill>
+                                </Path>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
             <Trigger Property="Button.IsEnabled" Value="False">
-                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
+                                <Path x:Name="Path"
+                                  Data="M51.861533,0.5 L52.680595,1.3396314 C73.79362,23.526941 85.609149,53.011587 85.609149,83.714441 85.609149,115.40772 73.019031,145.80293 50.608459,168.21346 L50.336276,167.94127 51.77209,166.50546 0.78991175,115.52329 0.86350489,115.4461 C8.4496157,107.09952 13.073238,96.011942 13.073235,83.844446 13.073238,71.676958 8.4496243,60.589377 0.86350799,52.242808 L0.5,51.861536 z"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Fill="#242424"
+                                  Stretch="Uniform" >
+                                </Path>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Trigger>
         </Style.Triggers>
     </Style>

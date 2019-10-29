@@ -29,6 +29,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         public CutterResetCheckPage()
         {
             InitializeComponent();
+
+            manualControl.SetHeaderActive(this);
         }
 
         public override void CncOnError(string message)
