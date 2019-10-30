@@ -7,7 +7,7 @@
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       mc:Ignorable="d" 
       xmlns:usercontrols="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
-       d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
+       d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
       Title="ManualFindSidePage">
 
     <Page.Resources>

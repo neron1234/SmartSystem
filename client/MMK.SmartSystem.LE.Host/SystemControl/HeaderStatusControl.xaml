@@ -7,7 +7,7 @@
              xmlns:cc="clr-namespace:MMK.SmartSystem.LE.Host.CustomControl"
              xmlns:Converters="clr-namespace:MMK.SmartSystem.LE.Host.Converters" 
              mc:Ignorable="d" 
-             d:DesignHeight="45" d:DesignWidth="1366" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3" Background="#FF3B3B3B">
+             d:DesignHeight="45" d:DesignWidth="1366" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3" Background="#FF3B3B3B">
 
     <UserControl.Resources>
         <Converters:StringToImageSourceConverter x:Key="ImageConverter" />

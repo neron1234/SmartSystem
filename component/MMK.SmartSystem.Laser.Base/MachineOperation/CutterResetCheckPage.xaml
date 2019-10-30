@@ -7,7 +7,7 @@
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       mc:Ignorable="d" 
       xmlns:usercontrols="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
-       d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="18" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
+       d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="18" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
       Title="CutterResetCheckPage">
 
     <Page.Resources>
@@ -48,21 +48,6 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Margin="5 10 0 5">
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="铜刷中心位置: " VerticalAlignment="Center"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="铜刷中心位置: " VerticalAlignment="Center"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="Z轴机械坐标下限: " VerticalAlignment="Center"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="割嘴高度偏置: " VerticalAlignment="Center"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="割嘴清洁往返次数: " VerticalAlignment="Center"/>
-                        </Border>
-                        <!--<Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
                             <TextBlock Text="复归位置: " VerticalAlignment="Center"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
@@ -73,23 +58,20 @@
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
                             <TextBlock Text="Z轴坐标下限: " VerticalAlignment="Center"/>
-                        </Border>-->
+                        </Border>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="0 10 5 5">
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="521.87" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            <TextBlock Text="338.2" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="398.12" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            <TextBlock Text="5.2" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="-87.5" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            <TextBlock Text="651.8" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="780" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="1210.12" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            <TextBlock Text="10.12" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                         </Border>
                     </StackPanel>
                 </Grid>

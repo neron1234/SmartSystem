@@ -76,7 +76,7 @@
     <Style x:Key="IconBtnStyle"  TargetType="Button">
         <Setter Property="Background" Value="#7b7979"/>
         <Setter Property="Foreground" Value="#282620" />
-        <Setter Property="FontFamily" Value="SourceHanSansCN-Bold"/>
+        <Setter Property="FontFamily" Value="思源黑体 CN Bold"/>
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="VerticalAlignment" Value="Center"/>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
              mc:Ignorable="d" 
-             d:DesignHeight="63" d:DesignWidth="1366" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3" Background="#FF3B3B3B">
+             d:DesignHeight="63" d:DesignWidth="1366" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3" Background="#FF3B3B3B">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/MMK.SmartSystem.LE.Host;component/Resources/Images/TitleBg.png"/>
@@ -25,7 +25,7 @@
                     <ImageBrush ImageSource="/MMK.SmartSystem.LE.Host;component/Resources/Images/WarningBg.png"/>
                 </StackPanel.Background>
                 <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/WarningIcon.png" Width="29" Height="24" Margin="17 0 0 0"/>
-                <TextBlock Text="{Binding WarnStr}" Margin="15 5 0 0" FontSize="18"/>
+                <TextBlock Text="{Binding WarnStr}" Margin="15 5 0 0" FontSize="18" FontFamily="思源黑体 CN Bold"/>
             </StackPanel>
         </StackPanel>
     </Grid>

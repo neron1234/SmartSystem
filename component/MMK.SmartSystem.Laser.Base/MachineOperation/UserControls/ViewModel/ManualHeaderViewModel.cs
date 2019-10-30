@@ -54,15 +54,15 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.UserControls.ViewModel
             return new List<ManualHeaderViewModel>()
             {
                 new ManualHeaderViewModel(){ Title="I/O",FullName="MaualioPage"},
-                new ManualHeaderViewModel(){ Title="简易轮廓",FullName="CutterResetCheckPage"},
-                new ManualHeaderViewModel(){ Title="自动巡边",FullName="CutterResetCheckPage"},
-                new ManualHeaderViewModel(){ Title="手动寻边",FullName="CutterResetCheckPage"},
-                 new ManualHeaderViewModel(){ Title="割嘴清洁",FullName="CutterResetCheckPage"},
-                   new ManualHeaderViewModel(){ Title="余料切割",FullName="CutterResetCheckPage"},
+                new ManualHeaderViewModel(){ Title="简易轮廓",FullName=""},
+                new ManualHeaderViewModel(){ Title="自动巡边",FullName="AutoFindSidePage"},
+                new ManualHeaderViewModel(){ Title="手动寻边",FullName=""},
+                 new ManualHeaderViewModel(){ Title="割嘴清洁",FullName="AutoCutterCleanPage"},
+                   new ManualHeaderViewModel(){ Title="余料切割",FullName=""},
                     new ManualHeaderViewModel(){ Title="割嘴复归",FullName="CutterResetCheckPage"},
-                       new ManualHeaderViewModel(){ Title="割嘴对中",FullName="CutterResetCheckPage"},
-                    new ManualHeaderViewModel(){ Title="简易套料",FullName="CutterResetCheckPage"},
-                       new ManualHeaderViewModel(){ Title="辅助气体",FullName="CutterResetCheckPage"}
+                       new ManualHeaderViewModel(){ Title="割嘴对中",FullName="CutCenterPage"},
+                    new ManualHeaderViewModel(){ Title="简易套料",FullName=""},
+                       new ManualHeaderViewModel(){ Title="辅助气体",FullName="AuxGasCheckPage"}
             };
 
         }

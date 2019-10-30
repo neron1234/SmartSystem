@@ -32,6 +32,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         public AutoFindSidePage()
         {
             InitializeComponent();
+            manualControl.SetHeaderActive(this);
             this.DataContext = AutoFindSidePageViewModel = new AutoFindSidePageViewModel("MachineOperation.AutoFindSidePage");
             this.Unloaded += AutoFindSidePage_Unloaded;
             this.RefreshAuth += AutoFindSidePage_RefreshAuth;

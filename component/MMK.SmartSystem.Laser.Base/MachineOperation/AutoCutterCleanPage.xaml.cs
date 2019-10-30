@@ -33,6 +33,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         {
             InitializeComponent();
             //this.DataContext = new MainTranslateViewModel();
+            manualControl.SetHeaderActive(this);
         }
       
 

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="598"  d:DesignWidth="484" Background="#FF3B3B3B" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3">
+             d:DesignHeight="598"  d:DesignWidth="484" Background="#FF3B3B3B" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

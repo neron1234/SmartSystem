@@ -7,7 +7,7 @@
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       xmlns:usercontrols="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
       mc:Ignorable="d" 
-       d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
+       d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
       Title="AutoCutterCleanPage">
 
     <Page.Resources>
@@ -19,108 +19,84 @@
     </Page.Resources>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="618"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="4">
-            <usercontrols:ManualHeaderControl />
+        <StackPanel Grid.Row="0">
+            <usercontrols:ManualHeaderControl x:Name="manualControl"/>
         </StackPanel>
-
-        <Grid Grid.Column="0"  Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="360"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="100*"/>
-            </Grid.RowDefinitions>
-            <Border Grid.Column="0" BorderBrush="#FF323232" BorderThickness="0" Background="Transparent">
-                <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/cac.png"/>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="72*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="28*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="#FF323232" BorderThickness="0" Background="Transparent" Width="670" >
+                <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/laser_切图_1029-2@1x.png" Width="650"/>
             </Border>
-
-            <Button Style="{StaticResource BtnStyle}" Grid.Row="2" Width="200" Height="60"   VerticalAlignment="Center" Content="MANUALSTART" 
-                        HorizontalAlignment="Center" />
+            <StackPanel Background="#000000" Grid.Column="1" />
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition MaxHeight="58"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="5 10 0 5">
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="铜刷中心位置: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="铜刷中心位置: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="Z轴机械坐标下限: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="割嘴高度偏置: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="割嘴清洁往返次数: " VerticalAlignment="Center"/>
+                        </Border>
+                        <!--<Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="复归位置: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="X机械坐标: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="Y机械坐标: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="Z轴坐标下限: " VerticalAlignment="Center"/>
+                        </Border>-->
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="0 10 5 5">
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="521.87" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="398.12" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="-87.5" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="780" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="1210.12" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource IconBtnStyle}" Content="手动启动清洁" FontSize="24" Height="59" Width="358" />
+                </StackPanel>
+            </Grid>
         </Grid>
-
-        <Grid Grid.Column="1" Grid.Row="1" Margin="15,0,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="45"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="CENTER" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="X" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="D" Margin="0,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="8" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="2" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding XD}" Foreground="Yellow" />
-
-            <StackPanel Grid.Row="3"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="CENTER" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="Y" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text="D" Margin="0,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="8" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="4" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding YD}" Foreground="Yellow" />
-
-            <StackPanel Grid.Row="5"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="ZLIMIT" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="6" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding ZLimit}" Foreground="Yellow" />
-
-            <StackPanel Grid.Row="8"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="ZOFS" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"
-                           />
-            </StackPanel>
-            <TextBox Grid.Row="9" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding H}" Foreground="Yellow" />
-
-            <StackPanel Grid.Row="10"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <TextBlock Text="TIME" Margin="10,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-                <TextBlock Text=":" Margin="5,0,0,0"
-                       HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="White"/>
-            </StackPanel>
-            <TextBox Grid.Row="11" HorizontalAlignment="Left" Margin="10,5,0,5" Width="200" Background="Transparent"
-                     Text="{Binding CleanTime}" Foreground="Yellow" />
-
-        </Grid>
-
     </Grid>
 </base:SignalrPage>

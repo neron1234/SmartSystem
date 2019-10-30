@@ -29,6 +29,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         public AuxGasCheckPage()
         {
             InitializeComponent();
+            manualControl.SetHeaderActive(this);
         }
 
         public override void CncOnError(string message)

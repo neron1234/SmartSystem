@@ -8,7 +8,7 @@
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       xmlns:custom="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
       mc:Ignorable="d" 
-      d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="20" FontFamily="PingFangSC-Semibold" Foreground="#FFB6BEC3"
+       d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="18" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
       Title="LaserStatePage" >
     <Page.Resources>
         <ResourceDictionary>
@@ -52,8 +52,8 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                             <!--<ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
-                            <Image Source="..\Image\BtnTest2.png" Width="110" Height="110"/>
-                        </Border>
+                                <Image Source="..\Resources\Images\BtnTest2.png" Width="110" Height="110"/>
+                            </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="UIElement.IsMouseOver" Value="True">
                                 <Setter Property="Border.Background" TargetName="PART_Background">
@@ -73,7 +73,7 @@
         </Style>
         <Style x:Key="WarnBtn" BasedOn="{StaticResource FunctionBtnStyle}" TargetType="Button">
             <Setter Property="BorderBrush" Value="#e36733"/>
-            <Setter Property="Background" Value="#FFDDDDDD"/>
+            <Setter Property="Background" Value="#818080"/>
             <Setter Property="Effect">
                 <Setter.Value>
                     <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#FFFFCF00"/>
@@ -91,7 +91,7 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                             <!--<ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
-                            <Image Source="..\Image\BtnTest.png" Width="110" Height="110"/>
+                                <Image Source="..\Resources\Images\BtnTest.png" Width="110" Height="110"/>
                             <!--<TextBlock Text="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
                         </Border>
                         <ControlTemplate.Triggers>
@@ -124,27 +124,28 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition MaxHeight="64"/>
-            <RowDefinition />
+            <RowDefinition Height="64"/>
+            <RowDefinition Height="594"/>
         </Grid.RowDefinitions>
-        <Grid Background="#111315" Grid.Row="0" >
+        <Grid Background="#111315" Grid.Row="0" Height="64">
             <TextBlock Foreground="#4c5d5d" FontSize="26" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0,0,0">其他状态信息</TextBlock>
         </Grid>
-        <Grid Grid.Row="1" Margin="30,0,30,30">
+        <Grid Grid.Row="1" Margin="30,0,30,30" Height="564">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition MaxWidth="50"/>
                 <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="108"/>
-                <RowDefinition/>
+                <RowDefinition Height="108"/>
+                <RowDefinition Height="456"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0">
-                <Button Content="切割头" Width="261" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#141619" Foreground="#4c5d5d" FontSize="24" BorderThickness="0"/>
+            <Grid Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Height="108">
+                <Button Content="切割头" Width="261" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#141619" Foreground="#fcc332" FontSize="24" BorderThickness="0"/>
                 <Button Content="激光状态" Width="261" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#202328" Foreground="#d8d8d8" FontSize="24" Margin="262,0,0,0" BorderThickness="0"/>
             </Grid>
-            <WrapPanel Grid.Row="1" Grid.Column="0" Background="#202328">
+
+            <WrapPanel Grid.Row="1" Grid.Column="0" Background="#282620" Height="456">
                 <StackPanel>
                     <Button Style="{StaticResource NormalBtn}"/>
                     <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
@@ -158,8 +159,8 @@
                     <TextBlock Text="外壳" Style="{StaticResource FunctionTextStyle}"/>
                 </StackPanel>
             </WrapPanel>
-            
-            <WrapPanel Grid.Row="1" Grid.Column="3" Background="#202328">
+
+            <WrapPanel Grid.Row="1" Grid.Column="3" Background="#282620" Height="456">
                 <StackPanel>
                     <Button Style="{StaticResource WarnBtn}"/>
                     <TextBlock Text="外壳过热" Style="{StaticResource FunctionTextStyle}"/>
@@ -175,7 +176,7 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" Text="是否启用：" Foreground="White"/>
                     <custom:FlatToggleButton Width="50" Height="28" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                         Background="Blue" IsChecked="False"/>
+                                         Background="#818080" IsChecked="False"/>
                 </StackPanel>
             </WrapPanel>
         </Grid>
