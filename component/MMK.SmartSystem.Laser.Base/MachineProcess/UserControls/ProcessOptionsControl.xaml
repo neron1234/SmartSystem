@@ -67,7 +67,7 @@
             </Button>
             <Button Style="{StaticResource IconBtnStyle}" Width="50" Height="50" Margin="5 4 10 0" Command="{Binding NestColumnsCommand}">
                 <WrapPanel>
-                    <Path Data="{StaticResource RightTriangleIcon}" Width="30" Height="30" Fill="#202020" Stretch="Fill"/>
+                    <Path Data="{StaticResource RightTriangleIcon}" Width="25" Height="25" Fill="#202020" Stretch="Fill"/>
                 </WrapPanel>
             </Button>
         </StackPanel>

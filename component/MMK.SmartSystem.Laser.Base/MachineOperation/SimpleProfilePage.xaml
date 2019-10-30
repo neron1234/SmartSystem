@@ -1,14 +1,106 @@
-﻿<Page x:Class="MMK.SmartSystem.Laser.Base.MachineOperation.SimpleProfilePage"
+﻿<base:SignalrPage x:Class="MMK.SmartSystem.Laser.Base.MachineOperation.SimpleProfilePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation"
+      xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
+      xmlns:usercontrols="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
       Title="SimpleProfilePage">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="618"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <usercontrols:ManualHeaderControl x:Name="manualControl"/>
+        </StackPanel>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="72*"/>
+                <ColumnDefinition Width="2"/>
+                <ColumnDefinition Width="28*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="#FF323232" BorderThickness="0" Background="Transparent" Width="670" >
+                <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/laser_切图_1029-2@1x.png" Width="650"/>
+            </Border>
+            <StackPanel Background="#000000" Grid.Column="1" />
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="226"/>
+                    <RowDefinition />
+                    <RowDefinition MaxHeight="58"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="#FF323232" BorderThickness="0" Background="Transparent">
+                    <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/laser_切图_1029-2@1x.png" />
+                </Border>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="5 10 0 5">
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="引线H: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="长度I: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="宽度J: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="直径D: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="半径R: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="切割E: " VerticalAlignment="Center"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                            <TextBlock Text="穿孔E: " VerticalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="0 10 5 5">
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="15" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="128" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="128" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="35" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="35" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="92" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="291" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource IconBtnStyle}" Content="创建程序" FontSize="24" Height="59" Width="358" />
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
-</Page>
+</base:SignalrPage>

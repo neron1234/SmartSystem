@@ -69,7 +69,6 @@
         <Setter Property="Foreground" Value="#747474" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="Height" Value="32" />
-        <Setter Property="Margin" Value="2 0 2 2" />
     </Style>
     <!--单元格样式-->
     <Style TargetType="DataGridCell">

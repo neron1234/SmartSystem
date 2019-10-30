@@ -28,6 +28,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         public RemainCutPage()
         {
             InitializeComponent();
+            manualControl.SetHeaderActive(this);
         }
      
 
