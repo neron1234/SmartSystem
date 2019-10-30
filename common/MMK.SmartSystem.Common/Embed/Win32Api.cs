@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
+namespace MMK.SmartSystem.Common.Embed
 {
     public class Win32Api
     {

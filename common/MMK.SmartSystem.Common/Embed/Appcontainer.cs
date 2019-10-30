@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Forms.Integration;
 using System.Windows.Media;
 
-namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
+namespace MMK.SmartSystem.Common.Embed
 {
     public class AppContainer : ContentControl
     {
@@ -20,7 +20,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
         public AppContainer()
         {
             var res = new ResourceDictionary();
-            res.Source = new Uri("pack://application:,,,/MMK.SmartSystem.LE.Host;component/SystemControl/Embed/AppContainer.xaml");
+            res.Source = new Uri("pack://application:,,,/MMK.SmartSystem.Common;component/Embed/AppContainer.xaml");
             Application.Current.Resources.MergedDictionaries.Add(res);
         }
 
@@ -35,7 +35,18 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
                 _winFormHost.Child = _hostPanel;
             }
         }
+        public bool StartAndEmbedWindowsName(string windowName)
+        {
+            var isStartAndEmbedSuccess = false;
+            var process = Win32Api.FindWindow(null, windowName);
 
+            isStartAndEmbedSuccess = EmbedApp(process);
+            if (!isStartAndEmbedSuccess)
+            {
+                CloseApp(_process);
+            }
+            return isStartAndEmbedSuccess;
+        }
         public bool StartAndEmbedProcess(string processPath, System.Windows.Threading.Dispatcher dispatcher = null)
         {
             var isStartAndEmbedSuccess = false;
@@ -146,7 +157,41 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.Embed
 
             return isEmbedSuccess;
         }
+        private bool EmbedApp(IntPtr processHwnd)
+        {
+            //是否嵌入成功标志，用作返回值
+            var isEmbedSuccess = false;
 
+            //外进程句柄
+            //容器句柄
+            var panelHwnd = _hostPanel.Handle;
+
+            if (processHwnd != (IntPtr)0 && panelHwnd != (IntPtr)0)
+            {
+                //把本窗口句柄与目标窗口句柄关联起来
+                var setTime = 0;
+                while (!isEmbedSuccess && setTime < 50)
+                {
+                    // Put it into this form
+                    isEmbedSuccess = Win32Api.SetParent(processHwnd, panelHwnd) != 0;
+                    Thread.Sleep(10);
+                    setTime++;
+                }
+
+                // Remove border and whatnot
+                Win32Api.SetWindowLong(processHwnd, Win32Api.GWL_STYLE, Win32Api.WS_CHILDWINDOW | Win32Api.WS_CLIPSIBLINGS | Win32Api.WS_CLIPCHILDREN | Win32Api.WS_VISIBLE);
+
+                // Move the window to overlay it on this window
+                Win32Api.MoveWindow(processHwnd, 0, 0, (int)ActualWidth, (int)ActualHeight, true);
+            }
+
+            if (isEmbedSuccess)
+            {
+                _embededWindowHandle = processHwnd;
+            }
+
+            return isEmbedSuccess;
+        }
         protected override void OnRender(DrawingContext drawingContext)
         {
             if (_process != null)

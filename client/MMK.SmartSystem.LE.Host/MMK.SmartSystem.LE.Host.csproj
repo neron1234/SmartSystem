@@ -319,8 +319,6 @@
     <Compile Include="SystemControl\BottomWarningLogControl.xaml.cs">
       <DependentUpon>BottomWarningLogControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SystemControl\Embed\Appcontainer.cs" />
-    <Compile Include="SystemControl\Embed\Win32Api.cs" />
     <Compile Include="SystemControl\FunctionConfigControl.xaml.cs">
       <DependentUpon>FunctionConfigControl.xaml</DependentUpon>
     </Compile>
@@ -520,10 +518,6 @@
     <Page Include="SystemControl\BottomWarningLogControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SystemControl\Embed\AppContainer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="SystemControl\FunctionConfigControl.xaml">
       <SubType>Designer</SubType>
