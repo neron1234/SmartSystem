@@ -59,6 +59,9 @@
             <uc:ProcessListControl x:Name="processList"/>
         </StackPanel>
         <StackPanel Grid.Row="2">
+            <StackPanel.Effect>
+                <DropShadowEffect Color="Black" Direction="280" ShadowDepth="-100" Opacity="1" BlurRadius="10"/>
+            </StackPanel.Effect>
             <uc:ProcessOptionsControl x:Name="processOption"/>
         </StackPanel>
     </Grid>

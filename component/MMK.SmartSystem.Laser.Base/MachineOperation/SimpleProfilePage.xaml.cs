@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.Common.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,22 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
     /// <summary>
     /// SimpleProfilePage.xaml 的交互逻辑
     /// </summary>
-    public partial class SimpleProfilePage : Page
+    public partial class SimpleProfilePage : SignalrPage
     {
         public SimpleProfilePage()
         {
             InitializeComponent();
+            manualControl.SetHeaderActive(this);
+        }
+
+        public override void CncOnError(string message)
+        {
+            
+        }
+
+        public override List<object> GetResultViewModelMap()
+        {
+            return default;
         }
     }
 }

@@ -31,6 +31,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         public ManualFindSidePage()
         {
             InitializeComponent();
+            manualControl.SetHeaderActive(this);
             this.DataContext = mfViewModel = new ManualFindSidePageViewModel();
             //SmartSystem.Common.UserClient userClient = new Common.UserClient("http://localhost:21021", new System.Net.Http.HttpClient());
           
@@ -39,10 +40,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
             //var alls = client.GetAllAsync("", "", 0, 20).Result;
 
         }
-
-       
-
-       
 
         public override List<object> GetResultViewModelMap()
         {

@@ -37,30 +37,34 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel>
-            
-                <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}"  AutoGenerateColumns="False" x:Name="ProgramGrid" Margin="5" Height="380" Background="#2a2f34" 
+            <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}"  AutoGenerateColumns="False" x:Name="ProgramGrid" Height="380" Background="#2a2f34" 
                        AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16" BorderThickness="0">
-                    
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="45*" />
-                        <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="20*" />
-                        <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="35*" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            
-            <StackPanel Orientation="Horizontal" Margin="10 0 10 12">
-                <TextBlock Text="当前CNC路径: "/>
-                <TextBlock Text="{Binding CNCPath}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button Width="120" Height="45" Margin="5 10 5 10" Content="主程序" Command="{Binding MainProgramCommand}"/>
-                <Button Width="120" Height="45" Margin="5 10 5 10" Content="路径" Command="{Binding CNCPathCommand}"/>
-                <Button Width="120" Height="45" Margin="5 10 5 10" Content="下载" Command="{Binding DowloadCommand}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button Width="120" Height="45" Margin="5 10 5 10" Content="搜索" Command="{Binding SearchCommand}"/>
-                <Button Width="120" Height="45" Margin="5 10 5 10" Content="删除" Command="{Binding DeleteFileCommand}"/>
-                <Button Width="120" Height="45" Margin="5 10 5 10" Content="翻页" Command="{Binding NextPageCommand}" />
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="45*" />
+                    <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="20*" />
+                    <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="35*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Background="#FF3B3B3B" >
+                <StackPanel.Effect>
+                    <DropShadowEffect Color="Black" Direction="280" ShadowDepth="-100" Opacity="1" BlurRadius="10"/>
+                </StackPanel.Effect>
+                <Border Margin="0 15 0 12" BorderThickness="0 0 0 1" BorderBrush="#575757">
+                    <WrapPanel>
+                        <TextBlock Text="当前CNC路径: "/>
+                        <TextBlock Text="{Binding CNCPath}" />
+                    </WrapPanel>
+                </Border>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="主程序" Command="{Binding MainProgramCommand}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="路径" Command="{Binding CNCPathCommand}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="下载" Command="{Binding DowloadCommand}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="4 4 4 12">
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="搜索" Command="{Binding SearchCommand}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="删除" Command="{Binding DeleteFileCommand}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="翻页" Command="{Binding NextPageCommand}" />
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>

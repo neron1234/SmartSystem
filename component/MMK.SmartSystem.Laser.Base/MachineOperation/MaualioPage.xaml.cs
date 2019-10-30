@@ -1,4 +1,5 @@
 ﻿using Abp.Dependency;
+using MMK.SmartSystem.Common.Base;
 using MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -20,14 +21,24 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
     /// <summary>
     /// MaualioPage.xaml 的交互逻辑
     /// </summary>
-    public partial class MaualioPage : Page, ITransientDependency
+    public partial class MaualioPage : SignalrPage
     {
         public ManualioViewModel mioVm { get; set; }
         public MaualioPage()
         {
             InitializeComponent();
-            this.DataContext = mioVm = new ManualioViewModel();
+            //this.DataContext = mioVm = new ManualioViewModel();
             manualControl.SetHeaderActive(this);
+        }
+
+        public override void CncOnError(string message)
+        {
+
+        }
+
+        public override List<object> GetResultViewModelMap()
+        {
+            return default;
         }
     }
 }

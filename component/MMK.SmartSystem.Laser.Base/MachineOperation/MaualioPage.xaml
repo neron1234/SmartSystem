@@ -1,9 +1,10 @@
-﻿<Page x:Class="MMK.SmartSystem.Laser.Base.MachineOperation.MaualioPage"
+﻿<base:SignalrPage x:Class="MMK.SmartSystem.Laser.Base.MachineOperation.MaualioPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation"
+      xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       xmlns:convert="clr-namespace:MMK.SmartSystem.Laser.Base.Converters"
       xmlns:usercontrols="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
       mc:Ignorable="d" 
@@ -179,4 +180,4 @@
             </Grid>
         </Grid>
     </Grid>
-</Page>
+</base:SignalrPage>
