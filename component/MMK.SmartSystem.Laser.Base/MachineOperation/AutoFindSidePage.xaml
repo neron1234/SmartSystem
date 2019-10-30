@@ -20,7 +20,7 @@
     <Grid Margin="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="618"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <usercontrols:ManualHeaderControl x:Name="manualControl"/>

@@ -18,10 +18,10 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Margin="0">
+    <Grid Margin="0" Width="1268">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="618"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <usercontrols:ManualHeaderControl x:Name="manualControl"/>
@@ -37,7 +37,7 @@
                         <ColumnDefinition Width="7*"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Margin="5 10 0 5">
+                    <StackPanel Grid.Column="0" Margin="10 10 0 5">
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
                             <TextBlock Text="辅助气体种类: " VerticalAlignment="Center"/>
                         </Border>
@@ -48,7 +48,7 @@
                             <TextBlock Text="辅助气体上升时间: " VerticalAlignment="Center"/>
                         </Border>
                     </StackPanel>
-                    <StackPanel Grid.Column="1" Margin="0 10 5 5">
+                    <StackPanel Grid.Column="1" Margin="0 10 10 5">
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
                             <TextBlock Text="氮气" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                         </Border>

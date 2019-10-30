@@ -294,6 +294,14 @@
     <Compile Include="EventHandler\PiercingDataHandler.cs" />
     <Compile Include="EventHandler\ProgramClientHandler.cs" />
     <Compile Include="EventHandler\SlopeControlDataHandler.cs" />
+    <Compile Include="MachineMaintain\MaintainPage.xaml.cs">
+      <DependentUpon>MaintainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineMaintain\UserControls\MachineConfigControl.xaml.cs">
+      <DependentUpon>MachineConfigControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineMaintain\UserControls\ViewModel\MachineConfigViewModel.cs" />
+    <Compile Include="MachineMaintain\ViewModel\MaintainViewModel.cs" />
     <Compile Include="MachineMonitor\ControlHelp\GridHelper.cs" />
     <Compile Include="MachineMonitor\CoordinateControl.xaml.cs">
       <DependentUpon>CoordinateControl.xaml</DependentUpon>
@@ -352,6 +360,7 @@
     <Compile Include="MachineOperation\ViewModel\CutCenterPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\CutterResetCheckPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\ManualFindSidePageViewModel.cs" />
+    <Compile Include="MachineOperation\ViewModel\RemainCutViewModel.cs" />
     <Compile Include="MachineProcess\UserControls\ViewModel\EditMaterialViewModel.cs" />
     <Compile Include="PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
@@ -513,6 +522,14 @@
     <Page Include="CustomControl\ToggleButton\Themes\IconToggleButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MachineMaintain\MaintainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineMaintain\UserControls\MachineConfigControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MachineMonitor\CoordinateControl.xaml">
       <SubType>Designer</SubType>

@@ -21,32 +21,32 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="452*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="454*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="358*"/>
+            <ColumnDefinition Width="452"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="454"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="358"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="618"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="5">
             <usercontrols:ManualHeaderControl x:Name="manualControl"/>
         </StackPanel>
         <StackPanel Background="#000000" Grid.Column="1" Grid.Row="1" />
-        <Grid Grid.Row="1" Grid.Column="0" >
+        <Grid Grid.Row="1" Grid.Column="0" Height="618">
             <Border BorderBrush="#FF323232" BorderThickness="1" Background="Transparent">
                 <Image Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/rc.png"/>
             </Border>
         </Grid>
         <StackPanel Grid.Column="2" Grid.Row="1">
-            <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}"  AutoGenerateColumns="False" x:Name="ProgramGrid"  Height="530" Background="#2a2f34" 
-                       AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16" BorderThickness="0">
+            <DataGrid ItemsSource="{Binding}" DataContext="{Binding RemainList}"  AutoGenerateColumns="False" x:Name="ProgramGrid"  Height="530" Background="#2a2f34" 
+                       AlternationCount="2"  IsReadOnly="True" FontSize="16" BorderThickness="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="40*" />
-                    <DataGridTextColumn Header="X坐标" Binding="{Binding Size}" Width="30*" />
-                    <DataGridTextColumn Header="Y坐标" Binding="{Binding CreateTime}" Width="30*" />
+                    <DataGridTextColumn Header="X坐标" Binding="{Binding X}" Width="30*" />
+                    <DataGridTextColumn Header="Y坐标" Binding="{Binding Y}" Width="30*" />
                 </DataGrid.Columns>
             </DataGrid>
             <Grid Height="88" Margin="0 0 0 0" Background="#3b3b3b">
@@ -65,11 +65,61 @@
                 </Button>
                 <Button Style="{StaticResource IconBtnStyle}" Width="50" Height="50" Grid.Column="2" Command="{Binding NestColumnsCommand}">
                     <WrapPanel>
-                        <Path Data="{StaticResource BottomTriangleIcon}" Width="17" Height="9" Fill="#202020" Stretch="Fill"/>
+                        <Path Data="{StaticResource BottomTriangleIcon}" Width="17" Height="9" Fill="#202020" Stretch="Fill" Margin="33 20 0 0">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="180"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
                     </WrapPanel>
                 </Button>
             </Grid>
         </StackPanel>
         <StackPanel Background="#000000" Grid.Column="3" Grid.Row="1" />
+        <Grid Grid.Row="1" Grid.Column="4" Width="358" Height="618">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="56"/>
+            </Grid.RowDefinitions>
+            <WrapPanel Background="Black" Width="358" Height="562" Orientation="Horizontal">
+                <Grid Width="177" Height="281" Background="#3b3b3b" Margin="1">
+                    <Button Style="{StaticResource IconBtnStyle}" Height="163" Width="132" Margin="20 60 18 50" Foreground="#F7C800">
+                        <WrapPanel>
+                            <TextBlock Text="P1" FontSize="34"/>
+                            <TextBlock Text="读取" FontSize="20" Margin="0 14 0 0"/>
+                        </WrapPanel>
+                    </Button>
+                </Grid>
+                <Grid Width="177" Height="281" Background="#3b3b3b" Margin="1">
+                    <Button Style="{StaticResource IconBtnStyle}" Height="163" Width="132" Margin="20 60 18 50">
+                        <WrapPanel>
+                            <TextBlock Text="P2" FontSize="34"/>
+                            <TextBlock Text="读取" FontSize="20" Margin="0 14 0 0"/>
+                        </WrapPanel>
+                    </Button>
+                </Grid>
+                <Grid Width="177" Height="281" Background="#3b3b3b" Margin="1">
+                    <Button Style="{StaticResource IconBtnStyle}" Height="163" Width="132" Margin="20 60 18 50">
+                        <WrapPanel>
+                            <TextBlock Text="P2" FontSize="34"/>
+                            <TextBlock Text="读取" FontSize="20" Margin="0 14 0 0"/>
+                        </WrapPanel>
+                    </Button>
+                </Grid>
+                <Grid Width="177" Height="281" Background="#3b3b3b" Margin="1">
+                    <Button Style="{StaticResource IconBtnStyle}" Height="163" Width="132" Margin="20 60 18 50">
+                        <WrapPanel>
+                            <TextBlock Text="P2" FontSize="34"/>
+                            <TextBlock Text="读取" FontSize="20" Margin="0 14 0 0"/>
+                        </WrapPanel>
+                    </Button>
+                </Grid>
+            </WrapPanel>
+            <Button Style="{StaticResource IconBtnStyle}" Content="余料切割" FontSize="24" Height="59" Width="360" Grid.Row="1"/>
+        </Grid>
     </Grid>
 </base:SignalrPage>

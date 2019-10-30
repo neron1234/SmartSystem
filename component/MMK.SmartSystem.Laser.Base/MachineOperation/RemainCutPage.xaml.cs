@@ -1,4 +1,5 @@
 ﻿using MMK.SmartSystem.Common.Base;
+using MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel;
 using MMK.SmartSystem.WebCommon.DeviceModel;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
     /// </summary>
     public partial class RemainCutPage : SignalrPage
     {
+        public RemainCutViewModel remainCutVM { get; set; }
+
         /// <summary>
         /// 余料切割
         /// </summary>
@@ -29,6 +32,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         {
             InitializeComponent();
             manualControl.SetHeaderActive(this);
+            this.DataContext = remainCutVM = new RemainCutViewModel();
         }
      
 

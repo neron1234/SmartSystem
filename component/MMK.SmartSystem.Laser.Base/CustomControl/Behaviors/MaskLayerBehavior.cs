@@ -53,8 +53,7 @@ namespace MMK.SmartSystem.Laser.Base.CustomControl
 
             if (owner != null)
             {
-                if((bool)e.NewValue)
-                {
+                if((bool)e.NewValue){
                     //蒙板
                     Grid layer = new Grid() { Background = new SolidColorBrush(Color.FromArgb(160, 0, 0, 0)) };
 
@@ -79,9 +78,7 @@ namespace MMK.SmartSystem.Laser.Base.CustomControl
                     layerContent.PlacementTarget = owner;
                     layerContent.Placement = PlacementMode.Center;
                     layerContent.IsOpen = true;
-                }
-                else
-                {
+                } else {
                     //容器Grid
                     Grid grid = owner.Content as Grid;
                     //父级窗体原来的内容

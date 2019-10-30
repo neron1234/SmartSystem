@@ -21,7 +21,7 @@
             <ColumnDefinition Width="97"/>
         </Grid.ColumnDefinitions>
         
-        <Grid Grid.Row="0" Grid.ColumnSpan="2"  Background="#FF2D2D2D">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3"  Background="#FF2D2D2D">
             <local:HeaderStatusControl />
         </Grid>
         

@@ -102,7 +102,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                     var program = new ProgramViewModel
                     {
                         Name = f.Name,
-                        CreateTime = f.CreationTime.ToString(),
+                        CreateTime = f.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"),
                         Size = (f.Length / 1024).ToString() + "KB"
                     };
                     this.LocalProgramList.Add(program);
