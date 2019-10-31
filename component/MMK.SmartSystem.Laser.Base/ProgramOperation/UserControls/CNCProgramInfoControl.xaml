@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
+             xmlns:embed="clr-namespace:MMK.SmartSystem.Common.Embed;assembly=MMK.SmartSystem.Common"
+
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
              d:DesignHeight="658" d:DesignWidth="784"  Background="#FF3B3B3B" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#939393">
@@ -24,7 +26,9 @@
         <StackPanel Margin="10">
             <TextBlock Text="程序缩略图显示" Margin="10,5,10,0" FontSize="20"/>
             <Grid>
-                <Canvas x:Name="Benchmark" Height="460" Margin="10"  RenderTransformOrigin="1,1" ClipToBounds="True">
+                <embed:AppContainer x:Name="cncApp"  Width="Auto" Height="460" BorderThickness="0" HostFormName="CNCHost"/>
+
+                <Canvas x:Name="Benchmark" Height="460" Margin="10"  RenderTransformOrigin="1,1" ClipToBounds="True" Visibility="Collapsed">
                     <cc:ZoomableCanvas x:Name="MyCanvas" 
                                         RealizationLimit="1000"
                                         RealizationRate="10"

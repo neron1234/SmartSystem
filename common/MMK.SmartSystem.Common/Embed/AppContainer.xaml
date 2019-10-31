@@ -10,7 +10,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
-                            <WindowsFormsHost x:Name="PART_Host"/>
+                            <WindowsFormsHost />
                         </Grid>
                     </Border>
                 </ControlTemplate>

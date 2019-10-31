@@ -9,7 +9,8 @@ namespace MMK.SmartSystem.Common.ViewModel
     public enum PageEnum
     {
         WPFPage,
-        WebPage
+        WebPage,
+        WebComponet
     }
     public class PageChangeModel
     {
