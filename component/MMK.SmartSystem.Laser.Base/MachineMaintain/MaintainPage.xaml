@@ -31,13 +31,13 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <RadioButton Width="252" Height="40" Content="{Binding Title}" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding ChangePageCommand}" IsChecked="{Binding IsCheck}"/>
+                        <RadioButton Width="252" Height="40" Content="{Binding Title}" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding ChangePageCommand}" CommandParameter="{Binding FullName}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </StackPanel>
         <StackPanel Grid.Row="1">
-            <ContentControl x:Name="MyPageControl" Height="618" Width="1268"/>
+            <ContentControl x:Name="MyPageControl" Height="618" Width="1268" Content="{Binding PageControl}"/>
         </StackPanel>
     </Grid>
 </Page>

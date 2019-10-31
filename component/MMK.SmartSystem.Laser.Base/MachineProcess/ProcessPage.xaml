@@ -14,12 +14,6 @@
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml" />
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <Style TargetType="Button" x:Key="ListBtnStyle">
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="BorderBrush" Value="Transparent" />
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Foreground" Value="#959595" />
-            </Style>
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
