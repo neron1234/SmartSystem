@@ -15,6 +15,279 @@ namespace MMK.SmartSystem.Common.Embed
         private System.Windows.Forms.Panel _hostPanel;
         private readonly ManualResetEvent _eventDone = new ManualResetEvent(false);
         private Process _process;
+        System.Windows.Threading.Dispatcher dispatcher;
+        internal IntPtr _embededWindowHandle;
+        private IntPtr windowIntptr;
+
+        public static T FindChild<T>(DependencyObject parent) where T : DependencyObject
+        {
+            // Confirm parent and childName are valid. 
+            if (parent == null) return null;
+
+            T foundChild = null;
+
+            int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < childrenCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                // If the child is not of the request child type child
+                T childType = child as T;
+                if (childType == null)
+                {
+                    // recursively drill down the tree
+                    foundChild = FindChild<T>(child);
+
+                    // If the child is found, break so we do not overwrite the found child. 
+                    if (foundChild != null) break;
+                }
+
+                else
+                {
+                    // child element found.
+                    foundChild = (T)child;
+                    break;
+                }
+            }
+
+            return foundChild;
+        }
+
+        public AppContainer()
+        {
+            var res = new ResourceDictionary();
+            res.Source = new Uri("pack://application:,,,/MMK.SmartSystem.Common;component/Embed/AppContainer.xaml");
+            Application.Current.Resources.MergedDictionaries.Add(res);
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            //_winFormHost = GetTemplateChild("PART_Host") as WindowsFormsHost;
+            //if (_winFormHost != null)
+            //{
+            //    _hostPanel = new System.Windows.Forms.Panel();
+            //    _winFormHost.Child = _hostPanel;
+            //}
+        }
+        public bool StartAndEmbedWindowsName(string windowName, WindowsFormsHost winFormHost, System.Windows.Threading.Dispatcher dispatcher)
+        {
+            this.dispatcher = dispatcher;
+            _winFormHost = winFormHost;
+            if (_winFormHost != null)
+            {
+                dispatcher.Invoke(new Action(() =>
+                {
+                    _hostPanel = new System.Windows.Forms.Panel();
+                    _winFormHost.Child = _hostPanel;
+                }));
+
+            }
+            var isStartAndEmbedSuccess = false;
+            var process = Win32Api.FindWindow(null, windowName);
+            windowIntptr = process;
+
+            isStartAndEmbedSuccess = EmbedApp(process);
+            if (!isStartAndEmbedSuccess)
+            {
+                CloseApp(_process);
+            }
+            return isStartAndEmbedSuccess;
+        }
+
+        public bool StartAndEmbedProcess(string processPath, WindowsFormsHost winFormHost, System.Windows.Threading.Dispatcher dispatcher)
+        {
+            this.dispatcher = dispatcher;
+            _winFormHost = winFormHost;
+            if (_winFormHost != null)
+            {
+
+                dispatcher.Invoke(new Action(() =>
+                {
+                    _hostPanel = new System.Windows.Forms.Panel();
+                    _winFormHost.Child = _hostPanel;
+                }));
+            }
+            var isStartAndEmbedSuccess = false;
+            _eventDone.Reset();
+
+            // Start the process 
+            _process = Process.Start(processPath);
+            if (_process == null)
+            {
+                return false;
+            }
+
+            // Wait for process to be created and enter idle condition 
+            _process.WaitForInputIdle();
+
+            // Get the main handle
+            var thread = new Thread(() =>
+            {
+                while (true)
+                {
+                    if (_process.MainWindowHandle != (IntPtr)0)
+                    {
+                        _eventDone.Set();
+                        break;
+                    }
+                    Thread.Sleep(10);
+                }
+            });
+            thread.Start();
+
+            //嵌入进程
+            if (_eventDone.WaitOne(10000))
+            {
+                isStartAndEmbedSuccess = EmbedApp(_process);
+                if (!isStartAndEmbedSuccess)
+                {
+                    CloseApp(_process);
+                }
+            }
+            return isStartAndEmbedSuccess;
+        }
+        public void CloseWindows()
+        {
+            if (windowIntptr != null)
+            {
+                Win32Api.DestroyWindow(windowIntptr);
+            }
+        }
+        public bool EmbedExistProcess(Process process)
+        {
+            _process = process;
+            return EmbedApp(process);
+        }
+
+        /// <summary>
+        /// 将外进程嵌入到当前程序
+        /// </summary>
+        /// <param name="process"></param>
+        private bool EmbedApp(Process process)
+        {
+            //是否嵌入成功标志，用作返回值
+            var isEmbedSuccess = false;
+
+            //外进程句柄
+            var processHwnd = process.MainWindowHandle;
+            //容器句柄
+            IntPtr panelHwnd = (IntPtr)0;
+            dispatcher.Invoke(new Action(() =>
+            {
+                panelHwnd = _hostPanel.Handle;
+
+
+            }));
+
+            if (processHwnd != (IntPtr)0 && panelHwnd != (IntPtr)0)
+            {
+                //把本窗口句柄与目标窗口句柄关联起来
+                var setTime = 0;
+                while (!isEmbedSuccess && setTime < 50)
+                {
+                    // Put it into this form
+                    isEmbedSuccess = Win32Api.SetParent(processHwnd, panelHwnd) != 0;
+                    Thread.Sleep(10);
+                    setTime++;
+                }
+
+                // Remove border and whatnot
+                Win32Api.SetWindowLong(processHwnd, Win32Api.GWL_STYLE, Win32Api.WS_CHILDWINDOW | Win32Api.WS_CLIPSIBLINGS | Win32Api.WS_CLIPCHILDREN | Win32Api.WS_VISIBLE);
+
+                // Move the window to overlay it on this window
+                Win32Api.MoveWindow(_process.MainWindowHandle, 0, 0, (int)ActualWidth, (int)ActualHeight, true);
+            }
+
+            if (isEmbedSuccess)
+            {
+                _embededWindowHandle = _process.MainWindowHandle;
+            }
+
+            return isEmbedSuccess;
+        }
+
+        private bool EmbedApp(IntPtr processHwnd)
+        {
+            //是否嵌入成功标志，用作返回值
+            var isEmbedSuccess = false;
+
+            //外进程句柄
+            //容器句柄
+            IntPtr panelHwnd = (IntPtr)0;
+            dispatcher.Invoke(new Action(() =>
+            {
+                panelHwnd = _hostPanel.Handle;
+
+
+            }));
+
+            if (processHwnd != (IntPtr)0 && panelHwnd != (IntPtr)0)
+            {
+                //把本窗口句柄与目标窗口句柄关联起来
+                var setTime = 0;
+                while (!isEmbedSuccess && setTime < 50)
+                {
+                    // Put it into this form
+                    isEmbedSuccess = Win32Api.SetParent(processHwnd, panelHwnd) != 0;
+                    Thread.Sleep(10);
+                    setTime++;
+                }
+
+                // Remove border and whatnot
+                Win32Api.SetWindowLong(processHwnd, Win32Api.GWL_STYLE, Win32Api.WS_CHILDWINDOW | Win32Api.WS_CLIPSIBLINGS | Win32Api.WS_CLIPCHILDREN | Win32Api.WS_VISIBLE);
+
+                // Move the window to overlay it on this window
+                Win32Api.MoveWindow(processHwnd, 0, 0, (int)ActualWidth, (int)ActualHeight, true);
+            }
+
+            if (isEmbedSuccess)
+            {
+                _embededWindowHandle = processHwnd;
+            }
+
+            return isEmbedSuccess;
+        }
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            if (_process != null)
+            {
+                Win32Api.MoveWindow(_process.MainWindowHandle, 0, 0, (int)ActualWidth, (int)ActualHeight, true);
+            }
+
+            base.OnRender(drawingContext);
+        }
+
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            InvalidateVisual();
+            base.OnRenderSizeChanged(sizeInfo);
+        }
+
+        /// <summary>
+        /// 关闭进程
+        /// </summary>
+        /// <param name="process"></param>
+        private void CloseApp(Process process)
+        {
+            if (process != null && !process.HasExited)
+            {
+                process.Kill();
+            }
+        }
+
+        public void CloseProcess()
+        {
+            CloseApp(_process);
+        }
+    }
+
+    public class AppContainer2 : ContentControl
+    {
+        private WindowsFormsHost _winFormHost;
+        private System.Windows.Forms.Panel _hostPanel;
+        private readonly ManualResetEvent _eventDone = new ManualResetEvent(false);
+        private Process _process;
         internal IntPtr _embededWindowHandle;
         private IntPtr windowIntptr;
         public string HostFormName { set; get; }
@@ -55,7 +328,7 @@ namespace MMK.SmartSystem.Common.Embed
 
 
 
-        public AppContainer()
+        public AppContainer2()
         {
             var res = new ResourceDictionary();
             res.Source = new Uri("pack://application:,,,/MMK.SmartSystem.Common;component/Embed/AppContainer.xaml");
