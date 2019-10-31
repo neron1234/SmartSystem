@@ -18,12 +18,12 @@
         </ResourceDictionary>
     </Page.Resources>
     
-    <Grid Margin="5">
+    <Grid Height="658">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="260"/>
             <RowDefinition Height="180"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="178"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="4">
             <usercontrols:ManualHeaderControl x:Name="manualControl"/>
@@ -142,16 +142,16 @@
             <TextBlock Grid.Row="3" Grid.Column="3" Text="{Binding P3_Y}" Margin="10"
                                HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" Foreground="Yellow"/>
 
-            <Button Grid.Row="1" Grid.Column="4" Margin="5" Content="P1读取" Command="{Binding GetP1Command}" Style="{StaticResource BtnStyle}" Width="80" Height="25"/>
-            <Button Grid.Row="2" Grid.Column="4" Margin="5" Content="P2读取" Command="{Binding GetP2Command}" Style="{StaticResource BtnStyle}" Width="80" Height="25"/>
-            <Button Grid.Row="3" Grid.Column="4" Margin="5" Content="P3读取" Command="{Binding GetP3Command}" Style="{StaticResource BtnStyle}" Width="80" Height="25"/>
+            <Button Grid.Row="1" Grid.Column="4" Margin="5" Content="P1读取" Command="{Binding GetP1Command}" Style="{StaticResource IconBtnStyle}" Width="80" Height="25"/>
+            <Button Grid.Row="2" Grid.Column="4" Margin="5" Content="P2读取" Command="{Binding GetP2Command}" Style="{StaticResource IconBtnStyle}" Width="80" Height="25"/>
+            <Button Grid.Row="3" Grid.Column="4" Margin="5" Content="P3读取" Command="{Binding GetP3Command}" Style="{StaticResource IconBtnStyle}" Width="80" Height="25"/>
         </Grid>
         <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <Button Style="{StaticResource BtnStyle}" Width="160" Height="50" VerticalAlignment="Center" Content="清空" 
+            <Button Style="{StaticResource IconBtnStyle}" Width="160" Height="50" VerticalAlignment="Center" Content="清空" 
                         HorizontalAlignment="Center" Command="{Binding ResetCmd}"/>
-            <Button Style="{StaticResource BtnStyle}" Width="160" Height="50" VerticalAlignment="Center" Content="加载" Margin="20,0,0,0" 
+            <Button Style="{StaticResource IconBtnStyle}" Width="160" Height="50" VerticalAlignment="Center" Content="加载" Margin="20,0,0,0" 
                         HorizontalAlignment="Center" Command="{Binding LoadCmd}"/>
-            <Button Style="{StaticResource BtnStyle}" Width="160" Height="50" VerticalAlignment="Center" Content="测试程序" Margin="20,0,0,0" 
+            <Button Style="{StaticResource IconBtnStyle}" Width="160" Height="50" VerticalAlignment="Center" Content="测试程序" Margin="20,0,0,0" 
                         HorizontalAlignment="Center" Command="{Binding TestCmd}"/>
         </StackPanel>
     </Grid>

@@ -42,10 +42,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.UserControls.ViewModel
                         FullType = Type.GetType($"MMK.SmartSystem.Laser.Base.MachineOperation.{FullName}"),
                         Page = PageEnum.WPFPage
                     });
-
                 });
-
-
             }
         }
 
@@ -64,7 +61,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.UserControls.ViewModel
                     new ManualHeaderViewModel(){ Title="简易套料",FullName=""},
                        new ManualHeaderViewModel(){ Title="辅助气体",FullName="AuxGasCheckPage"}
             };
-
         }
     }
 }
