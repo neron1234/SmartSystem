@@ -1,8 +1,4 @@
-﻿using Abp.Dependency;
-using Abp.Events.Bus;
-using MMK.SmartSystem.Common.EventDatas;
-using MMK.SmartSystem.Laser.Base.MachineMaintain.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MMK.SmartSystem.Laser.Base.MachineMaintain
+namespace MMK.SmartSystem.Laser.Base.MachineMaintain.UserControls
 {
     /// <summary>
-    /// MaintainPage.xaml 的交互逻辑
+    /// SoftSettingControl.xaml 的交互逻辑
     /// </summary>
-    public partial class MaintainPage : Page, ITransientDependency
+    public partial class SoftSettingControl : UserControl
     {
-        public MaintainViewModel mVM { get; set; }
-        public MaintainPage()
+        public SoftSettingControl()
         {
             InitializeComponent();
-            this.DataContext = mVM = new MaintainViewModel();
         }
     }
 }
