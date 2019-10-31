@@ -26,7 +26,7 @@
         <StackPanel Margin="10">
             <TextBlock Text="程序缩略图显示" Margin="10,5,10,0" FontSize="20"/>
             <Grid>
-                <embed:AppContainer x:Name="cncApp"  Width="Auto" Height="460" BorderThickness="0" HostFormName="CNCHost"/>
+                <embed:AppContainer x:Name="cncApp"  Width="Auto" Height="460" BorderThickness="0" />
 
                 <Canvas x:Name="Benchmark" Height="460" Margin="10"  RenderTransformOrigin="1,1" ClipToBounds="True" Visibility="Collapsed">
                     <cc:ZoomableCanvas x:Name="MyCanvas" 

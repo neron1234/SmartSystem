@@ -7,7 +7,7 @@
         {
             "Id": "Home.maching",
             "Title": "加工",
-            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.LaserStatePage",
+            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.ContainerPage",
             "IsAuth": false,
             "Icon": "machining",
             "Sort": 1
@@ -53,14 +53,14 @@
         "Icon": "laser",
         "Sort": 6
       },
-      {
-        "Id": "Home.handing",
-        "Title": "维护",
-        "FullName": "",
-        "IsAuth": false,
-        "Icon": "handing",
-        "Sort": 7
-      },
+        {
+            "Id": "Home.handing",
+            "Title": "维护",
+            "FullName": "MMK.SmartSystem.Laser.Base.MachineMaintain.MaintainPage",
+            "IsAuth": false,
+            "Icon": "handing",
+            "Sort": 7
+        },
       {
         "Id": "Home.cnc",
         "Title": "CNC",

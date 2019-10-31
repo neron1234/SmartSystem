@@ -31,6 +31,19 @@ namespace MMK.SmartSystem.Laser.Base.MachineMaintain.ViewModel
 
         public string FullName { get; set; }
 
+        private bool _isCheck;
+        public bool IsCheck
+        {
+            get { return _isCheck; }
+            set
+            {
+                if (_isCheck != value)
+                {
+                    _isCheck = value;
+                    RaisePropertyChanged(() => IsCheck);
+                }
+            }
+        }
 
         public ICommand ChangePageCommand{
             get{
@@ -57,11 +70,17 @@ namespace MMK.SmartSystem.Laser.Base.MachineMaintain.ViewModel
             }
         }
 
+        public MaintainViewModel()
+        {
+            PageControl = new MachineConfigControl();
+            GetHeaderNodes();
+        }
+
         public static List<MaintainViewModel> GetHeaderNodes()
         {
             return new List<MaintainViewModel>()
             {
-                new MaintainViewModel(){ Title="机床配置",FullName="MachineConfigControl"},
+                new MaintainViewModel(){ Title="机床配置",FullName="MachineConfigControl",IsCheck = true},
                 new MaintainViewModel(){ Title="软件设定",FullName="SoftSettingControl"},
                 new MaintainViewModel(){ Title="备件一览",FullName="SparePartControl"},
                 new MaintainViewModel(){ Title="产品说明",FullName="ProductSpecificationControl"},

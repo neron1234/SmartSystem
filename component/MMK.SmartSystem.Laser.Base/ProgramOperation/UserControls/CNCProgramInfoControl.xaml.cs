@@ -54,16 +54,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             Task.Factory.StartNew(new Action(() =>
             {
                 Thread.Sleep(2000);
-                cncApp.StartAndEmbedWindowsName("AngualrElectron-Home", windowsFormsHost,Dispatcher);
+                //cncApp.StartAndEmbedWindowsName("AngualrElectron-Home", windowsFormsHost,Dispatcher);
 
-                //string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "WebApp-2", "cncapp.exe");
-                //if (System.IO.File.Exists(path))
-                //{
-                //    cncApp.StartAndEmbedProcess(path, windowsFormsHost, Dispatcher);
+                string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "WebApp", "cncapp.exe");
+                if (System.IO.File.Exists(path))
+                {
+                    cncApp.StartAndEmbedProcess(path, windowsFormsHost, Dispatcher);
 
-
-
-                //}
+                }
                 //   Messenger.Default.Send(new PageChangeModel() { Url = "home-zrender", Page = PageEnum.WebPage });
                 Thread.Sleep(10000);
                 //Dispatcher.BeginInvoke(new Action(() =>

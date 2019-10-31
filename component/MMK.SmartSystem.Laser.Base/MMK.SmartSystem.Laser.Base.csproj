@@ -343,6 +343,9 @@
     <Compile Include="MachineOperation\AuxGasCheckPage.xaml.cs">
       <DependentUpon>AuxGasCheckPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MachineOperation\ContainerPage.xaml.cs">
+      <DependentUpon>ContainerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineOperation\CutCenterPage.xaml.cs">
       <DependentUpon>CutCenterPage.xaml</DependentUpon>
     </Compile>
@@ -587,6 +590,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MachineOperation\AuxGasCheckPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineOperation\ContainerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
