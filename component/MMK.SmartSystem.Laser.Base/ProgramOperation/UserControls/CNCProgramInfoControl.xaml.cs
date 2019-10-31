@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common.Embed;
+using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.Laser.Base.CustomControl;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
 using System;
@@ -6,11 +8,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms.Integration;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -29,7 +33,50 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         {
             InitializeComponent();
             this.DataContext = cncProgramVm = new CNCProgramInfoViewModel();
-            RegisterDrawProgram();
+            //  RegisterDrawProgram();
+            Loaded += CNCProgramInfoControl_Loaded;
+            Unloaded += CNCProgramInfoControl_Unloaded;
+        }
+
+        private void CNCProgramInfoControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            
+            cncApp.CloseWindows();
+        }
+
+        private void CNCProgramInfoControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            windowsFormsHost = AppContainer.FindChild<WindowsFormsHost>(cncApp);
+
+            //Messenger.Default.Send(new PageChangeModel() { Url = "home-zrender", Page = PageEnum.WebPage });
+            //Thread.Sleep(2000);
+
+            Task.Factory.StartNew(new Action(() =>
+            {
+                Thread.Sleep(2000);
+                cncApp.StartAndEmbedWindowsName("AngualrElectron-Home", windowsFormsHost,Dispatcher);
+
+                //string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "WebApp-2", "cncapp.exe");
+                //if (System.IO.File.Exists(path))
+                //{
+                //    cncApp.StartAndEmbedProcess(path, windowsFormsHost, Dispatcher);
+
+
+
+                //}
+                //   Messenger.Default.Send(new PageChangeModel() { Url = "home-zrender", Page = PageEnum.WebPage });
+                Thread.Sleep(10000);
+                //Dispatcher.BeginInvoke(new Action(() =>
+                //{
+                //  //  Thread.Sleep(2000);
+                    
+
+                //}));
+
+
+            }));
+            //  ctnTest.StartAndEmbedWindowsName("AngualrElectron-Home");
+
         }
 
         /// <summary>
@@ -46,7 +93,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             MyCanvas.Background = ib;
 
 
-            Messenger.Default.Register<ProgramViewModel>(this, (pInfo) => {
+            Messenger.Default.Register<ProgramViewModel>(this, (pInfo) =>
+            {
 
                 cncProgramVm.SelectedProgram = pInfo;
                 if (MyCanvas.Children.Count != 0)
@@ -78,6 +126,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             });
         }
         System.Windows.Point LastMousePosition;
+        private WindowsFormsHost windowsFormsHost;
+
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {
             var x = Math.Pow(2, e.Delta / 3.0 / Mouse.MouseWheelDeltaForOneLine);

@@ -1,6 +1,7 @@
 ﻿using Abp.Dependency;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.Base;
+using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.Laser.Base.CustomControl;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
@@ -54,6 +55,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         protected override void PageSignlarLoaded()
         {
+            Messenger.Default.Send(new PageChangeModel() { Url = "home-zrender", Page = PageEnum.WebComponet });
+
             SendQurayProgramList();
             SendReaderWriter(new HubReadWriterModel()
             {

@@ -3,6 +3,7 @@ using Abp.Events.Bus;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common;
+using MMK.SmartSystem.Common.Embed;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SignalrProxy;
@@ -20,6 +21,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms.Integration;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -37,7 +39,9 @@ namespace MMK.SmartSystem.LE.Host
         int loadTask = 0;
         IIocManager iocManager;
         SignalrRouteProxyClient signalrRouteProxyClient;
-         LoadWindow loadWindow;
+        LoadWindow loadWindow;
+        private WindowsFormsHost windowsFormsHost;
+
         public MainWindow(IIocManager iocManager)
         {
             this.iocManager = iocManager;
@@ -71,9 +75,10 @@ namespace MMK.SmartSystem.LE.Host
             await signalrRouteProxyClient.Close();
             Environment.Exit(0);
         }
-
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            windowsFormsHost = AppContainer.FindChild<WindowsFormsHost>(ctnTest);
+
             ctnTest.Visibility = Visibility.Hidden;
             viewBox.Visibility = Visibility.Collapsed;
             mainHome.InitMessenger(iocManager);
@@ -136,10 +141,10 @@ namespace MMK.SmartSystem.LE.Host
                         loadWindow.Close();
                         loadWindow = null;
                     }
-                  
+
 
                 }));
-               
+
             };
 
             if (model.EventType == EventEnum.StartLoad)
@@ -172,7 +177,7 @@ namespace MMK.SmartSystem.LE.Host
         {
             if (changeModel.Page == PageEnum.WPFPage)
             {
-                ctnTest.Visibility = Visibility.Collapsed;
+                ctnTest.Visibility = Visibility.Hidden;
                 viewBox.Visibility = Visibility.Visible;
                 mainHome.ChangeWPFPage(changeModel);
 
@@ -180,25 +185,36 @@ namespace MMK.SmartSystem.LE.Host
             else if (changeModel.Page == PageEnum.WebPage)
             {
                 ctnTest.Visibility = Visibility.Visible;
-                viewBox.Visibility = Visibility.Collapsed;
+                viewBox.Visibility = Visibility.Hidden;
                 Task.Factory.StartNew(() => EventBus.Default.Trigger(new NavigateEventData()
                 {
                     Url = changeModel.Url
                 }));
+            }
+            else if (changeModel.Page == PageEnum.WebComponet)
+            {
+                Task.Factory.StartNew(() => EventBus.Default.Trigger(new NavigateEventData()
+                {
+                    Url = changeModel.Url
+                }));
+
             }
         }
 
 
         private void loadWebApp()
         {
+
+
             string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "WebApp", "cncapp.exe");
             if (System.IO.File.Exists(path))
             {
-                ctnTest.StartAndEmbedProcess(path, Dispatcher);
+                ctnTest.StartAndEmbedProcess(path, windowsFormsHost, Dispatcher);
 
                 ShowHomePanel();
 
             }
+
         }
 
         private void ShowHomePanel()
@@ -210,10 +226,23 @@ namespace MMK.SmartSystem.LE.Host
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     ctnTest.Visibility = Visibility.Visible;
-                    loadImage.Visibility = Visibility.Collapsed;
+                    //     loadImage.Visibility = Visibility.Collapsed;
 
                 }));
             }
+
+        }
+
+        private void btnWebHome_Click(object sender, RoutedEventArgs e)
+        {
+            viewBox.Visibility = Visibility.Hidden;
+            ctnTest.Visibility = Visibility.Visible;
+        }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            viewBox.Visibility = Visibility.Visible;
+            ctnTest.Visibility = Visibility.Hidden;
 
         }
         private async Task AutoLogin()

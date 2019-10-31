@@ -42,7 +42,7 @@
         </Grid>
         <StackPanel Grid.Column="2" Grid.Row="1">
             <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}"  AutoGenerateColumns="False" x:Name="ProgramGrid"  Height="530" Background="#2a2f34" 
-                       AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16" BorderThickness="0">
+                       AlternationCount="2"  IsReadOnly="True" FontSize="16" BorderThickness="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="40*" />
                     <DataGridTextColumn Header="X坐标" Binding="{Binding Size}" Width="30*" />
