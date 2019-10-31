@@ -38,7 +38,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.UserControls.ViewModel
                 {
                     Messenger.Default.Send(new PageChangeModel()
                     {
-
                         FullType = Type.GetType($"MMK.SmartSystem.Laser.Base.MachineOperation.{FullName}"),
                         Page = PageEnum.WPFPage
                     });

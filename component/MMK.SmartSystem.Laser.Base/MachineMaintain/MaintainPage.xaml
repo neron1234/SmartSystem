@@ -23,18 +23,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" x:Name="GroupBtnPanel" Grid.Row="0">
-            <ItemsControl x:Name="headerItems">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <RadioButton Width="252" Height="40" Content="{Binding Title}" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding ChangePageCommand}" CommandParameter="{Binding FullName}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <RadioButton Width="252" Height="40" Content="机床配置" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding ChangePageCommand}" CommandParameter="0" IsChecked="True"/>
+            <RadioButton Width="252" Height="40" Content="软件设定" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding ChangePageCommand}" CommandParameter="1" />
+            <RadioButton Width="252" Height="40" Content="备件一览" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding ChangePageCommand}" CommandParameter="2" />
+            <RadioButton Width="252" Height="40" Content="产品说明" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding ChangePageCommand}" CommandParameter="3" />
+            <RadioButton Width="252" Height="40" Content="诚信系统" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding ChangePageCommand}" CommandParameter="4" />
         </StackPanel>
         <StackPanel Grid.Row="1">
             <ContentControl x:Name="MyPageControl" Height="618" Width="1268" Content="{Binding PageControl}"/>

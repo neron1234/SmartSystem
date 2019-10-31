@@ -24,11 +24,10 @@ namespace MMK.SmartSystem.Laser.Base.MachineMaintain
     /// </summary>
     public partial class MaintainPage : Page, ITransientDependency
     {
-        public MaintainViewModel mVM { get; set; }
-        public MaintainPage()
-        {
+        public MaintainViewModel maintainVM { get; set; }
+        public MaintainPage(){
             InitializeComponent();
-            this.DataContext = mVM = new MaintainViewModel();
+            this.DataContext = maintainVM = new MaintainViewModel();
         }
     }
 }

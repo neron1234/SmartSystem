@@ -11,6 +11,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineMaintain.UserControls.ViewModel
 {
     public class MachineConfigViewModel:ViewModelBase
     {
-        
+
     }
 }

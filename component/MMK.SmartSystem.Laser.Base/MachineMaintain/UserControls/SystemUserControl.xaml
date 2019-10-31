@@ -12,6 +12,11 @@
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml" />
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Border" x:Key="BorderStyle" >
+                <Setter Property="BorderThickness" Value="0 0 0 1" />
+                <Setter Property="BorderBrush" Value="#575757" />
+                <Setter Property="Height" Value="103" />
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -49,5 +54,59 @@
         </Grid>
         <StackPanel Background="#000000" Grid.Column="1" Grid.Row="3"/>
         <StackPanel Background="#000000" Grid.ColumnSpan="3" Grid.Row="1" />
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="253"/>
+                <RowDefinition Height="242"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Background="#353535" VerticalAlignment="Center" Height="55">
+                <TextBlock Text="权限管理" Margin="28 15 0 0 " Height="55"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="28 10 0 5" >
+                <Border Style="{StaticResource BorderStyle}" >
+                    <WrapPanel VerticalAlignment="Center" Orientation="Vertical">
+                        <TextBlock Text="用户名" VerticalAlignment="Center" Margin="0 0 0 10"/>
+                        <TextBlock Text="激光一代" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" />
+                    </WrapPanel>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" >
+                    <WrapPanel VerticalAlignment="Center" Orientation="Vertical">
+                        <TextBlock Text="密码" VerticalAlignment="Center" Margin="0 22 0 10"/>
+                        <TextBlock Text="******" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" />
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Style="{StaticResource IconBtnStyle}" Content="登陆" FontSize="24" Height="66" Width="578" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="253"/>
+                <RowDefinition Height="242"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Background="#353535" VerticalAlignment="Center" Height="55">
+                <TextBlock Text="诚信管理" Margin="28 15 0 0 " Height="55"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="28 10 0 5" >
+                <Border Style="{StaticResource BorderStyle}" >
+                    <WrapPanel VerticalAlignment="Center" Orientation="Vertical">
+                        <TextBlock Text="用户名" VerticalAlignment="Center" Margin="0 0 0 10"/>
+                        <TextBlock Text="激光一代" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" />
+                    </WrapPanel>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" >
+                    <WrapPanel VerticalAlignment="Center" Orientation="Vertical">
+                        <TextBlock Text="密码" VerticalAlignment="Center" Margin="0 22 0 10"/>
+                        <TextBlock Text="******" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" />
+                    </WrapPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Style="{StaticResource IconBtnStyle}" Content="登陆" FontSize="24" Height="66" Width="578" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

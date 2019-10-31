@@ -27,65 +27,37 @@ namespace MMK.SmartSystem.Laser.Base.MachineMaintain.ViewModel
             }
         }
 
-        public string Title { get; set; }
-
-        public string FullName { get; set; }
-
-        private bool _isCheck;
-        public bool IsCheck
+        public MaintainViewModel()
         {
-            get { return _isCheck; }
-            set
-            {
-                if (_isCheck != value)
-                {
-                    _isCheck = value;
-                    RaisePropertyChanged(() => IsCheck);
-                }
+            ChangePage(0);
+        }
+
+        private void ChangePage(int id){
+            switch (id){
+                case 0:
+                    this.PageControl = new MachineConfigControl();
+                    break;
+                case 1:
+                    this.PageControl = new SoftSettingControl();
+                    break;
+                case 2:
+                    this.PageControl = new SparePartControl();
+                    break;
+                case 3:
+                    this.PageControl = new ProductSpecificationControl();
+                    break;
+                case 4:
+                    this.PageControl = new SystemUserControl();
+                    break;
             }
         }
 
         public ICommand ChangePageCommand{
             get{
-                return new RelayCommand<string>((name) =>{
-                    switch (name)
-                    {
-                        case "MachineConfigControl":
-                            this.PageControl = new MachineConfigControl();
-                            break;
-                        case "SoftSettingControl":
-                            this.PageControl = new SoftSettingControl();
-                            break;
-                        case "SparePartControl":
-                            this.PageControl = new SparePartControl();
-                            break;
-                        case "ProductSpecificationControl":
-                            this.PageControl = new ProductSpecificationControl();
-                            break;
-                        case "SystemUserControl":
-                            this.PageControl = new SystemUserControl();
-                            break;
-                    }
+                return new RelayCommand<string>((page) =>{
+                    ChangePage(Convert.ToInt32(page));
                 });
             }
-        }
-
-        public MaintainViewModel()
-        {
-            PageControl = new MachineConfigControl();
-            GetHeaderNodes();
-        }
-
-        public static List<MaintainViewModel> GetHeaderNodes()
-        {
-            return new List<MaintainViewModel>()
-            {
-                new MaintainViewModel(){ Title="机床配置",FullName="MachineConfigControl",IsCheck = true},
-                new MaintainViewModel(){ Title="软件设定",FullName="SoftSettingControl"},
-                new MaintainViewModel(){ Title="备件一览",FullName="SparePartControl"},
-                new MaintainViewModel(){ Title="产品说明",FullName="ProductSpecificationControl"},
-                new MaintainViewModel(){ Title="诚信系统",FullName="SystemUserControl"}
-            };
         }
     }
 }
