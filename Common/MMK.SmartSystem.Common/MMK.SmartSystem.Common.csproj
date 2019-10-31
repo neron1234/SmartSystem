@@ -260,8 +260,6 @@
     <Compile Include="Base\AutoRefreshPage.cs" />
     <Compile Include="Base\BaseEventHandler.cs" />
     <Compile Include="Base\SignalrPage.cs" />
-    <Compile Include="Embed\Appcontainer.cs" />
-    <Compile Include="Embed\Win32Api.cs" />
     <Compile Include="EventDatas\CuttingDataEventData.cs" />
     <Compile Include="EventDatas\EdgeCuttingEventData.cs" />
     <Compile Include="EventDatas\GasEventData.cs" />
@@ -325,12 +323,6 @@
       <Project>{A7A51F2B-A45E-489D-B8B2-2A42BAAD8E1B}</Project>
       <Name>MMK.SmartSystem.WebCommon</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Embed\AppContainer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

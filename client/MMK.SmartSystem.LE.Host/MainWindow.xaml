@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
-        xmlns:embed="clr-namespace:MMK.SmartSystem.Common.Embed;assembly=MMK.SmartSystem.Common"
+        xmlns:embed="clr-namespace:MMK.SmartSystem.LE.Host.Embed"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
 
         mc:Ignorable="d"
@@ -12,25 +12,14 @@
         WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF2B2B2B"  AllowsTransparency="True" Topmost="False">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="768" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <WrapPanel Margin="5">
-            <Button Content="首页" x:Name="btnHome" Click="btnHome_Click" Width="100" Height="40" />
-            <Button Content="Web" x:Name="btnWebHome" Click="btnWebHome_Click" Width="100" Height="40" Margin="10,0,0,0" />
+        <embed:AppContainer x:Name="ctnTest"  Width="1366" Height="768" BorderThickness="0"  />
+        <Viewbox Stretch="None" x:Name="viewBox" Width="1366" Height="768">
+            <local:MainHomeControl x:Name="mainHome" Width="1366" Height="768"></local:MainHomeControl>
+        </Viewbox>
+        <Image gif:ImageBehavior.AnimatedSource="main-loading.gif" Width="400" Height="400" x:Name="loadImage"/>
 
-        </WrapPanel>
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <embed:AppContainer x:Name="ctnTest"  Width="1366" Height="768" BorderThickness="0"  />
-            <Viewbox Stretch="None" x:Name="viewBox" Width="1366" Height="768">
-                <local:MainHomeControl x:Name="mainHome" Width="1366" Height="768"></local:MainHomeControl>
-            </Viewbox>
-            <!--<Image gif:ImageBehavior.AnimatedSource="main-loading.gif" Width="400" Height="400" x:Name="loadImage"/>-->
-
-        </Grid>
     </Grid>
-   
+
 </Window>

@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace MMK.SmartSystem.Common.Embed
+namespace MMK.SmartSystem.LE.Host.Embed
 {
     public class Win32Api
     {
@@ -187,14 +187,7 @@ namespace MMK.SmartSystem.Common.Embed
 
         [DllImport("user32.dll", SetLastError = true)]
         internal static extern int SetWindowLong(IntPtr hwnd, int nIndex, int dwNewLong);
-        internal static IntPtr SetWindowLong(HandleRef hWnd, int nIndex, int dwNewLong)
-        {
-            if (IntPtr.Size == 4)
-            {
-                return SetWindowLongPtr32(hWnd, nIndex, dwNewLong);
-            }
-            return SetWindowLongPtr64(hWnd, nIndex, dwNewLong);
-        }
+
         [DllImport("user32.dll", SetLastError = true)]
         internal static extern bool SetLayeredWindowAttributes(IntPtr hwnd, uint crKey, byte bAlpha, uint dwFlags);
 
@@ -213,13 +206,9 @@ namespace MMK.SmartSystem.Common.Embed
         [DllImport("gdi32")]
         internal static extern uint SetBkColor(IntPtr hdc, int crColor);
 
+
         [DllImport("user32.dll ", EntryPoint = "ShowWindow")]
 
         internal static extern int ShowWindow(IntPtr hwnd, int nCmdShow);
-
-        [DllImport("user32.dll", EntryPoint = "SetWindowLong", CharSet = CharSet.Auto)]
-        public static extern IntPtr SetWindowLongPtr32(HandleRef hWnd, int nIndex, int dwNewLong);
-        [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr", CharSet = CharSet.Auto)]
-        public static extern IntPtr SetWindowLongPtr64(HandleRef hWnd, int nIndex, int dwNewLong);
     }
 }

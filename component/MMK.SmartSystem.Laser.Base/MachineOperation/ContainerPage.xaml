@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation"
         mc:Ignorable="d"
-        xmlns:embed="clr-namespace:MMK.SmartSystem.Common.Embed;assembly=MMK.SmartSystem.Common"
+        xmlns:embed="clr-namespace:MMK.SmartSystem.Laser.Base.Embed"
         d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="18" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <Grid>
         <Grid.ColumnDefinitions>

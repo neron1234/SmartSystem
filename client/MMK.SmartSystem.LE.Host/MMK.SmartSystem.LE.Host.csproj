@@ -307,6 +307,8 @@
     <Compile Include="CustomControl\ZoomableCanvas\RectExtensions.cs" />
     <Compile Include="CustomControl\ZoomableCanvas\VirtualPanel.cs" />
     <Compile Include="CustomControl\ZoomableCanvas\ZoomableCanvas.cs" />
+    <Compile Include="Embed\Appcontainer.cs" />
+    <Compile Include="Embed\Win32Api.cs" />
     <Compile Include="EventHandler\NavigateHandler.cs" />
     <Compile Include="EventHandler\OperationLogHandler.cs" />
     <Compile Include="EventHandler\UserInfoHandler.cs" />
@@ -448,6 +450,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomControl\ToolTip\Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Embed\AppContainer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

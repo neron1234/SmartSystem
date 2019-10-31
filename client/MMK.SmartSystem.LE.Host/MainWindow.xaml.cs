@@ -3,7 +3,6 @@ using Abp.Events.Bus;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common;
-using MMK.SmartSystem.Common.Embed;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SignalrProxy;
@@ -40,7 +39,6 @@ namespace MMK.SmartSystem.LE.Host
         IIocManager iocManager;
         SignalrRouteProxyClient signalrRouteProxyClient;
         LoadWindow loadWindow;
-        private WindowsFormsHost windowsFormsHost;
 
         public MainWindow(IIocManager iocManager)
         {
@@ -77,7 +75,6 @@ namespace MMK.SmartSystem.LE.Host
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            windowsFormsHost = AppContainer.FindChild<WindowsFormsHost>(ctnTest);
 
             ctnTest.Visibility = Visibility.Hidden;
             viewBox.Visibility = Visibility.Collapsed;
@@ -209,7 +206,7 @@ namespace MMK.SmartSystem.LE.Host
             string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "WebApp", "cncapp.exe");
             if (System.IO.File.Exists(path))
             {
-                ctnTest.StartAndEmbedProcess(path, windowsFormsHost, Dispatcher);
+                ctnTest.StartAndEmbedProcess(path, Dispatcher);
 
                 ShowHomePanel();
 
@@ -226,25 +223,14 @@ namespace MMK.SmartSystem.LE.Host
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     ctnTest.Visibility = Visibility.Visible;
-                    //     loadImage.Visibility = Visibility.Collapsed;
+                    loadImage.Visibility = Visibility.Collapsed;
 
                 }));
             }
 
         }
 
-        private void btnWebHome_Click(object sender, RoutedEventArgs e)
-        {
-            viewBox.Visibility = Visibility.Hidden;
-            ctnTest.Visibility = Visibility.Visible;
-        }
-
-        private void btnHome_Click(object sender, RoutedEventArgs e)
-        {
-            viewBox.Visibility = Visibility.Visible;
-            ctnTest.Visibility = Visibility.Hidden;
-
-        }
+     
         private async Task AutoLogin()
         {
             await EventBus.Default.TriggerAsync(new UserLoginEventData()

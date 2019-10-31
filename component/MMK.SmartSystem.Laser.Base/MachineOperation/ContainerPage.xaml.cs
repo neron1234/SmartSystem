@@ -1,6 +1,5 @@
 ﻿using Abp.Dependency;
 using GalaSoft.MvvmLight.Messaging;
-using MMK.SmartSystem.Common.Embed;
 using MMK.SmartSystem.Common.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -33,11 +32,10 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         private void btnGo_Click(object sender, RoutedEventArgs e)
         {
 
-            var host = AppContainer.FindChild<WindowsFormsHost>(appEmbed);
             Task.Factory.StartNew(new Action(() =>
             {
                 Thread.Sleep(2000);
-                appEmbed.StartAndEmbedWindowsName("AngualrElectron-Home", host, Dispatcher);
+                appEmbed.StartAndEmbedWindowsName("AngualrElectron-Home", Dispatcher);
 
             }));
         }

@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using MMK.SmartSystem.Common.Embed;
 using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.Laser.Base.CustomControl;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
@@ -37,43 +36,53 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             Loaded += CNCProgramInfoControl_Loaded;
             Unloaded += CNCProgramInfoControl_Unloaded;
         }
+        public void CloseElectronWindow()
+        {
 
+
+
+        }
         private void CNCProgramInfoControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            
-            cncApp.CloseWindows();
+
         }
 
         private void CNCProgramInfoControl_Loaded(object sender, RoutedEventArgs e)
         {
-            windowsFormsHost = AppContainer.FindChild<WindowsFormsHost>(cncApp);
 
-            //Messenger.Default.Send(new PageChangeModel() { Url = "home-zrender", Page = PageEnum.WebPage });
-            //Thread.Sleep(2000);
+
 
             Task.Factory.StartNew(new Action(() =>
             {
-                Thread.Sleep(2000);
-                //cncApp.StartAndEmbedWindowsName("AngualrElectron-Home", windowsFormsHost,Dispatcher);
 
-                string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "WebApp", "cncapp.exe");
-                if (System.IO.File.Exists(path))
+                while (true)
                 {
-                    cncApp.StartAndEmbedProcess(path, windowsFormsHost, Dispatcher);
-
+                    Thread.Sleep(50);
+                    var result = cncApp.StartAndEmbedWindowsName("AngualrElectron-Home", Dispatcher);
+                    if (result)
+                    {
+                        break;
+                    }
                 }
-                //   Messenger.Default.Send(new PageChangeModel() { Url = "home-zrender", Page = PageEnum.WebPage });
-                Thread.Sleep(10000);
-                //Dispatcher.BeginInvoke(new Action(() =>
-                //{
-                //  //  Thread.Sleep(2000);
-                    
-
-                //}));
 
 
             }));
-            //  ctnTest.StartAndEmbedWindowsName("AngualrElectron-Home");
+
+
+            Task.Factory.StartNew(new Action(() =>
+            {
+                Thread.Sleep(20000);
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    cncApp.CloseWindows();
+
+
+                }));
+
+
+            }));
+
 
         }
 
