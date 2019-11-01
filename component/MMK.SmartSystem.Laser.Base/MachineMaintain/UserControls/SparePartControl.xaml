@@ -11,7 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml" />
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
-                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/DataGridDictionary.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/MachineDataGridDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -56,7 +56,15 @@
         <StackPanel Background="#000000" Grid.Row="1" />
         <DataGrid x:Name="ProcessDataGrid"  Background="#3b3b3b"  Width="1268" Height="552" Grid.Row="2"
                   AlternationCount="2" AutoGenerateColumns="False"
-                  IsReadOnly="True" FontSize="18" BorderThickness="0"
-                  ItemsSource="{Binding}" DataContext="{Binding SparePartList}"/>
+                  IsReadOnly="True" FontSize="18" BorderThickness="0" HeadersVisibility="None"
+                  ItemsSource="{Binding}" DataContext="{Binding SparePartList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="使用位置" Binding="{Binding UseLocation}" Width="220" />
+                <DataGridTextColumn Header="备件名称" Binding="{Binding Name}" Width="220" />
+                <DataGridTextColumn Header="规格" Binding="{Binding Specification}" Width="180" />
+                <DataGridTextColumn Header="备注" Binding="{Binding About}" Width="220" />
+                <DataGridTextColumn Header="占位" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

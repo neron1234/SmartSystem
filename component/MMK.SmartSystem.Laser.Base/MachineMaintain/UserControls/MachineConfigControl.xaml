@@ -11,6 +11,11 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Border" x:Key="BorderStyle" >
+                <Setter Property="BorderThickness" Value="0 0 0 1" />
+                <Setter Property="BorderBrush" Value="#575757" />
+                <Setter Property="Height" Value="63" />
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -19,6 +24,92 @@
             <ColumnDefinition MaxWidth="2"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="20 10 0 5">
+                <Border Style="{StaticResource BorderStyle}" >
+                    <TextBlock Text="工艺库升级路径: " VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" >
+                    <TextBlock Text="X行程: " VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="Y行程: " VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="Z行程: " VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="激光器型号: " VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="光纤型号: " VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="0 10 20 5">
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="L300-B" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="500" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="600" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="700" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="激光器A" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="光纤类型A" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+            </StackPanel>
+        </Grid>
         <StackPanel Background="#000000" Grid.Column="1" />
+        <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="20 10 0 5">
+                <Border Style="{StaticResource BorderStyle}" >
+                    <TextBlock Text="CNC型号: " VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" >
+                    <TextBlock Text="轴电机型号: " VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" >
+                    <TextBlock Text="轴电机型号: " VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" >
+                    <TextBlock Text="轴电机型号: " VerticalAlignment="Center"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" >
+                    <TextBlock Text="切割头型号: " VerticalAlignment="Center"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="0 10 20 5">
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="31H-LB" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="Als22/3000" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="Als22/4000" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="Als22/5000" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="切割头A" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

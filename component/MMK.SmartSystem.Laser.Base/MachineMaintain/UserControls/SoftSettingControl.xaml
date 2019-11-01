@@ -11,14 +11,149 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Border" x:Key="BorderStyle" >
+                <Setter Property="BorderThickness" Value="0 0 0 1" />
+                <Setter Property="BorderBrush" Value="#575757" />
+                <Setter Property="Height" Value="65" />
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Foreground" Value="#FDCD00" />
+                <Setter Property="FontFamily" Value="SourceHanSansCN-Bold" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Background" Value="#282620"/>
+                <Setter Property="BorderThickness" Value="0"  />
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="180"/>
+            <RowDefinition Height="2"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition MaxWidth="2"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Background="#000000" Grid.Column="1" />
+        <Grid Grid.RowSpan="3" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#353535" VerticalAlignment="Center" Height="55">
+                <TextBlock Text="软件语言设定" Margin="28 15 0 0 " Height="55"/>
+            </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="1" Margin="20 10 0 5" VerticalAlignment="Center">
+                <Border Style="{StaticResource BorderStyle}" >
+                    <TextBlock Text="简体中文: " VerticalAlignment="Center" Margin="15 0 0 0"/>
+                </Border>
+                <Border Height="65">
+                    <TextBlock Text="英文: " VerticalAlignment="Center" Margin="15 0 0 0"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="0 10 20 5" VerticalAlignment="Center" >
+                <Border Style="{StaticResource BorderStyle}" >
+                    <Grid HorizontalAlignment="Right">
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42" IsEnabled="False">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="42" Height="42" Content="ON" FontSize="12" Foreground="#fdcd00" Margin="0 0 50 0"/>
+                    </Grid>
+                </Border>
+                <Border Height="63">
+                    <Grid HorizontalAlignment="Right">
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42" IsEnabled="False">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="42" Height="42" Content="OFF" FontSize="12" Margin="50 0 0 0"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Grid>
+        <StackPanel Background="#000000" Grid.Column="1" Grid.RowSpan="3"/>
+        <StackPanel Background="#000000" Grid.Column="2" Grid.Row="1"/>
+        <Grid Grid.Row="0" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#353535" VerticalAlignment="Center" Height="55">
+                <TextBlock Text="手持操作盒" Margin="28 15 0 0 " Height="55"/>
+            </StackPanel>
+            <WrapPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock Text="重新启用手持操作盒服务: " VerticalAlignment="Center" Margin="30 0 0 0"/>
+            </WrapPanel>
+            <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 30 0">
+                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42" IsEnabled="False">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Button Style="{StaticResource IconBtnStyle}" Width="42" Height="42" Content="ON" FontSize="12" Foreground="#fdcd00" Margin="0 0 50 0"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition />
+                <RowDefinition Height="180"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#353535" VerticalAlignment="Center" Height="55">
+                <TextBlock Text="工艺管理" Margin="28 15 0 0 " Height="55"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <Border Style="{StaticResource BorderStyle}" Margin="28 0 0 0">
+                    <TextBlock Text="工艺库版本: " VerticalAlignment="Center" />
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" Margin="28 0 0 0">
+                    <TextBlock Text="工艺库升级路径: " VerticalAlignment="Center" />
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" Margin="28 0 0 0">
+                    <TextBlock Text="软件版权: " VerticalAlignment="Center" />
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="0 0 28 0">
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="LaserEngine.lib.0.1.2" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text=">" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}">
+                    <TextBlock Text="北京发那科机电有限公司" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Style="{StaticResource IconBtnStyle}" Content="升级" FontSize="24" Height="66" Width="578" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

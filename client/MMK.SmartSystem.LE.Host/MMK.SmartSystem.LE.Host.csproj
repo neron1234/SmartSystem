@@ -321,6 +321,9 @@
     <Compile Include="SystemControl\BottomWarningLogControl.xaml.cs">
       <DependentUpon>BottomWarningLogControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemControl\CNCWarningMsgListControl.xaml.cs">
+      <DependentUpon>CNCWarningMsgListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemControl\FunctionConfigControl.xaml.cs">
       <DependentUpon>FunctionConfigControl.xaml</DependentUpon>
     </Compile>
@@ -345,6 +348,7 @@
     <Compile Include="SystemControl\ReadDxfControl.xaml.cs">
       <DependentUpon>ReadDxfControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemControl\ViewModel\CNCWarningMsgViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\FunctionConfigViewModel.cs" />
     <Compile Include="SystemControl\ViewModel\HeaderStatusViewModel .cs" />
     <Compile Include="SystemControl\ViewModel\HeaderMenuViewModel.cs" />
@@ -522,6 +526,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SystemControl\BottomWarningLogControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\CNCWarningMsgListControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

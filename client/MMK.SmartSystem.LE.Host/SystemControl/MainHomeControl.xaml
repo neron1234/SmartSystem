@@ -32,9 +32,11 @@
         <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" >
             <systemControl:ModuleMenuControl Height="723"/>
         </StackPanel>
-        
-        <StackPanel Background="#000000"  Grid.Column="1" Grid.Row="2"/>
-        
+
+        <StackPanel Background="#000000"  Grid.Column="1" Grid.Row="2">
+            <ContentControl x:Name="popupControl" Content="{Binding PopupControl}"/>
+        </StackPanel>
+
         <Border Grid.Column="0" Grid.Row="2" Height="660" Width="1265">
             <Viewbox Stretch="None" x:Name="viewBox">
                 <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="{Binding MainFrame}" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>

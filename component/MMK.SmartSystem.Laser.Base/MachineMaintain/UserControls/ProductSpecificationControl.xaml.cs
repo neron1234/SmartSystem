@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.Laser.Base.MachineMaintain.UserControls.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineMaintain.UserControls
     /// </summary>
     public partial class ProductSpecificationControl : UserControl
     {
+        public ProductSpecificationViewModel psVM { get; set; }
         public ProductSpecificationControl()
         {
             InitializeComponent();
+            this.DataContext = psVM = new ProductSpecificationViewModel();
         }
     }
 }

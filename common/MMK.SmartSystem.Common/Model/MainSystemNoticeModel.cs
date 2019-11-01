@@ -31,8 +31,9 @@ namespace MMK.SmartSystem.Common.Model
         public string Error { get; set; }
 
         public bool Success { set; get; }
-
-
-
+    }
+    public class WaringMsgPopup
+    {
+        public System.Windows.Visibility Visibility { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.Model;
+using MMK.SmartSystem.LE.Host.CustomControl;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -19,29 +20,20 @@ using System.Windows.Shapes;
 namespace MMK.SmartSystem.LE.Host.SystemControl
 {
     /// <summary>
-    /// HeaderTitleWarnControl.xaml 的交互逻辑
+    /// CNCWarningMsgListControl.xaml 的交互逻辑
     /// </summary>
-    public partial class HeaderTitleWarnControl : UserControl
+    public partial class CNCWarningMsgListControl : UserControl
     {
-        private HeaderTitleMenuViewModel headerVM;
-        public HeaderTitleWarnControl()
+        public CNCWarningMsgViewModel waringMsgVM { get; set; }
+        public CNCWarningMsgListControl()
         {
             InitializeComponent();
-            this.DataContext = headerVM = new HeaderTitleMenuViewModel();
+            this.DataContext = waringMsgVM = new CNCWarningMsgViewModel();
         }
 
-        public void UpdateTitle(string title)
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-
-            if (headerVM != null)
-            {
-                headerVM.Title = title;
-            }
-        }
-
-        private void StackPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            Messenger.Default.Send(new WaringMsgPopup { Visibility = Visibility.Visible });
+            Messenger.Default.Send(new WaringMsgPopup { Visibility = Visibility.Collapsed });
         }
     }
 }

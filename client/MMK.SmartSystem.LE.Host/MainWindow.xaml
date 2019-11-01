@@ -8,7 +8,7 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="820" Width="1366"
+        Title="MainWindow" Height="768" Width="1366"
         WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF2B2B2B"  AllowsTransparency="True" Topmost="False">
     <Grid>
         <Grid.RowDefinitions>
@@ -18,8 +18,11 @@
         <Viewbox Stretch="None" x:Name="viewBox" Width="1366" Height="768">
             <local:MainHomeControl x:Name="mainHome" Width="1366" Height="768"></local:MainHomeControl>
         </Viewbox>
+        <Viewbox Width="1366" Height="768" Visibility="Collapsed" x:Name="WarningView">
+            <local:CNCWarningMsgListControl  Width="1366" Height="768"/>
+        </Viewbox>
         <Image gif:ImageBehavior.AnimatedSource="main-loading.gif" Width="400" Height="400" x:Name="loadImage"/>
-
+        
     </Grid>
 
 </Window>

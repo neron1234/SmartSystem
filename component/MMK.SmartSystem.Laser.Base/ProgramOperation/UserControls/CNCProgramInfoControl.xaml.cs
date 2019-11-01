@@ -49,8 +49,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         private void CNCProgramInfoControl_Loaded(object sender, RoutedEventArgs e)
         {
+            //获取cncApp控件基于屏幕的绝对位置，长宽
 
-
+            var absolutePos = cncApp.PointToScreen(new Point(0, 0));
+            var width = cncApp.ActualWidth;
+            var height = cncApp.ActualHeight;
 
             Task.Factory.StartNew(new Action(() =>
             {
