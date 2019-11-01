@@ -67,13 +67,13 @@
                 <Border Style="{StaticResource BorderStyle}" >
                     <WrapPanel VerticalAlignment="Center" Orientation="Vertical">
                         <TextBlock Text="用户名" VerticalAlignment="Center" Margin="0 0 0 10"/>
-                        <TextBlock Text="激光一代" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" />
+                        <TextBox Text="激光一代" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" Width="400" BorderBrush="Transparent" BorderThickness="0" Background="Transparent"/>
                     </WrapPanel>
                 </Border>
                 <Border Style="{StaticResource BorderStyle}" >
                     <WrapPanel VerticalAlignment="Center" Orientation="Vertical">
                         <TextBlock Text="密码" VerticalAlignment="Center" Margin="0 22 0 10"/>
-                        <TextBlock Text="******" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" />
+                        <TextBox Text="******" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" Width="400" BorderBrush="Transparent" BorderThickness="0" Background="Transparent"/>
                     </WrapPanel>
                 </Border>
             </StackPanel>
@@ -94,13 +94,13 @@
                 <Border Style="{StaticResource BorderStyle}" >
                     <WrapPanel VerticalAlignment="Center" Orientation="Vertical">
                         <TextBlock Text="用户名" VerticalAlignment="Center" Margin="0 0 0 10"/>
-                        <TextBlock Text="激光一代" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" />
+                        <TextBox Text="激光一代" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" Width="400" BorderBrush="Transparent" BorderThickness="0" Background="Transparent"/>
                     </WrapPanel>
                 </Border>
                 <Border Style="{StaticResource BorderStyle}" >
                     <WrapPanel VerticalAlignment="Center" Orientation="Vertical">
                         <TextBlock Text="密码" VerticalAlignment="Center" Margin="0 22 0 10"/>
-                        <TextBlock Text="******" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" />
+                        <TextBox Text="******" VerticalAlignment="Center" Foreground="#fdcd00" FontSize="26" Width="400" BorderBrush="Transparent" BorderThickness="0" Background="Transparent"/>
                     </WrapPanel>
                 </Border>
             </StackPanel>

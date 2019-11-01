@@ -15,11 +15,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineMaintain.UserControls.ViewModel
         {
             this.SparePartList = new ObservableCollection<SparePartInfo>
             {
-                new SparePartInfo{ Id=0,Name ="CNC",Specification ="风扇", UseLocation = "B",About="割嘴A",ImgUrl = "" },
-                new SparePartInfo{ Id=1,Name ="CNC",Specification ="风扇", UseLocation = "B",About="割嘴B",ImgUrl = "" },
-                new SparePartInfo{ Id=2,Name ="CNC",Specification ="风扇", UseLocation = "B",About="割嘴C",ImgUrl = "" },
-                new SparePartInfo{ Id=3,Name ="CNC",Specification ="电机", UseLocation = "A",About="割嘴A",ImgUrl = "" },
-                new SparePartInfo{ Id=4,Name ="CNC",Specification ="电机", UseLocation = "A",About="割嘴B",ImgUrl = "" }
+                new SparePartInfo{ Id=0,Name ="风扇",Specification ="CNC", UseLocation = "B",About="割嘴A",ImgUrl = "/MMK.SmartSystem.Laser.Base;component/Resources/Images/Part1Icon.png" },
+                new SparePartInfo{ Id=1,Name ="风扇",Specification ="CNC", UseLocation = "B",About="割嘴B",ImgUrl = "/MMK.SmartSystem.Laser.Base;component/Resources/Images/Part1Icon.png" },
+                new SparePartInfo{ Id=2,Name ="风扇",Specification ="CNC", UseLocation = "B",About="割嘴C",ImgUrl = "/MMK.SmartSystem.Laser.Base;component/Resources/Images/Part1Icon.png" },
+                new SparePartInfo{ Id=3,Name ="电机",Specification ="CNC", UseLocation = "A",About="割嘴A",ImgUrl = "/MMK.SmartSystem.Laser.Base;component/Resources/Images/Part1Icon.png" },
+                new SparePartInfo{ Id=4,Name ="电机",Specification ="CNC", UseLocation = "A",About="割嘴B",ImgUrl = "/MMK.SmartSystem.Laser.Base;component/Resources/Images/Part1Icon.png" }
             };
         }
     }

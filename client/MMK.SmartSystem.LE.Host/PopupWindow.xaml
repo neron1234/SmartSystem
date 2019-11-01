@@ -56,11 +56,16 @@
         </Style>
         <!--单元格样式-->
         <Style TargetType="DataGridCell">
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="Foreground" Value="#939ba0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <TextBlock TextAlignment="Center" VerticalAlignment="Center"  >
+                           <ContentPresenter />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </Window.Resources>
@@ -87,11 +92,11 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="报警类型" Binding="{Binding Type}" Width="30*" />
                         <DataGridTextColumn Header="报警号" Binding="{Binding Number}" Width="30*" />
-                        <DataGridTemplateColumn Width="32*" Header="报警信息">
+                        <DataGridTemplateColumn Width="40*" Header="报警信息">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <Image Source="{Binding Path=Img,Converter={StaticResource ImageConverter}}" Width="29" Height="24"/>
+                                        <Image Source="{Binding Path=Img,Converter={StaticResource ImageConverter}}" Width="22" Height="22" Margin="0 0 10 0"/>
                                         <TextBlock Text="{Binding Msg}"/>
                                     </WrapPanel>
                                 </DataTemplate>
