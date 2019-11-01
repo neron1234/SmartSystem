@@ -39,11 +39,11 @@
             <RowDefinition Height="40"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Background="#353535" VerticalAlignment="Center" Height="40" Orientation="Horizontal">
+        <StackPanel Grid.Row="0" Background="#353535" VerticalAlignment="Center" Height="40" Orientation="Horizontal" Grid.ColumnSpan="2">
             <RadioButton Width="172"  Height="40" Content="程序路径" Style="{StaticResource RadioButtonColorStyle}" />
             <RadioButton Width="172" Height="40" Content="操作" Style="{StaticResource RadioButtonColorStyle}"  IsChecked="True"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="14,0,14,-0.2">
             <WrapPanel Margin="0 15 0 0">
                 <TextBlock Text="断电续切" Margin="0 0 10 0"/>
                 <TextBlock Text="N续切" Margin="15 0 10 0"/>
@@ -93,7 +93,7 @@
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24"  Text="12311" Margin="30 0 0 0"  Foreground="#B6BEB3"> 
+                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24"  Text="12311" Margin="30 0 0 0"  Foreground="#B6BEB3">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="4"/>
