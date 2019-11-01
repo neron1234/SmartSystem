@@ -1,4 +1,5 @@
-﻿using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             {
                 headerVM.Title = title;
             }
+        }
+
+        private void StackPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Messenger.Default.Send((UserControl)new CNCWarningMsgListControl());
         }
     }
 }

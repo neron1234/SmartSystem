@@ -64,7 +64,7 @@
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="0 10 20 5" VerticalAlignment="Center" >
                 <Border Style="{StaticResource BorderStyle}" >
                     <Grid HorizontalAlignment="Right">
-                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42">
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42" IsEnabled="False">
                             <TextBox.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="4"/>
@@ -76,7 +76,7 @@
                 </Border>
                 <Border Height="63">
                     <Grid HorizontalAlignment="Right">
-                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42">
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42" IsEnabled="False">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="4"/>
@@ -106,7 +106,7 @@
                 <TextBlock Text="重新启用手持操作盒服务: " VerticalAlignment="Center" Margin="30 0 0 0"/>
             </WrapPanel>
             <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 30 0">
-                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42">
+                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42" IsEnabled="False">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="4"/>
