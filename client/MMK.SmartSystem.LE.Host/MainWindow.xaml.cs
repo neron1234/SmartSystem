@@ -87,7 +87,7 @@ namespace MMK.SmartSystem.LE.Host
         }
 
         private void InitMessager()
-        {
+        {            
             Messenger.Default.Register<PageChangeModel>(this, (type) =>
             {
                 Dispatcher.BeginInvoke(new Action(() => pageChange(type)));
@@ -125,6 +125,11 @@ namespace MMK.SmartSystem.LE.Host
             Messenger.Default.Register<MainSystemNoticeModel>(this, (model) =>
             {
                 LoadNotice(model);
+            });
+
+            Messenger.Default.Register<WaringMsgPopup>(this, (pv) =>
+            {
+                this.WarningView.Visibility = pv.Visibility;
             });
         }
         private void LoadNotice(MainSystemNoticeModel model)

@@ -1,4 +1,6 @@
-﻿using MMK.SmartSystem.LE.Host.CustomControl;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common.Model;
+using MMK.SmartSystem.LE.Host.CustomControl;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -27,18 +29,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
         {
             InitializeComponent();
             this.DataContext = waringMsgVM = new CNCWarningMsgViewModel();
-            this.Loaded += CNCWarningMsgListControl_Loaded;
-        }
-
-        private void CNCWarningMsgListControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, true);
-            Loaded -= CNCWarningMsgListControl_Loaded;
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            this.maskLayer.SetValue(MaskLayerBehavior.IsOpenProperty, false);
+            Messenger.Default.Send(new WaringMsgPopup { Visibility = Visibility.Collapsed });
         }
     }
 }

@@ -18,8 +18,11 @@
         <Viewbox Stretch="None" x:Name="viewBox" Width="1366" Height="768">
             <local:MainHomeControl x:Name="mainHome" Width="1366" Height="768"></local:MainHomeControl>
         </Viewbox>
+        <Viewbox Width="1366" Height="768" Visibility="Collapsed" x:Name="WarningView">
+            <local:CNCWarningMsgListControl  Width="1366" Height="768"/>
+        </Viewbox>
         <Image gif:ImageBehavior.AnimatedSource="main-loading.gif" Width="400" Height="400" x:Name="loadImage"/>
-
+        
     </Grid>
 
 </Window>
