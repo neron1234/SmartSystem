@@ -1,0 +1,134 @@
+﻿<UserControl x:Class="MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ProcessWorkOperateControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="437" d:DesignWidth="344" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="RichTextBox">
+                <Setter Property="Foreground" Value="#848a8f"/>
+                <Setter Property="Background" Value="#202328"/>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Black"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Foreground" Value="#FDCD00" />
+                <Setter Property="FontFamily" Value="SourceHanSansCN-Bold" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Background" Value="#282620"/>
+                <Setter Property="BorderThickness" Value="0"  />
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Background="#353535" VerticalAlignment="Center" Height="40" Orientation="Horizontal">
+            <RadioButton Width="172"  Height="40" Content="程序路径" Style="{StaticResource RadioButtonColorStyle}" />
+            <RadioButton Width="172" Height="40" Content="操作" Style="{StaticResource RadioButtonColorStyle}"  IsChecked="True"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <WrapPanel Margin="0 15 0 0">
+                <TextBlock Text="断电续切" Margin="0 0 10 0"/>
+                <TextBlock Text="N续切" Margin="15 0 10 0"/>
+                <TextBlock Text="完成后暂停" Margin="15 0 0 0"/>
+            </WrapPanel>
+            <WrapPanel Margin="0 12 0 0">
+                <Grid Margin="0 0 0 0">
+                    <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="55" Height="41" IsEnabled="False">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="4"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="ON" FontSize="12" Foreground="#fdcd00" Margin="0 0 45 0"/>
+                </Grid>
+                <Grid Margin="15 0 0 0">
+                    <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="55" Height="41" IsEnabled="False">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="4"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="ON" FontSize="12" Foreground="#fdcd00" Margin="0 0 45 0"/>
+                </Grid>
+                <Grid Margin="15 0 0 0">
+                    <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="55" Height="41" IsEnabled="False">
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="4"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="OFF" FontSize="12"  Margin="45 0 0 0"/>
+                </Grid>
+            </WrapPanel>
+            <WrapPanel Margin="0 20 0 0" >
+                <TextBlock Text="中断N" Margin="0 0 30 0" Foreground="#fdcd00"/>
+                <TextBlock Text="虚切N" Margin="30 0 0 0" Foreground="#fdcd00"/>
+            </WrapPanel>
+            <WrapPanel Margin="0 6 0 0">
+                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24" Text="15156132"  Foreground="#B6BEB3">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24"  Text="12311" Margin="30 0 0 0"  Foreground="#B6BEB3"> 
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </WrapPanel>
+            <WrapPanel Margin="0 20 0 0" >
+                <TextBlock Text="已加工" Margin="0 0 30 0" Foreground="#fdcd00"/>
+                <TextBlock Text="所需" Margin="30 0 0 0" Foreground="#fdcd00"/>
+            </WrapPanel>
+            <WrapPanel Margin="0 6 0 0">
+                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24" Text="412411"  Foreground="#B6BEB3">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24" Text="142412" Margin="30 0 0 0" Foreground="#B6BEB3">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </WrapPanel>
+            <WrapPanel Margin="0 16 0 0">
+                <Button Style="{StaticResource IconBtnStyle}" Width="90" Height="50" Content="W"/>
+                <Button Style="{StaticResource IconBtnStyle}" Width="90" Height="50" Margin="20 0 0 0" Content="修改"/>
+                <Button Style="{StaticResource IconBtnStyle}" Width="90" Height="50" Margin="20 0 0 0" Content="返回"/>
+            </WrapPanel>
+            <WrapPanel Margin="0 16 0 0">
+                <Button Style="{StaticResource IconBtnStyle}" Width="317" Height="50" Content="清除"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

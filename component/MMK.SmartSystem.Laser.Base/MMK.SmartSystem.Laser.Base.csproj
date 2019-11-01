@@ -384,6 +384,19 @@
     <Compile Include="MachineProcessWork\MachineProcessWorkPage.xaml.cs">
       <DependentUpon>MachineProcessWorkPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MachineProcessWork\UserControls\ProcessParametersControl.xaml.cs">
+      <DependentUpon>ProcessParametersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineProcessWork\UserControls\ProcessWorkOperateControl.xaml.cs">
+      <DependentUpon>ProcessWorkOperateControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineProcessWork\UserControls\SimulationControl.xaml.cs">
+      <DependentUpon>SimulationControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MachineProcessWork\UserControls\ViewModel\ProcessParametersViewModel.cs" />
+    <Compile Include="MachineProcessWork\UserControls\ViewModel\ProcessWorkOperateViewModel.cs" />
+    <Compile Include="MachineProcessWork\UserControls\ViewModel\SimulationViewModel.cs" />
+    <Compile Include="MachineProcessWork\ViewModel\MachineProcessWorkViewModel.cs" />
     <Compile Include="MachineProcess\UserControls\ViewModel\EditMaterialViewModel.cs" />
     <Compile Include="PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
@@ -639,6 +652,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MachineProcessWork\MachineProcessWorkPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineProcessWork\UserControls\ProcessParametersControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineProcessWork\UserControls\ProcessWorkOperateControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MachineProcessWork\UserControls\SimulationControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

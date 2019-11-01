@@ -46,7 +46,7 @@
             <usercontrols:ManualHeaderControl x:Name="manualControl"/>
         </StackPanel>
 
-        <ItemsControl ItemsSource="{Binding IoBtnList}" Grid.Column="0" Margin="27,10,0.4,9.6" Grid.RowSpan="2" Grid.Row="1">
+        <ItemsControl ItemsSource="{Binding IoBtnList}" Grid.Column="0" Margin="27,5,0.4,5" Grid.RowSpan="2" Grid.Row="1">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
@@ -55,11 +55,11 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <!--<Image Source="{Binding Path= Icon,Converter={StaticResource imageConvert}}" Width="42" Height="37" />-->
-                    <StackPanel Margin="15 5 30 10">
+                    <StackPanel Margin="15 5 30 5">
                         <Button Style="{StaticResource IconBtnStyle}" Width="100" Height="100" Visibility="{Binding BtnVisibility}" Command="{Binding IoBtnCommand}" >
                             <Image Source="{Binding Path= Icon,Converter={StaticResource ImageConverter}}" Width="60" Height="60" />
                         </Button>
-                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Margin="0 10 0 0" Visibility="{Binding BtnVisibility}"/>
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" Margin="0 5 0 0" Visibility="{Binding BtnVisibility}"/>
                         <Image Source="/MMK.SmartSystem.Laser.Base;component/Resources/Images/Manual_io/NoBtn.png" Width="100" Height="100" Visibility="{Binding BgVisibility}"/>
                     </StackPanel>
                 </DataTemplate>
@@ -123,7 +123,7 @@
                 </Button>
 
                 <TextBlock Text="+Z" Margin="87,132,129,280" Width="40" Height="20" Foreground="#2B2B2B" IsHitTestVisible="False"/>
-                <TextBlock Text="-Z" Margin="90,278,126,134" Width="40" Height="20" Foreground="#fdcd00" IsHitTestVisible="False" />
+                <TextBlock Text="-Z" Margin="90,278,126,128" Width="40" Foreground="#fdcd00" IsHitTestVisible="False" />
 
                 <!--<Button Width="156" Height="128" Style="{StaticResource ControlBtnStyle3}" Margin="90,15,11.6,289" />-->
 
@@ -145,8 +145,12 @@
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="-" FontSize="35" Margin="6,-2,129.2,1.6" />
-                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="+" FontSize="35" Margin="106,-2,29.2,1.6" Foreground="#fdcd00"/>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Margin="6,-2,129.2,1.6" >
+                            <TextBlock Text="-" VerticalAlignment="Center" FontSize="35" Margin="0 0 0 5"/>
+                        </Button>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Margin="106,-2,29.2,1.6" Foreground="#fdcd00">
+                            <TextBlock Text="+" VerticalAlignment="Center" FontSize="35" />
+                        </Button>
                     </Grid>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
@@ -159,8 +163,12 @@
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="-" FontSize="35" Margin="6,-2,129.2,1.6" />
-                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="+" FontSize="35" Margin="106,-2,29.2,1.6"/>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" FontSize="35" Margin="6,-2,129.2,1.6" >
+                            <TextBlock Text="-" VerticalAlignment="Center" FontSize="35" Margin="0 0 0 5"/>
+                        </Button>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Margin="106,-2,29.2,1.6">
+                            <TextBlock Text="+" VerticalAlignment="Center" FontSize="35" />
+                        </Button>
                     </Grid>
                 </StackPanel>
                 <StackPanel Grid.Column="2">
@@ -173,8 +181,12 @@
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="-" FontSize="35" Margin="6,-2,129.2,1.6" />
-                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Content="+" FontSize="35" Margin="106,-2,29.2,1.6"/>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Margin="6,-2,129.2,1.6" >
+                            <TextBlock Text="-" VerticalAlignment="Center" FontSize="35" Margin="0 0 0 5"/>
+                        </Button>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="48" Height="48" Margin="106,-2,29.2,1.6">
+                            <TextBlock Text="+" VerticalAlignment="Center" FontSize="35" />
+                        </Button>
                     </Grid>
                 </StackPanel>
             </Grid>

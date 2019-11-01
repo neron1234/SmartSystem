@@ -7,7 +7,7 @@
         {
             "Id": "Home.maching",
             "Title": "加工",
-            "FullName": "MMK.SmartSystem.Laser.Base.MachineOperation.ContainerPage",
+            "FullName": "MMK.SmartSystem.Laser.Base.MachineProcessWork.MachineProcessWorkPage",
             "IsAuth": false,
             "Icon": "machining",
             "Sort": 1
