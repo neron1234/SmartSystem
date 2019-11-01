@@ -29,8 +29,9 @@ namespace MMK.SmartSystem.Laser.Base
             this.DataContext = popupWindowViewModel = new PopupWindowViewModel();
             popupWindowViewModel.PopupContent = userControl;
             Closed += PopupWindow_Closed;
-            this.Width = PopupGrid.Width = width;
-            this.Height = PopupGrid.Height = height + 80;
+            this.Width = PopupGrid.Width = this.wPanel.Width = width;
+            this.Height = PopupGrid.Height = height + 104;
+            this.tTxt.Width = this.wPanel.Width - 80;
             popupWindowViewModel.Title = title;
 
             Messenger.Default.Register<PopupMsg>(this, (s) =>

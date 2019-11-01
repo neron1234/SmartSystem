@@ -129,7 +129,7 @@ namespace MMK.SmartSystem.LE.Host
 
             Messenger.Default.Register<WaringMsgPopup>(this, (pv) =>
             {
-                this.WarningView.Visibility = pv.Visibility;
+                new PopupWindow().ShowDialog();
             });
         }
         private void LoadNotice(MainSystemNoticeModel model)

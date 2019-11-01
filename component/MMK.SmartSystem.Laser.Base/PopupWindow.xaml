@@ -6,19 +6,20 @@
       xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="625" WindowStyle="None" WindowStartupLocation="CenterScreen"  MouseLeftButtonDown="Window_MouseLeftButtonDown"
-      Title="PopupWindowPage" ResizeMode="NoResize">
+      Title="PopupWindowPage" ResizeMode="NoResize" Background="#2d2d2d" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/BtnStyle.xaml"/>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Grid Width="625" Height="400" Background="#2a2f34" x:Name="PopupGrid">
+        <Grid Width="625" Height="400" x:Name="PopupGrid">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40" />
+                <RowDefinition Height="64" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="40" />
 
@@ -26,14 +27,17 @@
             <Border Background="Gainsboro" CornerRadius="5" Grid.Row="1">
                 <ContentControl x:Name="PopupContent" Content="{Binding PopupContent}"/>
             </Border>
-            <Grid Grid.Row="0" Background="#0e1013">
-                <TextBlock HorizontalAlignment="Left" Text="{Binding Title}" Foreground="#787b8c" VerticalAlignment="Center" FontSize="18" Margin="15 0 0 0"/>
-                <cc:PathIconButton Style="{StaticResource IconBtn}"  Background="Transparent" Width="30" x:Name="btnClose" 
-                                        PathData="{StaticResource Icon_Close}" HorizontalAlignment="Right"
-                                        Margin="10" PathWidth="18" NormalPathColor="White"
-                                        MouseOverBackground="Transparent"
-                                        PressedBackground="Transparent" Click="BtnClose_Click" />
-            </Grid>
+            <Button Grid.Row="0" Style="{StaticResource IconBtnStyleWarningMsg}" Height="64">
+                <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal" x:Name="wPanel">
+                    <TextBlock Text="I" Foreground="#FDCD00" Margin="10 0 15 0" />
+                    <TextBlock Text="{Binding Title}" x:Name="tTxt"/>
+                    <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="30" x:Name="btnClose" 
+                                                PathData="{StaticResource Icon_Close}" HorizontalAlignment="Right"
+                                                PathWidth="18" NormalPathColor="Black"
+                                                MouseOverBackground="Transparent"
+                                                PressedBackground="Transparent" Click="BtnClose_Click"/>
+                </WrapPanel>
+            </Button>
             <Grid Grid.Row="2">
                 <TextBlock Text="{Binding Message}"  TextAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="Green"/>
             </Grid>
