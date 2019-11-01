@@ -27,6 +27,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     /// </summary>
     public partial class CNCProgramInfoControl : UserControl
     {
+        const string ElectronWindowName = "AngualrElectron-Progress-bmp";
+        CancellationTokenSource cts = new CancellationTokenSource();
+
         public CNCProgramInfoViewModel cncProgramVm { get; set; }
         public CNCProgramInfoControl()
         {
@@ -36,24 +39,34 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             Loaded += CNCProgramInfoControl_Loaded;
             Unloaded += CNCProgramInfoControl_Unloaded;
         }
-        public void CloseElectronWindow()
-        {
 
-
-
-        }
         private void CNCProgramInfoControl_Unloaded(object sender, RoutedEventArgs e)
         {
+            cts.Cancel();
+            cncApp.CloseWindows();
 
         }
 
         private void CNCProgramInfoControl_Loaded(object sender, RoutedEventArgs e)
         {
             //获取cncApp控件基于屏幕的绝对位置，长宽
-
             var absolutePos = cncApp.PointToScreen(new Point(0, 0));
             var width = cncApp.ActualWidth;
             var height = cncApp.ActualHeight;
+            Messenger.Default.Send(new PageChangeModel()
+            {
+                Page = PageEnum.WebComponet,
+                ComponentDto = new Common.WebRouteComponentDto()
+                {
+                    ComponentUrl = "/home/zrender",
+                    Height = height,
+                    Width = width,
+                    PositionX = absolutePos.X,
+                    PositionY = absolutePos.Y,
+                    WindowName = ElectronWindowName
+                }
+
+            });
 
             Task.Factory.StartNew(new Action(() =>
             {
@@ -61,30 +74,16 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 while (true)
                 {
                     Thread.Sleep(50);
-                    var result = cncApp.StartAndEmbedWindowsName("AngualrElectron-Home", Dispatcher);
-                    if (result)
+                    var result = cncApp.StartAndEmbedWindowsName(ElectronWindowName, Dispatcher);
+                    if (result || cts.Token.IsCancellationRequested)
                     {
                         break;
                     }
                 }
 
 
-            }));
+            }), cts.Token);
 
-
-            Task.Factory.StartNew(new Action(() =>
-            {
-                Thread.Sleep(20000);
-
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    cncApp.CloseWindows();
-
-
-                }));
-
-
-            }));
 
 
         }
@@ -136,7 +135,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             });
         }
         System.Windows.Point LastMousePosition;
-        private WindowsFormsHost windowsFormsHost;
 
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {

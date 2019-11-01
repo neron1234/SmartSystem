@@ -100,7 +100,7 @@ namespace MMK.SmartSystem.LE.Host.Embed
         {
             if (windowIntptr != null)
             {
-                Win32Api.DestroyWindow(windowIntptr);
+                Win32Api.PostMessage(windowIntptr, Win32Api.WM_CLOSE, (IntPtr)0, (IntPtr)0);
             }
         }
         public bool EmbedExistProcess(Process process)

@@ -55,7 +55,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         protected override void PageSignlarLoaded()
         {
-            Messenger.Default.Send(new PageChangeModel() { Url = "home-zrender", Page = PageEnum.WebComponet });
 
             SendQurayProgramList();
             SendReaderWriter(new HubReadWriterModel()

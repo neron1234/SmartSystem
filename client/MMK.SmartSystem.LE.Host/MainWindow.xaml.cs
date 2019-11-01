@@ -87,7 +87,7 @@ namespace MMK.SmartSystem.LE.Host
         }
 
         private void InitMessager()
-        {            
+        {
             Messenger.Default.Register<PageChangeModel>(this, (type) =>
             {
                 Dispatcher.BeginInvoke(new Action(() => pageChange(type)));
@@ -190,14 +190,16 @@ namespace MMK.SmartSystem.LE.Host
                 viewBox.Visibility = Visibility.Hidden;
                 Task.Factory.StartNew(() => EventBus.Default.Trigger(new NavigateEventData()
                 {
-                    Url = changeModel.Url
+                    Url = changeModel.Url,
+                    NavigateType = NavigateEnum.Url
                 }));
             }
             else if (changeModel.Page == PageEnum.WebComponet)
             {
                 Task.Factory.StartNew(() => EventBus.Default.Trigger(new NavigateEventData()
                 {
-                    Url = changeModel.Url
+                    NavigateType = NavigateEnum.Component,
+                    ComponentDto = changeModel.ComponentDto
                 }));
 
             }
@@ -235,7 +237,7 @@ namespace MMK.SmartSystem.LE.Host
 
         }
 
-     
+
         private async Task AutoLogin()
         {
             await EventBus.Default.TriggerAsync(new UserLoginEventData()
