@@ -17,8 +17,16 @@ namespace MMK.SmartSystem.LE.Host.EventHandler
         public void HandleEvent(NavigateEventData eventData)
         {
             WebRouteClient webRouteClient = new WebRouteClient(SmartSystemCommonConsts.ApiHost, new System.Net.Http.HttpClient());
-            webRouteClient.NavigateAsync(eventData.Url);
-          
+            if (eventData.NavigateType == NavigateEnum.Url)
+            {
+                webRouteClient.NavigateAsync(eventData.Url);
+                return;
+            }
+            if (eventData.NavigateType == NavigateEnum.Component)
+            {
+                webRouteClient.NavigateComponentAsync(eventData.ComponentDto);
+            }
+
         }
     }
 }

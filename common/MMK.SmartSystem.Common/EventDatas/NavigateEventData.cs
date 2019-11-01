@@ -7,8 +7,19 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Common.EventDatas
 {
-    public class NavigateEventData:EventData
+    public class NavigateEventData : EventData
     {
         public string Url { get; set; }
+
+        public NavigateEnum NavigateType { get; set; }
+
+        public WebRouteComponentDto ComponentDto { get; set; }
+
+
+    }
+    public enum NavigateEnum
+    {
+        Url,
+        Component
     }
 }
