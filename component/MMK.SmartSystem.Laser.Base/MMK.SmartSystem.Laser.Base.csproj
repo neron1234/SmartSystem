@@ -381,6 +381,9 @@
     <Compile Include="MachineOperation\ViewModel\CutterResetCheckPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\ManualFindSidePageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\RemainCutViewModel.cs" />
+    <Compile Include="MachineProcessWork\MachineProcessWorkPage.xaml.cs">
+      <DependentUpon>MachineProcessWorkPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineProcess\UserControls\ViewModel\EditMaterialViewModel.cs" />
     <Compile Include="PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
@@ -635,6 +638,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MachineProcessWork\MachineProcessWorkPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PopupWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -786,6 +793,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\Part1Icon.png" />
+    <Resource Include="Resources\Images\PDFIcon.png" />
     <Resource Include="Resources\Images\laser_切图_1029-2%401x.png" />
     <Resource Include="Resources\Images\缩略图.bmp" />
     <Resource Include="Resources\Images\Manual_io\Auto.png" />

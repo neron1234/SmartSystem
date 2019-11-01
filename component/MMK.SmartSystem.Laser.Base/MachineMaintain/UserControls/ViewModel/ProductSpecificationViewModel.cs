@@ -13,11 +13,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineMaintain.UserControls.ViewModel
         public ObservableCollection<ProductSpecificationInfo> SpecificationList { get; set; }
         public ProductSpecificationViewModel(){
             this.SpecificationList = new ObservableCollection<ProductSpecificationInfo>{
-                new ProductSpecificationInfo{ Id=0, FileType = FileType.PDF,Name = "LASER- ENGINE系统说明",Specification = "B-64483EN-01", Version="V1.0"},
-                new ProductSpecificationInfo{ Id=1, FileType = FileType.PDF,Name = "LASER- ENGINE系统说明",Specification = "B-64483EN-02", Version="V1.2"},
-                new ProductSpecificationInfo{ Id=2, FileType = FileType.PDF,Name = "LASER- ENGINE系统说明",Specification = "B-64483EN-03", Version="V1.4"},
-                new ProductSpecificationInfo{ Id=3, FileType = FileType.PDF,Name = "LASER- ENGINE系统说明",Specification = "B-64483EN-04", Version="V1.6"},
-                new ProductSpecificationInfo{ Id=4, FileType = FileType.PDF,Name = "LASER- ENGINE系统说明",Specification = "B-64483EN-05", Version="V2.0"},
+                new ProductSpecificationInfo{ Id=0, FileType = FileType.PDF,Name = "LASER- ENGINE系统说明",Specification = "B-64483EN-01", Version="V1.0", ImgUrl="/MMK.SmartSystem.Laser.Base;component/Resources/Images/PDFIcon.png"},
+                new ProductSpecificationInfo{ Id=1, FileType = FileType.PDF,Name = "LASER- ENGINE系统说明",Specification = "B-64483EN-02", Version="V1.2", ImgUrl="/MMK.SmartSystem.Laser.Base;component/Resources/Images/PDFIcon.png"},
+                new ProductSpecificationInfo{ Id=2, FileType = FileType.PDF,Name = "LASER- ENGINE系统说明",Specification = "B-64483EN-03", Version="V1.4", ImgUrl="/MMK.SmartSystem.Laser.Base;component/Resources/Images/PDFIcon.png"},
+                new ProductSpecificationInfo{ Id=3, FileType = FileType.PDF,Name = "LASER- ENGINE系统说明",Specification = "B-64483EN-04", Version="V1.6", ImgUrl="/MMK.SmartSystem.Laser.Base;component/Resources/Images/PDFIcon.png"},
+                new ProductSpecificationInfo{ Id=4, FileType = FileType.PDF,Name = "LASER- ENGINE系统说明",Specification = "B-64483EN-05", Version="V2.0", ImgUrl="/MMK.SmartSystem.Laser.Base;component/Resources/Images/PDFIcon.png"},
             };
         }
     }
@@ -73,6 +73,21 @@ namespace MMK.SmartSystem.Laser.Base.MachineMaintain.UserControls.ViewModel
                 {
                     _Version = value;
                     RaisePropertyChanged(() => Version);
+                }
+            }
+        }
+
+
+        private string _ImgUrl;
+        public string ImgUrl
+        {
+            get { return _ImgUrl; }
+            set
+            {
+                if (_ImgUrl != value)
+                {
+                    _ImgUrl = value;
+                    RaisePropertyChanged(() => ImgUrl);
                 }
             }
         }

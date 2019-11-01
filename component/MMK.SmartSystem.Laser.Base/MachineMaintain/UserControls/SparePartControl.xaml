@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineMaintain.UserControls"
+             xmlns:Converters="clr-namespace:MMK.SmartSystem.Laser.Base.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="618" d:DesignWidth="1268"  Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <UserControl.Resources>
@@ -13,6 +14,7 @@
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/MachineDataGridDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Converters:StringToImageSourceConverter x:Key="ImageConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -60,7 +62,17 @@
                   ItemsSource="{Binding}" DataContext="{Binding SparePartList}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="使用位置" Binding="{Binding UseLocation}" Width="220" />
-                <DataGridTextColumn Header="备件名称" Binding="{Binding Name}" Width="220" />
+                <!--<DataGridTextColumn Header="备件名称" Binding="{Binding Name}" Width="220" />-->
+                <DataGridTemplateColumn Width="220" Header="备件名称">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <Image Source="{Binding Path=ImgUrl,Converter={StaticResource ImageConverter}}" Width="20" Height="20" Margin="0 0 3 0"/>
+                                <TextBlock Text="{Binding Name}"/>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="规格" Binding="{Binding Specification}" Width="180" />
                 <DataGridTextColumn Header="备注" Binding="{Binding About}" Width="220" />
                 <DataGridTextColumn Header="占位" Width="*" />

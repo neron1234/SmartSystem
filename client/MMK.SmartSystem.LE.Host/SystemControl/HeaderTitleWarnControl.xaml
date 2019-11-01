@@ -20,7 +20,7 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0 0 20 0" HorizontalAlignment="Right">
             <TextBlock Text="{Binding ProgramName}" FontSize="28" FontFamily="DINCondensed-Bold"/>
-            <StackPanel Width="240" Height="32" Orientation="Horizontal" VerticalAlignment="Center" Margin="36 0 0 0" MouseLeftButtonUp="StackPanel_MouseLeftButtonUp">
+            <StackPanel Width="240" Height="32" Orientation="Horizontal" VerticalAlignment="Center" Margin="36 0 0 0" MouseLeftButtonUp="StackPanel_MouseLeftButtonUp" Opacity="0.7">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/MMK.SmartSystem.LE.Host;component/Resources/Images/WarningBg.png"/>
                 </StackPanel.Background>

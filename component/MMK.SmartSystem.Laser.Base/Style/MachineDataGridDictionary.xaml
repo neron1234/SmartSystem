@@ -37,6 +37,7 @@
     <Style TargetType="DataGridColumnHeader">
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Background" Value="#3b3b3b" />
@@ -49,14 +50,23 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Foreground" Value="#CDD3D7" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                    <TextBlock TextAlignment="Center" VerticalAlignment="Center"  >
+                           <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Height" Value="65"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type DataGridCell}" >
-                            <Border BorderBrush="#FDCD00" BorderThickness="0,1,0,1">
-                                <Grid>
+                            <Border BorderBrush="#FDCD00" BorderThickness="0,1,0,1" >
+                                <Grid >
                                     <Grid.Background>
                                         <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                                             <GradientStop Color="#926B00" Offset="0.1" />
@@ -67,7 +77,9 @@
                                             <GradientStop Color="#513B00" Offset="0.9" />
                                         </LinearGradientBrush>
                                     </Grid.Background>
-                                    <Label Content="{TemplateBinding Content}"  Width="{TemplateBinding Width }" Height="{TemplateBinding Height}"/>
+                                    <TextBlock TextAlignment="Center" VerticalAlignment="Center">
+                                         <ContentPresenter />
+                                    </TextBlock>
                                 </Grid>
                             </Border>
                         </ControlTemplate>
