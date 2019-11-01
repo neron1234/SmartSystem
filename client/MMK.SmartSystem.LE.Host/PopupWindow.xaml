@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host"
         xmlns:cui="clr-namespace:MMK.SmartSystem.LE.Host.CustomControl"
+        xmlns:Converters="clr-namespace:MMK.SmartSystem.LE.Host.Converters"
         mc:Ignorable="d"
         d:DesignHeight="768" d:DesignWidth="1366" 
         WindowStyle="None" AllowsTransparency="True" Topmost="False" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3" Background="Transparent">
     <Window.Resources>
+        <Converters:StringToImageSourceConverter x:Key="ImageConverter" />
         <!--DataGrid样式-->
         <Style TargetType="DataGrid">
             <Setter Property="CanUserAddRows" Value="False" />
@@ -85,7 +87,17 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="报警类型" Binding="{Binding Type}" Width="30*" />
                         <DataGridTextColumn Header="报警号" Binding="{Binding Number}" Width="30*" />
-                        <DataGridTextColumn Header="报警信息" Binding="{Binding Msg}" Width="40*" />
+                        <DataGridTemplateColumn Width="32*" Header="报警信息">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <Image Source="{Binding Path=Img,Converter={StaticResource ImageConverter}}" Width="29" Height="24"/>
+                                        <TextBlock Text="{Binding Msg}"/>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    <!--<DataGridTextColumn Header="报警信息" Binding="{Binding Msg}" Width="32*" />-->
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

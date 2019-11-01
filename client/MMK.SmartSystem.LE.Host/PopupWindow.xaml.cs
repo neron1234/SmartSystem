@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.LE.Host.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace MMK.SmartSystem.LE.Host
     /// </summary>
     public partial class PopupWindow : Window
     {
+        public CNCWarningMsgViewModel cncWarningVM { get; set; }
         public PopupWindow()
         {
             InitializeComponent();
+            this.DataContext = cncWarningVM = new CNCWarningMsgViewModel();
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)

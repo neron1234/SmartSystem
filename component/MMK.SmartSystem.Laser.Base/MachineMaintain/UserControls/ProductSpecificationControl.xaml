@@ -60,6 +60,7 @@
                   IsReadOnly="True" FontSize="18" BorderThickness="0"
                   ItemsSource="{Binding}" DataContext="{Binding SpecificationList}">
             <DataGrid.Columns>
+                
                 <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="360" />
                 <DataGridTextColumn Header="规格" Binding="{Binding Specification}" Width="300" />
                 <DataGridTextColumn Header="版本" Binding="{Binding Version}" Width="118" />
