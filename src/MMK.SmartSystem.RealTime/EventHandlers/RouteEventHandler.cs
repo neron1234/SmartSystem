@@ -17,8 +17,17 @@ namespace MMK.SmartSystem.RealTime.EventHandlers
             hubContext = service.GetService(typeof(IHubContext<RouteHub>)) as IHubContext<RouteHub>;
         }
         public void HandleEvent(RouteEventData eventData)
-        {           
-            hubContext.Clients.All.SendAsync(RouteHub.ClientAction, eventData.Url);
+        {
+            if (eventData.RouteEnum == WebRouteEnum.Url)
+            {
+                hubContext.Clients.All.SendAsync(RouteHub.ClientAction, eventData.Url);
+                return;
+            }
+            if (eventData.RouteEnum == WebRouteEnum.Component)
+            {
+                hubContext.Clients.All.SendAsync(RouteHub.ClientDialogAction, eventData.WebRoute);
+
+            }
         }
     }
 }

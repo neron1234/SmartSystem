@@ -11,6 +11,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
     public class RouteHub : AbpCommonHub
     {
         public const string ClientAction = "GetRoute";
+        public const string ClientDialogAction = "GetWebDialogWindow";
         public RouteHub(IOnlineClientManager onlineClientManager, IClientInfoProvider clientInfoProvider) :
           base(onlineClientManager, clientInfoProvider)
         {
