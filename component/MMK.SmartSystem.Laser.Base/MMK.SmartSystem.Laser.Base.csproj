@@ -217,6 +217,7 @@
     <Compile Include="Converters\OffsetConverter.cs" />
     <Compile Include="Converters\StringIsEmptyConverter.cs" />
     <Compile Include="Converters\StringToImageSourceConverter.cs" />
+    <Compile Include="Converters\StringToPathColorConverter.cs" />
     <Compile Include="Converters\ValueIsZeroConverter.cs" />
     <Compile Include="CustomControl\Behaviors\MaskLayerBehavior.cs" />
     <Compile Include="CustomControl\Behaviors\TextCompleteDisplayBehavior.cs" />
@@ -878,6 +879,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Configs\MachineMonitor\MachineMonitorPage.json" />
+    <Content Include="Configs\MachineOperation\MaualioPage.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

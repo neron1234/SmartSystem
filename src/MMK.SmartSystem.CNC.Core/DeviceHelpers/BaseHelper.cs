@@ -31,6 +31,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             LaserLibraryEdgeCuttingDataQuantity = MMKSmartSystemWebCommonConsts.LaserLibraryEdgeCuttingDataQuantity;
             LaserLibraryPiercingDataQuantity = MMKSmartSystemWebCommonConsts.LaserLibraryPiercingDataQuantity;
             LaserLibrarySlopeControlDataQuantity = MMKSmartSystemWebCommonConsts.LaserLibrarySlopeControlDataQuantity;
+            Ip = SmartSystemCNCCoreConsts.CncIP;
+            Port = SmartSystemCNCCoreConsts.CncPort;
 
         }
         public short BuildConnect(ref ushort flib)

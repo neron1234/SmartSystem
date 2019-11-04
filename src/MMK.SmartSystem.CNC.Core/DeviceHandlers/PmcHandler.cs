@@ -36,7 +36,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
         protected override Tuple<short, string> PollRead(ReadPmcTypeModel inputModel)
         {
 
-            var dwQty = (inputModel.EndNum - inputModel.StartNum) % 4;
+            var dwQty = (int)Math.Ceiling((inputModel.EndNum - inputModel.StartNum) / 4.0);
             int[] data = new int[dwQty];
             var ret = new PmcHelper().ReadPmcRange(flib, inputModel.AdrType, inputModel.StartNum, dwQty, ref data);
             if (ret.Item1 == 0)
@@ -79,10 +79,10 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
                     {
                         pre_item.StartNum = temp_itemStartAdr;
 
-                        var decomps = pre.Decompilers.Where(x => x.AdrType == item.AdrType).ToList() ?? new List<DecompReadPmcItemModel>();
+                        var decomps = pre.Decompilers.Where(x => x.AdrType == item.AdrType) ?? new List<DecompReadPmcItemModel>();
                         foreach (var dItem in decomps)
                         {
-                            item.RelStartAdr = (short)(dItem.StartAdr - pre_item.StartNum);
+                            dItem.RelStartAdr = (short)(dItem.StartAdr - pre_item.StartNum);
                         }
                     }
 
@@ -95,7 +95,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
 
                         StartNum = temp_itemStartAdr,
                         EndNum = temp_itemEndAdr,
-                        AdrType= item.AdrType,
+                        AdrType = item.AdrType,
                     });
 
 
@@ -106,7 +106,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
                         DataType = item.DataType,
                         Bit = item.Bit,
                         AdrType = item.AdrType,
-                        RelStartAdr = (short)(item.StartAdr- temp_itemStartAdr)
+                        RelStartAdr = (short)(item.StartAdr - temp_itemStartAdr)
                     });
                 }
             }
@@ -148,7 +148,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
             //    }
             //    item.RelStartAdr = (short)(item.StartAdr - startInfo[item.AdrType]);
             //}
-
+            pre.Decompilers = pre.Decompilers.Distinct().ToList();
             return pre;
         }
     }

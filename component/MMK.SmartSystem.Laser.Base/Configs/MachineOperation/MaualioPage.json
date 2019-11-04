@@ -1,0 +1,154 @@
+{
+  "PageName": "MaualioPage",
+  "EventNodes": [
+    {
+      "Kind": "ReadPmc",
+      "Type": "ReadPmcModel",
+      "CncReadDecopliler": {
+        "Decompilers": {
+          "Type": "DecompReadPmcItemModel",
+          "Data": [
+            {
+              "Id": "maualio_auto",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1010,
+              "Bit": 0
+            },
+            {
+              "Id": "maualio_edit",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1010,
+              "Bit": 1
+            },
+            {
+              "Id": "maualio_mdi",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1010,
+              "Bit": 2
+            },
+            {
+              "Id": "maualio_rmt",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1010,
+              "Bit": 3
+            },
+            {
+              "Id": "maualio_ref",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1010,
+              "Bit": 4
+            },
+            {
+              "Id": "maualio_jog",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1010,
+              "Bit": 5
+            },
+            {
+              "Id": "maualio_hnd",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1010,
+              "Bit": 6
+            },
+            {
+              "Id": "maualio_inc",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1010,
+              "Bit": 7
+            },
+            {
+              "Id": "maualio_exchangetable",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1011,
+              "Bit": 0
+            },
+            {
+              "Id": "maualio_nozzlereset",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1011,
+              "Bit": 1
+            },
+            {
+              "Id": "maualio_xplus",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1011,
+              "Bit": 2
+            },
+            {
+              "Id": "maualio_xminus",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1011,
+              "Bit": 3
+            },
+            {
+              "Id": "maualio_yplus",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1011,
+              "Bit": 4
+            },
+            {
+              "Id": "maualio_yminus",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1011,
+              "Bit": 5
+            },
+            {
+              "Id": "maualio_zplus",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1011,
+              "Bit": 6
+            },
+            {
+              "Id": "maualio_zminus",
+              "AdrType": 12,
+              "DataType": "Boolean",
+              "StartAdr": 1011,
+              "Bit": 7
+            },
+            {
+              "Id": "maualio_pcval",
+              "AdrType": 12,
+              "DataType": "Byte",
+              "StartAdr": 1012,
+              "Bit": 0
+            },
+            {
+              "Id": "maualio_frval",
+              "AdrType": 12,
+              "DataType": "Byte",
+              "StartAdr": 1014,
+              "Bit": 0
+            },
+            {
+              "Id": "maualio_duval",
+              "AdrType": 12,
+              "DataType": "Byte",
+              "StartAdr": 1016,
+              "Bit": 0
+            }
+          ]
+        },
+        "Readers": {
+          "Type": "ReadPmcTypeModel",
+          "Data": []
+        }
+      }
+    }
+
+  ]
+}

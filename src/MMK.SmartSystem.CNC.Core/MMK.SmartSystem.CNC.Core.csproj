@@ -211,6 +211,7 @@
     <Compile Include="DeviceHelpers\SpindleSpeedHelper.cs" />
     <Compile Include="DeviceHelpers\WorkpartNumHelper.cs" />
     <Compile Include="DeviceInOut\BaseInOut.cs" />
+    <Compile Include="DeviceInOut\PmcInOut.cs" />
     <Compile Include="DeviceInOut\ProgramFolderInOut.cs" />
     <Compile Include="DeviceInOut\ProgramListInOut.cs" />
     <Compile Include="DeviceInOut\ProgramTransferInOut.cs" />

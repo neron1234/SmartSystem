@@ -16,7 +16,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             Focas1.IODBPMC2 buf = new Focas1.IODBPMC2();
             buf.ldata = new int[num];
             ushort adr_end = (ushort)(adr + num * 4 - 1);
-            var ret = Focas1.pmc_rdpmcrng(flib, adr_type, 2, adr, adr_end, 48, buf);
+            ushort len = (ushort)(8 + 8 * num);
+            var ret = Focas1.pmc_rdpmcrng(flib, adr_type, 2, adr, adr_end, len, buf);
 
             if (ret == 0)
             {
@@ -70,9 +71,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                         else
                         {
                             var area_rem = itemModel.RelStartAdr % 4;
-                            int bd = (int)(0x0F << area_rem * 8);
+                            int bd = (int)(0xFF << area_rem * 8);
 
-                            var res = (byte)((data[area] >> area_rem * 8) & 0x0F);
+                            var res = (byte)((data[area] >> area_rem * 8) & 0xFF);
 
                             val = res.ToString();
 
@@ -92,14 +93,14 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                             var area_rem = itemModel.RelStartAdr % 4;
                             if(area_rem==0)
                             {
-                                var res = (short)(data[area] & 0xFF);
+                                var res = (short)(data[area] & 0xFFFF);
                                 val = res.ToString();
 
                                 message = null;
                             }
                             else if(area_rem==2)
                             {
-                                var res = (short)((data[area] >> 16) & 0xFF);
+                                var res = (short)((data[area] >> 16) & 0xFFFF);
                                 val = res.ToString();
 
                                 message = null;
@@ -238,17 +239,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             return ret;
         }
 
-        public string ReversalPmcBit(short adr_type, ushort adr, ushort bit)
+        public string ReversalPmcBit(ushort flib, short adr_type, ushort adr, ushort bit)
         {
-            ushort flib = 0;
-
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "翻转PMC信号失败，连接错误";
-            }
-
+        
             bool pmcBit = false;
             string ret = ReadPmcBit(flib, adr_type, adr, bit, ref pmcBit);
             if(ret!=null)
