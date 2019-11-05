@@ -298,6 +298,9 @@
     <Compile Include="EventHandler\PiercingDataHandler.cs" />
     <Compile Include="EventHandler\ProgramClientHandler.cs" />
     <Compile Include="EventHandler\SlopeControlDataHandler.cs" />
+    <Compile Include="InputWindow.xaml.cs">
+      <DependentUpon>InputWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MachineMaintain\MaintainPage.xaml.cs">
       <DependentUpon>MaintainPage.xaml</DependentUpon>
     </Compile>
@@ -436,6 +439,7 @@
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCProgramInfoViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\LocalProgramInfoViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\SearchViewModel.cs" />
+    <Compile Include="ViewModel\InputWindowViewModel.cs" />
     <Compile Include="ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="MachineProcess\ViewModel\ProcessViewModel.cs" />
     <Compile Include="ProgramOperation\ProgramListPage.xaml.cs">
@@ -563,6 +567,10 @@
     <Page Include="Embed\AppContainer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MachineMaintain\MaintainPage.xaml">
       <SubType>Designer</SubType>
