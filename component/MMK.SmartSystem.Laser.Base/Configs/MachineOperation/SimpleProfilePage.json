@@ -1,0 +1,179 @@
+{
+  "PageName": "MachineMonitorPage",
+  "EventNodes": [
+    //{
+    //  "Kind": "ReadPmc",
+    //  "Type": "ReadPmcModel",
+    //  "CncReadDecopliler": {
+    //    "Decompilers": {
+    //      "Type": "ReadPmcTypeModel",
+    //      "Data": [
+    //        {
+    //          "Id": "AbsX",
+    //          "AdrType": 5,
+    //          "DataType": "Int32",
+    //          "RelStartAdr": 0
+    //        },
+    //        {
+    //          "Id": "AbsY",
+    //          "AdrType": 5,
+    //          "DataType": "Int32",
+    //          "RelStartAdr": 4
+    //        },
+    //        {
+    //          "Id": "AbsZ",
+    //          "AdrType": 5,
+    //          "DataType": "Int32",
+    //          "RelStartAdr": 8
+    //        }
+    //      ]
+    //    },
+    //    "Readers": {
+    //      "Type": "DecompReadPmcItemModel",
+    //      "Data": [
+    //        {
+    //          "AdrType": 5,
+    //          "DwordQuantity": 10,
+    //          "StartNum": 0
+    //        }
+    //      ]
+    //    }
+    //  }
+    //},
+    {
+      "Kind": "ReadPosition",
+      "Type": "ReadPositionModel",
+      "CncReadDecopliler": {
+        "Decompilers": {
+          "Type": "DecompReadPositionItemModel",
+          "Data": [
+            {
+              "Id": "MachineX",
+              "AxisNum": 1,
+              "PositionType": "Machine"
+            },
+            {
+              "Id": "MachineY",
+              "AxisNum": 2,
+              "PositionType": "Machine"
+            },
+            {
+              "Id": "MachineZ",
+              "AxisNum": 3,
+              "PositionType": "Machine"
+            },
+            {
+              "Id": "ResidualMoveNumber1",
+              "AxisNum": 1,
+              "PositionType": "Distance"
+            },
+            {
+              "Id": "ResidualMoveNumber2",
+              "AxisNum": 2,
+              "PositionType": "Distance"
+            },
+
+            {
+              "Id": "ResidualMoveNumber3",
+              "AxisNum": 3,
+              "PositionType": "Distance"
+            },
+            {
+              "Id": "AbsX",
+              "AxisNum": 1,
+              "PositionType": "Absolute"
+            },
+            {
+              "Id": "AbsY",
+              "AxisNum": 2,
+              "PositionType": "Absolute"
+            },
+            {
+              "Id": "AbsZ",
+              "AxisNum": 3,
+              "PositionType": "Absolute"
+            }
+          ]
+        },
+        "Readers": {
+          "Type": "ReadPositionTypeModel",
+          "Data": [
+            {
+              "PositionType": "Machine"
+            },
+            {
+              "PositionType": "Distance"
+            },
+            {
+              "PositionType": "Absolute"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "Kind": "ReadProgramStr",
+      "Type": "ReadProgramStrModel",
+      "CncReadDecopliler": {
+        "Readers": {
+          "Type": "List<string>",
+          "Data": [
+            "programStrControl"
+          ]
+        },
+        "Decompilers": {
+          "Type": "String",
+          "Data": [ "Fixed" ]
+        }
+      }
+    },
+    {
+      "Kind": "ReadProgramStr",
+      "Type": "ReadProgramStrModel",
+      "CncReadDecopliler": {
+        "Readers": {
+          "Type": "List<string>",
+          "Data": [
+            "programStrControl"
+          ]
+        },
+        "Decompilers": {
+          "Type": "String",
+          "Data": [ "Fixed" ]
+        }
+      }
+    },
+    {
+      "Kind": "ReadProgramName",
+      "Type": "ReadProgramNameModel",
+      "CncReadDecopliler": {
+        "Readers": {
+          "Type": "List<string>",
+          "Data": [
+            "programNameControl"
+          ]
+        },
+        "Decompilers": {
+          "Type": "String",
+          "Data": [ "Fixed" ]
+        }
+      }
+    },
+    {
+      "Kind": "ReadAlarm",
+      "Type": "ReadAlarmModel",
+      "CncReadDecopliler": {
+        "Readers": {
+          "Type": "string",
+          "Data": [
+            "programAlarmControl"
+          ]
+        },
+        "Decompilers": {
+          "Type": "String",
+          "Data": [ "Fixed" ]
+        }
+      }
+    }
+  ]
+}
