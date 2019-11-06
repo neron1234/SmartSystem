@@ -32,6 +32,7 @@ namespace MMK.SmartSystem.Common.Base
         public abstract void CncOnError(string message);
         public SignalrPage()
         {
+            IsRequestResponse = false;
             signalrProxyClient = new SignalrProxyClient(this.GetType().FullName + "_" + Guid.NewGuid().ToString("N"));
             signalrProxyClient.CncErrorEvent += SignalrProxyClient_CncErrorEvent;
             signalrProxyClient.HubRefreshModelEvent += SignalrProxyClient_HubRefreshModelEvent;
@@ -62,7 +63,8 @@ namespace MMK.SmartSystem.Common.Base
         {
             JObject jobject = JObject.Parse(obj.Data.ToString());
             var listMap = GetResultViewModelMap();
-            if (listMap == null){
+            if (listMap == null)
+            {
                 return;
             }
             foreach (var d in listMap)

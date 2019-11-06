@@ -75,39 +75,27 @@
                         </Border>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="0 10 5 5">
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock x:Name="textBlock"  Text="15" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right" >
+                        <ItemsControl x:Name="itemSimpleControl">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                                        <TextBlock  Text="{Binding Value}" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right" >
                                  <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
-                                        <i:InvokeCommandAction Command="{Binding InputCommand}" CommandParameter="引线H"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>   
-                            </TextBlock>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="128" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right">
-                                 <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
-                                        <i:InvokeCommandAction Command="{Binding InputCommand}" CommandParameter="长度I"/>
+                                        <i:InvokeCommandAction Command="{Binding InputCommand}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                            </TextBlock>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="128" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="35" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="35" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="92" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="291" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
+                                        </TextBlock>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                   
                     </StackPanel>
                 </Grid>
                 <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Center">

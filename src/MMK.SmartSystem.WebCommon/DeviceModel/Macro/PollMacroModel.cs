@@ -30,6 +30,7 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
     public class DecompReadMacroItemModel:IEquatable<DecompReadMacroItemModel>
     {
         public string Id { get; set; }
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
 
         public CncMacroTypeEnum Type { get; set; }
 
@@ -52,14 +53,29 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
     public enum CncMacroTypeEnum
     {
+        [System.Runtime.Serialization.EnumMember(Value = @"LOCAL")]
         LOCAL,
+        [System.Runtime.Serialization.EnumMember(Value = @"ARRAY_TYPE")]
         ARRAY_TYPE,
+        [System.Runtime.Serialization.EnumMember(Value = @"VOLATILE")]
+
         VOLATILE,
+        [System.Runtime.Serialization.EnumMember(Value = @"NONVOLATILE")]
+
         NONVOLATILE,
+        [System.Runtime.Serialization.EnumMember(Value = @"LASER_COMMON")]
+
         LASER_COMMON,
+        [System.Runtime.Serialization.EnumMember(Value = @"PCODE_CONTROL")]
+
         PCODE_CONTROL,
+        [System.Runtime.Serialization.EnumMember(Value = @"PCODE")]
+
         PCODE,
+        [System.Runtime.Serialization.EnumMember(Value = @"EXTENDED_PCODE")]
+
         EXTENDED_PCODE,
+        [System.Runtime.Serialization.EnumMember(Value = @"OTHER")]
         OTHER,
     }
 }
