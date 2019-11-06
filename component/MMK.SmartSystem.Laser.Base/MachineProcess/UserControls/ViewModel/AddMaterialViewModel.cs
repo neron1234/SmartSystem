@@ -94,7 +94,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
                     var number = 0;
                     if (int.TryParse(str, out number))
                     {
-                        MaterialThickness += number;
+                        MaterialThickness = Convert.ToInt32(MaterialThickness + number).ToString();
                     }
                     else
                     {

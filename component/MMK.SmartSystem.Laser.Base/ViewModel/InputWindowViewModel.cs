@@ -47,28 +47,6 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
                 }
             }
         }
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    if (Value.Length > 0)
-                    {
-                        Value = Value.Substring(0, Value.Length - 1);
-
-                    }
-                    if (Value.Length > 0)
-                    {
-                        ButtonClickEvent(new InputItemModel() { Text = "" });
-                    }
-                    else
-                    {
-                        CanSave = false;
-                    }
-                });
-            }
-        }
 
         public ICommand ClearCommand
         {
@@ -92,25 +70,35 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
             InputButtonItems.Add(new InputItemModel() { Text = "1" });
             InputButtonItems.Add(new InputItemModel() { Text = "2" });
             InputButtonItems.Add(new InputItemModel() { Text = "3" });
-            InputButtonItems.Add(new InputItemModel() { Text = "" });
-
+            InputButtonItems.Add(new InputItemModel() { Text = "⬅" });
             InputButtonItems.Add(new InputItemModel() { Text = "0" });
-            InputButtonItems.Add(new InputItemModel() { Text = "" });
+            InputButtonItems.Add(new InputItemModel() { Text = "." });
 
             InputButtonItems.ToList().ForEach(d => d.ButtonInputEvent += ButtonClickEvent);
-
         }
 
-        private void ButtonClickEvent(InputItemModel item)
-        {
+        private void ButtonClickEvent(InputItemModel item) {
+            var number = 0;
+            if (int.TryParse(item.Text, out number)) {
+                Value = Convert.ToDouble(Value + number).ToString();
+            }else{
+                if (item.Text == "." && !Value.Contains(".")){
+                    Value += item.Text;
+                }else{
+                    if (Value.Length > 0){
+                        Value = Value.Substring(0, Value.Length - 1);
+                    }
+                }
+            }
+            CheckCanSave();
+        }
 
-            int newValue = Convert.ToInt32(Value + item.Text);
-            Value = newValue.ToString();
-            if (newValue > MaxValue || newValue < MinValue)
+        public void CheckCanSave()
+        {
+            if (string.IsNullOrEmpty(Value) || Value.LastOrDefault() == '.' || (Convert.ToDouble(Value) > MaxValue || Convert.ToDouble(Value) < MinValue))
             {
                 CanSave = false;
                 return;
-
             }
             CanSave = true;
         }

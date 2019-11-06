@@ -27,7 +27,7 @@
             <Border Background="Gainsboro" CornerRadius="5" Grid.Row="1">
                 <ContentControl x:Name="PopupContent" Content="{Binding PopupContent}"/>
             </Border>
-            <Button Grid.Row="0" Style="{StaticResource IconBtnStyleWarningMsg}" Height="64">
+            <Button Grid.Row="0" Style="{StaticResource IconBtnStyleWarningMsg}" Height="64" MouseLeftButtonDown="Window_MouseLeftButtonDown">
                 <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal" x:Name="wPanel">
                     <TextBlock Text="I" Foreground="#FDCD00" Margin="10 0 15 0" />
                     <TextBlock Text="{Binding Title}" x:Name="tTxt"/>

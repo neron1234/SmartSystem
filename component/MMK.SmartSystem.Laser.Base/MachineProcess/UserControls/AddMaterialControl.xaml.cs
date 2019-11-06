@@ -77,11 +77,8 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                                 addMaterialViewModel.SelectedMaterialId = (int)addMaterialViewModel.MaterialTypeList.First()?.Code;
                             }
                         }));
-
-
                     }
                 });
-
             }));
         }
     }

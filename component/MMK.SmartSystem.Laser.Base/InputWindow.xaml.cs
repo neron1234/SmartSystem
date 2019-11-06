@@ -42,7 +42,17 @@ namespace MMK.SmartSystem.Laser.Base
 
         private void btn_cancel_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            this.Close();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void BtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

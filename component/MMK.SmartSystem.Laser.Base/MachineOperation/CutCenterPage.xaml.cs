@@ -33,6 +33,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
             InitializeComponent();
             CutCenterPageVM.InputClickEvent += CutCenterPageVM_InputClickEvent;
             manualControl.SetHeaderActive(this);
+            PageItemControl.ItemsSource = CutCenterPageVM.CutCenterItemList;
         }
 
         private void CutCenterPageVM_InputClickEvent(MacroManualItemViewModel obj)

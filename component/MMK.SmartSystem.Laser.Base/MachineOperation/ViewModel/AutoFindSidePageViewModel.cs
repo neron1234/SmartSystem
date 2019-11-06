@@ -20,7 +20,12 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
             AutoFindSideItemList.Add(new MacroManualItemViewModel() { Id = "simpleprofile_d", Title = "直径D" });
             AutoFindSideItemList.Add(new MacroManualItemViewModel() { Id = "simpleprofile_r", Title = "半径R" });
             AutoFindSideItemList.Add(new MacroManualItemViewModel() { Id = "simpleprofile_e", Title = "切割E" });
-            AutoFindSideItemList.Add(new MacroManualItemViewModel() { Id = "simpleprofile_Perforate", Title = "穿孔E" });
+            AutoFindSideItemList.ForEach(d => d.InputClickEvent += D_InputClickEvent);
+        }
+
+        private void D_InputClickEvent(MacroManualItemViewModel obj)
+        {
+            InputClickEvent?.Invoke(obj);
         }
     }
 }

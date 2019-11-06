@@ -8,7 +8,8 @@
         xmlns:Converters="clr-namespace:MMK.SmartSystem.LE.Host.Converters"
         mc:Ignorable="d"
         d:DesignHeight="768" d:DesignWidth="1366" 
-        WindowStyle="None" AllowsTransparency="True" Topmost="False" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3" Background="Transparent">
+        WindowStyle="None" AllowsTransparency="True" Topmost="False" FontSize="20" FontFamily="思源黑体 CN Medium" 
+        Foreground="#FFB6BEC3" Background="Transparent" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Converters:StringToImageSourceConverter x:Key="ImageConverter" />
         <!--DataGrid样式-->
