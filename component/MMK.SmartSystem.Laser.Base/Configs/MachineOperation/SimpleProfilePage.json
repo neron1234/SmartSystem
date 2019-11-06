@@ -39,9 +39,9 @@
               "StartNum": 805
             },
             {
-              "Id": "simpleprofile_perice",
-              "Type": "NONVOLATILE",
-              "StartNum": 806
+                "Id": "simpleprofile_Perforate",
+                "Type": "NONVOLATILE",
+                "StartNum": 806
             }
           ]
         },

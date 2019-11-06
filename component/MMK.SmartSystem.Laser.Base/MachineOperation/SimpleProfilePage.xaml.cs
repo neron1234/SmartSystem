@@ -21,6 +21,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
 {
     /// <summary>
     /// SimpleProfilePage.xaml 的交互逻辑
+    /// 简易轮廓
     /// </summary>
     public partial class SimpleProfilePage : SignalrPage
     {
@@ -34,7 +35,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
             itemSimpleControl.ItemsSource = simpleProfileView.SimpleItems;
         }
 
-        private void SimpleProfileView_InputClickEvent(SimpleProfileItemViewModel obj)
+        private void SimpleProfileView_InputClickEvent(MacroManualItemViewModel obj)
         {
             var windows = new InputWindow(obj.Value, obj.MinValue, obj.MinValue, obj.Title);
             windows.InputWindowFinishEvent += (s) => obj.Value = s;
@@ -52,7 +53,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
             {
                 new SingalrResultMapModel<ReadMacroResultItemModel>()
                 {
-                    ViewModels =new SimpleProfileItemViewModel(),
+                    ViewModels =new MacroManualItemViewModel(),
                     MapType = SignalrMapModelEnum.CustomAction,
                     MapAction = (node) =>
                     {

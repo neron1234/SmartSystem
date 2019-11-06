@@ -56,9 +56,6 @@
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
                             <TextBlock Text="Y机械坐标: " VerticalAlignment="Center"/>
                         </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="Z轴坐标下限: " VerticalAlignment="Center"/>
-                        </Border>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="0 10 5 5">
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
@@ -69,9 +66,6 @@
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
                             <TextBlock Text="651.8" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="10.12" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                         </Border>
                     </StackPanel>
                 </Grid>

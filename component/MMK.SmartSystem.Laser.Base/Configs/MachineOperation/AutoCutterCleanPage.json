@@ -1,0 +1,46 @@
+{
+    "PageName": "AutoCutterCleanPage",
+    "EventNodes": [
+        {
+            "Kind": "ReadMacro",
+            "Type": "ReadMacroModel",
+            "CncReadDecopliler": {
+                "Decompilers": {
+                    "Type": "DecompReadMacroItemModel",
+                    "Data": [
+                        {
+                            "Id": "AutoCutterClean_Center_XD",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 810 //文档里未标识铜刷中心位置的宏变量
+                        },
+                        {
+                            "Id": "AutoCutterClean_Center_YD",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 811 //文档里未标识铜刷中心位置的宏变量
+                        },
+                        {
+                            "Id": "AutoCutterClean_ZOFS_H",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 836
+                        },
+                        {
+                            "Id": "AutoCutterClean_RoundTrips",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 837
+                        },
+                        {
+                            "Id": "AutoCutterClean_Zlimit",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 838
+                        }
+                    ]
+                },
+                "Readers": {
+                    "Type": "ReadMacroTypeModel",
+                    "Data": [
+                    ]
+                }
+            }
+        }
+    ]
+}

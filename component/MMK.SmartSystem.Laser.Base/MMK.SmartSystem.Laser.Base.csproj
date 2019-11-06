@@ -384,6 +384,7 @@
     <Compile Include="MachineOperation\ViewModel\CutCenterPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\CutterResetCheckPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\ManualFindSidePageViewModel.cs" />
+    <Compile Include="MachineOperation\ViewModel\MacroManualItemViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\RemainCutViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\SimpleProfileViewModel.cs" />
     <Compile Include="MachineProcessWork\MachineProcessWorkPage.xaml.cs">
@@ -894,6 +895,10 @@
     <Content Include="Configs\MachineOperation\SimpleProfilePage.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Configs\MachineOperation\AutoCutterCleanPage.json" />
+    <None Include="Configs\MachineOperation\AutoFindSidePage.json" />
+    <None Include="Configs\MachineOperation\CutCenterPage.json" />
+    <None Include="Configs\MachineOperation\CutterResetCheckPage.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
