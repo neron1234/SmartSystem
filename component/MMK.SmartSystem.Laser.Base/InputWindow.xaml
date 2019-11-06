@@ -5,7 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="450" Width="800">
+        Title="{Binding Title}" Height="450" Width="800" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
@@ -19,9 +26,9 @@
             </Grid.RowDefinitions>
             <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBox  Width="300" FontSize="30" Text="{Binding Value}"/>
-                <Button Margin="10,0,0,0" Width="50" Content="删除" Command="{Binding DeleteCommand}"/>
+                <Button Margin="10,0,0,0" Width="50" Content="删除" Command="{Binding DeleteCommand}" Style="{StaticResource IconBtnStyle}" />
 
-                <Button   Margin="10,0,0,0" Width="50" Content="清除" Command="{Binding ClearCommand}"/>
+                <Button   Margin="10,0,0,0" Width="50" Content="清除" Command="{Binding ClearCommand}" Style="{StaticResource IconBtnStyle}" />
             </WrapPanel>
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="{Binding MinValue}" Foreground="Red" FontSize="20"/>
@@ -44,9 +51,9 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <WrapPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="btn_ok"  Margin="10,0,0,0" Width="50" Height="40" Content="确定" IsEnabled="{Binding CanSave}" Foreground="Green" Click="btn_ok_Click"/>
+            <Button Style="{StaticResource IconBtnStyle}" x:Name="btn_ok"  Margin="10,0,0,0" Width="150" Height="40" Content="确定" IsEnabled="{Binding CanSave}" Click="btn_ok_Click"/>
 
-            <Button x:Name="btn_cancel"  Margin="10,0,0,0" Width="50" Content="取消" Foreground="Red" Click="btn_cancel_Click"/>
+            <Button Style="{StaticResource IconBtnStyle}"  x:Name="btn_cancel"  Margin="10,0,0,0" Width="150" Height="40" Content="取消" Click="btn_cancel_Click"/>
         </WrapPanel>
     </Grid>
 </Window>

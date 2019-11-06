@@ -39,9 +39,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
 
         private void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var windows = new InputWindow("15", 0, 100, "引线H");
-            windows.InputWindowFinishEvent += (s) => textBlock.Text = s;
-            windows.ShowDialog();
+           
         }
     }
 }

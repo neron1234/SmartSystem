@@ -385,6 +385,7 @@
     <Compile Include="MachineOperation\ViewModel\CutterResetCheckPageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\ManualFindSidePageViewModel.cs" />
     <Compile Include="MachineOperation\ViewModel\RemainCutViewModel.cs" />
+    <Compile Include="MachineOperation\ViewModel\SimpleProfileViewModel.cs" />
     <Compile Include="MachineProcessWork\MachineProcessWorkPage.xaml.cs">
       <DependentUpon>MachineProcessWorkPage.xaml</DependentUpon>
     </Compile>
