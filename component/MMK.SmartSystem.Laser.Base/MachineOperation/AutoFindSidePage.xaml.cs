@@ -17,36 +17,54 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Reflection;
 using MMK.SmartSystem.Common.Base;
+using MMK.SmartSystem.Common.Model;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 
 namespace MMK.SmartSystem.Laser.Base.MachineOperation
 {
     /// <summary>
     /// AutoFindSidePage.xaml 的交互逻辑
+    ///  自动寻边
     /// </summary>
-    public partial class AutoFindSidePage : AutoRefreshPage
+    public partial class AutoFindSidePage : SignalrPage
     {
-        public AutoFindSidePageViewModel AutoFindSidePageViewModel { get; set; }
-        /// <summary>
-        /// 自动寻边
-        /// </summary>
+        public override string GetModule => "MachineOperation";
+        private AutoFindSidePageViewModel AutoFindSidePageViewModel = new AutoFindSidePageViewModel();
         public AutoFindSidePage()
         {
             InitializeComponent();
+            AutoFindSidePageViewModel.InputClickEvent += AutoFindSidePageViewModel_InputClickEvent;
             manualControl.SetHeaderActive(this);
-            this.DataContext = AutoFindSidePageViewModel = new AutoFindSidePageViewModel("MachineOperation.AutoFindSidePage");
-            this.Unloaded += AutoFindSidePage_Unloaded;
-            this.RefreshAuth += AutoFindSidePage_RefreshAuth;
+            PageItemControl.ItemsSource = AutoFindSidePageViewModel.AutoFindSideItemList;
         }
 
-        private void AutoFindSidePage_RefreshAuth()
+        private void AutoFindSidePageViewModel_InputClickEvent(MacroManualItemViewModel obj)
         {
-            AutoFindSidePageViewModel.RefreshAuth();
+            var windows = new InputWindow(obj.Value, obj.MinValue, obj.MinValue, obj.Title);
+            windows.InputWindowFinishEvent += (s) => obj.Value = s;
+            windows.ShowDialog();
         }
 
-        private void AutoFindSidePage_Unloaded(object sender, RoutedEventArgs e)
+        public override void CncOnError(string message)
         {
-            this.RefreshAuth -= AutoFindSidePage_RefreshAuth;
-            ClearRegister();
+            
+        }
+
+        public override List<object> GetResultViewModelMap(){
+            return new List<object>(){
+                new SingalrResultMapModel<ReadMacroResultItemModel>(){
+                    ViewModels =new MacroManualItemViewModel(),
+                    MapType = SignalrMapModelEnum.CustomAction,
+                    MapAction = (node) =>{
+                        node.ForEach(d=>{
+                          var info =  AutoFindSidePageViewModel.AutoFindSideItemList.FirstOrDefault(f=>f.Id==d.Id);
+                            if(info != null){
+                                info.Value=d.Value.ToString();
+                            }
+                        });
+                    }
+                },
+            };
         }
     }
 }

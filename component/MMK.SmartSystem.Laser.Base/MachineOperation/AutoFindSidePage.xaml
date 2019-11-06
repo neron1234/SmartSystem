@@ -1,12 +1,14 @@
-﻿<base:AutoRefreshPage x:Class="MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage"
+﻿<base:SignalrPage  x:Class="MMK.SmartSystem.Laser.Base.MachineOperation.AutoFindSidePage"
+      xmlns:SignalrPage="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
-       xmlns:usercontrols="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
-       d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
+      xmlns:usercontrols="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
       Title="AutoFindSidePage">
 
     <Page.Resources>
@@ -64,32 +66,28 @@
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
                             <TextBlock Text="板材边缘的垂直预留距离 Y: " VerticalAlignment="Center"/>
                         </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="穿孔E: " VerticalAlignment="Center"/>
-                        </Border>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="0 10 5 5">
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="2138.192" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="672.1" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="-139.57" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="245" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="8" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="2" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="120" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
+                        <ItemsControl x:Name="PageItemControl">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                                        <TextBlock Text="{Binding Value}" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding InputCommand}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </TextBlock>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </Grid>
                 <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
@@ -98,4 +96,4 @@
             </Grid>
         </Grid>
     </Grid>
-</base:AutoRefreshPage>
+</base:SignalrPage>

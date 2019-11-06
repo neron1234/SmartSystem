@@ -1,0 +1,41 @@
+{
+    "PageName": "CutCenterPage",
+    "EventNodes": [
+        {
+            "Kind": "ReadMacro",
+            "Type": "ReadMacroModel",
+            "CncReadDecopliler": {
+                "Decompilers": {
+                    "Type": "DecompReadMacroItemModel",
+                    "Data": [
+                        {
+                            "Id": "CutCenterPage_Power",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 858
+                        },
+                        {
+                            "Id": "CutCenterPage_Freq",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 859
+                        },
+                        {
+                            "Id": "CutCenterPage_Dutycycle",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 860
+                        },
+                        {
+                            "Id": "CutCenterPage_Time",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 861
+                        }
+                    ]
+                },
+                "Readers": {
+                    "Type": "ReadMacroTypeModel",
+                    "Data": [
+                    ]
+                }
+            }
+        }
+    ]
+}

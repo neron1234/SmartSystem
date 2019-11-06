@@ -7,7 +7,8 @@
       xmlns:base="clr-namespace:MMK.SmartSystem.Common.Base;assembly=MMK.SmartSystem.Common"
       mc:Ignorable="d" 
        xmlns:usercontrols="clr-namespace:MMK.SmartSystem.Laser.Base.MachineOperation.UserControls"
-       d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
+                  xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                  d:DesignHeight="658" d:DesignWidth="1268" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
       Title="CutCenterPage">
 
     <Page.Resources>
@@ -61,18 +62,26 @@
                         </Border>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="0 10 5 5">
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="2000" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="1500" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="45" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="0.8" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        </Border>
+                        <ItemsControl x:Name="PageItemControl">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                                        <TextBlock Text="{Binding Value}" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                 <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                        <i:InvokeCommandAction Command="{Binding InputCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                        </TextBlock>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </Grid>
                 <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">

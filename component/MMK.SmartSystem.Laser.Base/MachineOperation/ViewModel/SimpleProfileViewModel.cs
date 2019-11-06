@@ -13,68 +13,26 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
 {
     public class SimpleProfileViewModel : ViewModelBase
     {
+        public List<MacroManualItemViewModel> SimpleItems { get; set; } = new List<MacroManualItemViewModel>();
 
-        public List<SimpleProfileItemViewModel> SimpleItems { get; set; } = new List<SimpleProfileItemViewModel>();
-
-        public event Action<SimpleProfileItemViewModel> InputClickEvent;
-
-
+        public event Action<MacroManualItemViewModel> InputClickEvent;
 
         public SimpleProfileViewModel()
         {
-            SimpleItems.Add(new SimpleProfileItemViewModel() { Id = "simpleprofile_h", Title = "引线H" });
-            SimpleItems.Add(new SimpleProfileItemViewModel() { Id = "simpleprofile_i", Title = "长度I" });
-            SimpleItems.Add(new SimpleProfileItemViewModel() { Id = "simpleprofile_j", Title = "宽度J" });
-            SimpleItems.Add(new SimpleProfileItemViewModel() { Id = "simpleprofile_d", Title = "直径D" });
-            SimpleItems.Add(new SimpleProfileItemViewModel() { Id = "simpleprofile_r", Title = "半径R" });
-            SimpleItems.Add(new SimpleProfileItemViewModel() { Id = "simpleprofile_e", Title = "切割E" });
-            SimpleItems.Add(new SimpleProfileItemViewModel() { Id = "simpleprofile_perice", Title = "穿孔E" });
+            SimpleItems.Add(new MacroManualItemViewModel() { Id = "AutoFindSide_ZeroPoint_XD", Title = "板材原点D" });
+            SimpleItems.Add(new MacroManualItemViewModel() { Id = "AutoFindSide_ZeroPoint_YD", Title = "板材原点D" });
+            SimpleItems.Add(new MacroManualItemViewModel() { Id = "AutoFindSide_Angle_SITA", Title = "板材倾斜角度" });
+            SimpleItems.Add(new MacroManualItemViewModel() { Id = "AutoFindSide_CenterP1P2_H", Title = "中间点P1、P2距离H" });
+            SimpleItems.Add(new MacroManualItemViewModel() { Id = "AutoFindSide_OPOFS_X", Title = "光电开关偏置位置 X" });
+            SimpleItems.Add(new MacroManualItemViewModel() { Id = "AutoFindSide_OPOFS_Y", Title = "光电开关偏置位置 Y" });
+            SimpleItems.Add(new MacroManualItemViewModel() { Id = "AutoFindSide_SideRemainRH_M", Title = "板材边缘的垂直预留距离 Y" });
 
             SimpleItems.ForEach(d => d.InputClickEvent += D_InputClickEvent);
-
         }
 
-        private void D_InputClickEvent(SimpleProfileItemViewModel obj)
+        private void D_InputClickEvent(MacroManualItemViewModel obj)
         {
             InputClickEvent?.Invoke(obj);
-        }
-    }
-
-    public class SimpleProfileItemViewModel : CncResultViewModel<ReadMacroResultItemModel>
-    {
-        public string Id { get; set; }
-
-        public string Title { get; set; }
-
-        public int MinValue { get; set; } = 0;
-
-        public int MaxValue { get; set; } = 100;
-
-
-        private string _value;
-        public string Value
-        {
-            get { return _value; }
-            set
-            {
-                if (_value != value)
-                {
-                    _value = value;
-                    RaisePropertyChanged(() => Value);
-                }
-            }
-        }
-        public event Action<SimpleProfileItemViewModel> InputClickEvent;
-        public ICommand InputCommand
-        {
-            get
-            {
-                return new RelayCommand(() => InputClickEvent?.Invoke(this));
-            }
-        }
-        public SimpleProfileItemViewModel()
-        {
-            Value = "0";
         }
     }
 }

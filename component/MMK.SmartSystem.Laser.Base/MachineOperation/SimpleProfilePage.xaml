@@ -85,11 +85,11 @@
                                 <DataTemplate>
                                     <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
                                         <TextBlock  Text="{Binding Value}" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right" >
-                                 <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
-                                        <i:InvokeCommandAction Command="{Binding InputCommand}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
+                                             <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding InputCommand}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>       
                                         </TextBlock>
                                     </Border>
                                 </DataTemplate>

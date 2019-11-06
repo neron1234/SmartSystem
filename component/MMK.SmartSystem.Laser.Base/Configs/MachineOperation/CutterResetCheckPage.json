@@ -1,0 +1,36 @@
+{
+    "PageName": "CutterResetCheckPage",
+    "EventNodes": [
+        {
+            "Kind": "ReadMacro",
+            "Type": "ReadMacroModel",
+            "CncReadDecopliler": {
+                "Decompilers": {
+                    "Type": "DecompReadMacroItemModel",
+                    "Data": [
+                        {
+                            "Id": "CutterResetCheck_XPOS",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 0
+                        },
+                        {
+                            "Id": "CutterResetCheck_YPOS",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 0
+                        },
+                        {
+                            "Id": "CutterResetCheck_ZLIMIT",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 0
+                        }
+                    ]
+                },
+                "Readers": {
+                    "Type": "ReadMacroTypeModel",
+                    "Data": [
+                    ]
+                }
+            }
+        }
+    ]
+}

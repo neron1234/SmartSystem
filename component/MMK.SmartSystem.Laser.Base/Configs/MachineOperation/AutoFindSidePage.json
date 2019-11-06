@@ -1,0 +1,56 @@
+{
+    "PageName": "AutoFindSidePage",
+    "EventNodes": [
+        {
+            "Kind": "ReadMacro",
+            "Type": "ReadMacroModel",
+            "CncReadDecopliler": {
+                "Decompilers": {
+                    "Type": "DecompReadMacroItemModel",
+                    "Data": [
+                        {
+                            "Id": "AutoFindSide_ZeroPoint_XD",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 810
+                        },
+                        {
+                            "Id": "AutoFindSide_ZeroPoint_YD",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 811
+                        },
+                        {
+                            "Id": "AutoFindSide_Angle_SITA",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 812
+                        },
+                        {
+                            "Id": "AutoFindSide_CenterP1P2_H",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 813
+                        },
+                        {
+                            "Id": "AutoFindSide_OPOFS_X",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 814
+                        },
+                        {
+                            "Id": "AutoFindSide_OPOFS_Y",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 815
+                        },
+                        {
+                            "Id": "AutoFindSide_SideRemainRH_M",
+                            "Type": "NONVOLATILE",
+                            "StartNum": 816
+                        }
+                    ]
+                },
+                "Readers": {
+                    "Type": "ReadMacroTypeModel",
+                    "Data": [
+                    ]
+                }
+            }
+        }
+    ]
+}
