@@ -45,6 +45,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
         public static string DecompilerReadPositionInfo(int[] data, DecompReadPositionItemModel itemModel, ref int val)
         {
+            if (itemModel.AxisNum > Focas1.MAX_AXIS || itemModel.AxisNum < 1) return "无法获得信息,轴号设定错误";
             if (data.Length < itemModel.AxisNum) return "无法获得信息,位置信息地址超出读取范围";
 
             val = data[itemModel.AxisNum - 1];
