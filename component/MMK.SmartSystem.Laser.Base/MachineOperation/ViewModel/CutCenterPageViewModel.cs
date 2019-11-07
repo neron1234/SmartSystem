@@ -15,9 +15,16 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
 
         public CutCenterPageViewModel()
         {
-            CutCenterItemList.Add(new MacroManualItemViewModel() { Id = "CutCenterPage_Power", Title = "X机械坐标" });
-            CutCenterItemList.Add(new MacroManualItemViewModel() { Id = "CutCenterPage_Freq", Title = "Y机械坐标" });
-            CutCenterItemList.Add(new MacroManualItemViewModel() { Id = "CutCenterPage_Dutycycle", Title = "Z轴坐标下限" });
+            CutCenterItemList.Add(new MacroManualItemViewModel() { Id = "CutCenterPage_Power", Title = "功率(W)" });
+            CutCenterItemList.Add(new MacroManualItemViewModel() { Id = "CutCenterPage_Freq", Title = "频率(Hz)" });
+            CutCenterItemList.Add(new MacroManualItemViewModel() { Id = "CutCenterPage_Dutycycle", Title = "占空比(%)" });
+            CutCenterItemList.Add(new MacroManualItemViewModel() { Id = "CutCenterPage_Time", Title = "时间(sec)" });
+            CutCenterItemList.ForEach(d => d.InputClickEvent += D_InputClickEvent);
+        }
+
+        private void D_InputClickEvent(MacroManualItemViewModel obj)
+        {
+            InputClickEvent?.Invoke(obj);
         }
     }
 }

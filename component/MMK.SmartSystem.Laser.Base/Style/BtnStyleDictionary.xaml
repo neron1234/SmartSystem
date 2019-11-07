@@ -792,5 +792,79 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="ClearButtonTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#848a8f"/>
+        <Setter Property="Background" Value="#202328"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Black"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border CornerRadius="0" BorderBrush="Transparent" BorderThickness="1" Padding="0,0,5,0" Background="{TemplateBinding Background}">
+                        <DockPanel LastChildFill="True">
+                            <Button Width="27" Height="27" x:Name="PART_ContentHostClearButton" DockPanel.Dock="Right" HorizontalAlignment="Right" Command="{Binding ClearCommand}">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border x:Name="PART_Border" CornerRadius="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Padding="2">
+                                            <Path x:Name="PART_Path" Data="M6,6 L6,6 10,10 M10,6 L10,6 6,10" Fill="White" Stretch="Fill" Stroke="White" StrokeThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" TargetName="PART_Border" Value="#202328"/>
+                                                <Setter Property="Stroke" TargetName="PART_Path" Value="White" />
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="Stroke" TargetName="PART_Path" Value="#FF9C9C9C" />
+                                                <!--<Setter Property="UIElement.Effect">
+                                                    <Setter.Value>
+                                                        <DropShadowEffect BlurRadius="10" Color="#202328" Direction="0" Opacity="0.6" RenderingBias="Performance" ShadowDepth="0" />
+                                                    </Setter.Value>
+                                                </Setter>-->
+                                            </Trigger>
+                                            <Trigger Property="IsFocused" Value="True" />
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <ScrollViewer DockPanel.Dock="Left" x:Name="PART_ContentHost" Background="{TemplateBinding Background}"/>
+                        </DockPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!--当点击清除按钮后，清空文本框中的内容-->
+                        <!--<DataTrigger Binding="{Binding ElementName=PART_ContentHostClearButton,Path=IsPressed}" Value="True">
+                            <Setter Property="Text" Value="{x:Null}"/>
+                        </DataTrigger>-->
+                        <!--当文本框中有内容的时候显示清除按钮-->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self},Path=Text.Length}" Value="0"/>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self},Path=IsFocused}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter TargetName="PART_ContentHostClearButton" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="PART_ContentHost" Property="Background">
+                                    <Setter.Value>
+                                        <VisualBrush Opacity="0.4" Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <TextBlock Text="" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
 </ResourceDictionary>
     

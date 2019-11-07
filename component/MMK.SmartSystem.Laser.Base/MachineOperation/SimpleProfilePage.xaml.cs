@@ -70,7 +70,5 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
                 },
             };
         }
-
-
     }
 }

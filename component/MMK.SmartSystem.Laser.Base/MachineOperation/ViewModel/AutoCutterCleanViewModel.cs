@@ -9,80 +9,26 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
 {
-    public class AutoCutterCleanViewModel: CncResultViewModel<ReadMacroResultItemModel>
+    public class AutoCutterCleanViewModel: ViewModelBase
     {
-        private string _XD;
-        public string XD
-        {
-            get { return _XD; }
-            set
-            {
-                if (_XD != value)
-                {
-                    _XD = value;
-                    RaisePropertyChanged(() => XD);
-                }
-            }
-        }
+        public List<MacroManualItemViewModel> CutterCleanItems { get; set; } = new List<MacroManualItemViewModel>();
 
-        private string _YD;
-        public string YD
-        {
-            get { return _YD; }
-            set
-            {
-                if (_YD != value)
-                {
-                    _YD = value;
-                    RaisePropertyChanged(() => YD);
-                }
-            }
-        }
+        public event Action<MacroManualItemViewModel> InputClickEvent;
 
-        private string _H;
-        public string H
-        {
-            get { return _H; }
-            set
-            {
-                if (_H != value)
-                {
-                    _H = value;
-                    RaisePropertyChanged(() => H);
-                }
-            }
-        }
-
-        private string  _CleanTime;
-        public string  CleanTime
-        {
-            get { return _CleanTime; }
-            set
-            {
-                if (_CleanTime != value)
-                {
-                    _CleanTime = value;
-                    RaisePropertyChanged(() => CleanTime);
-                }
-            }
-        }
-
-        private string _ZLimit;
-        public string ZLimit
-        {
-            get { return _ZLimit; }
-            set
-            {
-                if (_ZLimit != value)
-                {
-                    _ZLimit = value;
-                    RaisePropertyChanged(() => ZLimit);
-                }
-            }
-        }
         public AutoCutterCleanViewModel()
         {
-            
+            CutterCleanItems.Add(new MacroManualItemViewModel() { Id = "AutoCutterClean_Center_XD", Title = "铜刷中心位置" });
+            CutterCleanItems.Add(new MacroManualItemViewModel() { Id = "AutoCutterClean_Center_YD", Title = "铜刷中心位置" });
+            CutterCleanItems.Add(new MacroManualItemViewModel() { Id = "AutoCutterClean_ZOFS_H", Title = "Z轴机械坐标下限" });
+            CutterCleanItems.Add(new MacroManualItemViewModel() { Id = "AutoCutterClean_RoundTrips", Title = "割嘴高度偏置" });
+            CutterCleanItems.Add(new MacroManualItemViewModel() { Id = "AutoCutterClean_Zlimit", Title = "割嘴清洁往返次数" });
+
+            CutterCleanItems.ForEach(d => d.InputClickEvent += D_InputClickEvent);
+        }
+
+        private void D_InputClickEvent(MacroManualItemViewModel obj)
+        {
+            InputClickEvent?.Invoke(obj);
         }
     }
 }

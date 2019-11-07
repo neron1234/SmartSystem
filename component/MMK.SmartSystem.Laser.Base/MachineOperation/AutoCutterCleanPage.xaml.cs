@@ -18,24 +18,31 @@ using System.Windows.Shapes;
 using MMK.SmartSystem.WebCommon.DeviceModel;
 using MMK.SmartSystem.Common.SignalrProxy;
 using MMK.SmartSystem.Common.Model;
+using MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel;
 
 namespace MMK.SmartSystem.Laser.Base.MachineOperation
 {
     /// <summary>
     /// AutoCutterCleanPage.xaml 的交互逻辑
+    /// 割嘴自动清理
     /// </summary>
     public partial class AutoCutterCleanPage : SignalrPage
     {
-        /// <summary>
-        /// 割嘴自动清理
-        /// </summary>
+        private AutoCutterCleanViewModel AutoCutterCleanVM = new AutoCutterCleanViewModel();
         public AutoCutterCleanPage()
         {
             InitializeComponent();
-            //this.DataContext = new MainTranslateViewModel();
+            AutoCutterCleanVM.InputClickEvent += AutoCutterCleanVM_InputClickEvent;
             manualControl.SetHeaderActive(this);
+            PageItemControl.ItemsSource = AutoCutterCleanVM.CutterCleanItems;
         }
-      
+
+        private void AutoCutterCleanVM_InputClickEvent(MacroManualItemViewModel obj)
+        {
+            var windows = new InputWindow(obj.Value, obj.MinValue, obj.MinValue, obj.Title);
+            windows.InputWindowFinishEvent += (s) => obj.Value = s;
+            windows.ShowDialog();
+        }
 
         public override void CncOnError(string message)
         {
@@ -92,7 +99,26 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
 
         public override List<object> GetResultViewModelMap()
         {
-            return default;
+            return new List<object>()
+            {
+                new SingalrResultMapModel<ReadMacroResultItemModel>()
+                {
+                    ViewModels =new MacroManualItemViewModel(),
+                    MapType = SignalrMapModelEnum.CustomAction,
+                    MapAction = (node) =>
+                    {
+                        node.ForEach(d=>
+                        {
+                          var info=  AutoCutterCleanVM.CutterCleanItems.FirstOrDefault(f=>f.Id==d.Id);
+                            if(info!=null)
+                            {
+                                info.Value=d.Value.ToString();
+
+                            }
+                        });
+                    }
+                },
+            };
         }
     }
 }
