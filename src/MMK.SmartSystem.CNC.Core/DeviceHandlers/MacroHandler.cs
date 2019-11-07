@@ -99,25 +99,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
                     });
                 }
             }
-
-            
-
-            //var macro = pre.Readers[0];
-            //var start = current.Readers[0].StartNum > macro.StartNum ? current.Readers[0].StartNum : macro.StartNum;
-            //var end = (current.Readers[0].StartNum + current.Readers[0].Quantity)
-            //    > (macro.StartNum + macro.Quantity) ? (current.Readers[0].StartNum + current.Readers[0].Quantity) :
-            //    (macro.StartNum + macro.Quantity);
-
-            //macro.StartNum = start;
-            //macro.Quantity = end - start;
-
-            //pre.Decompilers.AddRange(current.Decompilers);
-
-            //foreach (var item in pre.Decompilers)
-            //{
-            //    item.RelStartNum = (short)(item.StartNum - start);
-            //}
-
             return pre;
         }
 

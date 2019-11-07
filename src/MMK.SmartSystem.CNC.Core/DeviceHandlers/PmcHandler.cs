@@ -111,43 +111,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
                 }
             }
 
-            //Dictionary<short, ushort> startInfo = new Dictionary<short, ushort>();
-
-            //foreach (var read in current.Readers)
-            //{
-            //    var temp_read = pre.Readers.Where(x => x.AdrType == read.AdrType).FirstOrDefault();
-            //    if (temp_read != null)
-            //    {
-            //        var start = temp_read.StartNum < read.StartNum ? temp_read.StartNum : read.StartNum;
-            //        var end = (temp_read.StartNum + temp_read.DwordQuantity) > (read.StartNum + read.DwordQuantity) ? (temp_read.StartNum + temp_read.DwordQuantity) : (read.StartNum + read.DwordQuantity);
-
-            //        temp_read.StartNum = start;
-            //        temp_read.DwordQuantity = (ushort)(end - start);
-
-            //        if (!startInfo.ContainsKey(read.AdrType))
-            //        {
-            //            return pre;
-
-            //        }
-            //        startInfo[read.AdrType] = start;
-            //    }
-            //    else
-            //    {
-            //        pre.Readers.Add(read);
-            //        startInfo.Add(read.AdrType, read.StartNum);
-            //    }
-            //}
-
-            //pre.Decompilers.AddRange(current.Decompilers);
-
-            //foreach (var item in pre.Decompilers)
-            //{
-            //    if (!startInfo.ContainsKey(item.AdrType))
-            //    {
-            //        return pre;
-            //    }
-            //    item.RelStartAdr = (short)(item.StartAdr - startInfo[item.AdrType]);
-            //}
             pre.Decompilers = pre.Decompilers.Distinct().ToList();
             return pre;
         }
