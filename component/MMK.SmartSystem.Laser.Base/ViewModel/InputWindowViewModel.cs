@@ -48,40 +48,50 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
             }
         }
 
-        public ICommand ClearCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
+        public ICommand ClearCommand{
+            get{
+                return new RelayCommand(() =>{
                     Value = "";
                     CanSave = false;
                 });
             }
         }
+
+        public event Action CloseEvent;
+        public event Action SaveEvent;
+
         public InputWindowViewModel()
         {
             InputButtonItems.Add(new InputItemModel() { Text = "7" });
             InputButtonItems.Add(new InputItemModel() { Text = "8" });
             InputButtonItems.Add(new InputItemModel() { Text = "9" });
+            InputButtonItems.Add(new InputItemModel() { Text = "⬅" });
             InputButtonItems.Add(new InputItemModel() { Text = "4" });
             InputButtonItems.Add(new InputItemModel() { Text = "5" });
             InputButtonItems.Add(new InputItemModel() { Text = "6" });
+            InputButtonItems.Add(new InputItemModel() { Text = " " });
             InputButtonItems.Add(new InputItemModel() { Text = "1" });
             InputButtonItems.Add(new InputItemModel() { Text = "2" });
             InputButtonItems.Add(new InputItemModel() { Text = "3" });
-            InputButtonItems.Add(new InputItemModel() { Text = "⬅" });
+            InputButtonItems.Add(new InputItemModel() { Text = "✔", FontColor = "Green" });
+            InputButtonItems.Add(new InputItemModel() { Text = " " });
             InputButtonItems.Add(new InputItemModel() { Text = "0" });
             InputButtonItems.Add(new InputItemModel() { Text = "." });
+            InputButtonItems.Add(new InputItemModel() { Text = "×", FontColor = "Red" });
+
 
             InputButtonItems.ToList().ForEach(d => d.ButtonInputEvent += ButtonClickEvent);
         }
 
         private void ButtonClickEvent(InputItemModel item) {
             var number = 0;
-            if (int.TryParse(item.Text, out number)) {
+            if (int.TryParse(item.Text, out number)){
                 Value = Convert.ToDouble(Value + number).ToString();
-            }else{
+            }else if (item.Text == "✔"){
+                SaveEvent.Invoke();
+            }else if (item.Text == "×"){
+                CloseEvent.Invoke();
+            }else {
                 if (item.Text == "." && !Value.Contains(".")){
                     Value += item.Text;
                 }else{
@@ -107,6 +117,7 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
     public class InputItemModel
     {
         public string Text { get; set; }
+        public string FontColor { get; set; } = "#212020";
         public Visibility Show
         {
             get { return string.IsNullOrEmpty(Text) ? Visibility.Hidden : Visibility.Visible; }

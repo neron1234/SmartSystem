@@ -144,6 +144,71 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="PopupBtnStyle"  TargetType="Button">
+        <Setter Property="Background" Value="#7b7979"/>
+        <Setter Property="Foreground" Value="#212020" />
+        <Setter Property="FontFamily" Value="思源黑体 CN Bold"/>
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#303030" Direction="280" ShadowDepth="2" Opacity="0.5" BlurRadius="5"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#f8f8f9" Offset="0.1" />
+                                <GradientStop Color="#ebe9e7" Offset="0.4" />
+                                <GradientStop Color="#dadad7" Offset="0.6" />
+                                <GradientStop Color="#c8cbcb" Offset="0.9" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                            <ContentPresenter.Resources>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Color="#DDDDDD" Direction="280" ShadowDepth="1.5" Opacity="1" BlurRadius="1" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ContentPresenter.Resources>
+                        </ContentPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF3A3A3A"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <GradientStop Color="#f8f8f9" Offset="0.1" />
+                                        <GradientStop Color="#ebe9e7" Offset="0.4" />
+                                        <GradientStop Color="#dadad7" Offset="0.6" />
+                                        <GradientStop Color="#c8cbcb" Offset="0.9" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                </ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="IOBtnStyle"  TargetType="Button" >
         <Setter Property="Background" Value="#2B2B2B" />
         <Setter Property="BitmapEffect">
@@ -712,36 +777,32 @@
 
     <Style x:Key="IconBtnStyleWarningMsg"  TargetType="Button">
         <Setter Property="Background" Value="#7b7979"/>
-        <Setter Property="Foreground" Value="#282620" />
+        <Setter Property="Foreground" Value="#bcc1c2" />
         <Setter Property="FontFamily" Value="思源黑体 CN Bold"/>
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Effect">
+        <!--<Setter Property="Effect">
             <Setter.Value>
                 <DropShadowEffect Color="#303030" Direction="280" ShadowDepth="2" Opacity="0.5" BlurRadius="5"/>
             </Setter.Value>
-        </Setter>
+        </Setter>-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}" >
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
                         <Border.Background>
                             <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                <GradientStop Color="#dbdbdb" Offset="0.01" />
-                                <GradientStop Color="#b2b2b2" Offset="0.03" />
-                                <GradientStop Color="#a8a8a8" Offset="0.2" />
-                                <GradientStop Color="#9a9a9a" Offset="0.4" />
-                                <GradientStop Color="#8e8e8e" Offset="0.5" />
-                                <GradientStop Color="#878787" Offset="0.6" />
-                                <GradientStop Color="#7e7e7e" Offset="0.7" />
-                                <GradientStop Color="#727272" Offset="0.8" />
-                                <GradientStop Color="#696969" Offset="0.9" />
+                                <GradientStop Color="#32393c" Offset="0.1" />
+                                <GradientStop Color="#293136" Offset="0.3" />
+                                <GradientStop Color="#1f272a" Offset="0.5" />
+                                <GradientStop Color="#1c2024" Offset="0.7" />
+                                <GradientStop Color="#171c1d" Offset="0.9" />
                             </LinearGradientBrush>
                         </Border.Background>
                         <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                            <ContentPresenter.Resources>
+                            <!--<ContentPresenter.Resources>
                                 <Style TargetType="ContentPresenter">
                                     <Setter Property="Effect">
                                         <Setter.Value>
@@ -749,7 +810,7 @@
                                         </Setter.Value>
                                     </Setter>
                                 </Style>
-                            </ContentPresenter.Resources>
+                            </ContentPresenter.Resources>-->
                         </ContentPresenter>
                     </Border>
                 </ControlTemplate>
@@ -763,19 +824,15 @@
                             <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" >
                                 <Border.Background>
                                     <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                        <GradientStop Color="#dbdbdb" Offset="0.01" />
-                                        <GradientStop Color="#b2b2b2" Offset="0.03" />
-                                        <GradientStop Color="#a8a8a8" Offset="0.2" />
-                                        <GradientStop Color="#9a9a9a" Offset="0.4" />
-                                        <GradientStop Color="#8e8e8e" Offset="0.5" />
-                                        <GradientStop Color="#878787" Offset="0.6" />
-                                        <GradientStop Color="#7e7e7e" Offset="0.7" />
-                                        <GradientStop Color="#727272" Offset="0.8" />
-                                        <GradientStop Color="#696969" Offset="0.9" />
+                                        <GradientStop Color="#32393c" Offset="0.1" />
+                                        <GradientStop Color="#293136" Offset="0.3" />
+                                        <GradientStop Color="#1f272a" Offset="0.5" />
+                                        <GradientStop Color="#1c2024" Offset="0.7" />
+                                        <GradientStop Color="#171c1d" Offset="0.9" />
                                     </LinearGradientBrush>
                                 </Border.Background>
                                 <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                                    <ContentPresenter.Resources>
+                                    <!--<ContentPresenter.Resources>
                                         <Style TargetType="ContentPresenter">
                                             <Setter Property="Effect">
                                                 <Setter.Value>
@@ -783,7 +840,7 @@
                                                 </Setter.Value>
                                             </Setter>
                                         </Style>
-                                    </ContentPresenter.Resources>
+                                    </ContentPresenter.Resources>-->
                                 </ContentPresenter>
                             </Border>
                         </ControlTemplate>
@@ -794,10 +851,11 @@
     </Style>
 
     <Style x:Key="ClearButtonTextBox" TargetType="{x:Type TextBox}">
-        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="TextAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="#848a8f"/>
-        <Setter Property="Background" Value="#202328"/>
+        <Setter Property="Background" Value="#E4E9EA"/>
         <Setter Property="Effect">
             <Setter.Value>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Black"/>
@@ -808,7 +866,7 @@
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border CornerRadius="0" BorderBrush="Transparent" BorderThickness="1" Padding="0,0,5,0" Background="{TemplateBinding Background}">
                         <DockPanel LastChildFill="True">
-                            <Button Width="27" Height="27" x:Name="PART_ContentHostClearButton" DockPanel.Dock="Right" HorizontalAlignment="Right" Command="{Binding ClearCommand}">
+                            <Button Width="30" Height="30" x:Name="PART_ContentHostClearButton" DockPanel.Dock="Right" HorizontalAlignment="Right" Command="{Binding ClearCommand}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="{x:Type Button}">
                                         <Border x:Name="PART_Border" CornerRadius="0,3,0,3" BorderBrush="Transparent" BorderThickness="0" Padding="2">
@@ -816,7 +874,7 @@
                                         </Border>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" TargetName="PART_Border" Value="#202328"/>
+                                                <Setter Property="Background" TargetName="PART_Border" Value="#E4E9EA"/>
                                                 <Setter Property="Stroke" TargetName="PART_Path" Value="White" />
                                             </Trigger>
                                             <Trigger Property="IsPressed" Value="True">
@@ -852,7 +910,7 @@
                                     <Setter.Value>
                                         <VisualBrush Opacity="0.4" Stretch="None">
                                             <VisualBrush.Visual>
-                                                <TextBlock Text="" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                <TextBlock Text="" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                             </VisualBrush.Visual>
                                         </VisualBrush>
                                     </Setter.Value>
@@ -864,7 +922,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
 </ResourceDictionary>
     

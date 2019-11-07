@@ -16,6 +16,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
 
         public Dictionary<string, string> ColumnArray { get; set; }
 
+
         public ProcessListViewModel()
         {
             ColumnArray = new Dictionary<string, string>();
