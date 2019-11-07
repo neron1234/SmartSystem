@@ -182,6 +182,7 @@
     <Compile Include="DeviceHandlers\FeedrateHandler.cs" />
     <Compile Include="DeviceHandlers\MacroHandler.cs" />
     <Compile Include="DeviceHandlers\NoticeHandler.cs" />
+    <Compile Include="DeviceHandlers\ParaReferencePositionHandler.cs" />
     <Compile Include="DeviceHandlers\PmcHandler.cs" />
     <Compile Include="DeviceHandlers\PositionHandler.cs" />
     <Compile Include="DeviceHandlers\ProgramBlockHandler.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="DeviceHelpers\MacroHelper.cs" />
     <Compile Include="DeviceHelpers\ModalInfoHelper.cs" />
     <Compile Include="DeviceHelpers\NoticeHelper.cs" />
+    <Compile Include="DeviceHelpers\ParaReferencePositionHelper.cs" />
     <Compile Include="DeviceHelpers\PmcHelper.cs" />
     <Compile Include="DeviceHelpers\PositionHelper.cs" />
     <Compile Include="DeviceHelpers\ProgramBlockHelper.cs" />

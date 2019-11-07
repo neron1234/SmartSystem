@@ -138,6 +138,21 @@ public class Focas1
         public ODBPDFADIR folder50 = new ODBPDFADIR();
 
     }
+
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public class IODBPSD_0IF//MMK
+    {
+        public IODBPSD data1 = new IODBPSD();
+        public IODBPSD data2 = new IODBPSD();
+        public IODBPSD data3 = new IODBPSD();
+        public IODBPSD data4 = new IODBPSD();
+        public IODBPSD data5 = new IODBPSD();
+        public IODBPSD data6 = new IODBPSD();
+        public IODBPSD data7 = new IODBPSD();
+        public IODBPSD data8 = new IODBPSD();
+        public IODBPSD data9 = new IODBPSD();
+        public IODBPSD data10 = new IODBPSD();
+    } /* (sample) must be modified */
     /*-------------------------------------*/
     /* CNC: Control axis / spindle related */
     /*-------------------------------------*/
@@ -1187,24 +1202,26 @@ public class Focas1
         public short type;      /* axis number */
         public IODBPSD_U u = new IODBPSD_U();
 
-        [StructLayout(LayoutKind.Explicit)]
-        public class IODBPSD_U
-        {
-            [FieldOffset(0), MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_AXIS)]
-            public byte[] cdatas;
-            [FieldOffset(0), MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_AXIS)]
-            public short[] idatas;
-            [FieldOffset(0), MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_AXIS)]
-            public int[] ldatas;
-            [FieldOffset(0), MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_AXIS)]
-            public REALPRM[] rdatas = new REALPRM[MAX_AXIS];
 
-            public byte cdata { get { return cdatas[0]; } set { cdatas[0] = value; } }
-            public short idata { get { return idatas[0]; } set { idatas[0] = value; } }
-            public int ldata { get { return ldatas[0]; } set { ldatas[0] = value; } }
-            public REALPRM rdata { get { return rdatas[0]; } set { rdatas[0] = value; } }
-        }
     }
+    [StructLayout(LayoutKind.Explicit)]
+    public class IODBPSD_U
+    {
+        [FieldOffset(0), MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_AXIS)]
+        public byte[] cdatas;
+        [FieldOffset(0), MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_AXIS)]
+        public short[] idatas;
+        [FieldOffset(0), MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_AXIS)]
+        public int[] ldatas;
+        [FieldOffset(0), MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_AXIS)]
+        public REALPRM[] rdatas = new REALPRM[MAX_AXIS];
+
+        public byte cdata { get { return cdatas[0]; } set { cdatas[0] = value; } }
+        public short idata { get { return idatas[0]; } set { idatas[0] = value; } }
+        public int ldata { get { return ldatas[0]; } set { ldatas[0] = value; } }
+        public REALPRM rdata { get { return rdatas[0]; } set { rdatas[0] = value; } }
+    }
+
     [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public struct REALPRM
     {
@@ -9095,6 +9112,10 @@ public class Focas1
     //  [DllImport("FWLIB32.dll", EntryPoint="cnc_rdparar")]
     //  public static extern short cnc_rdparar( ushort FlibHndl,
     //      ref short a, short b, ref short c, ref short d, [Out,MarshalAs(UnmanagedType.LPStruct)] IODBPSD_D e );
+
+    [DllImport("FWLIB32.dll", EntryPoint = "cnc_rdparar")]
+    public static extern short cnc_rdparar(ushort FlibHndl,
+        ref short a, short b, ref short c, ref short d, [Out, MarshalAs(UnmanagedType.LPStruct)] IODBPSD_0IF e);
 
     /* write parameter(area specified) */
     [DllImport("FWLIB32.dll", EntryPoint = "cnc_wrparas")]
