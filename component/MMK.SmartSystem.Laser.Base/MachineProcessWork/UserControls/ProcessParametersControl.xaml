@@ -4,13 +4,92 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls"
+             xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
-             d:DesignHeight="213" d:DesignWidth="344" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+             d:DesignHeight="213" d:DesignWidth="344" Background="#3b3b3b" FontSize="18" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/BtnStyle.xaml"/>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition />
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="53"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#353535" VerticalAlignment="Center" Height="40" />
+        <Grid Grid.Row="1" Visibility="{Binding Visibility1}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Border Margin="15 0 0 0" CornerRadius="4" Width="70" Height="28" Background="Transparent" BorderBrush="#fa6400" BorderThickness="2" VerticalAlignment="Center">
+                    <TextBlock Text="PC 5W" TextAlignment="Center" VerticalAlignment="Center" Foreground="#fa6400"/>
+                </Border>
+                <Border Margin="5 0 0 0" CornerRadius="4" Width="130" Height="28" Background="Transparent" BorderBrush="#6dd400" BorderThickness="2" VerticalAlignment="Center">
+                    <TextBlock Text="气压+500Mpa" TextAlignment="Center" VerticalAlignment="Center" Foreground="#6dd400"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#353535">
+                <Border Margin="15 0 0 0" CornerRadius="4" Width="75" Height="28" Background="Transparent" BorderBrush="#0083e8" BorderThickness="2" VerticalAlignment="Center">
+                    <TextBlock Text="Fr 50Hz" TextAlignment="Center" VerticalAlignment="Center" Foreground="#0083e8"/>
+                </Border>
+                <Border Margin="5 0 0 0" CornerRadius="4" Width="95" Height="28" Background="Transparent" BorderBrush="#981fba" BorderThickness="2" VerticalAlignment="Center">
+                    <TextBlock Text="F minmin" TextAlignment="Center" VerticalAlignment="Center" Foreground="#981fba"/>
+                </Border>
+                <Border Margin="5 0 0 0" CornerRadius="4" Width="55" Height="28" Background="Transparent" BorderBrush="#a5acb1" BorderThickness="2" VerticalAlignment="Center">
+                    <TextBlock Text="随动" TextAlignment="Center" VerticalAlignment="Center" Foreground="#a5acb1"/>
+                </Border>
+                <Border Margin="5 0 0 0" CornerRadius="4" Width="55" Height="28" Background="Transparent" BorderBrush="#dfaf00" BorderThickness="2" VerticalAlignment="Center">
+                    <TextBlock Text="MM" TextAlignment="Center" VerticalAlignment="Center" Foreground="#dfaf00"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Border Margin="15 0 0 0" CornerRadius="4" Width="85" Height="28" Background="Transparent" BorderBrush="#359fc8" BorderThickness="2" VerticalAlignment="Center">
+                    <TextBlock Text="Du 100%" TextAlignment="Center" VerticalAlignment="Center" Foreground="#359fc8"/>
+                </Border>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Visibility="{Binding Visibility2}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" >
+                <TextBlock Text="X" Foreground="#fdcd00" Margin="35 0 0 0" VerticalAlignment="Center"/>
+                <TextBlock Text="机械坐标" Margin="26 0 0 0" VerticalAlignment="Center"/>
+                <TextBlock Text="6666.66666" Margin="40 0 0 0" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Background="#353535" Orientation="Horizontal" >
+                <TextBlock Text="Y" Foreground="#fdcd00" Margin="35 0 0 0" VerticalAlignment="Center"/>
+                <TextBlock Text="机械坐标" Margin="26 0 0 0" VerticalAlignment="Center"/>
+                <TextBlock Text="6666.66666" Margin="40 0 0 0" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" >
+                <TextBlock Text="Z" Foreground="#fdcd00" Margin="35 0 0 0" VerticalAlignment="Center"/>
+                <TextBlock Text="机械坐标" Margin="26 0 0 0" VerticalAlignment="Center"/>
+                <TextBlock Text="6666.66666" Margin="40 0 0 0" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Background="#353535" VerticalAlignment="Center" Height="53" >
+            <cc:PathIconButton Style="{StaticResource IconBtn}"  Background="Transparent" Width="40" Height="50" x:Name="btnPage1" 
+                                                    PathData="{StaticResource RightTriangleIcon}" HorizontalAlignment="Right"
+                                                    PathWidth="25" NormalPathColor="#949494"
+                                                    MouseOverBackground="Transparent"
+                                                    PressedBackground="Transparent" Command="{Binding LoadPageCommand}"/>
+            <cc:PathIconButton Style="{StaticResource IconBtn}"  Background="Transparent" Width="40" Height="50" x:Name="btnPage2" 
+                                                    PathData="{StaticResource LeftTriangleIcon}" HorizontalAlignment="Left"
+                                                    PathWidth="25" NormalPathColor="#949494"
+                                                    MouseOverBackground="Transparent"
+                                                    PressedBackground="Transparent" Command="{Binding LoadPageCommand}"/>
+        </Grid>
     </Grid>
 </UserControl>

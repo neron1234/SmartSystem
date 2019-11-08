@@ -321,6 +321,7 @@
     </Compile>
     <Compile Include="MachineMaintain\UserControls\ViewModel\MachineConfigViewModel.cs" />
     <Compile Include="MachineMaintain\UserControls\ViewModel\ProductSpecificationViewModel.cs" />
+    <Compile Include="MachineMaintain\UserControls\ViewModel\SoftSettingViewModel.cs" />
     <Compile Include="MachineMaintain\UserControls\ViewModel\SparePartViewModel.cs" />
     <Compile Include="MachineMaintain\ViewModel\MaintainViewModel.cs" />
     <Compile Include="MachineMonitor\ControlHelp\GridHelper.cs" />
@@ -470,6 +471,7 @@
     <Compile Include="SmartSystemLaserBaseConsts.cs" />
     <Compile Include="ViewModel\ReadProgramFolderItemViewModel.cs" />
     <Compile Include="ViewModel\SearchInfo.cs" />
+    <Compile Include="ViewModel\SwitchBtnViewModel.cs" />
     <Page Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

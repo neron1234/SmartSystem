@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineMaintain.UserControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
             d:DesignHeight="618" d:DesignWidth="1268"  Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <UserControl.Resources>
@@ -63,28 +64,20 @@
             </StackPanel>
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="0 10 20 5" VerticalAlignment="Center" >
                 <Border Style="{StaticResource BorderStyle}" >
-                    <Grid HorizontalAlignment="Right">
-                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42" IsEnabled="False">
-                            <TextBox.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="4"/>
-                                </Style>
-                            </TextBox.Resources>
-                        </TextBox>
-                        <Button Style="{StaticResource IconBtnStyle}" Width="42" Height="42" Content="ON" FontSize="12" Foreground="#fdcd00" Margin="0 0 50 0"/>
-                    </Grid>
+                    <Border CornerRadius="4" Width="90" Height="42" Background="#282620" HorizontalAlignment="Right">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                        </Border.Effect>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="42" Height="42" Content="ON" FontSize="12" Foreground="#fdcd00" HorizontalAlignment="Left"/>
+                    </Border>
                 </Border>
                 <Border Height="63">
-                    <Grid HorizontalAlignment="Right">
-                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42" IsEnabled="False">
-                            <TextBox.Resources>
-                                <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="4"/>
-                                </Style>
-                            </TextBox.Resources>
-                        </TextBox>
-                        <Button Style="{StaticResource IconBtnStyle}" Width="42" Height="42" Content="OFF" FontSize="12" Margin="50 0 0 0"/>
-                    </Grid>
+                    <Border CornerRadius="4" Width="90" Height="42" Background="#282620" HorizontalAlignment="Right">
+                        <Border.Effect>
+                            <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                        </Border.Effect>
+                        <Button Style="{StaticResource IconBtnStyle}" Width="42" Height="42" Content="OFF" FontSize="12" HorizontalAlignment="Right"/>
+                    </Border>
                 </Border>
             </StackPanel>
         </Grid>
@@ -106,14 +99,17 @@
                 <TextBlock Text="重新启用手持操作盒服务: " VerticalAlignment="Center" Margin="30 0 0 0"/>
             </WrapPanel>
             <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 30 0">
-                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="90" Height="42" IsEnabled="False">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="4"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
-                <Button Style="{StaticResource IconBtnStyle}" Width="42" Height="42" Content="ON" FontSize="12" Foreground="#fdcd00" Margin="0 0 50 0"/>
+                <Border CornerRadius="4" Width="90" Height="42" Background="#282620">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                    </Border.Effect>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding SwitchBtn.SwitchCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button Style="{StaticResource IconBtnStyle}" Width="42" Height="42" Content="{Binding SwitchBtn.Text}" FontSize="12" Foreground="{Binding SwitchBtn.FontColor}"  Command="{Binding SwitchBtn.SwitchCommand}" HorizontalAlignment="{Binding SwitchBtn.HorizontalAlignment}"/>
+                </Border>
             </Grid>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="2">

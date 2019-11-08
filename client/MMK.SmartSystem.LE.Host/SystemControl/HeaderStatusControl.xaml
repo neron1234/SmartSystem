@@ -22,15 +22,15 @@
         <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
             <Image Source="/MMK.SmartSystem.LE.Host;component/Resources/Images/Logo.png" Width="245.6" Height="15.6" Margin="30 0 0 0"/>
         </StackPanel>
-        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
             <TextBlock Text="机床状态" Margin="14 14 6 14" FontSize="14"/>
-            <Image Source="{Binding Path=MachineImg,Converter={StaticResource ImageConverter}}" Width="13" Height="13" Margin="0 11 0 14"/>
+            <Image Source="{Binding Path=MachineImg,Converter={StaticResource ImageConverter}}" Width="13" Height="13" Margin="0 18 0 14"/>
 
             <TextBlock Text="伺服" Margin="14 14 6 14" FontSize="14"/>
-            <Image Source="{Binding Path=ServoImg,Converter={StaticResource ImageConverter}}" Width="13" Height="13" Margin="0 11 0 14"/>
+            <Image Source="{Binding Path=ServoImg,Converter={StaticResource ImageConverter}}" Width="13" Height="13" Margin="0 18 0 14"/>
 
             <TextBlock Text="激光" Margin="14 14 6 14" FontSize="14"/>
-            <Image Source="{Binding Path=LaserImg,Converter={StaticResource ImageConverter}}" Width="13" Height="13" Margin="0 11 30 14" />
+            <Image Source="{Binding Path=LaserImg,Converter={StaticResource ImageConverter}}" Width="13" Height="13" Margin="0 18 30 14" />
 
             <TextBlock Text="{Binding SystemTime}" Margin="14 14 20 14" FontSize="14" />
             <!--<cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMinWindow" 

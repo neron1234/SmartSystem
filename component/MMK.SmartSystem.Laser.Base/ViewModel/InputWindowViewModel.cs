@@ -87,26 +87,33 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
             var number = 0;
             if (int.TryParse(item.Text, out number)){
                 Value = Convert.ToDouble(Value + number).ToString();
-            }else if (item.Text == "✔"){
-                SaveEvent.Invoke();
-            }else if (item.Text == "×"){
-                CloseEvent.Invoke();
-            }else {
-                if (item.Text == "." && !Value.Contains(".")){
-                    Value += item.Text;
-                }else{
-                    if (Value.Length > 0){
-                        Value = Value.Substring(0, Value.Length - 1);
-                    }
+            } else {
+                switch (item.Text){
+                    case "✔":
+                        SaveEvent.Invoke();
+                        break;
+                    case "⬅":
+                        if (Value.Length > 0){
+                            Value = Value.Substring(0, Value.Length - 1);
+                        }
+                        break;
+                    case "×":
+                        CloseEvent.Invoke();
+                        break;
+                    case ".":
+                        if(!Value.Contains(".")){
+                            Value += item.Text;
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
             CheckCanSave();
         }
 
-        public void CheckCanSave()
-        {
-            if (string.IsNullOrEmpty(Value) || Value.LastOrDefault() == '.' || (Convert.ToDouble(Value) > MaxValue || Convert.ToDouble(Value) < MinValue))
-            {
+        public void CheckCanSave(){
+            if (string.IsNullOrEmpty(Value) || Value.LastOrDefault() == '.' || (Convert.ToDouble(Value) > MaxValue || Convert.ToDouble(Value) < MinValue)){
                 CanSave = false;
                 return;
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls
     /// </summary>
     public partial class ProcessWorkOperateControl : UserControl
     {
+        private ProcessWorkOperateViewModel PWorkVM = new ProcessWorkOperateViewModel();
         public ProcessWorkOperateControl()
         {
             InitializeComponent();
+            this.DataContext = PWorkVM;
         }
     }
 }
