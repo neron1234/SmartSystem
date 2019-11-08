@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base"
         xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="650" Width="350" Background="#2d2d2d" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
+        Title="{Binding Title}" Height="460" Width="465" Background="#e9f0f3" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
         WindowStyle="None" WindowStartupLocation="CenterScreen"  MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
@@ -17,7 +17,7 @@
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="TextBox">
                 <Setter Property="Foreground" Value="#848a8f"/>
-                <Setter Property="Background" Value="#202328"/>
+                <Setter Property="Background" Value="#e4e9ea"/>
                 <Setter Property="Effect">
                     <Setter.Value>
                         <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Black"/>
@@ -30,55 +30,40 @@
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="64" />
-            <RowDefinition Height="90" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
-        </Grid.RowDefinitions>
-        <Button Grid.Row="0" Style="{StaticResource IconBtnStyleWarningMsg}" Height="64" Width="350" MouseLeftButtonDown="Window_MouseLeftButtonDown">
-            <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal" x:Name="wPanel">
-                <TextBlock Text="I" Foreground="#FDCD00" Margin="10 0 15 0" />
-                <TextBlock Text="{Binding Title}" x:Name="tTxt" Width="270"/>
-                <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="30" x:Name="btnClose" 
-                                                PathData="{StaticResource Icon_Close}" HorizontalAlignment="Right"
-                                                PathWidth="18" NormalPathColor="Black"
-                                                MouseOverBackground="Transparent"
-                                                PressedBackground="Transparent" Click="BtnClose_Click"/>
-            </WrapPanel>
-        </Button>
-        <Grid Grid.Row="1">
+    <Border BorderBrush="#3e3e3e" BorderThickness="1">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
-                <RowDefinition Height="30" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="75" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <WrapPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBox  Width="340" FontSize="28" Text="{Binding Value}" Margin="0 10 0 10" Style="{StaticResource ClearButtonTextBox}" />
+            <Button Grid.Row="0" Style="{StaticResource IconBtnStyleWarningMsg}" Height="50" Width="465" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+                <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal" x:Name="wPanel">
+                    <TextBlock Text="I" Foreground="#FDCD00" Margin="10 0 15 0" />
+                    <TextBlock Text="{Binding Title}" x:Name="tTxt" Width="385" Foreground="#BCCEC2"/>
+                    <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="30" x:Name="btnClose" 
+                                                    PathData="{StaticResource Icon_Close}" HorizontalAlignment="Right"
+                                                    PathWidth="18" NormalPathColor="White"
+                                                    MouseOverBackground="Transparent"
+                                                    PressedBackground="Transparent" Click="BtnClose_Click"/>
+                </WrapPanel>
+            </Button>
+            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBox  Width="440" Height="50" FontSize="30" Text="{Binding Value}" Margin="0 10 0 10" Style="{StaticResource ClearButtonTextBox}" />
             </WrapPanel>
-            <WrapPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                <TextBlock Text="输入范围:" Foreground="Red" FontSize="20"/>
-                <TextBlock Text="{Binding MinValue}" Foreground="Red" FontSize="20"/>
-                <TextBlock Text="-" Foreground="Red" FontSize="20"/>
-                <TextBlock Text="{Binding MaxValue}" Foreground="Red" FontSize="20"/>
-            </WrapPanel>
-        </Grid>
 
-        <ItemsControl Grid.Row="2" x:Name="buttomItem" Margin="5">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button  Content="{Binding Text}" Width="100" Height="80" Margin="5" Command="{Binding InputCommand}" Visibility="{Binding Show}"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <WrapPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Style="{StaticResource IconBtnStyle}" x:Name="btn_ok"  Margin="10,0,0,0" Width="130" Height="40" Content="确定" IsEnabled="{Binding CanSave}" Click="btn_ok_Click"/>
-            <Button Style="{StaticResource IconBtnStyle}"  x:Name="btn_cancel"  Margin="10,0,0,0" Width="130" Height="40" Content="取消" Click="btn_cancel_Click"/>
-        </WrapPanel>
-    </Grid>
+            <ItemsControl Grid.Row="2" x:Name="buttomItem" Margin="5">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button  Content="{Binding Text}" Width="100" Height="68" Margin="5" Command="{Binding InputCommand}" Visibility="{Binding Show}" Style="{StaticResource PopupBtnStyle}" Foreground="{Binding FontColor}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Border>
 </Window>

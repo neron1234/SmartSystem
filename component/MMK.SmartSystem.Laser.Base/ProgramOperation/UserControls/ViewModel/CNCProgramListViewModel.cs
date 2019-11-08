@@ -33,7 +33,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public int CurrentPage { get; set; }
         public int TotalPage { get; set; }
-        public int PageNumber = 10;
+        public int PageNumber = 7;
         public void DataPaging(bool next = false)
         {
             if (LocalProgramList == null){

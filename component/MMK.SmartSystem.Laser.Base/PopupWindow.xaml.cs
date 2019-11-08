@@ -22,6 +22,7 @@ namespace MMK.SmartSystem.Laser.Base
     public partial class PopupWindow : Window
     {
         private PopupWindowViewModel popupWindowViewModel { get; set; }
+
         public event Action UserControlFinishEvent;
         public PopupWindow(UserControl userControl, int width = 600, int height = 300, string title = "")
         {

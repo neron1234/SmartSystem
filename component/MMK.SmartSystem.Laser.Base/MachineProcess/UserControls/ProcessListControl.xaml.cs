@@ -62,11 +62,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                     var headerName = pcListVewModel.ColumnArray[item.Name];
                     if (headerName.Length < 4)
                     {
-                        ColumWidth = 80;
+                        ColumWidth = 85;
                     }
                     else if (headerName.Length > 4)
                     {
-                        ColumWidth = 120;
+                        ColumWidth = 125;
                     }
                     ProcessDataGrid.Columns.Add(new DataGridTextColumn()
                     {

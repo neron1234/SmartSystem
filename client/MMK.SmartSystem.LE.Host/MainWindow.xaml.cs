@@ -58,9 +58,7 @@ namespace MMK.SmartSystem.LE.Host
             {
                 ctnTest.Visibility = Visibility.Collapsed;
                 viewBox.Visibility = Visibility.Visible;
-
             }));
-
         }
 
         private void SignalrRouteProxyClient_RouteErrorEvent(string obj)
@@ -226,7 +224,7 @@ namespace MMK.SmartSystem.LE.Host
             loadTask++;
             if (loadTask > 1)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     ctnTest.Visibility = Visibility.Visible;

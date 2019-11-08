@@ -27,20 +27,19 @@ namespace MMK.SmartSystem.Laser.Base
         {
             InitializeComponent();
             inputWindowView = new InputWindowViewModel() { Value = value, MaxValue = maxValue, MinValue = minValue, Title = title };
-
+            inputWindowView.CloseEvent += InputWindowView_CloseEvent;
+            inputWindowView.SaveEvent += InputWindowView_SaveEvent;
             DataContext = inputWindowView;
             buttomItem.ItemsSource = inputWindowView.InputButtonItems;
         }
 
-
-
-        private void btn_ok_Click(object sender, RoutedEventArgs e)
+        private void InputWindowView_SaveEvent()
         {
             InputWindowFinishEvent?.Invoke(inputWindowView.Value);
             this.Close();
         }
 
-        private void btn_cancel_Click(object sender, RoutedEventArgs e)
+        private void InputWindowView_CloseEvent()
         {
             this.Close();
         }
