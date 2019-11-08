@@ -67,6 +67,8 @@ namespace MMK.SmartSystem.RealTime.Hubs
                 ConnectId = programResolve.ConnectId,
                 Success = true
             });
+            hubClient.Clients.All.SendAsync("GetProgram", programResolve);
+
             return "True";
         }
 
@@ -91,10 +93,12 @@ namespace MMK.SmartSystem.RealTime.Hubs
         public string PushReadWriter(HubReadWriterResultModel model)
         {
             hubClient.Clients.Client(model.ConnectId).SendAsync(CNCHub.GetReadWriterAction, model);
+            hubClient.Clients.All.SendAsync("GetReadWriter", model);
+
             return "True";
         }
 
-        public override Task OnConnectedAsync()
+        public override async Task OnConnectedAsync()
         {
             var list = SmartSystemCNCCoreConsts.PageCncEventDict.ToList().Select(d => new GroupEventData()
             {
@@ -102,9 +106,10 @@ namespace MMK.SmartSystem.RealTime.Hubs
                 Data = d.Value,
                 Operation = GroupEventOperationEnum.Add
 
-            });
-            Clients.All.SendAsync(ClientGetCncEvent, list);
-            return base.OnConnectedAsync();
+            }).ToList();
+
+            await Clients.Client(Context.ConnectionId).SendAsync(ClientGetCncEvent, list);
+
         }
     }
 }

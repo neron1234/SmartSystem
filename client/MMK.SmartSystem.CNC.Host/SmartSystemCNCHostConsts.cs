@@ -9,7 +9,7 @@ namespace MMK.SmartSystem.CNC.Host
     public class SmartSystemCNCHostConsts
     {
         public const string ApiHost = "http://192.168.21.175:21021";
-        //public const string ApiHost = "http://localhost:21021";
+       // public const string ApiHost = "http://localhost:21021";
 
         public const string ClientGetCncEvent = "GetCncEvent";
         public const string ClientSuccessEvent = "PushCncDataMessage";
