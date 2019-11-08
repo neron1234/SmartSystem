@@ -22,9 +22,10 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
         bool isExit = false;
         public SignalrProxy()
         {
+
             connection = new HubConnectionBuilder()
-              .WithUrl($"{SmartSystemCNCHostConsts.ApiHost}/hubs-cncClientHub")
-              .Build();
+             .WithUrl($"{SmartSystemCNCHostConsts.ApiHost}/hubs-cncClientHub").WithAutomaticReconnect()
+             .Build();
             initEvent();
 
         }
@@ -32,7 +33,9 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
         {
             try
             {
+             
                 await connection.StartAsync();
+             
                 CncErrorEvent?.Invoke($"服务器{SmartSystemCNCHostConsts.ApiHost}连接成功! {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}");
 
             }
@@ -106,9 +109,12 @@ namespace MMK.SmartSystem.CNC.Host.Proxy
 
                 }
             };
-            connection.On<List<GroupEventData>>(SmartSystemCNCHostConsts.ClientGetCncEvent, (message) =>
+
+            connection.On<object>(SmartSystemCNCHostConsts.ClientGetCncEvent, (message) =>
             {
-                GetCncEventData?.Invoke(message);
+                var json = Newtonsoft.Json.JsonConvert.DeserializeObject<List<GroupEventData>>(message.ToString());
+               
+                GetCncEventData?.Invoke(json);
             });
 
             connection.On<HubReadWriterModel>(SmartSystemCNCHostConsts.ClientReaderWriterEvent, (message) =>

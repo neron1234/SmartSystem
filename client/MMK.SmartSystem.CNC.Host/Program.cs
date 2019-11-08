@@ -51,7 +51,7 @@ namespace MMK.SmartSystem.CNC.Host
                     catch (Exception ex)
                     {
 
-                        Console.WriteLine($"【Worker Error】-【{DateTime.Now.ToString("HH:mm:ss")}】" + ex.Message + " " + ex.InnerException?.Message);
+                       // Console.WriteLine($"【Worker Error】-【{DateTime.Now.ToString("HH:mm:ss")}】" + ex.Message + " " + ex.InnerException?.Message);
 
                     }
                     Thread.Sleep(100);
@@ -74,17 +74,17 @@ namespace MMK.SmartSystem.CNC.Host
         private async static void CncHandler_GetResultEvent(object obj)
         {
             await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientSuccessEvent, obj);
-            var jobj = JObject.FromObject(obj);
-            string key = jobj["FullNamespace"].ToString();
-            if (!dictConsole.ContainsKey(key))
-            {
-                dictConsole.Add(key, DateTime.Now);
-            }
-            if ((DateTime.Now - dictConsole[key]).TotalSeconds >= 5)
-            {
-                Console.WriteLine($"【Worker Data】【{DateTime.Now.ToString("HH:mm:ss")}】" + JObject.FromObject(obj).ToString());
-                dictConsole[key] = DateTime.Now;
-            }
+            //var jobj = JObject.FromObject(obj);
+            //string key = jobj["FullNamespace"].ToString();
+            //if (!dictConsole.ContainsKey(key))
+            //{
+            //    dictConsole.Add(key, DateTime.Now);
+            //}
+            //if ((DateTime.Now - dictConsole[key]).TotalSeconds >= 5)
+            //{
+            //    Console.WriteLine($"【Worker Data】【{DateTime.Now.ToString("HH:mm:ss")}】" + JObject.FromObject(obj).ToString());
+            //    dictConsole[key] = DateTime.Now;
+            //}
 
         }
 
@@ -95,7 +95,7 @@ namespace MMK.SmartSystem.CNC.Host
             {
                 currentErrorTime = DateTime.Now;
                 Logger.Error(obj);
-                Console.WriteLine($"【Worker Error】【{DateTime.Now.ToString("HH: mm:ss")}】" + obj);
+              //  Console.WriteLine($"【Worker Error】【{DateTime.Now.ToString("HH: mm:ss")}】" + obj);
             }
         }
 
@@ -106,6 +106,7 @@ namespace MMK.SmartSystem.CNC.Host
             signalrProxy.GetClientReaderWriterEvent += SignalrProxy_GetClientReaderWriterEvent;
             signalrProxy.GetClientProgramResovleEvent += SignalrProxy_GetClientProgramResovleEvent;
             await signalrProxy.Start();
+          
         }
 
         private static async void SignalrProxy_GetClientProgramResovleEvent(WebCommon.EventModel.ProgramResovleDto obj)
@@ -116,7 +117,7 @@ namespace MMK.SmartSystem.CNC.Host
             var res = new LaserProgramDemo().ProgramResolve(obj);
             res.Data.FileHash = obj.FileHash;
             await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientRrogramRosolveResultEvent, res);
-            Console.WriteLine($"【程序解析】:{res.BmpName} | {res.Data.ToString()} | {obj.ConnectId} | {obj.FileHash}");
+        //    Console.WriteLine($"【程序解析】:{res.BmpName} | {res.Data.ToString()} | {obj.ConnectId} | {obj.FileHash}");
         }
 
         private static async void SignalrProxy_GetClientReaderWriterEvent(WebCommon.HubModel.HubReadWriterModel obj)
@@ -124,7 +125,7 @@ namespace MMK.SmartSystem.CNC.Host
             var res = writerWorker.DoWork(obj);
             if (!res.Success)
             {
-                Console.WriteLine($"【{obj.ProxyName}-{obj.Action}】:【{DateTime.Now.ToString("HH:mm:ss")}】 {res.Error}");
+               // Console.WriteLine($"【{obj.ProxyName}-{obj.Action}】:【{DateTime.Now.ToString("HH:mm:ss")}】 {res.Error}");
             }
             await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientReaderWriterResultEvent, res);
 
@@ -132,7 +133,7 @@ namespace MMK.SmartSystem.CNC.Host
 
         private static void SignalrProxy_GetCncEventData(List<GroupEventData> obj)
         {
-            Console.WriteLine("【CncEventData】" + JArray.FromObject(obj).ToString());
+         //   Console.WriteLine("【CncEventData】" + JArray.FromObject(obj).ToString());
 
             foreach (var item in obj)
             {

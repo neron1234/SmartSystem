@@ -15,7 +15,7 @@ namespace MMK.SmartSystem.Common
         public const string ModuleQueryParmKey = "SignalrQueryParm";
 
         public const string ApiHost = "http://192.168.21.175:21021";
-        //public const string ApiHost = "http://localhost:21021";
+      //  public const string ApiHost = "http://localhost:21021";
 
         public static AuthenticateResultModel AuthenticateModel = new AuthenticateResultModel();
 

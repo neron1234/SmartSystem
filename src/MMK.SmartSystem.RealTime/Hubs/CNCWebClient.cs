@@ -24,21 +24,28 @@ namespace MMK.SmartSystem.RealTime.Hubs
             service = _service;
         }
 
-        public string PageOnLoad()
+        public async Task<string> PageOnLoad()
         {
             try
             {
+                var list = new HomeEventDataConfig().GetInitEventData();
+
                 if (!SmartSystemCNCCoreConsts.PageCncEventDict.ContainsKey(DefaultGroupName))
                 {
-                    var list = new HomeEventDataConfig().GetInitEventData();
                     SmartSystemCNCCoreConsts.PageCncEventDict.TryAdd(DefaultGroupName, list);
-                    var hubClient = service.GetService(typeof(IHubContext<CncClientHub>)) as IHubContext<CncClientHub>;
-                    if (hubClient != null)
-                    {
-                        hubClient.Clients.All.SendAsync(CncClientHub.ClientGetCncEvent, new List<GroupEventData>() {
-                            new GroupEventData() { GroupName = DefaultGroupName, Data = list,Operation=GroupEventOperationEnum.Add } });
-                    }
+
                 }
+                var hubClient = service.GetService(typeof(IHubContext<CncClientHub>)) as IHubContext<CncClientHub>;
+                if (hubClient != null)
+                {
+                    var res = new List<GroupEventData>()
+                    {
+                            new GroupEventData() {
+                                GroupName = DefaultGroupName, Data = list,Operation=GroupEventOperationEnum.Add
+                            } };
+                    await hubClient.Clients.All.SendAsync(CncClientHub.ClientGetCncEvent, res);
+                }
+
             }
             catch (Exception ex)
             {
@@ -48,7 +55,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
             return "True";
         }
 
-        public string PageOnLeave()
+        public async Task<string> PageOnLeave()
         {
             try
             {
@@ -56,13 +63,13 @@ namespace MMK.SmartSystem.RealTime.Hubs
                 {
                     var list = new List<CncEventData>();
                     SmartSystemCNCCoreConsts.PageCncEventDict.TryRemove(DefaultGroupName, out list);
-                  
+
                     var hubClient = service.GetService(typeof(IHubContext<CncClientHub>)) as IHubContext<CncClientHub>;
                     if (hubClient != null)
                     {
-                        hubClient.Clients.All.SendAsync(CncClientHub.ClientGetCncEvent,
-                            new List<GroupEventData>()
-                            {
+                        await hubClient.Clients.All.SendAsync(CncClientHub.ClientGetCncEvent,
+                                new List<GroupEventData>()
+                                {
                               new GroupEventData()
                               {
                                   GroupName = DefaultGroupName,
@@ -79,11 +86,6 @@ namespace MMK.SmartSystem.RealTime.Hubs
             return "True";
         }
 
-        public override Task OnConnectedAsync()
-        {
-
-            return base.OnConnectedAsync();
-        }
 
     }
 }
