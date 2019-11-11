@@ -7,41 +7,8 @@ using System.Text;
 
 namespace MMK.CNC.Application.LaserLibrary.Dto
 {
-    [AutoMap(typeof(EdgeCuttingData))]
-    public class EdgeCuttingDataToCncDto : EntityDto<int>
-    {
-        public short ENo { get; set; }
 
-        public double Angle { get; set; }
-
-        public short Power { get; set; }
-
-        public short Frequency { get; set; }
-
-        public short Duty { get; set; }
-
-        public double GasPressure { get; set; }
-
-        public short GasCode { get; set; }
-
-        public int PiercingTime { get; set; }
-
-        public double RecoveryDistance { get; set; }
-
-        public short RecoveryFrequency { get; set; }
-
-        public double RecoveryFeedrate { get; set; }
-
-        public short RecoveryDuty { get; set; }
-
-        public double Gap { get; set; }
-
-        public char GapAxis { get; set; }
-
-        public short PbPower { get; set; }
-    }
-
-    public class EdgeCuttingDataDto:EntityDto<int>
+    public class EdgeCuttingDataDto : EntityDto<int>
     {
         /// <summary>
         /// 加工参数组编号

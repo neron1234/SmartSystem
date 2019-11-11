@@ -5,8 +5,7 @@ using Abp.RealTime;
 using Microsoft.AspNetCore.SignalR;
 using MMK.CNC.Application.LaserProgram;
 using MMK.CNC.Application.LaserProgram.Dto;
-using MMK.SmartSystem.CNC.Core;
-using MMK.SmartSystem.CNC.Core.Workers;
+using MMK.SmartSystem.WebCommon;
 using MMK.SmartSystem.WebCommon.DeviceModel;
 using MMK.SmartSystem.WebCommon.HubModel;
 using System;
@@ -58,7 +57,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
                 UpdateTime = programResolve.Data.UpdateTime,
                 UsedPlateSize = programResolve.Data.UsedPlateSize
             };
-            applicationService.Update(entity);
+            applicationService.UpdateAsync(entity);
 
             hubClient.Clients.Client(programResolve.ConnectId).SendAsync(CNCHub.GetReadWriterAction, new HubReadWriterResultModel()
             {
@@ -100,7 +99,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
 
         public override async Task OnConnectedAsync()
         {
-            var list = SmartSystemCNCCoreConsts.PageCncEventDict.ToList().Select(d => new GroupEventData()
+            var list = MMKSmartSystemWebCommonConsts.PageCncEventDict.ToList().Select(d => new GroupEventData()
             {
                 GroupName = d.Key,
                 Data = d.Value,

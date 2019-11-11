@@ -6,6 +6,7 @@ using MMK.SmartSystem.CNC.Core;
 using MMK.SmartSystem.CNC.Core.DeviceHelpers;
 using MMK.SmartSystem.CNC.Core.Workers;
 using MMK.SmartSystem.CNC.Host.Proxy;
+using MMK.SmartSystem.WebCommon;
 using MMK.SmartSystem.WebCommon.DeviceModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -139,16 +140,16 @@ namespace MMK.SmartSystem.CNC.Host
             {
                 if (item.Operation == GroupEventOperationEnum.Add)
                 {
-                    if (!SmartSystemCNCCoreConsts.PageCncEventDict.ContainsKey(item.GroupName))
+                    if (!MMKSmartSystemWebCommonConsts.PageCncEventDict.ContainsKey(item.GroupName))
                     {
-                        SmartSystemCNCCoreConsts.PageCncEventDict.TryAdd(item.GroupName, new List<CncEventData>());
+                        MMKSmartSystemWebCommonConsts.PageCncEventDict.TryAdd(item.GroupName, new List<CncEventData>());
                     }
-                    SmartSystemCNCCoreConsts.PageCncEventDict[item.GroupName].AddRange(item.Data);
+                    MMKSmartSystemWebCommonConsts.PageCncEventDict[item.GroupName].AddRange(item.Data);
                 }
                 else if (item.Operation == GroupEventOperationEnum.Remove)
                 {
                     var res = new List<CncEventData>();
-                    SmartSystemCNCCoreConsts.PageCncEventDict.TryRemove(item.GroupName, out res);
+                    MMKSmartSystemWebCommonConsts.PageCncEventDict.TryRemove(item.GroupName, out res);
                 }
             }
         }

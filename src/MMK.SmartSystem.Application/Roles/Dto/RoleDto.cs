@@ -7,7 +7,6 @@ using MMK.SmartSystem.Authorization.Roles;
 
 namespace MMK.SmartSystem.Roles.Dto
 {
-    [AutoMap(typeof(Role))]
     public class RoleDto : EntityDto<int>
     {
         [Required]
@@ -23,6 +22,6 @@ namespace MMK.SmartSystem.Roles.Dto
         [StringLength(Role.MaxDescriptionLength)]
         public string Description { get; set; }
 
-        public List<string> Permissions { get; set; }
+        public List<string> GrantedPermissions { get; set; }
     }
 }

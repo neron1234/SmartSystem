@@ -42,8 +42,8 @@ namespace MMK.CNC.Application.LaserLibrary
         {
             return repository.GetAllIncluding().WhereIf(input.MaterialCode != -1, d => d.MaterialCode == input.MaterialCode);
         }
-
-        public override async Task<MachiningGroupDto> Create(CreateMachiningGroupDto input)
+   
+        public override async Task<MachiningGroupDto> CreateAsync(CreateMachiningGroupDto input)
         {
             var entity = ObjectMapper.Map<MachiningDataGroup>(input);
             var groupId = await repository.InsertAndGetIdAsync(entity);

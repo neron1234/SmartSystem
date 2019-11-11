@@ -26,7 +26,7 @@ namespace MMK.CNC.Application.LaserLibrary
             _cacheManager = cacheManager;
         }
 
-        public override Task<PagedResultDto<PiercingDataDto>> GetAll(PiercingDataResultRequestDto input)
+        public override Task<PagedResultDto<PiercingDataDto>> GetAllAsync(PiercingDataResultRequestDto input)
         {
             var list = _cacheManager.GetCache("PiercingDataGetAll").Get(input.ToString(), () => GetDataFromDb(input));
             return list;

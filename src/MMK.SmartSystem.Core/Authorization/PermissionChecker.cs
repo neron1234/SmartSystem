@@ -11,12 +11,4 @@ namespace MMK.SmartSystem.Authorization
         {
         }
     }
-
-    public class CustomPermissionCheker : CustomPermissionChecker<Role, User>
-    {
-        public CustomPermissionCheker(UserManager userManager)
-               : base(userManager)
-        {
-        }
-    }
 }

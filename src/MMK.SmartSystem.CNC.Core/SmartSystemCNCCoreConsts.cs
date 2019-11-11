@@ -9,14 +9,13 @@ namespace MMK.SmartSystem.CNC.Core
 {
     public class SmartSystemCNCCoreConsts
     {
-        public const string CncIP = "192.168.21.138";
+        public const string CncIP = "192.168.21.162";
 
         public const int CncPort = 8193;
 
         public const int CncTimeout = 10;
         public const double CncIncrement = 1000;
 
-        public static ConcurrentDictionary<string, List<CncEventData>> PageCncEventDict = new ConcurrentDictionary<string, List<CncEventData>>();
 
     }
 }

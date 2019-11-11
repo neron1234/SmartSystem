@@ -3,10 +3,6 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using MMK.CNC.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MMK.CNC.Application
 {
@@ -23,7 +19,7 @@ namespace MMK.CNC.Application
 
             Configuration.Modules.AbpAutoMapper().Configurators.Add(
                 // Scan the assembly for classes which inherit from AutoMapper.Profile
-                cfg => cfg.AddProfiles(thisAssembly)
+                cfg => cfg.AddMaps(thisAssembly)
             );
             Configuration.Caching.ConfigureAll(cache =>
             {

@@ -175,7 +175,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configs\HomeEventDataConfig.cs" />
     <Compile Include="DeviceHandlers\AlarmHandler.cs" />
     <Compile Include="DeviceHandlers\BaseCNCHandler.cs" />
     <Compile Include="DeviceHandlers\CycleTimeHandler.cs" />
@@ -229,10 +228,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\module\MMK.CNC.Application\MMK.CNC.Application.csproj">
-      <Project>{4C6C8994-39BE-4D11-A7C5-15F429C479D8}</Project>
-      <Name>MMK.CNC.Application</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MMK.SmartSystem.WebCommon\MMK.SmartSystem.WebCommon.csproj">
       <Project>{A7A51F2B-A45E-489D-B8B2-2A42BAAD8E1B}</Project>
       <Name>MMK.SmartSystem.WebCommon</Name>

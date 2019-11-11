@@ -25,7 +25,7 @@ namespace MMK.CNC.Application.LaserLibrary
             _cacheManager = cacheManager;
         }
 
-        public override Task<PagedResultDto<EdgeCuttingDataDto>> GetAll(EdgeCuttingDataResultRequestDto input)
+        public override Task<PagedResultDto<EdgeCuttingDataDto>> GetAllAsync(EdgeCuttingDataResultRequestDto input)
         {
             var list = _cacheManager.GetCache("EdgeCuttingDataGetAll").Get(input.ToString(), () => GetDataFromDb(input));
             return list;

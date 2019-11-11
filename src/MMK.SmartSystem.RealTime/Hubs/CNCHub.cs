@@ -4,9 +4,7 @@ using Abp.BackgroundJobs;
 using Abp.Dependency;
 using Abp.RealTime;
 using Microsoft.AspNetCore.SignalR;
-using MMK.SmartSystem.CNC.Core;
-using MMK.SmartSystem.CNC.Core.Workers;
-using MMK.SmartSystem.RealTime.Job;
+using MMK.SmartSystem.WebCommon;
 using MMK.SmartSystem.WebCommon.DeviceModel;
 using MMK.SmartSystem.WebCommon.HubModel;
 using Newtonsoft.Json;
@@ -52,9 +50,9 @@ namespace MMK.SmartSystem.RealTime.Hubs
 
                 cncEvents = JsonConvert.DeserializeObject<List<CncEventData>>(info);
                 string groupName = Context.GetHttpContext().Request.Query["groupName"].ToString();
-                if (SmartSystemCNCCoreConsts.PageCncEventDict.ContainsKey(groupName))
+                if (MMKSmartSystemWebCommonConsts.PageCncEventDict.ContainsKey(groupName))
                 {
-                    var listRes = SmartSystemCNCCoreConsts.PageCncEventDict[groupName];
+                    var listRes = MMKSmartSystemWebCommonConsts.PageCncEventDict[groupName];
                     listRes.AddRange(cncEvents);
                     var hubClient = service.GetService(typeof(IHubContext<CncClientHub>)) as IHubContext<CncClientHub>;
                     if (hubClient != null)
@@ -82,10 +80,10 @@ namespace MMK.SmartSystem.RealTime.Hubs
             try
             {
                 string groupName = Context.GetHttpContext().Request.Query["groupName"].ToString();
-                if (SmartSystemCNCCoreConsts.PageCncEventDict.ContainsKey(groupName))
+                if (MMKSmartSystemWebCommonConsts.PageCncEventDict.ContainsKey(groupName))
                 {
                     var nodes = new List<CncEventData>();
-                    SmartSystemCNCCoreConsts.PageCncEventDict.TryRemove(groupName, out nodes);
+                    MMKSmartSystemWebCommonConsts.PageCncEventDict.TryRemove(groupName, out nodes);
                     var hubClient = service.GetService(typeof(IHubContext<CncClientHub>)) as IHubContext<CncClientHub>;
                     if (hubClient != null)
                     {
@@ -114,10 +112,10 @@ namespace MMK.SmartSystem.RealTime.Hubs
             try
             {
                 string groupName = Context.GetHttpContext().Request.Query["groupName"].ToString();
-                if (!SmartSystemCNCCoreConsts.PageCncEventDict.ContainsKey(groupName))
+                if (!MMKSmartSystemWebCommonConsts.PageCncEventDict.ContainsKey(groupName))
                 {
                     var nodes = new List<CncEventData>();
-                    SmartSystemCNCCoreConsts.PageCncEventDict.TryAdd(groupName, nodes);
+                    MMKSmartSystemWebCommonConsts.PageCncEventDict.TryAdd(groupName, nodes);
                 }
             }
             catch (Exception ex)

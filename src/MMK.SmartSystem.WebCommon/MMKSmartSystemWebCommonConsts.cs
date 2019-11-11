@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MMK.SmartSystem.WebCommon.DeviceModel;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +17,8 @@ namespace MMK.SmartSystem.WebCommon
         public const short LaserLibraryPiercingDataQuantity = 3;
 
         public const short LaserLibrarySlopeControlDataQuantity = 5;
+
+        public static ConcurrentDictionary<string, List<CncEventData>> PageCncEventDict = new ConcurrentDictionary<string, List<CncEventData>>();
+
     }
 }

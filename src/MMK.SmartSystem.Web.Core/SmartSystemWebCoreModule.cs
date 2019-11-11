@@ -23,7 +23,7 @@ namespace MMK.SmartSystem
          typeof(SmartSystemApplicationModule),
          typeof(SmartSystemRealTimeModule),
          typeof(CNCApplicationModule),
-         typeof(SmartSystemEntityFrameworkCoreModule),
+         typeof(SmartSystemEntityFrameworkModule),
          typeof(AbpAspNetCoreModule),
         typeof(AbpHangfireAspNetCoreModule)
         , typeof(AbpAspNetCoreSignalRModule)
