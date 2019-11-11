@@ -44,27 +44,27 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="7*"/>
-                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="75*"/>
+                        <ColumnDefinition Width="25*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Margin="5 10 0 5">
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="板材原点D: " VerticalAlignment="Center"/>
+                            <TextBlock Text="板材原点D: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="板材原点D: " VerticalAlignment="Center"/>
+                            <TextBlock Text="板材原点D: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="板材倾斜角度: " VerticalAlignment="Center"/>
+                            <TextBlock Text="板材倾斜角度: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="光电开关偏置距离 X: " VerticalAlignment="Center"/>
+                            <TextBlock Text="光电开关偏置距离 X: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" Margin="14 0 0 0">
                             <TextBlock Text="光电开关偏置距离 Y: " VerticalAlignment="Center"/>
                         </Border>
-                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="板材边缘的垂直预留距离 Y: " VerticalAlignment="Center"/>
+                        <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
+                            <TextBlock Text="板材边缘的垂直预留距离 Y: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="0 10 5 5">
@@ -77,7 +77,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                                        <TextBlock Text="{Binding Value}" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                        <TextBlock Text="{Binding Value}" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
                                                     <i:InvokeCommandAction Command="{Binding InputCommand}" />

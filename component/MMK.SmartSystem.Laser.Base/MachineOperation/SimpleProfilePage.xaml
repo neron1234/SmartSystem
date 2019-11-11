@@ -53,25 +53,25 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Margin="5 10 0 5">
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="引线H: " VerticalAlignment="Center"/>
+                            <TextBlock Text="引线H: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="长度I: " VerticalAlignment="Center"/>
+                            <TextBlock Text="长度I: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="宽度J: " VerticalAlignment="Center"/>
+                            <TextBlock Text="宽度J: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="直径D: " VerticalAlignment="Center"/>
+                            <TextBlock Text="直径D: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="半径R: " VerticalAlignment="Center"/>
+                            <TextBlock Text="半径R: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="切割E: " VerticalAlignment="Center"/>
+                            <TextBlock Text="切割E: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="穿孔E: " VerticalAlignment="Center"/>
+                            <TextBlock Text="穿孔E: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="0 10 5 5">
@@ -84,10 +84,10 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                                        <TextBlock  Text="{Binding Value}" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right" >
+                                        <TextBlock  Text="{Binding Value}" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0">
                                              <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
-                                                    <i:InvokeCommandAction Command="{Binding InputCommand}" />
+                                                    <i:InvokeCommandAction Command="{Binding InputCommand}"/>
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>       
                                         </TextBlock>

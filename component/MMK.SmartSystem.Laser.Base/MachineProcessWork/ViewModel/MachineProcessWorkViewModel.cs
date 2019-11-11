@@ -11,4 +11,9 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.ViewModel
     {
 
     }
+    public enum PageStatus
+    {
+        Max,
+        Normal
+    }
 }

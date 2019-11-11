@@ -4,12 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
+             xmlns:convert="clr-namespace:MMK.SmartSystem.Laser.Base.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="658" d:DesignWidth="916" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/OperateBtnStyleDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="TextBlock">
                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -28,20 +33,87 @@
 
             <TextBlock Text="Y" Margin="30 0 0 0" Foreground="#FDCD00"/>
             <TextBlock Text="0"  FontSize="15" Margin="0 4 0 0" Foreground="#FDCD00"/>
-            <TextBlock Text="3212.1" Margin="10 0 0 0"/>
+            <TextBlock Text="512.281" Margin="10 0 0 0"/>
 
             <TextBlock Text="Z" Margin="30 0 0 0" Foreground="#FDCD00"/>
             <TextBlock Text="0" FontSize="15" Margin="0 4 0 0" Foreground="#FDCD00"/>
             <TextBlock Text="321.59" Margin="10 0 0 0"/>
         </StackPanel>
         <Grid Grid.Row="1" Height="618" >
-            <Border CornerRadius="3" Width="890" Height="66" Background="#1d1d1d" VerticalAlignment="Bottom" Margin="0 0 0 15">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="95" >
+                <WrapPanel Orientation="Horizontal" Margin="30 12 0 0">
+                    <Grid Width="22" Height="22">
+                        <ed:Arc Width="22" Height="22" ArcThickness="4" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="360" Fill="#FDCD00" Stretch="None" Stroke="#FDCD00" />
+                    </Grid>
+                    <TextBlock Text="总耗时" Margin="10 0 6 0"/>
+                    <TextBlock Text="{Binding TotalTimeStr}" Margin="0 0 120 0"/>
+
+                    <Grid Width="22" Height="22">
+                        <ed:Arc Width="22" Height="22" ArcThickness="4" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="360" Fill="#FDCD00" Stretch="None" Stroke="#FDCD00" />
+                        <ed:Arc Width="22" Height="22" ArcThickness="4.1" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="180" Fill="Black" Stroke="Black" Stretch="None" />
+                    </Grid>
+                    <TextBlock Text="已用时间 " Margin="10 0 6 0"/>
+                    <TextBlock Text="{Binding ElapsedTimeStr}" Margin="0 0 120 0"/>
+
+                    <Grid Width="22" Height="22">
+                        <ed:Arc Width="22" Height="22" ArcThickness="4" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="360" Fill="#FDCD00" Stretch="None" Stroke="#FDCD00" />
+                        <ed:Arc Width="22" Height="22" ArcThickness="4.1" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="270" Fill="Black" Stroke="Black" Stretch="None" />
+                    </Grid>
+                    <TextBlock Text="剩余时间 " Margin="10 0 6 0"/>
+                    <TextBlock Text="{Binding RemainTimeStr}" />
+                </WrapPanel>
+                <StackPanel Margin="28 10 0 0" Orientation="Horizontal" Height="40" VerticalAlignment="Center">
+                    <ItemsControl ItemsSource="{Binding progressItemList}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel VerticalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Rectangle Width="37" Height="14" Fill="{Binding FillColor}" Margin="0 0 2 0" StrokeThickness="1" Stroke="{Binding StrokeColor}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Margin="5 0 0 10" Text="{Binding PercentageStr}" FontSize="26"  />
+                </StackPanel>
+            </StackPanel>
+                
+            <Grid Height="100" Width="40"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 120 32 0" Background="#3b3b3b">
+                <b:Interaction.Behaviors>
+                    <b:MouseDragElementBehavior/>
+                </b:Interaction.Behaviors>
+                <Border CornerRadius="20" Background="#1d1d1d">
+                    <StackPanel Margin="0 15 0 0" HorizontalAlignment="Center">
+                        <Path Data="M0.5,5.1900001 L9.5,5.1900001 z M5.182,0.50000006 L5.182,9.5000001 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#FDCD00"  Width="10" Height="10"/>
+                        <TextBlock Text="100%" FontSize="13" HorizontalAlignment="Center" Margin="0 15 0 15"/>
+                        <Path Data="M0.5,0.5 L9.5,0.5 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#FDCD00" Width="10" Height="10"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Grid Height="125" Width="125" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 32 103" Background="#3b3b3b">
+                <b:Interaction.Behaviors>
+                    <b:MouseDragElementBehavior/>
+                </b:Interaction.Behaviors>
+                <Button Style="{StaticResource ControlTopBtnStyle}" Height="86" Width="82" Margin="22,-21,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Button Style="{StaticResource ControlLeftBtnStyle}" Height="82" Width="85" Margin="-20,21,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Button Style="{StaticResource ControlBottomBtnStyle}" Height="85" Width="82" Margin="21,59,0,-19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Button Style="{StaticResource ControlRightBtnStyle}" Height="82"  Width="86" Margin="59,22,-25,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+                <Path Data="M262,262z M0,0z M220,130L208.7846,143.8919 208.7846,116.1081z" Stretch="Fill" Fill="#FDCD00" Width="100" Height="100" Margin="20 5 0 0" IsHitTestVisible="False"/>
+                <Path Data="M262,262z M0,0z M40,130L51.2154,116.1081 51.2154,143.8919z" Stretch="Fill" Fill="#FDCD00" Width="100" Height="100" Margin="-15 5 0 0" IsHitTestVisible="False"/>
+                <Path Data="M262,262z M0,0z M130,40L143.8919,51.2154 116.1081,51.2154z" Stretch="Fill" Fill="#FDCD00" Width="100" Height="100" Margin="2 -10 0 0" IsHitTestVisible="False"/>
+                <Path Data="M262,262z M0,0z M130,220L116.1081,208.7846 143.8919,208.7846z" Stretch="Fill" Fill="#FDCD00" Width="100" Height="100" Margin="2 10 0 0" IsHitTestVisible="False"/>
+            </Grid>
+
+            <Border Width="890" Height="66" CornerRadius="3" Background="#1d1d1d" VerticalAlignment="Bottom" Margin="0 0 0 15">
                 <StackPanel Orientation="Horizontal">
-                    <Button Style="{StaticResource IconBtnStyle}" Height="42" Width="102" Margin="14 0 0 0" Content="适合窗口" IsEnabled="False"/>
+                    <Button Style="{StaticResource IconBtnStyle}" Height="42" Width="102" Margin="14 0 0 0" Content="适合窗口" IsEnabled="{Binding IsMax}" Command="{Binding SetWindowCommand}" CommandParameter="0"/>
+                    <Button Style="{StaticResource IconBtnStyle}" Height="42" Width="102" Margin="24 0 0 0" Content="全屏" IsEnabled="{Binding IsNormal}" Command="{Binding SetWindowCommand}" CommandParameter="1"/>
                     <Button Style="{StaticResource IconBtnStyle}" Height="42" Width="102" Margin="24 0 0 0" Content="网格"/>
                     <Button Style="{StaticResource IconBtnStyle}" Height="42" Width="102" Margin="24 0 0 0" Content="GOD"/>
                     <Button Style="{StaticResource IconBtnStyle}" Height="42" Width="102" Margin="24 0 0 0" Content="显示轴"/>
-                    <Button Style="{StaticResource IconBtnStyle}" Height="42" Width="102" Margin="24 0 0 0" Content="全屏"/>
                     <Button Style="{StaticResource IconBtnStyle}" Height="42" Width="102" Margin="24 0 0 0" Content="归零"/>
                     <Button Style="{StaticResource IconBtnStyle}" Height="42" Width="102" Margin="24 0 0 0" Content="设置"/>
                 </StackPanel>

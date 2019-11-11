@@ -36,7 +36,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             this.DataContext = MainViewModel;
         }
 
-
         public void InitMessenger(IIocManager _iocManager)
         {
             iocManager = _iocManager;
