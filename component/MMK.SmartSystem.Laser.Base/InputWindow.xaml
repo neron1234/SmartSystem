@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base"
         xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="460" Width="465" Background="#e9f0f3" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
+        Title="{Binding Title}" Height="460" Width="458" Background="#e9f0f3" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
         WindowStyle="None" WindowStartupLocation="CenterScreen"  MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
@@ -38,6 +39,10 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Button Grid.Row="0" Style="{StaticResource IconBtnStyleWarningMsg}" Height="50" Width="465" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PreviewMouseLeftButtonDown" SourceName="Window_MouseLeftButtonDown">
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal" x:Name="wPanel">
                     <TextBlock Text="I" Foreground="#FDCD00" Margin="10 0 15 0" />
                     <TextBlock Text="{Binding Title}" x:Name="tTxt" Width="385" Foreground="#BCCEC2"/>

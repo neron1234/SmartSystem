@@ -4,19 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="437" d:DesignWidth="344" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+             d:DesignHeight="437" d:DesignWidth="344" Background="#3b3b3b" FontSize="17" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="RichTextBox">
-                <Setter Property="Foreground" Value="#848a8f"/>
-                <Setter Property="Background" Value="#202328"/>
+                <Setter Property="Foreground" Value="#adadad"/>
+                <Setter Property="Background" Value="#282620"/>
                 <Setter Property="Effect">
                     <Setter.Value>
                         <DropShadowEffect ShadowDepth="0" BlurRadius="5" Color="Black"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type RichTextBox}" >
+                            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5" Background="#282620">
+                                <!--<ContentPresenter Content="{TemplateBinding FlowDocument}" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                </ContentPresenter>-->
+                                <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Margin="18 16 18 16"/>
+                            </Border>
+                        </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
@@ -40,46 +52,49 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Background="#353535" VerticalAlignment="Center" Height="40" Orientation="Horizontal" Grid.ColumnSpan="2">
-            <RadioButton Width="172"  Height="40" Content="程序路径" Style="{StaticResource RadioButtonColorStyle}" />
-            <RadioButton Width="172" Height="40" Content="操作" Style="{StaticResource RadioButtonColorStyle}"  IsChecked="True"/>
+            <RadioButton Width="172"  Height="40" Content="程序路径" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding SwitchPageCommand}" CommandParameter="0"/>
+            <RadioButton Width="172" Height="40" Content="操作" Style="{StaticResource RadioButtonColorStyle}"  IsChecked="True" Command="{Binding SwitchPageCommand}" CommandParameter="1"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="14,0,14,-0.2">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="14,0,14,-0.2" Visibility="{Binding OperateVisibility}" >
             <WrapPanel Margin="0 15 0 0">
                 <TextBlock Text="断电续切" Margin="0 0 10 0"/>
                 <TextBlock Text="N续切" Margin="15 0 10 0"/>
-                <TextBlock Text="完成后暂停" Margin="15 0 0 0"/>
+                <TextBlock Text="完成后暂停" Margin="30 0 0 0"/>
             </WrapPanel>
             <WrapPanel Margin="0 12 0 0">
-                <Grid Margin="0 0 0 0">
-                    <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="55" Height="41" IsEnabled="False">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
-                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="ON" FontSize="12" Foreground="#fdcd00" Margin="0 0 45 0"/>
-                </Grid>
-                <Grid Margin="15 0 0 0">
-                    <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="55" Height="41" IsEnabled="False">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
-                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="ON" FontSize="12" Foreground="#fdcd00" Margin="0 0 45 0"/>
-                </Grid>
-                <Grid Margin="15 0 0 0">
-                    <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="55" Height="41" IsEnabled="False">
-                        <TextBox.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="4"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
-                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="OFF" FontSize="12"  Margin="45 0 0 0"/>
-                </Grid>
+                <Border CornerRadius="4" Width="64" Height="41" Background="#282620" BorderBrush="#434446" BorderThickness="1">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                    </Border.Effect>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding BreakPointCutSwitchBtn.SwitchCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="{Binding BreakPointCutSwitchBtn.Text}" FontSize="12" Foreground="{Binding BreakPointCutSwitchBtn.FontColor}" Command="{Binding BreakPointCutSwitchBtn.SwitchCommand}" HorizontalAlignment="{Binding BreakPointCutSwitchBtn.HorizontalAlignment}"/>
+                </Border>
+                <Border Margin="30 0 0 0" CornerRadius="4" Width="64" Height="41" Background="#282620" BorderBrush="#434446" BorderThickness="1">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                    </Border.Effect>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding NCutSwitchBtn.SwitchCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="{Binding NCutSwitchBtn.Text}" FontSize="12" Foreground="{Binding NCutSwitchBtn.FontColor}" Command="{Binding NCutSwitchBtn.SwitchCommand}" HorizontalAlignment="{Binding NCutSwitchBtn.HorizontalAlignment}"/>
+                </Border>
+                <Border Margin="25 0 0 0" CornerRadius="4" Width="64" Height="41" Background="#282620" BorderBrush="#434446" BorderThickness="1">
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                    </Border.Effect>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding StopSwitchBtn.SwitchCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="{Binding StopSwitchBtn.Text}" FontSize="12" Foreground="{Binding StopSwitchBtn.FontColor}" Command="{Binding StopSwitchBtn.SwitchCommand}" HorizontalAlignment="{Binding StopSwitchBtn.HorizontalAlignment}"/>
+                </Border>
             </WrapPanel>
             <WrapPanel Margin="0 20 0 0" >
                 <TextBlock Text="中断N" Margin="0 0 30 0" Foreground="#fdcd00"/>
@@ -129,6 +144,15 @@
             <WrapPanel Margin="0 16 0 0">
                 <Button Style="{StaticResource IconBtnStyle}" Width="317" Height="50" Content="清除"/>
             </WrapPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Grid.ColumnSpan="2" Visibility="{Binding ProgramVisibility}">
+            <RichTextBox FontSize="15" IsReadOnly="True" BorderThickness="0" Width="333" Height="380" Margin="5" >
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text="{Binding PreviewText}"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
         </StackPanel>
     </Grid>
 </UserControl>
