@@ -2,16 +2,14 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.EntityFrameworkCore;
-using MMK.CNC.Core;
 using MMK.SmartSystem.EntityFrameworkCore.Seed;
 
 namespace MMK.SmartSystem.EntityFrameworkCore
 {
     [DependsOn(
         typeof(SmartSystemCoreModule), 
-        typeof(CNCCoreModule),
         typeof(AbpZeroCoreEntityFrameworkCoreModule))]
-    public class SmartSystemEntityFrameworkCoreModule : AbpModule
+    public class SmartSystemEntityFrameworkModule : AbpModule
     {
         /* Used it tests to skip dbcontext registration, in order to use in-memory database of EF Core */
         public bool SkipDbContextRegistration { get; set; }
@@ -38,7 +36,7 @@ namespace MMK.SmartSystem.EntityFrameworkCore
 
         public override void Initialize()
         {
-            IocManager.RegisterAssemblyByConvention(typeof(SmartSystemEntityFrameworkCoreModule).GetAssembly());
+            IocManager.RegisterAssemblyByConvention(typeof(SmartSystemEntityFrameworkModule).GetAssembly());
         }
 
         public override void PostInitialize()

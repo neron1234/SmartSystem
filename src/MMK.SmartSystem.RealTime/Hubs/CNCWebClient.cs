@@ -2,8 +2,8 @@
 using Abp.Auditing;
 using Abp.RealTime;
 using Microsoft.AspNetCore.SignalR;
-using MMK.SmartSystem.CNC.Core;
-using MMK.SmartSystem.CNC.Core.Configs;
+using MMK.SmartSystem.WebCommon;
+using MMK.SmartSystem.WebCommon.Configs;
 using MMK.SmartSystem.WebCommon.DeviceModel;
 using System;
 using System.Collections.Generic;
@@ -30,9 +30,9 @@ namespace MMK.SmartSystem.RealTime.Hubs
             {
                 var list = new HomeEventDataConfig().GetInitEventData();
 
-                if (!SmartSystemCNCCoreConsts.PageCncEventDict.ContainsKey(DefaultGroupName))
+                if (!MMKSmartSystemWebCommonConsts.PageCncEventDict.ContainsKey(DefaultGroupName))
                 {
-                    SmartSystemCNCCoreConsts.PageCncEventDict.TryAdd(DefaultGroupName, list);
+                    MMKSmartSystemWebCommonConsts.PageCncEventDict.TryAdd(DefaultGroupName, list);
 
                 }
                 var hubClient = service.GetService(typeof(IHubContext<CncClientHub>)) as IHubContext<CncClientHub>;
@@ -59,10 +59,10 @@ namespace MMK.SmartSystem.RealTime.Hubs
         {
             try
             {
-                if (SmartSystemCNCCoreConsts.PageCncEventDict.ContainsKey(DefaultGroupName))
+                if (MMKSmartSystemWebCommonConsts.PageCncEventDict.ContainsKey(DefaultGroupName))
                 {
                     var list = new List<CncEventData>();
-                    SmartSystemCNCCoreConsts.PageCncEventDict.TryRemove(DefaultGroupName, out list);
+                    MMKSmartSystemWebCommonConsts.PageCncEventDict.TryRemove(DefaultGroupName, out list);
 
                     var hubClient = service.GetService(typeof(IHubContext<CncClientHub>)) as IHubContext<CncClientHub>;
                     if (hubClient != null)

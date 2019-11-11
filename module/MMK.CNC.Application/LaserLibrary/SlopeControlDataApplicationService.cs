@@ -26,7 +26,7 @@ namespace MMK.CNC.Application.LaserLibrary
             _cacheManager = cacheManager;
         }
 
-        public override Task<PagedResultDto<SlopeControlDataDto>> GetAll(SlopeControlDataResultRequestDto input)
+        public override Task<PagedResultDto<SlopeControlDataDto>> GetAllAsync(SlopeControlDataResultRequestDto input)
         {
             var list = _cacheManager.GetCache("SlopeControlDataGetAll").Get(input.ToString(), () => GetDataFromDb(input));
             return list;

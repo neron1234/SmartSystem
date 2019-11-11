@@ -259,7 +259,7 @@
       <Name>MMK.SmartSystem.CNC.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\MMK.SmartSystem.WebCommon\MMK.SmartSystem.WebCommon.csproj">
-      <Project>{A7A51F2B-A45E-489D-B8B2-2A42BAAD8E1B}</Project>
+      <Project>{a7a51f2b-a45e-489d-b8b2-2a42baad8e1b}</Project>
       <Name>MMK.SmartSystem.WebCommon</Name>
     </ProjectReference>
   </ItemGroup>

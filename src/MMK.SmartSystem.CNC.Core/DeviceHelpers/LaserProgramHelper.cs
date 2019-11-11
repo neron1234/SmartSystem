@@ -1,5 +1,4 @@
-﻿using MMK.CNC.Application.LaserProgram.Dto;
-using MMK.SmartSystem.WebCommon.EventModel;
+﻿using MMK.SmartSystem.WebCommon.EventModel;
 using MMK.SmartSystem.WebCommon.HubModel;
 using System;
 using System.Collections.Generic;

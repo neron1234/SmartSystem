@@ -1,5 +1,6 @@
 ﻿using Abp.Dependency;
 using MMK.SmartSystem.CNC.Core.DeviceHelpers;
+using MMK.SmartSystem.WebCommon;
 using MMK.SmartSystem.WebCommon.DeviceModel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -131,7 +132,7 @@ namespace MMK.SmartSystem.CNC.Core.Workers
         private void HandlerExecute()
         {
             List<CncEventData> tempEventDatas = new List<CncEventData>();
-            foreach (var item in SmartSystemCNCCoreConsts.PageCncEventDict)
+            foreach (var item in MMKSmartSystemWebCommonConsts.PageCncEventDict)
             {
                 tempEventDatas.AddRange(item.Value);
             }

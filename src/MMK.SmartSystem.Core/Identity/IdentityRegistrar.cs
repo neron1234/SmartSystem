@@ -25,7 +25,7 @@ namespace MMK.SmartSystem.Identity
                 .AddAbpSignInManager<SignInManager>()
                 .AddAbpSecurityStampValidator<SecurityStampValidator>()
                 .AddAbpUserClaimsPrincipalFactory<UserClaimsPrincipalFactory>()
-                .AddPermissionChecker<CustomPermissionCheker>()
+                .AddPermissionChecker<PermissionChecker>()
                 .AddDefaultTokenProviders();
         }
     }

@@ -3,21 +3,24 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Castle.Facilities.Logging;
-using Swashbuckle.AspNetCore.Swagger;
 using Abp.AspNetCore;
+using Abp.AspNetCore.Mvc.Antiforgery;
 using Abp.Castle.Logging.Log4Net;
 using Abp.Extensions;
 using MMK.SmartSystem.Configuration;
 using MMK.SmartSystem.Identity;
-using Hangfire.MemoryStorage;
 using Abp.AspNetCore.SignalR.Hubs;
-using MMK.SmartSystem.RealTime.Hubs;
+using Abp.Dependency;
+using Abp.Json;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
 using Hangfire;
+using Hangfire.MemoryStorage;
+using MMK.SmartSystem.RealTime.Hubs;
 using Abp.Hangfire;
 
 namespace MMK.SmartSystem.Web.Host.Startup
@@ -39,11 +42,22 @@ namespace MMK.SmartSystem.Web.Host.Startup
             {
                 config.UseMemoryStorage();
             });
-            // MVC
-            services.AddMvc(
-                options => options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName))
-            );
-         
+            //MVC
+            services.AddControllersWithViews(
+                options =>
+                {
+                    options.Filters.Add(new AbpAutoValidateAntiforgeryTokenAttribute());
+                }
+            ).AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ContractResolver = new AbpMvcContractResolver(IocManager.Instance)
+                {
+                    NamingStrategy = new CamelCaseNamingStrategy()
+                };
+            });
+
+
+
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
 
@@ -70,16 +84,17 @@ namespace MMK.SmartSystem.Web.Host.Startup
             // Swagger - Enable this line and the related lines in Configure method to enable swagger UI
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Info { Title = "SmartSystem API", Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo() { Title = "SmartSystem API", Version = "v1" });
                 options.DocInclusionPredicate((docName, description) => true);
-                options.OperationFilter<SwaggerFileUploadFilter>();
+               // options.OperationFilter<SwaggerFileUploadFilter>();
+
                 // Define the BearerAuth scheme that's in use
-                options.AddSecurityDefinition("bearerAuth", new ApiKeyScheme()
+                options.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme()
                 {
                     Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
                     Name = "Authorization",
-                    In = "header",
-                    Type = "apiKey"
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
                 });
             });
 
@@ -92,41 +107,32 @@ namespace MMK.SmartSystem.Web.Host.Startup
             );
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app,  ILoggerFactory loggerFactory)
         {
-            app.UseHangfireServer();
-            app.UseHangfireDashboard();
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
             app.UseStaticFiles();
-          
+
+            app.UseRouting();
+
             app.UseAuthentication();
 
             app.UseAbpRequestLocalization();
 
-
-            app.UseSignalR(routes =>
+          
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapHub<AbpCommonHub>("/signalr");
-                routes.MapHub<RouteHub>("/hubs-routeHub");
-                routes.MapHub<CNCHub>("/hubs-cncHub");
-                routes.MapHub<CncClientHub>("/hubs-cncClientHub");
-                routes.MapHub<CNCWebClient>("/hubs-cncWebClient");
-
+                endpoints.MapHub<AbpCommonHub>("/signalr");
+                endpoints.MapHub<RouteHub>("/hubs-routeHub");
+                endpoints.MapHub<CNCHub>("/hubs-cncHub");
+                endpoints.MapHub<CncClientHub>("/hubs-cncClientHub");
+                endpoints.MapHub<CNCWebClient>("/hubs-cncWebClient");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("defaultWithArea", "{area}/{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "defaultWithArea",
-                    template: "{area}/{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger();

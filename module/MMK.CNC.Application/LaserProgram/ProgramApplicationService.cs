@@ -33,14 +33,14 @@ namespace MMK.CNC.Application.LaserProgram
         {
             _cacheManager = cacheManager;
         }
-        public override Task<ProgramCommentFromCncDto> Get(EntityDto<int> input)
+        public override Task<ProgramCommentFromCncDto> GetAsync(EntityDto<int> input)
         {
 
-            return _cacheManager.GetCache("ProgramApplicationGet").Get(input.Id.ToString(), () => base.Get(input));
+            return _cacheManager.GetCache("ProgramApplicationGet").Get(input.Id.ToString(), () => base.GetAsync(input));
 
         }
 
-        public override async Task<ProgramCommentFromCncDto> Update(UpdateProgramDto input)
+        public override async Task<ProgramCommentFromCncDto> UpdateAsync(UpdateProgramDto input)
         {
             var defaultCode = Repository.FirstOrDefault(d => d.FileHash == input.FileHash);
             var entity = ObjectMapper.Map<ProgramComment>(input);

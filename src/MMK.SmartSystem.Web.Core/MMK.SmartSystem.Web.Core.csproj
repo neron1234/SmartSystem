@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <VersionPrefix>1.0.0.0</VersionPrefix>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <AssemblyName>MMK.SmartSystem.Web.Core</AssemblyName>
     <PackageId>MMK.SmartSystem.Web.Core</PackageId>
@@ -13,25 +13,24 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
     <RootNamespace>MMK.SmartSystem</RootNamespace>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="AntDeploy.json" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\module\MMK.CNC.Application\MMK.CNC.Application.csproj" />
     <ProjectReference Include="..\MMK.SmartSystem.Application\MMK.SmartSystem.Application.csproj" />
-    <ProjectReference Include="..\MMK.SmartSystem.Core\MMK.SmartSystem.Core.csproj" />
     <ProjectReference Include="..\MMK.SmartSystem.EntityFrameworkCore\MMK.SmartSystem.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\MMK.SmartSystem.RealTime\MMK.SmartSystem.RealTime.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
-    <PackageReference Include="Abp.AspNetCore" Version="4.9.0" />
-    <PackageReference Include="Abp.ZeroCore" Version="4.9.0" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
-    <PackageReference Include="Abp.AspNetCore.SignalR" Version="4.9.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
+    <PackageReference Include="Abp.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="Abp.ZeroCore" Version="5.0.0" />
+    <PackageReference Include="Abp.AspNetCore.SignalR" Version="5.0.0" />
   </ItemGroup>
 </Project>
