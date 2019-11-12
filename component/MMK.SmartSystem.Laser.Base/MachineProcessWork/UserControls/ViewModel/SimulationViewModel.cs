@@ -68,6 +68,20 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
             }
         }
 
+        private double _Percentage;
+        public double Percentage
+        {
+            get { return _Percentage; }
+            set
+            {
+                if (_Percentage != value)
+                {
+                    _Percentage = value;
+                    RaisePropertyChanged(() => Percentage);
+                }
+            }
+        }
+
         public double TotalTime { get; set; } = 0;
         public double ElapsedTime { get; set; } = 0;
         public double RemainTime { get; set; } = 0;
@@ -111,6 +125,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
                 progressItemList.Add(new ProgressItemViewModel { Id = i, FillColor = "#27251f", StrokeColor = "#333330" });
             }
             this.PercentageStr = "0%";
+            this.Percentage = 0;
             this.TotalTime = 35;
             this.TotalTimeStr = new DateTime().AddSeconds(TotalTime).TimeOfDay.ToString();
             this.RemainTime = this.TotalTime;
@@ -128,12 +143,15 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
             this.RemainTimeStr = new DateTime().AddSeconds(RemainTime).TimeOfDay.ToString();
             double percentage = ElapsedTime / TotalTime * 100;
             this.PercentageStr = Math.Round(percentage, 0) + "%";
+            this.Percentage = Math.Round(percentage, 0);
 
-            if (percentage / 5 > 1){
-                for (int i = 0; i < Math.Floor(percentage / 5); i++){
-                    this.progressItemList[i].IsLoad = true;
-                }
-            }
+            //0 = [i]
+            this.progressItemList[(int)Math.Floor(percentage / 5)].Percentage++;
+            //if (percentage / 5 > 1){
+            //    for (int i = 0; i < Math.Floor(percentage / 5); i++){
+            //        this.progressItemList[i].IsLoad = true;
+            //    }
+            //}
             if (TotalTime <= ElapsedTime){
                 TimeTimer.Stop();
             }
@@ -169,6 +187,20 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
         //#27251f
         //#333330
         public int Id { get; set; }
+
+
+        private double _Percentage;
+        public double Percentage{
+            get { return _Percentage; }
+            set
+            {
+                if (_Percentage != value)
+                {
+                    _Percentage = value;
+                    RaisePropertyChanged(() => Percentage);
+                }
+            }
+        }
 
         private string _FillColor;
         public string FillColor
@@ -206,6 +238,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
                     this.StrokeColor = "#333330";
                 }
             }
+        }
+
+        public ProgressItemViewModel()
+        {
+            this.Percentage = 0;
         }
     }
 }
