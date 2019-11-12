@@ -48,24 +48,24 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Margin="5 10 0 5">
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="复归位置: " VerticalAlignment="Center"/>
+                            <TextBlock Text="复归位置: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="X机械坐标: " VerticalAlignment="Center"/>
+                            <TextBlock Text="X机械坐标: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46" >
-                            <TextBlock Text="Y机械坐标: " VerticalAlignment="Center"/>
+                            <TextBlock Text="Y机械坐标: " VerticalAlignment="Center" Margin="14 0 0 0"/>
                         </Border>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="0 10 5 5">
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="338.2" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            <TextBlock Text="338.2" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="5.2" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            <TextBlock Text="5.2" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
                         </Border>
                         <Border BorderThickness="0 0 0 1" BorderBrush="#575757" Height="46">
-                            <TextBlock Text="651.8" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                            <TextBlock Text="651.8" Foreground="#fdcd00" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 12 0"/>
                         </Border>
                     </StackPanel>
                 </Grid>

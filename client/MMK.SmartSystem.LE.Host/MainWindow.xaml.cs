@@ -58,6 +58,10 @@ namespace MMK.SmartSystem.LE.Host
             {
                 ctnTest.Visibility = Visibility.Collapsed;
                 viewBox.Visibility = Visibility.Visible;
+                if (this.mainHome.mainFrame.Content == null)
+                {
+                    SmartSystemLEConsts.SystemModules.First()?.MainMenuViews.First()?.OpenCommand.Execute(SmartSystemLEConsts.SystemModules.First()?.MainMenuViews.First());
+                }
             }));
         }
 
@@ -73,7 +77,6 @@ namespace MMK.SmartSystem.LE.Host
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
             ctnTest.Visibility = Visibility.Hidden;
             viewBox.Visibility = Visibility.Collapsed;
             mainHome.InitMessenger(iocManager);
@@ -132,42 +135,31 @@ namespace MMK.SmartSystem.LE.Host
         }
         private void LoadNotice(MainSystemNoticeModel model)
         {
-            Action loadCloseAction = () =>
-            {
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    if (loadWindow != null)
-                    {
+            Action loadCloseAction = () =>{
+                Dispatcher.BeginInvoke(new Action(() =>{
+                    if (loadWindow != null){
                         loadWindow.Close();
                         loadWindow = null;
                     }
-
-
                 }));
-
             };
 
-            if (model.EventType == EventEnum.StartLoad)
-            {
-                if (loadWindow == null)
-                {
+            if (model.EventType == EventEnum.StartLoad){
+                if (loadWindow == null){
                     loadWindow = new LoadWindow();
-                    Task.Factory.StartNew(new Action(async () =>
-                    {
+                    Task.Factory.StartNew(new Action(async () =>{
                         await Task.Delay(LoadMaxTime * 1000);
                         loadCloseAction();
 
                     }));
-                    Dispatcher.BeginInvoke(new Action(() =>
-                    {
+                    Dispatcher.BeginInvoke(new Action(() =>{
                         loadWindow.ShowDialog();
 
                     }));
                 }
                 return;
             }
-            if (model.EventType == EventEnum.EndLoad)
-            {
+            if (model.EventType == EventEnum.EndLoad) {
                 Thread.Sleep(1000);
                 loadCloseAction();
             }
@@ -175,15 +167,12 @@ namespace MMK.SmartSystem.LE.Host
 
         private void pageChange(PageChangeModel changeModel)
         {
-            if (changeModel.Page == PageEnum.WPFPage)
-            {
+            if (changeModel.Page == PageEnum.WPFPage){
                 ctnTest.Visibility = Visibility.Hidden;
                 viewBox.Visibility = Visibility.Visible;
                 mainHome.ChangeWPFPage(changeModel);
 
-            }
-            else if (changeModel.Page == PageEnum.WebPage)
-            {
+            }else if (changeModel.Page == PageEnum.WebPage){
                 ctnTest.Visibility = Visibility.Visible;
                 viewBox.Visibility = Visibility.Hidden;
                 Task.Factory.StartNew(() => EventBus.Default.Trigger(new NavigateEventData()
@@ -191,32 +180,24 @@ namespace MMK.SmartSystem.LE.Host
                     Url = changeModel.Url,
                     NavigateType = NavigateEnum.Url
                 }));
-            }
-            else if (changeModel.Page == PageEnum.WebComponet)
-            {
+            }else if (changeModel.Page == PageEnum.WebComponet){
                 Task.Factory.StartNew(() => EventBus.Default.Trigger(new NavigateEventData()
                 {
                     NavigateType = NavigateEnum.Component,
                     ComponentDto = changeModel.ComponentDto
                 }));
-
             }
         }
 
-
         private void loadWebApp()
         {
-
-
             string path = System.IO.Path.Combine(System.Environment.CurrentDirectory, "WebApp", "cncapp.exe");
             if (System.IO.File.Exists(path))
             {
                 ctnTest.StartAndEmbedProcess(path, Dispatcher);
 
                 ShowHomePanel();
-
             }
-
         }
 
         private void ShowHomePanel()
@@ -229,12 +210,9 @@ namespace MMK.SmartSystem.LE.Host
                 {
                     ctnTest.Visibility = Visibility.Visible;
                     loadImage.Visibility = Visibility.Collapsed;
-
                 }));
             }
-
         }
-
 
         private async Task AutoLogin()
         {
@@ -248,11 +226,8 @@ namespace MMK.SmartSystem.LE.Host
                 {
                     ShowHomePanel();
                     EventBus.Default.Trigger(new UserInfoEventData() { UserId = (int)SmartSystemCommonConsts.AuthenticateModel.UserId, Tagret = ErrorTagretEnum.UserControl });
-
                 }
             });
-
         }
-
     }
 }

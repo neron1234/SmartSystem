@@ -1,4 +1,6 @@
-﻿using MMK.SmartSystem.Common.Base;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MMK.SmartSystem.Common.Base;
+using MMK.SmartSystem.Laser.Base.MachineProcessWork.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,22 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork
         public MachineProcessWorkPage()
         {
             InitializeComponent();
+        }
+
+        protected override void PageSignlarLoaded()
+        {
+            Messenger.Default.Register<PageStatus>(this, (status) => {
+                if (status == PageStatus.Max)
+                {
+                    ProcessPanel.Visibility = Visibility.Collapsed;
+                    this.SimulationControl.Width = this.ActualWidth;
+                }
+                else
+                {
+                    ProcessPanel.Visibility = Visibility.Visible;
+                    this.SimulationControl.Width = 916;
+                }
+            });
         }
 
         public override List<object> GetResultViewModelMap()
