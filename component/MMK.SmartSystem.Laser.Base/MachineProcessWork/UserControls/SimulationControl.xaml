@@ -7,14 +7,16 @@
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
              xmlns:convert="clr-namespace:MMK.SmartSystem.Laser.Base.Converters"
+             xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
              d:DesignHeight="658" d:DesignWidth="916" Background="#3b3b3b" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/OperateBtnStyleDictionary.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/OperateBtnStyleDictionary.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/BtnStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="TextBlock">
                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -49,15 +51,15 @@
                     <TextBlock Text="{Binding TotalTimeStr}" Margin="0 0 120 0"/>
 
                     <Grid Width="22" Height="22">
-                        <ed:Arc Width="22" Height="22" ArcThickness="4" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="360" Fill="#FDCD00" Stretch="None" Stroke="#FDCD00" />
-                        <ed:Arc Width="22" Height="22" ArcThickness="4.1" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="180" Fill="Black" Stroke="Black" Stretch="None" />
+                        <ed:Arc ArcThickness="4" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="360" Fill="#FDCD00" Stretch="None" Stroke="#FDCD00" />
+                        <ed:Arc ArcThickness="6" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="180" Fill="Black" Stroke="Black" Stretch="None" Margin="1,-1,-2,-1" />
                     </Grid>
                     <TextBlock Text="已用时间 " Margin="10 0 6 0"/>
                     <TextBlock Text="{Binding ElapsedTimeStr}" Margin="0 0 120 0"/>
 
                     <Grid Width="22" Height="22">
-                        <ed:Arc Width="22" Height="22" ArcThickness="4" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="360" Fill="#FDCD00" Stretch="None" Stroke="#FDCD00" />
-                        <ed:Arc Width="22" Height="22" ArcThickness="4.1" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="270" Fill="Black" Stroke="Black" Stretch="None" />
+                        <ed:Arc ArcThickness="4" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="360" Fill="#FDCD00" Stretch="None" Stroke="#FDCD00" />
+                        <ed:Arc ArcThickness="5" ArcThicknessUnit="Pixel" StartAngle="0" EndAngle="270" Fill="Black" Stroke="Black" Stretch="None" Margin="-1,-1,-1,-1" />
                     </Grid>
                     <TextBlock Text="剩余时间 " Margin="10 0 6 0"/>
                     <TextBlock Text="{Binding RemainTimeStr}" />
@@ -78,16 +80,20 @@
                     <TextBlock Margin="5 0 0 10" Text="{Binding PercentageStr}" FontSize="26"  />
                 </StackPanel>
             </StackPanel>
-                
+
             <Grid Height="100" Width="40"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 120 32 0" Background="#3b3b3b">
                 <b:Interaction.Behaviors>
                     <b:MouseDragElementBehavior/>
                 </b:Interaction.Behaviors>
                 <Border CornerRadius="20" Background="#1d1d1d">
-                    <StackPanel Margin="0 15 0 0" HorizontalAlignment="Center">
-                        <Path Data="M0.5,5.1900001 L9.5,5.1900001 z M5.182,0.50000006 L5.182,9.5000001 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#FDCD00"  Width="10" Height="10"/>
-                        <TextBlock Text="100%" FontSize="13" HorizontalAlignment="Center" Margin="0 15 0 15"/>
-                        <Path Data="M0.5,0.5 L9.5,0.5 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#FDCD00" Width="10" Height="10"/>
+                    <StackPanel Margin="0 5 0 0" HorizontalAlignment="Center">
+                        <Button Background="Transparent" Style="{StaticResource NoMouseOverButtonStyle}" Width="30" Height="30">
+                            <Path Data="M0.5,5.1900001 L9.5,5.1900001 z M5.182,0.50000006 L5.182,9.5000001 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#FDCD00"  Width="10" Height="10"/>
+                        </Button>
+                        <TextBlock Text="100%" FontSize="13" HorizontalAlignment="Center" Margin="0 5 0 5"/>
+                        <Button Background="Transparent" Style="{StaticResource NoMouseOverButtonStyle}" Width="30" Height="30">
+                            <Path Data="M0.5,0.5 L9.5,0.5 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#FDCD00" Width="10" Height="10"/>
+                        </Button>
                     </StackPanel>
                 </Border>
             </Grid>

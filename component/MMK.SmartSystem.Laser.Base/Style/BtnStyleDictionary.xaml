@@ -623,7 +623,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-
+    
     <Style x:Key="ControlBtnStyle2"  TargetType="Button" BasedOn="{StaticResource IconBtnStyle}">
         <Setter Property="Template">
             <Setter.Value>
