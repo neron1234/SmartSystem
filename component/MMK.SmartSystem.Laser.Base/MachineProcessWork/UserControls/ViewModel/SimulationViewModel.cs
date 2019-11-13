@@ -82,11 +82,60 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
             }
         }
 
+       /// <summary>
+       /// 进度条宽度
+       /// </summary>
+        private int _ProgressBarWidth;
+        public int ProgressBarWidth
+        {
+            get { return _ProgressBarWidth; }
+            set
+            {
+                if (_ProgressBarWidth != value)
+                {
+                    _ProgressBarWidth = value;
+                    RaisePropertyChanged(() => ProgressBarWidth);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 间隔蒙版宽度
+        /// </summary>
+        private int _IntervalMaskWidth;
+        public int IntervalMaskWidth
+        {
+            get { return _IntervalMaskWidth; }
+            set
+            {
+                if (_IntervalMaskWidth != value)
+                {
+                    _IntervalMaskWidth = value;
+                    RaisePropertyChanged(() => IntervalMaskWidth);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 间隔蒙版间距
+        /// </summary>
+        private string _IntervalMaskMargin;
+        public string IntervalMaskMargin
+        {
+            get { return _IntervalMaskMargin; }
+            set
+            {
+                if (_IntervalMaskMargin != value)
+                {
+                    _IntervalMaskMargin = value;
+                    RaisePropertyChanged(() => IntervalMaskMargin);
+                }
+            }
+        }
+
         public double TotalTime { get; set; } = 0;
         public double ElapsedTime { get; set; } = 0;
         public double RemainTime { get; set; } = 0;
-
-        public List<ProgressItemViewModel> progressItemList { get; set; } = new List<ProgressItemViewModel>();
 
         private System.Windows.Threading.DispatcherTimer TimeTimer { get; set; }
 
@@ -121,11 +170,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
         public SimulationViewModel(){
             this.IsNormal = "true";
             this.IsMax = "false";
-            for (int i = 0; i < 20; i++){
-                progressItemList.Add(new ProgressItemViewModel { Id = i, FillColor = "#27251f", StrokeColor = "#333330" });
-            }
             this.PercentageStr = "0%";
             this.Percentage = 0;
+            this.IntervalMaskWidth = 4;
+            this.IntervalMaskMargin = "36 0 0 0";
+            this.ProgressBarWidth = 800;
             this.TotalTime = 35;
             this.TotalTimeStr = new DateTime().AddSeconds(TotalTime).TimeOfDay.ToString();
             this.RemainTime = this.TotalTime;
@@ -145,13 +194,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
             this.PercentageStr = Math.Round(percentage, 0) + "%";
             this.Percentage = Math.Round(percentage, 0);
 
-            //0 = [i]
-            this.progressItemList[(int)Math.Floor(percentage / 5)].Percentage++;
-            //if (percentage / 5 > 1){
-            //    for (int i = 0; i < Math.Floor(percentage / 5); i++){
-            //        this.progressItemList[i].IsLoad = true;
-            //    }
-            //}
             if (TotalTime <= ElapsedTime){
                 TimeTimer.Stop();
             }
@@ -165,84 +207,20 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
                     {
                         this.IsNormal = "true";
                         this.IsMax = "false";
+                        this.ProgressBarWidth = 800;
+                        this.IntervalMaskWidth = 4;
+                        this.IntervalMaskMargin = "36 0 0 0";
                     }
                     else
                     {
                         this.IsNormal = "false";
                         this.IsMax = "true";
+                        this.ProgressBarWidth = 1100;
+                        this.IntervalMaskWidth = 4;
+                        this.IntervalMaskMargin = "51 0 0 0";
                     }
                 });
             }
-        }
-    }
-    public class ProgressItemViewModel : ViewModelBase {
-        //每5%点亮一个单位
-
-        //1.循环出100%的未点亮单位，每秒钟去计算已经运行了总时间的百分比，每超过一个5%，点亮一个单位
-
-        //点亮
-        //#FDCD00
-        //#816e1d
-        //未点亮
-        //#27251f
-        //#333330
-        public int Id { get; set; }
-
-
-        private double _Percentage;
-        public double Percentage{
-            get { return _Percentage; }
-            set
-            {
-                if (_Percentage != value)
-                {
-                    _Percentage = value;
-                    RaisePropertyChanged(() => Percentage);
-                }
-            }
-        }
-
-        private string _FillColor;
-        public string FillColor
-        {
-            get { return _FillColor; }
-            set {
-                if (_FillColor != value) {
-                    _FillColor = value;
-                    RaisePropertyChanged(() => FillColor);
-                }
-            }
-        }
-
-        private string _StrokeColor;
-        public string StrokeColor{
-            get { return _StrokeColor; }
-            set{
-                if (_StrokeColor != value){
-                    _StrokeColor = value;
-                    RaisePropertyChanged(() => StrokeColor);
-                }
-            }
-        }
-
-        private bool _IsLoad;
-        public bool IsLoad{
-            get { return _IsLoad; }
-            set { 
-                _IsLoad = value;
-                if (_IsLoad){
-                    this.FillColor = "#FDCD00";
-                    this.StrokeColor = "#816e1d";
-                }else{
-                    this.FillColor = "#27251f";
-                    this.StrokeColor = "#333330";
-                }
-            }
-        }
-
-        public ProgressItemViewModel()
-        {
-            this.Percentage = 0;
         }
     }
 }

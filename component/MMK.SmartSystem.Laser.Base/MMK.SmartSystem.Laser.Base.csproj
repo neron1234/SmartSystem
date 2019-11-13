@@ -259,6 +259,9 @@
     <Compile Include="CustomControl\Primitives\MyEventArgs\ItemMouseSingleClickEventArgs.cs" />
     <Compile Include="CustomControl\Primitives\NumberBox.cs" />
     <Compile Include="CustomControl\Primitives\ZTextBoxBase.cs" />
+    <Compile Include="CustomControl\ProgressBar\Implementation\CircleProgressBar.cs" />
+    <Compile Include="CustomControl\ProgressBar\Implementation\FlatProgressBar.cs" />
+    <Compile Include="CustomControl\ProgressBar\Implementation\WaveProgressBar.cs" />
     <Compile Include="CustomControl\ScrollViewer\Implementation\ZScrollViewer.cs" />
     <Compile Include="CustomControl\SoftKeyBoard.cs" />
     <Compile Include="CustomControl\TextBox\Implementation\IconTextBox.cs" />
@@ -513,6 +516,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomControl\PopupWindowControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\ProgressBar\Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

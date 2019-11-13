@@ -26,10 +26,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork
         public MachineProcessWorkPage()
         {
             InitializeComponent();
-        }
-
-        protected override void PageSignlarLoaded()
-        {
             Messenger.Default.Register<PageStatus>(this, (status) => {
                 if (status == PageStatus.Max)
                 {
@@ -42,6 +38,11 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork
                     this.SimulationControl.Width = 916;
                 }
             });
+        }
+
+        protected override void PageSignlarLoaded()
+        {
+            
         }
 
         public override List<object> GetResultViewModelMap()
