@@ -16,7 +16,10 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
     public enum GroupEventOperationEnum
     {
+        [System.Runtime.Serialization.EnumMember(Value = @"Add")]
         Add,
+
+        [System.Runtime.Serialization.EnumMember(Value = @"Remove")]
         Remove
     }
     public class CncEventData : EventData

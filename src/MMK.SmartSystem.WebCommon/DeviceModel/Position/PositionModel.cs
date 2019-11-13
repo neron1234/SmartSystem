@@ -52,6 +52,7 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
     {
         public string Id { get; set; }
 
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public CncPositionTypeEnum PositionType { get; set; }
 
         public int AxisNum { get; set; }
