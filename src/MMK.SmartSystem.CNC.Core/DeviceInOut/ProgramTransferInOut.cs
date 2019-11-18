@@ -8,11 +8,35 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceInOut
 {
-    public class ProgramTransferInOut:BaseInOut
+    public class ProgramTransferInOut : BaseInOut
     {
-        public HubReadWriterResultModel Reader(HubReadWriterModel hubRead)
+        /// <summary>
+        /// 删除CNC程序
+        /// </summary>
+        /// <param name="hubRead"></param>
+        /// <returns></returns>
+        public HubReadWriterResultModel DeleteProgram(HubReadWriterModel hubRead)
         {
-            return new HubReadWriterResultModel();
+
+            var res = new ProgramTransferHelper().DeleteProgramInCnc(flib, hubRead.Data[0].ToString());
+            return new HubReadWriterResultModel()
+            {
+                Result = res,
+                Error = res,
+                Success = string.IsNullOrEmpty(res)
+            };
         }
+        public HubReadWriterResultModel UploadProgramToCNC(HubReadWriterModel hubRead)
+        {
+
+            var res = new ProgramTransferHelper().LocalDownloadProgramFromPcToCnc(flib, hubRead.Data[0].ToString(), hubRead.Data[1].ToString());
+            return new HubReadWriterResultModel()
+            {
+                Result = res,
+                Error = res,
+                Success = string.IsNullOrEmpty(res)
+            };
+        }
+        
     }
 }
