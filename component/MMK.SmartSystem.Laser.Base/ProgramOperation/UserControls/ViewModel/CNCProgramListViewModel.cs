@@ -78,17 +78,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 this.LocalProgramList = pvList;
                 this.DataPaging();
             });
-
-            this.ProgramList = new ObservableCollection<ProgramViewModel> { 
-                new ProgramViewModel { Name = "0005", CreateTime = "2019-10-26 14:28:02", Size = "865KB" },
-                new ProgramViewModel { Name = "0004", CreateTime = "2019-10-26 14:32:16", Size = "610KB" },
-                new ProgramViewModel { Name = "0003", CreateTime = "2019-10-26 14:50:25", Size = "1298KB" },
-                new ProgramViewModel { Name = "0002", CreateTime = "2019-10-27 10:05:41", Size = "511KB" },
-                new ProgramViewModel { Name = "0001", CreateTime = "2019-10-27 18:28:54", Size = "715KB" },
-                new ProgramViewModel { Name = "0011", CreateTime = "2019-10-28 08:28:34", Size = "228KB" },
-                new ProgramViewModel { Name = "0012", CreateTime = "2019-10-28 20:12:21", Size = "1101KB" },
-                new ProgramViewModel { Name = "0021", CreateTime = "2019-10-29 10:05:10", Size = "489KB" }
-            };
         }
         
         public ReadProgramFolderItemViewModel ProgramFolderList { get; set; }

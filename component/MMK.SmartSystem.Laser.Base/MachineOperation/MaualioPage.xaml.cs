@@ -36,6 +36,19 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
             manualControl.SetHeaderActive(this);
         }
 
+        protected async override void PageSignlarLoaded(){
+            await Sleep();
+        }
+
+        private async Task Sleep()
+        {
+            await Task.Run(new Action(() =>
+            {
+                System.Threading.Thread.Sleep(5000);
+                MessageBox.Show("线程醒了");
+            }));
+        }
+
         private void MioVm_IoBtnClickEvent(IoBtnInfo obj)
         {
             SendReaderWriter(new WebCommon.HubModel.HubReadWriterModel()

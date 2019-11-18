@@ -38,10 +38,10 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
 
         }
 
-        private void AddMaterialViewModel_SaveMachiningEvent(CreateMachiningGroupDto obj)
+        private async void AddMaterialViewModel_SaveMachiningEvent(CreateMachiningGroupDto obj)
         {
             Messenger.Default.Send(new MainSystemNoticeModel() { EventType = EventEnum.StartLoad });
-            Task.Factory.StartNew(new Action(() =>
+            await Task.Run(new Action(() =>
             {
                 EventBus.Default.Trigger(new AddMachiningGroupInfoEventData()
                 {
@@ -57,9 +57,9 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
             }));
         }
 
-        private void AddMaterialControl_Loaded(object sender, RoutedEventArgs e)
+        private async void AddMaterialControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(new Action(() =>
+            await Task.Run(new Action(() =>
             {
                 EventBus.Default.Trigger(new MaterialInfoEventData
                 {
