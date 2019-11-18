@@ -41,10 +41,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineMonitor
            // await SendProxyAction<BaseCNCResultModel<ReadProgramListItemResultModel>>(SinglarCNCHubConsts.ReadProgramListAction, "//CNC_MEM/USER/PATH1/");
         }
 
-        
-
-
-
         public override List<object> GetResultViewModelMap()
         {
             List<object> list = new List<object>()

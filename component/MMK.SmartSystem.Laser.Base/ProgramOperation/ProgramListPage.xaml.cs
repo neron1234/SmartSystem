@@ -80,7 +80,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             });
         }
 
-        protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
+        protected async override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
             if (obj.Id == "getProgramList") {
                 if (!obj.Success){
@@ -118,7 +118,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                     readProgramFolder.Name = jObject["name"].ToString();
                     readProgramFolder.Folder = jObject["folder"].ToString();
                     var jArray = JArray.Parse(jObject["nodes"].ToString());
-                    ReadProgramFolderNode(jArray, readProgramFolder);
+
+                    await Task.Run(new Action(() => {
+                        ReadProgramFolderNode(jArray, readProgramFolder);
+                    })); 
+
                     Messenger.Default.Send(readProgramFolder);
                     programListViewModel.ProgramFolder = readProgramFolder;
                 }
@@ -155,8 +159,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             if (jArray == null) return;
 
             node.Nodes = new System.Collections.ObjectModel.ObservableCollection<ReadProgramFolderItemViewModel>();
-            foreach (var item in jArray)
-            {
+
+            Task.Run(() => ReadProgramFolderNode(jArray, node));
+            Parallel.ForEach(jArray, item => {
                 var childNode = new ReadProgramFolderItemViewModel
                 {
                     RegNum = (int)item["regNum"],
@@ -165,7 +170,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 };
                 node.Nodes.Add(childNode);
                 ReadProgramFolderNode(JArray.Parse(item["nodes"].ToString()), childNode);
-            }
+            });
         }
 
         public override bool IsRequestResponse => true;

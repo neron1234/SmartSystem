@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.Base;
 using MMK.SmartSystem.Laser.Base.MachineProcessWork.ViewModel;
+using netDxf.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
