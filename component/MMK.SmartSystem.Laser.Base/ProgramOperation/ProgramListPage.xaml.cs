@@ -46,6 +46,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
             MyCNCProgramListControl.cpViewModel.CNCPath = programListViewModel.CNCPath.Path;
             MyCNCProgramListControl.cpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
+            MyLocalProgramListControl.lpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
+            MyLocalProgramListControl.lpViewModel.ConnectId = programListViewModel.ConnectId;
 
             Messenger.Default.Register<CNCProgramPath>(this, (cncPath) => {
                 if (cncPath.Page == "Page")
@@ -178,14 +180,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             {
                 case "CNC程序":
                     programListViewModel.InfoControl = new CNCProgramInfoControl();
-                    MyCNCProgramListControl.cpViewModel.CNCPath = programListViewModel.CNCPath.Path;
-                    MyCNCProgramListControl.cpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
-                    SendQurayProgramList();
+                    //MyCNCProgramListControl.cpViewModel.CNCPath = programListViewModel.CNCPath.Path;
+                    //MyCNCProgramListControl.cpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
+                    //SendQurayProgramList();
                     break;
                 case "本地程序":
                     programListViewModel.InfoControl = new LocalProgramInfoControl();
-                    MyLocalProgramListControl.lpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
-                    MyLocalProgramListControl.lpViewModel.ConnectId = programListViewModel.ConnectId;
+                    //MyLocalProgramListControl.lpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
+                    //MyLocalProgramListControl.lpViewModel.ConnectId = programListViewModel.ConnectId;
                     break;
                 case "CNC信息":
                     programListViewModel.InfoControl = new UserControl();

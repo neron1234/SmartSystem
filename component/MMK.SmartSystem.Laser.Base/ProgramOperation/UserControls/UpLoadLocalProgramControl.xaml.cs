@@ -73,11 +73,18 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
             Task.Factory.StartNew(new Action(() =>
             {
-                this.Dispatcher.Invoke(() =>
-                {
-                    EventBus.Default.TriggerAsync(new NozzleKindEventData());
-                    EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = false });
-                });
+                EventBus.Default.TriggerAsync(new NozzleKindEventData { SuccessAction = (nzList) => {
+                    this.Dispatcher.Invoke(() =>
+                    {
+
+                    });
+                } });
+                EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = false,SuccessAction = ((mtList) => {
+                    this.Dispatcher.Invoke(() =>
+                    {
+
+                    });
+                })});
             }));
 
             Loaded += UpLoadLocalProgramControl_Loaded;
