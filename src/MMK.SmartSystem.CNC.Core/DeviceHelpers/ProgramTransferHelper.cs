@@ -96,7 +96,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             return null;
         }
 
-
         public string LocalUploadProgramFromCncToPc(ushort flib, string ncPath, string pcPath, double fileSize)
         {
             if (System.IO.File.Exists(pcPath))
