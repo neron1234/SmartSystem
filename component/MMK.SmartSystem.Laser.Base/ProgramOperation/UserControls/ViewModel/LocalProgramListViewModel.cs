@@ -15,13 +15,16 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
-    public class LocalProgramListViewModel:ViewModelBase
+    public class LocalProgramListViewModel : ViewModelBase
     {
         private ProgramViewModel _SelectedProgramViewModel;
-        public ProgramViewModel SelectedProgramViewModel{
+        public ProgramViewModel SelectedProgramViewModel
+        {
             get { return _SelectedProgramViewModel; }
-            set{
-                if (_SelectedProgramViewModel != value){
+            set
+            {
+                if (_SelectedProgramViewModel != value)
+                {
                     _SelectedProgramViewModel = value;
                     RaisePropertyChanged(() => SelectedProgramViewModel);
                 }
@@ -74,7 +77,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             ProgramList = new ObservableCollection<ProgramViewModel>();
             this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
             GetFileName();
-            Messenger.Default.Register<SearchInfo>(this, (sInfo) => {
+            Messenger.Default.Register<SearchInfo>(this, (sInfo) =>
+            {
                 this.ProgramList.Clear();
                 if (string.IsNullOrEmpty(sInfo.Search))
                 {
@@ -90,7 +94,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public void GetFileName()
         {
-            if (Directory.Exists(this.Path)){
+            if (Directory.Exists(this.Path))
+            {
                 DirectoryInfo root = new DirectoryInfo(this.Path);
                 LocalProgramList = new ObservableCollection<ProgramViewModel>();
                 foreach (FileInfo f in root.GetFiles())
@@ -105,7 +110,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 }
                 DataPaging(false);
                 this.LocalPath = this.Path;
-                Messenger.Default.Send(new LocalProgramPath(this.Path));
             }
         }
 
@@ -115,17 +119,23 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public void DataPaging(bool next)
         {
             int count = LocalProgramList.Count;
-            int pageSize = 0;  
-            if (count % PageNumber == 0){
+            int pageSize = 0;
+            if (count % PageNumber == 0)
+            {
                 pageSize = count / PageNumber;
-            }else{
+            }
+            else
+            {
                 pageSize = count / PageNumber + 1;
             }
             TotalPage = pageSize;
-            
-            if (next && CurrentPage >= 1 && CurrentPage < TotalPage){
+
+            if (next && CurrentPage >= 1 && CurrentPage < TotalPage)
+            {
                 CurrentPage++;
-            }else{
+            }
+            else
+            {
                 CurrentPage = 1;
             }
             this.ProgramList.Clear();
@@ -136,34 +146,33 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
         public string ConnectId { get; set; }
+
+        public event Action<LocalProgramListViewModel, ProgramViewModel> UploadClickEvent;
         public ICommand UpLoadCommand
         {
-            get{
-                return new RelayCommand(() => {
+            get
+            {
+                return new RelayCommand(() =>
+                {
                     if (this.SelectedProgramViewModel == null)
                     {
                         return;
                     }
-                    var stream = FileToStream();
-                    var fileHash = FileHashHelper.ComputeMD5(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
-                    Task.Factory.StartNew(new Action(() => {
-                        EventBus.Default.TriggerAsync(new UpLoadProgramClientEventData
-                        {
-                            FileParameter = new Common.FileParameter(stream, this.SelectedProgramViewModel.Name),
-                            ConnectId = ConnectId,
-                            FileHashCode = fileHash
-                        });
-                    }));
-                    new PopupWindow(new UpLoadLocalProgramControl(this.Path, this.ProgramFolderList), 900, 590, "上传本地程序").ShowDialog();
+                    UploadClickEvent?.Invoke(this, SelectedProgramViewModel);
+
                 });
             }
         }
 
-        public ICommand LocalPathCommand{
-            get{
-                return new RelayCommand(() => {
+        public ICommand LocalPathCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
                     System.Windows.Forms.FolderBrowserDialog folderDialog = new System.Windows.Forms.FolderBrowserDialog();
-                    if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK){
+                    if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
                         this.Path = folderDialog.SelectedPath.Trim();
                         GetFileName();
                     }
@@ -171,10 +180,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand DeleteFileCommand{
-            get{
-                return new RelayCommand(() =>{
-                    if (File.Exists(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name))) { 
+        public ICommand DeleteFileCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (File.Exists(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name)))
+                    {
                         File.Delete(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
                         GetFileName();
                     }
@@ -195,8 +208,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public ICommand OpenFileCommand
         {
-            get{
-                return new RelayCommand(() => {
+            get
+            {
+                return new RelayCommand(() =>
+                {
                     System.Diagnostics.Process.Start(@"Notepad.exe", System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
                 });
             }
@@ -206,22 +221,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             get
             {
-                return new RelayCommand(() => {
+                return new RelayCommand(() =>
+                {
                     DataPaging(true);
                 });
             }
         }
 
-        public Stream FileToStream()
-        {
-            using (var fileStream = new FileStream(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name), FileMode.Open, FileAccess.Read, FileShare.Read)){
 
-                byte[] bytes = new byte[fileStream.Length];
-                fileStream.Read(bytes, 0, bytes.Length);
-                fileStream.Close();
-                Stream stream = new MemoryStream(bytes);
-                return stream;
-            }
-        }
     }
 }

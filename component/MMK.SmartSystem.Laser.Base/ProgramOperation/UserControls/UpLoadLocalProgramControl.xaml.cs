@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Abp.Events.Bus;
 using MMK.SmartSystem.Common.EventDatas;
+using Newtonsoft.Json.Linq;
 
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 {
@@ -28,39 +29,21 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     public partial class UpLoadLocalProgramControl : UserControl
     {
         public UpLoadLocalProgramViewModel upLoadProViewModel { get; set; }
+
+        public event Action<UpLoadLocalProgramViewModel> ProgramUploadEvent;
         public UpLoadLocalProgramControl(string programPath, ReadProgramFolderItemViewModel programFolderInfo)
         {
             InitializeComponent();
             this.DataContext = upLoadProViewModel = new UpLoadLocalProgramViewModel(programFolderInfo);
             upLoadProViewModel.LocalProgramPath = programPath;
-            Messenger.Default.Register<PagedResultDtoOfNozzleKindDto>(this, (results) =>
-            {
-                upLoadProViewModel.NozzleKindList = new ObservableCollection<NozzleKindDto>();
-                foreach (var item in results.Items)
-                {
-                    upLoadProViewModel.NozzleKindList.Add(item);
-                }
-                if (upLoadProViewModel.NozzleKindList.Count > 0)
-                {
-                    upLoadProViewModel.SelectedNozzleKindCode = (int)upLoadProViewModel.NozzleKindList.First()?.Code;
-                }
-            });
-            Messenger.Default.Register<PagedResultDtoOfMaterialDto>(this, (results) =>
-            {
-                upLoadProViewModel.MaterialTypeList = new ObservableCollection<MaterialDto>();
-                foreach (var item in results.Items)
-                {
-                    upLoadProViewModel.MaterialTypeList.Add(item);
-                }
-                if (upLoadProViewModel.MaterialTypeList.Count > 0)
-                {
-                    upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.First()?.Code;
-                }
-            });
+            upLoadProViewModel.CloseEvent += UpLoadProViewModel_CloseEvent;
+            upLoadProViewModel.GetDetailModelEvent += UpLoadProViewModel_GetDetailModelEvent;
+            upLoadProViewModel.InputKeyInputEvent += UpLoadProViewModel_InputKeyInputEvent;
             Messenger.Default.Register<ProgramDetailViewModel>(this, (pds) =>
             {
                 upLoadProViewModel.ProgramDetail = pds;
-                if (!string.IsNullOrEmpty(pds.Material)){
+                if (!string.IsNullOrEmpty(pds.Material))
+                {
                     upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.FirstOrDefault(n => n.Name_CN == pds.Material)?.Code;
                 }
                 if (!string.IsNullOrEmpty(pds.NozzleKind))
@@ -69,30 +52,73 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 }
             });
 
-            Messenger.Default.Register<KeyCode>(this, (kCode) => InputTextBox(kCode));
-
-            Task.Factory.StartNew(new Action(() =>
-            {
-                EventBus.Default.TriggerAsync(new NozzleKindEventData { SuccessAction = (nzList) => {
-                    this.Dispatcher.Invoke(() =>
-                    {
-
-                    });
-                } });
-                EventBus.Default.TriggerAsync(new MaterialInfoEventData { IsCheckSon = false,SuccessAction = ((mtList) => {
-                    this.Dispatcher.Invoke(() =>
-                    {
-
-                    });
-                })});
-            }));
 
             Loaded += UpLoadLocalProgramControl_Loaded;
             //this.CNCPathCascader.SelectedItem = upLoadProViewModel.SelectedProgramFolders;
         }
 
+        private void UpLoadProViewModel_InputKeyInputEvent(string obj)
+        {
+            InputTextBox(obj);
+        }
+
+        private void UpLoadProViewModel_GetDetailModelEvent(UpLoadLocalProgramViewModel obj)
+        {
+            ProgramUploadEvent?.Invoke(obj);
+        }
+
+        private void UpLoadProViewModel_CloseEvent()
+        {
+
+        }
+
         private void UpLoadLocalProgramControl_Loaded(object sender, RoutedEventArgs e)
         {
+            Task.Factory.StartNew(new Action(() =>
+            {
+                EventBus.Default.TriggerAsync(new NozzleKindEventData
+                {
+                    SuccessAction = (nzList) =>
+                    {
+                        Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            upLoadProViewModel.NozzleKindList.Clear();
+                            nzList.ForEach(d => upLoadProViewModel.NozzleKindList.Add(d));
+
+                            if (upLoadProViewModel.NozzleKindList.Count > 0)
+                            {
+                                upLoadProViewModel.SelectedNozzleKindCode = (int)upLoadProViewModel.NozzleKindList.First()?.Code;
+                            }
+                        }));
+                    }
+                });
+                EventBus.Default.TriggerAsync(new MaterialInfoEventData
+                {
+                    IsCheckSon = false,
+                    SuccessAction = ((mtList) =>
+                    {
+                        Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            upLoadProViewModel.MaterialTypeList.Clear();
+                            mtList.ForEach(d => upLoadProViewModel.MaterialTypeList.Add(new MaterialDto()
+                            {
+
+                                Code = d.MaterialCode,
+                                Id = d.Code,
+                                Name_CN = d.Name_CN,
+                                Name_EN = d.Name_EN
+                            }));
+
+                            if (upLoadProViewModel.MaterialTypeList.Count > 0)
+                            {
+                                upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.First()?.Code;
+                            }
+                        }));
+                    })
+                });
+            }));
+
+
             tbList = new List<TextBox>();
             foreach (var item in TbPanel1.Children)
             {
@@ -111,24 +137,35 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             Loaded -= UpLoadLocalProgramControl_Loaded;
         }
 
-        private void InputTextBox(KeyCode keyCode)
+        private void InputTextBox(string keyCode)
         {
-            if (FocusTb == null){
-                if(Keyboard.FocusedElement is TextBox){
+            if (FocusTb == null)
+            {
+                if (Keyboard.FocusedElement is TextBox)
+                {
                     FocusTb = Keyboard.FocusedElement as TextBox;
-                }else{
+                }
+                else
+                {
                     return;
                 }
             }
 
             var number = 0;
-            if (int.TryParse(keyCode.Code, out number)){
+            if (int.TryParse(keyCode, out number))
+            {
                 FocusTb.Text += number;
-            }else{
-                if (keyCode.Code == "." && !FocusTb.Text.Contains(".")){
-                    FocusTb.Text += keyCode.Code;
-                }else{
-                    if (FocusTb.Text.Length > 0){
+            }
+            else
+            {
+                if (keyCode == "." && !FocusTb.Text.Contains("."))
+                {
+                    FocusTb.Text += keyCode;
+                }
+                else
+                {
+                    if (FocusTb.Text.Length > 0)
+                    {
                         FocusTb.Text = FocusTb.Text.Remove(FocusTb.Text.Length - 1, 1);
                     }
                 }
@@ -139,15 +176,19 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         public List<TextBox> tbList { get; set; }
         private void NextOptionBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (FocusTb == null){
+            if (FocusTb == null)
+            {
                 FocusTb = tbList[0];
-            }else if (tbList.IndexOf(FocusTb) + 1 < tbList.Count){
+            }
+            else if (tbList.IndexOf(FocusTb) + 1 < tbList.Count)
+            {
                 FocusTb = tbList[tbList.IndexOf(FocusTb) + 1];
             }
             Keyboard.Focus(FocusTb);
         }
 
-        private void LastOptionBtn_Click(object sender, RoutedEventArgs e){
+        private void LastOptionBtn_Click(object sender, RoutedEventArgs e)
+        {
             if (FocusTb == null)
             {
                 FocusTb = tbList[0];

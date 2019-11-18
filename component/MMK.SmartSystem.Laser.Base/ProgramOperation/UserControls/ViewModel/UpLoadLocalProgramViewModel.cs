@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
-    public class UpLoadLocalProgramViewModel:ViewModelBase
+    public class UpLoadLocalProgramViewModel : ViewModelBase
     {
         private int _SelectedMaterialId;
         public int SelectedMaterialId
@@ -29,7 +29,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ObservableCollection<MaterialDto> MaterialTypeList { get; set; }
+        public ObservableCollection<MaterialDto> MaterialTypeList { get; set; } = new ObservableCollection<MaterialDto>();
 
         private string _LocalProgramPath;
         public string LocalProgramPath
@@ -59,7 +59,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ObservableCollection<NozzleKindDto> NozzleKindList { get; set; }
+        public ObservableCollection<NozzleKindDto> NozzleKindList { get; set; } = new ObservableCollection<NozzleKindDto>();
 
         private ProgramDetailViewModel _ProgramDetail;
         public ProgramDetailViewModel ProgramDetail
@@ -93,26 +93,39 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public ReadProgramFolderItemViewModel SelectedProgramFolders
         {
             get { return _SelectedProgramFolders; }
-            set{
-                if (_SelectedProgramFolders != value){
+            set
+            {
+                if (_SelectedProgramFolders != value)
+                {
                     _SelectedProgramFolders = value;
                     RaisePropertyChanged(() => SelectedProgramFolders);
                 }
             }
         }
 
-        public ICommand InputCommand{
-            get{
-                return new RelayCommand<string>((str) => {
-                    Messenger.Default.Send(new KeyCode { Code = str });
+        public event Action<UpLoadLocalProgramViewModel> GetDetailModelEvent;
+
+        public event Action<string> InputKeyInputEvent;
+
+        public event Action CloseEvent;
+        public ICommand InputCommand
+        {
+            get
+            {
+                return new RelayCommand<string>((str) =>
+                {
+                    InputKeyInputEvent?.Invoke(str);
                 });
             }
         }
 
-        public ICommand UpLoadCommand {
-            get{
-                return new RelayCommand(() => { 
-                     
+        public ICommand UpLoadCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    GetDetailModelEvent?.Invoke(this);
                 });
             }
         }
@@ -121,8 +134,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             get
             {
-                return new RelayCommand<string>((str) => {
-                    Messenger.Default.Send(new PopupMsg("", true));
+                return new RelayCommand<string>((str) =>
+                {
+                    CloseEvent?.Invoke();
                 });
             }
         }
@@ -141,7 +155,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public UpLoadLocalProgramViewModel(ReadProgramFolderItemViewModel programFolderInfo){
+        public UpLoadLocalProgramViewModel(ReadProgramFolderItemViewModel programFolderInfo)
+        {
             ProgramFolders = programFolderInfo;
             SelectedProgramFolders = new ReadProgramFolderItemViewModel();
 
@@ -281,8 +296,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        private string  _PlateSize;
-        public string  PlateSize
+        private string _PlateSize;
+        public string PlateSize
         {
             get { return _PlateSize; }
             set
@@ -380,8 +395,5 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
     }
 
-    public class KeyCode
-    {
-        public string Code { get; set; }
-    }
+   
 }
