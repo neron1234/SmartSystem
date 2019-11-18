@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="MMK.SmartSystem.LE.Host.SystemControl.ModuleMenuControl1106"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
+             xmlns:convert="clr-namespace:MMK.SmartSystem.LE.Host.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="640" d:DesignWidth="97" Background="#161614">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <convert:ImageCoverter x:Key="imageConvert"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <Button Background="Transparent"  Width="44" Height="62" Margin="0,9,0,9" BorderThickness="0" Style="{StaticResource NoMouseOverButtonStyle}">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="pack://application:,,,/MMK.SmartSystem.LE.Host;component/Resources/Images/menu-casing-active.png" Width="42" Height="37" />
+                    <TextBlock Text="{Binding Title}" FontSize="13" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 4 0 0" />
+                </WrapPanel>
+            </Button>
+            <Button Background="Transparent"  Width="44" Height="62" Margin="0,9,0,9" BorderThickness="0" Style="{StaticResource NoMouseOverButtonStyle}">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="pack://application:,,,/MMK.SmartSystem.LE.Host;component/Resources/Images/menu-cnc.png" Width="42" Height="37" />
+                    <TextBlock Text="{Binding Title}" FontSize="13" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 4 0 0" />
+                </WrapPanel>
+            </Button>
+            <Button Background="Transparent"  Width="44" Height="62" Margin="0,9,0,9" BorderThickness="0" Style="{StaticResource NoMouseOverButtonStyle}">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="pack://application:,,,/MMK.SmartSystem.LE.Host;component/Resources/Images/menu-handing.png" Width="42" Height="37" />
+                    <TextBlock Text="{Binding Title}" FontSize="13" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 4 0 0" />
+                </WrapPanel>
+            </Button>
+            <Button Background="Transparent"  Width="44" Height="62" Margin="0,9,0,9" BorderThickness="0" Style="{StaticResource NoMouseOverButtonStyle}">
+                <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
+                    <Image Source="pack://application:,,,/MMK.SmartSystem.LE.Host;component/Resources/Images/menu-laser.png" Width="42" Height="37" />
+                    <TextBlock Text="{Binding Title}" FontSize="13" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 4 0 0" />
+                </WrapPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

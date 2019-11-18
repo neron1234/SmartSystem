@@ -37,17 +37,17 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
         }
 
         protected async override void PageSignlarLoaded(){
-            await Sleep();
+            //await Sleep();
         }
 
-        private async Task Sleep()
-        {
-            await Task.Run(new Action(() =>
-            {
-                System.Threading.Thread.Sleep(5000);
-                MessageBox.Show("线程醒了");
-            }));
-        }
+        //private async Task Sleep()
+        //{
+        //    await Task.Run(new Action(() =>
+        //    {
+        //        System.Threading.Thread.Sleep(5000);
+        //        MessageBox.Show("线程醒了");
+        //    }));
+        //}
 
         private void MioVm_IoBtnClickEvent(IoBtnInfo obj)
         {

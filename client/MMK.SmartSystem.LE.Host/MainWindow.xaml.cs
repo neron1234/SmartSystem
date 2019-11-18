@@ -77,14 +77,21 @@ namespace MMK.SmartSystem.LE.Host
         }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            //ctnTest.Visibility = Visibility.Hidden;
+            //viewBox.Visibility = Visibility.Collapsed;
+
             ctnTest.Visibility = Visibility.Hidden;
-            viewBox.Visibility = Visibility.Collapsed;
+            viewBox.Visibility = Visibility.Visible;
+            loadImage.Visibility = Visibility.Collapsed;
+
             mainHome.InitMessenger(iocManager);
             InitMessager();
 
             Task.Factory.StartNew(async () => await signalrRouteProxyClient.Start());
             Task.Factory.StartNew(async () => await AutoLogin());
-            Task.Factory.StartNew(new Action(() => loadWebApp()));
+            //Task.Factory.StartNew(new Action(() => loadWebApp()));
+
+            //Task.Factory.StartNew(new Action(() => loadWebApp()));
         }
 
         private void InitMessager()
