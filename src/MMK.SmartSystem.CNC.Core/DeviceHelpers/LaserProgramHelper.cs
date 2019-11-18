@@ -830,6 +830,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             info.Max_Y = max_y.Value;
             info.Min_X = min_x.Value;
             info.Min_Y = min_y.Value;
+
+            info.UsedPlateSize_W = max_x.Value;
+            info.UsedPlateSize_H = max_y.Value;
         }
 
         private void GetInfo(ProgramDetailDto info, string blockStr)
@@ -860,11 +863,31 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             Regex plateSizeRegex = new Regex(@"(?<=\(#PLATE_SIZE=)\w*(?=\))");
             Match plateSizeMatch = plateSizeRegex.Match(blockStr);
-            if (plateSizeMatch.Success == true) info.PlateSize = plateSizeMatch.Value;
+            if (plateSizeMatch.Success == true)
+            {
+                info.PlateSize = plateSizeMatch.Value;
+                var datas = plateSizeMatch.Value.Split('X');
+                if(datas.Length==2)
+                {
+                    info.PlateSize_W = double.Parse(datas[0]);
+                    info.PlateSize_H = double.Parse(datas[1]);
+                }
+
+            }
 
             Regex usedPlateSizeRegex = new Regex(@"(?<=\(#USED_SIZE=)\w*(?=\))");
             Match usedPlateSizeMatch = usedPlateSizeRegex.Match(blockStr);
-            if (usedPlateSizeMatch.Success == true) info.UsedPlateSize = usedPlateSizeMatch.Value;
+            if (usedPlateSizeMatch.Success == true)
+            {
+                info.UsedPlateSize = usedPlateSizeMatch.Value;
+
+                var datas = usedPlateSizeMatch.Value.Split('X');
+                if (datas.Length == 2)
+                {
+                    info.UsedPlateSize_W = double.Parse(datas[0]);
+                    info.UsedPlateSize_H = double.Parse(datas[1]);
+                }
+            }
 
             Regex cuttingDistanceRegex = new Regex(@"(?<=\(#CUTTING_DISTANCE=)\w*(?=\))");
             Match cuttingDistanceMatch = cuttingDistanceRegex.Match(blockStr);

@@ -39,6 +39,14 @@ namespace MMK.SmartSystem.WebCommon.HubModel
 
         public string UsedPlateSize { get; set; }
 
+        public double PlateSize_W { get; set; }
+
+        public double PlateSize_H { get; set; }
+
+        public double UsedPlateSize_W { get; set; }
+
+        public double UsedPlateSize_H { get; set; }
+
         public double Max_X { get; set; }
         public double Max_Y { get; set; }
         public double Min_X { get; set; }
