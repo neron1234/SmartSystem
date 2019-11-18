@@ -70,5 +70,31 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             }
 
         }
+
+        public static Tuple<short, string> SelectMainProgram(ushort flib, string file)
+        {
+            var ret = Focas1.cnc_pdf_slctmain(flib, file);
+            if (ret == 0)
+            {
+                return new Tuple<short, string>(0, null);
+            }
+            else
+            {
+                return new Tuple<short, string>(ret, $"设定主程序错误,返回:{ret}");
+            }
+        }
+
+        public static Tuple<short, string> DeleteProgram(ushort flib, string file)
+        {
+            var ret = Focas1.cnc_pdf_del(flib, file);
+            if (ret == 0)
+            {
+                return new Tuple<short, string>(0, null);
+            }
+            else
+            {
+                return new Tuple<short, string>(ret, $"删除程序错误,返回:{ret}");
+            }
+        }
     }
 }
