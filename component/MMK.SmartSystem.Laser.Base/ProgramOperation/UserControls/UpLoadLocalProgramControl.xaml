@@ -90,7 +90,7 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" x:Name="TbPanel1">
                     <TextBlock Text="板材尺寸(W)" Margin="0,10,0,0" />
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="True" GotFocus="TextBox_GotFocus"/>
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="True" x:Name="Gas" GotFocus="TextBox_GotFocus"/>
 
                     <TextBlock Text="加工最大尺寸(W)" Margin="0,10,0,0"/>
                     <TextBox cc:TextBoxFocusBehavior.IsFocused="False" GotFocus="TextBox_GotFocus" />

@@ -29,13 +29,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         public LocalProgramListViewModel lpViewModel { get; set; }
 
         public event Action<UpLoadProgramClientEventData, LocalProgramListViewModel> UploadEvent;
-        public LocalProgramListControl(string connectId, ReadProgramFolderItemViewModel readProgramFolder)
+
+        public event Action<ProgramViewModel> ProgramSelectEvent;
+        public LocalProgramListControl()
         {
             InitializeComponent();
             this.DataContext = lpViewModel = new LocalProgramListViewModel();
-          
-        }
+            lpViewModel.UploadClickEvent += LpViewModel_UploadClickEvent;
 
+        }
         private void LpViewModel_UploadClickEvent(LocalProgramListViewModel local, ProgramViewModel obj)
         {
             Stream stream = default;
@@ -49,7 +51,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             }
 
             var fileHash = FileHashHelper.ComputeMD5(System.IO.Path.Combine(local.Path, obj.Name));
-       
+
             UploadEvent?.Invoke(new UpLoadProgramClientEventData
             {
                 FileParameter = new Common.FileParameter(stream, obj.Name),
@@ -58,13 +60,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             }, local);
         }
 
-        public LocalProgramListControl()
-        {
-            InitializeComponent();
-            this.DataContext = lpViewModel = new LocalProgramListViewModel();
-            lpViewModel.UploadClickEvent += LpViewModel_UploadClickEvent;
-      
-        }
+
 
         private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -72,6 +68,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             if (selected != null && selected is ProgramViewModel)
             {
                 lpViewModel.SelectedProgramViewModel = (ProgramViewModel)selected;
+                ProgramSelectEvent?.Invoke(lpViewModel.SelectedProgramViewModel);
                 //Messenger.Default.Send(lpViewModel.SelectedProgramViewModel);
 
                 //if (lpViewModel.SelectedProgramViewModel.Name.Split('.').Count() > 1)

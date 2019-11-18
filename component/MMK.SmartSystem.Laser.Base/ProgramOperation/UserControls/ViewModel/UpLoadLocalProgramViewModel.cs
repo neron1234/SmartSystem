@@ -62,7 +62,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public ObservableCollection<NozzleKindDto> NozzleKindList { get; set; } = new ObservableCollection<NozzleKindDto>();
 
         private ProgramDetailViewModel _ProgramDetail;
-        public ProgramDetailViewModel ProgramDetail
+        public ProgramDetailViewModel ProgramDetail //{ set; get; }
         {
             get { return _ProgramDetail; }
             set
@@ -159,7 +159,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             ProgramFolders = programFolderInfo;
             SelectedProgramFolders = new ReadProgramFolderItemViewModel();
-
+            ProgramDetail = new ProgramDetailViewModel();
             //GetTreeViewData(new System.IO.DirectoryInfo(@"C:\Users\wjj-yl\Desktop\测试用DXF"), ProgramFolders);
             //if (ProgramFolders.Nodes.Count > 0)
             //{
@@ -395,5 +395,5 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
     }
 
-   
+
 }

@@ -38,6 +38,11 @@ namespace MMK.SmartSystem.Laser.Base
 
             Messenger.Default.Register<PopupMsg>(this, (s) =>
             {
+                if (s.IsClose)
+                {
+                    Close();
+                    return;
+                }
                 popupWindowViewModel.Message = s.Msg;
                 UserControlFinishEvent?.Invoke();
             });

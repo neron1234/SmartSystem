@@ -41,7 +41,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             upLoadProViewModel.InputKeyInputEvent += UpLoadProViewModel_InputKeyInputEvent;
             Messenger.Default.Register<ProgramDetailViewModel>(this, (pds) =>
             {
-                upLoadProViewModel.ProgramDetail = pds;
+                //upLoadProViewModel.ProgramDetail = pds;
                 if (!string.IsNullOrEmpty(pds.Material))
                 {
                     upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.FirstOrDefault(n => n.Name_CN == pds.Material)?.Code;
@@ -57,6 +57,19 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             //this.CNCPathCascader.SelectedItem = upLoadProViewModel.SelectedProgramFolders;
         }
 
+        public void SetSelectProgramDetail(ProgramDetailViewModel pds)
+        {
+            upLoadProViewModel.ProgramDetail.Name = pds.Name;
+            if (!string.IsNullOrEmpty(pds.Material))
+            {
+                upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.FirstOrDefault(n => n.Name_CN == pds.Material)?.Code;
+            }
+            if (!string.IsNullOrEmpty(pds.NozzleKind))
+            {
+                upLoadProViewModel.SelectedNozzleKindCode = (int)upLoadProViewModel.NozzleKindList.FirstOrDefault(n => n.Name_CN == pds.NozzleKind)?.Code;
+            }
+
+        }
         private void UpLoadProViewModel_InputKeyInputEvent(string obj)
         {
             InputTextBox(obj);
@@ -69,7 +82,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         private void UpLoadProViewModel_CloseEvent()
         {
-
+            Messenger.Default.Send(new PopupMsg() { IsClose = true });
         }
 
         private void UpLoadLocalProgramControl_Loaded(object sender, RoutedEventArgs e)
@@ -152,6 +165,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             }
 
             var number = 0;
+
+            string name = FocusTb.Name;
+
+
             if (int.TryParse(keyCode, out number))
             {
                 FocusTb.Text += number;
@@ -168,6 +185,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                     {
                         FocusTb.Text = FocusTb.Text.Remove(FocusTb.Text.Length - 1, 1);
                     }
+                }
+            }
+            if (!string.IsNullOrEmpty(name))
+            {
+                var propName = upLoadProViewModel.ProgramDetail.GetType().GetProperty(name);
+                if (propName != null)
+                {
+                    propName.SetValue(upLoadProViewModel.ProgramDetail, FocusTb.Text);
                 }
             }
         }

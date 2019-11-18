@@ -62,5 +62,9 @@ namespace MMK.SmartSystem.Laser.Base
             Msg = msg;
             IsClose = close;
         }
+        public PopupMsg()
+        {
+
+        }
     }
 }
