@@ -5,9 +5,9 @@ using System.Text;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class NoticeHelper
+    public class NoticeHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadNoticeRange(ushort flib, ref List<ReadNoticeResultItemModel> data)
+        public Tuple<short, string> ReadNoticeRange(ushort flib, ref List<ReadNoticeResultItemModel> data)
         {
             if (data == null) return new Tuple<short, string>(-100, "读取操作信息信号错误,数据存储区域过小");
 

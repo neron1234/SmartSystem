@@ -4,9 +4,9 @@ using System;
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
 
-    public static class CycleTimeHelper
+    public class CycleTimeHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadCycleTime(ushort flib, ref ReadCycleTimeResultModel data)
+        public Tuple<short, string> ReadCycleTime(ushort flib, ref ReadCycleTimeResultModel data)
         {
             Focas1.IODBPSD param1 = new Focas1.IODBPSD();
             var ret_cy1 = Focas1.cnc_rdparam(flib, 6757, -1, 8, param1);

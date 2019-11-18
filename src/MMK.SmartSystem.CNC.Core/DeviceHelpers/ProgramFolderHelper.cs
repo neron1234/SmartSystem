@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class ProgramFolderHelper
+    public class ProgramFolderHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadProgramFolder(ushort flib, ref ReadProgramFolderItemModel data)
+        public Tuple<short, string> ReadProgramFolder(ushort flib, ref ReadProgramFolderItemModel data)
         {
             //data.RegNum = 0;
             var ret = ReadSubProgramFolder(flib, true, ref data);
@@ -23,7 +23,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             }
         }
 
-        public static short ReadSubProgramFolder(ushort flib,  bool drill,  ref ReadProgramFolderItemModel data)
+        public short ReadSubProgramFolder(ushort flib,  bool drill,  ref ReadProgramFolderItemModel data)
         {
             short num_prog = 50;
             var pdf_adir_out = new Focas1.PRGFOLDER();

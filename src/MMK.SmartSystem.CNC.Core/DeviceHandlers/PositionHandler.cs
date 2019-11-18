@@ -23,7 +23,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
             {
                 return "Position未正确读取，无法解析！";
             }
-            var ret_dec = PositionHelper.DecompilerReadPositionInfo(datas[item.PositionType], item, ref data);
+            var ret_dec =new PositionHelper().DecompilerReadPositionInfo(datas[item.PositionType], item, ref data);
             if (string.IsNullOrEmpty(ret_dec))
             {
                 res.Add(new ReadPositionResultItemModel()
@@ -39,7 +39,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
         {
             
             int[] data = new int[Focas1.MAX_AXIS];
-            var ret = PositionHelper.ReadPositionRange(flib, item.PositionType, ref data);
+            var ret =new PositionHelper().ReadPositionRange(flib, item.PositionType, ref data);
             if (ret.Item1 == 0)
             {
                 if (datas.ContainsKey(item.PositionType))

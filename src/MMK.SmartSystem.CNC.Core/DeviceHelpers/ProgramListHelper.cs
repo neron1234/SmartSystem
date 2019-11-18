@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class ProgramListHelper
+    public class ProgramListHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadProgramList(ushort flib, string folder, ref List<ReadProgramListItemResultModel> data)
+        public Tuple<short, string> ReadProgramList(ushort flib, string folder, ref List<ReadProgramListItemResultModel> data)
         {
             data.Clear();
 
@@ -71,28 +71,48 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
         }
 
-        public static Tuple<short, string> SelectMainProgram(ushort flib, string file)
+        public Tuple<short, string> SelectMainProgram(string file)
         {
+            ushort flib = 0;
+            var ret_conn = BuildConnect(ref flib);
+            if (ret_conn != 0)
+            {
+                FreeConnect(flib);
+                return new Tuple<short, string>(-16, "设定主程序错误，连接错误");
+            }
+
             var ret = Focas1.cnc_pdf_slctmain(flib, file);
             if (ret == 0)
             {
+                FreeConnect(flib);
                 return new Tuple<short, string>(0, null);
             }
             else
             {
+                FreeConnect(flib);
                 return new Tuple<short, string>(ret, $"设定主程序错误,返回:{ret}");
             }
         }
 
-        public static Tuple<short, string> DeleteProgram(ushort flib, string file)
+        public Tuple<short, string> DeleteProgram(string file)
         {
+            ushort flib = 0;
+            var ret_conn = BuildConnect(ref flib);
+            if (ret_conn != 0)
+            {
+                FreeConnect(flib);
+                return new Tuple<short, string>(-16, "删除程序错误，连接错误");
+            }
+
             var ret = Focas1.cnc_pdf_del(flib, file);
             if (ret == 0)
             {
+                FreeConnect(flib);
                 return new Tuple<short, string>(0, null);
             }
             else
             {
+                FreeConnect(flib);
                 return new Tuple<short, string>(ret, $"删除程序错误,返回:{ret}");
             }
         }

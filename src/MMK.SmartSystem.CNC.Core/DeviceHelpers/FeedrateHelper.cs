@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
 
-    public static class FeedrateHelper
+    public class FeedrateHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadFeedrate(ushort flib, ref ReadFeedrateResultModel data)
+        public Tuple<short, string> ReadFeedrate(ushort flib, ref ReadFeedrateResultModel data)
         {
             Focas1.ODBACT buf = new Focas1.ODBACT();
             var ret = Focas1.cnc_actf(flib, buf);

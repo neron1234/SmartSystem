@@ -14,7 +14,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
         public HubReadWriterResultModel Reader(HubReadWriterModel hubRead)
         {           
             List<ReadProgramListItemResultModel> data = new List<ReadProgramListItemResultModel>();
-            var res = ProgramListHelper.ReadProgramList(flib, hubRead.Data[0].ToString(), ref data);
+            var res =new ProgramListHelper().ReadProgramList(flib, hubRead.Data[0].ToString(), ref data);
             return new HubReadWriterResultModel()
             {             
                 Result = data,

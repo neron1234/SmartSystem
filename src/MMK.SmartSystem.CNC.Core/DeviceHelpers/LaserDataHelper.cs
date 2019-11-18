@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public class LaserDataHelper
+    public class LaserDataHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadLaserData(ushort flib, ref ReadLaserDataResultModel data)
+        public Tuple<short, string> ReadLaserData(ushort flib, ref ReadLaserDataResultModel data)
         {
             Focas1.ODBLCMDT cmmddat = new Focas1.ODBLCMDT();
             var ret = Focas1.cnc_rdlcmddat(flib, cmmddat);

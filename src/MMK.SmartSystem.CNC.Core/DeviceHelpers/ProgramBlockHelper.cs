@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class ProgramBlockHelper
+    public class ProgramBlockHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadProgramBlock(ushort flib, ref ReadProgramBlockResultModel data)
+        public Tuple<short, string> ReadProgramBlock(ushort flib, ref ReadProgramBlockResultModel data)
         {
             Focas1.ODBSEQ seq = new Focas1.ODBSEQ();
             var ret = Focas1.cnc_rdseqnum(flib, seq);

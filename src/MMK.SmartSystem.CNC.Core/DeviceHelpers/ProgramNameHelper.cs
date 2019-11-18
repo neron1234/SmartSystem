@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 { 
-    public static class ProgramNameHelper
+    public class ProgramNameHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadProgramName(ushort flib, ref ReadProgramNameResultItemModel data)
+        public Tuple<short, string> ReadProgramName(ushort flib, ref ReadProgramNameResultItemModel data)
         {
             StringBuilder str = new StringBuilder();
             var ret = Focas1.cnc_pdf_rdmain(flib, str);
