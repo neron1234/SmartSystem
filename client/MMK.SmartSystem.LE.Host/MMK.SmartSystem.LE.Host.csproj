@@ -371,6 +371,9 @@
     <Compile Include="SystemControl\MainHomeControl.xaml.cs">
       <DependentUpon>MainHomeControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SystemControl\ModuleMenuControl1106.xaml.cs">
+      <DependentUpon>ModuleMenuControl1106.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemControl\ModuleMenuControl.xaml.cs">
       <DependentUpon>ModuleMenuControl.xaml</DependentUpon>
     </Compile>
@@ -588,6 +591,10 @@
     <Page Include="SystemControl\MainHomeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemControl\ModuleMenuControl1106.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SystemControl\ModuleMenuControl.xaml">
       <SubType>Designer</SubType>
