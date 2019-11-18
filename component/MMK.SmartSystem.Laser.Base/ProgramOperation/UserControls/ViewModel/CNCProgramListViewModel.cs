@@ -52,12 +52,19 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }else{
                 CurrentPage = 1;
             }
-            this.ProgramList = new ObservableCollection<ProgramViewModel>(LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList());
+
+            this.ProgramList.Clear();
+            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList())
+            {
+                this.ProgramList.Add(item);
+            }
+            //this.ProgramList = new ObservableCollection<ProgramViewModel>(LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList());
         }
 
         public CNCProgramListViewModel()
         {
-            LocalProgramList = new List<ProgramViewModel>();
+            this.ProgramList = new ObservableCollection<ProgramViewModel>();
+            this.LocalProgramList = new List<ProgramViewModel>();
             Messenger.Default.Register<CNCProgramPath>(this, (cncPath) => {
                 this.CNCPath = cncPath.Path;
             });
