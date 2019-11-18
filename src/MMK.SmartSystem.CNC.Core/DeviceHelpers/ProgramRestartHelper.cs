@@ -8,21 +8,13 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
     public class ProgramRestartHelper : BaseHelper
     {
-        public Tuple<short, string> NcodeRestart(string filePath, int code)
+        public Tuple<short, string> NcodeRestart(ushort flib, string filePath, int code)
         {
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return new Tuple<short, string>(-16, "N号续切设定错误，连接错误");
-            }
 
             string buf = "";
             var ret_buf = LocalUploadProgramFromCncToBuf(flib, ref buf, filePath);
             if(ret_buf.Item1!=0)
             {
-                FreeConnect(flib);
                 return ret_buf;
             }
 
@@ -33,13 +25,11 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                 index = buf.IndexOf('\n', index + 1);
                 if (index < 0)
                 {
-                    FreeConnect(flib);
                     return new Tuple<short, string>(-199, "N号续切设定错误,程序文本有误");
                 }
             }
             catch
             {
-                FreeConnect(flib);
                 return new Tuple<short, string>(-199, "N号续切设定错误,程序文本有误");
             }
 
@@ -49,25 +39,21 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             var ret_del = Focas1.cnc_pdf_del(flib, filePath);
             if(ret_del!=0)
             {
-                FreeConnect(flib);
                 return new Tuple<short, string>(ret_del, "N号续切设定错误,删除主程序失败"+ GetGeneralErrorMessage(ret_del));
             }
 
             var ret_cnc = LocalDownloadProgramFromBufToCnc(flib, buf, filePath);
             if (ret_cnc.Item1 != 0)
             {
-                FreeConnect(flib);
                 return ret_cnc;
             }
 
             var ret_main = Focas1.cnc_pdf_slctmain(flib, filePath);
             if(ret_main!=0)
             {
-                FreeConnect(flib);
                 return new Tuple<short, string>(ret_del, "N号续切设定错误,设定主程序错误," + GetGeneralErrorMessage(ret_del));
             }
 
-            FreeConnect(flib);
             return new Tuple<short, string>(0, null);
 
         }

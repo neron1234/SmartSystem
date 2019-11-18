@@ -32,19 +32,10 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             return null;
         }
 
-        public string WriteMacro(short mac_num, double data)
+        public string WriteMacro(ushort flib, short mac_num, double data)
         {
-            ushort flib = 0;
-            short ret = BuildConnect(ref flib);
-            if (ret != 0)
-            {
-                FreeConnect(flib);
-                return "写入宏变量失败，连接错误";
-            }
-
             var decims = data.GetDecimals();
-            ret = Focas1.cnc_wrmacro(flib, mac_num, 10, decims.Item1, decims.Item2);
-            FreeConnect(flib);
+            var ret = Focas1.cnc_wrmacro(flib, mac_num, 10, decims.Item1, decims.Item2);
 
             if (ret != 0) {
                 return $"写入宏变量失败，返回:{ret}";

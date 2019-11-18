@@ -11,7 +11,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
     public class LaserLibraryHelper : BaseHelper
     {
         #region CuttingData
-        public string WriteCuttingDatas(List<CuttingDataToCncDto> cuttings)
+        public string WriteCuttingDatas(ushort flib, List<CuttingDataToCncDto> cuttings)
         {
             if (cuttings == null && cuttings.Count() != LaserLibraryCuttingDataQuantity)
             {
@@ -20,29 +20,12 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             cuttings = cuttings.OrderBy(x => x.ENo).ToList();
 
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "写入切割参数错误，连接错误";
-            }
-
-            var ret = WriteCuttingDatasFunc(cuttings, flib);
-
-            FreeConnect(flib);
+            var ret = WriteCuttingDatasFunc(flib, cuttings);
             return ret;
         }
 
-        public string WriteSingleCuttingData(CuttingDataToCncDto cutting)
+        public string WriteSingleCuttingData(ushort flib, CuttingDataToCncDto cutting)
         {
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "写入切割参数错误，连接错误";
-            }
 
             Focas1.IODBPSCD2 list = new Focas1.IODBPSCD2();
 
@@ -78,16 +61,14 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             {
                 var err_msg = GetCuttingDataErrorMessage(flib);
 
-                FreeConnect(flib);
                 return $"写入切割参数错误,{err_msg}";
             }
 
-            FreeConnect(flib);
             return null;
 
         }
 
-        private string WriteCuttingDatasFunc(List<CuttingDataToCncDto> cuttings, ushort flib)
+        private string WriteCuttingDatasFunc(ushort flib, List<CuttingDataToCncDto> cuttings)
         {
             Focas1.IODBPSCD2 list = new Focas1.IODBPSCD2();
             short i = 0;
@@ -196,7 +177,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
         #endregion
 
         #region EdgeCuttingData
-        public string WriteEdgeCuttingDatas(List<EdgeCuttingDataToCncDto> edgeCuttings)
+        public string WriteEdgeCuttingDatas(ushort flib, List<EdgeCuttingDataToCncDto> edgeCuttings)
         {
             if (edgeCuttings == null && edgeCuttings.Count() != LaserLibraryEdgeCuttingDataQuantity)
             {
@@ -205,29 +186,13 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             edgeCuttings = edgeCuttings.OrderBy(x => x.ENo).ToList();
 
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "写入尖角参数错误，连接错误";
-            }
+            var ret = WriteEdgeCuttingDatasFunc(flib, edgeCuttings);
 
-            var ret = WriteEdgeCuttingDatasFunc(edgeCuttings, flib);
-
-            FreeConnect(flib);
             return ret;
         }
 
-        public string WriteSingleEdgeCuttingData(EdgeCuttingDataToCncDto edgeCutting)
+        public string WriteSingleEdgeCuttingData(ushort flib, EdgeCuttingDataToCncDto edgeCutting)
         {
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "写入尖角参数错误，连接错误";
-            }
 
             Focas1.IODBEDGE2 list = new Focas1.IODBEDGE2();
 
@@ -263,7 +228,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             {
                 var err_msg = GetEdgeCuttingDataErrorMessage(flib);
 
-                FreeConnect(flib);
                 return $"写入尖角参数错误,{err_msg}";
             }
 
@@ -272,7 +236,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
         }
 
-        private string WriteEdgeCuttingDatasFunc(List<EdgeCuttingDataToCncDto> edgeCuttings,ushort flib)
+        private string WriteEdgeCuttingDatasFunc(ushort flib, List<EdgeCuttingDataToCncDto> edgeCuttings)
         {
             Focas1.IODBEDGE2 list = new Focas1.IODBEDGE2();
             int i = 0;
@@ -379,7 +343,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
         #endregion
 
         #region PiercingData
-        public string WritePiercingDatas(List<PiercingDataToCncDto> piercings)
+        public string WritePiercingDatas(ushort flib, List<PiercingDataToCncDto> piercings)
         {
             if (piercings == null && piercings.Count() != LaserLibraryPiercingDataQuantity)
             {
@@ -388,29 +352,13 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             piercings = piercings.OrderBy(x => x.ENo).ToList();
 
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "写入穿孔参数错误，连接错误";
-            }
+            var ret = WritePiercingDatasFunc(flib, piercings);
 
-            var ret = WritePiercingDatasFunc(piercings, flib);
-
-            FreeConnect(flib);
             return ret;
         }
 
-        public string WriteSinglePiercingData(PiercingDataToCncDto piercing)
+        public string WriteSinglePiercingData(ushort flib, PiercingDataToCncDto piercing)
         {
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "写入穿孔参数错误，连接错误";
-            }
 
             Focas1.IODBPIRC list = new Focas1.IODBPIRC();
 
@@ -442,16 +390,14 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             {
                 var err_msg = GetPiercingDataErrorMessage(flib);
 
-                FreeConnect(flib);
                 return $"写入穿孔参数错误,{err_msg}";
             }
 
-            FreeConnect(flib);
             return null;
 
         }
 
-        private string WritePiercingDatasFunc(List<PiercingDataToCncDto> piercings, ushort flib)
+        private string WritePiercingDatasFunc(ushort flib, List<PiercingDataToCncDto> piercings)
         {
             Focas1.IODBPIRC list = new Focas1.IODBPIRC();
             short i = 0;
@@ -557,7 +503,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
         #endregion
 
         #region SlopeControlData
-        public string WriteSlopeControlDatas(List<SlopeControlDataToCncDto> slopeControls)
+        public string WriteSlopeControlDatas(ushort flib, List<SlopeControlDataToCncDto> slopeControls)
         {
             if (slopeControls == null && slopeControls.Count() != LaserLibrarySlopeControlDataQuantity)
             {
@@ -566,29 +512,14 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             slopeControls = slopeControls.OrderBy(x => x.ENo).ToList();
 
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "写入功率控制参数错误，连接错误";
-            }
 
-            var ret = WriteSlopeControlDatasFunc(slopeControls, flib);
+            var ret = WriteSlopeControlDatasFunc(flib, slopeControls);
 
-            FreeConnect(flib);
             return ret;
         }
 
-        public string WriteSingleSlopeControlData(SlopeControlDataToCncDto slopeControl)
+        public string WriteSingleSlopeControlData(ushort flib, SlopeControlDataToCncDto slopeControl)
         {
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "写入功率控制参数错误，连接错误";
-            }
 
             Focas1.IODBPWRCTL list = new Focas1.IODBPWRCTL();
 
@@ -615,16 +546,14 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             {
                 var err_msg = GetSlopeControlDataErrorMessage(flib);
 
-                FreeConnect(flib);
                 return $"写入功率控制参数错误,{err_msg}";
             }
 
-            FreeConnect(flib);
             return null;
 
         }
 
-        private string WriteSlopeControlDatasFunc(List<SlopeControlDataToCncDto> slopeControls,ushort flib)
+        private string WriteSlopeControlDatasFunc(ushort flib, List<SlopeControlDataToCncDto> slopeControls)
         {
             Focas1.IODBPWRCTL list = new Focas1.IODBPWRCTL();
             short i = 0;

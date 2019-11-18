@@ -71,48 +71,30 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
         }
 
-        public Tuple<short, string> SelectMainProgram(string file)
+        public Tuple<short, string> SelectMainProgram(ushort flib, string file)
         {
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return new Tuple<short, string>(-16, "设定主程序错误，连接错误");
-            }
 
             var ret = Focas1.cnc_pdf_slctmain(flib, file);
             if (ret == 0)
             {
-                FreeConnect(flib);
                 return new Tuple<short, string>(0, null);
             }
             else
             {
-                FreeConnect(flib);
                 return new Tuple<short, string>(ret, $"设定主程序错误,返回:{ret}");
             }
         }
 
-        public Tuple<short, string> DeleteProgram(string file)
+        public Tuple<short, string> DeleteProgram(ushort flib, string file)
         {
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return new Tuple<short, string>(-16, "删除程序错误，连接错误");
-            }
 
             var ret = Focas1.cnc_pdf_del(flib, file);
             if (ret == 0)
             {
-                FreeConnect(flib);
                 return new Tuple<short, string>(0, null);
             }
             else
             {
-                FreeConnect(flib);
                 return new Tuple<short, string>(ret, $"删除程序错误,返回:{ret}");
             }
         }

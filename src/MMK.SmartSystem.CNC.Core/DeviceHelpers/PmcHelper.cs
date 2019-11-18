@@ -170,16 +170,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
         }
 
         //写操作
-        public string WritePmc(short adr_type, short data_type, ushort adr, ushort bit, string data)
+        public string WritePmc(ushort flib, short adr_type, short data_type, ushort adr, ushort bit, string data)
         {
-            ushort flib = 0;
-
-            var ret_conn = BuildConnect(ref flib);
-            if(ret_conn !=0 )
-            {
-                FreeConnect(flib);
-                return "写入PMC信号失败，连接错误";
-            }
 
             string ret;
             switch (data_type)
@@ -201,41 +193,21 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                     break;
             }
 
-            FreeConnect(flib);
             return ret;
         }
 
-        public string SetPmcBit(short adr_type, ushort adr, ushort bit)
+        public string SetPmcBit(ushort flib, short adr_type, ushort adr, ushort bit)
         {
-            ushort flib = 0;
-
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "置位PMC信号失败，连接错误";
-            }
 
             string ret = WritePmcBit(flib, adr_type, adr, bit, "true");
 
-            FreeConnect(flib);
             return ret;
         }
 
-        public string ResetPmcBit(short adr_type, ushort adr, ushort bit)
+        public string ResetPmcBit(ushort flib, short adr_type, ushort adr, ushort bit)
         {
-            ushort flib = 0;
-
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "置位PMC信号失败，连接错误";
-            }
-
             string ret = WritePmcBit(flib, adr_type, adr, bit, "false");
 
-            FreeConnect(flib);
             return ret;
         }
 
@@ -246,7 +218,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             string ret = ReadPmcBit(flib, adr_type, adr, bit, ref pmcBit);
             if(ret!=null)
             {
-                FreeConnect(flib);
                 return $"翻转PMC信号失败(ret)";
             }
             
@@ -259,7 +230,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
                 ret = WritePmcBit(flib, adr_type, adr, bit, "true");
             }
 
-            FreeConnect(flib);
             return ret;
         }
 

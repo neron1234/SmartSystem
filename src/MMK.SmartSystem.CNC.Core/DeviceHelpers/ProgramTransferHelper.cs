@@ -10,15 +10,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
     {
         public event Action<double> ReportProcessEvent;
 
-        public string LocalDownloadProgramFromPcToCnc(string pcPath, string ncFolder)
+        public string LocalDownloadProgramFromPcToCnc(ushort flib, string pcPath, string ncFolder)
         {
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "传输程序至CNC失败，连接错误";
-            }
 
             string progStr = "";
             using (System.IO.StreamReader sr = new System.IO.StreamReader(pcPath))
@@ -30,7 +23,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             var ret = Focas1.cnc_dwnstart4(flib, 0, ncFolder);//开始传输
             if (ret != 0) 
             {
-                FreeConnect(flib);
                 return "传输程序至CNC失败," + GetGeneralErrorMessage(ret);
             }
 
@@ -66,7 +58,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
             Focas1.cnc_dwnend4(flib);
 
-            FreeConnect(flib);
             if (ret != 0)
             {
                 return "传输程序至CNC失败," + GetGeneralErrorMessage(ret);
@@ -76,20 +67,13 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
         }
 
 
-        public string LocalUploadProgramFromCncToPc(string ncPath, string pcPath, double fileSize)
+        public string LocalUploadProgramFromCncToPc(ushort flib, string ncPath, string pcPath, double fileSize)
         {
             if (System.IO.File.Exists(pcPath))
             {
                 return "传输程序至PC失败,PC文件已经存在";
             }
 
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "传输程序至PC失败，连接错误";
-            }
 
             string str = "";
             long cur_size = 0;
@@ -98,7 +82,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             var ret = Focas1.cnc_upstart4(flib, 0, ncPath);
             if (ret != 0)
             {
-                FreeConnect(flib);
                 return "传输程序至PC失败," + GetGeneralErrorMessage(ret);
             }
 
@@ -139,7 +122,6 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             {
                 return "传输程序至PC失败," + GetGeneralErrorMessage(ret);
             }
-            FreeConnect(flib);
 
             using (StreamWriter sw = new StreamWriter(pcPath))
             {
@@ -149,19 +131,11 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             return null;
         }
 
-        public string DeleteProgramInCnc(string ncPath)
+        public string DeleteProgramInCnc(ushort flib, string ncPath)
         {
-            ushort flib = 0;
-            var ret_conn = BuildConnect(ref flib);
-            if (ret_conn != 0)
-            {
-                FreeConnect(flib);
-                return "删除PC程序失败，连接错误";
-            }
 
             var ret = Focas1.cnc_pdf_del(flib, ncPath);
 
-            FreeConnect(flib);
 
             if (ret == 5) return "文件路径不正确或者文件没找到";
             if (ret == 7) return "文件被保护";
