@@ -29,7 +29,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
 
         protected override Tuple<short, string> PollRead(string item)
         {
-            var ret = CycleTimeHelper.ReadCycleTime(flib, ref temp);
+            var ret =new CycleTimeHelper().ReadCycleTime(flib, ref temp);
             if (ret.Item1 != 0)
             {
                 message = ret.Item2;

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class AlarmHelper
+    public class AlarmHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadAlarmRange(ushort flib, ref List<ReadAlarmResultItemModel> data)
+        public Tuple<short, string> ReadAlarmRange(ushort flib, ref List<ReadAlarmResultItemModel> data)
         {
             if (data ==null) return new Tuple<short, string>(-100, "读取报警信号错误,数据存储区域过小");
 

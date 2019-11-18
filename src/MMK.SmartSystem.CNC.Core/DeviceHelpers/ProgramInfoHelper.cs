@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class ProgramInfoHelper
+    public class ProgramInfoHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadProgramInfo(ushort flib, ref ReadProgramInfoResultModel data)
+        public Tuple<short, string> ReadProgramInfo(ushort flib, ref ReadProgramInfoResultModel data)
         {
             Focas1.ODBNC_1 prginfo = new Focas1.ODBNC_1();
             var ret = Focas1.cnc_rdproginfo(flib, 0, 12, prginfo);

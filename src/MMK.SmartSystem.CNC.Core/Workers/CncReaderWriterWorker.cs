@@ -17,10 +17,12 @@ namespace MMK.SmartSystem.CNC.Core.Workers
         }
         public HubReadWriterResultModel DoWork(HubReadWriterModel hubRead)
         {
+            Type handlerType = default;
+            object handler = default;
             try
             {
-                var handlerType = Type.GetType($"MMK.SmartSystem.CNC.Core.DeviceInOut.{hubRead.ProxyName}");
-                var handler = iocManager.Resolve(handlerType);
+                handlerType = Type.GetType($"MMK.SmartSystem.CNC.Core.DeviceInOut.{hubRead.ProxyName}");
+                handler = iocManager.Resolve(handlerType);
                 var connMethod = handlerType.GetMethod("BuildConnect");
                 var connRes = (bool)connMethod.Invoke(handler, null);
                 if (!connRes)
@@ -58,6 +60,25 @@ namespace MMK.SmartSystem.CNC.Core.Workers
                     Id = hubRead.Id
 
                 };
+
+            }
+            finally
+            {
+                var closeConnect = handlerType.GetMethod("CloseConnect");
+                if (closeConnect != null && handler != null)
+                {
+                    try
+                    {
+                        closeConnect.Invoke(handler, null);
+
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+
+                }
 
             }
 

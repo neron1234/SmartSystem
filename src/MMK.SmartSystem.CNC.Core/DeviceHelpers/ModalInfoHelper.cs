@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class ModalInfoHelper
+    public class ModalInfoHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadModalInfo(ushort flib, ref ReadModalResultModel data)
+        public Tuple<short, string> ReadModalInfo(ushort flib, ref ReadModalResultModel data)
         {
             data.Modals.Clear();
 

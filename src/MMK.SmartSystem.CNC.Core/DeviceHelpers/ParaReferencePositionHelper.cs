@@ -52,17 +52,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             return null;
         }
 
-        public string WriteParaReferencePosition(int type, short axis, double data)
+        public string WriteParaReferencePosition(ushort flib, int type, short axis, double data)
         {
             if (type < 1 || type > 4) return "写入参考点数据失败，参数设定错误";
-
-            ushort flib = 0;
-            short ret = BuildConnect(ref flib);
-            if (ret != 0)
-            {
-                FreeConnect(flib);
-                return "写入参考点数据失败，连接错误";
-            }
 
             var temp_rdata = data.GetDecimals();
 
@@ -72,8 +64,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             param.u.rdatas[0].prm_val = temp_rdata.Item1;
             param.u.rdatas[0].dec_val = temp_rdata.Item2;
 
-            ret = Focas1.cnc_wrparam(flib, 12, param);
-            FreeConnect(flib);
+            var ret = Focas1.cnc_wrparam(flib, 12, param);
 
             if (ret != 0)
             {
@@ -83,23 +74,13 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             return null;
         }
 
-        public string GetParaReferencePosition(int type, short axis,ref double data)
+        public string GetParaReferencePosition(ushort flib, int type, short axis,ref double data)
         {
             if (type < 1 || type > 4) return "获得参考点数据失败，参数设定错误";
 
-            ushort flib = 0;
-            short ret = BuildConnect(ref flib);
-            if (ret != 0)
-            {
-                FreeConnect(flib);
-                return "获得参考点数据失败，连接错误";
-            }
-
-
             Focas1.IODBPSD param = new Focas1.IODBPSD();
             short number = (short)(1239 + type);
-            ret = Focas1.cnc_rdparam3(flib, number, axis,12,1, param);
-            FreeConnect(flib);
+            var ret = Focas1.cnc_rdparam3(flib, number, axis,12,1, param);
 
             if (ret != 0)
             {

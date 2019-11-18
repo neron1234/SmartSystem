@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class ProgramListHelper
+    public class ProgramListHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadProgramList(ushort flib, string folder, ref List<ReadProgramListItemResultModel> data)
+        public Tuple<short, string> ReadProgramList(ushort flib, string folder, ref List<ReadProgramListItemResultModel> data)
         {
             data.Clear();
 
@@ -71,8 +71,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 
         }
 
-        public static Tuple<short, string> SelectMainProgram(ushort flib, string file)
+        public Tuple<short, string> SelectMainProgram(ushort flib, string file)
         {
+
             var ret = Focas1.cnc_pdf_slctmain(flib, file);
             if (ret == 0)
             {
@@ -84,8 +85,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
             }
         }
 
-        public static Tuple<short, string> DeleteProgram(ushort flib, string file)
+        public Tuple<short, string> DeleteProgram(ushort flib, string file)
         {
+
             var ret = Focas1.cnc_pdf_del(flib, file);
             if (ret == 0)
             {

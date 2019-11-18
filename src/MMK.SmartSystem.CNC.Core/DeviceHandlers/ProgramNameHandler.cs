@@ -31,7 +31,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
         protected override Tuple<short, string> PollRead(string item)
         {
 
-            var ret = ProgramNameHelper.ReadProgramName(flib, ref temp);
+            var ret =new ProgramNameHelper().ReadProgramName(flib, ref temp);
             if (ret.Item1 != 0)
             {
                 message = ret.Item2;

@@ -30,7 +30,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
 
         protected override Tuple<short, string> PollRead(string item)
         {
-            var ret = AlarmHelper.ReadAlarmRange(flib, ref temp);
+            var ret = new AlarmHelper().ReadAlarmRange(flib, ref temp);
 
             if (ret.Item1 != 0)
             {

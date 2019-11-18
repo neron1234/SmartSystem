@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class SpindleSpeedHelper
+    public class SpindleSpeedHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadSpindleSpeed(ushort flib, ref ReadSpindleSpeedResultModel data)
+        public Tuple<short, string> ReadSpindleSpeed(ushort flib, ref ReadSpindleSpeedResultModel data)
         {
             Focas1.ODBACT buf = new Focas1.ODBACT();
             var ret = Focas1.cnc_acts(flib, buf);

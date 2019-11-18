@@ -24,7 +24,7 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHandlers
 
         protected override Tuple<short, string> PollRead(string item)
         {
-            var ret = WorkpartNumHelper.ReadWorkpartNum(flib, ref res);
+            var ret =new WorkpartNumHelper().ReadWorkpartNum(flib, ref res);
             if (ret.Item1 != 0)
             {
                 message = ret.Item2;

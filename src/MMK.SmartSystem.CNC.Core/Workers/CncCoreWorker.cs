@@ -103,7 +103,7 @@ namespace MMK.SmartSystem.CNC.Core.Workers
             {
                 var res = new List<ReadProgramListItemResultModel>();
 
-                var ret_1 = ProgramListHelper.ReadProgramList(flib, folder, ref res);
+                var ret_1 =new ProgramListHelper().ReadProgramList(flib, folder, ref res);
                 ConnectHelper.FreeConnect(flib);
 
                 if (ret_1.Item1 == 0)
@@ -408,14 +408,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
             foreach (var item in paraModel.Readers)
             {
                 int[] data = new int[Focas1.MAX_AXIS];
-                var ret = PositionHelper.ReadPositionRange(flib, item.PositionType, ref data);
+                var ret =new PositionHelper().ReadPositionRange(flib, item.PositionType, ref data);
                 if (ret.Item1 == -16 || ret.Item1 == -8)
                 {
                     var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                     if (ret_conn == 0)
                     {
-                        ret = PositionHelper.ReadPositionRange(flib, item.PositionType, ref data);
+                        ret =new PositionHelper().ReadPositionRange(flib, item.PositionType, ref data);
                     }
                 }
 
@@ -432,7 +432,7 @@ namespace MMK.SmartSystem.CNC.Core.Workers
                 string ret_dec = "";
                 if (datas.ContainsKey(item.PositionType))
                 {
-                    ret_dec = PositionHelper.DecompilerReadPositionInfo(datas[item.PositionType], item, ref data);
+                    ret_dec =new PositionHelper().DecompilerReadPositionInfo(datas[item.PositionType], item, ref data);
                 }
 
                 if (ret_dec != null)
@@ -460,14 +460,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
             var res = new List<ReadAlarmResultItemModel>();
 
-            var ret = AlarmHelper.ReadAlarmRange(flib, ref res);
+            var ret =new AlarmHelper().ReadAlarmRange(flib, ref res);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                 if (ret_conn == 0)
                 {
-                    ret = AlarmHelper.ReadAlarmRange(flib, ref res);
+                    ret =new AlarmHelper().ReadAlarmRange(flib, ref res);
                 }
             }
 
@@ -486,14 +486,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
             var res = new List<ReadNoticeResultItemModel>();
 
-            var ret = NoticeHelper.ReadNoticeRange(flib, ref res);
+            var ret =new NoticeHelper().ReadNoticeRange(flib, ref res);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                 if (ret_conn == 0)
                 {
-                    ret = NoticeHelper.ReadNoticeRange(flib, ref res);
+                    ret =new NoticeHelper().ReadNoticeRange(flib, ref res);
                 }
             }
 
@@ -512,14 +512,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
             var res = new ReadProgramNameResultItemModel();
 
-            var ret = ProgramNameHelper.ReadProgramName(flib, ref res);
+            var ret =new ProgramNameHelper().ReadProgramName(flib, ref res);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                 if (ret_conn == 0)
                 {
-                    ret = ProgramNameHelper.ReadProgramName(flib, ref res);
+                    ret =new ProgramNameHelper().ReadProgramName(flib, ref res);
                 }
             }
 
@@ -538,14 +538,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
             var res = new ReadProgramBlockResultModel();
 
-            var ret = ProgramBlockHelper.ReadProgramBlock(flib, ref res);
+            var ret =new ProgramBlockHelper().ReadProgramBlock(flib, ref res);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                 if (ret_conn == 0)
                 {
-                    ret = ProgramBlockHelper.ReadProgramBlock(flib, ref res);
+                    ret =new ProgramBlockHelper().ReadProgramBlock(flib, ref res);
                 }
             }
 
@@ -564,14 +564,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
             var res = new ReadProgramStrResultModel();
 
-            var ret = ProgramStrHelper.ReadProgramStr(flib, ref res);
+            var ret =new ProgramStrHelper().ReadProgramStr(flib, ref res);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                 if (ret_conn == 0)
                 {
-                    ret = ProgramStrHelper.ReadProgramStr(flib, ref res);
+                    ret =new ProgramStrHelper().ReadProgramStr(flib, ref res);
                 }
             }
 
@@ -590,14 +590,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
             var res = new ReadProgramInfoResultModel();
 
-            var ret = ProgramInfoHelper.ReadProgramInfo(flib, ref res);
+            var ret =new ProgramInfoHelper().ReadProgramInfo(flib, ref res);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                 if (ret_conn == 0)
                 {
-                    ret = ProgramInfoHelper.ReadProgramInfo(flib, ref res);
+                    ret =new ProgramInfoHelper().ReadProgramInfo(flib, ref res);
                 }
             }
 
@@ -616,14 +616,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
             var res = new ReadModalResultModel();
 
-            var ret = ModalInfoHelper.ReadModalInfo(flib, ref res);
+            var ret =new ModalInfoHelper().ReadModalInfo(flib, ref res);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                 if (ret_conn == 0)
                 {
-                    ret = ModalInfoHelper.ReadModalInfo(flib, ref res);
+                    ret =new ModalInfoHelper().ReadModalInfo(flib, ref res);
                 }
             }
 
@@ -642,14 +642,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
             var res = new ReadCycleTimeResultModel();
 
-            var ret = CycleTimeHelper.ReadCycleTime(flib, ref res);
+            var ret =new CycleTimeHelper().ReadCycleTime(flib, ref res);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                 if (ret_conn == 0)
                 {
-                    ret = CycleTimeHelper.ReadCycleTime(flib, ref res);
+                    ret =new CycleTimeHelper().ReadCycleTime(flib, ref res);
                 }
             }
 
@@ -668,14 +668,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
             var res = new ReadWorkpartNumResultModel();
 
-            var ret = WorkpartNumHelper.ReadWorkpartNum(flib, ref res);
+            var ret =new WorkpartNumHelper().ReadWorkpartNum(flib, ref res);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                 if (ret_conn == 0)
                 {
-                    ret = WorkpartNumHelper.ReadWorkpartNum(flib, ref res);
+                    ret =new WorkpartNumHelper().ReadWorkpartNum(flib, ref res);
                 }
             }
 
@@ -694,14 +694,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
             var res = new ReadSpindleSpeedResultModel();
 
-            var ret = SpindleSpeedHelper.ReadSpindleSpeed(flib, ref res);
+            var ret =new SpindleSpeedHelper().ReadSpindleSpeed(flib, ref res);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                 if (ret_conn == 0)
                 {
-                    ret = SpindleSpeedHelper.ReadSpindleSpeed(flib, ref res);
+                    ret =new SpindleSpeedHelper().ReadSpindleSpeed(flib, ref res);
                 }
             }
 
@@ -720,14 +720,14 @@ namespace MMK.SmartSystem.CNC.Core.Workers
 
             var res = new ReadFeedrateResultModel();
 
-            var ret = FeedrateHelper.ReadFeedrate(flib, ref res);
+            var ret =new FeedrateHelper().ReadFeedrate(flib, ref res);
             if (ret.Item1 == -16)
             {
                 var ret_conn = ConnectHelper.BuildConnect(ref flib, m_ip, m_port, m_timeout);
 
                 if (ret_conn == 0)
                 {
-                    ret = FeedrateHelper.ReadFeedrate(flib, ref res);
+                    ret =new FeedrateHelper().ReadFeedrate(flib, ref res);
                 }
             }
 

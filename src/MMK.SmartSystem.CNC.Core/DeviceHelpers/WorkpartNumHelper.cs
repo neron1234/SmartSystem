@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class WorkpartNumHelper
+    public class WorkpartNumHelper : BaseHelper
     {
-        public static Tuple<short, string> ReadWorkpartNum(ushort flib, ref ReadWorkpartNumResultModel data)
+        public Tuple<short, string> ReadWorkpartNum(ushort flib, ref ReadWorkpartNumResultModel data)
         {
             Focas1.IODBPSD param3 = new Focas1.IODBPSD();
             var ret = Focas1.cnc_rdparam(flib, 6711, 0, 8, param3);

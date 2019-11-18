@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
-    public static class ProgramStrHelper
+    public class ProgramStrHelper : BaseHelper
     {
 
-        public static Tuple<short, string> ReadProgramStr(ushort flib, ref ReadProgramStrResultModel data)
+        public Tuple<short, string> ReadProgramStr(ushort flib, ref ReadProgramStrResultModel data)
         {
             //program string 
             ushort charnum = 2048;
