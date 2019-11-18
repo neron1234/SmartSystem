@@ -32,11 +32,17 @@
     "EnvPairList": [
       {
         "EnvName": "ctobaby",
-        "ConfigName": ""
+        "ConfigName": "",
+        "DockerPort": null,
+        "DockerEnvName": null,
+        "DockerVolume": null
       },
       {
         "EnvName": "local",
-        "ConfigName": ""
+        "ConfigName": "",
+        "DockerPort": null,
+        "DockerEnvName": null,
+        "DockerVolume": null
       }
     ]
   },
@@ -47,11 +53,17 @@
     "EnvPairList": [
       {
         "EnvName": "ctobaby",
-        "ConfigName": ""
+        "ConfigName": "",
+        "DockerPort": null,
+        "DockerEnvName": null,
+        "DockerVolume": null
       },
       {
         "EnvName": "local",
-        "ConfigName": ""
+        "ConfigName": "",
+        "DockerPort": null,
+        "DockerEnvName": null,
+        "DockerVolume": null
       }
     ]
   },
@@ -60,6 +72,15 @@
     "AspNetCoreEnv": "Staging",
     "LastEnvName": "ctobaby",
     "RemoveDaysFromPublished": "1",
-    "Volume": ""
+    "Volume": "",
+    "EnvPairList": [
+      {
+        "EnvName": "ctobaby",
+        "ConfigName": null,
+        "DockerPort": "21021",
+        "DockerEnvName": "Staging",
+        "DockerVolume": ""
+      }
+    ]
   }
 }

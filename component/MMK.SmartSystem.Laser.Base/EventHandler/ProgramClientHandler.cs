@@ -29,4 +29,21 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
             };
         }
     }
+
+    public class UpdateProgramCientEventHandler : BaseEventHandler<UpdateProgramClientEventData, object>
+    {
+        public override RequestResult<object> WebRequest(UpdateProgramClientEventData eventData)
+        {
+            ProgramClientServiceProxy programClientService = new ProgramClientServiceProxy(apiHost, httpClient);
+            var res = programClientService.UpdateAsync(eventData.Data).Result;
+            return new RequestResult<object>()
+            {
+                Success = res.Success,
+                Error = res.Error,
+                Result = res.Result,
+                TargetUrl = res.TargetUrl,
+                UnAuthorizedRequest = res.UnAuthorizedRequest
+            };
+        }
+    }
 }

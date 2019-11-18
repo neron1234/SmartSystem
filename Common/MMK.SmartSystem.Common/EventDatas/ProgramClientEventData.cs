@@ -12,4 +12,9 @@ namespace MMK.SmartSystem.Common.EventDatas
         public string ConnectId { get; set; }
         public string FileHashCode { get; set; }
     }
+
+    public class UpdateProgramClientEventData : BaseApiEventData<object>
+    {
+        public UpdateProgramDto Data { get; set; }
+    }
 }

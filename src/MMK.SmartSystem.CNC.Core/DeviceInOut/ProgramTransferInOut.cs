@@ -28,11 +28,11 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
         }
         public HubReadWriterResultModel UploadProgramToCNC(HubReadWriterModel hubRead)
         {
-
-            var res = new ProgramTransferHelper().LocalDownloadProgramFromPcToCnc(flib, hubRead.Data[0].ToString(), hubRead.Data[1].ToString());
+            string name = "";
+            var res = new ProgramTransferHelper().LocalDownloadProgramFromPcToCnc(flib, hubRead.Data[0].ToString(), hubRead.Data[1].ToString(),ref name);
             return new HubReadWriterResultModel()
             {
-                Result = res,
+                Result = name,
                 Error = res,
                 Success = string.IsNullOrEmpty(res)
             };
