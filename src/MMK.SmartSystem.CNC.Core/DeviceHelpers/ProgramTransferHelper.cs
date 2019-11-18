@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
 {
@@ -10,15 +11,44 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
     {
         public event Action<double> ReportProcessEvent;
 
-        public string LocalDownloadProgramFromPcToCnc(ushort flib, string pcPath, string ncFolder)
+        public string LocalDownloadProgramFromPcToCnc(ushort flib, string pcPath, string ncFolder, ref string name)
         {
-
             string progStr = "";
             using (System.IO.StreamReader sr = new System.IO.StreamReader(pcPath))
             {
                 progStr = sr.ReadToEnd();
             }
             progStr = progStr.Replace("\r\n", "\n");
+
+            var index = 0;
+            var lines = progStr.Split('\n');
+            while(true)
+            {
+                if (lines.Length < index + 1) break;
+
+                Regex prognumber_r = new Regex(@"(?<=\AO)\d*");
+                Match prognumber_m = prognumber_r.Match(lines[index]);
+                if(prognumber_m.Success==true)
+                {
+                    name = "O" + int.Parse(prognumber_m.Value).ToString();
+                    break;
+                }
+
+                Regex nameRegex = new Regex(@"(?<=<)\w*(?=>)");
+                Match nameMatch = nameRegex.Match(lines[index]);
+                if (nameMatch.Success == true)
+                {
+                    name = nameMatch.Value;
+                    break;
+                }
+
+                index++;
+            }
+
+            if(name==string.Empty)
+            {
+                return "传输程序至CNC失败,获取程序名称失败";
+            }
 
             var ret = Focas1.cnc_dwnstart4(flib, 0, ncFolder);//开始传输
             if (ret != 0) 
