@@ -80,9 +80,9 @@ namespace MMK.SmartSystem.LE.Host
             //ctnTest.Visibility = Visibility.Hidden;
             //viewBox.Visibility = Visibility.Collapsed;
 
-            //ctnTest.Visibility = Visibility.Hidden;
-            //viewBox.Visibility = Visibility.Visible;
-            //loadImage.Visibility = Visibility.Collapsed;
+            ctnTest.Visibility = Visibility.Hidden;
+            viewBox.Visibility = Visibility.Visible;
+            loadImage.Visibility = Visibility.Collapsed;
 
             mainHome.InitMessenger(iocManager);
             InitMessager();
@@ -91,7 +91,7 @@ namespace MMK.SmartSystem.LE.Host
             Task.Factory.StartNew(async () => await AutoLogin());
             //Task.Factory.StartNew(new Action(() => loadWebApp()));
 
-            Task.Factory.StartNew(new Action(() => loadWebApp()));
+            //Task.Factory.StartNew(new Action(() => loadWebApp()));
         }
 
         private void InitMessager()

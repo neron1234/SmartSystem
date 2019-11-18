@@ -119,9 +119,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                     readProgramFolder.Folder = jObject["folder"].ToString();
                     var jArray = JArray.Parse(jObject["nodes"].ToString());
 
-                    await Task.Run(new Action(() => {
-                        ReadProgramFolderNode(jArray, readProgramFolder);
-                    })); 
+                    ReadProgramFolderNode(jArray, readProgramFolder);
 
                     Messenger.Default.Send(readProgramFolder);
                     programListViewModel.ProgramFolder = readProgramFolder;
@@ -159,9 +157,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             if (jArray == null) return;
 
             node.Nodes = new System.Collections.ObjectModel.ObservableCollection<ReadProgramFolderItemViewModel>();
-
-            Task.Run(() => ReadProgramFolderNode(jArray, node));
-            Parallel.ForEach(jArray, item => {
+            foreach (var item in jArray)
+            {
                 var childNode = new ReadProgramFolderItemViewModel
                 {
                     RegNum = (int)item["regNum"],
@@ -170,7 +167,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 };
                 node.Nodes.Add(childNode);
                 ReadProgramFolderNode(JArray.Parse(item["nodes"].ToString()), childNode);
-            });
+            }
         }
 
         public override bool IsRequestResponse => true;
