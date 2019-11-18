@@ -78,13 +78,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                     this.ProgramList.Add(item);
                 }
             });
-            Messenger.Default.Register<ReadProgramFolderItemViewModel>(this, (pfs) => {
-                this.ProgramFolderList = pfs;
-            });
-            Messenger.Default.Register<List<ProgramViewModel>>(this, (pvList) => {
-                this.LocalProgramList = pvList;
-                this.DataPaging();
-            });
         }
         
         public ReadProgramFolderItemViewModel ProgramFolderList { get; set; }

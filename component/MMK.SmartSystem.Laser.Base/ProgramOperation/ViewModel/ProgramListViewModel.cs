@@ -17,22 +17,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
 {
     public class ProgramListViewModel:ViewModelBase
     {
-        public List<ProgramViewModel> CNCProgramViews { get; set; }
-
-        private UserControl _ListControl;
-        public UserControl ListControl
-        {
-            get { return _ListControl; }
-            set
-            {
-                if (_ListControl != value)
-                {
-                    _ListControl = value;
-                    RaisePropertyChanged(() => ListControl);
-                }
-            }
-        }
-
         private UserControl _InfoControl;
         public UserControl InfoControl
         {
@@ -73,24 +57,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
             get{
                 return new RelayCommand(() => {
                     
-                });
-            }
-        }
-
-        public ICommand LocalListCommand{
-            get{
-                return new RelayCommand(() => {
-                    this.ListControl = new LocalProgramListControl(this.ConnectId,this.ProgramFolder);
-                    this.InfoControl = new LocalProgramInfoControl();
-                });
-            }
-        }
-
-        public ICommand CNCInfoCommand{
-            get{
-                return new RelayCommand(() => {
-                    this.ListControl = new CNCInfoControl();
-                    this.InfoControl = new UserControl();
                 });
             }
         }

@@ -737,6 +737,43 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="TabItemStyle" TargetType="{x:Type TabItem}">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Background" Value="{StaticResource CheckRadioFillNormal}"/>
+        <Setter Property="Width" Value="160"/>
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="2 0 2 0"/>
+        <Setter Property="Margin" Value="1,0,1,0"/>
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontFamily" Value="SourceHanSansCN-Medium"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Grid>
+                        <Rectangle x:Name="rectangle" Fill="#202328" Stroke="Black" Opacity="0.5"  StrokeThickness="0"/>
+                        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{TemplateBinding Header}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="27.137" FontSize="18.667" Foreground="#FF636A64" FontWeight="Bold"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Fill" TargetName="rectangle" Value="#141619"/>
+                            <Setter Property="Opacity" TargetName="rectangle" Value="1"/>
+                            <Setter Property="Foreground" Value="#FCC332" TargetName="textBlock"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Effect" TargetName="rectangle" Value="{x:Null}"/>
+                            <Setter Property="Fill" TargetName="rectangle" Value="Black"/>
+                        </Trigger>
+                        <Trigger Property="HasContent" Value="true">
+                            <Setter Property="FocusVisualStyle" Value="{StaticResource CheckRadioFocusVisual}"/>
+                            <Setter Property="Padding" Value="2,0,0,0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="RadioButtonColorStyle" TargetType="{x:Type RadioButton}">
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
         <Setter Property="Background" Value="{StaticResource CheckRadioFillNormal}"/>

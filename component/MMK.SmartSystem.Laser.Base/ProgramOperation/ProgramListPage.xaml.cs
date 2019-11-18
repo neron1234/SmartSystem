@@ -41,9 +41,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             this.DataContext = programListViewModel = new ProgramListViewModel();
 
             programListViewModel.CNCPath = new CNCProgramPath("//CNC_MEM/USER/PATH1/","UserControl");
-            programListViewModel.ListControl = new CNCProgramListControl(programListViewModel.ProgramFolder);
+            //programListViewModel.ListControl = new CNCProgramListControl(programListViewModel.ProgramFolder);
             programListViewModel.InfoControl = new CNCProgramInfoControl();
-            Messenger.Default.Send(programListViewModel.CNCPath);
+
+            MyCNCProgramListControl.cpViewModel.CNCPath = programListViewModel.CNCPath.Path;
+            MyCNCProgramListControl.cpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
+
             Messenger.Default.Register<CNCProgramPath>(this, (cncPath) => {
                 if (cncPath.Page == "Page")
                 {
@@ -53,9 +56,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             });
         }
 
-        protected override void PageSignlarLoaded()
-        {
-
+        protected override void PageSignlarLoaded(){
             SendQurayProgramList();
             SendReaderWriter(new HubReadWriterModel()
             {
@@ -68,8 +69,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         }
 
         private bool ChangePathByQurayProgramList = false;
-        private void SendQurayProgramList(bool ChangePath = false)
-        {
+        private void SendQurayProgramList(bool ChangePath = false){
             ChangePathByQurayProgramList = ChangePath;
             SendReaderWriter(new HubReadWriterModel()
             {
@@ -80,51 +80,23 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             });
         }
 
-        protected async override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
+        protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
             if (obj.Id == "getProgramList") {
                 if (!obj.Success){
-                    this.programListViewModel.CNCProgramViews = new List<ProgramViewModel>();
-                    if (ChangePathByQurayProgramList)
-                    {
-                        Messenger.Default.Send(this.programListViewModel.CNCProgramViews);
-                    }
                     return;
                 }
                 //读取CNC程序列表
                 JArray jArray = JArray.Parse(obj.Result.ToString());
-                this.programListViewModel.CNCProgramViews = new List<ProgramViewModel>();
-                foreach (var item in jArray){
-                    JObject jObject = JObject.Parse(item.ToString());
-                    if (jObject != null){
-                        this.programListViewModel.CNCProgramViews.Add(new ProgramViewModel{
-                            Name = jObject["name"].ToString(),
-                            Size = jObject["size"].ToString(),
-                            CreateTime = jObject["createDateTime"].ToString(),
-                            Description = jObject["description"].ToString()
-                        });
-                    }
-                }
-                Messenger.Default.Send(this.programListViewModel.CNCProgramViews);
+                this.MyCNCProgramListControl.ReadProgramList(jArray);
             }else if (obj.Id == "getProgramFolder"){
                 if (!obj.Success){
                     return;
                 }
                 //读取CNC路径
                 JObject jObject = JObject.Parse(obj.Result.ToString());
-                ReadProgramFolderItemViewModel readProgramFolder = new ReadProgramFolderItemViewModel();
-                if (jObject != null){
-                    readProgramFolder.RegNum = (int)jObject["regNum"];
-                    readProgramFolder.Name = jObject["name"].ToString();
-                    readProgramFolder.Folder = jObject["folder"].ToString();
-                    var jArray = JArray.Parse(jObject["nodes"].ToString());
-
-                    ReadProgramFolderNode(jArray, readProgramFolder);
-
-                    Messenger.Default.Send(readProgramFolder);
-                    programListViewModel.ProgramFolder = readProgramFolder;
-                }
-            }else{
+                GetProgramFolder(jObject);
+            } else {
                 if (!obj.Success){
                     return;
                 }
@@ -149,6 +121,24 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                         PiercingCount = Convert.ToInt32(jObject["piercingCount"])
                     });
                 }
+            }
+        }
+
+        private void GetProgramFolder(JObject jObject)
+        {
+            ReadProgramFolderItemViewModel readProgramFolder = new ReadProgramFolderItemViewModel();
+            if (jObject != null)
+            {
+                readProgramFolder.RegNum = (int)jObject["regNum"];
+                readProgramFolder.Name = jObject["name"].ToString();
+                readProgramFolder.Folder = jObject["folder"].ToString();
+                var jArray = JArray.Parse(jObject["nodes"].ToString());
+
+                ReadProgramFolderNode(jArray, readProgramFolder);
+
+                MyLocalProgramListControl.lpViewModel.ProgramFolderList = readProgramFolder;
+                MyCNCProgramListControl.cpViewModel.ProgramFolderList = readProgramFolder;
+                programListViewModel.ProgramFolder = readProgramFolder;
             }
         }
 
@@ -181,12 +171,28 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         {
         }
 
-        private void CNCProgramListBtn_Click(object sender, RoutedEventArgs e)
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            programListViewModel.ListControl = new CNCProgramListControl(programListViewModel.ProgramFolder);
-            programListViewModel.InfoControl = new CNCProgramInfoControl();
-            Messenger.Default.Send(programListViewModel.CNCPath);
-            SendQurayProgramList();
+            var item = (TabItem)((TabControl)sender).SelectedItem;
+            switch (item.Header)
+            {
+                case "CNC程序":
+                    programListViewModel.InfoControl = new CNCProgramInfoControl();
+                    MyCNCProgramListControl.cpViewModel.CNCPath = programListViewModel.CNCPath.Path;
+                    MyCNCProgramListControl.cpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
+                    SendQurayProgramList();
+                    break;
+                case "本地程序":
+                    programListViewModel.InfoControl = new LocalProgramInfoControl();
+                    MyLocalProgramListControl.lpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
+                    MyLocalProgramListControl.lpViewModel.ConnectId = programListViewModel.ConnectId;
+                    break;
+                case "CNC信息":
+                    programListViewModel.InfoControl = new UserControl();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -29,7 +29,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             InitializeComponent();
             this.DataContext = lpViewModel = new LocalProgramListViewModel();
             lpViewModel.ConnectId = connectId;
-            lpViewModel.ProgramFolderInfo = readProgramFolder;
+            lpViewModel.ProgramFolderList = readProgramFolder;
+        }
+
+        public LocalProgramListControl()
+        {
+            InitializeComponent();
+            this.DataContext = lpViewModel = new LocalProgramListViewModel();
         }
 
         private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

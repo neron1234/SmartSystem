@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     public partial class CNCProgramListControl : UserControl
     {
         public CNCProgramListViewModel cpViewModel { get; set; }
-        public CNCProgramListControl(ReadProgramFolderItemViewModel readProgramFolder)
+
+        public CNCProgramListControl()
         {
             InitializeComponent();
             this.DataContext = cpViewModel = new CNCProgramListViewModel();
-            cpViewModel.ProgramFolderList = readProgramFolder;
         }
 
         private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -37,6 +38,26 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             if (selected != null && selected is ProgramViewModel){
                 Messenger.Default.Send((ProgramViewModel)selected);
             }
+        }
+
+        public void ReadProgramList(JArray array)
+        {
+            this.cpViewModel.LocalProgramList = new List<ProgramViewModel>();
+            foreach (var item in array)
+            {
+                JObject jObject = JObject.Parse(item.ToString());
+                if (jObject != null)
+                {
+                    this.cpViewModel.LocalProgramList.Add(new ProgramViewModel
+                    {
+                        Name = jObject["name"].ToString(),
+                        Size = jObject["size"].ToString(),
+                        CreateTime = jObject["createDateTime"].ToString(),
+                        Description = jObject["description"].ToString()
+                    });
+                }
+            }
+            cpViewModel.DataPaging();
         }
     }
 }

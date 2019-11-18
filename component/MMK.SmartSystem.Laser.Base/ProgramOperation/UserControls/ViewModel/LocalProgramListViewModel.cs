@@ -40,7 +40,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
 
         private ReadProgramFolderItemViewModel _ProgramFolderInfo;
-        public ReadProgramFolderItemViewModel ProgramFolderInfo
+        public ReadProgramFolderItemViewModel ProgramFolderList
         {
             get { return _ProgramFolderInfo; }
             set
@@ -48,7 +48,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 if (_ProgramFolderInfo != value)
                 {
                     _ProgramFolderInfo = value;
-                    RaisePropertyChanged(() => ProgramFolderInfo);
+                    RaisePropertyChanged(() => ProgramFolderList);
                 }
             }
         }
@@ -85,10 +85,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 {
                     this.ProgramList.Add(item);
                 }
-            });
-            Messenger.Default.Register<ReadProgramFolderItemViewModel>(this, (pfs) =>
-            {
-                this.ProgramFolderInfo = pfs;
             });
         }
 
@@ -158,7 +154,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                             FileHashCode = fileHash
                         });
                     }));
-                    new PopupWindow(new UpLoadLocalProgramControl(this.Path, this.ProgramFolderInfo), 900, 590, "上传本地程序").ShowDialog();
+                    new PopupWindow(new UpLoadLocalProgramControl(this.Path, this.ProgramFolderList), 900, 590, "上传本地程序").ShowDialog();
                 });
             }
         }
