@@ -24,16 +24,20 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     public partial class CNCPathControl : UserControl
     {
         public CNCPathViewModel cncPathVM { get; set; }
+        public event Action<CNCProgramPath> SaveCNCPathEvent;
+
         public CNCPathControl(ReadProgramFolderItemViewModel readProgramFolder)
         {
             InitializeComponent();
             this.DataContext = cncPathVM = new CNCPathViewModel(readProgramFolder);
+            
         }
 
         private void SaveCNCPathBtn_Click(object sender, RoutedEventArgs e)
         {
             var folder = ((ReadProgramFolderItemViewModel)this.CNCPathCascader.SelectedValues[this.CNCPathCascader.SelectedValues.Count - 1]).Folder;
-            Messenger.Default.Send(new CNCProgramPath(folder,"Page"));
+            SaveCNCPathEvent?.Invoke(new CNCProgramPath(folder, "Page"));
+            //Messenger.Default.Send(new CNCProgramPath(folder,"Page"));
             Messenger.Default.Send(new PopupMsg("保存CNC路径成功", true));
         }
     }

@@ -61,13 +61,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             //this.ProgramList = new ObservableCollection<ProgramViewModel>(LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList());
         }
 
+        public event Action SetCNCProgramPath;
         public CNCProgramListViewModel()
         {
             this.ProgramList = new ObservableCollection<ProgramViewModel>();
             this.LocalProgramList = new List<ProgramViewModel>();
-            Messenger.Default.Register<CNCProgramPath>(this, (cncPath) => {
-                this.CNCPath = cncPath.Path;
-            });
+
             Messenger.Default.Register<SearchInfo>(this, (sInfo) => {
                 this.ProgramList.Clear();
                 if (string.IsNullOrEmpty(sInfo.Search)) {
@@ -79,8 +78,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 }
             });
         }
-        
-        public ReadProgramFolderItemViewModel ProgramFolderList { get; set; }
 
         public ICommand MainProgramCommand
         {
@@ -98,7 +95,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    new PopupWindow(new CNCPathControl(this.ProgramFolderList), 680, 240, "修改CNC路径").ShowDialog();
+                    SetCNCProgramPath?.Invoke();
                 });
             }
         }

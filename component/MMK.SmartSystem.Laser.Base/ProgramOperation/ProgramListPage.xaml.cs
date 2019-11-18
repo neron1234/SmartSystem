@@ -45,17 +45,24 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             programListViewModel.InfoControl = new CNCProgramInfoControl();
 
             MyCNCProgramListControl.cpViewModel.CNCPath = programListViewModel.CNCPath.Path;
-            MyCNCProgramListControl.cpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
+            MyCNCProgramListControl.cpViewModel.SetCNCProgramPath += CpViewModel_SetCNCProgramPath;
+
             MyLocalProgramListControl.lpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
             MyLocalProgramListControl.lpViewModel.ConnectId = programListViewModel.ConnectId;
+        }
 
-            Messenger.Default.Register<CNCProgramPath>(this, (cncPath) => {
-                if (cncPath.Page == "Page")
-                {
-                    programListViewModel.CNCPath = cncPath;
-                    SendQurayProgramList(true);
-                }
-            });
+        private void CpViewModel_SetCNCProgramPath()
+        {
+            var cncPath = new CNCPathControl(programListViewModel.ProgramFolder);
+            cncPath.SaveCNCPathEvent += CncPath_SaveCNCPathEvent;
+            new PopupWindow(cncPath, 680, 220, "修改CNC路径").ShowDialog();
+        }
+
+        private void CncPath_SaveCNCPathEvent(CNCProgramPath obj)
+        {
+            programListViewModel.CNCPath = obj;
+            MyCNCProgramListControl.cpViewModel.CNCPath = obj.Path;
+            SendQurayProgramList(true);
         }
 
         protected override void PageSignlarLoaded(){
@@ -104,8 +111,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 }
                 //读取上传到服务器的本地程序解析结果（CNC还未上传）
                 JObject jObject = JObject.Parse(obj.Result.ToString());
-                if (jObject != null)
-                {
+                if (jObject != null){
                     Messenger.Default.Send(new ProgramDetailViewModel
                     {
                         Name = jObject["name"].ToString(),
@@ -139,7 +145,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 ReadProgramFolderNode(jArray, readProgramFolder);
 
                 MyLocalProgramListControl.lpViewModel.ProgramFolderList = readProgramFolder;
-                MyCNCProgramListControl.cpViewModel.ProgramFolderList = readProgramFolder;
                 programListViewModel.ProgramFolder = readProgramFolder;
             }
         }
