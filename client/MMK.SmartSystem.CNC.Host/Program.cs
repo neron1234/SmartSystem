@@ -118,7 +118,7 @@ namespace MMK.SmartSystem.CNC.Host
             var res = new LaserProgramDemo().ProgramResolve(obj);
             res.Data.FileHash = obj.FileHash;
             await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientRrogramRosolveResultEvent, res);
-        //    Console.WriteLine($"【程序解析】:{res.BmpName} | {res.Data.ToString()} | {obj.ConnectId} | {obj.FileHash}");
+            //Console.WriteLine($"【程序解析】:{res.BmpName} | {res.Data.ToString()} | {obj.ConnectId} | {obj.FileHash}");
         }
 
         private static async void SignalrProxy_GetClientReaderWriterEvent(WebCommon.HubModel.HubReadWriterModel obj)
