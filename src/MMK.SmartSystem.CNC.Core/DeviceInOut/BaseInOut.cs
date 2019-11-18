@@ -34,6 +34,11 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
         {
             return ConnectSuccess;
         }
+
+        public void CloseConnect()
+        {
+            ConnectHelper.FreeConnect(flib);
+        }
         private short Connect()
         {
             return ConnectHelper.BuildConnect(ref flib, SmartSystemCNCCoreConsts.CncIP,
