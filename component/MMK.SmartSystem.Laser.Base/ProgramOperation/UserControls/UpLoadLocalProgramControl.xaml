@@ -89,11 +89,8 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" x:Name="TbPanel1">
-                    <TextBlock Text="板材尺寸(W)" Margin="0,10,0,0" />
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="True" x:Name="Gas" GotFocus="TextBox_GotFocus"/>
-
-                    <TextBlock Text="加工最大尺寸(W)" Margin="0,10,0,0"/>
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" GotFocus="TextBox_GotFocus" />
+                    <TextBlock Text="板材尺寸" Margin="0,10,0,0" />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="True" Text="{Binding ProgramDetail.PlateSize}" x:Name="PlateSize" GotFocus="TextBox_GotFocus"/>
 
                     <TextBlock Text="材料类型" Margin="0,10,0,0" />
                     <ComboBox Margin="0,10,0,0" ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
@@ -106,7 +103,7 @@
                     </ComboBox>
 
                     <TextBlock Text="切割长度" Margin="0,10,0,0" />
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.CuttingDistance}" GotFocus="TextBox_GotFocus" />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.CuttingDistance}" GotFocus="TextBox_GotFocus" x:Name="CuttingDistance"/>
 
                     <TextBlock Text="割嘴类型" Margin="0,10,0,0" />
                     <ComboBox Margin="0 10 0 0" ItemsSource="{Binding NozzleKindList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
@@ -120,19 +117,17 @@
                     
                     <TextBlock Text="循环时间" Margin="0,10,0,0" />
                     <!--<TextBox cc:TextBoxFocusBehavior.IsFocused="{Binding CuttingTimeIsFocuse}" Text="{Binding ProgramDetail.CuttingTime}"/>-->
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.CuttingTime}" GotFocus="TextBox_GotFocus"/>
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.CuttingTime}" GotFocus="TextBox_GotFocus" x:Name="CuttingTime"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" x:Name="TbPanel2">
-                    <TextBlock Text="板材尺寸(H)" Margin="0,10,0,0" />
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="" GotFocus="TextBox_GotFocus"/>
-                    <TextBlock Text="加工最大尺寸(H)" Margin="0,10,0,0" />
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="" GotFocus="TextBox_GotFocus"/>
+                    <TextBlock Text="加工最大尺寸" Margin="0,10,0,0" />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.UsedPlateSize}" GotFocus="TextBox_GotFocus" x:Name="UsedPlateSize"/>
                     <TextBlock Text="材料厚度" Margin="0,10,0,0" />
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.Thickness}" GotFocus="TextBox_GotFocus"/>
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.Thickness}" GotFocus="TextBox_GotFocus" x:Name="Thickness"/>
                     <TextBlock Text="穿孔次数" Margin="0,10,0,0" />
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.PiercingCount}" GotFocus="TextBox_GotFocus"/>
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.PiercingCount}" GotFocus="TextBox_GotFocus" x:Name="PiercingCount"/>
                     <TextBlock Text="割嘴内径" Margin="0,10,0,0" />
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.NozzleDiameter}" GotFocus="TextBox_GotFocus"/>
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.NozzleDiameter}" GotFocus="TextBox_GotFocus" x:Name="NozzleDiameter"/>
                 </StackPanel>
             </Grid>
 
