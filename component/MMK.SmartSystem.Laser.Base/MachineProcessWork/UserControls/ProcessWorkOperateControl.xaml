@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-             d:DesignHeight="437" d:DesignWidth="344" Background="#3b3b3b" FontSize="17" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+             d:DesignHeight="437" d:DesignWidth="344" Background="#3b3b3b" FontSize="17" FontFamily="思源黑体 CN Medium" Foreground="#868686">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -44,121 +44,114 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#868686"/>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <TabControl Grid.Column="0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" SelectionChanged="TabControl_SelectionChanged">
-            <TabItem Header="程序路径" Style="{StaticResource TabItemStyle}" >
-                
+        <TabControl Grid.Column="0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" >
+            <TabItem Header="程序路径" Style="{StaticResource TabItemStyle2}" Width="170" Height="42">
+                <StackPanel HorizontalAlignment="Center" >
+                    <RichTextBox FontSize="15" IsReadOnly="True" BorderThickness="0" Width="333" Height="380" Margin="5" >
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text="{Binding PreviewText}"/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                </StackPanel>
             </TabItem>
-            <TabItem Header="操作" Style="{StaticResource TabItemStyle}">
-
+            <TabItem Header="操作" Style="{StaticResource TabItemStyle2}" Width="170" Height="42">
+                <StackPanel HorizontalAlignment="Center" Margin="14,0,14,0" >
+                    <WrapPanel Margin="0 15 0 0">
+                        <TextBlock Text="断电续切" Margin="0 0 10 0" />
+                        <TextBlock Text="N续切" Margin="15 0 10 0"/>
+                        <TextBlock Text="完成后暂停" Margin="30 0 0 0"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="0 12 0 0">
+                        <Border CornerRadius="4" Width="64" Height="41" Background="#282620" BorderBrush="#434446" BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                            </Border.Effect>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding BreakPointCutSwitchBtn.SwitchCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="{Binding BreakPointCutSwitchBtn.Text}" FontSize="12" Foreground="{Binding BreakPointCutSwitchBtn.FontColor}" Command="{Binding BreakPointCutSwitchBtn.SwitchCommand}" HorizontalAlignment="{Binding BreakPointCutSwitchBtn.HorizontalAlignment}"/>
+                        </Border>
+                        <Border Margin="30 0 0 0" CornerRadius="4" Width="64" Height="41" Background="#282620" BorderBrush="#434446" BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                            </Border.Effect>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding NCutSwitchBtn.SwitchCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="{Binding NCutSwitchBtn.Text}" FontSize="12" Foreground="{Binding NCutSwitchBtn.FontColor}" Command="{Binding NCutSwitchBtn.SwitchCommand}" HorizontalAlignment="{Binding NCutSwitchBtn.HorizontalAlignment}"/>
+                        </Border>
+                        <Border Margin="30 0 0 0" CornerRadius="4" Width="64" Height="41" Background="#282620" BorderBrush="#434446" BorderThickness="1">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
+                            </Border.Effect>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                    <i:InvokeCommandAction Command="{Binding StopSwitchBtn.SwitchCommand}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="{Binding StopSwitchBtn.Text}" FontSize="12" Foreground="{Binding StopSwitchBtn.FontColor}" Command="{Binding StopSwitchBtn.SwitchCommand}" HorizontalAlignment="{Binding StopSwitchBtn.HorizontalAlignment}"/>
+                        </Border>
+                    </WrapPanel>
+                    <WrapPanel Margin="0 20 0 0" >
+                        <TextBlock Text="中断N" Margin="0 0 30 0" />
+                        <TextBlock Text="虚切N" Margin="30 0 0 0" />
+                    </WrapPanel>
+                    <WrapPanel Margin="0 6 0 0">
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24" Text="15156132"  Foreground="#B6BEB3">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24"  Text="12311" Margin="30 0 0 0"  Foreground="#B6BEB3">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </WrapPanel>
+                    <WrapPanel Margin="0 20 0 0" >
+                        <TextBlock Text="已加工" Margin="0 0 30 0" />
+                        <TextBlock Text="所需" Margin="30 0 0 0" />
+                    </WrapPanel>
+                    <WrapPanel Margin="0 6 0 0">
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24" Text="412411"  Foreground="#B6BEB3">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24" Text="142412" Margin="30 0 0 0" Foreground="#B6BEB3">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                    </WrapPanel>
+                    <WrapPanel Margin="0 18 0 0">
+                        <Button Style="{StaticResource IconBtnStyle}" Width="317" Height="50" Content="返回"/>
+                    </WrapPanel>
+                    <WrapPanel Margin="0 10 0 0">
+                        <Button Style="{StaticResource IconBtnStyle}" Width="317" Height="50" Content="清除"/>
+                    </WrapPanel>
+                </StackPanel>
             </TabItem>
         </TabControl>
-
-
-        <StackPanel Grid.Row="0" Background="#353535" VerticalAlignment="Center" Height="40" Orientation="Horizontal" Grid.ColumnSpan="2">
-            <RadioButton Width="172"  Height="40" Content="程序路径" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding SwitchPageCommand}" CommandParameter="0"/>
-            <RadioButton Width="172" Height="40" Content="操作" Style="{StaticResource RadioButtonColorStyle}"  IsChecked="True" Command="{Binding SwitchPageCommand}" CommandParameter="1"/>
-        </StackPanel>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="14,0,14,-0.2" Visibility="{Binding OperateVisibility}" >
-            <WrapPanel Margin="0 15 0 0">
-                <TextBlock Text="断电续切" Margin="0 0 10 0"/>
-                <TextBlock Text="N续切" Margin="15 0 10 0"/>
-                <TextBlock Text="完成后暂停" Margin="30 0 0 0"/>
-            </WrapPanel>
-            <WrapPanel Margin="0 12 0 0">
-                <Border CornerRadius="4" Width="64" Height="41" Background="#282620" BorderBrush="#434446" BorderThickness="1">
-                    <Border.Effect>
-                        <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
-                    </Border.Effect>
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding BreakPointCutSwitchBtn.SwitchCommand}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="{Binding BreakPointCutSwitchBtn.Text}" FontSize="12" Foreground="{Binding BreakPointCutSwitchBtn.FontColor}" Command="{Binding BreakPointCutSwitchBtn.SwitchCommand}" HorizontalAlignment="{Binding BreakPointCutSwitchBtn.HorizontalAlignment}"/>
-                </Border>
-                <Border Margin="30 0 0 0" CornerRadius="4" Width="64" Height="41" Background="#282620" BorderBrush="#434446" BorderThickness="1">
-                    <Border.Effect>
-                        <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
-                    </Border.Effect>
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding NCutSwitchBtn.SwitchCommand}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="{Binding NCutSwitchBtn.Text}" FontSize="12" Foreground="{Binding NCutSwitchBtn.FontColor}" Command="{Binding NCutSwitchBtn.SwitchCommand}" HorizontalAlignment="{Binding NCutSwitchBtn.HorizontalAlignment}"/>
-                </Border>
-                <Border Margin="25 0 0 0" CornerRadius="4" Width="64" Height="41" Background="#282620" BorderBrush="#434446" BorderThickness="1">
-                    <Border.Effect>
-                        <DropShadowEffect ShadowDepth="-30" BlurRadius="5" Color="#171612"/>
-                    </Border.Effect>
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding StopSwitchBtn.SwitchCommand}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <Button Style="{StaticResource IconBtnStyle}" Width="32" Height="42" Content="{Binding StopSwitchBtn.Text}" FontSize="12" Foreground="{Binding StopSwitchBtn.FontColor}" Command="{Binding StopSwitchBtn.SwitchCommand}" HorizontalAlignment="{Binding StopSwitchBtn.HorizontalAlignment}"/>
-                </Border>
-            </WrapPanel>
-            <WrapPanel Margin="0 20 0 0" >
-                <TextBlock Text="中断N" Margin="0 0 30 0" Foreground="#fdcd00"/>
-                <TextBlock Text="虚切N" Margin="30 0 0 0" Foreground="#fdcd00"/>
-            </WrapPanel>
-            <WrapPanel Margin="0 6 0 0">
-                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24" Text="15156132"  Foreground="#B6BEB3">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="4"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
-                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24"  Text="12311" Margin="30 0 0 0"  Foreground="#B6BEB3">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="4"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
-            </WrapPanel>
-            <WrapPanel Margin="0 20 0 0" >
-                <TextBlock Text="已加工" Margin="0 0 30 0" Foreground="#fdcd00"/>
-                <TextBlock Text="所需" Margin="30 0 0 0" Foreground="#fdcd00"/>
-            </WrapPanel>
-            <WrapPanel Margin="0 6 0 0">
-                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24" Text="412411"  Foreground="#B6BEB3">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="4"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
-                <TextBox TextAlignment="Center" VerticalContentAlignment="Center" Width="88" Height="24" Text="142412" Margin="30 0 0 0" Foreground="#B6BEB3">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="4"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>
-            </WrapPanel>
-            <WrapPanel Margin="0 16 0 0">
-                <Button Style="{StaticResource IconBtnStyle}" Width="90" Height="50" Content="W"/>
-                <Button Style="{StaticResource IconBtnStyle}" Width="90" Height="50" Margin="20 0 0 0" Content="修改"/>
-                <Button Style="{StaticResource IconBtnStyle}" Width="90" Height="50" Margin="20 0 0 0" Content="返回"/>
-            </WrapPanel>
-            <WrapPanel Margin="0 16 0 0">
-                <Button Style="{StaticResource IconBtnStyle}" Width="317" Height="50" Content="清除"/>
-            </WrapPanel>
-        </StackPanel>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Grid.ColumnSpan="2" Visibility="{Binding ProgramVisibility}">
-            <RichTextBox FontSize="15" IsReadOnly="True" BorderThickness="0" Width="333" Height="380" Margin="5" >
-                <FlowDocument>
-                    <Paragraph>
-                        <Run Text="{Binding PreviewText}"/>
-                    </Paragraph>
-                </FlowDocument>
-            </RichTextBox>
-        </StackPanel>
     </Grid>
 </UserControl>
