@@ -192,7 +192,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 var propName = upLoadProViewModel.ProgramDetail.GetType().GetProperty(name);
                 if (propName != null)
                 {
-                    propName.SetValue(upLoadProViewModel.ProgramDetail, FocusTb.Text);
+                    propName.SetValue(upLoadProViewModel.ProgramDetail, Convert.ChangeType(FocusTb.Text, propName.PropertyType) );
                 }
             }
         }
