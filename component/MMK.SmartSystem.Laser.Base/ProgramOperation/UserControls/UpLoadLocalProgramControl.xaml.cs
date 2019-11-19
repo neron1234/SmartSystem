@@ -57,7 +57,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         public void SetSelectProgramDetail(ProgramDetailViewModel pds)
         {
-            upLoadProViewModel.ProgramDetail.Name = pds.Name;
             if (!string.IsNullOrEmpty(pds.Material))
             {
                 upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.FirstOrDefault(n => n.Name_CN == pds.Material)?.Code;

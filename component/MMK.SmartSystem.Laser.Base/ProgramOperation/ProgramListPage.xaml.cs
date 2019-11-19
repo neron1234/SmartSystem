@@ -73,12 +73,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 EventBus.Default.TriggerAsync(arg1);
             }));
             var modal = new UpLoadLocalProgramControl(local.Path, local.ProgramFolderList);
-            modal.SetSelectProgramDetail(new ProgramDetailViewModel()
-            {
-                Name = currentLocalProgram.Name,
-
-                // Size = Convert.ToDouble(currentLocalProgram.Size)
-            });
+          
             modal.ProgramUploadEvent += Modal_ProgramUploadEvent;
             new PopupWindow(modal, 900, 590, "上传本地程序").ShowDialog();
 
@@ -86,14 +81,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         private void Modal_ProgramUploadEvent(ProgramDetailViewModel obj)
         {
-            string info = "";
-            //SendReaderWriter(new HubReadWriterModel()
-            //{
-            //    ProxyName = "ProgramTransferInOut",
-            //    Action = "UploadProgramToCNC",
-            //    Id = "uploadProgramToCNC",
-            //    Data = new object[] { "//CNC_MEM/", "" }
-            //});
+            
+            SendReaderWriter(new HubReadWriterModel()
+            {
+                ProxyName = "ProgramTransferInOut",
+                Action = "UploadProgramToCNC",
+                Id = "uploadProgramToCNC",
+                Data = new object[] { "",obj.SelectedProgramFolders.Folder }
+            });
         }
         private void CncPath_SaveCNCPathEvent(CNCProgramPath obj)
         {
@@ -130,10 +125,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
-            if (!obj.Success){
+            if (!obj.Success)
+            {
                 return;
             }
-            switch (obj.Id){
+            switch (obj.Id)
+            {
                 case "getProgramList":
                     JArray jArray = JArray.Parse(obj.Result.ToString());
                     this.MyCNCProgramListControl.ReadProgramList(jArray);
@@ -144,7 +141,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                     break;
                 case "uploadProgramToCNC":
                     break;
-                default:                    
+                default:
                     //读取上传到服务器的本地程序解析结果（CNC还未上传）
                     JObject jObject = JObject.Parse(obj.Result.ToString());
                     if (jObject != null)
@@ -168,7 +165,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                             PiercingCount = Convert.ToInt32(jObject["piercingCount"])
                         });
                     }
-                    break;                  
+                    break;
             };
         }
 
