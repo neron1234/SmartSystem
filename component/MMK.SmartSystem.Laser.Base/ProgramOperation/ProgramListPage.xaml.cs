@@ -84,7 +84,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         }
 
-        private void Modal_ProgramUploadEvent(UpLoadLocalProgramViewModel obj)
+        private void Modal_ProgramUploadEvent(ProgramDetailViewModel obj)
         {
             string info = "";
             //SendReaderWriter(new HubReadWriterModel()
@@ -130,13 +130,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
-            if (!obj.Success)
-            {
+            if (!obj.Success){
                 return;
-
             }
-            switch (obj.Id)
-            {
+            switch (obj.Id){
                 case "getProgramList":
                     JArray jArray = JArray.Parse(obj.Result.ToString());
                     this.MyCNCProgramListControl.ReadProgramList(jArray);
@@ -148,33 +145,31 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 case "uploadProgramToCNC":
                     break;
                 default:                    
-                        //读取上传到服务器的本地程序解析结果（CNC还未上传）
-                        JObject jObject = JObject.Parse(obj.Result.ToString());
-                        if (jObject != null)
+                    //读取上传到服务器的本地程序解析结果（CNC还未上传）
+                    JObject jObject = JObject.Parse(obj.Result.ToString());
+                    if (jObject != null)
+                    {
+                        Messenger.Default.Send(new ProgramDetailViewModel
                         {
-                            Messenger.Default.Send(new ProgramDetailViewModel
-                            {
-                                Name = jObject["name"].ToString(),
-                                FullPath = jObject["fullPath"].ToString(),
-                                Size = Convert.ToDouble(jObject["size"].ToString()),
-                                Material = jObject["material"].ToString(),
-                                Thickness = Convert.ToDouble(jObject["thickness"]),
-                                Gas = jObject["gas"].ToString(),
-                                FocalPosition = Convert.ToDouble(jObject["focalPosition"]),
-                                NozzleKind = jObject["nozzleKind"].ToString(),
-                                NozzleDiameter = Convert.ToDouble(jObject["nozzleDiameter"]),
-                                PlateSizeHeight = jObject["plateSizeHeight"].ToString(),
-                                UsedPlateSizeHeigth = jObject["usedPlateSizeHeigth"].ToString(),
-                                PlateSizeWidth = jObject["plateSizeWidth"].ToString(),
-                                UsedPlateSizeWidth = jObject["usedPlateSizeWidth"].ToString(),
-                                CuttingDistance = Convert.ToDouble(jObject["cuttingDistance"]),
-                                PiercingCount = Convert.ToInt32(jObject["piercingCount"])
-                            });
-                        }
-                        break;                  
+                            Name = jObject["name"].ToString(),
+                            FullPath = jObject["fullPath"].ToString(),
+                            Size = Convert.ToDouble(jObject["size"].ToString()),
+                            Material = jObject["material"].ToString(),
+                            Thickness = Convert.ToDouble(jObject["thickness"]),
+                            Gas = jObject["gas"].ToString(),
+                            FocalPosition = Convert.ToDouble(jObject["focalPosition"]),
+                            NozzleKind = jObject["nozzleKind"].ToString(),
+                            NozzleDiameter = Convert.ToDouble(jObject["nozzleDiameter"]),
+                            PlateSizeHeight = jObject["plateSizeHeight"].ToString(),
+                            UsedPlateSizeHeigth = jObject["usedPlateSizeHeigth"].ToString(),
+                            PlateSizeWidth = jObject["plateSizeWidth"].ToString(),
+                            UsedPlateSizeWidth = jObject["usedPlateSizeWidth"].ToString(),
+                            CuttingDistance = Convert.ToDouble(jObject["cuttingDistance"]),
+                            PiercingCount = Convert.ToInt32(jObject["piercingCount"])
+                        });
+                    }
+                    break;                  
             };
-
-
         }
 
         private void GetProgramFolder(JObject jObject)
@@ -230,14 +225,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             {
                 case "CNC程序":
                     programListViewModel.InfoControl = new CNCProgramInfoControl();
-                    //MyCNCProgramListControl.cpViewModel.CNCPath = programListViewModel.CNCPath.Path;
-                    //MyCNCProgramListControl.cpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
-                    //SendQurayProgramList();
                     break;
                 case "本地程序":
                     programListViewModel.InfoControl = new LocalProgramInfoControl();
-                    //MyLocalProgramListControl.lpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
-                    //MyLocalProgramListControl.lpViewModel.ConnectId = programListViewModel.ConnectId;
                     break;
                 case "CNC信息":
                     programListViewModel.InfoControl = new UserControl();

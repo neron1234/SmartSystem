@@ -24,6 +24,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 if (_SelectedMaterialId != value)
                 {
                     _SelectedMaterialId = value;
+                    this.ProgramDetail.Material = this.MaterialTypeList.FirstOrDefault(n => n.Code == value)?.Name_CN;
                     RaisePropertyChanged(() => SelectedMaterialId);
                 }
             }
@@ -54,6 +55,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 if (_SelectedNozzleKindCode != value)
                 {
                     _SelectedNozzleKindCode = value;
+                    this.ProgramDetail.NozzleKind = this.NozzleKindList.FirstOrDefault(n => n.Code == value)?.Name_CN;
                     RaisePropertyChanged(() => SelectedNozzleKindCode);
                 }
             }
@@ -89,21 +91,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        private ReadProgramFolderItemViewModel _SelectedProgramFolders;
-        public ReadProgramFolderItemViewModel SelectedProgramFolders
-        {
-            get { return _SelectedProgramFolders; }
-            set
-            {
-                if (_SelectedProgramFolders != value)
-                {
-                    _SelectedProgramFolders = value;
-                    RaisePropertyChanged(() => SelectedProgramFolders);
-                }
-            }
-        }
-
-        public event Action<UpLoadLocalProgramViewModel> GetDetailModelEvent;
+        public event Action<ProgramDetailViewModel> GetDetailModelEvent;
 
         public event Action<string> InputKeyInputEvent;
 
@@ -125,7 +113,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    GetDetailModelEvent?.Invoke(this);
+                    GetDetailModelEvent?.Invoke(this.ProgramDetail);
                 });
             }
         }
@@ -158,7 +146,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public UpLoadLocalProgramViewModel(ReadProgramFolderItemViewModel programFolderInfo)
         {
             ProgramFolders = programFolderInfo;
-            SelectedProgramFolders = new ReadProgramFolderItemViewModel();
             ProgramDetail = new ProgramDetailViewModel();
             //GetTreeViewData(new System.IO.DirectoryInfo(@"C:\Users\wjj-yl\Desktop\测试用DXF"), ProgramFolders);
             //if (ProgramFolders.Nodes.Count > 0)
@@ -170,6 +157,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
     public class ProgramDetailViewModel : ViewModelBase
     {
+        public ProgramDetailViewModel()
+        {
+            SelectedProgramFolders = new ReadProgramFolderItemViewModel();
+        }
+
         private string _Name;
         public string Name
         {
@@ -194,6 +186,20 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 {
                     _FullPath = value;
                     RaisePropertyChanged(() => FullPath);
+                }
+            }
+        }
+
+        private ReadProgramFolderItemViewModel _SelectedProgramFolders;
+        public ReadProgramFolderItemViewModel SelectedProgramFolders
+        {
+            get { return _SelectedProgramFolders; }
+            set
+            {
+                if (_SelectedProgramFolders != value)
+                {
+                    _SelectedProgramFolders = value;
+                    RaisePropertyChanged(() => SelectedProgramFolders);
                 }
             }
         }
@@ -422,6 +428,4 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
     }
-
-
 }

@@ -30,7 +30,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     {
         public UpLoadLocalProgramViewModel upLoadProViewModel { get; set; }
 
-        public event Action<UpLoadLocalProgramViewModel> ProgramUploadEvent;
+        public event Action<ProgramDetailViewModel> ProgramUploadEvent;
         public UpLoadLocalProgramControl(string programPath, ReadProgramFolderItemViewModel programFolderInfo)
         {
             InitializeComponent();
@@ -51,8 +51,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                     upLoadProViewModel.SelectedNozzleKindCode = (int)upLoadProViewModel.NozzleKindList.FirstOrDefault(n => n.Name_CN == pds.NozzleKind)?.Code;
                 }
             });
-
-
             Loaded += UpLoadLocalProgramControl_Loaded;
             //this.CNCPathCascader.SelectedItem = upLoadProViewModel.SelectedProgramFolders;
         }
@@ -75,8 +73,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             InputTextBox(obj);
         }
 
-        private void UpLoadProViewModel_GetDetailModelEvent(UpLoadLocalProgramViewModel obj)
+        private void UpLoadProViewModel_GetDetailModelEvent(ProgramDetailViewModel obj)
         {
+            obj.SelectedProgramFolders = ((ReadProgramFolderItemViewModel)this.CNCPathCascader.SelectedValues[this.CNCPathCascader.SelectedValues.Count - 1]);
             ProgramUploadEvent?.Invoke(obj);
         }
 
