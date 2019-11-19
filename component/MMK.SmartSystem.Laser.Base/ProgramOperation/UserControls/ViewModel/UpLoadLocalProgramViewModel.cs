@@ -296,30 +296,58 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        private string _PlateSize;
-        public string PlateSize
+        private string _PlateSizeWidth;
+        public string PlateSizeWidth
         {
-            get { return _PlateSize; }
+            get { return _PlateSizeWidth; }
             set
             {
-                if (_PlateSize != value)
+                if (_PlateSizeWidth != value)
                 {
-                    _PlateSize = value;
-                    RaisePropertyChanged(() => PlateSize);
+                    _PlateSizeWidth = value;
+                    RaisePropertyChanged(() => PlateSizeWidth);
                 }
             }
         }
 
-        private string _UsedPlateSize;
-        public string UsedPlateSize
+        private string _UsedPlateSizeWidth;
+        public string UsedPlateSizeWidth
         {
-            get { return _UsedPlateSize; }
+            get { return _UsedPlateSizeWidth; }
             set
             {
-                if (_UsedPlateSize != value)
+                if (_UsedPlateSizeWidth != value)
                 {
-                    _UsedPlateSize = value;
-                    RaisePropertyChanged(() => UsedPlateSize);
+                    _UsedPlateSizeWidth = value;
+                    RaisePropertyChanged(() => UsedPlateSizeWidth);
+                }
+            }
+        }
+
+        private string _PlateSizeHeight;
+        public string PlateSizeHeight
+        {
+            get { return _PlateSizeHeight; }
+            set
+            {
+                if (_PlateSizeHeight != value)
+                {
+                    _PlateSizeHeight = value;
+                    RaisePropertyChanged(() => PlateSizeHeight);
+                }
+            }
+        }
+
+        private string _UsedPlateSizeHeigth;
+        public string UsedPlateSizeHeigth
+        {
+            get { return _UsedPlateSizeHeigth; }
+            set
+            {
+                if (_UsedPlateSizeHeigth != value)
+                {
+                    _UsedPlateSizeHeigth = value;
+                    RaisePropertyChanged(() => UsedPlateSizeHeigth);
                 }
             }
         }

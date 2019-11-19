@@ -171,8 +171,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                         FocalPosition = Convert.ToDouble(jObject["focalPosition"]),
                         NozzleKind = jObject["nozzleKind"].ToString(),
                         NozzleDiameter = Convert.ToDouble(jObject["nozzleDiameter"]),
-                        PlateSize = jObject["plateSize"].ToString(),
-                        UsedPlateSize = jObject["usedPlateSize"].ToString(),
+
+                        PlateSizeHeight = jObject["plateSizeHeight"].ToString(),
+                        UsedPlateSizeHeigth = jObject["usedPlateSizeHeigth"].ToString(),
+                        PlateSizeWidth = jObject["plateSizeWidth"].ToString(),
+                        UsedPlateSizeWidth = jObject["usedPlateSizeWidth"].ToString(),
+
                         CuttingDistance = Convert.ToDouble(jObject["cuttingDistance"]),
                         PiercingCount = Convert.ToInt32(jObject["piercingCount"])
                     });

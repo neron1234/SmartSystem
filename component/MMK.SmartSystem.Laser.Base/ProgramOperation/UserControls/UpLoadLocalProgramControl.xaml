@@ -90,7 +90,10 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" x:Name="TbPanel1">
                     <TextBlock Text="板材尺寸" Margin="0,10,0,0" />
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="True" Text="{Binding ProgramDetail.PlateSize}" x:Name="PlateSize" GotFocus="TextBox_GotFocus"/>
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="True" Text="{Binding ProgramDetail.PlateSizeWidth}" x:Name="PlateSizeWidth" GotFocus="TextBox_GotFocus"/>
+
+                    <TextBlock Text="加工最大尺寸(W)" Margin="0,10,0,0"/>
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.UsedPlateSizeWidth}" x:Name="UsedPlateSizeWidth"  GotFocus="TextBox_GotFocus" />
 
                     <TextBlock Text="材料类型" Margin="0,10,0,0" />
                     <ComboBox Margin="0,10,0,0" ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
@@ -120,8 +123,10 @@
                     <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.CuttingTime}" GotFocus="TextBox_GotFocus" x:Name="CuttingTime"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" x:Name="TbPanel2">
-                    <TextBlock Text="加工最大尺寸" Margin="0,10,0,0" />
-                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.UsedPlateSize}" GotFocus="TextBox_GotFocus" x:Name="UsedPlateSize"/>
+                    <TextBlock Text="板材尺寸(H)" Margin="0,10,0,0" />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.PlateSizeHeight}" GotFocus="TextBox_GotFocus" x:Name="PlateSizeHeight"/>
+                    <TextBlock Text="加工最大尺寸(H)" Margin="0,10,0,0" />
+                    <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.UsedPlateSizeHeigth}" GotFocus="TextBox_GotFocus" x:Name="UsedPlateSizeHeigth"/>
                     <TextBlock Text="材料厚度" Margin="0,10,0,0" />
                     <TextBox cc:TextBoxFocusBehavior.IsFocused="False" Text="{Binding ProgramDetail.Thickness}" GotFocus="TextBox_GotFocus" x:Name="Thickness"/>
                     <TextBlock Text="穿孔次数" Margin="0,10,0,0" />
