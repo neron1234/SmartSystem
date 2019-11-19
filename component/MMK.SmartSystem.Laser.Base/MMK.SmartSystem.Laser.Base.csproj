@@ -453,6 +453,7 @@
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCPathViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCProgramInfoViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\LocalProgramInfoViewModel.cs" />
+    <Compile Include="ProgramOperation\UserControls\ViewModel\SearchViewModel.cs" />
     <Compile Include="ViewModel\InputWindowViewModel.cs" />
     <Compile Include="ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="MachineProcess\ViewModel\ProcessViewModel.cs" />
@@ -481,7 +482,6 @@
     <Compile Include="SmartSystemDeviceModule.cs" />
     <Compile Include="SmartSystemLaserBaseConsts.cs" />
     <Compile Include="ViewModel\ReadProgramFolderItemViewModel.cs" />
-    <Compile Include="ViewModel\SearchInfo.cs" />
     <Compile Include="ViewModel\SwitchBtnViewModel.cs" />
     <Page Include="App.xaml">
       <SubType>Designer</SubType>

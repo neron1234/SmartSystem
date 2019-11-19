@@ -94,11 +94,11 @@
                 <Border CornerRadius="20" Background="#1d1d1d">
                     <StackPanel Margin="0 5 0 0" HorizontalAlignment="Center">
                         <Button Background="Transparent" Style="{StaticResource NoMouseOverButtonStyle}" Width="30" Height="30">
-                            <Path Data="M0.5,5.1900001 L9.5,5.1900001 z M5.182,0.50000006 L5.182,9.5000001 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#FDCD00"  Width="10" Height="10"/>
+                            <Path Data="M0.5,5.1900001 L9.5,5.1900001 z M5.182,0.50000006 L5.182,9.5000001 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#B6BEC3"  Width="10" Height="10"/>
                         </Button>
                         <TextBlock Text="100%" FontSize="13" HorizontalAlignment="Center" Margin="0 5 0 5"/>
                         <Button Background="Transparent" Style="{StaticResource NoMouseOverButtonStyle}" Width="30" Height="30">
-                            <Path Data="M0.5,0.5 L9.5,0.5 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#FDCD00" Width="10" Height="10"/>
+                            <Path Data="M0.5,0.5 L9.5,0.5 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#B6BEC3" Width="10" Height="10"/>
                         </Button>
                     </StackPanel>
                 </Border>
@@ -113,10 +113,10 @@
                 <Button Style="{StaticResource ControlBottomBtnStyle}" Height="85" Width="82" Margin="21,59,0,-19" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                 <Button Style="{StaticResource ControlRightBtnStyle}" Height="82"  Width="86" Margin="59,22,-25,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-                <Path Data="M262,262z M0,0z M220,130L208.7846,143.8919 208.7846,116.1081z" Stretch="Fill" Fill="#FDCD00" Width="100" Height="100" Margin="20 5 0 0" IsHitTestVisible="False"/>
-                <Path Data="M262,262z M0,0z M40,130L51.2154,116.1081 51.2154,143.8919z" Stretch="Fill" Fill="#FDCD00" Width="100" Height="100" Margin="-15 5 0 0" IsHitTestVisible="False"/>
-                <Path Data="M262,262z M0,0z M130,40L143.8919,51.2154 116.1081,51.2154z" Stretch="Fill" Fill="#FDCD00" Width="100" Height="100" Margin="2 -10 0 0" IsHitTestVisible="False"/>
-                <Path Data="M262,262z M0,0z M130,220L116.1081,208.7846 143.8919,208.7846z" Stretch="Fill" Fill="#FDCD00" Width="100" Height="100" Margin="2 10 0 0" IsHitTestVisible="False"/>
+                <Path Data="M262,262z M0,0z M220,130L208.7846,143.8919 208.7846,116.1081z" Stretch="Fill" Fill="#B6BEC3" Width="100" Height="100" Margin="20 5 0 0" IsHitTestVisible="False"/>
+                <Path Data="M262,262z M0,0z M40,130L51.2154,116.1081 51.2154,143.8919z" Stretch="Fill" Fill="#B6BEC3" Width="100" Height="100" Margin="-15 5 0 0" IsHitTestVisible="False"/>
+                <Path Data="M262,262z M0,0z M130,40L143.8919,51.2154 116.1081,51.2154z" Stretch="Fill" Fill="#B6BEC3" Width="100" Height="100" Margin="2 -10 0 0" IsHitTestVisible="False"/>
+                <Path Data="M262,262z M0,0z M130,220L116.1081,208.7846 143.8919,208.7846z" Stretch="Fill" Fill="#B6BEC3" Width="100" Height="100" Margin="2 10 0 0" IsHitTestVisible="False"/>
             </Grid>
 
             <Border Width="890" Height="66" CornerRadius="3" Background="#1d1d1d" VerticalAlignment="Bottom" Margin="0 0 0 15">
