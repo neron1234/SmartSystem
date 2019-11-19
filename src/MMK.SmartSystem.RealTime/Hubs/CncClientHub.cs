@@ -92,13 +92,14 @@ namespace MMK.SmartSystem.RealTime.Hubs
         public string PushReadWriter(HubReadWriterResultModel model)
         {
             hubClient.Clients.Client(model.ConnectId).SendAsync(CNCHub.GetReadWriterAction, model);
-            hubClient.Clients.All.SendAsync("GetReadWriter", model);
+            hubClient.Clients.Group("WEB").SendAsync("GetReadWriter", model);
 
             return "True";
         }
 
         public override async Task OnConnectedAsync()
         {
+           
             var list = MMKSmartSystemWebCommonConsts.PageCncEventDict.ToList().Select(d => new GroupEventData()
             {
                 GroupName = d.Key,

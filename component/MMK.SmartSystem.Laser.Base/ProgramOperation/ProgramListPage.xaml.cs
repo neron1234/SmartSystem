@@ -2,6 +2,7 @@
 using Abp.Events.Bus;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.Base;
+using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.Laser.Base.CustomControl;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls;
@@ -37,6 +38,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
     {
         private ProgramListViewModel programListViewModel { get; set; }
         private ProgramViewModel currentLocalProgram;
+        private ProgramDetailViewModel currentProgramDetail;
         public ProgramListPage()
         {
             InitializeComponent();
@@ -73,7 +75,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 EventBus.Default.TriggerAsync(arg1);
             }));
             var modal = new UpLoadLocalProgramControl(local.Path, local.ProgramFolderList);
-          
+
             modal.ProgramUploadEvent += Modal_ProgramUploadEvent;
             new PopupWindow(modal, 900, 590, "上传本地程序").ShowDialog();
 
@@ -81,13 +83,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         private void Modal_ProgramUploadEvent(ProgramDetailViewModel obj)
         {
-            
+            currentProgramDetail = obj;
             SendReaderWriter(new HubReadWriterModel()
             {
                 ProxyName = "ProgramTransferInOut",
                 Action = "UploadProgramToCNC",
                 Id = "uploadProgramToCNC",
-                Data = new object[] { "",obj.SelectedProgramFolders.Folder }
+                Data = new object[] { currentLocalProgram?.FillName, obj.SelectedProgramFolders.Folder }
             });
         }
         private void CncPath_SaveCNCPathEvent(CNCProgramPath obj)
@@ -140,6 +142,31 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                     GetProgramFolder(jObject2);
                     break;
                 case "uploadProgramToCNC":
+                    string name = obj.Result.ToString();
+                    Task.Factory.StartNew(new Action(() =>
+                    {
+                        EventBus.Default.Trigger(new UpdateProgramClientEventData()
+                        {
+                            Data = new Common.UpdateProgramDto()
+                            {
+
+                                CuttingDistance = currentProgramDetail?.CuttingDistance,
+                                CuttingTime = currentProgramDetail.CuttingTime,
+                                FocalPosition = currentProgramDetail.FocalPosition,
+                                FullPath = currentProgramDetail.FullPath,
+                                Gas = currentProgramDetail.Gas,
+                                Material = currentProgramDetail.Material,
+                                Name = currentProgramDetail.Name,
+                                NozzleDiameter = currentProgramDetail.NozzleDiameter,
+                                NozzleKind = currentProgramDetail.NozzleKind,
+                                PiercingCount = currentProgramDetail.PiercingCount,
+                                Size = currentProgramDetail.Size,
+                                Thickness = currentProgramDetail.Thickness,
+                                
+                            }
+                        });
+
+                    }));
                     break;
                 default:
                     //读取上传到服务器的本地程序解析结果（CNC还未上传）

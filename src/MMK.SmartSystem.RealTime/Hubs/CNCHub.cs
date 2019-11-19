@@ -79,6 +79,11 @@ namespace MMK.SmartSystem.RealTime.Hubs
         {
             try
             {
+                if (Context.GetHttpContext().Request.Query.ContainsKey("webGroup"))
+                {
+                    Groups.RemoveFromGroupAsync(Context.ConnectionId, "WEB");
+                    return base.OnDisconnectedAsync(exception);
+                }
                 string groupName = Context.GetHttpContext().Request.Query["groupName"].ToString();
                 if (MMKSmartSystemWebCommonConsts.PageCncEventDict.ContainsKey(groupName))
                 {
@@ -111,6 +116,11 @@ namespace MMK.SmartSystem.RealTime.Hubs
         {
             try
             {
+                if (Context.GetHttpContext().Request.Query.ContainsKey("webGroup"))
+                {
+                    Groups.AddToGroupAsync(Context.ConnectionId, "WEB");
+                    return base.OnConnectedAsync();
+                }
                 string groupName = Context.GetHttpContext().Request.Query["groupName"].ToString();
                 if (!MMKSmartSystemWebCommonConsts.PageCncEventDict.ContainsKey(groupName))
                 {
