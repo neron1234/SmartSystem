@@ -115,9 +115,9 @@ namespace MMK.SmartSystem.CNC.Host
             //obj.FilePath = @"C:\Users\wjj-yl\Desktop\测试用DXF\0001";
             //obj.BmpPath = @"C:\Users\wjj-yl\Desktop\测试用DXF\";
 
-            var res = new LaserProgramDemo().ProgramResolve(obj);
-            res.Data.FileHash = obj.FileHash;
-            await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientRrogramRosolveResultEvent, res);
+            //var res = new LaserProgramDemo().ProgramResolve(obj);
+            //res.Data.FileHash = obj.FileHash;
+            //await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientRrogramRosolveResultEvent, res);
             //Console.WriteLine($"【程序解析】:{res.BmpName} | {res.Data.ToString()} | {obj.ConnectId} | {obj.FileHash}");
         }
 

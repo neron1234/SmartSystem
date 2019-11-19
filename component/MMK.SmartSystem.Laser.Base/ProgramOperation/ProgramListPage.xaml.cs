@@ -77,7 +77,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             {
                 Name = currentLocalProgram.Name,
 
-               // Size = Convert.ToDouble(currentLocalProgram.Size)
+                // Size = Convert.ToDouble(currentLocalProgram.Size)
             });
             modal.ProgramUploadEvent += Modal_ProgramUploadEvent;
             new PopupWindow(modal, 900, 590, "上传本地程序").ShowDialog();
@@ -91,7 +91,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             //{
             //    ProxyName = "ProgramTransferInOut",
             //    Action = "UploadProgramToCNC",
-            //    Id = "UploadProgramToCNC",
+            //    Id = "uploadProgramToCNC",
             //    Data = new object[] { "//CNC_MEM/", "" }
             //});
         }
@@ -130,54 +130,49 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
-            if (obj.Id == "getProgramList")
+            if (!obj.Success)
             {
-                if (!obj.Success)
-                {
-                    return;
-                }
-                //读取CNC程序列表
-                JArray jArray = JArray.Parse(obj.Result.ToString());
-                this.MyCNCProgramListControl.ReadProgramList(jArray);
+                return;
+
             }
-            else if (obj.Id == "getProgramFolder")
+            switch (obj.Id)
             {
-                if (!obj.Success)
-                {
-                    return;
-                }
-                //读取CNC路径
-                JObject jObject = JObject.Parse(obj.Result.ToString());
-                GetProgramFolder(jObject);
-            }
-            else
-            {
-                if (!obj.Success)
-                {
-                    return;
-                }
-                //读取上传到服务器的本地程序解析结果（CNC还未上传）
-                JObject jObject = JObject.Parse(obj.Result.ToString());
-                if (jObject != null)
-                {
-                    Messenger.Default.Send(new ProgramDetailViewModel
-                    {
-                        Name = jObject["name"].ToString(),
-                        FullPath = jObject["fullPath"].ToString(),
-                        Size = Convert.ToDouble(jObject["size"].ToString()),
-                        Material = jObject["material"].ToString(),
-                        Thickness = Convert.ToDouble(jObject["thickness"]),
-                        Gas = jObject["gas"].ToString(),
-                        FocalPosition = Convert.ToDouble(jObject["focalPosition"]),
-                        NozzleKind = jObject["nozzleKind"].ToString(),
-                        NozzleDiameter = Convert.ToDouble(jObject["nozzleDiameter"]),
-                        PlateSize = jObject["plateSize"].ToString(),
-                        UsedPlateSize = jObject["usedPlateSize"].ToString(),
-                        CuttingDistance = Convert.ToDouble(jObject["cuttingDistance"]),
-                        PiercingCount = Convert.ToInt32(jObject["piercingCount"])
-                    });
-                }
-            }
+                case "getProgramList":
+                    JArray jArray = JArray.Parse(obj.Result.ToString());
+                    this.MyCNCProgramListControl.ReadProgramList(jArray);
+                    break;
+                case "getProgramFolder":
+                    JObject jObject2 = JObject.Parse(obj.Result.ToString());
+                    GetProgramFolder(jObject2);
+                    break;
+                case "uploadProgramToCNC":
+                    break;
+                default:                    
+                        //读取上传到服务器的本地程序解析结果（CNC还未上传）
+                        JObject jObject = JObject.Parse(obj.Result.ToString());
+                        if (jObject != null)
+                        {
+                            Messenger.Default.Send(new ProgramDetailViewModel
+                            {
+                                Name = jObject["name"].ToString(),
+                                FullPath = jObject["fullPath"].ToString(),
+                                Size = Convert.ToDouble(jObject["size"].ToString()),
+                                Material = jObject["material"].ToString(),
+                                Thickness = Convert.ToDouble(jObject["thickness"]),
+                                Gas = jObject["gas"].ToString(),
+                                FocalPosition = Convert.ToDouble(jObject["focalPosition"]),
+                                NozzleKind = jObject["nozzleKind"].ToString(),
+                                NozzleDiameter = Convert.ToDouble(jObject["nozzleDiameter"]),
+                                PlateSize = jObject["plateSize"].ToString(),
+                                UsedPlateSize = jObject["usedPlateSize"].ToString(),
+                                CuttingDistance = Convert.ToDouble(jObject["cuttingDistance"]),
+                                PiercingCount = Convert.ToInt32(jObject["piercingCount"])
+                            });
+                        }
+                        break;                  
+            };
+
+
         }
 
         private void GetProgramFolder(JObject jObject)
