@@ -438,6 +438,7 @@
     <Compile Include="MachineProcess\UserControls\ViewModel\AddMaterialViewModel.cs" />
     <Compile Include="MachineProcess\UserControls\ViewModel\ProcessListViewModel.cs" />
     <Compile Include="MachineProcess\UserControls\ViewModel\ProcessOptionsViewModel.cs" />
+    <Compile Include="ProgramOperation\IProgramNotice.cs" />
     <Compile Include="ProgramOperation\UserControls\CNCPathControl.xaml.cs">
       <DependentUpon>CNCPathControl.xaml</DependentUpon>
     </Compile>

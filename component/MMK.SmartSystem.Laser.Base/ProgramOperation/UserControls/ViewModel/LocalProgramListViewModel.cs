@@ -57,21 +57,26 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public string Path { get; set; }
 
-        public LocalProgramListViewModel(){
+        public LocalProgramListViewModel()
+        {
             ProgramList = new ObservableCollection<ProgramViewModel>();
             this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
             GetFileName();
         }
 
-        public void GetFileName(){
-            if (Directory.Exists(this.Path)){
+        public void GetFileName()
+        {
+            if (Directory.Exists(this.Path))
+            {
                 DirectoryInfo root = new DirectoryInfo(this.Path);
                 LocalProgramList = new ObservableCollection<ProgramViewModel>();
 
                 var files = root.GetFiles("*.ng").Union(root.GetFiles("*.txt")).Union(root.GetFiles("*."));
 
-                foreach (FileInfo f in files){
-                    var program = new ProgramViewModel{
+                foreach (FileInfo f in files)
+                {
+                    var program = new ProgramViewModel
+                    {
                         FileHash = FileHashHelper.ComputeMD5(f.FullName),
                         Name = f.Name,
                         FillName = f.FullName,
@@ -115,24 +120,32 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public int PageNumber = 7;
         public void DataPaging(bool next = false)
         {
-            if (LocalProgramList == null){
+            if (LocalProgramList == null)
+            {
                 return;
             }
             int count = LocalProgramList.Count;
             this.TotalPage = 0;
-            if (count % PageNumber == 0){
+            if (count % PageNumber == 0)
+            {
                 this.TotalPage = count / PageNumber;
-            }else{
+            }
+            else
+            {
                 this.TotalPage = count / PageNumber + 1;
             }
 
-            if (next && CurrentPage >= 1 && CurrentPage < TotalPage){
+            if (next && CurrentPage >= 1 && CurrentPage < TotalPage)
+            {
                 CurrentPage++;
-            }else{
+            }
+            else
+            {
                 CurrentPage = 1;
             }
             this.ProgramList.Clear();
-            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList()){
+            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList())
+            {
                 this.ProgramList.Add(item);
             }
         }
@@ -188,9 +201,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
 
-        public ICommand SearchCommand{
-            get{
-                return new RelayCommand(() =>{
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
                     var sc = new SearchControl();
                     new PopupWindow(sc, 680, 240, "搜索本地程序").ShowDialog();
                     sc.sVM.SearchEvent += SVM_SearchEvent;
@@ -198,13 +214,16 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public void SVM_SearchEvent(string str){
+        public void SVM_SearchEvent(string str)
+        {
             this.ProgramList.Clear();
-            if (string.IsNullOrEmpty(str)){
+            if (string.IsNullOrEmpty(str))
+            {
                 DataPaging();
                 return;
             }
-            foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(str))){
+            foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(str)))
+            {
                 this.ProgramList.Add(item);
             }
         }
@@ -232,7 +251,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
 
-        public static string GetFileSize(long size){
+        public static string GetFileSize(long size)
+        {
             var num = 1024.0;
             if (size < num)
                 return size + "B";
@@ -241,9 +261,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             if (size < Math.Pow(num, 3))
                 return (size / Math.Pow(num, 2)).ToString("f1") + "M";
             if (size < Math.Pow(num, 4))
-                return (size / Math.Pow(num, 3)).ToString("f1") + "G"; 
+                return (size / Math.Pow(num, 3)).ToString("f1") + "G";
 
-            return (size / Math.Pow(num, 4)).ToString("f1") + "T"; 
+            return (size / Math.Pow(num, 4)).ToString("f1") + "T";
         }
     }
 }

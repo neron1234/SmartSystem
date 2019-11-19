@@ -37,219 +37,56 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
     public partial class ProgramListPage : SignalrPage
     {
         private ProgramListViewModel programListViewModel { get; set; }
-        private ProgramViewModel currentLocalProgram;
-        private ProgramDetailViewModel currentProgramDetail;
+        public override bool IsRequestResponse => true;
+
+        private List<IProgramNotice> programNotices = new List<IProgramNotice>();
         public ProgramListPage()
         {
             InitializeComponent();
-            this.DataContext = programListViewModel = new ProgramListViewModel();
+            programNotices.Add(MyLocalProgramListControl);
+            programNotices.Add(MyCNCProgramListControl);
+            DataContext = programListViewModel = new ProgramListViewModel();
 
-            programListViewModel.CNCPath = new CNCProgramPath("//CNC_MEM/USER/PATH1/", "UserControl");
+            programListViewModel.CNCPath = new CNCProgramPath(ProgramConfigConsts.CNCPath, "UserControl");
             //programListViewModel.ListControl = new CNCProgramListControl(programListViewModel.ProgramFolder);
             programListViewModel.InfoControl = new CNCProgramInfoControl();
 
-            MyCNCProgramListControl.cpViewModel.CNCPath = programListViewModel.CNCPath.Path;
-            MyCNCProgramListControl.cpViewModel.SetCNCProgramPath += CpViewModel_SetCNCProgramPath;
+            MyCNCProgramListControl.RealReadWriterEvent += RealReadWriterEvent;
 
-            MyLocalProgramListControl.lpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
-            MyLocalProgramListControl.UploadEvent += MyLocalProgramListControl_UploadEvent;
-            MyLocalProgramListControl.ProgramSelectEvent += MyLocalProgramListControl_ProgramSelectEvent;
+            // programListViewModel.ProgramFolder 默认值为NULL 此处没有赋值必要性
+
+            MyLocalProgramListControl.lpViewModel.ProgramFolderList = ProgramConfigConsts.CurrentReadProgramFolder;
+            programListViewModel.ProgramFolder= ProgramConfigConsts.CurrentReadProgramFolder;
+            MyLocalProgramListControl.RealReadWriterEvent += RealReadWriterEvent;
         }
 
-        private void MyLocalProgramListControl_ProgramSelectEvent(ProgramViewModel obj)
+        private void RealReadWriterEvent(HubReadWriterModel obj)
         {
-            currentLocalProgram = obj;
-        }
-
-        private void CpViewModel_SetCNCProgramPath()
-        {
-            var cncPath = new CNCPathControl(programListViewModel.ProgramFolder);
-            cncPath.SaveCNCPathEvent += CncPath_SaveCNCPathEvent;
-            new PopupWindow(cncPath, 680, 220, "修改CNC路径").ShowDialog();
-        }
-        private void MyLocalProgramListControl_UploadEvent(UpLoadProgramClientEventData arg1, LocalProgramListViewModel local)
-        {
-            Task.Factory.StartNew(new Action(() =>
-            {
-                EventBus.Default.TriggerAsync(arg1);
-            }));
-
-            var modal = new UpLoadLocalProgramControl(local.Path, local.ProgramFolderList, arg1.FileHashCode);
-
-            modal.ProgramUploadEvent += Modal_ProgramUploadEvent;
-            new PopupWindow(modal, 900, 590, "上传本地程序").ShowDialog();
-
-        }
-
-        private void Modal_ProgramUploadEvent(ProgramDetailViewModel obj)
-        {
-            currentProgramDetail = obj;
-            SendReaderWriter(new HubReadWriterModel()
-            {
-                ProxyName = "ProgramTransferInOut",
-                Action = "UploadProgramToCNC",
-                Id = "uploadProgramToCNC",
-                Data = new object[] { currentLocalProgram?.FillName, obj.SelectedProgramFolders.Folder }
-            });
-        }
-        private void CncPath_SaveCNCPathEvent(CNCProgramPath obj)
-        {
-            programListViewModel.CNCPath = obj;
-            MyCNCProgramListControl.cpViewModel.CNCPath = obj.Path;
-            SendQurayProgramList(true);
+            obj.ConnectId = CurrentConnectId;
+            SendReaderWriter(obj);
         }
 
         protected override void PageSignlarLoaded()
         {
             MyLocalProgramListControl.lpViewModel.ConnectId = CurrentConnectId;
 
-            SendQurayProgramList();
-            SendReaderWriter(new HubReadWriterModel()
-            {
-                ProxyName = "ProgramFolderInOut",
-                Action = "Reader",
-                Id = "getProgramFolder",
-                Data = new object[] { "//CNC_MEM/" }
-            });
+            MyCNCProgramListControl.Init();
+       
         }
-
-        private bool ChangePathByQurayProgramList = false;
-        private void SendQurayProgramList(bool ChangePath = false)
-        {
-            ChangePathByQurayProgramList = ChangePath;
-            SendReaderWriter(new HubReadWriterModel()
-            {
-                ProxyName = "ProgramListInOut",
-                Action = "Reader",
-                Id = "getProgramList",
-                Data = new object[] { programListViewModel.CNCPath.Path }
-            });
-        }
-
         protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
             if (!obj.Success)
             {
                 return;
             }
-            switch (obj.Id)
+            foreach (var item in programNotices)
             {
-                case "getProgramList":
-                    JArray jArray = JArray.Parse(obj.Result.ToString());
-                    this.MyCNCProgramListControl.ReadProgramList(jArray);
-                    break;
-                case "getProgramFolder":
-                    JObject jObject2 = JObject.Parse(obj.Result.ToString());
-                    GetProgramFolder(jObject2);
-                    break;
-                case "uploadProgramToCNC":
-                    string name = obj.Result.ToString();
-                    Task.Factory.StartNew(new Action(() =>
-                    {
-                        EventBus.Default.Trigger(new UpdateProgramClientEventData()
-                        {
-                            Data = new Common.UpdateProgramDto()
-                            {
-                                FileHash = currentProgramDetail?.FileHashCode,
-                                CuttingDistance = Convert.ToDouble(currentProgramDetail?.CuttingDistance),
-                                CuttingTime = Convert.ToDouble(currentProgramDetail?.CuttingTime),
-                                FocalPosition = Convert.ToDouble(currentProgramDetail?.FocalPosition),
-                                FullPath = currentProgramDetail?.SelectedProgramFolders.Folder,
-                                Gas = currentProgramDetail.Gas,
-                                Material = currentProgramDetail.Material,
-                                Name = name,
-                                NozzleDiameter = currentProgramDetail.NozzleDiameter,
-                                NozzleKind = currentProgramDetail.NozzleKind,
-                                PiercingCount = currentProgramDetail.PiercingCount,
-                                Size = currentProgramDetail.Size,
-                                Thickness = currentProgramDetail.Thickness,
-                                UpdateTime = DateTime.Now,
-                                Max_X = currentProgramDetail.Max_X,
-                                Max_Y = currentProgramDetail.Max_Y,
-                                Min_X = currentProgramDetail.Min_X,
-                                Min_Y = currentProgramDetail.Min_Y,
-                                PlateSize_H = currentProgramDetail.PlateSizeHeight,
-                                PlateSize_W = currentProgramDetail.PlateSizeWidth,
-                                UsedPlateSize_H = currentProgramDetail.UsedPlateSizeHeigth,
-                                UsedPlateSize_W = currentProgramDetail.UsedPlateSizeWidth,
-                                ThumbnaiInfo = currentProgramDetail.ThumbnaiInfo,
-                                ThumbnaiType = currentProgramDetail.ThumbnaiType
-                            }
-                        });
-
-                    }));
-                    break;
-                default:
-                    //读取上传到服务器的本地程序解析结果（CNC还未上传）
-                    JObject jObject = JObject.Parse(obj.Result.ToString());
-                    if (jObject != null)
-                    {
-                        Messenger.Default.Send(new ProgramDetailViewModel
-                        {
-                            Name = jObject["name"]?.ToString(),
-                            FullPath = jObject["fullPath"]?.ToString(),
-                            Size = Convert.ToDouble(jObject["size"]?.ToString()),
-                            Material = jObject["material"]?.ToString(),
-                            Thickness = Convert.ToDouble(jObject["thickness"]??"0"),
-                            Gas = jObject["gas"]?.ToString(),
-                            FocalPosition = Convert.ToDouble(jObject["focalPosition"]??"0"),
-                            NozzleKind = jObject["nozzleKind"]?.ToString(),
-                            NozzleDiameter = Convert.ToDouble(jObject["nozzleDiameter"]??"0"),
-                            PlateSizeHeight = Convert.ToDouble(jObject["plateSize_H"] ?? "0"),
-                            UsedPlateSizeHeigth = Convert.ToDouble(jObject["usedPlateSize_H"] ?? "0"),
-                            PlateSizeWidth = Convert.ToDouble(jObject["plateSize_W"] ?? "0"),
-                            UsedPlateSizeWidth = Convert.ToDouble(jObject["usedPlateSize_W"] ?? "0"),
-                            CuttingDistance = Convert.ToDouble(jObject["cuttingDistance"]??"0"),
-                            PiercingCount = Convert.ToInt32(jObject["piercingCount"]??"0"),
-                            Max_X = Convert.ToInt32(jObject["max_X"] ?? "0"),
-                            Max_Y = Convert.ToInt32(jObject["max_Y"] ?? "0"),
-                            Min_X = Convert.ToInt32(jObject["min_X"] ?? "0"),
-                            Min_Y = Convert.ToInt32(jObject["min_Y"] ?? "0"),
-                            CuttingTime = Convert.ToInt32(jObject["cuttingTime"] ?? "0"),
-                            ThumbnaiType = Convert.ToInt32(jObject["thumbnaiType"] ?? "0"),
-                            ThumbnaiInfo = jObject["thumbnaiInfo"]?.ToString()
-                        });
-                    }
-                    break;
-            };
-        }
-
-        private void GetProgramFolder(JObject jObject)
-        {
-            ReadProgramFolderItemViewModel readProgramFolder = new ReadProgramFolderItemViewModel();
-            if (jObject != null)
-            {
-                readProgramFolder.RegNum = (int)jObject["regNum"];
-                readProgramFolder.Name = jObject["name"].ToString();
-                readProgramFolder.Folder = jObject["folder"].ToString();
-                var jArray = JArray.Parse(jObject["nodes"].ToString());
-
-                ReadProgramFolderNode(jArray, readProgramFolder);
-
-                MyLocalProgramListControl.lpViewModel.ProgramFolderList = readProgramFolder;
-                programListViewModel.ProgramFolder = readProgramFolder;
-            }
-        }
-
-        private void ReadProgramFolderNode(JArray jArray, ReadProgramFolderItemViewModel node)
-        {
-            if (jArray == null) return;
-
-            node.Nodes = new System.Collections.ObjectModel.ObservableCollection<ReadProgramFolderItemViewModel>();
-            foreach (var item in jArray)
-            {
-                var childNode = new ReadProgramFolderItemViewModel
+                if (item.CanWork(obj))
                 {
-                    RegNum = (int)item["regNum"],
-                    Name = item["name"].ToString(),
-                    Folder = item["folder"].ToString(),
-                };
-                node.Nodes.Add(childNode);
-                ReadProgramFolderNode(JArray.Parse(item["nodes"].ToString()), childNode);
-            }
+                    item.DoWork(obj);
+                }
+            }         
         }
-
-        public override bool IsRequestResponse => true;
 
         public override List<object> GetResultViewModelMap()
         {

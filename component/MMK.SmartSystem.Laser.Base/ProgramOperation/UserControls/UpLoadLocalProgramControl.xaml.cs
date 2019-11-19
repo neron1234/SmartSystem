@@ -41,24 +41,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             upLoadProViewModel.CloseEvent += UpLoadProViewModel_CloseEvent;
             upLoadProViewModel.GetDetailModelEvent += UpLoadProViewModel_GetDetailModelEvent;
             upLoadProViewModel.InputKeyInputEvent += UpLoadProViewModel_InputKeyInputEvent;
-            Messenger.Default.Register<ProgramDetailViewModel>(this, (pds) =>
-            {
-                upLoadProViewModel.ProgramDetail = pds;
-                if (!string.IsNullOrEmpty(pds.Material))
-                {
-                    upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.FirstOrDefault(n => n.Name_CN == pds.Material)?.Code;
-                }
-                if (!string.IsNullOrEmpty(pds.NozzleKind))
-                {
-                    upLoadProViewModel.SelectedNozzleKindCode = (int)upLoadProViewModel.NozzleKindList.FirstOrDefault(n => n.Name_CN == pds.NozzleKind)?.Code;
-                }
-            });
             Loaded += UpLoadLocalProgramControl_Loaded;
             //this.CNCPathCascader.SelectedItem = upLoadProViewModel.SelectedProgramFolders;
         }
 
         public void SetSelectProgramDetail(ProgramDetailViewModel pds)
         {
+            upLoadProViewModel.ProgramDetail = pds;
+
             if (!string.IsNullOrEmpty(pds.Material))
             {
                 upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.FirstOrDefault(n => n.Name_CN == pds.Material)?.Code;

@@ -3,6 +3,8 @@ using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
+using MMK.SmartSystem.WebCommon.HubModel;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,13 +26,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     /// <summary>
     /// LocalProgramListControl.xaml 的交互逻辑
     /// </summary>
-    public partial class LocalProgramListControl : UserControl
+    public partial class LocalProgramListControl : UserControl, IProgramNotice
     {
         public LocalProgramListViewModel lpViewModel { get; set; }
+        public event Action<HubReadWriterModel> RealReadWriterEvent;
 
-        public event Action<UpLoadProgramClientEventData, LocalProgramListViewModel> UploadEvent;
+        private ProgramDetailViewModel currentProgramDetail;
 
-        public event Action<ProgramViewModel> ProgramSelectEvent;
+        private UpLoadLocalProgramControl modalControl;
         public LocalProgramListControl()
         {
             InitializeComponent();
@@ -50,15 +53,36 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 stream = new MemoryStream(bytes);
             }
 
-            UploadEvent?.Invoke(new UpLoadProgramClientEventData
+
+            Task.Factory.StartNew(new Action(() =>
             {
-                FileParameter = new Common.FileParameter(stream, obj.Name),
-                ConnectId = local.ConnectId,
-                FileHashCode = obj.FileHash
-            }, local);
+                EventBus.Default.TriggerAsync(new UpLoadProgramClientEventData
+                {
+                    FileParameter = new Common.FileParameter(stream, obj.Name),
+                    ConnectId = local.ConnectId,
+                    FileHashCode = obj.FileHash
+                });
+            }));
+
+            modalControl = new UpLoadLocalProgramControl(local.Path, local.ProgramFolderList, obj.FileHash);
+
+            modalControl.ProgramUploadEvent += Modal_ProgramUploadEvent;
+            new PopupWindow(modalControl, 900, 590, "上传本地程序").ShowDialog();
+            modalControl = null;
         }
 
+        private void Modal_ProgramUploadEvent(ProgramDetailViewModel obj)
+        {
+            currentProgramDetail = obj;
+            RealReadWriterEvent?.Invoke(new HubReadWriterModel()
+            {
+                ProxyName = "ProgramTransferInOut",
+                Action = "UploadProgramToCNC",
+                Id = "uploadProgramToCNC",
+                Data = new object[] { lpViewModel.SelectedProgramViewModel?.FillName, obj.SelectedProgramFolders.Folder }
+            });
 
+        }
 
         private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -66,7 +90,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             if (selected != null && selected is ProgramViewModel)
             {
                 lpViewModel.SelectedProgramViewModel = (ProgramViewModel)selected;
-                ProgramSelectEvent?.Invoke(lpViewModel.SelectedProgramViewModel);
                 //Messenger.Default.Send(lpViewModel.SelectedProgramViewModel);
 
                 //if (lpViewModel.SelectedProgramViewModel.Name.Split('.').Count() > 1)
@@ -111,6 +134,84 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 }
                 Messenger.Default.Send(sb);
             }
+        }
+
+        public bool CanWork(HubReadWriterResultModel resultModel)
+        {
+            return resultModel.Id == "uploadProgramToCNC" || resultModel.Id == "ReadProgramEvent";
+        }
+
+        public void DoWork(HubReadWriterResultModel resultModel)
+        {
+            if (resultModel.Id == "ReadProgramEvent")
+            {
+                JObject jObject = JObject.Parse(resultModel.Result.ToString());
+                if (jObject != null && modalControl != null)
+                {
+                    var obj = new ProgramDetailViewModel
+                    {
+                        Name = jObject["name"]?.ToString(),
+                        FullPath = jObject["fullPath"]?.ToString(),
+                        Size = Convert.ToDouble(jObject["size"]?.ToString()),
+                        Material = jObject["material"]?.ToString(),
+                        Thickness = Convert.ToDouble(jObject["thickness"] ?? "0"),
+                        Gas = jObject["gas"]?.ToString(),
+                        FocalPosition = Convert.ToDouble(jObject["focalPosition"] ?? "0"),
+                        NozzleKind = jObject["nozzleKind"]?.ToString(),
+                        NozzleDiameter = Convert.ToDouble(jObject["nozzleDiameter"] ?? "0"),
+                        PlateSizeHeight = Convert.ToDouble(jObject["plateSize_H"] ?? "0"),
+                        UsedPlateSizeHeigth = Convert.ToDouble(jObject["usedPlateSize_H"] ?? "0"),
+                        PlateSizeWidth = Convert.ToDouble(jObject["plateSize_W"] ?? "0"),
+                        UsedPlateSizeWidth = Convert.ToDouble(jObject["usedPlateSize_W"] ?? "0"),
+                        CuttingDistance = Convert.ToDouble(jObject["cuttingDistance"] ?? "0"),
+                        PiercingCount = Convert.ToInt32(jObject["piercingCount"] ?? "0"),
+                        Max_X = Convert.ToInt32(jObject["max_X"] ?? "0"),
+                        Max_Y = Convert.ToInt32(jObject["max_Y"] ?? "0"),
+                        Min_X = Convert.ToInt32(jObject["min_X"] ?? "0"),
+                        Min_Y = Convert.ToInt32(jObject["min_Y"] ?? "0"),
+                        CuttingTime = Convert.ToInt32(jObject["cuttingTime"] ?? "0"),
+                        ThumbnaiType = Convert.ToInt32(jObject["thumbnaiType"] ?? "0"),
+                        ThumbnaiInfo = jObject["thumbnaiInfo"]?.ToString()
+                    };
+                    modalControl.SetSelectProgramDetail(obj);
+                }
+                return;
+            }
+            string name = resultModel.Result.ToString();
+            Task.Factory.StartNew(new Action(() =>
+            {
+                EventBus.Default.Trigger(new UpdateProgramClientEventData()
+                {
+                    Data = new Common.UpdateProgramDto()
+                    {
+                        FileHash = currentProgramDetail?.FileHashCode,
+                        CuttingDistance = Convert.ToDouble(currentProgramDetail?.CuttingDistance),
+                        CuttingTime = Convert.ToDouble(currentProgramDetail?.CuttingTime),
+                        FocalPosition = Convert.ToDouble(currentProgramDetail?.FocalPosition),
+                        FullPath = currentProgramDetail?.SelectedProgramFolders.Folder,
+                        Gas = currentProgramDetail.Gas,
+                        Material = currentProgramDetail.Material,
+                        Name = name,
+                        NozzleDiameter = currentProgramDetail.NozzleDiameter,
+                        NozzleKind = currentProgramDetail.NozzleKind,
+                        PiercingCount = currentProgramDetail.PiercingCount,
+                        Size = currentProgramDetail.Size,
+                        Thickness = currentProgramDetail.Thickness,
+                        UpdateTime = DateTime.Now,
+                        Max_X = currentProgramDetail.Max_X,
+                        Max_Y = currentProgramDetail.Max_Y,
+                        Min_X = currentProgramDetail.Min_X,
+                        Min_Y = currentProgramDetail.Min_Y,
+                        PlateSize_H = currentProgramDetail.PlateSizeHeight,
+                        PlateSize_W = currentProgramDetail.PlateSizeWidth,
+                        UsedPlateSize_H = currentProgramDetail.UsedPlateSizeHeigth,
+                        UsedPlateSize_W = currentProgramDetail.UsedPlateSizeWidth,
+                        ThumbnaiInfo = currentProgramDetail.ThumbnaiInfo,
+                        ThumbnaiType = currentProgramDetail.ThumbnaiType
+                    }
+                });
+
+            }));
         }
     }
 }
