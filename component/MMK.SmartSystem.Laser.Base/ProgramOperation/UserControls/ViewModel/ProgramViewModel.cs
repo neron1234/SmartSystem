@@ -9,6 +9,21 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
     public class ProgramViewModel:ViewModelBase
     {
+
+        private string _FillName;
+        public string FillName
+        {
+            get { return _FillName; }
+            set
+            {
+                if (_FillName != value)
+                {
+                    _FillName = value;
+                    RaisePropertyChanged(() => FillName);
+                }
+            }
+        }
+
         private string _Name;
         public string Name
         {
