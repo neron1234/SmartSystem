@@ -50,13 +50,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 stream = new MemoryStream(bytes);
             }
 
-            var fileHash = FileHashHelper.ComputeMD5(System.IO.Path.Combine(local.Path, obj.Name));
-
             UploadEvent?.Invoke(new UpLoadProgramClientEventData
             {
                 FileParameter = new Common.FileParameter(stream, obj.Name),
                 ConnectId = local.ConnectId,
-                FileHashCode = fileHash
+                FileHashCode = obj.FileHash
             }, local);
         }
 

@@ -57,45 +57,30 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public string Path { get; set; }
 
-        private string _LocalPath;
-        public string LocalPath
-        {
-            get { return _LocalPath; }
-            set
-            {
-                if (_LocalPath != value)
-                {
-                    _LocalPath = value;
-                    RaisePropertyChanged(() => LocalPath);
-                }
-            }
-        }
-
         public LocalProgramListViewModel(){
             ProgramList = new ObservableCollection<ProgramViewModel>();
             this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
             GetFileName();
         }
 
-        public void GetFileName()
-        {
-            if (Directory.Exists(this.Path))
-            {
+        public void GetFileName(){
+            if (Directory.Exists(this.Path)){
                 DirectoryInfo root = new DirectoryInfo(this.Path);
                 LocalProgramList = new ObservableCollection<ProgramViewModel>();
-                foreach (FileInfo f in root.GetFiles())
-                {
-                    var program = new ProgramViewModel
-                    {
+
+                var files = root.GetFiles("*.ng").Union(root.GetFiles("*.txt")).Union(root.GetFiles("*."));
+
+                foreach (FileInfo f in files){
+                    var program = new ProgramViewModel{
+                        FileHash = FileHashHelper.ComputeMD5(f.FullName),
                         Name = f.Name,
                         FillName = f.FullName,
-                        CreateTime = f.CreationTime.ToString("yyyy-MM-dd HH:mm:ss"),
-                        Size = (f.Length / 1024).ToString() + "KB"
+                        CreateTime = f.CreationTime.ToString("MM-dd HH:mm"),
+                        Size = GetFileSize(f.Length)
                     };
                     this.LocalProgramList.Add(program);
                 }
-                DataPaging(false);
-                this.LocalPath = this.Path;
+                DataPaging();
             }
         }
 
@@ -128,14 +113,17 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
         public int PageNumber = 7;
-        public void DataPaging(bool next)
+        public void DataPaging(bool next = false)
         {
+            if (LocalProgramList == null){
+                return;
+            }
             int count = LocalProgramList.Count;
-            TotalPage = 0;
+            this.TotalPage = 0;
             if (count % PageNumber == 0){
-                TotalPage = count / PageNumber;
+                this.TotalPage = count / PageNumber;
             }else{
-                TotalPage = count / PageNumber + 1;
+                this.TotalPage = count / PageNumber + 1;
             }
 
             if (next && CurrentPage >= 1 && CurrentPage < TotalPage){
@@ -143,9 +131,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }else{
                 CurrentPage = 1;
             }
-
             this.ProgramList.Clear();
-
             foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList()){
                 this.ProgramList.Add(item);
             }
@@ -215,7 +201,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public void SVM_SearchEvent(string str){
             this.ProgramList.Clear();
             if (string.IsNullOrEmpty(str)){
-                DataPaging(false);
+                DataPaging();
                 return;
             }
             foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(str))){
@@ -243,6 +229,21 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                     DataPaging(true);
                 });
             }
+        }
+
+
+        public static string GetFileSize(long size){
+            var num = 1024.0;
+            if (size < num)
+                return size + "B";
+            if (size < Math.Pow(num, 2))
+                return (size / num).ToString("f1") + "K";
+            if (size < Math.Pow(num, 3))
+                return (size / Math.Pow(num, 2)).ToString("f1") + "M";
+            if (size < Math.Pow(num, 4))
+                return (size / Math.Pow(num, 3)).ToString("f1") + "G"; 
+
+            return (size / Math.Pow(num, 4)).ToString("f1") + "T"; 
         }
     }
 }

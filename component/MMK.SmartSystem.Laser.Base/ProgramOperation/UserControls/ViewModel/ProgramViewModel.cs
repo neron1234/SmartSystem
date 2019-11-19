@@ -9,6 +9,19 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
     public class ProgramViewModel:ViewModelBase
     {
+        private string _FileHash;
+        public string FileHash
+        {
+            get { return _FileHash; }
+            set
+            {
+                if (_FileHash != value)
+                {
+                    _FileHash = value;
+                    RaisePropertyChanged(() => FileHash);
+                }
+            }
+        }
 
         private string _FillName;
         public string FillName

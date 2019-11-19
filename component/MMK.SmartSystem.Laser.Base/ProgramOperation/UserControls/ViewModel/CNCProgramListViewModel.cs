@@ -68,19 +68,17 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             int count = LocalProgramList.Count;
             this.TotalPage = 0;
             if (count % PageNumber == 0){
-                TotalPage = count / PageNumber;
+                this.TotalPage = count / PageNumber;
             }else{
-                TotalPage = count / PageNumber + 1;
+                this.TotalPage = count / PageNumber + 1;
             }
             if (next && CurrentPage >= 1 && CurrentPage < TotalPage){
                 CurrentPage++;
             }else{
                 CurrentPage = 1;
             }
-
             this.ProgramList.Clear();
-            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList())
-            {
+            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList()){
                 this.ProgramList.Add(item);
             }
             //this.ProgramList = new ObservableCollection<ProgramViewModel>(LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList());

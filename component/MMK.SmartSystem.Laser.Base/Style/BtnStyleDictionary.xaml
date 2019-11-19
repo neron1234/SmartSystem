@@ -759,14 +759,14 @@
                             <Setter Property="Opacity" TargetName="rectangle" Value="1"/>
                             <Setter Property="Foreground" Value="#FCC332" TargetName="textBlock"/>
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True">
+                        <!--<Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Effect" TargetName="rectangle" Value="{x:Null}"/>
                             <Setter Property="Fill" TargetName="rectangle" Value="Black"/>
                         </Trigger>
                         <Trigger Property="HasContent" Value="true">
                             <Setter Property="FocusVisualStyle" Value="{StaticResource CheckRadioFocusVisual}"/>
                             <Setter Property="Padding" Value="2,0,0,0"/>
-                        </Trigger>
+                        </Trigger>-->
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -782,9 +782,10 @@
                 <ControlTemplate TargetType="{x:Type TabItem}">
                     <Grid>
                         <Grid.Background>
-                            <LinearGradientBrush>
-                                <GradientStop Color="#585858" Offset="0.1" />
-                                <GradientStop Color="#4b4b4b" Offset="0.3" />
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#555555" Offset="0.1" />
+                                <GradientStop Color="#4a4a4a" Offset="0.3" />
+                                <GradientStop Color="#4F4545" Offset="0.4" />
                                 <GradientStop Color="#404040" Offset="0.5" />
                                 <GradientStop Color="#343434" Offset="0.7" />
                                 <GradientStop Color="#292929" Offset="0.8" />
@@ -792,39 +793,36 @@
                             </LinearGradientBrush>
                         </Grid.Background>
                         <Rectangle x:Name="rectangle" Fill="#202328" Stroke="Black" Opacity="0.5"  StrokeThickness="0"/>
-                        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{TemplateBinding Header}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="27.137" FontSize="18.667" Foreground="#FF636A64" FontWeight="Bold"/>
+                        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{TemplateBinding Header}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="27.137" FontSize="18.667" Foreground="#919191" FontWeight="Bold"/>
                     </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Fill" TargetName="rectangle" Value="#141619"/>
-                            <Setter Property="Opacity" TargetName="rectangle" Value="1"/>
-                            <Setter Property="Foreground" Value="#dbe1e5" TargetName="textBlock"/>
-                            <Setter Property="Background">
-                                <Setter.Value>
-                                    <LinearGradientBrush>
-                                        <GradientStop Color="#303030" Offset="0.1" />
-                                        <GradientStop Color="#2b2b2b" Offset="0.2" />
-                                        <GradientStop Color="#272727" Offset="0.3" />
-                                        <GradientStop Color="#222222" Offset="0.4" />
-                                        <GradientStop Color="#1d1d1d" Offset="0.5" />
-                                        <GradientStop Color="#181818" Offset="0.7" />
-                                        <GradientStop Color="#131313" Offset="0.9" />
-                                    </LinearGradientBrush>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Effect" TargetName="rectangle" Value="{x:Null}"/>
-                            <Setter Property="Fill" TargetName="rectangle" Value="Black"/>
-                        </Trigger>
-                        <Trigger Property="HasContent" Value="true">
-                            <Setter Property="FocusVisualStyle" Value="{StaticResource CheckRadioFocusVisual}"/>
-                            <Setter Property="Padding" Value="2,0,0,0"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}" >
+                            <Grid>
+                                <Grid.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#303030" Offset="0.1" />
+                                        <GradientStop Color="#2b2b2b" Offset="0.3" />
+                                        <GradientStop Color="#272727" Offset="0.4" />
+                                        <GradientStop Color="#222222" Offset="0.5" />
+                                        <GradientStop Color="#1d1d1d" Offset="0.7" />
+                                        <GradientStop Color="#181818" Offset="0.8" />
+                                        <GradientStop Color="#131313" Offset="0.9" />
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                                <Rectangle x:Name="rectangle" Fill="#202328" Stroke="Black" Opacity="0.5"  StrokeThickness="0"/>
+                                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{TemplateBinding Header}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="27.137" FontSize="18.667" Foreground="#dbe1e5" FontWeight="Bold"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="RadioButtonColorStyle" TargetType="{x:Type RadioButton}">

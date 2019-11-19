@@ -52,7 +52,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                     {
                         Name = jObject["name"].ToString(),
                         Size = jObject["size"].ToString(),
-                        CreateTime = jObject["createDateTime"].ToString(),
+                        CreateTime = Convert.ToDateTime(jObject["createDateTime"]).ToString("yyyy-MM-dd HH:mm:ss"),
                         Description = jObject["description"].ToString()
                     });
                 }
