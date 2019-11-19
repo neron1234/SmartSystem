@@ -20,7 +20,7 @@ namespace MMK.CNC.Application.LaserProgram
     {
 
 
-        Task<string> UploadProgram(IFormFile file, string connectId,string fileHashCode);
+        Task<string> UploadProgram(IFormFile file, string connectId, string fileHashCode);
 
     }
     public class ProgramApplicationService : AsyncCrudAppService<ProgramComment, ProgramCommentFromCncDto, int, PagedResultRequestDto, CreateProgramDto, UpdateProgramDto>, IProgramApplicationService
@@ -52,24 +52,36 @@ namespace MMK.CNC.Application.LaserProgram
             }
             else
             {
-                defaultCode.CuttingDistance = entity.CuttingDistance;
-                defaultCode.CuttingTime = entity.CuttingTime;
-                defaultCode.FocalPosition = entity.FocalPosition;
-                defaultCode.FullPath = entity.FullPath;
-                defaultCode.Gas = entity.Gas;
-                defaultCode.Material = entity.Material;
-                defaultCode.Name = entity.Name;
-                defaultCode.NozzleDiameter = entity.NozzleDiameter;
-                defaultCode.NozzleKind = entity.NozzleKind;
-                defaultCode.PiercingCount = entity.PiercingCount;
-                defaultCode.PlateSize = entity.PlateSize;
-                defaultCode.Size = entity.Size;
-                defaultCode.Thickness = entity.Thickness;
-                defaultCode.ThumbnaiInfo = entity.ThumbnaiInfo;
-                defaultCode.ThumbnaiType = entity.ThumbnaiType;
-                defaultCode.UpdateTime = entity.UpdateTime;
-                defaultCode.UsedPlateSize = entity.UsedPlateSize;
-              
+                var props = defaultCode.GetType().GetProperties();
+                var entityType = entity.GetType();
+
+                foreach (var item in props)
+                {
+                    if (item.Name == "CreationTime" || item.Name == "Id")
+                    {
+                        continue;
+                    }
+                    var value = entityType.GetProperty(item.Name).GetValue(entity);
+                    if (value != null)
+                    {
+                        try
+                        {
+                            var t = item.PropertyType== typeof(double?)?typeof(double):item.PropertyType;
+                            item.SetValue(defaultCode, Convert.ChangeType(value ?? 0, t));
+
+                        }
+                        catch (Exception ex)
+                        {
+
+
+                        }
+
+                    }
+                }
+
+
+
+
                 await Repository.UpdateAsync(defaultCode);
 
 
@@ -78,7 +90,7 @@ namespace MMK.CNC.Application.LaserProgram
         }
 
 
-        public async Task<string> UploadProgram(IFormFile file, string connectId,string fileHashCode)
+        public async Task<string> UploadProgram(IFormFile file, string connectId, string fileHashCode)
         {
             var stream = file.OpenReadStream();
 
