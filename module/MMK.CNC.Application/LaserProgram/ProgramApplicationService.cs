@@ -52,8 +52,25 @@ namespace MMK.CNC.Application.LaserProgram
             }
             else
             {
-                entity.Id = defaultCode.Id;
-                await Repository.UpdateAsync(entity);
+                defaultCode.CuttingDistance = entity.CuttingDistance;
+                defaultCode.CuttingTime = entity.CuttingTime;
+                defaultCode.FocalPosition = entity.FocalPosition;
+                defaultCode.FullPath = entity.FullPath;
+                defaultCode.Gas = entity.Gas;
+                defaultCode.Material = entity.Material;
+                defaultCode.Name = entity.Name;
+                defaultCode.NozzleDiameter = entity.NozzleDiameter;
+                defaultCode.NozzleKind = entity.NozzleKind;
+                defaultCode.PiercingCount = entity.PiercingCount;
+                defaultCode.PlateSize = entity.PlateSize;
+                defaultCode.Size = entity.Size;
+                defaultCode.Thickness = entity.Thickness;
+                defaultCode.ThumbnaiInfo = entity.ThumbnaiInfo;
+                defaultCode.ThumbnaiType = entity.ThumbnaiType;
+                defaultCode.UpdateTime = entity.UpdateTime;
+                defaultCode.UsedPlateSize = entity.UsedPlateSize;
+              
+                await Repository.UpdateAsync(defaultCode);
 
 
             }

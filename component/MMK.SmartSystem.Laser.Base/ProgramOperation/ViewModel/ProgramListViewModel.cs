@@ -47,7 +47,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
             }
         }
 
-        public string ConnectId { get; set; }
         public ProgramListViewModel()
         {
             

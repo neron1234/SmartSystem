@@ -28,12 +28,12 @@ namespace MMK.SmartSystem.RealTime.EventHandlers
         {
             string savePath = Path.Combine(_hostingEnvironment.WebRootPath, "Upload", "CNCProgram");
             string bmpPath = Path.Combine(_hostingEnvironment.WebRootPath, "Upload", "BMP");
-            string saveFullName = "";
+            string saveFullName = eventData.FullName;
             if (Directory.Exists(savePath))
             {
-                DirectoryInfo root = new DirectoryInfo(savePath);
-                var nameCount = root.GetFiles().Where(n => n.Name == eventData.FullName).Count();
-                saveFullName = nameCount > 0 ? eventData.FullName + nameCount : eventData.FullName;
+               // DirectoryInfo root = new DirectoryInfo(savePath);
+                //var nameCount = root.GetFiles().Where(n => n.Name == eventData.FullName).Count();
+                //saveFullName = nameCount > 0 ? eventData.FullName + nameCount : eventData.FullName;
 
                 using (var stream = new FileStream(Path.Combine(savePath, saveFullName), FileMode.Create))
                 {

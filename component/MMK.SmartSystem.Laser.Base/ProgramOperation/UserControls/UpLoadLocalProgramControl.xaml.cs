@@ -31,9 +31,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         public UpLoadLocalProgramViewModel upLoadProViewModel { get; set; }
 
         public event Action<ProgramDetailViewModel> ProgramUploadEvent;
-        public UpLoadLocalProgramControl(string programPath, ReadProgramFolderItemViewModel programFolderInfo)
+        private string fileHash = "";
+        public UpLoadLocalProgramControl(string programPath, ReadProgramFolderItemViewModel programFolderInfo, string fileCode = "")
         {
             InitializeComponent();
+            fileHash = fileCode;
             this.DataContext = upLoadProViewModel = new UpLoadLocalProgramViewModel(programFolderInfo);
             upLoadProViewModel.LocalProgramPath = programPath;
             upLoadProViewModel.CloseEvent += UpLoadProViewModel_CloseEvent;
@@ -41,7 +43,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             upLoadProViewModel.InputKeyInputEvent += UpLoadProViewModel_InputKeyInputEvent;
             Messenger.Default.Register<ProgramDetailViewModel>(this, (pds) =>
             {
-                //upLoadProViewModel.ProgramDetail = pds;
+                upLoadProViewModel.ProgramDetail = pds;
                 if (!string.IsNullOrEmpty(pds.Material))
                 {
                     upLoadProViewModel.SelectedMaterialId = (int)upLoadProViewModel.MaterialTypeList.FirstOrDefault(n => n.Name_CN == pds.Material)?.Code;
@@ -74,6 +76,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         private void UpLoadProViewModel_GetDetailModelEvent(ProgramDetailViewModel obj)
         {
+            obj.FileHashCode = fileHash;
             obj.SelectedProgramFolders = ((ReadProgramFolderItemViewModel)this.CNCPathCascader.SelectedValues[this.CNCPathCascader.SelectedValues.Count - 1]);
             ProgramUploadEvent?.Invoke(obj);
         }
@@ -190,7 +193,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 var propName = upLoadProViewModel.ProgramDetail.GetType().GetProperty(name);
                 if (propName != null)
                 {
-                    propName.SetValue(upLoadProViewModel.ProgramDetail, Convert.ChangeType(FocusTb.Text, propName.PropertyType) );
+                    propName.SetValue(upLoadProViewModel.ProgramDetail, Convert.ChangeType(FocusTb.Text, propName.PropertyType));
                 }
             }
         }

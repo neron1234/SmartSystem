@@ -157,6 +157,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
     public class ProgramDetailViewModel : ViewModelBase
     {
+        public string FileHashCode { get; set; }
         public ProgramDetailViewModel()
         {
             SelectedProgramFolders = new ReadProgramFolderItemViewModel();
@@ -302,61 +303,18 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        private string _PlateSizeWidth;
-        public string PlateSizeWidth
-        {
-            get { return _PlateSizeWidth; }
-            set
-            {
-                if (_PlateSizeWidth != value)
-                {
-                    _PlateSizeWidth = value;
-                    RaisePropertyChanged(() => PlateSizeWidth);
-                }
-            }
-        }
+        public double PlateSizeWidth { get; set; }
 
-        private string _UsedPlateSizeWidth;
-        public string UsedPlateSizeWidth
-        {
-            get { return _UsedPlateSizeWidth; }
-            set
-            {
-                if (_UsedPlateSizeWidth != value)
-                {
-                    _UsedPlateSizeWidth = value;
-                    RaisePropertyChanged(() => UsedPlateSizeWidth);
-                }
-            }
-        }
+        public double UsedPlateSizeWidth { get; set; }
 
-        private string _PlateSizeHeight;
-        public string PlateSizeHeight
-        {
-            get { return _PlateSizeHeight; }
-            set
-            {
-                if (_PlateSizeHeight != value)
-                {
-                    _PlateSizeHeight = value;
-                    RaisePropertyChanged(() => PlateSizeHeight);
-                }
-            }
-        }
+        public double PlateSizeHeight { get; set; }
 
-        private string _UsedPlateSizeHeigth;
-        public string UsedPlateSizeHeigth
-        {
-            get { return _UsedPlateSizeHeigth; }
-            set
-            {
-                if (_UsedPlateSizeHeigth != value)
-                {
-                    _UsedPlateSizeHeigth = value;
-                    RaisePropertyChanged(() => UsedPlateSizeHeigth);
-                }
-            }
-        }
+        public double UsedPlateSizeHeigth { get; set; }
+
+        public double Max_Y { get; set; }
+        public double Max_X { get; set; }
+        public double Min_Y { get; set; }
+        public double Min_X { get; set; }
 
         private double _CuttingDistance;
         public double CuttingDistance

@@ -18,7 +18,6 @@ namespace MMK.SmartSystem.RealTime.Hubs
 {
     public class CncClientHub : AbpCommonHub
     {
-        public IProgramApplicationService applicationService { get; set; }
         public const string ClientGetCncEvent = "GetCncEvent";
         public const string ClientReadWriter = "ReaderWriterEvent";
 
@@ -36,28 +35,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
 
         public string UpdateProgramProxy(ProgramResolveResultDto programResolve)
         {
-            var entity = new UpdateProgramDto()
-            {
-                FileHash = programResolve.Data.FileHash,
-                CuttingDistance = programResolve.Data.CuttingDistance,
-                CuttingTime = programResolve.Data.CuttingTime,
-                FocalPosition = programResolve.Data.FocalPosition,
-                FullPath = programResolve.Data.FullPath,
-                Gas = programResolve.Data.Gas,
-                Material = programResolve.Data.Material,
-                Name = programResolve.Data.Name,
-                NozzleDiameter = programResolve.Data.NozzleDiameter,
-                NozzleKind = programResolve.Data.NozzleKind,
-                PiercingCount = programResolve.Data.PiercingCount,
-                PlateSize = programResolve.Data.PlateSize,
-                Size = programResolve.Data.Size,
-                Thickness = programResolve.Data.Thickness,
-                ThumbnaiInfo = programResolve.BmpName,
-                ThumbnaiType = programResolve.Data.ThumbnaiType,
-                UpdateTime = programResolve.Data.UpdateTime,
-                UsedPlateSize = programResolve.Data.UsedPlateSize
-            };
-            applicationService.UpdateAsync(entity);
+           
 
             hubClient.Clients.Client(programResolve.ConnectId).SendAsync(CNCHub.GetReadWriterAction, new HubReadWriterResultModel()
             {
@@ -66,7 +44,7 @@ namespace MMK.SmartSystem.RealTime.Hubs
                 ConnectId = programResolve.ConnectId,
                 Success = true
             });
-            hubClient.Clients.All.SendAsync("GetProgram", programResolve);
+            hubClient.Clients.Group("WEB").SendAsync("GetProgram", programResolve);
 
             return "True";
         }

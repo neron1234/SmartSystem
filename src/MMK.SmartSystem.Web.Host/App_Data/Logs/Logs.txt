@@ -3035,3 +3035,440 @@ INFO  2019-11-11 15:42:04,403 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics -
 INFO  2019-11-11 15:42:04,405 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 14.472000000000001ms 304 application/javascript
 INFO  2019-11-11 15:42:04,590 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
 INFO  2019-11-11 15:42:04,799 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 209.7246ms 200 application/json;charset=utf-8
+DEBUG 2019-11-19 13:48:22,987 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-11-19 13:48:23,353 [1    ] Abp.Modules.AbpModuleManager             - Found 19 ABP modules in total.
+DEBUG 2019-11-19 13:48:23,365 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,367 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,367 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,367 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,367 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,368 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,368 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,368 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,368 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,368 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,369 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,369 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,369 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,369 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,369 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,370 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,370 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,370 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,370 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Hangfire.AbpHangfireAspNetCoreModule, Abp.HangFire.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:23,372 [1    ] Abp.Modules.AbpModuleManager             - 19 modules loaded.
+DEBUG 2019-11-19 13:48:23,604 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 13:48:23,604 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 13:48:23,604 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 13:48:23,604 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 13:48:24,300 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:48:25,270 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-11-19 13:48:25,318 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-11-19 13:48:25,354 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-11-19 13:48:25,358 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-11-19 13:48:25,384 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-11-19 13:48:25,387 [1    ] bp.Hangfire.HangfireBackgroundJobManager - Start background worker: Abp.Hangfire.HangfireBackgroundJobManager
+DEBUG 2019-11-19 13:48:25,483 [1    ] rization.Users.UserTokenExpirationWorker - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker
+DEBUG 2019-11-19 13:48:25,532 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 32 classes define auto mapping attributes
+DEBUG 2019-11-19 13:48:25,532 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-11-19 13:48:25,537 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-11-19 13:48:25,537 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-11-19 13:48:25,537 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-11-19 13:48:25,537 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-11-19 13:48:25,537 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-11-19 13:48:25,537 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-11-19 13:48:25,538 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-11-19 13:48:25,538 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-11-19 13:48:25,538 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-11-19 13:48:25,538 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-11-19 13:48:25,538 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-11-19 13:48:25,538 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-11-19 13:48:25,538 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+DEBUG 2019-11-19 13:48:25,538 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserProgram.Dto.ProgramCommentFromCncDto
+DEBUG 2019-11-19 13:48:25,538 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserProgram.Dto.CreateProgramDto
+DEBUG 2019-11-19 13:48:25,538 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserProgram.Dto.UpdateProgramDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.GasDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateGasDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateGasDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.MachiningGroupDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateMachiningGroupDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateMachiningGroupDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.MachiningKindDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateMachiningKindDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateMachiningKindDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.MaterialDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateMaterialDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateMaterialDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.NozzleKindDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateNozzleKindDto
+DEBUG 2019-11-19 13:48:25,539 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateNozzleKindDto
+DEBUG 2019-11-19 13:48:34,295 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-11-19 13:48:34,834 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-11-19 13:48:35,420 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-11-19 13:48:35,991 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2019-11-19 13:48:36,822 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2019-11-19 13:48:36,894 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-11-19 13:48:37,119 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)'
+INFO  2019-11-19 13:48:39,929 [10   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller MMK.SmartSystem.Web.Host.Controllers.HomeController (MMK.SmartSystem.Web.Host).
+INFO  2019-11-19 13:48:40,771 [10   ] c.Infrastructure.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-11-19 13:48:40,776 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.2797ms.
+INFO  2019-11-19 13:48:41,681 [5    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-11-19 13:48:41,688 [5    ] c.Infrastructure.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 1753.6775ms
+INFO  2019-11-19 13:48:41,690 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)'
+INFO  2019-11-19 13:48:41,712 [16   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-11-19 13:48:41,716 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 4822.694100000001ms 302 
+INFO  2019-11-19 13:48:41,738 [16   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 26.936300000000003ms 301 
+INFO  2019-11-19 13:48:41,742 [16   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-11-19 13:48:41,865 [16   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 123.71170000000001ms 200 text/html;charset=utf-8
+INFO  2019-11-19 13:48:41,874 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-11-19 13:48:41,876 [16   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-11-19 13:48:41,878 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-11-19 13:48:41,884 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2019-11-19 13:48:41,885 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2019-11-19 13:48:41,917 [9    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Host\wwwroot\swagger\ui\abp.js'
+INFO  2019-11-19 13:48:41,917 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Host\wwwroot\swagger\ui\abp.swagger.js'
+INFO  2019-11-19 13:48:41,919 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 35.7645ms 200 application/javascript
+INFO  2019-11-19 13:48:41,921 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 35.771ms 200 application/javascript
+INFO  2019-11-19 13:48:41,924 [6    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2019-11-19 13:48:41,926 [11   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+INFO  2019-11-19 13:48:41,928 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 54.518ms 200 application/javascript
+INFO  2019-11-19 13:48:41,929 [6    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 54.6107ms 200 text/css
+INFO  2019-11-19 13:48:41,948 [9    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+INFO  2019-11-19 13:48:41,950 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 72.3555ms 200 application/javascript
+INFO  2019-11-19 13:48:42,630 [6    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-11-19 13:48:42,827 [28   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 197.4044ms 200 application/json;charset=utf-8
+INFO  2019-11-19 13:49:09,284 [6    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 PUT http://localhost:21021/api/services/app/Program/Update application/json-patch+json 305
+INFO  2019-11-19 13:49:09,289 [6    ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2019-11-19 13:49:09,290 [6    ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2019-11-19 13:49:09,294 [6    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application)'
+INFO  2019-11-19 13:49:09,309 [6    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "Update", controller = "Program"}. Executing controller action with signature System.Threading.Tasks.Task`1[MMK.CNC.Application.LaserProgram.Dto.ProgramCommentFromCncDto] UpdateAsync(MMK.CNC.Application.LaserProgram.Dto.UpdateProgramDto) on controller MMK.CNC.Application.LaserProgram.ProgramApplicationService (MMK.CNC.Application).
+INFO  2019-11-19 13:49:09,735 [6    ] c.Infrastructure.ControllerActionInvoker - Executing action method MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application) - Validation state: Valid
+ERROR 2019-11-19 13:49:11,497 [18   ] Mvc.ExceptionHandling.AbpExceptionFilter - The instance of entity type 'ProgramComment' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+System.InvalidOperationException: The instance of entity type 'ProgramComment' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState[TEntity](TEntity entity, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.DbContext.Attach[TEntity](TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Attach(TEntity entity)
+   at Abp.EntityFrameworkCore.Repositories.EfCoreRepositoryBase`3.AttachIfNot(TEntity entity)
+   at Abp.EntityFrameworkCore.Repositories.EfCoreRepositoryBase`3.Update(TEntity entity)
+   at Abp.EntityFrameworkCore.Repositories.EfCoreRepositoryBase`3.UpdateAsync(TEntity entity)
+   at Castle.Proxies.Invocations.IRepository`2_UpdateAsync_44.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Abp.Domain.Uow.UnitOfWorkInterceptor.PerformAsyncUow(IInvocation invocation, UnitOfWorkOptions options)
+   at Abp.Domain.Uow.UnitOfWorkInterceptor.PerformUow(IInvocation invocation, UnitOfWorkOptions options)
+   at Abp.Domain.Uow.UnitOfWorkInterceptor.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IRepository`2Proxy_19.UpdateAsync(ProgramComment entity)
+   at MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync(UpdateProgramDto input) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\module\MMK.CNC.Application\LaserProgram\ProgramApplicationService.cs:line 56
+   at Abp.Threading.InternalAsyncHelper.AwaitTaskWithPostActionAndFinallyAndGetResult[T](Task`1 actualReturnValue, Func`1 postAction, Action`1 finalAction)
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+INFO  2019-11-19 13:49:12,386 [18   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-11-19 13:49:12,399 [18   ] c.Infrastructure.ControllerActionInvoker - Executed action MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application) in 3087.7246ms
+INFO  2019-11-19 13:49:12,401 [18   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application)'
+INFO  2019-11-19 13:49:12,402 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 3119.0845ms 500 application/json; charset=utf-8
+INFO  2019-11-19 13:50:28,622 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 PUT http://localhost:21021/api/services/app/Program/Update application/json-patch+json 305
+INFO  2019-11-19 13:50:28,625 [15   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2019-11-19 13:50:28,626 [15   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2019-11-19 13:50:28,633 [15   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application)'
+INFO  2019-11-19 13:50:28,641 [15   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "Update", controller = "Program"}. Executing controller action with signature System.Threading.Tasks.Task`1[MMK.CNC.Application.LaserProgram.Dto.ProgramCommentFromCncDto] UpdateAsync(MMK.CNC.Application.LaserProgram.Dto.UpdateProgramDto) on controller MMK.CNC.Application.LaserProgram.ProgramApplicationService (MMK.CNC.Application).
+INFO  2019-11-19 13:50:28,662 [15   ] c.Infrastructure.ControllerActionInvoker - Executing action method MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application) - Validation state: Valid
+DEBUG 2019-11-19 13:58:32,271 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-11-19 13:58:32,389 [1    ] Abp.Modules.AbpModuleManager             - Found 19 ABP modules in total.
+DEBUG 2019-11-19 13:58:32,405 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,407 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,407 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,407 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,408 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,408 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,408 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,408 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,408 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,409 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,409 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,409 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,409 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,409 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,410 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,410 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,410 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,410 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,410 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Hangfire.AbpHangfireAspNetCoreModule, Abp.HangFire.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:32,412 [1    ] Abp.Modules.AbpModuleManager             - 19 modules loaded.
+DEBUG 2019-11-19 13:58:32,461 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 13:58:32,461 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 13:58:32,461 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 13:58:32,461 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 13:58:32,774 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 13:58:33,600 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-11-19 13:58:33,648 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-11-19 13:58:33,687 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-11-19 13:58:33,692 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-11-19 13:58:33,719 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-11-19 13:58:33,722 [1    ] bp.Hangfire.HangfireBackgroundJobManager - Start background worker: Abp.Hangfire.HangfireBackgroundJobManager
+DEBUG 2019-11-19 13:58:33,826 [1    ] rization.Users.UserTokenExpirationWorker - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker
+DEBUG 2019-11-19 13:58:33,871 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 32 classes define auto mapping attributes
+DEBUG 2019-11-19 13:58:33,871 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-11-19 13:58:33,876 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-11-19 13:58:33,877 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-11-19 13:58:33,877 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-11-19 13:58:33,877 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-11-19 13:58:33,877 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-11-19 13:58:33,877 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-11-19 13:58:33,877 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-11-19 13:58:33,877 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-11-19 13:58:33,878 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-11-19 13:58:33,878 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-11-19 13:58:33,878 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-11-19 13:58:33,878 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-11-19 13:58:33,878 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+DEBUG 2019-11-19 13:58:33,878 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserProgram.Dto.ProgramCommentFromCncDto
+DEBUG 2019-11-19 13:58:33,878 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserProgram.Dto.CreateProgramDto
+DEBUG 2019-11-19 13:58:33,878 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserProgram.Dto.UpdateProgramDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.GasDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateGasDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateGasDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.MachiningGroupDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateMachiningGroupDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateMachiningGroupDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.MachiningKindDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateMachiningKindDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateMachiningKindDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.MaterialDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateMaterialDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateMaterialDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.NozzleKindDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateNozzleKindDto
+DEBUG 2019-11-19 13:58:33,879 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateNozzleKindDto
+DEBUG 2019-11-19 13:58:37,521 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-11-19 13:58:37,692 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-11-19 13:58:37,973 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-11-19 13:58:38,286 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2019-11-19 13:58:38,589 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2019-11-19 13:58:38,641 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-11-19 13:58:38,732 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)'
+INFO  2019-11-19 13:58:41,648 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller MMK.SmartSystem.Web.Host.Controllers.HomeController (MMK.SmartSystem.Web.Host).
+INFO  2019-11-19 13:58:42,543 [4    ] c.Infrastructure.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-11-19 13:58:42,548 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.29760000000000003ms.
+INFO  2019-11-19 13:58:42,886 [5    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-11-19 13:58:42,893 [5    ] c.Infrastructure.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 1240.4314000000002ms
+INFO  2019-11-19 13:58:42,896 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)'
+INFO  2019-11-19 13:58:42,916 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-11-19 13:58:42,919 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 4278.965ms 302 
+INFO  2019-11-19 13:58:42,943 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 26.136100000000003ms 301 
+INFO  2019-11-19 13:58:42,947 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-11-19 13:58:43,062 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 115.25720000000001ms 200 text/html;charset=utf-8
+INFO  2019-11-19 13:58:43,255 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-11-19 13:58:43,463 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 207.6499ms 200 application/json;charset=utf-8
+INFO  2019-11-19 13:59:02,567 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 PUT http://localhost:21021/api/services/app/Program/Update application/json-patch+json 305
+INFO  2019-11-19 13:59:02,572 [14   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2019-11-19 13:59:02,574 [14   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2019-11-19 13:59:02,578 [14   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application)'
+INFO  2019-11-19 13:59:02,600 [14   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "Update", controller = "Program"}. Executing controller action with signature System.Threading.Tasks.Task`1[MMK.CNC.Application.LaserProgram.Dto.ProgramCommentFromCncDto] UpdateAsync(MMK.CNC.Application.LaserProgram.Dto.UpdateProgramDto) on controller MMK.CNC.Application.LaserProgram.ProgramApplicationService (MMK.CNC.Application).
+INFO  2019-11-19 13:59:03,039 [14   ] c.Infrastructure.ControllerActionInvoker - Executing action method MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application) - Validation state: Valid
+INFO  2019-11-19 13:59:03,233 [14   ] c.Infrastructure.ControllerActionInvoker - Executed action method MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 191.62810000000002ms.
+INFO  2019-11-19 13:59:03,573 [5    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-11-19 13:59:03,590 [5    ] c.Infrastructure.ControllerActionInvoker - Executed action MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application) in 988.0467000000001ms
+INFO  2019-11-19 13:59:03,592 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application)'
+INFO  2019-11-19 13:59:03,595 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1028.2930000000001ms 200 application/json; charset=utf-8
+DEBUG 2019-11-19 14:58:16,585 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2019-11-19 14:58:16,846 [1    ] Abp.Modules.AbpModuleManager             - Found 19 ABP modules in total.
+DEBUG 2019-11-19 14:58:16,860 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.Web.Host.Startup.SmartSystemWebHostModule, MMK.SmartSystem.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,862 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemWebCoreModule, MMK.SmartSystem.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,862 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemApplicationModule, MMK.SmartSystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,862 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.SmartSystemCoreModule, MMK.SmartSystem.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,863 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,863 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,863 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,863 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,863 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.RealTime.SmartSystemRealTimeModule, MMK.SmartSystem.RealTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,864 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,864 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Application.CNCApplicationModule, MMK.CNC.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,864 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.CNC.Core.CNCCoreModule, MMK.CNC.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,864 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: MMK.SmartSystem.EntityFrameworkCore.SmartSystemEntityFrameworkModule, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,864 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,864 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,865 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,865 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,865 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,865 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Hangfire.AbpHangfireAspNetCoreModule, Abp.HangFire.AspNetCore, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:16,867 [1    ] Abp.Modules.AbpModuleManager             - 19 modules loaded.
+DEBUG 2019-11-19 14:58:16,980 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 14:58:16,981 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 14:58:16,981 [1    ] o.Configuration.LanguageManagementConfig - Converted SmartSystem (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 14:58:16,981 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2019-11-19 14:58:17,486 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: MMK.SmartSystem.EntityFrameworkCore.SmartSystemDbContext, MMK.SmartSystem.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2019-11-19 14:58:18,260 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2019-11-19 14:58:18,304 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2019-11-19 14:58:18,339 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2019-11-19 14:58:18,344 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: SmartSystem
+DEBUG 2019-11-19 14:58:18,369 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2019-11-19 14:58:18,372 [1    ] bp.Hangfire.HangfireBackgroundJobManager - Start background worker: Abp.Hangfire.HangfireBackgroundJobManager
+DEBUG 2019-11-19 14:58:18,463 [1    ] rization.Users.UserTokenExpirationWorker - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker
+DEBUG 2019-11-19 14:58:18,513 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 32 classes define auto mapping attributes
+DEBUG 2019-11-19 14:58:18,513 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2019-11-19 14:58:18,518 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.CreateUserDto
+DEBUG 2019-11-19 14:58:18,518 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Users.Dto.UserDto
+DEBUG 2019-11-19 14:58:18,519 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2019-11-19 14:58:18,519 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Sessions.Dto.UserLoginInfoDto
+DEBUG 2019-11-19 14:58:18,519 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.Roles.Dto.PermissionDto
+DEBUG 2019-11-19 14:58:18,519 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2019-11-19 14:58:18,519 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.SmartSystem.MultiTenancy.Dto.TenantDto
+DEBUG 2019-11-19 14:58:18,519 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.OperationLogDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.CreateOperationLogDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.SystemClient.Dto.UpdateOperationLogDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.DepartmentDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.CreateDeppartmentDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.Managements.Dto.UpdateDeppartmentDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserProgram.Dto.ProgramCommentFromCncDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserProgram.Dto.CreateProgramDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserProgram.Dto.UpdateProgramDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.GasDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateGasDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateGasDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.MachiningGroupDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateMachiningGroupDto
+DEBUG 2019-11-19 14:58:18,520 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateMachiningGroupDto
+DEBUG 2019-11-19 14:58:18,521 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.MachiningKindDto
+DEBUG 2019-11-19 14:58:18,521 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateMachiningKindDto
+DEBUG 2019-11-19 14:58:18,521 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateMachiningKindDto
+DEBUG 2019-11-19 14:58:18,521 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.MaterialDto
+DEBUG 2019-11-19 14:58:18,521 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateMaterialDto
+DEBUG 2019-11-19 14:58:18,521 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateMaterialDto
+DEBUG 2019-11-19 14:58:18,521 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.NozzleKindDto
+DEBUG 2019-11-19 14:58:18,521 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.UpdateNozzleKindDto
+DEBUG 2019-11-19 14:58:18,521 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - MMK.CNC.Application.LaserLibrary.Dto.CreateNozzleKindDto
+DEBUG 2019-11-19 14:58:23,136 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-11-19 14:58:23,366 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-11-19 14:58:23,692 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+DEBUG 2019-11-19 14:58:24,573 [1    ] HttpRequestEntityChangeSetReasonProvider - Unable to get URL from HttpRequest, fallback to null
+INFO  2019-11-19 14:58:25,115 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2019-11-19 14:58:25,484 [16   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2019-11-19 14:58:25,683 [16   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)'
+INFO  2019-11-19 14:58:28,492 [16   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller MMK.SmartSystem.Web.Host.Controllers.HomeController (MMK.SmartSystem.Web.Host).
+INFO  2019-11-19 14:58:29,344 [16   ] c.Infrastructure.ControllerActionInvoker - Executing action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) - Validation state: Valid
+INFO  2019-11-19 14:58:29,487 [16   ] c.Infrastructure.ControllerActionInvoker - Executed action method MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.3654ms.
+INFO  2019-11-19 14:58:29,856 [6    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2019-11-19 14:58:29,864 [6    ] c.Infrastructure.ControllerActionInvoker - Executed action MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host) in 1366.8899000000001ms
+INFO  2019-11-19 14:58:29,866 [6    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'MMK.SmartSystem.Web.Host.Controllers.HomeController.Index (MMK.SmartSystem.Web.Host)'
+INFO  2019-11-19 14:58:29,888 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2019-11-19 14:58:29,893 [6    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 4409.5070000000005ms 302 
+INFO  2019-11-19 14:58:29,916 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 28.6907ms 301 
+INFO  2019-11-19 14:58:29,920 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2019-11-19 14:58:30,046 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 126.1312ms 200 text/html;charset=utf-8
+INFO  2019-11-19 14:58:30,051 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2019-11-19 14:58:30,053 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2019-11-19 14:58:30,055 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2019-11-19 14:58:30,057 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2019-11-19 14:58:30,059 [16   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2019-11-19 14:58:30,096 [9    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+INFO  2019-11-19 14:58:30,096 [12   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+INFO  2019-11-19 14:58:30,096 [13   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Host\wwwroot\swagger\ui\abp.js'
+INFO  2019-11-19 14:58:30,096 [14   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2019-11-19 14:58:30,097 [16   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\src\MMK.SmartSystem.Web.Host\wwwroot\swagger\ui\abp.swagger.js'
+INFO  2019-11-19 14:58:30,098 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 46.437000000000005ms 200 application/javascript
+INFO  2019-11-19 14:58:30,100 [16   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 45.409ms 200 application/javascript
+INFO  2019-11-19 14:58:30,102 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 50.825ms 200 application/javascript
+INFO  2019-11-19 14:58:30,103 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 50.730000000000004ms 200 application/javascript
+INFO  2019-11-19 14:58:30,105 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 50.8983ms 200 text/css
+INFO  2019-11-19 14:58:30,509 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2019-11-19 14:58:30,677 [26   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 168.1455ms 200 application/json;charset=utf-8
+INFO  2019-11-19 14:58:33,920 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 PUT http://localhost:21021/api/services/app/Program/Update application/json-patch+json 311
+INFO  2019-11-19 14:58:33,925 [17   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2019-11-19 14:58:33,927 [17   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2019-11-19 14:58:33,931 [17   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application)'
+INFO  2019-11-19 14:58:33,946 [17   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "Update", controller = "Program"}. Executing controller action with signature System.Threading.Tasks.Task`1[MMK.CNC.Application.LaserProgram.Dto.ProgramCommentFromCncDto] UpdateAsync(MMK.CNC.Application.LaserProgram.Dto.UpdateProgramDto) on controller MMK.CNC.Application.LaserProgram.ProgramApplicationService (MMK.CNC.Application).
+INFO  2019-11-19 14:58:34,383 [17   ] c.Infrastructure.ControllerActionInvoker - Executing action method MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application) - Validation state: Valid
+ERROR 2019-11-19 14:58:35,005 [6    ] Mvc.ExceptionHandling.AbpExceptionFilter - The property 'Id' on entity type 'ProgramComment' has a temporary value while attempting to change the entity's state to 'Modified'. Either set a permanent value explicitly or ensure that the database is configured to generate values for this property.
+System.InvalidOperationException: The property 'Id' on entity type 'ProgramComment' has a temporary value while attempting to change the entity's state to 'Modified'. Either set a permanent value explicitly or ensure that the database is configured to generate values for this property.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry.set_State(EntityState value)
+   at Abp.EntityFrameworkCore.Repositories.EfCoreRepositoryBase`3.Update(TEntity entity)
+   at Abp.EntityFrameworkCore.Repositories.EfCoreRepositoryBase`3.UpdateAsync(TEntity entity)
+   at Castle.Proxies.Invocations.IRepository`2_UpdateAsync_44.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Abp.Domain.Uow.UnitOfWorkInterceptor.PerformAsyncUow(IInvocation invocation, UnitOfWorkOptions options)
+   at Abp.Domain.Uow.UnitOfWorkInterceptor.PerformUow(IInvocation invocation, UnitOfWorkOptions options)
+   at Abp.Domain.Uow.UnitOfWorkInterceptor.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IRepository`2Proxy_19.UpdateAsync(ProgramComment entity)
+   at MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync(UpdateProgramDto input) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\module\MMK.CNC.Application\LaserProgram\ProgramApplicationService.cs:line 73
+   at Abp.Threading.InternalAsyncHelper.AwaitTaskWithPostActionAndFinallyAndGetResult[T](Task`1 actualReturnValue, Func`1 postAction, Action`1 finalAction)
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+INFO  2019-11-19 14:58:35,786 [6    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-11-19 14:58:35,797 [6    ] c.Infrastructure.ControllerActionInvoker - Executed action MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application) in 1848.9974000000002ms
+INFO  2019-11-19 14:58:35,799 [6    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application)'
+INFO  2019-11-19 14:58:35,801 [6    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1881.6105ms 500 application/json; charset=utf-8
+INFO  2019-11-19 15:00:50,454 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 PUT http://localhost:21021/api/services/app/Program/Update application/json-patch+json 310
+INFO  2019-11-19 15:00:50,456 [17   ] pNetCore.Cors.Infrastructure.CorsService - CORS policy execution failed.
+INFO  2019-11-19 15:00:50,459 [17   ] pNetCore.Cors.Infrastructure.CorsService - Request origin http://localhost:21021 does not have permission to access the resource.
+INFO  2019-11-19 15:00:50,466 [17   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application)'
+INFO  2019-11-19 15:00:50,473 [17   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "Update", controller = "Program"}. Executing controller action with signature System.Threading.Tasks.Task`1[MMK.CNC.Application.LaserProgram.Dto.ProgramCommentFromCncDto] UpdateAsync(MMK.CNC.Application.LaserProgram.Dto.UpdateProgramDto) on controller MMK.CNC.Application.LaserProgram.ProgramApplicationService (MMK.CNC.Application).
+INFO  2019-11-19 15:00:50,498 [17   ] c.Infrastructure.ControllerActionInvoker - Executing action method MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application) - Validation state: Valid
+ERROR 2019-11-19 15:00:51,569 [27   ] Mvc.ExceptionHandling.AbpExceptionFilter - The instance of entity type 'ProgramComment' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+System.InvalidOperationException: The instance of entity type 'ProgramComment' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.DbContext.SetEntityState[TEntity](TEntity entity, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.DbContext.Attach[TEntity](TEntity entity)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Attach(TEntity entity)
+   at Abp.EntityFrameworkCore.Repositories.EfCoreRepositoryBase`3.AttachIfNot(TEntity entity)
+   at Abp.EntityFrameworkCore.Repositories.EfCoreRepositoryBase`3.Update(TEntity entity)
+   at Abp.EntityFrameworkCore.Repositories.EfCoreRepositoryBase`3.UpdateAsync(TEntity entity)
+   at Castle.Proxies.Invocations.IRepository`2_UpdateAsync_44.InvokeMethodOnTarget()
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Abp.Domain.Uow.UnitOfWorkInterceptor.PerformAsyncUow(IInvocation invocation, UnitOfWorkOptions options)
+   at Abp.Domain.Uow.UnitOfWorkInterceptor.PerformUow(IInvocation invocation, UnitOfWorkOptions options)
+   at Abp.Domain.Uow.UnitOfWorkInterceptor.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IRepository`2Proxy_19.UpdateAsync(ProgramComment entity)
+   at MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync(UpdateProgramDto input) in F:\Work\Fanuc\MMK.SmartSystem\4.6.0\aspnet-core\module\MMK.CNC.Application\LaserProgram\ProgramApplicationService.cs:line 73
+   at Abp.Threading.InternalAsyncHelper.AwaitTaskWithPostActionAndFinallyAndGetResult[T](Task`1 actualReturnValue, Func`1 postAction, Action`1 finalAction)
+   at lambda_method(Closure , Object )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutorAwaitable.Awaiter.GetResult()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+INFO  2019-11-19 15:00:51,573 [27   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2019-11-19 15:00:51,577 [27   ] c.Infrastructure.ControllerActionInvoker - Executed action MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application) in 1101.1781ms
+INFO  2019-11-19 15:00:51,579 [27   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'MMK.CNC.Application.LaserProgram.ProgramApplicationService.UpdateAsync (MMK.CNC.Application)'
+INFO  2019-11-19 15:00:51,581 [27   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1126.9875ms 500 application/json; charset=utf-8

@@ -52,7 +52,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             MyCNCProgramListControl.cpViewModel.SetCNCProgramPath += CpViewModel_SetCNCProgramPath;
 
             MyLocalProgramListControl.lpViewModel.ProgramFolderList = programListViewModel.ProgramFolder;
-            MyLocalProgramListControl.lpViewModel.ConnectId = programListViewModel.ConnectId;
             MyLocalProgramListControl.UploadEvent += MyLocalProgramListControl_UploadEvent;
             MyLocalProgramListControl.ProgramSelectEvent += MyLocalProgramListControl_ProgramSelectEvent;
         }
@@ -68,13 +67,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             cncPath.SaveCNCPathEvent += CncPath_SaveCNCPathEvent;
             new PopupWindow(cncPath, 680, 220, "修改CNC路径").ShowDialog();
         }
-        private void MyLocalProgramListControl_UploadEvent(Common.EventDatas.UpLoadProgramClientEventData arg1, LocalProgramListViewModel local)
+        private void MyLocalProgramListControl_UploadEvent(UpLoadProgramClientEventData arg1, LocalProgramListViewModel local)
         {
             Task.Factory.StartNew(new Action(() =>
             {
                 EventBus.Default.TriggerAsync(arg1);
             }));
-            var modal = new UpLoadLocalProgramControl(local.Path, local.ProgramFolderList);
+
+            var modal = new UpLoadLocalProgramControl(local.Path, local.ProgramFolderList, arg1.FileHashCode);
 
             modal.ProgramUploadEvent += Modal_ProgramUploadEvent;
             new PopupWindow(modal, 900, 590, "上传本地程序").ShowDialog();
@@ -101,6 +101,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
         protected override void PageSignlarLoaded()
         {
+            MyLocalProgramListControl.lpViewModel.ConnectId = CurrentConnectId;
+
             SendQurayProgramList();
             SendReaderWriter(new HubReadWriterModel()
             {
@@ -109,7 +111,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 Id = "getProgramFolder",
                 Data = new object[] { "//CNC_MEM/" }
             });
-            programListViewModel.ConnectId = this.CurrentConnectId;
         }
 
         private bool ChangePathByQurayProgramList = false;
@@ -149,20 +150,22 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                         {
                             Data = new Common.UpdateProgramDto()
                             {
-
+                                FileHash = currentProgramDetail?.FileHashCode,
                                 CuttingDistance = currentProgramDetail?.CuttingDistance,
-                                CuttingTime = currentProgramDetail.CuttingTime,
-                                FocalPosition = currentProgramDetail.FocalPosition,
-                                FullPath = currentProgramDetail.FullPath,
+                                CuttingTime = currentProgramDetail?.CuttingTime,
+                                FocalPosition = currentProgramDetail?.FocalPosition,
+                                FullPath = currentProgramDetail?.SelectedProgramFolders.Folder,
                                 Gas = currentProgramDetail.Gas,
                                 Material = currentProgramDetail.Material,
-                                Name = currentProgramDetail.Name,
+                                Name = name,
                                 NozzleDiameter = currentProgramDetail.NozzleDiameter,
                                 NozzleKind = currentProgramDetail.NozzleKind,
                                 PiercingCount = currentProgramDetail.PiercingCount,
                                 Size = currentProgramDetail.Size,
                                 Thickness = currentProgramDetail.Thickness,
-                                
+                                UpdateTime = DateTime.Now
+                               
+
                             }
                         });
 
@@ -175,21 +178,28 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                     {
                         Messenger.Default.Send(new ProgramDetailViewModel
                         {
-                            Name = jObject["name"].ToString(),
-                            FullPath = jObject["fullPath"].ToString(),
-                            Size = Convert.ToDouble(jObject["size"].ToString()),
-                            Material = jObject["material"].ToString(),
-                            Thickness = Convert.ToDouble(jObject["thickness"]),
-                            Gas = jObject["gas"].ToString(),
-                            FocalPosition = Convert.ToDouble(jObject["focalPosition"]),
-                            NozzleKind = jObject["nozzleKind"].ToString(),
-                            NozzleDiameter = Convert.ToDouble(jObject["nozzleDiameter"]),
-                            PlateSizeHeight = jObject["plateSizeHeight"].ToString(),
-                            UsedPlateSizeHeigth = jObject["usedPlateSizeHeigth"].ToString(),
-                            PlateSizeWidth = jObject["plateSizeWidth"].ToString(),
-                            UsedPlateSizeWidth = jObject["usedPlateSizeWidth"].ToString(),
-                            CuttingDistance = Convert.ToDouble(jObject["cuttingDistance"]),
-                            PiercingCount = Convert.ToInt32(jObject["piercingCount"])
+                            Name = jObject["name"]?.ToString(),
+                            FullPath = jObject["fullPath"]?.ToString(),
+                            Size = Convert.ToDouble(jObject["size"]?.ToString()),
+                            Material = jObject["material"]?.ToString(),
+                            Thickness = Convert.ToDouble(jObject["thickness"]??"0"),
+                            Gas = jObject["gas"]?.ToString(),
+                            FocalPosition = Convert.ToDouble(jObject["focalPosition"]??"0"),
+                            NozzleKind = jObject["nozzleKind"]?.ToString(),
+                            NozzleDiameter = Convert.ToDouble(jObject["nozzleDiameter"]??"0"),
+                            PlateSizeHeight = Convert.ToDouble(jObject["plateSize_H"] ?? "0"),
+                            UsedPlateSizeHeigth = Convert.ToDouble(jObject["usedPlateSize_H"] ?? "0"),
+                            PlateSizeWidth = Convert.ToDouble(jObject["plateSize_W"] ?? "0"),
+                            UsedPlateSizeWidth = Convert.ToDouble(jObject["usedPlateSize_W"] ?? "0"),
+                            CuttingDistance = Convert.ToDouble(jObject["cuttingDistance"]??"0"),
+                            PiercingCount = Convert.ToInt32(jObject["piercingCount"]??"0"),
+                            Max_X = Convert.ToInt32(jObject["max_X"] ?? "0"),
+                            Max_Y = Convert.ToInt32(jObject["max_Y"] ?? "0"),
+                            Min_X = Convert.ToInt32(jObject["min_X"] ?? "0"),
+                            Min_Y = Convert.ToInt32(jObject["min_Y"] ?? "0"),
+                            CuttingTime = Convert.ToInt32(jObject["cuttingTime"] ?? "0"),
+                            ThumbnaiType = Convert.ToInt32(jObject["thumbnaiType"] ?? "0"),
+                            ThumbnaiInfo = jObject["thumbnaiInfo"]?.ToString()
                         });
                     }
                     break;

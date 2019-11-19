@@ -6,15 +6,15 @@ namespace MMK.SmartSystem.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropIndex(
-                name: "IX_AbpSettings_TenantId_Name",
-                table: "AbpSettings");
+            //migrationBuilder.DropIndex(
+            //    name: "IX_AbpSettings_TenantId_Name",
+            //    table: "AbpSettings");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_AbpSettings_TenantId_Name_UserId",
-                table: "AbpSettings",
-                columns: new[] { "TenantId", "Name", "UserId" },
-                unique: true);
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_AbpSettings_TenantId_Name_UserId",
+            //    table: "AbpSettings",
+            //    columns: new[] { "TenantId", "Name", "UserId" },
+            //    unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

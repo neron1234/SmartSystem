@@ -52,7 +52,7 @@ namespace MMK.SmartSystem.CNC.Host
                     catch (Exception ex)
                     {
 
-                       // Console.WriteLine($"【Worker Error】-【{DateTime.Now.ToString("HH:mm:ss")}】" + ex.Message + " " + ex.InnerException?.Message);
+                        // Console.WriteLine($"【Worker Error】-【{DateTime.Now.ToString("HH:mm:ss")}】" + ex.Message + " " + ex.InnerException?.Message);
 
                     }
                     Thread.Sleep(100);
@@ -96,7 +96,7 @@ namespace MMK.SmartSystem.CNC.Host
             {
                 currentErrorTime = DateTime.Now;
                 Logger.Error(obj);
-              //  Console.WriteLine($"【Worker Error】【{DateTime.Now.ToString("HH: mm:ss")}】" + obj);
+                //  Console.WriteLine($"【Worker Error】【{DateTime.Now.ToString("HH: mm:ss")}】" + obj);
             }
         }
 
@@ -107,7 +107,7 @@ namespace MMK.SmartSystem.CNC.Host
             signalrProxy.GetClientReaderWriterEvent += SignalrProxy_GetClientReaderWriterEvent;
             signalrProxy.GetClientProgramResovleEvent += SignalrProxy_GetClientProgramResovleEvent;
             await signalrProxy.Start();
-          
+
         }
 
         private static async void SignalrProxy_GetClientProgramResovleEvent(WebCommon.EventModel.ProgramResovleDto obj)
@@ -115,10 +115,19 @@ namespace MMK.SmartSystem.CNC.Host
             //obj.FilePath = @"C:\Users\wjj-yl\Desktop\测试用DXF\0001";
             //obj.BmpPath = @"C:\Users\wjj-yl\Desktop\测试用DXF\";
 
-            //var res = new LaserProgramDemo().ProgramResolve(obj);
-            //res.Data.FileHash = obj.FileHash;
-            //await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientRrogramRosolveResultEvent, res);
-            //Console.WriteLine($"【程序解析】:{res.BmpName} | {res.Data.ToString()} | {obj.ConnectId} | {obj.FileHash}");
+            try
+            {
+                var res = new LaserProgramDemo().ProgramResolve(obj);
+                res.Data.FileHash = obj.FileHash;
+                await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientRrogramRosolveResultEvent, res);
+                Console.WriteLine($"【程序解析】:{res.BmpName} | {res.Data.ToString()} | {obj.ConnectId} | {obj.FileHash}");
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
         private static async void SignalrProxy_GetClientReaderWriterEvent(WebCommon.HubModel.HubReadWriterModel obj)
@@ -126,7 +135,7 @@ namespace MMK.SmartSystem.CNC.Host
             var res = writerWorker.DoWork(obj);
             if (!res.Success)
             {
-               // Console.WriteLine($"【{obj.ProxyName}-{obj.Action}】:【{DateTime.Now.ToString("HH:mm:ss")}】 {res.Error}");
+                // Console.WriteLine($"【{obj.ProxyName}-{obj.Action}】:【{DateTime.Now.ToString("HH:mm:ss")}】 {res.Error}");
             }
             await signalrProxy.SendAction<string>(SmartSystemCNCHostConsts.ClientReaderWriterResultEvent, res);
 
@@ -134,7 +143,7 @@ namespace MMK.SmartSystem.CNC.Host
 
         private static void SignalrProxy_GetCncEventData(List<GroupEventData> obj)
         {
-         //   Console.WriteLine("【CncEventData】" + JArray.FromObject(obj).ToString());
+            //   Console.WriteLine("【CncEventData】" + JArray.FromObject(obj).ToString());
 
             foreach (var item in obj)
             {
