@@ -353,6 +353,9 @@ namespace MMK.SmartSystem.Laser.Base.CustomControl
         int depth = 0;
         private void ForeachItem(IEnumerable source, object item)
         {
+            if (source == null){
+                return;
+            }
             IEnumerator enumerator = source.GetEnumerator();
             while (enumerator.MoveNext())
             {
