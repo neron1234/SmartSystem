@@ -4,12 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
+             xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
              d:DesignHeight="598" d:DesignWidth="484" Background="#FF3B3B3B" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"/>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/ProgressBar/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="Button" BasedOn="{StaticResource IconBtnStyle}" />
             <Style TargetType="TextBlock">
@@ -37,15 +39,18 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel>
-            <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}" AutoGenerateColumns="False" x:Name="ProgramGrid" Height="380" Background="#2a2f34" 
+            <Grid>
+                <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}" AutoGenerateColumns="False" x:Name="ProgramGrid" Height="380" Background="#2a2f34" 
                     AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16" BorderThickness="0">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="45*" />
-                    <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="20*" />
-                    <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="35*" />
-                </DataGrid.Columns>
-            </DataGrid>
-            
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="45*" />
+                        <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="20*" />
+                        <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="35*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <cc:FlatProgressBar Width="484" VerticalAlignment="Bottom" Height="2" Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="Transparent" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" />
+            </Grid>
+
             <StackPanel Background="#FF3B3B3B" >
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" Direction="280" ShadowDepth="-100" Opacity="1" BlurRadius="10"/>

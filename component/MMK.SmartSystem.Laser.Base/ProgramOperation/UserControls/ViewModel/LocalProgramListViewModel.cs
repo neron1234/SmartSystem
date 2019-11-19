@@ -114,22 +114,47 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public int CurrentPage { get; set; }
-        public int TotalPage { get; set; }
+        private int _CurrentPage;
+        public int CurrentPage
+        {
+            get { return _CurrentPage; }
+            set
+            {
+                if (_CurrentPage != value)
+                {
+                    _CurrentPage = value;
+                    RaisePropertyChanged(() => CurrentPage);
+                }
+            }
+        }
+
+        private int _TotalPage;
+        public int TotalPage
+        {
+            get { return _TotalPage; }
+            set
+            {
+                if (_TotalPage != value)
+                {
+                    _TotalPage = value;
+                    RaisePropertyChanged(() => TotalPage);
+                }
+            }
+        }
+
         public int PageNumber = 7;
         public void DataPaging(bool next)
         {
             int count = LocalProgramList.Count;
-            int pageSize = 0;
+            TotalPage = 0;
             if (count % PageNumber == 0)
             {
-                pageSize = count / PageNumber;
+                TotalPage = count / PageNumber;
             }
             else
             {
-                pageSize = count / PageNumber + 1;
+                TotalPage = count / PageNumber + 1;
             }
-            TotalPage = pageSize;
 
             if (next && CurrentPage >= 1 && CurrentPage < TotalPage)
             {

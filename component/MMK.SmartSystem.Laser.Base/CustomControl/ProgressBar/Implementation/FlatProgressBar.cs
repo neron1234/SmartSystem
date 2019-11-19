@@ -113,6 +113,10 @@ namespace MMK.SmartSystem.Laser.Base.CustomControl
         {
             base.OnValueChanged(oldValue, newValue);
 
+            if (Maximum <= Minimum || Width == 0){
+                return;
+            }
+
             var perWidth = this.Width / (this.Maximum - this.Minimum);
             var oldWidth = oldValue * perWidth;
             var newWidth = newValue * perWidth;
