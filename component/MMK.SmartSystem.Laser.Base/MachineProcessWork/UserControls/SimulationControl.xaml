@@ -59,8 +59,45 @@
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <cc:FlatProgressBar Width="{Binding ProgressBarWidth}" Height="14" Value="{Binding Percentage}" Maximum="100" Minimum="0" Background="#333330" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" />
-                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="791*"/>
+                            <ColumnDefinition Width="8*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--<cc:FlatProgressBar Width="{Binding ProgressBarWidth}" Height="14" Value="{Binding Percentage}" Maximum="100" Minimum="0" Background="#333330" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" />-->
+                        <Grid Width="{Binding ProgressBarWidth}" Background="#242424" Height="16" VerticalAlignment="Center" >
+                            <cc:FlatProgressBar Width="{Binding ProgressBarWidth}" Height="12" Value="{Binding Percentage}" Maximum="100" Minimum="0" Background="#3b3b3b" BorderThickness="0" x:Name="WorkProgressBar" VerticalAlignment="Center" Grid.ColumnSpan="2">
+                                <!--Foreground="#FDCD00"-->
+                                <cc:FlatProgressBar.Foreground>
+                                    <LinearGradientBrush EndPoint="0,0" StartPoint="1,0">
+                                        <GradientStop Color="#fd8c00" Offset="1" />
+                                        <GradientStop Color="#FD9100" Offset="0.9" />
+                                        <GradientStop Color="#FD9600" Offset="0.8" />
+                                        <GradientStop Color="#FDA400" Offset="0.6" />
+                                        <GradientStop Color="#FEB200" Offset="0.0" />
+                                    </LinearGradientBrush>
+                                </cc:FlatProgressBar.Foreground>
+                            </cc:FlatProgressBar>
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding ProgressItemList}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Rectangle Fill="#242424" Width="{Binding IntervalMaskWidth}" Height="16" Margin="4 0 0 0"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <!--<StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                            <Rectangle Fill="#242424" Width="4" Height="16" Margin="4 0 0 0"/>
+                            <Rectangle Fill="#242424" Width="4" Height="16" Margin="4 0 0 0"/>
+                            <Rectangle Fill="#242424" Width="4" Height="16" Margin="4 0 0 0"/>
+                            <Rectangle Fill="#242424" Width="4" Height="16" Margin="4 0 0 0"/>
+                            <Rectangle Fill="#242424" Width="4" Height="16" Margin="4 0 0 0"/>
+                            <Rectangle Fill="#242424" Width="4" Height="16" Margin="4 0 0 0"/>
+                           <Rectangle Fill="#3b3b3b" Width="{Binding IntervalMaskWidth}" Margin="{Binding IntervalMaskMargin}"/>
                             <Rectangle Fill="#3b3b3b" Width="{Binding IntervalMaskWidth}" Margin="{Binding IntervalMaskMargin}"/>
                             <Rectangle Fill="#3b3b3b" Width="{Binding IntervalMaskWidth}" Margin="{Binding IntervalMaskMargin}"/>
                             <Rectangle Fill="#3b3b3b" Width="{Binding IntervalMaskWidth}" Margin="{Binding IntervalMaskMargin}"/>
@@ -80,31 +117,29 @@
                             <Rectangle Fill="#3b3b3b" Width="{Binding IntervalMaskWidth}" Margin="{Binding IntervalMaskMargin}"/>
                             <Rectangle Fill="#3b3b3b" Width="{Binding IntervalMaskWidth}" Margin="{Binding IntervalMaskMargin}"/>
                             <Rectangle Fill="#3b3b3b" Width="{Binding IntervalMaskWidth}" Margin="{Binding IntervalMaskMargin}"/>
-                            <Rectangle Fill="#3b3b3b" Width="{Binding IntervalMaskWidth}" Margin="{Binding IntervalMaskMargin}"/>
-                        </StackPanel>
+                        </StackPanel>-->
                     </Grid>
-                    <TextBlock Grid.Column="1" Text="{Binding PercentageStr}" FontSize="26" Margin="10 0 0 6"/>
+                    <TextBlock Grid.Column="1" Text="{Binding PercentageStr}" FontSize="18" Margin="20 0 0 3"/>
                 </Grid>
             </StackPanel>
 
-            <Grid Height="100" Width="40"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 120 32 0" Background="Transparent">
+            <Grid Height="100" Width="58"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 80 32 0" Background="Transparent" Opacity="0.7">
                 <b:Interaction.Behaviors>
                     <b:MouseDragElementBehavior/>
                 </b:Interaction.Behaviors>
-                <Border CornerRadius="20" Background="#1d1d1d">
+                <Border CornerRadius="30" Background="#1d1d1d">
                     <StackPanel Margin="0 5 0 0" HorizontalAlignment="Center">
                         <Button Background="Transparent" Style="{StaticResource NoMouseOverButtonStyle}" Width="30" Height="30">
                             <Path Data="M0.5,5.1900001 L9.5,5.1900001 z M5.182,0.50000006 L5.182,9.5000001 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#B6BEC3"  Width="10" Height="10"/>
                         </Button>
-                        <TextBlock Text="100%" FontSize="13" HorizontalAlignment="Center" Margin="0 5 0 5"/>
-                        <Button Background="Transparent" Style="{StaticResource NoMouseOverButtonStyle}" Width="30" Height="30">
+                        <Button Background="Transparent" Style="{StaticResource NoMouseOverButtonStyle}" Width="30" Height="30" Margin="0 30 0 0">
                             <Path Data="M0.5,0.5 L9.5,0.5 z" Fill="#FFF4F4F5" Stretch="Fill" Stroke="#B6BEC3" Width="10" Height="10"/>
                         </Button>
                     </StackPanel>
                 </Border>
             </Grid>
 
-            <Grid Height="125" Width="125" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 32 103" Background="Transparent">
+            <Grid Height="125" Width="125" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 32 103" Background="Transparent" Opacity="0.7">
                 <b:Interaction.Behaviors>
                     <b:MouseDragElementBehavior/>
                 </b:Interaction.Behaviors>

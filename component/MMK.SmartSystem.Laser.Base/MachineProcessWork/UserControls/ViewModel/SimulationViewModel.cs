@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,38 +101,9 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
         }
 
         /// <summary>
-        /// 间隔蒙版宽度
+        /// 间隔蒙版宽度集合
         /// </summary>
-        private int _IntervalMaskWidth;
-        public int IntervalMaskWidth
-        {
-            get { return _IntervalMaskWidth; }
-            set
-            {
-                if (_IntervalMaskWidth != value)
-                {
-                    _IntervalMaskWidth = value;
-                    RaisePropertyChanged(() => IntervalMaskWidth);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 间隔蒙版间距
-        /// </summary>
-        private string _IntervalMaskMargin;
-        public string IntervalMaskMargin
-        {
-            get { return _IntervalMaskMargin; }
-            set
-            {
-                if (_IntervalMaskMargin != value)
-                {
-                    _IntervalMaskMargin = value;
-                    RaisePropertyChanged(() => IntervalMaskMargin);
-                }
-            }
-        }
+        public ObservableCollection<ProgressItem> ProgressItemList { get; set; } = new ObservableCollection<ProgressItem>();
 
         public double TotalTime { get; set; } = 0;
         public double ElapsedTime { get; set; } = 0;
@@ -172,17 +144,25 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
             this.IsMax = "false";
             this.PercentageStr = "0%";
             this.Percentage = 0;
-            this.IntervalMaskWidth = 4;
-            this.IntervalMaskMargin = "36 0 0 0";
+            //this.IntervalMaskMargin = "36 0 0 0";
             this.ProgressBarWidth = 800;
+            SetProgressItems();
             this.TotalTime = 35;
             this.TotalTimeStr = new DateTime().AddSeconds(TotalTime).TimeOfDay.ToString();
             this.RemainTime = this.TotalTime;
             this.RemainTimeStr = this.TotalTimeStr;
             TimeTimer = new System.Windows.Threading.DispatcherTimer();
-            TimeTimer.Tick += TimeTimer_Tick; ;
+            TimeTimer.Tick += TimeTimer_Tick;
             TimeTimer.Interval = new TimeSpan(0, 0, 0, 1);
             TimeTimer.Start();
+        }
+
+        private void SetProgressItems(){
+            for (int i = 0; i < ProgressBarWidth / 8; i++){
+                this.ProgressItemList.Add(new ProgressItem{
+                    IntervalMaskWidth = 4
+                });
+            }
         }
 
         private void TimeTimer_Tick(object sender, EventArgs e){
@@ -208,19 +188,36 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcessWork.UserControls.ViewModel
                         this.IsNormal = "true";
                         this.IsMax = "false";
                         this.ProgressBarWidth = 800;
-                        this.IntervalMaskWidth = 4;
-                        this.IntervalMaskMargin = "36 0 0 0";
+                        //this.IntervalMaskWidth = 4;
                     }
                     else
                     {
                         this.IsNormal = "false";
                         this.IsMax = "true";
                         this.ProgressBarWidth = 1100;
-                        this.IntervalMaskWidth = 4;
-                        this.IntervalMaskMargin = "51 0 0 0";
+                        //this.IntervalMaskWidth = 4;
                     }
+                    SetProgressItems();
                 });
             }
+        }
+
+
+        public class ProgressItem : ViewModelBase{
+            private int _IntervalMaskWidth;
+            public int IntervalMaskWidth
+            {
+                get { return _IntervalMaskWidth; }
+                set
+                {
+                    if (_IntervalMaskWidth != value)
+                    {
+                        _IntervalMaskWidth = value;
+                        RaisePropertyChanged(() => IntervalMaskWidth);
+                    }
+                }
+            }
+
         }
     }
 }

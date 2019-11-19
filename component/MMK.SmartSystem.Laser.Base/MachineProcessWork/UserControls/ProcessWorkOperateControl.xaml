@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="RichTextBox">
                 <Setter Property="Foreground" Value="#adadad"/>
@@ -47,10 +47,16 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
+        <TabControl Grid.Column="0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" SelectionChanged="TabControl_SelectionChanged">
+            <TabItem Header="程序路径" Style="{StaticResource TabItemStyle}" >
+                
+            </TabItem>
+            <TabItem Header="操作" Style="{StaticResource TabItemStyle}">
+
+            </TabItem>
+        </TabControl>
+
+
         <StackPanel Grid.Row="0" Background="#353535" VerticalAlignment="Center" Height="40" Orientation="Horizontal" Grid.ColumnSpan="2">
             <RadioButton Width="172"  Height="40" Content="程序路径" Style="{StaticResource RadioButtonColorStyle}" Command="{Binding SwitchPageCommand}" CommandParameter="0"/>
             <RadioButton Width="172" Height="40" Content="操作" Style="{StaticResource RadioButtonColorStyle}"  IsChecked="True" Command="{Binding SwitchPageCommand}" CommandParameter="1"/>

@@ -151,9 +151,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                             Data = new Common.UpdateProgramDto()
                             {
                                 FileHash = currentProgramDetail?.FileHashCode,
-                                CuttingDistance = currentProgramDetail?.CuttingDistance,
-                                CuttingTime = currentProgramDetail?.CuttingTime,
-                                FocalPosition = currentProgramDetail?.FocalPosition,
+                                CuttingDistance = Convert.ToDouble(currentProgramDetail?.CuttingDistance),
+                                CuttingTime = Convert.ToDouble(currentProgramDetail?.CuttingTime),
+                                FocalPosition = Convert.ToDouble(currentProgramDetail?.FocalPosition),
                                 FullPath = currentProgramDetail?.SelectedProgramFolders.Folder,
                                 Gas = currentProgramDetail.Gas,
                                 Material = currentProgramDetail.Material,
@@ -163,9 +163,17 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                                 PiercingCount = currentProgramDetail.PiercingCount,
                                 Size = currentProgramDetail.Size,
                                 Thickness = currentProgramDetail.Thickness,
-                                UpdateTime = DateTime.Now
-                               
-
+                                UpdateTime = DateTime.Now,
+                                Max_X = currentProgramDetail.Max_X,
+                                Max_Y = currentProgramDetail.Max_Y,
+                                Min_X = currentProgramDetail.Min_X,
+                                Min_Y = currentProgramDetail.Min_Y,
+                                PlateSize_H = currentProgramDetail.PlateSizeHeight,
+                                PlateSize_W = currentProgramDetail.PlateSizeWidth,
+                                UsedPlateSize_H = currentProgramDetail.UsedPlateSizeHeigth,
+                                UsedPlateSize_W = currentProgramDetail.UsedPlateSizeWidth,
+                                ThumbnaiInfo = currentProgramDetail.ThumbnaiInfo,
+                                ThumbnaiType = currentProgramDetail.ThumbnaiType
                             }
                         });
 

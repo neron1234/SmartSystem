@@ -13,7 +13,18 @@
         <Converters:StringToImageSourceConverter x:Key="ImageConverter" />
     </UserControl.Resources>
 
-    <Grid Grid.Row="0" Grid.ColumnSpan="2"  Background="#FF2D2D2D">
+    <Grid Grid.Row="0" Grid.ColumnSpan="2" >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                <GradientStop Color="#2e2f31" Offset="0.1" />
+                <GradientStop Color="#2a2b2d" Offset="0.3" />
+                <GradientStop Color="#272829" Offset="0.4" />
+                <GradientStop Color="#252525" Offset="0.6" />
+                <GradientStop Color="#212121" Offset="0.7" />
+                <GradientStop Color="#1e1e1e" Offset="0.8" />
+                <GradientStop Color="#1b1b1b" Offset="0.9" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*"/>
             <ColumnDefinition Width="30*"/>
@@ -33,11 +44,6 @@
             <Image Source="{Binding Path=LaserImg,Converter={StaticResource ImageConverter}}" Width="13" Height="13" Margin="0 18 30 14" />
 
             <TextBlock Text="{Binding SystemTime}" Margin="14 14 20 14" FontSize="14" />
-            <!--<cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMinWindow" 
-                                        PathData="{StaticResource minWindowIcon}" HorizontalAlignment="Right"
-                                        Margin="5" PathWidth="18" NormalPathColor="White"
-                                        MouseOverBackground="Transparent"
-                                        PressedBackground="Transparent" Click="btnMinWindow_Click" />-->
 
             <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="25" x:Name="btnMaxWindow" 
                                     PathData="{StaticResource HomeIcon}" HorizontalAlignment="Right"

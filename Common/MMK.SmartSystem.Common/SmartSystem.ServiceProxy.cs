@@ -11869,77 +11869,101 @@ namespace MMK.SmartSystem.Common
     }
     
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.23.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class UpdateProgramDto 
+    public partial class UpdateProgramDto
     {
         [Newtonsoft.Json.JsonProperty("fileHash", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string FileHash { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Name { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("fullPath", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string FullPath { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("size", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Size { get; set; }
-    
+
+        [Newtonsoft.Json.JsonProperty("size", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double Size { get; set; }
+
         [Newtonsoft.Json.JsonProperty("material", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Material { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("thickness", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Thickness { get; set; }
-    
+
+        [Newtonsoft.Json.JsonProperty("thickness", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double Thickness { get; set; }
+
         [Newtonsoft.Json.JsonProperty("gas", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Gas { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("focalPosition", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? FocalPosition { get; set; }
-    
+
+        [Newtonsoft.Json.JsonProperty("focalPosition", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double FocalPosition { get; set; }
+
         [Newtonsoft.Json.JsonProperty("nozzleKind", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string NozzleKind { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("nozzleDiameter", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? NozzleDiameter { get; set; }
-    
+
+        [Newtonsoft.Json.JsonProperty("nozzleDiameter", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double NozzleDiameter { get; set; }
+
         [Newtonsoft.Json.JsonProperty("plateSize", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PlateSize { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("usedPlateSize", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string UsedPlateSize { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("cuttingDistance", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? CuttingDistance { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("piercingCount", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? PiercingCount { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("cuttingTime", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? CuttingTime { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("thumbnaiType", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? ThumbnaiType { get; set; }
-    
+
+        [Newtonsoft.Json.JsonProperty("cuttingDistance", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double CuttingDistance { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("piercingCount", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int PiercingCount { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("cuttingTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double CuttingTime { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("thumbnaiType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int ThumbnaiType { get; set; }
+
         [Newtonsoft.Json.JsonProperty("thumbnaiInfo", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ThumbnaiInfo { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("updateTime", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? UpdateTime { get; set; }
-    
-        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Id { get; set; }
-    
-        public string ToJson() 
+
+        [Newtonsoft.Json.JsonProperty("plateSize_W", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double PlateSize_W { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("plateSize_H", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double PlateSize_H { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("usedPlateSize_W", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double UsedPlateSize_W { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("usedPlateSize_H", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double UsedPlateSize_H { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("max_X", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double Max_X { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("max_Y", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double Max_Y { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("min_X", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double Min_X { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("min_Y", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public double Min_Y { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("updateTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTimeOffset UpdateTime { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int Id { get; set; }
+
+        public string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, new Newtonsoft.Json.JsonSerializerSettings { PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All });
         }
-    
+
         public static UpdateProgramDto FromJson(string data)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateProgramDto>(data, new Newtonsoft.Json.JsonSerializerSettings { PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All });
         }
-    
+
     }
-    
+
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "10.0.23.0 (Newtonsoft.Json v11.0.0.0)")]
     public partial class PagedResultDtoOfProgramCommentFromCncDto 
     {

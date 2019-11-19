@@ -303,13 +303,61 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public double PlateSizeWidth { get; set; }
+        private double _PlateSizeWidth;
+        public double PlateSizeWidth
+        {
+            get { return _PlateSizeWidth; }
+            set
+            {
+                if (_PlateSizeWidth != value)
+                {
+                    _PlateSizeWidth = value;
+                    RaisePropertyChanged(() => PlateSizeWidth);
+                }
+            }
+        }
 
-        public double UsedPlateSizeWidth { get; set; }
+        private double _UsedPlateSizeWidth;
+        public double UsedPlateSizeWidth
+        {
+            get { return _UsedPlateSizeWidth; }
+            set
+            {
+                if (_UsedPlateSizeWidth != value)
+                {
+                    _UsedPlateSizeWidth = value;
+                    RaisePropertyChanged(() => UsedPlateSizeWidth);
+                }
+            }
+        }
 
-        public double PlateSizeHeight { get; set; }
+        private double _PlateSizeHeight;
+        public double PlateSizeHeight
+        {
+            get { return _PlateSizeHeight; }
+            set
+            {
+                if (_PlateSizeHeight != value)
+                {
+                    _PlateSizeHeight = value;
+                    RaisePropertyChanged(() => PlateSizeHeight);
+                }
+            }
+        }
 
-        public double UsedPlateSizeHeigth { get; set; }
+        private double _UsedPlateSizeHeigth;
+        public double UsedPlateSizeHeigth
+        {
+            get { return _UsedPlateSizeHeigth; }
+            set
+            {
+                if (_UsedPlateSizeHeigth != value)
+                {
+                    _UsedPlateSizeHeigth = value;
+                    RaisePropertyChanged(() => UsedPlateSizeHeigth);
+                }
+            }
+        }
 
         public double Max_Y { get; set; }
         public double Max_X { get; set; }

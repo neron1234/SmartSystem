@@ -27,5 +27,10 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             InitializeComponent();
             this.DataContext = headerVM = new HeaderStatusViewModel ();
         }
+
+        private void btnMinWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
