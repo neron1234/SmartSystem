@@ -41,7 +41,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         /// </summary>
         public ObservableCollection<ProgramViewModel> ProgramList { get; set; }
 
-
         private ReadProgramFolderItemViewModel _ProgramFolderInfo;
         public ReadProgramFolderItemViewModel ProgramFolderList
         {
@@ -72,24 +71,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public LocalProgramListViewModel()
-        {
+        public LocalProgramListViewModel(){
             ProgramList = new ObservableCollection<ProgramViewModel>();
             this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
             GetFileName();
-            Messenger.Default.Register<SearchInfo>(this, (sInfo) =>
-            {
-                this.ProgramList.Clear();
-                if (string.IsNullOrEmpty(sInfo.Search))
-                {
-                    DataPaging(false);
-                    return;
-                }
-                foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(sInfo.Search)))
-                {
-                    this.ProgramList.Add(item);
-                }
-            });
         }
 
         public void GetFileName()
@@ -147,26 +132,21 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             int count = LocalProgramList.Count;
             TotalPage = 0;
-            if (count % PageNumber == 0)
-            {
+            if (count % PageNumber == 0){
                 TotalPage = count / PageNumber;
-            }
-            else
-            {
+            }else{
                 TotalPage = count / PageNumber + 1;
             }
 
-            if (next && CurrentPage >= 1 && CurrentPage < TotalPage)
-            {
+            if (next && CurrentPage >= 1 && CurrentPage < TotalPage){
                 CurrentPage++;
-            }
-            else
-            {
+            }else{
                 CurrentPage = 1;
             }
+
             this.ProgramList.Clear();
-            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList())
-            {
+
+            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList()){
                 this.ProgramList.Add(item);
             }
         }
@@ -221,14 +201,25 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand SearchCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    new PopupWindow(new SearchControl(), 680, 240, "搜索本地程序").ShowDialog();
+
+        public ICommand SearchCommand{
+            get{
+                return new RelayCommand(() =>{
+                    var sc = new SearchControl();
+                    new PopupWindow(sc, 680, 240, "搜索本地程序").ShowDialog();
+                    sc.sVM.SearchEvent += SVM_SearchEvent;
                 });
+            }
+        }
+
+        public void SVM_SearchEvent(string str){
+            this.ProgramList.Clear();
+            if (string.IsNullOrEmpty(str)){
+                DataPaging(false);
+                return;
+            }
+            foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(str))){
+                this.ProgramList.Add(item);
             }
         }
 
@@ -253,7 +244,5 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 });
             }
         }
-
-
     }
 }

@@ -453,7 +453,6 @@
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCPathViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCProgramInfoViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\LocalProgramInfoViewModel.cs" />
-    <Compile Include="ProgramOperation\UserControls\ViewModel\SearchViewModel.cs" />
     <Compile Include="ViewModel\InputWindowViewModel.cs" />
     <Compile Include="ViewModel\PopupWindowViewModel.cs" />
     <Compile Include="MachineProcess\ViewModel\ProcessViewModel.cs" />

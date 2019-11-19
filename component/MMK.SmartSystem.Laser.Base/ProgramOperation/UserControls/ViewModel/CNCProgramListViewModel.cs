@@ -91,17 +91,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             this.ProgramList = new ObservableCollection<ProgramViewModel>();
             this.LocalProgramList = new List<ProgramViewModel>();
-
-            Messenger.Default.Register<SearchInfo>(this, (sInfo) => {
-                this.ProgramList.Clear();
-                if (string.IsNullOrEmpty(sInfo.Search)) {
-                    DataPaging();
-                    return;
-                }
-                foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(sInfo.Search))) {
-                    this.ProgramList.Add(item);
-                }
-            });
         }
 
         public ICommand MainProgramCommand
@@ -141,8 +130,24 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    new PopupWindow(new SearchControl(), 680, 240, "搜索本地程序").ShowDialog();
+                    var sc = new SearchControl();
+                    new PopupWindow(sc, 680, 240, "搜索CNC程序").ShowDialog();
+                    sc.sVM.SearchEvent += SVM_SearchEvent;
                 });
+            }
+        }
+
+        private void SVM_SearchEvent(string obj)
+        {
+            this.ProgramList.Clear();
+            if (string.IsNullOrEmpty(obj))
+            {
+                DataPaging();
+                return;
+            }
+            foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(obj)))
+            {
+                this.ProgramList.Add(item);
             }
         }
 
