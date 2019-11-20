@@ -70,7 +70,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             MyLocalProgramListControl.lpViewModel.ConnectId = CurrentConnectId;
 
             MyCNCProgramListControl.Init();
-            ProgramApi.Init();
+            ProgramApi.Init(() =>
+            {
+                MyLocalProgramListControl.CheckedLocalProgram();
+            });
         }
         protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {

@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using MMK.SmartSystem.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
-    public class ProgramViewModel:ViewModelBase
+    public class ProgramViewModel : ViewModelBase
     {
+
+        public Common.ProgramCommentFromCncDto CommentDto { get; set; } = new ProgramCommentFromCncDto();
         private string _FileHash;
         public string FileHash
         {
@@ -94,10 +97,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
         private bool _IsUpLoad;
-        public bool IsUpLoad{
+        public bool IsUpLoad
+        {
             get { return _IsUpLoad; }
-            set{
-                if (_IsUpLoad != value){
+            set
+            {
+                if (_IsUpLoad != value)
+                {
                     _IsUpLoad = value;
                     RaisePropertyChanged(() => IsUpLoad);
                 }
@@ -116,6 +122,16 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                     RaisePropertyChanged(() => ProgramName);
                 }
             }
+        }
+
+        public void SetCommentDto(Func<ProgramCommentFromCncDto, bool> filter)
+        {
+            var obj = ProgramConfigConsts.CurrentProgramCommentFromCncDtos.FirstOrDefault(filter);
+            if (obj != null)
+            {
+                CommentDto = obj;
+            }
+
         }
     }
 }

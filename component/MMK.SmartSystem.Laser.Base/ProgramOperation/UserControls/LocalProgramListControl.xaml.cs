@@ -41,26 +41,29 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             lpViewModel.UploadClickEvent += LpViewModel_UploadClickEvent;
         }
 
-        public void CheckedLocalProgram() {
-            Task.Factory.StartNew(new Action(() => {
-                foreach (var program in lpViewModel.LocalProgramList){
-                    
-                }
-            }));
+        public void CheckedLocalProgram()
+        {
+            foreach (var program in lpViewModel.LocalProgramList)
+            {
+                program.SetCommentDto(d => d.FileHash == program.FileHash);
+            }
         }
 
         private void LpViewModel_UploadClickEvent(LocalProgramListViewModel local, ProgramViewModel obj)
         {
             Stream stream = default;
-            using (var fileStream = new FileStream(System.IO.Path.Combine(local.Path, obj.Name), FileMode.Open, FileAccess.Read, FileShare.Read)){
+            using (var fileStream = new FileStream(System.IO.Path.Combine(local.Path, obj.Name), FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
                 byte[] bytes = new byte[fileStream.Length];
                 fileStream.Read(bytes, 0, bytes.Length);
                 fileStream.Close();
                 stream = new MemoryStream(bytes);
             }
 
-            Task.Factory.StartNew(new Action(() =>{
-                EventBus.Default.TriggerAsync(new UpLoadProgramClientEventData{
+            Task.Factory.StartNew(new Action(() =>
+            {
+                EventBus.Default.TriggerAsync(new UpLoadProgramClientEventData
+                {
                     FileParameter = new Common.FileParameter(stream, obj.Name),
                     ConnectId = local.ConnectId,
                     FileHashCode = obj.FileHash

@@ -56,20 +56,28 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 ReadProgramFolderNode(JArray.Parse(item["nodes"].ToString()), childNode);
             }
         }
-        public void Init()
+        public void Init(Action success = null)
         {
-            RealReadWriterEvent?.Invoke(new HubReadWriterModel(){
+            RealReadWriterEvent?.Invoke(new HubReadWriterModel()
+            {
                 ProxyName = "ProgramFolderInOut",
                 Action = "Reader",
                 Id = "getProgramFolder",
                 Data = new object[] { "//CNC_MEM/" }
             });
 
-            EventBus.Default.Trigger(new ProgramClientEventData(){
-                SuccessAction = (s) =>{
-                    ProgramConfigConsts.CurrentProgramCommentFromCncDtos = s;
-                }
-            });            
+            Task.Factory.StartNew(new Action(() =>
+            {
+                EventBus.Default.Trigger(new ProgramClientEventData()
+                {
+                    SuccessAction = (s) =>
+                    {
+                        ProgramConfigConsts.CurrentProgramCommentFromCncDtos = s;
+                        success?.Invoke();
+                    }
+                });
+            }));
+
         }
     }
 }
