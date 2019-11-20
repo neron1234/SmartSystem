@@ -32,11 +32,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         public event Action<ProgramDetailViewModel> ProgramUploadEvent;
         private string fileHash = "";
-        public UpLoadLocalProgramControl(string programPath, ReadProgramFolderItemViewModel programFolderInfo, string fileCode = "")
+        public UpLoadLocalProgramControl(string programPath, string fileCode = "")
         {
             InitializeComponent();
             fileHash = fileCode;
-            this.DataContext = upLoadProViewModel = new UpLoadLocalProgramViewModel(programFolderInfo);
+            this.DataContext = upLoadProViewModel = new UpLoadLocalProgramViewModel();
             upLoadProViewModel.LocalProgramPath = programPath;
             upLoadProViewModel.CloseEvent += UpLoadProViewModel_CloseEvent;
             upLoadProViewModel.GetDetailModelEvent += UpLoadProViewModel_GetDetailModelEvent;

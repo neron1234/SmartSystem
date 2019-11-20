@@ -7,7 +7,7 @@
         xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="460" Width="458" Background="#e9f0f3" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
+        Title="{Binding Title}" Height="460" Width="458" Background="#eeeeee" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
         WindowStyle="None" WindowStartupLocation="CenterScreen"  MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
@@ -56,7 +56,6 @@
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBox  Width="440" Height="50" FontSize="30" Text="{Binding Value}" Margin="0 10 0 10" Style="{StaticResource ClearButtonTextBox}" />
             </WrapPanel>
-
             <ItemsControl Grid.Row="2" x:Name="buttomItem" Margin="5">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

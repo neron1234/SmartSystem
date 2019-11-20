@@ -44,27 +44,22 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         private void LpViewModel_UploadClickEvent(LocalProgramListViewModel local, ProgramViewModel obj)
         {
             Stream stream = default;
-            using (var fileStream = new FileStream(System.IO.Path.Combine(local.Path, obj.Name), FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-
+            using (var fileStream = new FileStream(System.IO.Path.Combine(local.Path, obj.Name), FileMode.Open, FileAccess.Read, FileShare.Read)){
                 byte[] bytes = new byte[fileStream.Length];
                 fileStream.Read(bytes, 0, bytes.Length);
                 fileStream.Close();
                 stream = new MemoryStream(bytes);
             }
 
-
-            Task.Factory.StartNew(new Action(() =>
-            {
-                EventBus.Default.TriggerAsync(new UpLoadProgramClientEventData
-                {
+            Task.Factory.StartNew(new Action(() =>{
+                EventBus.Default.TriggerAsync(new UpLoadProgramClientEventData{
                     FileParameter = new Common.FileParameter(stream, obj.Name),
                     ConnectId = local.ConnectId,
                     FileHashCode = obj.FileHash
                 });
             }));
 
-            modalControl = new UpLoadLocalProgramControl(local.Path, local.ProgramFolderList, obj.FileHash);
+            modalControl = new UpLoadLocalProgramControl(local.Path, obj.FileHash);
 
             modalControl.ProgramUploadEvent += Modal_ProgramUploadEvent;
             new PopupWindow(modalControl, 900, 590, "上传本地程序").ShowDialog();
@@ -96,7 +91,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 //{
                 //    if (lpViewModel.SelectedProgramViewModel.Name.Split('.')[1] == "dxf")
                 //    {
-
                 //    }
                 //    else if (lpViewModel.SelectedProgramViewModel.Name.Split('.')[1] == "csv")
                 //    {
@@ -116,8 +110,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 //        }
                 //    }
                 //}
-
-
                 StringBuilder sb = new StringBuilder();
                 using (System.IO.StreamReader reader = new System.IO.StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name))
                 {
@@ -210,7 +202,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                         ThumbnaiType = currentProgramDetail.ThumbnaiType
                     }
                 });
-
             }));
         }
     }

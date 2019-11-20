@@ -92,5 +92,16 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 }
             }
         }
+
+        private bool _IsUpLoad;
+        public bool IsUpLoad{
+            get { return _IsUpLoad; }
+            set{
+                if (_IsUpLoad != value){
+                    _IsUpLoad = value;
+                    RaisePropertyChanged(() => IsUpLoad);
+                }
+            }
+        }
     }
 }

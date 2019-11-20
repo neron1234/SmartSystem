@@ -143,9 +143,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public UpLoadLocalProgramViewModel(ReadProgramFolderItemViewModel programFolderInfo)
+        public UpLoadLocalProgramViewModel()
         {
-            ProgramFolders = programFolderInfo;
+            ProgramFolders = ProgramConfigConsts.CurrentReadProgramFolder;
             ProgramDetail = new ProgramDetailViewModel();
             //GetTreeViewData(new System.IO.DirectoryInfo(@"C:\Users\wjj-yl\Desktop\测试用DXF"), ProgramFolders);
             //if (ProgramFolders.Nodes.Count > 0)

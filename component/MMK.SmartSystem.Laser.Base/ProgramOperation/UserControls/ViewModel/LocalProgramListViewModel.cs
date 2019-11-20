@@ -41,20 +41,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         /// </summary>
         public ObservableCollection<ProgramViewModel> ProgramList { get; set; }
 
-        private ReadProgramFolderItemViewModel _ProgramFolderInfo;
-        public ReadProgramFolderItemViewModel ProgramFolderList
-        {
-            get { return _ProgramFolderInfo; }
-            set
-            {
-                if (_ProgramFolderInfo != value)
-                {
-                    _ProgramFolderInfo = value;
-                    RaisePropertyChanged(() => ProgramFolderList);
-                }
-            }
-        }
-
         public string Path { get; set; }
 
         public LocalProgramListViewModel()

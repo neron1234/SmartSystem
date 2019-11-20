@@ -43,9 +43,10 @@
                 <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}" AutoGenerateColumns="False" x:Name="ProgramGrid" Height="380" Background="#2a2f34" 
                     AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16" BorderThickness="0">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="45*" />
+                        <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="35*" />
                         <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="20*" />
-                        <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="35*" />
+                        <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="30*" />
+                        <DataGridTextColumn Header="状态" Binding="{Binding IsUpLoad}" Width="15*" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <cc:FlatProgressBar Width="484" VerticalAlignment="Bottom" Height="2" Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="Transparent" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" />

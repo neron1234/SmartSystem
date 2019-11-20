@@ -25,7 +25,7 @@ namespace MMK.SmartSystem.Laser.Base
 
         public event Action UserControlFinishEvent;
 
-        public PopupWindow(UserControl userControl, int width = 600, int height = 300, string title = "")
+        public PopupWindow(UserControl userControl, int width = 600, int height = 200, string title = "")
         {
             InitializeComponent();
             this.DataContext = popupWindowViewModel = new PopupWindowViewModel();

@@ -69,7 +69,7 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
             InputButtonItems.Add(new InputItemModel() { Text = "4" });
             InputButtonItems.Add(new InputItemModel() { Text = "5" });
             InputButtonItems.Add(new InputItemModel() { Text = "6" });
-            InputButtonItems.Add(new InputItemModel() { Text = " " });
+            InputButtonItems.Add(new InputItemModel() { Text = "C" });
             InputButtonItems.Add(new InputItemModel() { Text = "1" });
             InputButtonItems.Add(new InputItemModel() { Text = "2" });
             InputButtonItems.Add(new InputItemModel() { Text = "3" });
@@ -104,6 +104,9 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
                         if(!Value.Contains(".")){
                             Value += item.Text;
                         }
+                        break;
+                    case "C":
+                        Value = "0";
                         break;
                     default:
                         break;

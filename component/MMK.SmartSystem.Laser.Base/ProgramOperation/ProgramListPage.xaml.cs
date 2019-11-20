@@ -52,11 +52,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             programListViewModel.InfoControl = new CNCProgramInfoControl();
 
             MyCNCProgramListControl.RealReadWriterEvent += RealReadWriterEvent;
-
-            // programListViewModel.ProgramFolder 默认值为NULL 此处没有赋值必要性
-
-            MyLocalProgramListControl.lpViewModel.ProgramFolderList = ProgramConfigConsts.CurrentReadProgramFolder;
-            programListViewModel.ProgramFolder= ProgramConfigConsts.CurrentReadProgramFolder;
             MyLocalProgramListControl.RealReadWriterEvent += RealReadWriterEvent;
         }
 

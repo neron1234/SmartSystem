@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
-             d:DesignHeight="240" d:DesignWidth="680" Background="#FF3B3B3B" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+             d:DesignHeight="220" d:DesignWidth="680" Background="#eeeeee" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     
     <UserControl.Resources>
         <ResourceDictionary>
@@ -27,7 +27,6 @@
         <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Style="{StaticResource IconBtnStyle}" Width="140" Height="45" Content="保存" Margin="0 0 15 0"  x:Name="SaveCNCPathBtn" Click="SaveCNCPathBtn_Click"/>
             <Button Style="{StaticResource IconBtnStyle}" Width="140" Height="42" Content="取消" Margin="15 0 0 0"  Command="{Binding CancelCommand}"/>
-
         </StackPanel>
     </StackPanel>
 </UserControl>
