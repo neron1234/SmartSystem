@@ -48,6 +48,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             programNotices.Add(MyLocalProgramListControl);
             programNotices.Add(MyCNCProgramListControl);
             programNotices.Add(ProgramApi);
+            programNotices.Add(MyCNCInfoControl);
             DataContext = programListViewModel = new ProgramListViewModel();
 
             programListViewModel.CNCPath = new CNCProgramPath(ProgramConfigConsts.CNCPath, "UserControl");
@@ -55,6 +56,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             MyCNCProgramListControl.RealReadWriterEvent += RealReadWriterEvent;
             MyLocalProgramListControl.RealReadWriterEvent += RealReadWriterEvent;
             ProgramApi.RealReadWriterEvent += RealReadWriterEvent;
+            MyCNCInfoControl.RealReadWriterEvent += RealReadWriterEvent;
         }
 
         private void RealReadWriterEvent(HubReadWriterModel obj)
@@ -68,6 +70,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             MyLocalProgramListControl.lpViewModel.ConnectId = CurrentConnectId;
 
             MyCNCProgramListControl.Init();
+            MyCNCInfoControl.Init();
             ProgramApi.Init(() =>
             {
                 MyLocalProgramListControl.CheckedLocalProgram();

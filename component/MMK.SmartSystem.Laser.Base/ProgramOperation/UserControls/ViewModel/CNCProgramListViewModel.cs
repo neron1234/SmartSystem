@@ -12,11 +12,13 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
-    public class CNCProgramListViewModel:ViewModelBase{
+    public class CNCProgramListViewModel : ViewModelBase
+    {
         public ObservableCollection<ProgramViewModel> ProgramList { get; set; }
 
         public List<ProgramViewModel> LocalProgramList { get; set; }
 
+        public event Action MainCommandEvent;
         private string _CNCPath;
         public string CNCPath
         {
@@ -62,29 +64,41 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public int PageNumber = 7;
         public void DataPaging(bool next = false)
         {
-            if (LocalProgramList == null){
+            if (LocalProgramList == null)
+            {
                 return;
             }
             int count = LocalProgramList.Count;
             this.TotalPage = 0;
-            if (count % PageNumber == 0){
+            if (count % PageNumber == 0)
+            {
                 this.TotalPage = count / PageNumber;
-            }else{
+            }
+            else
+            {
                 this.TotalPage = count / PageNumber + 1;
             }
-            if (next && CurrentPage >= 1 && CurrentPage < TotalPage){
+            if (next && CurrentPage >= 1 && CurrentPage < TotalPage)
+            {
                 CurrentPage++;
-            }else{
+            }
+            else
+            {
                 CurrentPage = 1;
             }
             this.ProgramList.Clear();
-            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList()){
+            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList())
+            {
                 this.ProgramList.Add(item);
             }
             //this.ProgramList = new ObservableCollection<ProgramViewModel>(LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList());
         }
 
         public event Action SetCNCProgramPath;
+
+        public event Action DeleteProgramEvent;
+
+        public event Action DownProgramEvent;
         public CNCProgramListViewModel()
         {
             this.ProgramList = new ObservableCollection<ProgramViewModel>();
@@ -95,8 +109,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             get
             {
-                return new RelayCommand(() => {
-
+                return new RelayCommand(() =>
+                {
+                    MainCommandEvent?.Invoke();
                 });
             }
         }
@@ -116,8 +131,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             get
             {
-                return new RelayCommand(() => {
-
+                return new RelayCommand(() =>
+                {
+                    DownProgramEvent?.Invoke();
                 });
             }
         }
@@ -153,8 +169,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             get
             {
-                return new RelayCommand(() => {
-                    
+                return new RelayCommand(() =>
+                {
+                    DeleteProgramEvent?.Invoke();
                 });
             }
         }
@@ -163,7 +180,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             get
             {
-                return new RelayCommand(() => {
+                return new RelayCommand(() =>
+                {
                     DataPaging(true);
                 });
             }
