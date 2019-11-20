@@ -161,8 +161,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                     if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         this.Path = folderDialog.SelectedPath.Trim();
-                        CheckedProgramEvent.Invoke();
                         GetFileName();
+                        CheckedProgramEvent.Invoke();
                     }
                 });
             }
