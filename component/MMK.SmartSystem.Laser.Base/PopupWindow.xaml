@@ -6,7 +6,7 @@
       xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="625" WindowStyle="None" WindowStartupLocation="CenterScreen"  MouseLeftButtonDown="Window_MouseLeftButtonDown"
-      Title="PopupWindowPage" ResizeMode="NoResize" Background="#eeeeee" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+      Title="PopupWindowPage" ResizeMode="NoResize" Background="#eeeeee" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#6d7278">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

@@ -42,15 +42,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             lpViewModel.CheckedProgramEvent += CheckedLocalProgram;
             Loaded += LocalProgramListControl_Loaded;
         }
-        private bool IsLoaded = false;
+        private bool IsLoadedTemp = false;
         private void LocalProgramListControl_Loaded(object sender, RoutedEventArgs e)
         {
             lpViewModel.DataPaging();
-            if (IsLoaded)
-            {
+            if (IsLoadedTemp){
                 Loaded -= LocalProgramListControl_Loaded;
             }
-            IsLoaded = true;
+            IsLoadedTemp = true;
         }
 
         public void CheckedLocalProgram()
@@ -138,7 +137,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 using (StreamReader reader = new StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name))
                 {
                     var line = reader.ReadLine();
-                    for (int i = 0; i < 23; i++)
+                    for (int i = 0; i < 22; i++)
                     {
                         if (line != null)
                         {

@@ -7,7 +7,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
-            d:DesignHeight="590" d:DesignWidth="900"  Background="#2d2d2d" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+            d:DesignHeight="590" d:DesignWidth="900" FontSize="20" FontFamily="思源黑体 CN Medium"  Foreground="#6d7278" Background="#eeeeee">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -21,13 +21,13 @@
                 <Setter Property="Foreground" Value="#787b8c"/>
             </Style>
             <Style TargetType="TextBox">
-                <Setter Property="Background" Value="#202328" />
-                <Setter Property="BorderBrush" Value="#121417" />
-                <Setter Property="Foreground" Value="#787b8c" />
+                <Setter Property="Background" Value="#f8f6f6" />
+                <Setter Property="BorderBrush" Value="#c3c1c1" />
+                <Setter Property="Foreground" Value="#292f33" />
                 <Setter Property="Margin" Value="0 10 0 0" />
                 <Setter Property="IsReadOnly" Value="True" />
             </Style>
-            
+
             <PathGeometry x:Key="Icon_Right" Figures="M8.59,16.58L13.17,12 8.59,7.41 10,6 16,12 10,18 8.59,16.58z" />
             <Style TargetType="{x:Type RadioButton}">
                 <Setter Property="Focusable" Value="False" />
@@ -97,7 +97,7 @@
 
                     <TextBlock Text="材料类型" Margin="0,10,0,0" />
                     <ComboBox Margin="0,10,0,0" ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
-                          SelectedValue="{Binding SelectedMaterialId}" BorderBrush="#121417" IsReadOnly="True" Height="30">
+                          SelectedValue="{Binding SelectedMaterialId}" BorderBrush="#c3c1c1" IsReadOnly="True" Height="30">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>
@@ -110,7 +110,7 @@
 
                     <TextBlock Text="割嘴类型" Margin="0,10,0,0" />
                     <ComboBox Margin="0 10 0 0" ItemsSource="{Binding NozzleKindList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
-                          SelectedValue="{Binding SelectedNozzleKindCode}" BorderBrush="#121417" IsReadOnly="True" Height="30">
+                          SelectedValue="{Binding SelectedNozzleKindCode}" BorderBrush="#c3c1c1" IsReadOnly="True" Height="30" >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
                                 <!--<i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>-->
@@ -137,8 +137,8 @@
             </Grid>
 
             <StackPanel Grid.Row="2" Margin="18" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource IconBtnStyle}" Width="120" Height="42" Content="保存" Margin="0 0 10 0" Command="{Binding UpLoadCommand}"/>
-                <Button Style="{StaticResource IconBtnStyle}" Width="120" Height="42" Content="取消" Margin="10 0 0 0" Command="{Binding CancelCommand}"/>
+                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="保存" Margin="0 0 10 0" Command="{Binding UpLoadCommand}"/>
+                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="取消" Margin="10 0 0 0" Command="{Binding CancelCommand}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.RowSpan="2" Grid.Column="2" Margin="1 20 5 0">
