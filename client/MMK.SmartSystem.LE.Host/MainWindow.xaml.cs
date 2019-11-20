@@ -40,6 +40,11 @@ namespace MMK.SmartSystem.LE.Host
         SignalrRouteProxyClient signalrRouteProxyClient;
         LoadWindow loadWindow;
 
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
+        [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
+        public static extern UInt32 GetWindowLong(IntPtr hWnd, int nIndex);
+
         public MainWindow(IIocManager iocManager)
         {
             this.iocManager = iocManager;
@@ -50,6 +55,13 @@ namespace MMK.SmartSystem.LE.Host
             signalrRouteProxyClient.GetHomeEvent += SignalrRouteProxyClient_GetHomeEvent;
             this.Loaded += MainWindow_Loaded;
             this.Closed += MainWindow_Closed;
+
+            //以下代码不能放到构造函数里，否则窗体丙柄为0
+            System.Windows.Interop.WindowInteropHelper wndHelper = new System.Windows.Interop.WindowInteropHelper(this);
+            IntPtr HWND = wndHelper.Handle;
+            int GWL_EXSTYLE = -20;
+            //GetWindowLong(HWND, GWL_EXSTYLE);
+            SetWindowLong(HWND, GWL_EXSTYLE, (IntPtr)(0x8000000)); //让当前窗体不获取输入焦点
         }
 
         private void SignalrRouteProxyClient_GetHomeEvent(string obj)
