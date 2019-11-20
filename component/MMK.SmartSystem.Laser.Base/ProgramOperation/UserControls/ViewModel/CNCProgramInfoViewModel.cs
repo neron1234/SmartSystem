@@ -150,6 +150,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 PlateSize = "信息缺失";
             }
             var dateTime = TimeSpan.FromSeconds(programComment.CuttingTime);
+            CuttingTime = "";
             if (dateTime.Hours >= 1)
             {
                 CuttingTime = $"{dateTime.Hours.ToString("0")}小时";

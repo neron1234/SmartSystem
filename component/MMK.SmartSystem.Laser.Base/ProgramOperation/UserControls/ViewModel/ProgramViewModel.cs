@@ -83,10 +83,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
         private string _Description;
-        public string Description{
+        public string Description
+        {
             get { return _Description; }
-            set{
-                if (_Description != value){
+            set
+            {
+                if (_Description != value)
+                {
                     _Description = value;
                     RaisePropertyChanged(() => Description);
                 }
@@ -94,14 +97,20 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
         private bool _IsUpLoad;
-        public bool IsUpLoad{
+        public bool IsUpLoad
+        {
             get { return _IsUpLoad; }
-            set{
-                if (_IsUpLoad != value){
+            set
+            {
+                if (_IsUpLoad != value)
+                {
                     _IsUpLoad = value;
-                    if (value){
+                    if (value)
+                    {
                         this.StatusImg = "/MMK.SmartSystem.LE.Host;component/Resources/Images/Status_Green.png";
-                    }else{
+                    }
+                    else
+                    {
                         this.StatusImg = "/MMK.SmartSystem.LE.Host;component/Resources/Images/Status_Blue.png";
                     }
                     RaisePropertyChanged(() => IsUpLoad);
@@ -110,10 +119,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
         private string _ProgramName;
-        public string ProgramName{
+        public string ProgramName
+        {
             get { return _ProgramName; }
-            set{
-                if (_ProgramName != value){
+            set
+            {
+                if (_ProgramName != value)
+                {
                     _ProgramName = value;
                     RaisePropertyChanged(() => ProgramName);
                 }
@@ -134,18 +146,23 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public void SetCommentDto(Func<ProgramCommentFromCncDto, bool> filter){
+        public void SetCommentDto(Func<ProgramCommentFromCncDto, bool> filter)
+        {
             var obj = ProgramConfigConsts.CurrentProgramCommentFromCncDtos.FirstOrDefault(filter);
-            if (obj != null){
+            if (obj != null)
+            {
                 CommentDto = obj;
                 this.IsUpLoad = true;
                 this.ProgramName = obj.Name;
-            }else{
+            }
+            else
+            {
                 this.IsUpLoad = false;
                 this.ProgramName = "未上传";
             }
         }
-        public void SetProgramLoad(string name){
+        public void SetProgramLoad(string name)
+        {
             this.IsUpLoad = true;
             this.ProgramName = name;
         }

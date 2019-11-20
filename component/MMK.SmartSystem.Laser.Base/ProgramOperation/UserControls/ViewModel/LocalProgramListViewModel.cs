@@ -34,7 +34,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         /// <summary>
         /// 显示数据
         /// </summary>
-        public ObservableCollection<ProgramViewModel> LocalProgramList { get; set; }
+        public ObservableCollection<ProgramViewModel> LocalProgramList { get; set; } = new ObservableCollection<ProgramViewModel>();
 
         /// <summary>
         /// 原数据
