@@ -46,7 +46,7 @@
                         <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="35*" />
                         <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="20*" />
                         <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="30*" />
-                        <DataGridTextColumn Header="状态" Binding="{Binding IsUpLoad}" Width="15*" />
+                        <DataGridTextColumn Header="程序号" Binding="{Binding IsUpLoad}" Width="15*" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <cc:FlatProgressBar Width="484" VerticalAlignment="Bottom" Height="2" Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="Transparent" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" />

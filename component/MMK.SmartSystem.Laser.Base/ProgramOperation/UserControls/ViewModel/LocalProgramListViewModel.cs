@@ -50,19 +50,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             GetFileName();
         }
 
-        public void GetFileName()
-        {
-            if (Directory.Exists(this.Path))
-            {
+        public void GetFileName(){
+            if (Directory.Exists(this.Path)){
                 DirectoryInfo root = new DirectoryInfo(this.Path);
                 LocalProgramList = new ObservableCollection<ProgramViewModel>();
 
                 var files = root.GetFiles("*.ng").Union(root.GetFiles("*.txt")).Union(root.GetFiles("*."));
 
-                foreach (FileInfo f in files)
-                {
-                    var program = new ProgramViewModel
-                    {
+                foreach (FileInfo f in files){
+                    var program = new ProgramViewModel{
                         FileHash = FileHashHelper.ComputeMD5(f.FullName),
                         Name = f.Name,
                         FillName = f.FullName,
@@ -155,12 +151,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand LocalPathCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
+        public ICommand LocalPathCommand{
+            get{
+                return new RelayCommand(() =>{
                     System.Windows.Forms.FolderBrowserDialog folderDialog = new System.Windows.Forms.FolderBrowserDialog();
                     if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
@@ -171,14 +164,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand DeleteFileCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    if (File.Exists(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name)))
-                    {
+        public ICommand DeleteFileCommand{
+            get{
+                return new RelayCommand(() =>{
+                    if (File.Exists(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name))){
                         File.Delete(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
                         GetFileName();
                     }
@@ -186,13 +175,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-
-        public ICommand SearchCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
+        public ICommand SearchCommand{
+            get{
+                return new RelayCommand(() =>{
                     var sc = new SearchControl();
                     new PopupWindow(sc, 680, 240, "搜索本地程序").ShowDialog();
                     sc.sVM.SearchEvent += SVM_SearchEvent;
@@ -200,26 +185,20 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public void SVM_SearchEvent(string str)
-        {
+        public void SVM_SearchEvent(string str){
             this.ProgramList.Clear();
-            if (string.IsNullOrEmpty(str))
-            {
+            if (string.IsNullOrEmpty(str)){
                 DataPaging();
                 return;
             }
-            foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(str)))
-            {
+            foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(str))){
                 this.ProgramList.Add(item);
             }
         }
 
-        public ICommand OpenFileCommand
-        {
-            get
-            {
-                return new RelayCommand(() =>
-                {
+        public ICommand OpenFileCommand{
+            get{
+                return new RelayCommand(() =>{
                     System.Diagnostics.Process.Start(@"Notepad.exe", System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
                 });
             }

@@ -103,5 +103,19 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 }
             }
         }
+
+        private string _ProgramName;
+        public string ProgramName
+        {
+            get { return _ProgramName; }
+            set
+            {
+                if (_ProgramName != value)
+                {
+                    _ProgramName = value;
+                    RaisePropertyChanged(() => ProgramName);
+                }
+            }
+        }
     }
 }

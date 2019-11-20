@@ -109,10 +109,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls.ViewModel
             if (list.Count > 0)
             {
                 SelectedMaterialId = (int)list[0].MaterialCode;
-
             }
         }
     }
-
-
 }

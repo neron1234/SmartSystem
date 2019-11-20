@@ -47,7 +47,6 @@ namespace MMK.SmartSystem.Laser.Base.MachineProcess.UserControls
                 });
                 LoadAllDataColum();
             }));
-
         }
 
         private void LoadAllDataColum()

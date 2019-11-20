@@ -46,4 +46,21 @@ namespace MMK.SmartSystem.Laser.Base.EventHandler
             };
         }
     }
+
+    public class QuaryProgramAllClientHandler : BaseEventHandler<ProgramClientEventData, List<ProgramCommentFromCncDto>>
+    {
+        public override RequestResult<List<ProgramCommentFromCncDto>> WebRequest(ProgramClientEventData eventData)
+        {
+            ProgramClientServiceProxy programClientService = new ProgramClientServiceProxy(apiHost, httpClient);
+            var res = programClientService.GetAllAsync(0, 100).Result;
+            return new RequestResult<List<ProgramCommentFromCncDto>>()
+            {
+                Result = res.Result.Items.ToList(),
+                Error = res.Error,
+                Success = res.Success,
+                TargetUrl = res.TargetUrl,
+                UnAuthorizedRequest = res.UnAuthorizedRequest
+            };
+        }
+    }
 }

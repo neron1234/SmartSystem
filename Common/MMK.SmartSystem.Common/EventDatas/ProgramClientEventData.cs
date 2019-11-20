@@ -17,4 +17,7 @@ namespace MMK.SmartSystem.Common.EventDatas
     {
         public UpdateProgramDto Data { get; set; }
     }
+
+    public class ProgramClientEventData : BaseApiEventData<List<ProgramCommentFromCncDto>>
+    {}
 }
