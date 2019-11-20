@@ -39,14 +39,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             InitializeComponent();
             this.DataContext = lpViewModel = new LocalProgramListViewModel();
             lpViewModel.UploadClickEvent += LpViewModel_UploadClickEvent;
-            Task.Factory.StartNew(new Action(() => {
-                EventBus.Default.Trigger(new ProgramClientEventData() { SuccessAction = (s) => RefreshLocalProgram(s) });
-            }));
         }
 
-        private void RefreshLocalProgram(List<Common.ProgramCommentFromCncDto> programCommentFromCncDtos)
-        {
-
+        public void CheckedLocalProgram() {
+            Task.Factory.StartNew(new Action(() => {
+                foreach (var program in lpViewModel.LocalProgramList){
+                    
+                }
+            }));
         }
 
         private void LpViewModel_UploadClickEvent(LocalProgramListViewModel local, ProgramViewModel obj)
