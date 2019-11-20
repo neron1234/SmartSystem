@@ -27,12 +27,61 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     {
         CNCProgramListViewModel cpViewModel;
         public event Action<HubReadWriterModel> RealReadWriterEvent;
+
+        private ProgramViewModel currentSelectModel;
         public CNCProgramListControl()
         {
+          
             InitializeComponent();
             this.DataContext = cpViewModel = new CNCProgramListViewModel();
             cpViewModel.CNCPath = ProgramConfigConsts.CNCPath;
             cpViewModel.SetCNCProgramPath += CpViewModel_SetCNCProgramPath;
+            cpViewModel.MainCommandEvent += CpViewModel_MainCommandEvent;
+            cpViewModel.DeleteProgramEvent += CpViewModel_DeleteProgramEvent;
+            cpViewModel.DownProgramEvent += CpViewModel_DownProgramEvent; 
+        }
+
+        private void CpViewModel_DownProgramEvent()
+        {
+            if (currentSelectModel != null)
+            {
+                RealReadWriterEvent?.Invoke(new HubReadWriterModel()
+                {
+                    ProxyName = "ProgramTransferInOut",
+                    Action = "DownloadProgram",
+                    Id = "downloadProgram",
+                    Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}", $"e:\\{currentSelectModel.Name}" }
+                });
+            }
+        }
+
+
+        private void CpViewModel_DeleteProgramEvent()
+        {
+            if (currentSelectModel != null)
+            {
+                RealReadWriterEvent?.Invoke(new HubReadWriterModel()
+                {
+                    ProxyName = "ProgramTransferInOut",
+                    Action = "DeleteProgram",
+                    Id = "deleteProgram",
+                    Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}" }
+                });
+            }
+        }
+
+        private void CpViewModel_MainCommandEvent()
+        {
+            if (currentSelectModel != null)
+            {
+                RealReadWriterEvent?.Invoke(new HubReadWriterModel()
+                {
+                    ProxyName = "ProgramTransferInOut",
+                    Action = "MainProgramToCNC",
+                    Id = "mainProgramToCNC",
+                    Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}" }
+                });
+            }
         }
 
         private void CpViewModel_SetCNCProgramPath()
@@ -59,7 +108,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             var selected = ((DataGrid)sender).SelectedValue;
             if (selected != null && selected is ProgramViewModel)
             {
-                Messenger.Default.Send((ProgramViewModel)selected);
+                currentSelectModel = (ProgramViewModel)selected;
+                Messenger.Default.Send(currentSelectModel);
             }
             e.Handled = true;
         }

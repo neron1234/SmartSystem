@@ -102,6 +102,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            e.Handled = true;
             var selected = ((DataGrid)sender).SelectedValue;
             if (selected != null && selected is ProgramViewModel)
             {
