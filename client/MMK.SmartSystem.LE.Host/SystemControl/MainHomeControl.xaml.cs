@@ -53,6 +53,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
             //消息通知
             Messenger.Default.Register<NotifiactionModel>(this, (nm) =>
             {
+                notifiaction.AddNotifiaction(nm);
             });
 
             //修改图标

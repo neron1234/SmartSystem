@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
         xmlns:embed="clr-namespace:MMK.SmartSystem.LE.Host.Embed"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
-
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1366"
         WindowStartupLocation="CenterScreen" WindowStyle="None" Background="#FF2B2B2B"  AllowsTransparency="True" Topmost="False">
@@ -22,7 +21,5 @@
             <local:CNCWarningMsgListControl  Width="1366" Height="768"/>
         </Viewbox>
         <Image gif:ImageBehavior.AnimatedSource="main-loading.gif" Width="400" Height="400" x:Name="loadImage"/>
-        
     </Grid>
-
 </Window>

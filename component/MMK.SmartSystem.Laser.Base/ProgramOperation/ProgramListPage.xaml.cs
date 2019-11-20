@@ -77,6 +77,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         {
             if (!obj.Success)
             {
+                Messenger.Default.Send(new Common.ViewModel.NotifiactionModel()
+                {
+                    Title = "操作失败",
+                    Content = $"失败信息：{obj.Error} {DateTime.Now}",
+                    NotifiactionType = Common.ViewModel.EnumPromptType.Error
+                });
                 return;
             }
             foreach (var item in programNotices)

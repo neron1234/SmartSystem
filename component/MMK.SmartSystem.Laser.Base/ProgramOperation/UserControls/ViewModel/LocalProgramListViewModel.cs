@@ -163,6 +163,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                         this.Path = folderDialog.SelectedPath.Trim();
                         GetFileName();
                         CheckedProgramEvent.Invoke();
+                        Messenger.Default.Send(new Common.ViewModel.NotifiactionModel()
+                        {
+                            Title = "操作成功",
+                            Content = $"切换路径成功!" + DateTime.Now,
+                            NotifiactionType = Common.ViewModel.EnumPromptType.Success
+                        });
                     }
                 });
             }
