@@ -40,11 +40,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         public override bool IsRequestResponse => true;
 
         private List<IProgramNotice> programNotices = new List<IProgramNotice>();
+
+        private ProgramApiService ProgramApi = new ProgramApiService();
         public ProgramListPage()
         {
             InitializeComponent();
             programNotices.Add(MyLocalProgramListControl);
             programNotices.Add(MyCNCProgramListControl);
+            programNotices.Add(ProgramApi);
             DataContext = programListViewModel = new ProgramListViewModel();
 
             programListViewModel.CNCPath = new CNCProgramPath(ProgramConfigConsts.CNCPath, "UserControl");
@@ -53,6 +56,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
 
             MyCNCProgramListControl.RealReadWriterEvent += RealReadWriterEvent;
             MyLocalProgramListControl.RealReadWriterEvent += RealReadWriterEvent;
+            ProgramApi.RealReadWriterEvent += RealReadWriterEvent;
         }
 
         private void RealReadWriterEvent(HubReadWriterModel obj)
@@ -66,7 +70,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             MyLocalProgramListControl.lpViewModel.ConnectId = CurrentConnectId;
 
             MyCNCProgramListControl.Init();
-       
+            ProgramApi.Init();
         }
         protected override void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
@@ -80,7 +84,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 {
                     item.DoWork(obj);
                 }
-            }         
+            }
         }
 
         public override List<object> GetResultViewModelMap()

@@ -71,15 +71,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 Id = "getProgramList",
                 Data = new object[] { cpViewModel.CNCPath }
             });
-
-            RealReadWriterEvent?.Invoke(new HubReadWriterModel()
-            {
-                ProxyName = "ProgramFolderInOut",
-                Action = "Reader",
-                Id = "getProgramFolder",
-                Data = new object[] { "//CNC_MEM/" }
-            });
-
+        
         }
         private void ReadProgramList(JArray array)
         {
@@ -100,52 +92,16 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             }
             cpViewModel.DataPaging();
         }
-        private void GetProgramFolder(JObject jObject)
-        {
-            ReadProgramFolderItemViewModel readProgramFolder = new ReadProgramFolderItemViewModel();
-            if (jObject != null)
-            {
-                readProgramFolder.RegNum = (int)jObject["regNum"];
-                readProgramFolder.Name = jObject["name"].ToString();
-                readProgramFolder.Folder = jObject["folder"].ToString();
-                var jArray = JArray.Parse(jObject["nodes"].ToString());
 
-                ReadProgramFolderNode(jArray, readProgramFolder);
-                ProgramConfigConsts.CurrentReadProgramFolder = readProgramFolder;               
-            }
-        }
-        private void ReadProgramFolderNode(JArray jArray, ReadProgramFolderItemViewModel node)
-        {
-            if (jArray == null) return;
-
-            node.Nodes = new System.Collections.ObjectModel.ObservableCollection<ReadProgramFolderItemViewModel>();
-            foreach (var item in jArray)
-            {
-                var childNode = new ReadProgramFolderItemViewModel
-                {
-                    RegNum = (int)item["regNum"],
-                    Name = item["name"].ToString(),
-                    Folder = item["folder"].ToString(),
-                };
-                node.Nodes.Add(childNode);
-                ReadProgramFolderNode(JArray.Parse(item["nodes"].ToString()), childNode);
-            }
-        }
         public bool CanWork(HubReadWriterResultModel resultModel)
         {
-            return resultModel.Id == "getProgramList" || resultModel.Id == "getProgramFolder";
+            return resultModel.Id == "getProgramList";
         }
 
         public void DoWork(HubReadWriterResultModel resultModel)
         {
-            if (resultModel.Id == "getProgramList")
-            {
-                JArray jArray = JArray.Parse(resultModel.Result.ToString());
-                ReadProgramList(jArray);
-                return;
-            }
-            JObject jObject2 = JObject.Parse(resultModel.Result.ToString());
-            GetProgramFolder(jObject2);
+            JArray jArray = JArray.Parse(resultModel.Result.ToString());
+            ReadProgramList(jArray);
         }
     }
 }
