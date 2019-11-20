@@ -11875,7 +11875,7 @@ namespace MMK.SmartSystem.Common
         public double? Min_Y { get; set; }
 
         [Newtonsoft.Json.JsonProperty("updateTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset UpdateTime { get; set; }
+        public System.DateTime UpdateTime { get; set; }
 
         [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int Id { get; set; }

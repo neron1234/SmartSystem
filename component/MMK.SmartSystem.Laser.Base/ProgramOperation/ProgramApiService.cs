@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.Events.Bus;
+using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.WebCommon.HubModel;
 using Newtonsoft.Json.Linq;
 
@@ -63,6 +65,17 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
                 Id = "getProgramFolder",
                 Data = new object[] { "//CNC_MEM/" }
             });
+
+            Task.Factory.StartNew(new Action(() =>
+            {
+                EventBus.Default.Trigger(new ProgramClientEventData()
+                {
+                    SuccessAction = (s) =>
+                    {
+                        ProgramConfigConsts.CurrentProgramCommentFromCncDtos = s;
+                    }
+                });
+            }));
         }
     }
 }

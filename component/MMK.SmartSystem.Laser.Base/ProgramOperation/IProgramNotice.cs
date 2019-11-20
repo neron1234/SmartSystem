@@ -14,6 +14,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         public static string LocalPath = "";
 
         public static ReadProgramFolderItemViewModel CurrentReadProgramFolder = new ReadProgramFolderItemViewModel();
+        public static List<Common.ProgramCommentFromCncDto> CurrentProgramCommentFromCncDtos = new List<Common.ProgramCommentFromCncDto>();
     }
     public interface IProgramNotice
     {
