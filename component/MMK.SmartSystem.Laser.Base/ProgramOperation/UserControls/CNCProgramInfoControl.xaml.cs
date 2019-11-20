@@ -30,7 +30,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         const string ElectronWindowName = "AngualrElectron-Progress-bmp";
         CancellationTokenSource cts = new CancellationTokenSource();
 
-        public CNCProgramInfoViewModel cncProgramVm { get; set; }
+       public CNCProgramInfoViewModel cncProgramVm { set; get; }
         public CNCProgramInfoControl()
         {
             InitializeComponent();
@@ -42,12 +42,24 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         private void CNCProgramInfoControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            cts.Cancel();
-            cncApp.CloseWindows();
-
+            //cts.Cancel();
+            //cncApp.CloseWindows();
+            Messenger.Default.Unregister(this);
         }
 
         private void CNCProgramInfoControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Register<ProgramViewModel>(this, (s) =>
+            {
+                cncProgramVm.InitData(s.CommentDto);
+            });
+           
+
+
+
+        }
+
+        private void LoadWebAppWindows()
         {
             //获取cncApp控件基于屏幕的绝对位置，长宽
             var absolutePos = cncApp.PointToScreen(new Point(0, 0));
@@ -83,11 +95,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
 
             }), cts.Token);
-
-
-
         }
-
         /// <summary>
         /// 解析路径下的文件并进行绘制
         /// </summary>
@@ -102,37 +110,37 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             MyCanvas.Background = ib;
 
 
-            Messenger.Default.Register<ProgramViewModel>(this, (pInfo) =>
-            {
+            //Messenger.Default.Register<ProgramViewModel>(this, (pInfo) =>
+            //{
 
-                cncProgramVm.SelectedProgram = pInfo;
-                if (MyCanvas.Children.Count != 0)
-                    MyCanvas.Children.Clear();
+            //    cncProgramVm.SelectedProgram = pInfo;
+            //    if (MyCanvas.Children.Count != 0)
+            //        MyCanvas.Children.Clear();
 
-                if (pInfo.Name.Split('.').Count() > 1)
-                {
-                    var dg = new DrawGraphics(ref this.MyCanvas, ref this.Benchmark);
-                    if (pInfo.Name.Split('.')[1] == "dxf")
-                    {
-                        dg.Draw(cncProgramVm.Path + @"\" + pInfo.Name);
-                    }
-                    else if (pInfo.Name.Split('.')[1] == "csv")
-                    {
-                        StreamReader reader = new StreamReader(cncProgramVm.Path + @"\" + pInfo.Name);
-                        string line = "";
-                        List<System.Windows.Point> pointList = new List<System.Windows.Point>();
-                        //List<string[]> pointList = new List<string[]>();
-                        line = reader.ReadLine();
-                        while (line != null)
-                        {
-                            pointList.Add(new System.Windows.Point(Convert.ToDouble(line.Split(',')[0]), Convert.ToDouble(line.Split(',')[1])));
-                            //pointList.Add(line.Split(','));
-                            line = reader.ReadLine();
-                        }
-                        dg.Draw(pointList, pInfo.Name.Split('.')[0]);
-                    }
-                }
-            });
+            //    if (pInfo.Name.Split('.').Count() > 1)
+            //    {
+            //        var dg = new DrawGraphics(ref this.MyCanvas, ref this.Benchmark);
+            //        if (pInfo.Name.Split('.')[1] == "dxf")
+            //        {
+            //            dg.Draw(cncProgramVm.Path + @"\" + pInfo.Name);
+            //        }
+            //        else if (pInfo.Name.Split('.')[1] == "csv")
+            //        {
+            //            StreamReader reader = new StreamReader(cncProgramVm.Path + @"\" + pInfo.Name);
+            //            string line = "";
+            //            List<System.Windows.Point> pointList = new List<System.Windows.Point>();
+            //            //List<string[]> pointList = new List<string[]>();
+            //            line = reader.ReadLine();
+            //            while (line != null)
+            //            {
+            //                pointList.Add(new System.Windows.Point(Convert.ToDouble(line.Split(',')[0]), Convert.ToDouble(line.Split(',')[1])));
+            //                //pointList.Add(line.Split(','));
+            //                line = reader.ReadLine();
+            //            }
+            //            dg.Draw(pointList, pInfo.Name.Split('.')[0]);
+            //        }
+            //    }
+            //});
         }
         System.Windows.Point LastMousePosition;
 

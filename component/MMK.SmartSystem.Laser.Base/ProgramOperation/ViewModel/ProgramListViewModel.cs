@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
 {
-    public class ProgramListViewModel:ViewModelBase
+    public class ProgramListViewModel : ViewModelBase
     {
         private UserControl _InfoControl;
         public UserControl InfoControl
@@ -23,7 +23,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
             get { return _InfoControl; }
             set
             {
-                if (_InfoControl != value)
+                if (_InfoControl?.GetType().FullName != value.GetType().FullName)
                 {
                     _InfoControl = value;
                     RaisePropertyChanged(() => InfoControl);
@@ -49,13 +49,16 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
 
         public ProgramListViewModel()
         {
-            
+
         }
 
-        public ICommand LoadFileCommand{
-            get{
-                return new RelayCommand(() => {
-                    
+        public ICommand LoadFileCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+
                 });
             }
         }
@@ -73,7 +76,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
     {
         public string Page { get; set; }
         public string Path { get; set; }
-        public CNCProgramPath(string path,string page)
+        public CNCProgramPath(string path, string page)
         {
             Path = path;
             Page = page;

@@ -38,7 +38,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         private void CpViewModel_SetCNCProgramPath()
         {
             var cncPath = new CNCPathControl(ProgramConfigConsts.CurrentReadProgramFolder);
-            cncPath.SaveCNCPathEvent += CncPath_SaveCNCPathEvent; 
+            cncPath.SaveCNCPathEvent += CncPath_SaveCNCPathEvent;
             new PopupWindow(cncPath, 680, 220, "修改CNC路径").ShowDialog();
         }
 
@@ -61,6 +61,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             {
                 Messenger.Default.Send((ProgramViewModel)selected);
             }
+            e.Handled = true;
         }
         public void Init()
         {
@@ -71,7 +72,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 Id = "getProgramList",
                 Data = new object[] { cpViewModel.CNCPath }
             });
-        
+
         }
         private void ReadProgramList(JArray array)
         {
@@ -90,6 +91,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                     });
                 }
             }
+            cpViewModel.LocalProgramList.ForEach(d => d.SetCommentDto(f => f.Name == d.Name && f.FullPath == cpViewModel.CNCPath));
             cpViewModel.DataPaging();
         }
 

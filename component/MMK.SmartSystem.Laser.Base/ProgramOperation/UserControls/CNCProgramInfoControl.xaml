@@ -47,9 +47,9 @@
                     <Border BorderThickness="0 0 0 1" BorderBrush="#575757">
                         <WrapPanel Orientation="Horizontal">
                             <TextBlock Text="程序名称: " Width="54" Margin="0 5 0 5"/>
-                            <TextBlock Text="{Binding SelectedProgram.Name}" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
+                            <TextBlock Text="{Binding Name}" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
                             <TextBlock Text="已用尺寸: " Margin="200 5 0 5" />
-                            <TextBlock Text="99cm/150cm" Margin="0 5 0 5" Foreground="#fdcd00"/>
+                            <TextBlock Text="{Binding Size}" Margin="0 5 0 5" Foreground="#fdcd00"/>
                         </WrapPanel>
                     </Border>
                 </Grid>
@@ -57,9 +57,9 @@
                     <Border BorderThickness="0 0 0 1" BorderBrush="#575757">
                         <WrapPanel Orientation="Horizontal">
                             <TextBlock Text="材料类型: " Margin="0 5 0 5" />
-                            <TextBlock Text="合成金属" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
+                            <TextBlock Text="{Binding Material}" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
                             <TextBlock Text="切割总长度:" Margin="200 5 0 5" />
-                            <TextBlock Text=" 21cm/250cm" Margin="0 5 0 5"  Width="150" Foreground="#fdcd00"/>
+                            <TextBlock Text="{Binding CuttingDistance}" Margin="0 5 0 5"  Width="150" Foreground="#fdcd00"/>
                         </WrapPanel>
                     </Border>
                 </Grid>
@@ -67,9 +67,9 @@
                     <Border BorderThickness="0 0 0 1" BorderBrush="#575757">
                         <WrapPanel Orientation="Horizontal">
                             <TextBlock Text="板材厚度: " Margin="0 5 0 5" />
-                            <TextBlock Text="28mm" Margin="0 5 0 5"  Width="96" Foreground="#fdcd00"/>
+                            <TextBlock Text="{Binding Thickness}" Margin="0 5 0 5"  Width="96" Foreground="#fdcd00"/>
                             <TextBlock Text="穿孔次数: " Margin="200 5 0 5" />
-                            <TextBlock Text="6" Margin="0 5 0 5"  Width="96" Foreground="#fdcd00"/>
+                            <TextBlock Text="{Binding PiercingCount}" Margin="0 5 0 5"  Width="96" Foreground="#fdcd00"/>
                         </WrapPanel>
                     </Border>
                 </Grid>
@@ -77,9 +77,9 @@
                     <Border BorderThickness="0 0 0 1" BorderBrush="#575757">
                         <WrapPanel Orientation="Horizontal">
                             <TextBlock Text="板材尺寸: " Margin="0 5 0 5" />
-                            <TextBlock Text="150cm * 250cm" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
+                            <TextBlock Text="{Binding PlateSize}" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
                             <TextBlock Text="加工时间: " Margin="200 5 0 5" />
-                            <TextBlock Text="8小时35分47秒" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
+                            <TextBlock Text="{Binding CuttingTime}" Margin="0 5 0 5" Width="96" Foreground="#fdcd00"/>
                         </WrapPanel>
                     </Border>
                 </Grid>
