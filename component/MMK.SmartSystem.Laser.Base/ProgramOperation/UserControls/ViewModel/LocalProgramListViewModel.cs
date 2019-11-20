@@ -43,6 +43,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public string Path { get; set; }
 
+        public event Action CheckedProgramEvent;
+
         public LocalProgramListViewModel()
         {
             ProgramList = new ObservableCollection<ProgramViewModel>();
@@ -63,8 +65,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                         Name = f.Name,
                         FillName = f.FullName,
                         CreateTime = f.CreationTime.ToString("MM-dd HH:mm"),
-                        Size = GetFileSize(f.Length)
-                    };
+                        Size = GetFileSize(f.Length),
+                        StatusImg = "/MMK.SmartSystem.LE.Host;component/Resources/Images/Status_Blue.png"
+                };
                     this.LocalProgramList.Add(program);
                 }
                 DataPaging();
@@ -158,6 +161,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                     if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         this.Path = folderDialog.SelectedPath.Trim();
+                        CheckedProgramEvent.Invoke();
                         GetFileName();
                     }
                 });
@@ -204,10 +208,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand NextPageCommand
-        {
-            get
-            {
+        public ICommand NextPageCommand{
+            get{
                 return new RelayCommand(() =>
                 {
                     DataPaging(true);

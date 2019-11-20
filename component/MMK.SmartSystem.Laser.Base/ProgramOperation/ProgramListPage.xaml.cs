@@ -51,8 +51,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
             DataContext = programListViewModel = new ProgramListViewModel();
 
             programListViewModel.CNCPath = new CNCProgramPath(ProgramConfigConsts.CNCPath, "UserControl");
-            //programListViewModel.ListControl = new CNCProgramListControl(programListViewModel.ProgramFolder);
-            programListViewModel.InfoControl = new CNCProgramInfoControl();
 
             MyCNCProgramListControl.RealReadWriterEvent += RealReadWriterEvent;
             MyLocalProgramListControl.RealReadWriterEvent += RealReadWriterEvent;
@@ -98,26 +96,5 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
         public override void CncOnError(string message)
         {
         }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = (TabItem)((TabControl)sender).SelectedItem;
-            switch (item.Header)
-            {
-                case "CNC程序":
-                    programListViewModel.InfoControl = new CNCProgramInfoControl();
-                    break;
-                case "本地程序":
-                    programListViewModel.InfoControl = new LocalProgramInfoControl();
-                    break;
-                case "CNC信息":
-                    programListViewModel.InfoControl = new UserControl();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-    
     }
 }

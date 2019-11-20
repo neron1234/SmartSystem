@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="598"  d:DesignWidth="484" Background="#FF3B3B3B" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+             d:DesignHeight="598"  d:DesignWidth="1268" Background="#FF3B3B3B" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -37,7 +37,11 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="484"/>
+            <ColumnDefinition Width="784"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
             <TextBlock Text="CNC已用程序数及容量" Margin="5"/>
             <TextBox Margin="5,5,5,15" Text="程序数：4 容量：160MB"/>
             <TextBlock Text="CNC已用程序存储目录树" Margin="5"/>

@@ -17,20 +17,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel
 {
     public class ProgramListViewModel : ViewModelBase
     {
-        private UserControl _InfoControl;
-        public UserControl InfoControl
-        {
-            get { return _InfoControl; }
-            set
-            {
-                if (_InfoControl?.GetType().FullName != value.GetType().FullName)
-                {
-                    _InfoControl = value;
-                    RaisePropertyChanged(() => InfoControl);
-                }
-            }
-        }
-
         public ReadProgramFolderItemViewModel ProgramFolder { get; set; }
 
         private CNCProgramPath _CNCPath;

@@ -34,54 +34,44 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         private ProgramDetailViewModel currentProgramDetail;
 
         private UpLoadLocalProgramControl modalControl;
-        public LocalProgramListControl()
-        {
+        public LocalProgramListControl(){
             InitializeComponent();
             this.DataContext = lpViewModel = new LocalProgramListViewModel();
             lpViewModel.UploadClickEvent += LpViewModel_UploadClickEvent;
+            lpViewModel.CheckedProgramEvent += CheckedLocalProgram;
         }
 
-        public void CheckedLocalProgram()
-        {
-            foreach (var program in lpViewModel.LocalProgramList)
-            {
+        public void CheckedLocalProgram(){
+            foreach (var program in lpViewModel.LocalProgramList){
                 program.SetCommentDto(d => d.FileHash == program.FileHash);
             }
         }
 
-        private void LpViewModel_UploadClickEvent(LocalProgramListViewModel local, ProgramViewModel obj)
-        {
+        private void LpViewModel_UploadClickEvent(LocalProgramListViewModel local, ProgramViewModel obj){
             Stream stream = default;
-            using (var fileStream = new FileStream(System.IO.Path.Combine(local.Path, obj.Name), FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
+            using (var fileStream = new FileStream(System.IO.Path.Combine(local.Path, obj.Name), FileMode.Open, FileAccess.Read, FileShare.Read)){
                 byte[] bytes = new byte[fileStream.Length];
                 fileStream.Read(bytes, 0, bytes.Length);
                 fileStream.Close();
                 stream = new MemoryStream(bytes);
             }
 
-            Task.Factory.StartNew(new Action(() =>
-            {
-                EventBus.Default.TriggerAsync(new UpLoadProgramClientEventData
-                {
+            Task.Factory.StartNew(new Action(() =>{
+                EventBus.Default.TriggerAsync(new UpLoadProgramClientEventData{
                     FileParameter = new Common.FileParameter(stream, obj.Name),
                     ConnectId = local.ConnectId,
                     FileHashCode = obj.FileHash
                 });
             }));
-
             modalControl = new UpLoadLocalProgramControl(local.Path, obj.FileHash);
-
             modalControl.ProgramUploadEvent += Modal_ProgramUploadEvent;
             new PopupWindow(modalControl, 900, 590, "上传本地程序").ShowDialog();
             modalControl = null;
         }
 
-        private void Modal_ProgramUploadEvent(ProgramDetailViewModel obj)
-        {
+        private void Modal_ProgramUploadEvent(ProgramDetailViewModel obj){
             currentProgramDetail = obj;
-            RealReadWriterEvent?.Invoke(new HubReadWriterModel()
-            {
+            RealReadWriterEvent?.Invoke(new HubReadWriterModel(){
                 ProxyName = "ProgramTransferInOut",
                 Action = "UploadProgramToCNC",
                 Id = "uploadProgramToCNC",
@@ -89,12 +79,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             });
         }
 
-        private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        private void ProgramGrid_SelectionChanged(object sender, SelectionChangedEventArgs e){
             var selected = ((DataGrid)sender).SelectedValue;
-            if (selected != null && selected is ProgramViewModel)
-            {
+            if (selected != null && selected is ProgramViewModel){
                 lpViewModel.SelectedProgramViewModel = (ProgramViewModel)selected;
+                #region 本地图形显示测试
                 //Messenger.Default.Send(lpViewModel.SelectedProgramViewModel);
 
                 //if (lpViewModel.SelectedProgramViewModel.Name.Split('.').Count() > 1)
@@ -120,14 +109,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 //        }
                 //    }
                 //}
+                #endregion
                 StringBuilder sb = new StringBuilder();
-                using (System.IO.StreamReader reader = new System.IO.StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name))
-                {
+                using (StreamReader reader = new StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name)){
                     var line = reader.ReadLine();
-                    for (int i = 0; i < 28; i++)
-                    {
-                        if (line != null)
-                        {
+                    for (int i = 0; i < 23; i++){
+                        if (line != null){
                             line = reader.ReadLine();
                             sb.AppendLine(line);
                         }
@@ -138,20 +125,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             }
         }
 
-        public bool CanWork(HubReadWriterResultModel resultModel)
-        {
+        public bool CanWork(HubReadWriterResultModel resultModel){
             return resultModel.Id == "uploadProgramToCNC" || resultModel.Id == "ReadProgramEvent";
         }
 
-        public void DoWork(HubReadWriterResultModel resultModel)
-        {
-            if (resultModel.Id == "ReadProgramEvent")
-            {
+        public void DoWork(HubReadWriterResultModel resultModel){
+            if (resultModel.Id == "ReadProgramEvent"){
                 JObject jObject = JObject.Parse(resultModel.Result.ToString());
-                if (jObject != null && modalControl != null)
-                {
-                    var obj = new ProgramDetailViewModel
-                    {
+                if (jObject != null && modalControl != null){
+                    var obj = new ProgramDetailViewModel{
                         Name = jObject["name"]?.ToString(),
                         FullPath = jObject["fullPath"]?.ToString(),
                         Size = Convert.ToDouble(jObject["size"]?.ToString()),
@@ -179,13 +161,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 }
                 return;
             }
+            //需要判断失败情况
             string name = resultModel.Result.ToString();
-            Task.Factory.StartNew(new Action(() =>
-            {
-                EventBus.Default.Trigger(new UpdateProgramClientEventData()
-                {
-                    Data = new Common.UpdateProgramDto()
-                    {
+            Task.Factory.StartNew(new Action(() => {
+                EventBus.Default.Trigger(new UpdateProgramClientEventData(){
+                    Data = new Common.UpdateProgramDto(){
                         FileHash = currentProgramDetail?.FileHashCode,
                         CuttingDistance = Convert.ToDouble(currentProgramDetail?.CuttingDistance),
                         CuttingTime = Convert.ToDouble(currentProgramDetail?.CuttingTime),
@@ -213,6 +193,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                     }
                 });
             }));
+            Messenger.Default.Send(new PopupMsg{
+                IsClose = true
+            });
+            this.lpViewModel.LocalProgramList.FirstOrDefault(n => n.FileHash == currentProgramDetail?.FileHashCode)?.SetProgramLoad(name);
+            Messenger.Default.Send(new Common.ViewModel.NotifiactionModel(){
+                Title = "上传成功",
+                Content = $"程序{name}上传成功！" + DateTime.Now,
+                NotifiactionType = Common.ViewModel.EnumPromptType.Success
+            });
         }
     }
 }

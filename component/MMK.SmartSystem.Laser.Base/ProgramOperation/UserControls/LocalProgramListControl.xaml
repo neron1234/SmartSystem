@@ -5,14 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
+             xmlns:Converters="clr-namespace:MMK.SmartSystem.Laser.Base.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="598" d:DesignWidth="484" Background="#FF3B3B3B" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+             d:DesignHeight="598" d:DesignWidth="1268" Background="#FF3B3B3B" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"/>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/ProgressBar/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Converters:StringToImageSourceConverter x:Key="ImageConverter" />
             <Style TargetType="Button" BasedOn="{StaticResource IconBtnStyle}" />
             <Style TargetType="TextBlock">
                 <Setter Property="Foreground" Value="#707374"/>
@@ -38,20 +40,32 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="484"/>
+            <ColumnDefinition Width="784"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
             <Grid>
                 <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}" AutoGenerateColumns="False" x:Name="ProgramGrid" Height="380" Background="#2a2f34" 
-                    AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16" BorderThickness="0">
+                    AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16" BorderThickness="0" Width="484">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="名称" Binding="{Binding Name}" Width="35*" />
-                        <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="20*" />
-                        <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="30*" />
-                        <DataGridTextColumn Header="程序号" Binding="{Binding IsUpLoad}" Width="15*" />
+                        <DataGridTemplateColumn Header="名称" Width="160">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <Image Source="{Binding Path=StatusImg,Converter={StaticResource ImageConverter}}" Width="10" Height="10" Margin="0 0 3 0"/>
+                                        <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" Width="140"/>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="大小" Binding="{Binding Size}" Width="84" />
+                        <DataGridTextColumn Header="时间" Binding="{Binding CreateTime}" Width="110" />
+                        <DataGridTextColumn Header="程序号" Binding="{Binding ProgramName}" Width="130" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <cc:FlatProgressBar Width="484" VerticalAlignment="Bottom" Height="2" Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="Transparent" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" />
             </Grid>
-
             <StackPanel Background="#FF3B3B3B" >
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" Direction="280" ShadowDepth="-100" Opacity="1" BlurRadius="10"/>
@@ -64,16 +78,21 @@
                     </WrapPanel>
                 </Border>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="路径" Command="{Binding LocalPathCommand}"/>
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="上传" Command="{Binding UpLoadCommand}"/>
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="编辑" Command="{Binding OpenFileCommand}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="路径" Command="{Binding LocalPathCommand}"  FocusVisualStyle="{x:Null}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="上传" Command="{Binding UpLoadCommand}"  FocusVisualStyle="{x:Null}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="编辑" Command="{Binding OpenFileCommand}" FocusVisualStyle="{x:Null}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="4 4 4 12">
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="搜索" Command="{Binding SearchCommand}"/>
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="删除" Command="{Binding DeleteFileCommand}"/>
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="翻页" Command="{Binding NextPageCommand}" />
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="搜索" Command="{Binding SearchCommand}"  FocusVisualStyle="{x:Null}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="删除" Command="{Binding DeleteFileCommand}" FocusVisualStyle="{x:Null}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="翻页" Command="{Binding NextPageCommand}" FocusVisualStyle="{x:Null}" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
+        <Grid Grid.Column="2">
+            <Border BorderBrush="Black" BorderThickness="4 0 0 0">
+                <local:LocalProgramInfoControl Height="598" Width="784"/>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

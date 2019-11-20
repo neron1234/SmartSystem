@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
-             d:DesignHeight="598" d:DesignWidth="484"  Background="#FF3B3B3B" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+             d:DesignHeight="598" d:DesignWidth="1268"  Background="#FF3B3B3B" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -38,7 +38,12 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="484"/>
+            <ColumnDefinition Width="784"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0">
             <Grid>
                 <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}"  AutoGenerateColumns="False" x:Name="ProgramGrid" Height="380" Background="#2a2f34" 
                            AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16" BorderThickness="0" >
@@ -72,5 +77,11 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Border BorderBrush="Black" BorderThickness="4 0 0 0">
+                <local:CNCProgramInfoControl Height="598" Width="784"/>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

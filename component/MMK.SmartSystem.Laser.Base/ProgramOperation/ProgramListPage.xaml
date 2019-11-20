@@ -8,7 +8,7 @@
       xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
       xmlns:uc="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
       mc:Ignorable="d" 
-      d:DesignHeight="658" d:DesignWidth="1268" Background="#141619"  FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
+      d:DesignHeight="658" d:DesignWidth="1268" Background="#FF3B3B3B"  FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
       Title="ProgramListPage">
     <Page.Resources>
         <ResourceDictionary>
@@ -38,24 +38,24 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="484"/>
             <ColumnDefinition Width="784"/>
-        </Grid.ColumnDefinitions>
-        <TabControl Grid.Column="0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" SelectionChanged="TabControl_SelectionChanged" >
+        </Grid.ColumnDefinitions>-->
+        <TabControl Grid.Column="0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" >
             <TabItem Header="CNC程序" Style="{StaticResource TabItemStyle}" Width="160" Height="60" >
-                <uc:CNCProgramListControl Height="598" x:Name="MyCNCProgramListControl"/>
+                <uc:CNCProgramListControl Height="598" x:Name="MyCNCProgramListControl" BorderThickness="0 4 0 0" BorderBrush="Black"/>
             </TabItem>
             <TabItem Header="本地程序" Style="{StaticResource TabItemStyle}" Width="160" Height="60">
-                <uc:LocalProgramListControl Height="598" x:Name="MyLocalProgramListControl"/>
+                <uc:LocalProgramListControl Height="598" x:Name="MyLocalProgramListControl" BorderThickness="0 4 0 0" BorderBrush="Black"/>
             </TabItem>
             <TabItem Header="CNC信息" Style="{StaticResource TabItemStyle}" Width="160" Height="60">
-                <uc:CNCInfoControl Height="598" x:Name="MyCNCInfoControl"/>
+                <uc:CNCInfoControl Height="598" x:Name="MyCNCInfoControl" BorderThickness="0 4 0 0" BorderBrush="Black"/>
             </TabItem>
         </TabControl>
         
-        <StackPanel Margin="2 0 0 0" Grid.Column="2" >
+        <!--<StackPanel Margin="2 0 0 0" Grid.Column="2" >
             <ContentControl x:Name="MyInfoControl" Content="{Binding InfoControl}" Height="658"/>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </base:SignalrPage>

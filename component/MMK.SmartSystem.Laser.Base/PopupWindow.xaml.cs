@@ -25,8 +25,7 @@ namespace MMK.SmartSystem.Laser.Base
 
         public event Action UserControlFinishEvent;
 
-        public PopupWindow(UserControl userControl, int width = 600, int height = 200, string title = "")
-        {
+        public PopupWindow(UserControl userControl, int width = 600, int height = 200, string title = ""){
             InitializeComponent();
             this.DataContext = popupWindowViewModel = new PopupWindowViewModel();
             popupWindowViewModel.PopupContent = userControl;
@@ -36,10 +35,8 @@ namespace MMK.SmartSystem.Laser.Base
             this.tTxt.Width = this.wPanel.Width - 80;
             popupWindowViewModel.Title = title;
 
-            Messenger.Default.Register<PopupMsg>(this, (s) =>
-            {
-                if (s.IsClose)
-                {
+            Messenger.Default.Register<PopupMsg>(this, (s) =>{
+                if (s.IsClose){
                     Close();
                     return;
                 }
@@ -48,18 +45,15 @@ namespace MMK.SmartSystem.Laser.Base
             });
         }
 
-        private void PopupWindow_Closed(object sender, EventArgs e)
-        {
+        private void PopupWindow_Closed(object sender, EventArgs e){
             Messenger.Default.Unregister<PopupMsg>(this);
         }
 
-        private void BtnClose_Click(object sender, RoutedEventArgs e)
-        {
+        private void BtnClose_Click(object sender, RoutedEventArgs e){
             this.Close();
         }
 
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e){
             this.DragMove();
         }
     }

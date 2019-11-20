@@ -174,7 +174,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 {
                     if (FocusTb.Text.Length > 0)
                     {
-                        FocusTb.Text = FocusTb.Text.Remove(FocusTb.Text.Length - 1, 1);
+                        FocusTb.Text = FocusTb.Text.Remove(FocusTb.Text.Length - 1, 1).Length <= 0?"0" : FocusTb.Text.Remove(FocusTb.Text.Length - 1, 1);
                     }
                 }
             }
