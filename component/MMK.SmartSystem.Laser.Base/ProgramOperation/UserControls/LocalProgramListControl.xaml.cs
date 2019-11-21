@@ -55,17 +55,18 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         private bool IsLoadedTemp = false;
         private void LocalProgramListControl_Loaded(object sender, RoutedEventArgs e)
         {
-            lpViewModel.pagingModel.CyclePage();
-            if (IsLoadedTemp){
-                Loaded -= LocalProgramListControl_Loaded;
-            }
-            IsLoadedTemp = true;
+            //lpViewModel.pagingModel.CyclePage();
+            //if (IsLoadedTemp)
+            //{
+            //    Loaded -= LocalProgramListControl_Loaded;
+            //}
+            //IsLoadedTemp = true;
         }
 
         public void CheckedLocalProgram()
         {
-            
-            foreach (var program in lpViewModel.LocalProgramList)
+
+            foreach (var program in lpViewModel.ProgramList)
             {
                 program.SetCommentDto(d => d.FileHash == program.FileHash);
             }
@@ -202,7 +203,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 }
                 return;
             }
-            //需要判断失败情况
             string name = resultModel.Result.ToString();
             Task.Factory.StartNew(new Action(() =>
             {

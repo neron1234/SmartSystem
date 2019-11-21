@@ -20,6 +20,7 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
         {
 
             Source = source.OrderBy(keySelector).ToList();
+            Source = Source ?? new List<TSource>();
             MaxSize = maxSize;
             Total = Source.Count;
             TotalPage = Convert.ToInt32(Math.Ceiling(Total * 1.0 / MaxSize));
@@ -61,8 +62,8 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
         public void FirstPage()
         {
             CurrentPage = 1;
-            int maxNum = Total >= CurrentPage * MaxSize ? MaxSize : Total - (CurrentPage * MaxSize);
-            var list = Source.Take(maxNum);
+            int maxNum = Total >= CurrentPage * MaxSize ? MaxSize : Total;
+            var list = Source?.Take(maxNum);
             PagePagingEvent?.Invoke(list, CurrentPage, TotalPage);
         }
 

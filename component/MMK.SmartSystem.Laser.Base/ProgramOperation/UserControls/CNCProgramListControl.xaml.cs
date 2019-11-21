@@ -52,17 +52,23 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         private void CpViewModel_DownProgramEvent()
         {
-            if (cpViewModel.CurrentSelectModel != null)
+
+            System.Windows.Forms.FolderBrowserDialog folderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                var path = folderDialog.SelectedPath.Trim();
+                string savaFull = System.IO.Path.Combine(path, cpViewModel.CurrentSelectModel.Name);
                 RealReadWriterEvent?.Invoke(new HubReadWriterModel()
                 {
                     ProxyName = "ProgramTransferInOut",
                     Action = "DownloadProgram",
                     Id = "downloadProgram",
-                    SuccessTip = $"成功下载【{cpViewModel.CNCPath}】目录【{cpViewModel.CurrentSelectModel.Name}】 程序到本地目录【x:\\currentSelectModel.Name】！",
-                    Data = new object[] { $"{cpViewModel.CNCPath}{cpViewModel.CurrentSelectModel.Name}", $"e:\\{cpViewModel.CurrentSelectModel.Name}" }
+                    SuccessTip = $"成功下载【{cpViewModel.CNCPath}】目录【{cpViewModel.CurrentSelectModel.Name}】 程序到本地目录【{savaFull}】！",
+                    Data = new object[] { $"{cpViewModel.CNCPath}{cpViewModel.CurrentSelectModel.Name}", $"{savaFull}" }
                 });
             }
+           
+
         }
 
 
@@ -112,7 +118,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                     popup.Close();
                 };
                 confirm.ConfirmCancelEvent += () => popup.Close();
-                popup.ShowDialog();        
+                popup.ShowDialog();
             }
         }
 
@@ -179,7 +185,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             }
             cpViewModel.LocalProgramList.ForEach(d => d.SetCommentDto(f => f.Name == d.Name && f.FullPath == cpViewModel.CNCPath));
             cpViewModel.DataPaging();
-           
+
         }
 
         public bool CanWork(HubReadWriterResultModel resultModel)

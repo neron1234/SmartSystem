@@ -15,6 +15,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
     public class CNCProgramListViewModel : ViewModelBase
     {
+        private const int PageNumber = 7;
+
         public ObservableCollection<ProgramViewModel> ProgramList { get; set; }
 
         public List<ProgramViewModel> LocalProgramList { get; set; }
@@ -96,10 +98,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public int PageNumber = 7;
         public void DataPaging(bool next = false)
         {
-            pagingModel.Init(LocalProgramList, (d) => d.CreateTime, 7);
+            pagingModel.Init(LocalProgramList, (d) => d.CreateTime, PageNumber);
         }
 
         private PagingModel<ProgramViewModel> pagingModel;

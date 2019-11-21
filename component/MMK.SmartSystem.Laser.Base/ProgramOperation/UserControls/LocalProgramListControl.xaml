@@ -46,7 +46,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
             <Grid>
-                <DataGrid ItemsSource="{Binding}" DataContext="{Binding ProgramList}" AutoGenerateColumns="False" x:Name="ProgramGrid" Height="380" Background="#2a2f34" 
+                <DataGrid ItemsSource="{Binding ProgramList}"  AutoGenerateColumns="False" x:Name="ProgramGrid" Height="380" Background="#2a2f34" 
                     AlternationCount="2" SelectionChanged="ProgramGrid_SelectionChanged" IsReadOnly="True" FontSize="16" BorderThickness="0" Width="484">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Header="名称" Width="160">
@@ -64,7 +64,7 @@
                         <DataGridTextColumn Header="程序号" Binding="{Binding ProgramName}" Width="130" />
                     </DataGrid.Columns>
                 </DataGrid>
-                <cc:FlatProgressBar Width="484" VerticalAlignment="Bottom" Height="2" Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="Transparent" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" />
+                <cc:FlatProgressBar Width="484" VerticalAlignment="Bottom" Height="2"  Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="Transparent" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBarLocal" />
             </Grid>
             <StackPanel Background="#FF3B3B3B" >
                 <StackPanel.Effect>
@@ -79,13 +79,13 @@
                 </Border>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                     <Button Width="120" Height="45" Margin="8 10 8 10" Content="路径" Command="{Binding LocalPathCommand}"  FocusVisualStyle="{x:Null}"/>
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="上传" Command="{Binding UpLoadCommand}"  FocusVisualStyle="{x:Null}"/>
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="编辑" Command="{Binding OpenFileCommand}" FocusVisualStyle="{x:Null}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="上传" Command="{Binding UpLoadCommand}"  FocusVisualStyle="{x:Null}" IsEnabled="{Binding IsEnabled}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="编辑" Command="{Binding OpenFileCommand}" FocusVisualStyle="{x:Null}" IsEnabled="{Binding IsEnabled}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="4 4 4 12">
                     <Button Width="120" Height="45" Margin="8 10 8 10" Content="搜索" Command="{Binding SearchCommand}"  FocusVisualStyle="{x:Null}"/>
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="删除" Command="{Binding DeleteFileCommand}" FocusVisualStyle="{x:Null}"/>
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="翻页" Command="{Binding NextPageCommand}" FocusVisualStyle="{x:Null}" />
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="删除" Command="{Binding DeleteFileCommand}" FocusVisualStyle="{x:Null}" IsEnabled="{Binding IsEnabled}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="翻页" Command="{Binding NextPageCommand}" FocusVisualStyle="{x:Null}" IsEnabled="{Binding IsEnabled}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

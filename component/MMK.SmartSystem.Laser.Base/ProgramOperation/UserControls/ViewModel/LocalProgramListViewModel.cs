@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -18,24 +19,31 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
     public class LocalProgramListViewModel : ViewModelBase
     {
+        private const int PageNumber = 7;
+
         private ProgramViewModel _SelectedProgramViewModel;
         public ProgramViewModel SelectedProgramViewModel
         {
             get { return _SelectedProgramViewModel; }
             set
             {
-                if (_SelectedProgramViewModel != value)
+                _SelectedProgramViewModel = value;
+
+                if (_SelectedProgramViewModel == null)
                 {
-                    _SelectedProgramViewModel = value;
-                    RaisePropertyChanged(() => SelectedProgramViewModel);
+                    IsEnabled = false;
+                }
+                else
+                {
+                    IsEnabled = true;
                 }
             }
         }
 
         /// <summary>
-        /// 显示数据
+        /// 本地数据副本
         /// </summary>
-        public ObservableCollection<ProgramViewModel> LocalProgramList { get; set; } = new ObservableCollection<ProgramViewModel>();
+        public List<ProgramViewModel> LocalProgramList { get; set; } = new List<ProgramViewModel>();
 
         /// <summary>
         /// 原数据
@@ -46,14 +54,27 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public event Action PagePagingEvent;
 
-        public string Path { get; set; }
+
+        private string _Path;
+        public string Path
+        {
+            get { return _Path; }
+            set
+            {
+                if (_Path != value)
+                {
+                    _Path = value;
+                    RaisePropertyChanged(() => Path);
+                }
+            }
+        }
 
         public event Action CheckedProgramEvent;
 
         public LocalProgramListViewModel()
         {
             ProgramList = new ObservableCollection<ProgramViewModel>();
-            this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
+            this.Path = ProgramConfigConsts.LocalPath;
             pagingModel = new PagingModel<ProgramViewModel>();
             pagingModel.PagePagingEvent += PagingModel_PagePagingEvent;
             GetFileName();
@@ -63,35 +84,40 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             this.ProgramList.Clear();
             arg1.ToList().ForEach(d => ProgramList.Add(d));
+
             CurrentPage = arg2;
             TotalPage = arg3;
             PagePagingEvent?.Invoke();
         }
 
-        public void GetFileName(){
-            if (Directory.Exists(this.Path)){
+        public void GetFileName()
+        {
+            if (Directory.Exists(this.Path))
+            {
                 DirectoryInfo root = new DirectoryInfo(this.Path);
-                LocalProgramList = new ObservableCollection<ProgramViewModel>();
+                LocalProgramList.Clear();
 
                 var files = root.GetFiles("*.ng").Union(root.GetFiles("*.txt")).Union(root.GetFiles("*."));
 
-                foreach (FileInfo f in files){
-                    var program = new ProgramViewModel{
+                foreach (FileInfo f in files)
+                {
+                    var program = new ProgramViewModel
+                    {
                         FileHash = FileHashHelper.ComputeMD5(f.FullName),
                         Name = f.Name,
                         FillName = f.FullName,
                         CreateTime = f.CreationTime.ToString("MM-dd HH:mm"),
                         Size = GetFileSize(f.Length),
                         StatusImg = "/MMK.SmartSystem.LE.Host;component/Resources/Images/Status_Blue.png"
-                };
+                    };
                     this.LocalProgramList.Add(program);
                 }
                 DataPaging();
             }
         }
 
-        private int _CurrentPage;
-        public int CurrentPage
+        private double _CurrentPage;
+        public double CurrentPage
         {
             get { return _CurrentPage; }
             set
@@ -117,8 +143,19 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 }
             }
         }
-
-        public int PageNumber = 7;
+        private bool _IsEnabled;
+        public bool IsEnabled
+        {
+            get { return _IsEnabled; }
+            set
+            {
+                if (_IsEnabled != value)
+                {
+                    _IsEnabled = value;
+                    RaisePropertyChanged(() => IsEnabled);
+                }
+            }
+        }
         public void DataPaging()
         {
             pagingModel.Init(LocalProgramList, (d) => d.CreateTime, PageNumber);
@@ -129,9 +166,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public event Action<LocalProgramListViewModel, ProgramViewModel> UploadClickEvent;
         public ICommand UpLoadCommand
         {
-            get{
-                return new RelayCommand(() =>{
-                    if (this.SelectedProgramViewModel == null){
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (this.SelectedProgramViewModel == null)
+                    {
                         return;
                     }
                     UploadClickEvent?.Invoke(this, SelectedProgramViewModel);
@@ -139,13 +179,20 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand LocalPathCommand{
-            get{
-                return new RelayCommand(() =>{
+        public ICommand LocalPathCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
                     System.Windows.Forms.FolderBrowserDialog folderDialog = new System.Windows.Forms.FolderBrowserDialog();
                     if (folderDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
+                        SelectedProgramViewModel = null;
+                        ProgramList.Clear();
+                        LocalProgramList.Clear();
                         this.Path = folderDialog.SelectedPath.Trim();
+                        ProgramConfigConsts.LocalPath = Path;
                         GetFileName();
                         CheckedProgramEvent.Invoke();
                         Messenger.Default.Send(new Common.ViewModel.NotifiactionModel()
@@ -159,10 +206,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand DeleteFileCommand{
-            get{
-                return new RelayCommand(() =>{
-                    if (File.Exists(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name))){
+        public ICommand DeleteFileCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (File.Exists(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name)))
+                    {
                         File.Delete(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
                         GetFileName();
                     }
@@ -170,9 +221,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand SearchCommand{
-            get{
-                return new RelayCommand(() =>{
+        public ICommand SearchCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
                     var sc = new SearchControl();
                     sc.sVM.SearchEvent += SVM_SearchEvent;
                     new PopupWindow(sc, 680, 240, "搜索本地程序").ShowDialog();
@@ -180,21 +234,28 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public void SVM_SearchEvent(string str){
+        public void SVM_SearchEvent(string str)
+        {
             this.ProgramList.Clear();
-            if (string.IsNullOrEmpty(str)){
+            if (string.IsNullOrEmpty(str))
+            {
                 DataPaging();
                 return;
             }
-            foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(str))){
+            foreach (var item in this.LocalProgramList.Where(n => n.Name.Contains(str)))
+            {
                 this.ProgramList.Add(item);
             }
         }
 
-        public ICommand OpenFileCommand{
-            get{
-                return new RelayCommand(() =>{
-                    if (this.SelectedProgramViewModel == null){
+        public ICommand OpenFileCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    if (this.SelectedProgramViewModel == null)
+                    {
                         return;
                     }
                     //System.Diagnostics.Process.Start(@"Notepad.exe", System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
@@ -204,8 +265,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public ICommand NextPageCommand{
-            get{
+        public ICommand NextPageCommand
+        {
+            get
+            {
                 return new RelayCommand(() =>
                 {
                     pagingModel.CyclePage();

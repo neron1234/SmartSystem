@@ -11,7 +11,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation
     {
         public static string CNCPath = "//CNC_MEM/USER/PATH1/";
 
-        public static string LocalPath = "";
+        public static string LocalPath = "C:\\";
 
         public static ReadProgramFolderItemViewModel CurrentReadProgramFolder = new ReadProgramFolderItemViewModel();
         public static List<Common.ProgramCommentFromCncDto> CurrentProgramCommentFromCncDtos = new List<Common.ProgramCommentFromCncDto>();
