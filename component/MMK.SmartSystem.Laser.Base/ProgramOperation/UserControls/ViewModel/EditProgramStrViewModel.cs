@@ -24,7 +24,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             this.ProgramStrList.Clear();
             arg1.ToList().ForEach(d => ProgramStrList.Add(d));
-            this.ProgramStr = string.Join("", ProgramStrList.Select(n => n.Str));
+            this.ProgramStr = string.Join(@" ", ProgramStrList.Select(n => n.Str));
             CurrentPage = arg2;
             TotalPage = arg3;
             PagePagingEvent?.Invoke();
@@ -83,7 +83,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        public int PageNumber = 20;
+        public int PageNumber = 80;
 
         public List<ProgramStr> ProgramStrList { get; set; }
 
@@ -119,7 +119,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             get
             {
                 return new RelayCommand(() => {
-                    pagingModel.LastPage();
+                    pagingModel.PrePage();
                 });
             }
         }

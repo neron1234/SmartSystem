@@ -18,17 +18,36 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Margin="20 0 0 0">
-            <StackPanel HorizontalAlignment="Left" Width="280" Orientation="Horizontal">
-                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="保存" Margin="0 0 10 0" />
-                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="取消" Margin="10 0 0 0" Command="{Binding CancelCommand}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" x:Name="programPathGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="540"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal"  Grid.Column="0">
+                <cc:FlatProgressBar Width="520" Margin="0 0 0 10" VerticalAlignment="Bottom" Height="10"  Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="#3d3d3d" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" >
+                    <cc:FlatProgressBar.LayoutTransform>
+                        <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
+                    </cc:FlatProgressBar.LayoutTransform>
+                </cc:FlatProgressBar>
+                <RichTextBox Margin="0 10 0 10" Background="#f8f6f6" Foreground="#292f33" FontSize="15" BorderThickness="0" Height="520" Width="380" Padding="5" >
+                    <FlowDocument PageWidth="370">
+                        <Paragraph>
+                            <Run Text="{Binding ProgramStr}"/>
+                        </Paragraph>
+                    </FlowDocument>
+                    <RichTextBox.Effect>
+                        <DropShadowEffect ShadowDepth="0" BlurRadius="25" Color="Black"/>
+                    </RichTextBox.Effect>
+                </RichTextBox>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Right" Width="140" Orientation="Horizontal">
-                <Button Style="{StaticResource IconBtnStyle2}" Width="50" Height="50" Margin="5 4 10 0" Command="{Binding LastColumnsCommand}">
+            <StackPanel Grid.Row="1" Margin="0 0 0 0" Orientation="Horizontal">
+                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="保存" Margin="10 0 5 0" />
+                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="取消" Margin="5 0 10 0" Command="{Binding CancelCommand}"/>
+                <Button Style="{StaticResource IconBtnStyle2}" Width="50" Height="50" Margin="16 4 5 0" Command="{Binding LastColumnsCommand}">
                     <WrapPanel>
                         <Path Data="{StaticResource TopTriangleIcon}" Width="12" Height="10" Fill="#d2d5d8" Stretch="Fill"/>
                     </WrapPanel>
@@ -40,24 +59,22 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="1" x:Name="programPathGrid">
-            <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Height="420" VerticalAlignment="Top">-->
-                <RichTextBox Margin="10" Background="#f8f6f6" Foreground="#292f33" FontSize="15" BorderThickness="0" Height="520">
-                    <FlowDocument>
-                        <Paragraph>
-                            <Run Text="{Binding ProgramStr}"/>
-                        </Paragraph>
-                    </FlowDocument>
-                    <RichTextBox.Effect>
-                        <DropShadowEffect ShadowDepth="0" BlurRadius="25" Color="Black"/>
-                    </RichTextBox.Effect>
-                </RichTextBox>
-            <!--</ScrollViewer>-->
-            <cc:FlatProgressBar HorizontalAlignment="Right" Width="520" Margin="0 0 0 10" VerticalAlignment="Bottom" Height="10"  Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="#3d3d3d" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" >
-                <cc:FlatProgressBar.LayoutTransform>
-                    <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
-                </cc:FlatProgressBar.LayoutTransform>
-            </cc:FlatProgressBar>
+        <Grid Grid.Column="1">
+            <Border CornerRadius="5,5,5,5" Background="Black" Width="590" Height="400">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3 3 1 3" Content="Q"/>
+                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
+                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
+                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
+                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
+                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
+                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
+                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
+                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>
