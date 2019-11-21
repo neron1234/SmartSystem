@@ -23,7 +23,11 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
             MaxSize = maxSize;
             Total = Source.Count;
             TotalPage = Convert.ToInt32(Math.Ceiling(Total * 1.0 / MaxSize));
-            FirstPage();
+            if (TotalPage > 0)
+            {
+                FirstPage();
+
+            }
         }
 
         public bool NextPage()

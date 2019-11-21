@@ -66,14 +66,14 @@
                     </WrapPanel>
                 </Border>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="主程序" Command="{Binding MainProgramCommand}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="主程序" Command="{Binding MainProgramCommand}" IsEnabled="{Binding IsEnabled}"/>
                     <Button Width="120" Height="45" Margin="8 10 8 10" Content="路径" Command="{Binding CNCPathCommand}"/>
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="下载" Command="{Binding DowloadCommand}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="下载" Command="{Binding DowloadCommand}" IsEnabled="{Binding IsEnabled}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="4 4 4 12">
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="搜索" Command="{Binding SearchCommand}"/>
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="删除" Command="{Binding DeleteFileCommand}"/>
-                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="翻页" Command="{Binding NextPageCommand}" />
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="搜索" Command="{Binding SearchCommand}" IsEnabled="{Binding IsEnabled}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="删除" Command="{Binding DeleteFileCommand}" IsEnabled="{Binding IsEnabled}"/>
+                    <Button Width="120" Height="45" Margin="8 10 8 10" Content="翻页" Command="{Binding NextPageCommand}"  IsEnabled="{Binding IsEnabled}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
