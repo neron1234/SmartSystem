@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
+using MMK.SmartSystem.Laser.Base.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -64,36 +65,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public int PageNumber = 7;
         public void DataPaging(bool next = false)
         {
-            if (LocalProgramList == null)
-            {
-                return;
-            }
-            int count = LocalProgramList.Count;
-            this.TotalPage = 0;
-            if (count % PageNumber == 0)
-            {
-                this.TotalPage = count / PageNumber;
-            }
-            else
-            {
-                this.TotalPage = count / PageNumber + 1;
-            }
-            if (next && CurrentPage >= 1 && CurrentPage < TotalPage)
-            {
-                CurrentPage++;
-            }
-            else
-            {
-                CurrentPage = 1;
-            }
-            this.ProgramList.Clear();
-            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList())
-            {
-                this.ProgramList.Add(item);
-            }
-            //this.ProgramList = new ObservableCollection<ProgramViewModel>(LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList());
+            pagingModel.Init(LocalProgramList, (d) => d.CreateTime, 7);
         }
 
+        private PagingModel<ProgramViewModel> pagingModel;
         public event Action SetCNCProgramPath;
 
         public event Action DeleteProgramEvent;
@@ -103,6 +78,16 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             this.ProgramList = new ObservableCollection<ProgramViewModel>();
             this.LocalProgramList = new List<ProgramViewModel>();
+            pagingModel = new PagingModel<ProgramViewModel>();
+            pagingModel.PagePagingEvent += PagingModel_PagePagingEvent;
+        }
+
+        private void PagingModel_PagePagingEvent(IEnumerable<ProgramViewModel> arg1, int arg2, int arg3)
+        {
+            this.ProgramList.Clear();
+            arg1.ToList().ForEach(d => ProgramList.Add(d));
+            CurrentPage = arg2;
+            TotalPage = arg3;
         }
 
         public ICommand MainProgramCommand
@@ -182,7 +167,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    DataPaging(true);
+                    pagingModel.CyclePage();
                 });
             }
         }
