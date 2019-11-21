@@ -69,6 +69,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
         private PagingModel<ProgramViewModel> pagingModel;
+
+        public event Action PagePagingEvent;
         public event Action SetCNCProgramPath;
 
         public event Action DeleteProgramEvent;
@@ -88,6 +90,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             arg1.ToList().ForEach(d => ProgramList.Add(d));
             CurrentPage = arg2;
             TotalPage = arg3;
+            PagePagingEvent?.Invoke();
         }
 
         public ICommand MainProgramCommand
