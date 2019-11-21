@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
-             d:DesignHeight="220" d:DesignWidth="680" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3" Background="#eeeeee" >
+             d:DesignHeight="220" d:DesignWidth="680" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#3d3d3d" Background="#eeeeee" >
     
     <UserControl.Resources>
         <ResourceDictionary>

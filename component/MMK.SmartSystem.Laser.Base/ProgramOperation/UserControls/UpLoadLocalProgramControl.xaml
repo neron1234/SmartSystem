@@ -7,7 +7,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
              mc:Ignorable="d" 
-            d:DesignHeight="590" d:DesignWidth="900" FontSize="20" FontFamily="思源黑体 CN Medium"  Foreground="#6d7278" Background="#eeeeee">
+            d:DesignHeight="590" d:DesignWidth="900" FontSize="20" FontFamily="思源黑体 CN Medium"  Foreground="#3d3d3d" Background="#eeeeee">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

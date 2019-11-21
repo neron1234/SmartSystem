@@ -190,13 +190,15 @@
                     <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                <GradientStop Color="#585858" Offset="0.1" />
-                                <GradientStop Color="#4c4b4b" Offset="0.3" />
-                                <GradientStop Color="#414040" Offset="0.5" />
-                                <GradientStop Color="#363636" Offset="0.7" />
-                                <GradientStop Color="#2b2b2b" Offset="0.9" />
-                                <GradientStop Color="#222121" Offset="0.98" />
-                                <GradientStop Color="#535353" Offset="1" />
+                                <GradientStop Color="#595959" Offset="0.1" />
+                                <GradientStop Color="#535353" Offset="0.2" />
+                                <GradientStop Color="#4c4c4c" Offset="0.3" />
+                                <GradientStop Color="#444444" Offset="0.4" />
+                                <GradientStop Color="#3d3d3d" Offset="0.5" />
+                                <GradientStop Color="#353535" Offset="0.6" />
+                                <GradientStop Color="#2f2f2f" Offset="0.7" />
+                                <GradientStop Color="#282828" Offset="0.8" />
+                                <GradientStop Color="#212121" Offset="0.9" />
                             </LinearGradientBrush>
                         </Border.Background>
                         <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" >
