@@ -52,7 +52,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
         public void DataPaging(){
-            pagingModel.Init(ProgramStrList, PageNumber);
+            pagingModel.Init<object>(ProgramStrList, null, 1, PageNumber);
         }
 
         private int _CurrentPage;
