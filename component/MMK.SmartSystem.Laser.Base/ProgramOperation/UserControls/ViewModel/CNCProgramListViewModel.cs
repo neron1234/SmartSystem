@@ -19,6 +19,40 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public List<ProgramViewModel> LocalProgramList { get; set; }
 
+        private ProgramViewModel currentSelectModel;
+
+        public ProgramViewModel CurrentSelectModel
+        {
+            get { return currentSelectModel; }
+            set
+            {
+
+                currentSelectModel = value;
+                if (currentSelectModel == null)
+                {
+                    IsEnabled = false;
+                }
+                else
+                {
+                    IsEnabled = true;
+                }
+            }
+        }
+
+        private bool _IsEnabled;
+        public bool IsEnabled
+        {
+            get { return _IsEnabled; }
+            set
+            {
+                if (_IsEnabled != value)
+                {
+                    _IsEnabled = value;
+                    RaisePropertyChanged(() => IsEnabled);
+                }
+            }
+        }
+
         public event Action MainCommandEvent;
         private string _CNCPath;
         public string CNCPath
@@ -83,7 +117,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             pagingModel = new PagingModel<ProgramViewModel>();
             pagingModel.PagePagingEvent += PagingModel_PagePagingEvent;
         }
-
+        public void Clear()
+        {
+            CurrentSelectModel = null;
+            this.ProgramList.Clear();
+            CurrentPage = 0;
+            TotalPage = 0;
+            LocalProgramList.Clear();
+        }
         private void PagingModel_PagePagingEvent(IEnumerable<ProgramViewModel> arg1, int arg2, int arg3)
         {
             this.ProgramList.Clear();

@@ -28,7 +28,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         CNCProgramListViewModel cpViewModel;
         public event Action<HubReadWriterModel> RealReadWriterEvent;
 
-        private ProgramViewModel currentSelectModel;
         public CNCProgramListControl()
         {
 
@@ -53,15 +52,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         private void CpViewModel_DownProgramEvent()
         {
-            if (currentSelectModel != null)
+            if (cpViewModel.CurrentSelectModel != null)
             {
                 RealReadWriterEvent?.Invoke(new HubReadWriterModel()
                 {
                     ProxyName = "ProgramTransferInOut",
                     Action = "DownloadProgram",
                     Id = "downloadProgram",
-                    SuccessTip = $"成功下载【{cpViewModel.CNCPath}】目录【{currentSelectModel.Name}】 程序到本地目录【x:\\currentSelectModel.Name】！",
-                    Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}", $"e:\\{currentSelectModel.Name}" }
+                    SuccessTip = $"成功下载【{cpViewModel.CNCPath}】目录【{cpViewModel.CurrentSelectModel.Name}】 程序到本地目录【x:\\currentSelectModel.Name】！",
+                    Data = new object[] { $"{cpViewModel.CNCPath}{cpViewModel.CurrentSelectModel.Name}", $"e:\\{cpViewModel.CurrentSelectModel.Name}" }
                 });
             }
         }
@@ -69,9 +68,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         private void CpViewModel_DeleteProgramEvent()
         {
-            if (currentSelectModel != null)
+            if (cpViewModel.CurrentSelectModel != null)
             {
-                string message = $"确定删除 【{cpViewModel.CNCPath}】目录下的【{currentSelectModel.Name}】 程序吗？";
+                string message = $"确定删除 【{cpViewModel.CNCPath}】目录下的【{cpViewModel.CurrentSelectModel.Name}】 程序吗？";
                 var confirm = new ConfirmControl(message);
                 var popup = new PopupWindow(confirm, 480, 180, "删除CNC程序");
                 confirm.ConfirmOkEvent += () =>
@@ -81,8 +80,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                         ProxyName = "ProgramTransferInOut",
                         Action = "DeleteProgram",
                         Id = "deleteProgram",
-                        SuccessTip = $"成功删除 【{cpViewModel.CNCPath}】目录【{currentSelectModel.Name}】 程序！",
-                        Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}" }
+                        SuccessTip = $"成功删除 【{cpViewModel.CNCPath}】目录【{cpViewModel.CurrentSelectModel.Name}】 程序！",
+                        Data = new object[] { $"{cpViewModel.CNCPath}{cpViewModel.CurrentSelectModel.Name}" }
                     });
                     popup.Close();
                 };
@@ -94,9 +93,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         private void CpViewModel_MainCommandEvent()
         {
-            if (currentSelectModel != null)
+            if (cpViewModel.CurrentSelectModel != null)
             {
-                string message = $"确定设置 【{cpViewModel.CNCPath}】目录下的【{currentSelectModel.Name}】 为主程序吗？";
+                string message = $"确定设置 【{cpViewModel.CNCPath}】目录下的【{cpViewModel.CurrentSelectModel.Name}】 为主程序吗？";
                 var confirm = new ConfirmControl(message);
                 var popup = new PopupWindow(confirm, 480, 180, "设置主程序");
                 confirm.ConfirmOkEvent += () =>
@@ -106,9 +105,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                         ProxyName = "ProgramTransferInOut",
                         Action = "MainProgramToCNC",
                         Id = "mainProgramToCNC",
-                        SuccessTip = $"成功设置 【{cpViewModel.CNCPath}】目录【{currentSelectModel.Name}】 程序为当前CNC主程序！",
+                        SuccessTip = $"成功设置 【{cpViewModel.CNCPath}】目录【{cpViewModel.CurrentSelectModel.Name}】 程序为当前CNC主程序！",
 
-                        Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}" }
+                        Data = new object[] { $"{cpViewModel.CNCPath}{cpViewModel.CurrentSelectModel.Name}" }
                     });
                     popup.Close();
                 };
@@ -127,6 +126,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         private void CncPath_SaveCNCPathEvent(CNCProgramPath obj)
         {
             cpViewModel.CNCPath = obj.Path;
+            cpViewModel.Clear();
+            Messenger.Default.Send(new ProgramViewModel());
+
             RealReadWriterEvent?.Invoke(new HubReadWriterModel()
             {
                 ProxyName = "ProgramListInOut",
@@ -141,8 +143,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             var selected = ((DataGrid)sender).SelectedValue;
             if (selected != null && selected is ProgramViewModel)
             {
-                currentSelectModel = (ProgramViewModel)selected;
-                Messenger.Default.Send(currentSelectModel);
+                cpViewModel.CurrentSelectModel = (ProgramViewModel)selected;
+                Messenger.Default.Send(cpViewModel.CurrentSelectModel);
             }
             e.Handled = true;
         }
@@ -159,6 +161,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         }
         private void ReadProgramList(JArray array)
         {
+            cpViewModel.CurrentSelectModel = null;
             this.cpViewModel.LocalProgramList = new List<ProgramViewModel>();
             foreach (var item in array)
             {
