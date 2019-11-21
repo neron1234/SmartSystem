@@ -34,7 +34,7 @@
     <SolidColorBrush x:Key="BorderColor" Color="#00D3D6DB" />
     <SolidColorBrush x:Key="ComboBox.BorderBrush" Color="#ABADB3" />
     <SolidColorBrush x:Key="ComboBox.Popup.BorderBrush" Color="#C8C8C8" />
-    <SolidColorBrush x:Key="ComboBox.Normal.Background" Color="#202328" />
+    <SolidColorBrush x:Key="ComboBox.Normal.Background" Color="#f8f6f6" />
     <SolidColorBrush x:Key="ComboBox.Disabled.Foreground" Color="#888" />
     <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="#00eeeeee" />
     <SolidColorBrush x:Key="ComboBox.Disabled.BorderBrush" Color="#00888888" />
@@ -137,7 +137,8 @@
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Padding" Value="10,5,15,5" />
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
-        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <!--<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />-->
+        <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
@@ -374,11 +375,11 @@
     </ControlTemplate>
 
     <Style TargetType="{x:Type ComboBox}" >
-        <Setter Property="Foreground" Value="#787b8c"/>
+        <Setter Property="Foreground" Value="#292f33"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ComboBox}">
-                    <Grid Background="#202328">
+                    <Grid Background="#f8f6f6">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.8*"/>
                             <ColumnDefinition Width="0.2*" MaxWidth="30"/>
@@ -397,7 +398,7 @@
                                 <Border x:Name="DropDownBorder"  BorderBrush="#121417" BorderThickness="1 0 1 1"/>
                                 <ScrollViewer Margin="1"  SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
                                     <!--StackPanel 用于显示子级，方法是将 IsItemsHost 设置为 True-->
-                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" Background="#202328" />
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" Background="#f8f6f6" />
                                 </ScrollViewer>
                             </Grid>
                         </Popup>

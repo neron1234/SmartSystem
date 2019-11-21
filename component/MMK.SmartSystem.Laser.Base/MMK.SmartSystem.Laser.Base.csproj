@@ -449,6 +449,9 @@
     <Compile Include="ProgramOperation\UserControls\CNCProgramInfoControl.xaml.cs">
       <DependentUpon>CNCProgramInfoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProgramOperation\UserControls\EditProgramStrControl.xaml.cs">
+      <DependentUpon>EditProgramStrControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProgramOperation\UserControls\LocalProgramInfoControl.xaml.cs">
       <DependentUpon>LocalProgramInfoControl.xaml</DependentUpon>
     </Compile>
@@ -457,6 +460,7 @@
     </Compile>
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCPathViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\CNCProgramInfoViewModel.cs" />
+    <Compile Include="ProgramOperation\UserControls\ViewModel\EditProgramStrViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\LocalProgramInfoViewModel.cs" />
     <Compile Include="ProgramOperation\UserControls\ViewModel\SearchViewModel.cs" />
     <Compile Include="ViewModel\InputWindowViewModel.cs" />
@@ -748,6 +752,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProgramOperation\UserControls\EditProgramStrControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProgramOperation\UserControls\LocalProgramInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -833,6 +841,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Style\OperateBtnStyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\ScrollViewDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,7 +7,7 @@
         xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="460" Width="458" Background="#eeeeee" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3"
+        Title="{Binding Title}" Height="460" Width="458" Background="#eeeeee" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#3d3d3d"
         WindowStyle="None" WindowStartupLocation="CenterScreen"  MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
@@ -38,21 +38,21 @@
                 <RowDefinition Height="75" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Style="{StaticResource IconBtnStyleWarningMsg}" Height="50" Width="465" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+            <Grid Grid.Row="0" VerticalAlignment="Center"  Height="64" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="#f3f3f3">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="PreviewMouseLeftButtonDown" SourceName="Window_MouseLeftButtonDown">
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal" x:Name="wPanel">
+                <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal" x:Name="wPanel" VerticalAlignment="Center">
                     <TextBlock Text="I" Foreground="#FDCD00" Margin="10 0 15 0" />
                     <TextBlock Text="{Binding Title}" x:Name="tTxt" Width="385" Foreground="#BCCEC2"/>
                     <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="30" x:Name="btnClose" 
                                                     PathData="{StaticResource Icon_Close}" HorizontalAlignment="Right"
-                                                    PathWidth="18" NormalPathColor="White"
+                                                    PathWidth="18" NormalPathColor="#333333"
                                                     MouseOverBackground="Transparent"
                                                     PressedBackground="Transparent" Click="BtnClose_Click"/>
                 </WrapPanel>
-            </Button>
+            </Grid>
             <WrapPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBox  Width="440" Height="50" FontSize="30" Text="{Binding Value}" Margin="0 10 0 10" Style="{StaticResource ClearButtonTextBox}" />
             </WrapPanel>

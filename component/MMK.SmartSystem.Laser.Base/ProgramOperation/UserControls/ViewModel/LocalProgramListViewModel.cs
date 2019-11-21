@@ -149,7 +149,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                         return;
                     }
                     UploadClickEvent?.Invoke(this, SelectedProgramViewModel);
-
                 });
             }
         }
@@ -209,7 +208,12 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public ICommand OpenFileCommand{
             get{
                 return new RelayCommand(() =>{
-                    System.Diagnostics.Process.Start(@"Notepad.exe", System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
+                    if (this.SelectedProgramViewModel == null){
+                        return;
+                    }
+                    //System.Diagnostics.Process.Start(@"Notepad.exe", System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
+                    var ep = new EditProgramStrControl(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
+                    new PopupWindow(ep, 1000, 600, "编辑程序").ShowDialog();
                 });
             }
         }

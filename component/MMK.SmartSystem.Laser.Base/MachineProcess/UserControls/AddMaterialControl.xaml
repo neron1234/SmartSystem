@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.MachineProcess.UserControls"
              mc:Ignorable="d" 
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
-             d:DesignHeight="245" d:DesignWidth="620" Background="#2d2d2d" FontSize="20" Foreground="#FFB6BEC3" FontFamily="思源黑体 CN Medium">
+             d:DesignHeight="245" d:DesignWidth="620" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#3d3d3d" Background="#eeeeee">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -35,7 +35,7 @@
         </StackPanel>
         <StackPanel Margin="20 40 20 20"  Grid.Column="1" Grid.Row="0">
             <ComboBox Margin="0,15,0,0" ItemsSource="{Binding MaterialTypeList}" SelectedValuePath="Code" DisplayMemberPath="Name_CN" 
-                          SelectedValue="{Binding SelectedMaterialId}" BorderBrush="#121417">
+                          SelectedValue="{Binding SelectedMaterialId}" BorderBrush="#c3c1c1">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding MTypeSelectionCommand}"/>
@@ -43,7 +43,7 @@
                 </i:Interaction.Triggers>
             </ComboBox>
 
-            <TextBox Margin="0,30,0,0" Height="30" IsReadOnly="True" x:Name="InputThickness" Text="{Binding MaterialThickness}" Background="#202328" BorderBrush="#121417" Foreground="#787b8c"/>
+            <TextBox Margin="0,30,0,0" Height="30" IsReadOnly="True" x:Name="InputThickness" Text="{Binding MaterialThickness}" Background="#f8f6f6" BorderBrush="#c3c1c1" Foreground="#292f33"/>
         </StackPanel>
         <Grid Grid.RowSpan="2" Grid.Column="2" Margin="1 1 10 1">
             <Grid.ColumnDefinitions>
@@ -71,7 +71,7 @@
             </StackPanel>
         </Grid>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Style="{StaticResource IconBtnStyle}" IsEnabled="{Binding CanSave}" Width="120" Height="35" Content="保存" Command="{Binding SaveCommand}"/>
+            <Button Style="{StaticResource IconBtnStyle2}" IsEnabled="{Binding CanSave}" Width="120" Height="35" Content="保存" Command="{Binding SaveCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -5,16 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="240" d:DesignWidth="680"  Background="#2d2d2d" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3">
+             d:DesignHeight="240" d:DesignWidth="680" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#3d3d3d" Background="#eeeeee">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="TextBox">
-                <Setter Property="Background" Value="#202328" />
-                <Setter Property="BorderBrush" Value="#121417" />
-                <Setter Property="Foreground" Value="#787b8c" />
+                <Setter Property="Background" Value="#f8f6f6" />
+                <Setter Property="BorderBrush" Value="#c3c1c1" />
+                <Setter Property="Foreground" Value="#292f33" />
                 <Setter Property="Margin" Value="0 10 0 0" />
             </Style>
         </ResourceDictionary>
@@ -25,8 +25,8 @@
             <TextBox x:Name="SearchTxt" VerticalAlignment="Center" Height="35" Text="{Binding SearchText}"/>
         </StackPanel>
         <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Style="{StaticResource IconBtnStyle}" Width="140" Height="45" Content="搜索" Margin="0 0 15 0"  Command="{Binding SearchCommand}"/>
-            <Button Style="{StaticResource IconBtnStyle}" Width="140" Height="42" Content="取消" Margin="15 0 0 0"  Command="{Binding CancelCommand}"/>
+            <Button Style="{StaticResource IconBtnStyle2}" Width="140" Height="45" Content="搜索" Margin="0 0 15 0"  Command="{Binding SearchCommand}"/>
+            <Button Style="{StaticResource IconBtnStyle2}" Width="140" Height="42" Content="取消" Margin="15 0 0 0"  Command="{Binding CancelCommand}"/>
 
         </StackPanel>
     </StackPanel>

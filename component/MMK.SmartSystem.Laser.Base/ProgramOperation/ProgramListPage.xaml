@@ -43,13 +43,13 @@
             <ColumnDefinition Width="784"/>
         </Grid.ColumnDefinitions>-->
         <TabControl Grid.Column="0" BorderThickness="0" BorderBrush="Transparent" Background="Transparent" >
-            <TabItem Header="CNC程序" Style="{StaticResource TabItemStyle}" Width="160" Height="60" >
+            <TabItem Header="CNC程序" Style="{StaticResource TabItemStyle}" Width="160" Height="60" FocusVisualStyle="{x:Null}">
                 <uc:CNCProgramListControl Height="598" x:Name="MyCNCProgramListControl" BorderThickness="0 4 0 0" BorderBrush="Black"/>
             </TabItem>
-            <TabItem Header="本地程序" Style="{StaticResource TabItemStyle}" Width="160" Height="60">
+            <TabItem Header="本地程序" Style="{StaticResource TabItemStyle}" Width="160" Height="60" FocusVisualStyle="{x:Null}">
                 <uc:LocalProgramListControl Height="598" x:Name="MyLocalProgramListControl" BorderThickness="0 4 0 0" BorderBrush="Black"/>
             </TabItem>
-            <TabItem Header="CNC信息" Style="{StaticResource TabItemStyle}" Width="160" Height="60">
+            <TabItem Header="CNC信息" Style="{StaticResource TabItemStyle}" Width="160" Height="60" FocusVisualStyle="{x:Null}">
                 <uc:CNCInfoControl Height="598" x:Name="MyCNCInfoControl" BorderThickness="0 4 0 0" BorderBrush="Black"/>
             </TabItem>
         </TabControl>

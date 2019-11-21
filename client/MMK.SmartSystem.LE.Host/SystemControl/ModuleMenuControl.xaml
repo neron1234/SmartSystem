@@ -36,7 +36,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button Background="Transparent"  Width="44" Height="62" Margin="0,9,0,9" BorderThickness="0" Command="{Binding OpenCommand}" CommandParameter="{Binding .}" Style="{StaticResource NoMouseOverButtonStyle}">
+                                <Button Background="Transparent"  Width="44" Height="62" Margin="0,9,0,9" BorderThickness="0" Command="{Binding OpenCommand}" CommandParameter="{Binding .}" Style="{StaticResource NoMouseOverButtonStyle}" FocusVisualStyle="{x:Null}">
                                     <WrapPanel Height="60" Width="44" HorizontalAlignment="Center" >
                                         <Image Source="{Binding Path= Icon,Converter={StaticResource imageConvert}}" Width="42" Height="37" />
                                         <TextBlock Text="{Binding Title}" FontSize="13" Foreground="#FF424141" TextAlignment="Center" Width="44" Height="20" Margin="0 4 0 0" />
@@ -45,8 +45,6 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-
-
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

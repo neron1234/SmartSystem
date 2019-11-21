@@ -59,7 +59,7 @@
                 <StackPanel.Effect>
                     <DropShadowEffect Color="Black" Direction="280" ShadowDepth="-100" Opacity="1" BlurRadius="10"/>
                 </StackPanel.Effect>
-                <Border Margin="0 15 0 12" BorderThickness="0 0 0 1" BorderBrush="#575757">
+                <Border Margin="10 15 10 12" BorderThickness="0 0 0 1" BorderBrush="#575757">
                     <WrapPanel>
                         <TextBlock Text="当前CNC路径: "/>
                         <TextBlock Text="{Binding CNCPath}" />
