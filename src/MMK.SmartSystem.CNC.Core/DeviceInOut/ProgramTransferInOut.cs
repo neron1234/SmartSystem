@@ -24,7 +24,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
             {
                 Result = res,
                 Error = res,
-                Success = string.IsNullOrEmpty(res)
+                Success = string.IsNullOrEmpty(res),
+                SuccessTip = hubRead.SuccessTip,
+                ErrorTip = hubRead.ErrorTip
             };
         }
         public HubReadWriterResultModel UploadProgramToCNC(HubReadWriterModel hubRead)
@@ -35,7 +37,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
             {
                 Result = name,
                 Error = res,
-                Success = string.IsNullOrEmpty(res)
+                Success = string.IsNullOrEmpty(res),
+                SuccessTip = hubRead.SuccessTip,
+                ErrorTip = hubRead.ErrorTip
             };
         }
 
@@ -46,7 +50,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
             {
                 Result = hubRead.Data[0].ToString(),
                 Error = res.Item2,
-                Success = res.Item1 == 0
+                Success = res.Item1 == 0,
+                SuccessTip = hubRead.SuccessTip,
+                ErrorTip = hubRead.ErrorTip
             };
         }
 
@@ -58,7 +64,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
             {
                 Result = name,
                 Error = res,
-                Success = string.IsNullOrEmpty(res)
+                Success = string.IsNullOrEmpty(res),
+                SuccessTip = hubRead.SuccessTip,
+                ErrorTip = hubRead.ErrorTip
             };
         }
 
@@ -70,7 +78,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
             {
                 Result = readProgramInfo,
                 Error = res.Item2,
-                Success = res.Item1 == 0
+                Success = res.Item1 == 0,
+                SuccessTip = hubRead.SuccessTip,
+                ErrorTip = hubRead.ErrorTip
             };
         }
 

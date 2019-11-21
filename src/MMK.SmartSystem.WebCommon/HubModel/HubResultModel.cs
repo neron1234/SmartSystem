@@ -16,7 +16,9 @@ namespace MMK.SmartSystem.WebCommon.HubModel
         public string Action { get; set; }
         public object[] Data { get; set; }
 
+        public string SuccessTip { get; set; }
 
+        public string ErrorTip { get; set; }
     }
 
     public class HubReadWriterResultModel
@@ -31,7 +33,9 @@ namespace MMK.SmartSystem.WebCommon.HubModel
         public object Result { set; get; }
 
         public string Error { get; set; }
+        public string SuccessTip { get; set; }
 
+        public string ErrorTip { get; set; }
         public bool Success { get; set; }
     }
     public class HubResultModel

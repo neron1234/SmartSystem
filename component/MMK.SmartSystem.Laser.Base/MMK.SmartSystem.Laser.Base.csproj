@@ -227,6 +227,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfirmControl.xaml.cs">
+      <DependentUpon>ConfirmControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\InverseBooleanVisibilityConverter.cs" />
     <Compile Include="Converters\MopBackgroundColorConverter.cs" />
     <Compile Include="Converters\OffsetConverter.cs" />
@@ -486,6 +489,10 @@
     <Compile Include="ViewModel\ReadProgramFolderItemViewModel.cs" />
     <Compile Include="ViewModel\SwitchBtnViewModel.cs" />
     <Page Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfirmControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -31,14 +31,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         private ProgramViewModel currentSelectModel;
         public CNCProgramListControl()
         {
-          
+
             InitializeComponent();
             this.DataContext = cpViewModel = new CNCProgramListViewModel();
             cpViewModel.CNCPath = ProgramConfigConsts.CNCPath;
             cpViewModel.SetCNCProgramPath += CpViewModel_SetCNCProgramPath;
             cpViewModel.MainCommandEvent += CpViewModel_MainCommandEvent;
             cpViewModel.DeleteProgramEvent += CpViewModel_DeleteProgramEvent;
-            cpViewModel.DownProgramEvent += CpViewModel_DownProgramEvent; 
+            cpViewModel.DownProgramEvent += CpViewModel_DownProgramEvent;
         }
 
         private void CpViewModel_DownProgramEvent()
@@ -50,6 +50,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                     ProxyName = "ProgramTransferInOut",
                     Action = "DownloadProgram",
                     Id = "downloadProgram",
+                    SuccessTip = $"成功下载【{cpViewModel.CNCPath}】目录【{currentSelectModel.Name}】 程序到本地目录【x:\\currentSelectModel.Name】！",
                     Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}", $"e:\\{currentSelectModel.Name}" }
                 });
             }
@@ -60,13 +61,24 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         {
             if (currentSelectModel != null)
             {
-                RealReadWriterEvent?.Invoke(new HubReadWriterModel()
+                string message = $"确定删除 【{cpViewModel.CNCPath}】目录下的【{currentSelectModel.Name}】 程序吗？";
+                var confirm = new ConfirmControl(message);
+                var popup = new PopupWindow(confirm, 480, 180, "删除CNC程序");
+                confirm.ConfirmOkEvent += () =>
                 {
-                    ProxyName = "ProgramTransferInOut",
-                    Action = "DeleteProgram",
-                    Id = "deleteProgram",
-                    Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}" }
-                });
+                    RealReadWriterEvent?.Invoke(new HubReadWriterModel()
+                    {
+                        ProxyName = "ProgramTransferInOut",
+                        Action = "DeleteProgram",
+                        Id = "deleteProgram",
+                        SuccessTip = $"成功删除 【{cpViewModel.CNCPath}】目录【{currentSelectModel.Name}】 程序！",
+                        Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}" }
+                    });
+                    popup.Close();
+                };
+                confirm.ConfirmCancelEvent += () => popup.Close();
+                popup.ShowDialog();
+
             }
         }
 
@@ -79,6 +91,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                     ProxyName = "ProgramTransferInOut",
                     Action = "MainProgramToCNC",
                     Id = "mainProgramToCNC",
+                    SuccessTip = $"成功设置 【{cpViewModel.CNCPath}】目录【{currentSelectModel.Name}】 程序为当前CNC主程序！",
+
                     Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}" }
                 });
             }
@@ -147,13 +161,24 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         public bool CanWork(HubReadWriterResultModel resultModel)
         {
-            return resultModel.Id == "getProgramList";
+            string[] arr = { "deleteProgram", "getProgramList", "mainProgramToCNC", "downloadProgram" };
+            return arr.Contains(resultModel.Id);
         }
 
         public void DoWork(HubReadWriterResultModel resultModel)
         {
-            JArray jArray = JArray.Parse(resultModel.Result.ToString());
-            ReadProgramList(jArray);
+            if (resultModel.Id == "getProgramList")
+            {
+                JArray jArray = JArray.Parse(resultModel.Result.ToString());
+                ReadProgramList(jArray);
+                return;
+            }
+            Messenger.Default.Send(new Common.ViewModel.NotifiactionModel()
+            {
+                Title = "操作成功",
+                Content = resultModel.SuccessTip,
+                NotifiactionType = Common.ViewModel.EnumPromptType.Success
+            });
         }
     }
 }

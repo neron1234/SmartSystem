@@ -21,7 +21,9 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
             {
                 Result = res,
                 Error = res,
-                Success = string.IsNullOrEmpty(res)
+                Success = string.IsNullOrEmpty(res),
+                SuccessTip = hubRead.SuccessTip,
+                ErrorTip = hubRead.ErrorTip
             };
         }
     }

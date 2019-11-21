@@ -20,6 +20,8 @@ namespace MMK.SmartSystem.CNC.Core.DeviceInOut
                 Result = data,
                 Error = res.Item2,
                 Success = res.Item1 == 0,
+                SuccessTip = hubRead.SuccessTip,
+                ErrorTip = hubRead.ErrorTip
             };
         }
     }
