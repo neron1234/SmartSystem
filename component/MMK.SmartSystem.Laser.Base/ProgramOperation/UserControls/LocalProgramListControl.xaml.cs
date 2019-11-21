@@ -41,7 +41,50 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             lpViewModel.UploadClickEvent += LpViewModel_UploadClickEvent;
             lpViewModel.CheckedProgramEvent += CheckedLocalProgram;
             lpViewModel.PagePagingEvent += LpViewModel_PagePagingEvent;
+            lpViewModel.DeleteProgramEvent += LpViewModel_DeleteProgramEvent;
             Loaded += LocalProgramListControl_Loaded;
+            lpViewModel.Init();
+        }
+
+        private void LpViewModel_DeleteProgramEvent(string arg1, ProgramViewModel arg2)
+        {
+
+            string message = $"确定删除 【{arg1}】本地目录下的【{arg2.Name}】 程序吗？";
+            var confirm = new ConfirmControl(message);
+            var popup = new PopupWindow(confirm, 480, 180, "删除本地程序");
+            confirm.ConfirmOkEvent += () =>
+            {
+                if (File.Exists(System.IO.Path.Combine(arg1, arg2.Name)))
+                {
+                    try
+                    {
+                        File.Delete(System.IO.Path.Combine(arg1, arg2.Name));
+                        var obj = lpViewModel.LocalProgramList.FirstOrDefault(d=>d.FillName==arg2.FillName)??new ProgramViewModel();
+                        lpViewModel.LocalProgramList.Remove(obj);
+                        Messenger.Default.Send(new Common.ViewModel.NotifiactionModel()
+                        {
+                            Title = "删除本地程序",
+                            Content = $"成功删除本地程序【{arg2.Name}】！",
+                            NotifiactionType = Common.ViewModel.EnumPromptType.Success
+                        });
+                    }
+                    catch (Exception)
+                    {
+
+                        Messenger.Default.Send(new Common.ViewModel.NotifiactionModel()
+                        {
+                            Title = "删除本地程序",
+                            Content = $"删除本地程序【{arg2.Name}】出错,请稍后重试！",
+                            NotifiactionType = Common.ViewModel.EnumPromptType.Error
+                        });
+                    }
+                }
+                popup.Close();
+            };
+            confirm.ConfirmCancelEvent += () => popup.Close();
+            popup.ShowDialog();
+            lpViewModel.RefreshPage();
+
         }
 
         private void LpViewModel_PagePagingEvent()
@@ -51,16 +94,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 ProgramGrid.SelectedIndex = 0;
             }
         }
-
-        private bool IsLoadedTemp = false;
         private void LocalProgramListControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //lpViewModel.pagingModel.CyclePage();
-            //if (IsLoadedTemp)
-            //{
-            //    Loaded -= LocalProgramListControl_Loaded;
-            //}
-            //IsLoadedTemp = true;
+            var tempTotal = lpViewModel.CurrentPage;
+            lpViewModel.CurrentPage = 0;
+            lpViewModel.CurrentPage = tempTotal;
         }
 
         public void CheckedLocalProgram()
