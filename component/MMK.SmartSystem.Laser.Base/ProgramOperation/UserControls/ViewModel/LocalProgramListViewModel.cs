@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MMK.SmartSystem.Common.EventDatas;
 using MMK.SmartSystem.Laser.Base.ProgramOperation.ViewModel;
+using MMK.SmartSystem.Laser.Base.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -41,6 +42,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         /// </summary>
         public ObservableCollection<ProgramViewModel> ProgramList { get; set; }
 
+        public PagingModel<ProgramViewModel> pagingModel;
+
         public string Path { get; set; }
 
         public event Action CheckedProgramEvent;
@@ -49,7 +52,17 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             ProgramList = new ObservableCollection<ProgramViewModel>();
             this.Path = @"C:\Users\wjj-yl\Desktop\测试用DXF";
+            pagingModel = new PagingModel<ProgramViewModel>();
+            pagingModel.PagePagingEvent += PagingModel_PagePagingEvent;
             GetFileName();
+        }
+
+        private void PagingModel_PagePagingEvent(IEnumerable<ProgramViewModel> arg1, int arg2, int arg3)
+        {
+            this.ProgramList.Clear();
+            arg1.ToList().ForEach(d => ProgramList.Add(d));
+            CurrentPage = arg2;
+            TotalPage = arg3;
         }
 
         public void GetFileName(){
@@ -103,36 +116,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
         public int PageNumber = 7;
-        public void DataPaging(bool next = false)
+        public void DataPaging()
         {
-            if (LocalProgramList == null)
-            {
-                return;
-            }
-            int count = LocalProgramList.Count;
-            this.TotalPage = 0;
-            if (count % PageNumber == 0)
-            {
-                this.TotalPage = count / PageNumber;
-            }
-            else
-            {
-                this.TotalPage = count / PageNumber + 1;
-            }
-
-            if (next && CurrentPage >= 1 && CurrentPage < TotalPage)
-            {
-                CurrentPage++;
-            }
-            else
-            {
-                CurrentPage = 1;
-            }
-            this.ProgramList.Clear();
-            foreach (var item in LocalProgramList.Take(PageNumber * CurrentPage).Skip(PageNumber * (CurrentPage - 1)).ToList())
-            {
-                this.ProgramList.Add(item);
-            }
+            pagingModel.Init(LocalProgramList, (d) => d.CreateTime, PageNumber);
         }
 
         public string ConnectId { get; set; }
@@ -140,12 +126,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         public event Action<LocalProgramListViewModel, ProgramViewModel> UploadClickEvent;
         public ICommand UpLoadCommand
         {
-            get
-            {
-                return new RelayCommand(() =>
-                {
-                    if (this.SelectedProgramViewModel == null)
-                    {
+            get{
+                return new RelayCommand(() =>{
+                    if (this.SelectedProgramViewModel == null){
                         return;
                     }
                     UploadClickEvent?.Invoke(this, SelectedProgramViewModel);
@@ -188,8 +171,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             get{
                 return new RelayCommand(() =>{
                     var sc = new SearchControl();
-                    new PopupWindow(sc, 680, 240, "搜索本地程序").ShowDialog();
                     sc.sVM.SearchEvent += SVM_SearchEvent;
+                    new PopupWindow(sc, 680, 240, "搜索本地程序").ShowDialog();
                 });
             }
         }
@@ -222,7 +205,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             get{
                 return new RelayCommand(() =>
                 {
-                    DataPaging(true);
+                    pagingModel.CyclePage();
                 });
             }
         }

@@ -130,8 +130,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 return new RelayCommand(() =>
                 {
                     var sc = new SearchControl();
-                    new PopupWindow(sc, 680, 240, "搜索CNC程序").ShowDialog();
                     sc.sVM.SearchEvent += SVM_SearchEvent;
+                    new PopupWindow(sc, 680, 240, "搜索CNC程序").ShowDialog();
                 });
             }
         }

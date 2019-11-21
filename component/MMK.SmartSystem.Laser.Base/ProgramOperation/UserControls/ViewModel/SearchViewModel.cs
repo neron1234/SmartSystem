@@ -32,7 +32,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             get{
                 return new RelayCommand(() =>{
                     //Messenger.Default.Send(new SearchInfo());
-                    SearchEvent.Invoke(this.SearchText);
+                    SearchEvent?.Invoke(this.SearchText);
                     Messenger.Default.Send(new PopupMsg("", true));
                 });
             }
