@@ -39,6 +39,16 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             cpViewModel.MainCommandEvent += CpViewModel_MainCommandEvent;
             cpViewModel.DeleteProgramEvent += CpViewModel_DeleteProgramEvent;
             cpViewModel.DownProgramEvent += CpViewModel_DownProgramEvent;
+            cpViewModel.PagePagingEvent += CpViewModel_PagePagingEvent;
+        }
+
+        private void CpViewModel_PagePagingEvent()
+        {
+            if (cpViewModel.LocalProgramList.Count > 0)
+            {
+
+                ProgramGrid.SelectedIndex = 0;
+            }
         }
 
         private void CpViewModel_DownProgramEvent()
@@ -86,15 +96,24 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         {
             if (currentSelectModel != null)
             {
-                RealReadWriterEvent?.Invoke(new HubReadWriterModel()
+                string message = $"确定设置 【{cpViewModel.CNCPath}】目录下的【{currentSelectModel.Name}】 为主程序吗？";
+                var confirm = new ConfirmControl(message);
+                var popup = new PopupWindow(confirm, 480, 180, "设置主程序");
+                confirm.ConfirmOkEvent += () =>
                 {
-                    ProxyName = "ProgramTransferInOut",
-                    Action = "MainProgramToCNC",
-                    Id = "mainProgramToCNC",
-                    SuccessTip = $"成功设置 【{cpViewModel.CNCPath}】目录【{currentSelectModel.Name}】 程序为当前CNC主程序！",
+                    RealReadWriterEvent?.Invoke(new HubReadWriterModel()
+                    {
+                        ProxyName = "ProgramTransferInOut",
+                        Action = "MainProgramToCNC",
+                        Id = "mainProgramToCNC",
+                        SuccessTip = $"成功设置 【{cpViewModel.CNCPath}】目录【{currentSelectModel.Name}】 程序为当前CNC主程序！",
 
-                    Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}" }
-                });
+                        Data = new object[] { $"{cpViewModel.CNCPath}{currentSelectModel.Name}" }
+                    });
+                    popup.Close();
+                };
+                confirm.ConfirmCancelEvent += () => popup.Close();
+                popup.ShowDialog();        
             }
         }
 
@@ -157,6 +176,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             }
             cpViewModel.LocalProgramList.ForEach(d => d.SetCommentDto(f => f.Name == d.Name && f.FullPath == cpViewModel.CNCPath));
             cpViewModel.DataPaging();
+           
         }
 
         public bool CanWork(HubReadWriterResultModel resultModel)
@@ -171,6 +191,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             {
                 JArray jArray = JArray.Parse(resultModel.Result.ToString());
                 ReadProgramList(jArray);
+
                 return;
             }
             Messenger.Default.Send(new Common.ViewModel.NotifiactionModel()
