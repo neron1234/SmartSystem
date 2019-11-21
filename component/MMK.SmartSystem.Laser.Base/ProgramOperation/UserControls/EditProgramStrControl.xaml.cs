@@ -38,22 +38,18 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             Messenger.Default.Send(new PopupMsg() { IsClose = true });
         }
 
-        private async void EditProgramStrControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            await Task.Factory.StartNew(new Action(() =>
-            {
-                StringBuilder sb = new StringBuilder();
-                using (StreamReader reader = new StreamReader(EditProgramStrVM.Url))
-                {
-                    var line = reader.ReadLine();
-                    while (line != null)
-                    {
-                        sb.AppendLine(line);
-                        line = reader.ReadLine();
-                    }
-                    reader.Dispose();
+        private async void EditProgramStrControl_Loaded(object sender, RoutedEventArgs e){
+            await Task.Factory.StartNew(new Action(() =>{
+                try{
+                    var str = File.ReadAllText(EditProgramStrVM.Url);
+                    EditProgramStrVM.ProgramStr = str;
+                }catch (Exception ex){
+                    Messenger.Default.Send(new Common.ViewModel.NotifiactionModel(){
+                        Title = "操作失败",
+                        Content = $"失败信息：{ex} {DateTime.Now}",
+                        NotifiactionType = Common.ViewModel.EnumPromptType.Error
+                    });
                 }
-                EditProgramStrVM.ProgramStr = sb.ToString();
             }));
         }
     }

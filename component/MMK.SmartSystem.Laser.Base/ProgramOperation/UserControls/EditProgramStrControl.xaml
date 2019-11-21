@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml" />
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/ScrollViewDictionary.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -19,10 +20,24 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20 0 0 0">
-            <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="保存" Margin="0 0 10 0" />
-            <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="取消" Margin="10 0 0 0" Command="{Binding CancelCommand}"/>
-        </StackPanel>
+        <Grid Grid.Row="0" Margin="20 0 0 0">
+            <StackPanel HorizontalAlignment="Left" Width="280" Orientation="Horizontal">
+                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="保存" Margin="0 0 10 0" />
+                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="取消" Margin="10 0 0 0" Command="{Binding CancelCommand}"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" Width="140" Orientation="Horizontal">
+                <Button Style="{StaticResource IconBtnStyle2}" Width="50" Height="50" Margin="5 4 10 0" Command="{Binding LastColumnsCommand}">
+                    <WrapPanel>
+                        <Path Data="{StaticResource TopTriangleIcon}" Width="12" Height="10" Fill="#d2d5d8" Stretch="Fill"/>
+                    </WrapPanel>
+                </Button>
+                <Button Style="{StaticResource IconBtnStyle2}" Width="50" Height="50" Margin="5 4 10 0" Command="{Binding NestColumnsCommand}">
+                    <WrapPanel>
+                        <Path Data="{StaticResource BottomTriangleIcon}" Width="12" Height="10" Fill="#d2d5d8" Stretch="Fill"/>
+                    </WrapPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
         <Grid Grid.Row="1" x:Name="programPathGrid">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Height="420" VerticalAlignment="Top">
                 <RichTextBox Margin="10" Background="#f8f6f6" Foreground="#292f33" FontSize="15" BorderThickness="0">

@@ -37,5 +37,21 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                 });
             }
         }
+
+        public ICommand LastColumnsCommand
+        {
+            get
+            {
+                return new RelayCommand(() => { });
+            }
+        }
+
+        public ICommand NestColumnsCommand
+        {
+            get
+            {
+                return new RelayCommand(() => { });
+            }
+        }
     }
 }
