@@ -151,7 +151,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                         Messenger.Default.Send(new Common.ViewModel.NotifiactionModel()
                         {
                             Title = "操作成功",
-                            Content = $"切换路径成功!" + DateTime.Now,
+                            Content = $"切换路径成功!" + DateTime.Now.ToString("yyyy-mm-dd hh:mm:ss"),
                             NotifiactionType = Common.ViewModel.EnumPromptType.Success
                         });
                     }

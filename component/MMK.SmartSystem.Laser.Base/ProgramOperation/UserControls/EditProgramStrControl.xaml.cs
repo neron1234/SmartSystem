@@ -24,8 +24,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
     public partial class EditProgramStrControl : UserControl
     {
         public EditProgramStrViewModel EditProgramStrVM { get; set; } = new EditProgramStrViewModel();
-        public EditProgramStrControl(string url)
-        {
+        public EditProgramStrControl(string url){
             InitializeComponent();
             Loaded += EditProgramStrControl_Loaded;
             this.DataContext = EditProgramStrVM;
@@ -33,16 +32,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             EditProgramStrVM.CloseEvent += EditProgramStrVM_CloseEvent;
         }
 
-        private void EditProgramStrVM_CloseEvent()
-        {
+        private void EditProgramStrVM_CloseEvent(){
             Messenger.Default.Send(new PopupMsg() { IsClose = true });
         }
 
         private async void EditProgramStrControl_Loaded(object sender, RoutedEventArgs e){
             await Task.Factory.StartNew(new Action(() =>{
                 try{
-                    var str = File.ReadAllText(EditProgramStrVM.Url);
-                    EditProgramStrVM.ProgramStr = str;
+                    List<string> str = File.ReadAllLines(EditProgramStrVM.Url).ToList();
+                    EditProgramStrVM.ProgramStr = string.Join("  ", str.Take(100).ToArray());
                 }catch (Exception ex){
                     Messenger.Default.Send(new Common.ViewModel.NotifiactionModel(){
                         Title = "操作失败",
