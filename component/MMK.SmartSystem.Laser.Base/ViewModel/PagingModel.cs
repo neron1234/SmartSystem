@@ -31,6 +31,20 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
             }
         }
 
+        public void Init(IEnumerable<TSource> source, int maxSize = 10)
+        {
+            Source = source.ToList();
+            Source = Source ?? new List<TSource>();
+            MaxSize = maxSize;
+            Total = Source.Count;
+            TotalPage = Convert.ToInt32(Math.Ceiling(Total * 1.0 / MaxSize));
+            if (TotalPage > 0)
+            {
+                FirstPage();
+
+            }
+        }
+
         public bool NextPage()
         {
             if (CurrentPage >= TotalPage)

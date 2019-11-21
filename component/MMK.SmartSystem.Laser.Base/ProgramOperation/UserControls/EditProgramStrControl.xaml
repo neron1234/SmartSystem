@@ -42,7 +42,7 @@
         </Grid>
         <Grid Grid.Row="1" x:Name="programPathGrid">
             <!--<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Height="420" VerticalAlignment="Top">-->
-                <RichTextBox Margin="10" Background="#f8f6f6" Foreground="#292f33" FontSize="15" BorderThickness="0">
+                <RichTextBox Margin="10" Background="#f8f6f6" Foreground="#292f33" FontSize="15" BorderThickness="0" Height="520">
                     <FlowDocument>
                         <Paragraph>
                             <Run Text="{Binding ProgramStr}"/>
@@ -53,7 +53,7 @@
                     </RichTextBox.Effect>
                 </RichTextBox>
             <!--</ScrollViewer>-->
-            <cc:FlatProgressBar HorizontalAlignment="Right" Width="520" Margin="0 0 0 10" VerticalAlignment="Bottom" Height="10" Maximum="100" Minimum="0" Value="20" Background="#3d3d3d" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" >
+            <cc:FlatProgressBar HorizontalAlignment="Right" Width="520" Margin="0 0 0 10" VerticalAlignment="Bottom" Height="10"  Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="#3d3d3d" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" >
                 <cc:FlatProgressBar.LayoutTransform>
                     <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
                 </cc:FlatProgressBar.LayoutTransform>

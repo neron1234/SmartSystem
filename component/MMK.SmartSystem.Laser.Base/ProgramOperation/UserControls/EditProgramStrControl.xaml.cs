@@ -26,29 +26,14 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         public EditProgramStrViewModel EditProgramStrVM { get; set; } = new EditProgramStrViewModel();
         public EditProgramStrControl(string url){
             InitializeComponent();
-            Loaded += EditProgramStrControl_Loaded;
             this.DataContext = EditProgramStrVM;
             EditProgramStrVM.Url = url;
             EditProgramStrVM.CloseEvent += EditProgramStrVM_CloseEvent;
+            EditProgramStrVM.LoadProgramStr();
         }
 
         private void EditProgramStrVM_CloseEvent(){
             Messenger.Default.Send(new PopupMsg() { IsClose = true });
-        }
-
-        private async void EditProgramStrControl_Loaded(object sender, RoutedEventArgs e){
-            await Task.Factory.StartNew(new Action(() =>{
-                try{
-                    List<string> str = File.ReadAllLines(EditProgramStrVM.Url).ToList();
-                    EditProgramStrVM.ProgramStr = string.Join("  ", str.Take(100).ToArray());
-                }catch (Exception ex){
-                    Messenger.Default.Send(new Common.ViewModel.NotifiactionModel(){
-                        Title = "操作失败",
-                        Content = $"失败信息：{ex} {DateTime.Now}",
-                        NotifiactionType = Common.ViewModel.EnumPromptType.Error
-                    });
-                }
-            }));
         }
     }
 }
