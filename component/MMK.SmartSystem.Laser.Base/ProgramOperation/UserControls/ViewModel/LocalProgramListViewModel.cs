@@ -77,9 +77,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             this.Path = ProgramConfigConsts.LocalPath;
             pagingModel = new PagingModel<ProgramViewModel>();
             pagingModel.PagePagingEvent += PagingModel_PagePagingEvent;
-            GetFileName();
+
         }
 
+        public void Init()
+        {
+            GetFileName();
+        }
         private void PagingModel_PagePagingEvent(IEnumerable<ProgramViewModel> arg1, int arg2, int arg3)
         {
             this.ProgramList.Clear();
@@ -90,7 +94,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             PagePagingEvent?.Invoke();
         }
 
-        public void GetFileName()
+        private void GetFileName()
         {
             if (Directory.Exists(this.Path))
             {
@@ -116,8 +120,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }
         }
 
-        private double _CurrentPage;
-        public double CurrentPage
+        private int _CurrentPage;
+        public int CurrentPage
         {
             get { return _CurrentPage; }
             set
@@ -158,12 +162,18 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
         public void DataPaging()
         {
-            pagingModel.Init(LocalProgramList, (d) => d.CreateTime, PageNumber);
+            pagingModel.Init(LocalProgramList, (d) => d.CreateTime, 1, PageNumber);
         }
+        public void RefreshPage()
+        {
+            pagingModel.Init(LocalProgramList, (d) => d.CreateTime, CurrentPage, PageNumber);
 
+        }
         public string ConnectId { get; set; }
 
         public event Action<LocalProgramListViewModel, ProgramViewModel> UploadClickEvent;
+
+        public event Action<string, ProgramViewModel> DeleteProgramEvent;
         public ICommand UpLoadCommand
         {
             get
@@ -190,6 +200,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                     {
                         SelectedProgramViewModel = null;
                         ProgramList.Clear();
+                        CurrentPage = 0;
+                        TotalPage = 0;
                         LocalProgramList.Clear();
                         this.Path = folderDialog.SelectedPath.Trim();
                         ProgramConfigConsts.LocalPath = Path;
@@ -212,11 +224,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    if (File.Exists(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name)))
-                    {
-                        File.Delete(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
-                        GetFileName();
-                    }
+                    DeleteProgramEvent?.Invoke(Path, SelectedProgramViewModel);
+
                 });
             }
         }

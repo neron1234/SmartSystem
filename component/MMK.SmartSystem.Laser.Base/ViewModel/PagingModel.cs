@@ -16,34 +16,38 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
         private int Total = 0;
 
         public event Action<IEnumerable<TSource>, int, int> PagePagingEvent;
-        public void Init<TKey>(IEnumerable<TSource> source, Func<TSource, TKey> keySelector, int maxSize = 10)
+        public void Init<TKey>(IEnumerable<TSource> source, Func<TSource, TKey> keySelector, int defaultPage = 1, int maxSize = 10)
         {
 
-            Source = source.OrderBy(keySelector).ToList();
+            if (keySelector != null)
+            {
+                Source = source?.OrderBy(keySelector).ToList();
+
+            }
+            else
+            {
+                Source = source?.ToList();
+            }
             Source = Source ?? new List<TSource>();
             MaxSize = maxSize;
             Total = Source.Count;
             TotalPage = Convert.ToInt32(Math.Ceiling(Total * 1.0 / MaxSize));
             if (TotalPage > 0)
             {
-                FirstPage();
+                if (defaultPage == 1)
+                {
+                    FirstPage();
+
+                }
+                else
+                {
+                    LinkPage(defaultPage);
+
+                }
 
             }
         }
 
-        public void Init(IEnumerable<TSource> source, int maxSize = 10)
-        {
-            Source = source.ToList();
-            Source = Source ?? new List<TSource>();
-            MaxSize = maxSize;
-            Total = Source.Count;
-            TotalPage = Convert.ToInt32(Math.Ceiling(Total * 1.0 / MaxSize));
-            if (TotalPage > 0)
-            {
-                FirstPage();
-
-            }
-        }
 
         public bool NextPage()
         {
@@ -51,9 +55,10 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
             {
                 return false;
             }
-            int maxNum = Total >= (CurrentPage + 1) * MaxSize ? MaxSize : Total - (CurrentPage * MaxSize);
-            var list = Source.Skip(CurrentPage * MaxSize).Take(maxNum);
             CurrentPage++;
+            int maxNum = CurrentPage < TotalPage ? MaxSize : Total - (CurrentPage - 1) * MaxSize;
+
+            var list = Source.Skip((CurrentPage - 1) * MaxSize).Take(maxNum);
 
             PagePagingEvent?.Invoke(list, CurrentPage, TotalPage);
             return true;
@@ -76,7 +81,7 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
         public void FirstPage()
         {
             CurrentPage = 1;
-            int maxNum = Total >= CurrentPage * MaxSize ? MaxSize : Total;
+            int maxNum = Total >= MaxSize ? MaxSize : Total;
             var list = Source?.Take(maxNum);
             PagePagingEvent?.Invoke(list, CurrentPage, TotalPage);
         }
@@ -93,6 +98,19 @@ namespace MMK.SmartSystem.Laser.Base.ViewModel
             {
                 FirstPage();
             }
+
+        }
+
+        public void LinkPage(int pageIndex)
+        {
+            if (pageIndex > TotalPage)
+            {
+                pageIndex = TotalPage;
+            }
+            CurrentPage = pageIndex;
+            int maxNum = CurrentPage < TotalPage ? MaxSize : Total - (CurrentPage - 1) * MaxSize;
+            var list = Source.Skip((CurrentPage - 1) * MaxSize).Take(maxNum);
+            PagePagingEvent?.Invoke(list, CurrentPage, TotalPage);
 
         }
     }

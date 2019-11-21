@@ -100,7 +100,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public void DataPaging(bool next = false)
         {
-            pagingModel.Init(LocalProgramList, (d) => d.CreateTime, PageNumber);
+            pagingModel.Init(LocalProgramList, (d) => d.CreateTime, 1, PageNumber);
         }
 
         private PagingModel<ProgramViewModel> pagingModel;
@@ -125,6 +125,11 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             CurrentPage = 0;
             TotalPage = 0;
             LocalProgramList.Clear();
+        }
+        public void RefreshPage()
+        {
+            pagingModel.Init(LocalProgramList, (d) => d.CreateTime, CurrentPage, PageNumber);
+
         }
         private void PagingModel_PagePagingEvent(IEnumerable<ProgramViewModel> arg1, int arg2, int arg3)
         {

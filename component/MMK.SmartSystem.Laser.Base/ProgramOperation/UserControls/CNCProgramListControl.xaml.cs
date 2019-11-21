@@ -74,52 +74,48 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 
         private void CpViewModel_DeleteProgramEvent()
         {
-            if (cpViewModel.CurrentSelectModel != null)
+            string message = $"确定删除 【{cpViewModel.CNCPath}】目录下的【{cpViewModel.CurrentSelectModel.Name}】 程序吗？";
+            var confirm = new ConfirmControl(message);
+            var popup = new PopupWindow(confirm, 480, 180, "删除CNC程序");
+            confirm.ConfirmOkEvent += () =>
             {
-                string message = $"确定删除 【{cpViewModel.CNCPath}】目录下的【{cpViewModel.CurrentSelectModel.Name}】 程序吗？";
-                var confirm = new ConfirmControl(message);
-                var popup = new PopupWindow(confirm, 480, 180, "删除CNC程序");
-                confirm.ConfirmOkEvent += () =>
+                RealReadWriterEvent?.Invoke(new HubReadWriterModel()
                 {
-                    RealReadWriterEvent?.Invoke(new HubReadWriterModel()
-                    {
-                        ProxyName = "ProgramTransferInOut",
-                        Action = "DeleteProgram",
-                        Id = "deleteProgram",
-                        SuccessTip = $"成功删除 【{cpViewModel.CNCPath}】目录【{cpViewModel.CurrentSelectModel.Name}】 程序！",
-                        Data = new object[] { $"{cpViewModel.CNCPath}{cpViewModel.CurrentSelectModel.Name}" }
-                    });
-                    popup.Close();
-                };
-                confirm.ConfirmCancelEvent += () => popup.Close();
-                popup.ShowDialog();
-
-            }
+                    ProxyName = "ProgramTransferInOut",
+                    Action = "DeleteProgram",
+                    Id = "deleteProgram",
+                    SuccessTip = $"成功删除 【{cpViewModel.CNCPath}】目录【{cpViewModel.CurrentSelectModel.Name}】 程序！",
+                    Data = new object[] { $"{cpViewModel.CNCPath}{cpViewModel.CurrentSelectModel.Name}" }
+                });
+                var obj = cpViewModel.LocalProgramList.FirstOrDefault(d => d.Name == cpViewModel.CurrentSelectModel.Name) ?? new ProgramViewModel();
+                cpViewModel.LocalProgramList.Remove(obj);
+                cpViewModel.RefreshPage();
+                popup.Close();
+            };
+            confirm.ConfirmCancelEvent += () => popup.Close();
+            popup.ShowDialog();
         }
 
         private void CpViewModel_MainCommandEvent()
         {
-            if (cpViewModel.CurrentSelectModel != null)
+            string message = $"确定设置 【{cpViewModel.CNCPath}】目录下的【{cpViewModel.CurrentSelectModel.Name}】 为主程序吗？";
+            var confirm = new ConfirmControl(message);
+            var popup = new PopupWindow(confirm, 480, 180, "设置主程序");
+            confirm.ConfirmOkEvent += () =>
             {
-                string message = $"确定设置 【{cpViewModel.CNCPath}】目录下的【{cpViewModel.CurrentSelectModel.Name}】 为主程序吗？";
-                var confirm = new ConfirmControl(message);
-                var popup = new PopupWindow(confirm, 480, 180, "设置主程序");
-                confirm.ConfirmOkEvent += () =>
+                RealReadWriterEvent?.Invoke(new HubReadWriterModel()
                 {
-                    RealReadWriterEvent?.Invoke(new HubReadWriterModel()
-                    {
-                        ProxyName = "ProgramTransferInOut",
-                        Action = "MainProgramToCNC",
-                        Id = "mainProgramToCNC",
-                        SuccessTip = $"成功设置 【{cpViewModel.CNCPath}】目录【{cpViewModel.CurrentSelectModel.Name}】 程序为当前CNC主程序！",
+                    ProxyName = "ProgramTransferInOut",
+                    Action = "MainProgramToCNC",
+                    Id = "mainProgramToCNC",
+                    SuccessTip = $"成功设置 【{cpViewModel.CNCPath}】目录【{cpViewModel.CurrentSelectModel.Name}】 程序为当前CNC主程序！",
 
-                        Data = new object[] { $"{cpViewModel.CNCPath}{cpViewModel.CurrentSelectModel.Name}" }
-                    });
-                    popup.Close();
-                };
-                confirm.ConfirmCancelEvent += () => popup.Close();
-                popup.ShowDialog();
-            }
+                    Data = new object[] { $"{cpViewModel.CNCPath}{cpViewModel.CurrentSelectModel.Name}" }
+                });
+                popup.Close();
+            };
+            confirm.ConfirmCancelEvent += () => popup.Close();
+            popup.ShowDialog();
         }
 
         private void CpViewModel_SetCNCProgramPath()

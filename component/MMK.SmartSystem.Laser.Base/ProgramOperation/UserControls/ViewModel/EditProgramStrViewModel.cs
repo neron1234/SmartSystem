@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
-    public class EditProgramStrViewModel:ViewModelBase
+    public class EditProgramStrViewModel : ViewModelBase
     {
         public EditProgramStrViewModel()
         {
@@ -34,15 +34,21 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public event Action PagePagingEvent;
 
-        public async void LoadProgramStr(){
-            await Task.Factory.StartNew(new Action(() => {
-                try{
+        public async void LoadProgramStr()
+        {
+            await Task.Factory.StartNew(new Action(() =>
+            {
+                try
+                {
                     var strList = System.IO.File.ReadAllLines(this.Url).ToList();
                     strList.ForEach(d => ProgramStrList.Add(new ProgramStr() { Str = d }));
                     this.DataPaging();
                     //this.ProgramStr = string.Join("  ", str.Take(100).ToArray());
-                }catch (Exception ex){
-                    Messenger.Default.Send(new Common.ViewModel.NotifiactionModel(){
+                }
+                catch (Exception ex)
+                {
+                    Messenger.Default.Send(new Common.ViewModel.NotifiactionModel()
+                    {
                         Title = "操作失败",
                         Content = $"失败信息：{ex} {DateTime.Now}",
                         NotifiactionType = Common.ViewModel.EnumPromptType.Error
@@ -51,8 +57,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             }));
         }
 
-        public void DataPaging(){
-            pagingModel.Init(ProgramStrList, PageNumber);
+        public void DataPaging()
+        {
+            pagingModel.Init<object>(ProgramStrList, null, 1, PageNumber);
         }
 
         private int _CurrentPage;
@@ -118,7 +125,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             get
             {
-                return new RelayCommand(() => {
+                return new RelayCommand(() =>
+                {
                     pagingModel.LastPage();
                 });
             }
@@ -128,14 +136,15 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             get
             {
-                return new RelayCommand(() => {
+                return new RelayCommand(() =>
+                {
                     pagingModel.NextPage();
                 });
             }
         }
     }
 
-    public class ProgramStr:ViewModelBase
+    public class ProgramStr : ViewModelBase
     {
         public string Str { get; set; }
     }
