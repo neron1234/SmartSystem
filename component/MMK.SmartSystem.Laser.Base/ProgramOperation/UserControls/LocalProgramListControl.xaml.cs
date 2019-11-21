@@ -45,7 +45,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
         private bool IsLoadedTemp = false;
         private void LocalProgramListControl_Loaded(object sender, RoutedEventArgs e)
         {
-            lpViewModel.DataPaging();
+            lpViewModel.pagingModel.CyclePage();
             if (IsLoadedTemp){
                 Loaded -= LocalProgramListControl_Loaded;
             }
