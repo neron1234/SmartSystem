@@ -44,6 +44,8 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 
         public PagingModel<ProgramViewModel> pagingModel;
 
+        public event Action PagePagingEvent;
+
         public string Path { get; set; }
 
         public event Action CheckedProgramEvent;
@@ -63,6 +65,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             arg1.ToList().ForEach(d => ProgramList.Add(d));
             CurrentPage = arg2;
             TotalPage = arg3;
+            PagePagingEvent?.Invoke();
         }
 
         public void GetFileName(){

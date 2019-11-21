@@ -40,8 +40,18 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             this.DataContext = lpViewModel = new LocalProgramListViewModel();
             lpViewModel.UploadClickEvent += LpViewModel_UploadClickEvent;
             lpViewModel.CheckedProgramEvent += CheckedLocalProgram;
+            lpViewModel.PagePagingEvent += LpViewModel_PagePagingEvent;
             Loaded += LocalProgramListControl_Loaded;
         }
+
+        private void LpViewModel_PagePagingEvent()
+        {
+            if (lpViewModel.LocalProgramList.Count > 0)
+            {
+                ProgramGrid.SelectedIndex = 0;
+            }
+        }
+
         private bool IsLoadedTemp = false;
         private void LocalProgramListControl_Loaded(object sender, RoutedEventArgs e)
         {
