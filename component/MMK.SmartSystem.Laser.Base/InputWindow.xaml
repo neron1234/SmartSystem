@@ -7,7 +7,7 @@
         xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="460" Width="458" Background="#eeeeee" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#3d3d3d"
+        Title="{Binding Title}" Height="460" Width="458" Background="#d9d9d9" FontSize="20" FontFamily="思源黑体 CN Medium" Foreground="#3d3d3d"
         WindowStyle="None" WindowStartupLocation="CenterScreen"  MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary>
@@ -45,7 +45,7 @@
                 </i:Interaction.Triggers>
                 <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal" x:Name="wPanel" VerticalAlignment="Center">
                     <TextBlock Text="I" Foreground="#FDCD00" Margin="10 0 15 0" />
-                    <TextBlock Text="{Binding Title}" x:Name="tTxt" Width="385" Foreground="#BCCEC2"/>
+                    <TextBlock Text="{Binding Title}" x:Name="tTxt" Width="385" Foreground="#3d3d3d"/>
                     <cc:PathIconButton Style="{StaticResource IconBtn}" Grid.Row="0" Background="Transparent" Width="30" x:Name="btnClose" 
                                                     PathData="{StaticResource Icon_Close}" HorizontalAlignment="Right"
                                                     PathWidth="18" NormalPathColor="#333333"

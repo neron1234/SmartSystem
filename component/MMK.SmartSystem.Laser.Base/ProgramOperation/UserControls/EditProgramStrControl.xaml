@@ -5,75 +5,64 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
+             xmlns:edit="http://icsharpcode.net/sharpdevelop/avalonedit"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-              d:DesignHeight="600" d:DesignWidth="1000" FontSize="20" FontFamily="思源黑体 CN Medium"  Foreground="#3d3d3d" Background="#eeeeee">
+              d:DesignHeight="600" d:DesignWidth="1000" FontSize="20" FontFamily="思源黑体 CN Medium"  Foreground="#3d3d3d" Background="#d9d9d9">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml" />
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/ScrollViewDictionary.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/TextEditorDictionary.xaml" />
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/ProgressBar/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button" x:Key="KeyCodeBtnStyle" BasedOn="{StaticResource IconBtnStyle2}">
+                <Setter Property="Width" Value="42"/>
+                <Setter Property="Height" Value="85"/>
+                <Setter Property="Margin" Value="3 3 1 3"/>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="6*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" x:Name="programPathGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="540"/>
-                <RowDefinition Height="60"/>
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" x:Name="programPathGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal"  Grid.Column="0">
-                <cc:FlatProgressBar Width="520" Margin="0 0 0 10" VerticalAlignment="Bottom" Height="10"  Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="#3d3d3d" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" >
+                <edit:TextEditor x:Name="MyTextEditor"  Margin="0 2 0 5" Background="#f8f6f6" Foreground="#292f33" 
+                                  FontSize="15" BorderThickness="0" Height="345" Width="695" BorderBrush="Transparent"
+                                  Padding="8 10 8 10" 
+                                  cc:TouchKeyBoard.TouchKeyBoard="True"
+                                  HorizontalScrollBarVisibility="Hidden"
+                                  SyntaxHighlighting="TEX" Template="{DynamicResource TextEditorControlTemplate1}">
+                    <edit:TextEditor.Effect>
+                        <DropShadowEffect ShadowDepth="0" BlurRadius="25" Color="Black"/>
+                    </edit:TextEditor.Effect>
+                    <!--<i:Interaction.Behaviors>
+                        <cc:AvalonEditBehaviour GiveMeTheText="{Binding ProgramStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </i:Interaction.Behaviors>-->
+                </edit:TextEditor>
+                <!--<cc:FlatProgressBar Width="520" Margin="2 0 0 10" VerticalAlignment="Bottom" Height="10"  Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="#FFBDBDBD" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" >
                     <cc:FlatProgressBar.LayoutTransform>
                         <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
                     </cc:FlatProgressBar.LayoutTransform>
-                </cc:FlatProgressBar>
-                <RichTextBox Margin="0 10 0 10" Background="#f8f6f6" Foreground="#292f33" FontSize="15" BorderThickness="0" Height="520" Width="380" Padding="5" >
-                    <FlowDocument PageWidth="370">
-                        <Paragraph>
-                            <Run Text="{Binding ProgramStr}"/>
-                        </Paragraph>
-                    </FlowDocument>
-                    <RichTextBox.Effect>
-                        <DropShadowEffect ShadowDepth="0" BlurRadius="25" Color="Black"/>
-                    </RichTextBox.Effect>
-                </RichTextBox>
+                </cc:FlatProgressBar>-->
             </StackPanel>
-            <StackPanel Grid.Row="1" Margin="0 0 0 0" Orientation="Horizontal">
-                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="保存" Margin="10 0 5 0" />
+            <StackPanel Grid.Column="1" Margin="0 0 0 10" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="保存" Margin="10 0 5 0" Command="{Binding SaveCommand}"/>
                 <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="取消" Margin="5 0 10 0" Command="{Binding CancelCommand}"/>
-                <Button Style="{StaticResource IconBtnStyle2}" Width="50" Height="50" Margin="16 4 5 0" Command="{Binding LastColumnsCommand}">
-                    <WrapPanel>
-                        <Path Data="{StaticResource TopTriangleIcon}" Width="12" Height="10" Fill="#d2d5d8" Stretch="Fill"/>
-                    </WrapPanel>
-                </Button>
-                <Button Style="{StaticResource IconBtnStyle2}" Width="50" Height="50" Margin="5 4 10 0" Command="{Binding NestColumnsCommand}">
-                    <WrapPanel>
-                        <Path Data="{StaticResource BottomTriangleIcon}" Width="12" Height="10" Fill="#d2d5d8" Stretch="Fill"/>
-                    </WrapPanel>
-                </Button>
             </StackPanel>
         </Grid>
-        <Grid Grid.Column="1">
-            <Border CornerRadius="5,5,5,5" Background="Black" Width="590" Height="400">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3 3 1 3" Content="Q"/>
-                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
-                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
-                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
-                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
-                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
-                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
-                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
-                        <Button Style="{StaticResource IconBtnStyle2}" Width="32" Height="60" Margin="3" Content="Q"/>
-                    </StackPanel>
-                </StackPanel>
+        <Grid Grid.Row="1">
+            <Border CornerRadius="5,5,5,5" Background="Black">
+                <cc:TouchKeyBoard Height="240"/>
             </Border>
         </Grid>
     </Grid>
