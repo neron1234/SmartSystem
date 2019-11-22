@@ -10,7 +10,8 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
 {
-    public class MacroManualItemViewModel: CncResultViewModel<ReadMacroResultItemModel>{
+    public class MacroManualItemViewModel : CncResultViewModel<ReadMacroResultItemModel>
+    {
         public string Id { get; set; }
 
         public string Title { get; set; }
@@ -20,10 +21,13 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
         public int MaxValue { get; set; } = 100;
 
         private string _value;
-        public string Value{
+        public string Value
+        {
             get { return _value; }
-            set{
-                if (_value != value){
+            set
+            {
+                if (_value != value)
+                {
                     _value = value;
                     RaisePropertyChanged(() => Value);
                 }
@@ -31,14 +35,16 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation.ViewModel
         }
 
         public event Action<MacroManualItemViewModel> InputClickEvent;
-        public ICommand InputCommand{
+        public ICommand InputCommand
+        {
             get
             {
                 return new RelayCommand(() => InputClickEvent?.Invoke(this));
             }
         }
 
-        public MacroManualItemViewModel(){
+        public MacroManualItemViewModel()
+        {
             Value = "0";
         }
     }

@@ -21,16 +21,12 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
     /// </summary>
     public partial class HeaderStatusControl : UserControl
     {
-        public HeaderStatusViewModel  headerVM { get; set; }
+        public HeaderStatusViewModel headerVM { get; private set; }
         public HeaderStatusControl()
         {
             InitializeComponent();
-            this.DataContext = headerVM = new HeaderStatusViewModel ();
+            DataContext = headerVM = new HeaderStatusViewModel();
         }
 
-        private void btnMinWindow_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

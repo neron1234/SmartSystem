@@ -36,9 +36,7 @@ namespace MMK.SmartSystem.Laser.Base.MachineOperation
             manualControl.SetHeaderActive(this);
         }
 
-        protected async override void PageSignlarLoaded(){
-            //await Sleep();
-        }
+      
 
         //private async Task Sleep()
         //{

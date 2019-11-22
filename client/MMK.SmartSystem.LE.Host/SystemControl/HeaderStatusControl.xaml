@@ -10,7 +10,7 @@
              d:DesignHeight="45" d:DesignWidth="1366" FontFamily="思源黑体 CN Medium" Foreground="#FFB6BEC3" Background="#FF3B3B3B">
 
     <UserControl.Resources>
-        <Converters:StringToImageSourceConverter x:Key="ImageConverter" />
+        <Converters:ImageCoverter x:Key="ImageConverter" />
     </UserControl.Resources>
 
     <Grid Grid.Row="0" Grid.ColumnSpan="2" >
@@ -42,6 +42,11 @@
 
             <TextBlock Text="激光" Margin="14 14 6 14" FontSize="14"/>
             <Image Source="{Binding Path=LaserImg,Converter={StaticResource ImageConverter}}" Width="13" Height="13" Margin="0 18 30 14" />
+
+            <Border Margin="10" BorderBrush="#FFB6BEC3" BorderThickness="1" CornerRadius="2" Width="50">
+                <TextBlock Text="{Binding Mode}" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            </Border>
 
             <TextBlock Text="{Binding SystemTime}" Margin="14 14 20 14" FontSize="14" />
 

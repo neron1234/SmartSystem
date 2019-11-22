@@ -20,8 +20,17 @@ namespace MMK.SmartSystem.LE.Host.Converters
             if (!string.IsNullOrEmpty(path))
             {
 
-                string temp = $"pack://application:,,,/MMK.SmartSystem.LE.Host;component/Resources/Images/menu-{path}.png";
-                return new BitmapImage(new Uri(temp));
+                string temp = $"pack://application:,,,/MMK.SmartSystem.LE.Host;component/Resources/Images/{path}.png";
+                try
+                {
+                    return new BitmapImage(new Uri(temp));
+
+                }
+                catch (Exception)
+                {
+
+                    return null;
+                }
             }
             else
             {

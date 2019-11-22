@@ -41,10 +41,11 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         public string Url { get; set; }
         public string Permission { get; set; }
 
+
         private string _icon;
         public string Icon
         {
-            get { return _icon; }
+            get { return "menu-" + _icon; }
             set
             {
                 if (_icon != value)
