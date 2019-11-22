@@ -61,11 +61,10 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
              {
                  //btnMaxWindow.PathData = pg;
              });
-
         }
+
         public void ChangeWPFPage(PageChangeModel pageChange)
         {
-
             if (pageChange.Page == PageEnum.WPFPage && pageChange.FullType != null)
             {
                 try
@@ -73,7 +72,6 @@ namespace MMK.SmartSystem.LE.Host.SystemControl
                     headTitle.UpdateTitle(pageChange.Title);
                     var page = iocManager.Resolve(pageChange.FullType);
                     MainViewModel.MainFrame = page;
-
                 }
                 catch (Exception ex)
                 {

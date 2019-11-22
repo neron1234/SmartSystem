@@ -29,11 +29,17 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             this.DataContext = EditProgramStrVM;
             EditProgramStrVM.Url = url;
             EditProgramStrVM.CloseEvent += EditProgramStrVM_CloseEvent;
+            EditProgramStrVM.InputKeyCodeEvent += EditProgramStrVM_InputKeyCodeEvent;
             EditProgramStrVM.LoadProgramStr();
         }
 
         private void EditProgramStrVM_CloseEvent(){
             Messenger.Default.Send(new PopupMsg() { IsClose = true });
+        }
+
+        private void EditProgramStrVM_InputKeyCodeEvent(string keyCode)
+        {
+
         }
     }
 }

@@ -290,6 +290,10 @@
     <Compile Include="CustomControl\ToggleButton\Implementation\FlatToggleButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\IconToggleButton.cs" />
     <Compile Include="CustomControl\ToggleButton\Implementation\ZToggleButton.cs" />
+    <Compile Include="CustomControl\TouchKeyBoard\MySendKeys.cs" />
+    <Compile Include="CustomControl\TouchKeyBoard\TouchKeyBoard.xaml.cs">
+      <DependentUpon>TouchKeyBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\Utils\CommonUtil.cs" />
     <Compile Include="CustomControl\Utils\DateTimeHelper.cs" />
     <Compile Include="CustomControl\Utils\DialogHelper.cs" />
@@ -309,6 +313,7 @@
     <Compile Include="CustomControl\ZoomableCanvas\VirtualPanel.cs" />
     <Compile Include="CustomControl\ZoomableCanvas\ZoomableCanvas.cs" />
     <Compile Include="Embed\Appcontainer.cs" />
+    <Compile Include="Embed\Simulation.cs" />
     <Compile Include="Embed\Win32Api.cs" />
     <Compile Include="EventHandler\CuttingDataHandler.cs" />
     <Compile Include="EventHandler\EdgeCuttingHandler.cs" />
@@ -594,6 +599,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomControl\ToggleButton\Themes\IconToggleButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomControl\TouchKeyBoard\TouchKeyBoard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -949,6 +958,10 @@
       <Project>{A7A51F2B-A45E-489D-B8B2-2A42BAAD8E1B}</Project>
       <Name>MMK.SmartSystem.WebCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ICSharpCode.AvalonEdit\ICSharpCode.AvalonEdit.csproj">
+      <Project>{6c55b776-26d4-4db3-a6ab-87e783b2f3d1}</Project>
+      <Name>ICSharpCode.AvalonEdit</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomControl\Popup\Themes\" />
@@ -956,6 +969,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetFileName)"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"
+copy "ICSharpCode.AvalonEdit.dll"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"
 copy "*.json"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"
 </PostBuildEvent>
   </PropertyGroup>

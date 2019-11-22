@@ -13,6 +13,9 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
 {
     public class EditProgramStrViewModel:ViewModelBase
     {
+        public event Action PagePagingEvent;
+        public event Action<string> InputKeyCodeEvent;
+
         public EditProgramStrViewModel()
         {
             pagingModel = new PagingModel<ProgramStr>();
@@ -24,15 +27,13 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             this.ProgramStrList.Clear();
             arg1.ToList().ForEach(d => ProgramStrList.Add(d));
-            this.ProgramStr = string.Join(@" ", ProgramStrList.Select(n => n.Str));
+            this.ProgramStr = string.Join(@" &#13; ", ProgramStrList.Select(n => n.Str));
             CurrentPage = arg2;
             TotalPage = arg3;
             PagePagingEvent?.Invoke();
         }
 
         private PagingModel<ProgramStr> pagingModel;
-
-        public event Action PagePagingEvent;
 
         public async void LoadProgramStr(){
             await Task.Factory.StartNew(new Action(() => {
@@ -130,6 +131,18 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             {
                 return new RelayCommand(() => {
                     pagingModel.NextPage();
+                });
+            }
+        }
+
+        public ICommand InputKeyCommand
+        {
+            get
+            {
+                return new RelayCommand<string>((str) => {
+                    //Embed.Keyboard.Type(str);
+                    //Keyboard.IsKeyDown(Key.A);
+                    InputKeyCodeEvent.Invoke(str);
                 });
             }
         }
