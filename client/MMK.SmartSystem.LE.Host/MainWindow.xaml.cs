@@ -8,6 +8,7 @@ using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SignalrProxy;
 using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.LE.Host.CustomControl;
+using MMK.SmartSystem.LE.Host.MainHome;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;

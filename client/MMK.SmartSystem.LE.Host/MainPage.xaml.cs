@@ -23,13 +23,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MMK.SmartSystem.LE.Host
+namespace MMK.SmartSystem.LE.Host.MainHome
 {
     /// <summary>
     /// MainPage.xaml 的交互逻辑
     /// </summary>
     public partial class MainPage : SignalrPage
     {
+        public override string GetModule => "MainHome";
+
         private MainWindowViewModel MainViewModel = new MainWindowViewModel();
         private Notifiaction notifiaction = new Notifiaction();
         SignalrRouteProxyClient signalrRouteProxyClient;

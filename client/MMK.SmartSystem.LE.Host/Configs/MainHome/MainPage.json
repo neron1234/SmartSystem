@@ -1,0 +1,77 @@
+{
+  "PageName": "MainPage",
+  "EventNodes": [
+    {
+      "Kind": "ReadPmc",
+      "Type": "ReadPmcModel",
+      "CncReadDecopliler": {
+        "Decompilers": {
+          "Type": "DecompReadPmcItemModel",
+          "Data": [
+            {
+              "Id": "mainPage_devicestate",
+              "AdrType": 12,
+              "DataType": "Byte",
+              "StartAdr": 1018,
+              "Bit": 0
+            },
+            {
+              "Id": "mainPage_servostate",
+              "AdrType": 12,
+              "DataType": "Byte",
+              "StartAdr": 1020,
+              "Bit": 0
+            },
+            {
+              "Id": "mainPage_laserstate",
+              "AdrType": 12,
+              "DataType": "Byte",
+              "StartAdr": 1022,
+              "Bit": 0
+            },
+            {
+              "Id": "mainPage_mode",
+              "AdrType": 12,
+              "DataType": "Byte",
+              "StartAdr": 1010,
+              "Bit": 0
+            }
+          ]
+        },
+        "Readers": {
+          "Type": "ReadPmcTypeModel",
+          "Data": []
+        }
+      }
+    },
+    {
+      "Kind": "ReadProgramName",
+      "Type": "ReadProgramNameModel",
+      "CncReadDecopliler": {
+        "Decompilers": {
+          "Type": "List<string>",
+          "Data": [ "mainPage_ProgramName" ]
+        },
+        "Readers": {
+          "Type": "List<string>",
+          "Data": [ "mainPage_ProgramName" ]
+        }
+      }
+    },
+    {
+      "Kind": "ReadAlarm",
+      "Type": "ReadAlarmModel",
+      "CncReadDecopliler": {
+        "Decompilers": {
+          "Type": "List<string>",
+          "Data": [ "mainPage_ReadAlarm" ]
+        },
+        "Readers": {
+          "Type": "List<string>",
+          "Data": [ "mainPage_ReadAlarm" ]
+        }
+      }
+    }
+
+  ]
+}
