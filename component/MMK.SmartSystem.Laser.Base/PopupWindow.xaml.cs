@@ -31,7 +31,7 @@ namespace MMK.SmartSystem.Laser.Base
             popupWindowViewModel.PopupContent = userControl;
             Closed += PopupWindow_Closed;
             this.Width = PopupGrid.Width = this.wPanel.Width = width;
-            this.Height = PopupGrid.Height = height + 104;
+            this.Height = PopupGrid.Height = height + 64;
             this.tTxt.Width = this.wPanel.Width - 80;
             popupWindowViewModel.Title = title;
 
@@ -42,6 +42,7 @@ namespace MMK.SmartSystem.Laser.Base
                 }
                 popupWindowViewModel.Message = s.Msg;
                 UserControlFinishEvent?.Invoke();
+                Close();
             });
         }
 

@@ -5,13 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls"
              xmlns:cc="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl"
+             xmlns:edit="http://icsharpcode.net/sharpdevelop/avalonedit"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
-              d:DesignHeight="600" d:DesignWidth="1000" FontSize="20" FontFamily="思源黑体 CN Medium"  Foreground="#3d3d3d" Background="#eeeeee">
+              d:DesignHeight="600" d:DesignWidth="1000" FontSize="20" FontFamily="思源黑体 CN Medium"  Foreground="#3d3d3d" Background="#d9d9d9">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/BtnStyleDictionary.xaml" />
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/ScrollViewDictionary.xaml" />
+                <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Style/TextEditorDictionary.xaml" />
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/Resources/PathGeometry.xaml"/>
                 <ResourceDictionary Source="/MMK.SmartSystem.Laser.Base;component/CustomControl/ProgressBar/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
@@ -23,116 +26,43 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="45*"/>
-            <ColumnDefinition Width="55*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" x:Name="programPathGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="540"/>
-                <RowDefinition Height="60"/>
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" x:Name="programPathGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal"  Grid.Column="0">
-                <RichTextBox Margin="0 10 0 10" Background="#f8f6f6" Foreground="#292f33" FontSize="15" BorderThickness="0" Height="520" Width="440" Padding="8 10 8 10" >
-                    <FlowDocument PageWidth="424">
-                        <Paragraph>
-                            <Run Text="{Binding ProgramStr}"/>
-                        </Paragraph>
-                    </FlowDocument>
-                    <RichTextBox.Effect>
+                <edit:TextEditor x:Name="MyTextEditor"  Margin="0 2 0 5" Background="#f8f6f6" Foreground="#292f33" 
+                                  FontSize="15" BorderThickness="0" Height="345" Width="695" BorderBrush="Transparent"
+                                  Padding="8 10 8 10" 
+                                  cc:TouchKeyBoard.TouchKeyBoard="True"
+                                  HorizontalScrollBarVisibility="Hidden"
+                                  SyntaxHighlighting="TEX" Template="{DynamicResource TextEditorControlTemplate1}">
+                    <edit:TextEditor.Effect>
                         <DropShadowEffect ShadowDepth="0" BlurRadius="25" Color="Black"/>
-                    </RichTextBox.Effect>
-                </RichTextBox>
-                <cc:FlatProgressBar Width="520" Margin="2 0 0 10" VerticalAlignment="Bottom" Height="10"  Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="#FFBDBDBD" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" >
+                    </edit:TextEditor.Effect>
+                    <!--<i:Interaction.Behaviors>
+                        <cc:AvalonEditBehaviour GiveMeTheText="{Binding ProgramStr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </i:Interaction.Behaviors>-->
+                </edit:TextEditor>
+                <!--<cc:FlatProgressBar Width="520" Margin="2 0 0 10" VerticalAlignment="Bottom" Height="10"  Maximum="{Binding TotalPage}" Minimum="0" Value="{Binding CurrentPage}" Background="#FFBDBDBD" Foreground="#FDCD00" BorderThickness="0" x:Name="WorkProgressBar" >
                     <cc:FlatProgressBar.LayoutTransform>
                         <RotateTransform CenterX="0.5" CenterY="0.5" Angle="90"/>
                     </cc:FlatProgressBar.LayoutTransform>
-                </cc:FlatProgressBar>
+                </cc:FlatProgressBar>-->
             </StackPanel>
-            <StackPanel Grid.Row="1" Margin="0 0 0 0" Orientation="Horizontal">
-                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="保存" Margin="10 0 5 0" />
+            <StackPanel Grid.Column="1" Margin="0 0 0 10" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="保存" Margin="10 0 5 0" Command="{Binding SaveCommand}"/>
                 <Button Style="{StaticResource IconBtnStyle2}" Width="120" Height="42" Content="取消" Margin="5 0 10 0" Command="{Binding CancelCommand}"/>
-                <Button Style="{StaticResource IconBtnStyle2}" Width="50" Height="42" Margin="45 0 5 0" Command="{Binding LastColumnsCommand}">
-                    <WrapPanel>
-                        <Path Data="{StaticResource TopTriangleIcon}" Width="12" Height="10" Fill="#d2d5d8" Stretch="Fill"/>
-                    </WrapPanel>
-                </Button>
-                <Button Style="{StaticResource IconBtnStyle2}" Width="50" Height="42" Margin="5 0 10 0" Command="{Binding NestColumnsCommand}">
-                    <WrapPanel>
-                        <Path Data="{StaticResource BottomTriangleIcon}" Width="12" Height="10" Fill="#d2d5d8" Stretch="Fill"/>
-                    </WrapPanel>
-                </Button>
             </StackPanel>
         </Grid>
-        <Grid Grid.Column="1">
-            <TextBox Width="400" Height="45" VerticalAlignment="Top" Margin="0 15 0 0"/>
-            <Border CornerRadius="5,5,5,5" Background="Black" Width="550" Height="455">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="1" Command="{Binding InputKeyCommand}" CommandParameter="1"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="2" Command="{Binding InputKeyCommand}" CommandParameter="2"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="3" Command="{Binding InputKeyCommand}" CommandParameter="3"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="4" Command="{Binding InputKeyCommand}" CommandParameter="4"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="5" Command="{Binding InputKeyCommand}" CommandParameter="5"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="6" Command="{Binding InputKeyCommand}" CommandParameter="6"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="7" Command="{Binding InputKeyCommand}" CommandParameter="7"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="8" Command="{Binding InputKeyCommand}" CommandParameter="8"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="9" Command="{Binding InputKeyCommand}" CommandParameter="9"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="0" Command="{Binding InputKeyCommand}" CommandParameter="0"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="." Command="{Binding InputKeyCommand}" CommandParameter="."/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="-" Command="{Binding InputKeyCommand}" CommandParameter="-"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="Q" Command="{Binding InputKeyCommand}" CommandParameter="Q"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="W" Command="{Binding InputKeyCommand}" CommandParameter="W"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="E" Command="{Binding InputKeyCommand}" CommandParameter="E"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="R" Command="{Binding InputKeyCommand}" CommandParameter="R"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="T" Command="{Binding InputKeyCommand}" CommandParameter="T"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="Y" Command="{Binding InputKeyCommand}" CommandParameter="Y"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="U" Command="{Binding InputKeyCommand}" CommandParameter="U"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="I" Command="{Binding InputKeyCommand}" CommandParameter="I"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="O" Command="{Binding InputKeyCommand}" CommandParameter="O"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="P" Command="{Binding InputKeyCommand}" CommandParameter="P"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="←" Command="{Binding InputKeyCommand}" CommandParameter="←" Width="87" FontSize="30"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="A" Command="{Binding InputKeyCommand}" CommandParameter="A"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="S" Command="{Binding InputKeyCommand}" CommandParameter="S"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="D" Command="{Binding InputKeyCommand}" CommandParameter="D"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="F" Command="{Binding InputKeyCommand}" CommandParameter="F"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="G" Command="{Binding InputKeyCommand}" CommandParameter="G"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="H" Command="{Binding InputKeyCommand}" CommandParameter="H"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="J" Command="{Binding InputKeyCommand}" CommandParameter="J"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="K" Command="{Binding InputKeyCommand}" CommandParameter="K"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="L" Command="{Binding InputKeyCommand}" CommandParameter="L"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="enter" Command="{Binding InputKeyCommand}" CommandParameter="enter" Width="133"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="capslock" Command="{Binding InputKeyCommand}" CommandParameter="capslock" Width="87"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="Z" Command="{Binding InputKeyCommand}" CommandParameter="Z"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="X" Command="{Binding InputKeyCommand}" CommandParameter="X"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="C" Command="{Binding InputKeyCommand}" CommandParameter="C"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="V" Command="{Binding InputKeyCommand}" CommandParameter="V"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="B" Command="{Binding InputKeyCommand}" CommandParameter="B"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="N" Command="{Binding InputKeyCommand}" CommandParameter="N"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="M" Command="{Binding InputKeyCommand}" CommandParameter="M"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="UP" Command="{Binding InputKeyCommand}" CommandParameter="UP"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="上" Command="{Binding InputKeyCommand}" CommandParameter="上"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="DN" Command="{Binding InputKeyCommand}" CommandParameter="DN"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="#" Command="{Binding InputKeyCommand}" CommandParameter="#"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="%" Command="{Binding InputKeyCommand}" CommandParameter="%"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="(" Command="{Binding InputKeyCommand}" CommandParameter="("/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content=")" Command="{Binding InputKeyCommand}" CommandParameter=")"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="Space" Command="{Binding InputKeyCommand}" CommandParameter="Space" Width="133"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="," Command="{Binding InputKeyCommand}" CommandParameter=","/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content=";" Command="{Binding InputKeyCommand}" CommandParameter=";"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="左" Command="{Binding InputKeyCommand}" CommandParameter="左"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="下" Command="{Binding InputKeyCommand}" CommandParameter="下"/>
-                        <Button Style="{StaticResource KeyCodeBtnStyle}" Content="右" Command="{Binding InputKeyCommand}" CommandParameter="右"/>
-                    </StackPanel>
-                </StackPanel>
+        <Grid Grid.Row="1">
+            <Border CornerRadius="5,5,5,5" Background="Black">
+                <cc:TouchKeyBoard Height="240"/>
             </Border>
         </Grid>
     </Grid>

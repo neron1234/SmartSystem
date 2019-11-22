@@ -42,8 +42,32 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             lpViewModel.CheckedProgramEvent += CheckedLocalProgram;
             lpViewModel.PagePagingEvent += LpViewModel_PagePagingEvent;
             lpViewModel.DeleteProgramEvent += LpViewModel_DeleteProgramEvent;
+            lpViewModel.EditProgramEvent += LpViewModel_EditProgramEvent;
             Loaded += LocalProgramListControl_Loaded;
             lpViewModel.Init();
+        }
+
+        private void LpViewModel_EditProgramEvent()
+        {
+            if (lpViewModel.SelectedProgramViewModel == null)
+            {
+                return;
+            }
+            //System.Diagnostics.Process.Start(@"Notepad.exe", System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
+            var ep = new EditProgramStrControl(System.IO.Path.Combine(lpViewModel.Path, lpViewModel.SelectedProgramViewModel.Name));
+            var popup = new PopupWindow(ep, 1000, 600, "编辑程序");
+            popup.UserControlFinishEvent += Popup_UserControlFinishEvent;
+            popup.ShowDialog();
+        }
+        private void Popup_UserControlFinishEvent()
+        {
+            Messenger.Default.Send(new Common.ViewModel.NotifiactionModel()
+            {
+                Title = "操作成功",
+                Content = $"编辑本地程序【{lpViewModel.SelectedProgramViewModel.Name}】成功",
+                NotifiactionType = Common.ViewModel.EnumPromptType.Success
+            });
+            ReadFileText();
         }
 
         private void LpViewModel_DeleteProgramEvent(string arg1, ProgramViewModel arg2)
@@ -155,6 +179,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             if (selected != null && selected is ProgramViewModel)
             {
                 lpViewModel.SelectedProgramViewModel = (ProgramViewModel)selected;
+                ReadFileText();
                 #region 本地图形显示测试
                 //Messenger.Default.Send(lpViewModel.SelectedProgramViewModel);
 
@@ -182,22 +207,26 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 //    }
                 //}
                 #endregion
-                StringBuilder sb = new StringBuilder();
-                using (StreamReader reader = new StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name))
-                {
-                    var line = reader.ReadLine();
-                    for (int i = 0; i < 22; i++)
-                    {
-                        if (line != null)
-                        {
-                            line = reader.ReadLine();
-                            sb.AppendLine(line);
-                        }
-                    }
-                    reader.Dispose();
-                }
-                Messenger.Default.Send(sb);
             }
+        }
+
+        private void ReadFileText()
+        {
+            StringBuilder sb = new StringBuilder();
+            using (StreamReader reader = new StreamReader(lpViewModel.Path + @"\" + lpViewModel.SelectedProgramViewModel.Name))
+            {
+                var line = reader.ReadLine();
+                for (int i = 0; i < 22; i++)
+                {
+                    if (line != null)
+                    {
+                        line = reader.ReadLine();
+                        sb.AppendLine(line);
+                    }
+                }
+                reader.Dispose();
+            }
+            Messenger.Default.Send(sb);
         }
 
         public bool CanWork(HubReadWriterResultModel resultModel)

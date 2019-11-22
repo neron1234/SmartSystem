@@ -63,6 +63,9 @@
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AvalonEdit.6.0.0\lib\net45\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
     <Reference Include="JetBrains.Annotations, Version=2018.3.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.2018.3.0\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
@@ -237,6 +240,7 @@
     <Compile Include="Converters\StringToImageSourceConverter.cs" />
     <Compile Include="Converters\StringToPathColorConverter.cs" />
     <Compile Include="Converters\ValueIsZeroConverter.cs" />
+    <Compile Include="CustomControl\AvalonEditBehaviour.cs" />
     <Compile Include="CustomControl\Behaviors\MaskLayerBehavior.cs" />
     <Compile Include="CustomControl\Behaviors\TextCompleteDisplayBehavior.cs" />
     <Compile Include="CustomControl\Button\Implementation\FlatButton.cs" />
@@ -313,7 +317,6 @@
     <Compile Include="CustomControl\ZoomableCanvas\VirtualPanel.cs" />
     <Compile Include="CustomControl\ZoomableCanvas\ZoomableCanvas.cs" />
     <Compile Include="Embed\Appcontainer.cs" />
-    <Compile Include="Embed\Simulation.cs" />
     <Compile Include="Embed\Win32Api.cs" />
     <Compile Include="EventHandler\CuttingDataHandler.cs" />
     <Compile Include="EventHandler\EdgeCuttingHandler.cs" />
@@ -858,6 +861,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Style\TextEditorDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -958,10 +965,6 @@
       <Project>{A7A51F2B-A45E-489D-B8B2-2A42BAAD8E1B}</Project>
       <Name>MMK.SmartSystem.WebCommon</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ICSharpCode.AvalonEdit\ICSharpCode.AvalonEdit.csproj">
-      <Project>{6c55b776-26d4-4db3-a6ab-87e783b2f3d1}</Project>
-      <Name>ICSharpCode.AvalonEdit</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomControl\Popup\Themes\" />
@@ -969,7 +972,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetFileName)"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"
-copy "ICSharpCode.AvalonEdit.dll"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"
 copy "*.json"  "$(SolutionDir)\client\MMK.SmartSystem.LE.Host\$(OutDir)\plugins"
 </PostBuildEvent>
   </PropertyGroup>

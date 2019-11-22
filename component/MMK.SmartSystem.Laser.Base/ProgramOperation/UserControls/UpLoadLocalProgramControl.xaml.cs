@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using Abp.Events.Bus;
 using MMK.SmartSystem.Common.EventDatas;
 using Newtonsoft.Json.Linq;
+using Keyboard = System.Windows.Input.Keyboard;
 
 namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
 {

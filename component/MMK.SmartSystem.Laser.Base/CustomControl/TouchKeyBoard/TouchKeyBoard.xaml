@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MMK.SmartSystem.Laser.Base.CustomControl" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="1200" Background="Transparent">
+             d:DesignHeight="300" d:DesignWidth="1200" Background="Black">
     <UserControl.Resources>
         <Style x:Key="MyFocusVisual">
             <Setter Property="Control.Template">
@@ -21,22 +21,21 @@
         </Style>
 
         <Style x:Key="ShadowStyle">
-            <Setter Property="Control.Foreground" Value="LightGray" />
+            <Setter Property="Control.Foreground" Value="#dfe5e9" />
         </Style>
 
         <Style x:Key="InformButton" TargetType="{x:Type Button}">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Margin" Value="1"/>
-            <Setter Property="FontFamily" Value="Corbel"/>
-            <Setter Property="FontSize" Value="20px"/>
+            <Setter Property="Background" Value="#4c4b4b"/>
+            <Setter Property="Foreground" Value="#dfe5e9" />
+            <Setter Property="FontFamily" Value="思源黑体 CN Bold"/>
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
-            <Setter Property="Background" >
+            <Setter Property="Effect">
                 <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
-                        <GradientStop Color="#FF0EFF1D" Offset="0.059"/>
-                        <GradientStop Color="#FFF7FFF7" Offset="1"/>
-                    </LinearGradientBrush>
+                    <DropShadowEffect Color="#303030" Direction="280" ShadowDepth="2" Opacity="0.5" BlurRadius="5"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="Template">
@@ -46,15 +45,37 @@
                 		BorderThickness="0"
                 		Padding="0" 
                 		CornerRadius="1" Height="Auto" Width="Auto" 
-                        Background="{StaticResource DefaultPanel_SCB}"
-                        SnapsToDevicePixels="False" BorderBrush="#FFA6A6A6">
+                        SnapsToDevicePixels="False" BorderBrush="Black">
                             <Grid >
                                 <ContentPresenter HorizontalAlignment="Center"  
                 				VerticalAlignment="Center"  x:Name="contentShadow" 
                 				Style="{StaticResource ShadowStyle}"/>
                                 <ContentPresenter HorizontalAlignment="Center"  
-                				VerticalAlignment="Center" x:Name="content"/>
+                				VerticalAlignment="Center" x:Name="content">
+                                    <ContentPresenter.Resources>
+                                        <Style TargetType="ContentPresenter">
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="Black" Direction="280" ShadowDepth="1.5" Opacity="1" BlurRadius="1" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ContentPresenter.Resources>
+                                </ContentPresenter>
                             </Grid>
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#595959" Offset="0.1" />
+                                    <GradientStop Color="#535353" Offset="0.2" />
+                                    <GradientStop Color="#4c4c4c" Offset="0.3" />
+                                    <GradientStop Color="#444444" Offset="0.4" />
+                                    <GradientStop Color="#3d3d3d" Offset="0.5" />
+                                    <GradientStop Color="#353535" Offset="0.6" />
+                                    <GradientStop Color="#2f2f2f" Offset="0.7" />
+                                    <GradientStop Color="#282828" Offset="0.8" />
+                                    <GradientStop Color="#212121" Offset="0.9" />
+                                </LinearGradientBrush>
+                            </Border.Background>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -109,14 +130,16 @@
         </Style>
 
         <Style x:Key="ShadowStyle_ToggleButton">
-            <Setter Property="Control.Foreground" Value="LightGray" />
+            <Setter Property="Control.Foreground" Value="#dfe5e9" />
         </Style>
 
         <Style x:Key="InformButton_ToggleButton" TargetType="{x:Type ToggleButton}">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Margin" Value="1"/>
-            <Setter Property="FontFamily" Value="Corbel"/>
-            <Setter Property="FontSize" Value="20px"/>
+            <Setter Property="Background" Value="#4c4b4b"/>
+            <Setter Property="Foreground" Value="#dfe5e9" />
+            <Setter Property="FontFamily" Value="思源黑体 CN Bold"/>
+            <Setter Property="FontSize" Value="20" />
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual_ToggleButton}" />
             <Setter Property="Background" >
@@ -127,22 +150,49 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#303030" Direction="280" ShadowDepth="2" Opacity="0.5" BlurRadius="5"/>
+                </Setter.Value>
+            </Setter>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
                         <Border x:Name="border" 
                 		BorderThickness="0"
                 		Padding="0" 
-                		CornerRadius="1" Height="Auto" Width="Auto" 
-                        Background="{StaticResource DefaultPanel_SCB}"
-                        SnapsToDevicePixels="False" BorderBrush="{StaticResource DefaultPanel_SCB}">
-                            <Grid >
+                		Height="Auto" Width="Auto" 
+                        SnapsToDevicePixels="False" CornerRadius="5,5,5,5">
+                        <Grid >
                                 <ContentPresenter HorizontalAlignment="Center"  
                 				VerticalAlignment="Center"  x:Name="contentShadow" 
                 				Style="{StaticResource ShadowStyle_ToggleButton}"/>
                                 <ContentPresenter HorizontalAlignment="Center"  
-                				VerticalAlignment="Center" x:Name="content"/>
+                				VerticalAlignment="Center" x:Name="content">
+                                    <ContentPresenter.Resources>
+                                        <Style TargetType="ContentPresenter">
+                                            <Setter Property="Effect">
+                                                <Setter.Value>
+                                                    <DropShadowEffect Color="Black" Direction="280" ShadowDepth="1.5" Opacity="1" BlurRadius="1" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ContentPresenter.Resources>
+                                </ContentPresenter>
                             </Grid>
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#595959" Offset="0.1" />
+                                    <GradientStop Color="#535353" Offset="0.2" />
+                                    <GradientStop Color="#4c4c4c" Offset="0.3" />
+                                    <GradientStop Color="#444444" Offset="0.4" />
+                                    <GradientStop Color="#3d3d3d" Offset="0.5" />
+                                    <GradientStop Color="#353535" Offset="0.6" />
+                                    <GradientStop Color="#2f2f2f" Offset="0.7" />
+                                    <GradientStop Color="#2E2E2E" Offset="0.8" />
+                                    <GradientStop Color="#2B2B2B" Offset="0.9" />
+                                </LinearGradientBrush>
+                            </Border.Background>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">

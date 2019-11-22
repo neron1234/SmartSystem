@@ -70,6 +70,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
         public event Action CheckedProgramEvent;
+        public event Action EditProgramEvent;
 
         public LocalProgramListViewModel()
         {
@@ -77,7 +78,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             this.Path = ProgramConfigConsts.LocalPath;
             pagingModel = new PagingModel<ProgramViewModel>();
             pagingModel.PagePagingEvent += PagingModel_PagePagingEvent;
-
         }
 
         public void Init()
@@ -263,13 +263,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
             {
                 return new RelayCommand(() =>
                 {
-                    if (this.SelectedProgramViewModel == null)
-                    {
-                        return;
-                    }
-                    //System.Diagnostics.Process.Start(@"Notepad.exe", System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
-                    var ep = new EditProgramStrControl(System.IO.Path.Combine(this.Path, this.SelectedProgramViewModel.Name));
-                    new PopupWindow(ep, 1000, 600, "编辑程序").ShowDialog();
+                    EditProgramEvent.Invoke();
                 });
             }
         }

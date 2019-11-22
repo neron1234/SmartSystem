@@ -1492,7 +1492,7 @@ namespace MMK.SmartSystem.Laser.Base.CustomControl
         {
             get
             {
-                var position = Mouse.GetPosition(this);
+                var position = System.Windows.Input.Mouse.GetPosition(this);
                 if (ApplyTransform)
                 {
                     return position;
