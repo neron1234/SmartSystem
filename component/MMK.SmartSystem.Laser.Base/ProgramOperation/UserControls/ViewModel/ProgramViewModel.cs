@@ -57,7 +57,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         private string _Size;
         public string Size
         {
-            get { return _Size; }
+            get { return GetSizeString(Convert.ToInt32(_Size)); }
             set
             {
                 if (_Size != value)
@@ -165,6 +165,20 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         {
             this.IsUpLoad = true;
             this.ProgramName = name;
+        }
+        private string GetSizeString(long size)
+        {
+            var num = 1024.0;
+            if (size < num)
+                return size + "B";
+            if (size < Math.Pow(num, 2))
+                return (size / num).ToString("f1") + "K";
+            if (size < Math.Pow(num, 3))
+                return (size / Math.Pow(num, 2)).ToString("f1") + "M";
+            if (size < Math.Pow(num, 4))
+                return (size / Math.Pow(num, 3)).ToString("f1") + "G";
+
+            return (size / Math.Pow(num, 4)).ToString("f1") + "T";
         }
     }
 }

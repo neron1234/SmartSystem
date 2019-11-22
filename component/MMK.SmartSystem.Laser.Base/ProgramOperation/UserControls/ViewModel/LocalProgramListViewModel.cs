@@ -111,7 +111,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
                         Name = f.Name,
                         FillName = f.FullName,
                         CreateTime = f.CreationTime.ToString("MM-dd HH:mm"),
-                        Size = GetFileSize(f.Length),
+                        Size = f.Length.ToString(),
                         StatusImg = "/MMK.SmartSystem.LE.Host;component/Resources/Images/Status_Blue.png"
                     };
                     this.LocalProgramList.Add(program);
@@ -286,19 +286,6 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls.ViewModel
         }
 
 
-        public static string GetFileSize(long size)
-        {
-            var num = 1024.0;
-            if (size < num)
-                return size + "B";
-            if (size < Math.Pow(num, 2))
-                return (size / num).ToString("f1") + "K";
-            if (size < Math.Pow(num, 3))
-                return (size / Math.Pow(num, 2)).ToString("f1") + "M";
-            if (size < Math.Pow(num, 4))
-                return (size / Math.Pow(num, 3)).ToString("f1") + "G";
 
-            return (size / Math.Pow(num, 4)).ToString("f1") + "T";
-        }
     }
 }

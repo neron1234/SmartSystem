@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {
-    public class HeaderStatusViewModel :ViewModelBase
+    public class HeaderStatusViewModel : ViewModelBase
     {
         private string _ServoImg;
         public string ServoImg
@@ -70,7 +70,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         }
 
         private System.Windows.Threading.DispatcherTimer TimeTimer { get; set; }
-        public HeaderStatusViewModel ()
+        public HeaderStatusViewModel()
         {
             LaserImg = "/MMK.SmartSystem.LE.Host;component/Resources/Images/Status_Green.png";
             MachineImg = "/MMK.SmartSystem.LE.Host;component/Resources/Images/Status_Blue.png";
@@ -90,15 +90,19 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         {
             get
             {
-                return new RelayCommand(() => {
+                return new RelayCommand(() =>
+                {
                     Environment.Exit(0);
                 });
             }
         }
 
-        public ICommand HomeCommand{
-            get{
-                return new RelayCommand(() => {
+        public ICommand HomeCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
                     Messenger.Default.Send(new PageChangeModel() { Url = "/", Page = PageEnum.WebPage });
                 });
             }

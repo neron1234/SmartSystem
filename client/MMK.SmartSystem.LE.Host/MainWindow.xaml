@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MMK.SmartSystem.LE.Host.SystemControl"
         xmlns:embed="clr-namespace:MMK.SmartSystem.LE.Host.Embed"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
@@ -15,11 +14,9 @@
         </Grid.RowDefinitions>
         <embed:AppContainer x:Name="ctnTest"  Width="1366" Height="768" BorderThickness="0"  />
         <Viewbox Stretch="None" x:Name="viewBox" Width="1366" Height="768">
-            <local:MainHomeControl x:Name="mainHome" Width="1366" Height="768"></local:MainHomeControl>
+            <Frame x:Name="mainFrame"  BorderThickness="0" NavigationUIVisibility="Hidden" />
         </Viewbox>
-        <Viewbox Width="1366" Height="768" Visibility="Collapsed" x:Name="WarningView">
-            <local:CNCWarningMsgListControl  Width="1366" Height="768"/>
-        </Viewbox>
+
         <Image gif:ImageBehavior.AnimatedSource="main-loading.gif" Width="400" Height="400" x:Name="loadImage"/>
     </Grid>
 </Window>
