@@ -75,28 +75,23 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
         {
 
             var ret = Focas1.cnc_pdf_slctmain(flib, file);
-            if (ret == 0)
-            {
-                return new Tuple<short, string>(0, null);
-            }
-            else
-            {
-                return new Tuple<short, string>(ret, $"设定主程序错误,返回:{ret}");
-            }
+            
+            if (ret == 5) return new Tuple<short, string>(ret, $"设定主程序错误,文件名称错误或者文件未找到");
+            if (ret == 12) return new Tuple<short, string>(ret, $"设定主程序错误,操作方式错误");
+            if (ret != 0) return new Tuple<short, string>(ret, $"设定主程序错误,{GetGeneralErrorMessage(ret)}");
+            return new Tuple<short, string>(0, null);
         }
 
         public Tuple<short, string> DeleteProgram(ushort flib, string file)
         {
 
             var ret = Focas1.cnc_pdf_del(flib, file);
-            if (ret == 0)
-            {
-                return new Tuple<short, string>(0, null);
-            }
-            else
-            {
-                return new Tuple<short, string>(ret, $"删除程序错误,返回:{ret}");
-            }
+            if (ret == 5) return new Tuple<short, string>(ret, $"删除程序错误,文件名称错误或者文件未找到");
+            if (ret == 7) return new Tuple<short, string>(ret, $"删除程序错误,写保护");
+            if (ret == 13) return new Tuple<short, string>(ret, $"删除程序错误,CNC正在执行程序或者CNC处于急停状态");
+            if (ret != 0) return new Tuple<short, string>(ret, $"删除程序错误,{GetGeneralErrorMessage(ret)}");
+            return new Tuple<short, string>(0, null);
+
         }
     }
 }
