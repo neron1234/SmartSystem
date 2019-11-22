@@ -13,14 +13,15 @@ namespace MMK.SmartSystem.CNC.Core.DeviceHelpers
         {
             //data.RegNum = 0;
             var ret = ReadSubProgramFolder(flib, true, ref data);
-            if (ret == 0)
-            {
-                return new Tuple<short, string>(0, null);
-            }
-            else
-            {
-                return new Tuple<short, string>(ret, $"获得程序目录列表错误,返回:{ret}");
-            }
+
+            if (ret == -1) return new Tuple<short, string>(ret, $"获得程序目录列表错误,CNC忙碌");
+            if (ret == 3) return new Tuple<short, string>(ret, $"获得程序目录列表错误,子目录错误");
+            if (ret == 4) return new Tuple<short, string>(ret, $"获得程序目录列表错误,功能错误");
+            if (ret == 5) return new Tuple<short, string>(ret, $"获得程序目录列表错误,文件夹未找到");
+            if (ret == 13) return new Tuple<short, string>(ret, $"获得程序目录列表错误,CNC拒绝执行");
+            if (ret != 0) return new Tuple<short, string>(ret, $"获得程序目录列表错误,{GetGeneralErrorMessage(ret)}");
+
+            return new Tuple<short, string>(0, null);
         }
 
         public short ReadSubProgramFolder(ushort flib,  bool drill,  ref ReadProgramFolderItemModel data)

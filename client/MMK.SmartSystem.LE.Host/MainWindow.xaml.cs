@@ -8,6 +8,7 @@ using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SignalrProxy;
 using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.LE.Host.CustomControl;
+using MMK.SmartSystem.LE.Host.MainHome;
 using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
 using System;
@@ -36,177 +37,85 @@ namespace MMK.SmartSystem.LE.Host
     {
         private const int LoadMaxTime = 10;
         int loadTask = 0;
-        IIocManager iocManager;
-        SignalrRouteProxyClient signalrRouteProxyClient;
         LoadWindow loadWindow;
 
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        public static extern int SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
-        [System.Runtime.InteropServices.DllImport("user32.dll", SetLastError = true)]
-        public static extern UInt32 GetWindowLong(IntPtr hWnd, int nIndex);
-
-        public MainWindow(IIocManager iocManager)
+        MainPage mainPage;
+        public MainWindow(IocManager iocManager)
         {
-            this.iocManager = iocManager;
-
             InitializeComponent();
-            signalrRouteProxyClient = new SignalrRouteProxyClient();
-            signalrRouteProxyClient.RouteErrorEvent += SignalrRouteProxyClient_RouteErrorEvent;
-            signalrRouteProxyClient.GetHomeEvent += SignalrRouteProxyClient_GetHomeEvent;
-            this.Loaded += MainWindow_Loaded;
-            this.Closed += MainWindow_Closed;
-
-            //以下代码不能放到构造函数里，否则窗体丙柄为0
-            System.Windows.Interop.WindowInteropHelper wndHelper = new System.Windows.Interop.WindowInteropHelper(this);
-            IntPtr HWND = wndHelper.Handle;
-            int GWL_EXSTYLE = -20;
-            //GetWindowLong(HWND, GWL_EXSTYLE);
-            SetWindowLong(HWND, GWL_EXSTYLE, (IntPtr)(0x8000000)); //让当前窗体不获取输入焦点
+            mainPage = new MainPage(iocManager);
+            Loaded += MainWindow_Loaded;
+            mainPage.WebOrHostDisplayEvent += MainPage_WebOrHostDisplayEvent;
+            mainFrame.Content = mainPage;
         }
 
-        private void SignalrRouteProxyClient_GetHomeEvent(string obj)
+        private void MainPage_WebOrHostDisplayEvent(Visibility arg1, Visibility arg2)
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                ctnTest.Visibility = Visibility.Collapsed;
-                viewBox.Visibility = Visibility.Visible;
-                if (this.mainHome.mainFrame.Content == null)
-                {
-                    SmartSystemLEConsts.SystemModules.First()?.MainMenuViews.First()?.OpenCommand.Execute(SmartSystemLEConsts.SystemModules.First()?.MainMenuViews.First());
-                }
+                ctnTest.Visibility = arg1;
+                viewBox.Visibility = arg2;
             }));
         }
 
-        private void SignalrRouteProxyClient_RouteErrorEvent(string obj)
-        {
-
-        }
-
-        private async void MainWindow_Closed(object sender, EventArgs e)
-        {
-            await signalrRouteProxyClient.Close();
-            Environment.Exit(0);
-        }
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             //ctnTest.Visibility = Visibility.Hidden;
             //viewBox.Visibility = Visibility.Collapsed;
 
             ctnTest.Visibility = Visibility.Hidden;
-            viewBox.Visibility = Visibility.Visible;
-            loadImage.Visibility = Visibility.Collapsed;
+            viewBox.Visibility = Visibility.Collapsed;
+            loadImage.Visibility = Visibility.Visible;
 
-            mainHome.InitMessenger(iocManager);
-            InitMessager();
-
-            Task.Factory.StartNew(async () => await signalrRouteProxyClient.Start());
-            Task.Factory.StartNew(async () => await AutoLogin());
-            //Task.Factory.StartNew(new Action(() => loadWebApp()));
-
-            //Task.Factory.StartNew(new Action(() => loadWebApp()));
-        }
-
-        private void InitMessager()
-        {
-            Messenger.Default.Register<PageChangeModel>(this, (type) =>
-            {
-                Dispatcher.BeginInvoke(new Action(() => pageChange(type)));
-            });
-            Messenger.Default.Register<WindowStatus>(this, (ws) =>
-            {
-                switch (ws)
-                {
-                    case WindowStatus.Max:
-                        if (this.WindowState == WindowState.Maximized)
-                        {
-                            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                            this.WindowState = WindowState.Normal;
-                            Messenger.Default.Send((PathGeometry)FindResource("maxWindowIcon"));
-                        }
-                        else
-                        {
-                            this.WindowState = WindowState.Maximized;
-                            Messenger.Default.Send((PathGeometry)FindResource("normalWindowIcon"));
-                        }
-                        mainHome.Width = this.Width;
-                        mainHome.Height = this.Height;
-                        viewBox.Width = this.Width;
-                        viewBox.Height = this.Height;
-                        break;
-                    case WindowStatus.Min:
-                        this.WindowState = WindowState.Minimized;
-                        break;
-                    default:
-                        break;
-                }
-            });
-
-            // 获取全局系统通知
             Messenger.Default.Register<MainSystemNoticeModel>(this, (model) =>
             {
                 LoadNotice(model);
             });
 
-            Messenger.Default.Register<WaringMsgPopup>(this, (pv) =>
-            {
-                new PopupWindow().ShowDialog();
-            });
+            Task.Factory.StartNew(async () => await AutoLogin());
+
+            Task.Factory.StartNew(new Action(() => loadWebApp()));
         }
         private void LoadNotice(MainSystemNoticeModel model)
         {
-            Action loadCloseAction = () =>{
-                Dispatcher.BeginInvoke(new Action(() =>{
-                    if (loadWindow != null){
+            Action loadCloseAction = () =>
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    if (loadWindow != null)
+                    {
                         loadWindow.Close();
                         loadWindow = null;
                     }
                 }));
             };
 
-            if (model.EventType == EventEnum.StartLoad){
-                if (loadWindow == null){
+            if (model.EventType == EventEnum.StartLoad)
+            {
+                if (loadWindow == null)
+                {
                     loadWindow = new LoadWindow();
-                    Task.Factory.StartNew(new Action(async () =>{
+                    Task.Factory.StartNew(new Action(async () =>
+                    {
                         await Task.Delay(LoadMaxTime * 1000);
                         loadCloseAction();
 
                     }));
-                    Dispatcher.BeginInvoke(new Action(() =>{
+                    Dispatcher.BeginInvoke(new Action(() =>
+                    {
                         loadWindow.ShowDialog();
 
                     }));
                 }
                 return;
             }
-            if (model.EventType == EventEnum.EndLoad) {
+            if (model.EventType == EventEnum.EndLoad)
+            {
                 Thread.Sleep(1000);
                 loadCloseAction();
             }
         }
 
-        private void pageChange(PageChangeModel changeModel)
-        {
-            if (changeModel.Page == PageEnum.WPFPage){
-                ctnTest.Visibility = Visibility.Hidden;
-                viewBox.Visibility = Visibility.Visible;
-                mainHome.ChangeWPFPage(changeModel);
-
-            }else if (changeModel.Page == PageEnum.WebPage){
-                ctnTest.Visibility = Visibility.Visible;
-                viewBox.Visibility = Visibility.Hidden;
-                Task.Factory.StartNew(() => EventBus.Default.Trigger(new NavigateEventData()
-                {
-                    Url = changeModel.Url,
-                    NavigateType = NavigateEnum.Url
-                }));
-            }else if (changeModel.Page == PageEnum.WebComponet){
-                Task.Factory.StartNew(() => EventBus.Default.Trigger(new NavigateEventData()
-                {
-                    NavigateType = NavigateEnum.Component,
-                    ComponentDto = changeModel.ComponentDto
-                }));
-            }
-        }
 
         private void loadWebApp()
         {

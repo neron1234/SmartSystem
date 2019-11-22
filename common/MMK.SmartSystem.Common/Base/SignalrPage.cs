@@ -27,7 +27,6 @@ namespace MMK.SmartSystem.Common.Base
         protected string CurrentConnectId;
         public virtual bool IsRequestResponse { get; }
         public virtual string GetModule { get; }
-        public IIocManager manager { set; get; }
         public abstract List<object> GetResultViewModelMap();
         public abstract void CncOnError(string message);
         public SignalrPage()
@@ -37,12 +36,12 @@ namespace MMK.SmartSystem.Common.Base
             signalrProxyClient.CncErrorEvent += SignalrProxyClient_CncErrorEvent;
             signalrProxyClient.HubRefreshModelEvent += SignalrProxyClient_HubRefreshModelEvent;
             signalrProxyClient.HubReaderWriterResultEvent += SignalrProxyClient_HubReaderWriterResultEvent;
-            this.Loaded += SignalrPage_Loaded;
-            this.Unloaded += SignalrPage_Unloaded;
+            Loaded += SignalrPage_Loaded;
+            Unloaded += SignalrPage_Unloaded;
 
         }
 
-        protected virtual void SignalrProxyClient_HubReaderWriterResultEvent(WebCommon.HubModel.HubReadWriterResultModel obj)
+        protected virtual void SignalrProxyClient_HubReaderWriterResultEvent(HubReadWriterResultModel obj)
         {
 
         }
@@ -55,11 +54,11 @@ namespace MMK.SmartSystem.Common.Base
             return await signalrProxyClient.SendAction<T>(actionName, message);
         }
 
-        private async void SignalrPage_Unloaded(object sender, System.Windows.RoutedEventArgs e)
+        protected virtual async  void SignalrPage_Unloaded(object sender, System.Windows.RoutedEventArgs e)
         {
             await signalrProxyClient.Close();
         }
-        private void SignalrProxyClient_HubRefreshModelEvent(WebCommon.HubModel.HubResultModel obj)
+        private void SignalrProxyClient_HubRefreshModelEvent(HubResultModel obj)
         {
             JObject jobject = JObject.Parse(obj.Data.ToString());
             var listMap = GetResultViewModelMap();
