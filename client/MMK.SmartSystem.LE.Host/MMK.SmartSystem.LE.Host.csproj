@@ -374,9 +374,6 @@
     <Compile Include="SystemControl\HeaderTitleWarnControl.xaml.cs">
       <DependentUpon>HeaderTitleWarnControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SystemControl\MainHomeControl.xaml.cs">
-      <DependentUpon>MainHomeControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SystemControl\ModuleMenuControl1106.xaml.cs">
       <DependentUpon>ModuleMenuControl1106.xaml</DependentUpon>
     </Compile>
@@ -598,10 +595,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SystemControl\MainHomeControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="SystemControl\ModuleMenuControl1106.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -670,6 +663,10 @@
     <ProjectReference Include="..\..\Common\MMK.SmartSystem.Common\MMK.SmartSystem.Common.csproj">
       <Project>{233a97df-08b0-4635-b0dc-231f84ab10c5}</Project>
       <Name>MMK.SmartSystem.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\MMK.SmartSystem.WebCommon\MMK.SmartSystem.WebCommon.csproj">
+      <Project>{A7A51F2B-A45E-489D-B8B2-2A42BAAD8E1B}</Project>
+      <Name>MMK.SmartSystem.WebCommon</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

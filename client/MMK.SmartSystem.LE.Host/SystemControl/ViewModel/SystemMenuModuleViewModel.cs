@@ -51,6 +51,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         }
 
         public string Icon { get; set; }
+
         public string BackColor { get; set; }
         public int Sort { get; set; }
 
@@ -58,9 +59,9 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 
         public void MenuItemClick(MainMenuViewModel item)
         {
-            MainMenuViews.ToList().ForEach(d=>d.MenuClearActive());
+            MainMenuViews.ToList().ForEach(d => d.MenuClearActive());
             item.MenuActive();
-            
+
         }
 
         public ICommand OpenCommand

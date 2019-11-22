@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Row="0" Grid.ColumnSpan="3"  Background="#FF2D2D2D">
-            <local:HeaderStatusControl />
+            <local:HeaderStatusControl x:Name="headerStatusControl"/>
         </Grid>
 
         <Grid Grid.Row="1">

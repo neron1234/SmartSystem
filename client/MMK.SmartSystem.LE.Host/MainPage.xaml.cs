@@ -7,7 +7,9 @@ using MMK.SmartSystem.Common.Model;
 using MMK.SmartSystem.Common.SignalrProxy;
 using MMK.SmartSystem.Common.ViewModel;
 using MMK.SmartSystem.LE.Host.CustomControl;
+using MMK.SmartSystem.LE.Host.SystemControl.ViewModel;
 using MMK.SmartSystem.LE.Host.ViewModel;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -144,7 +146,27 @@ namespace MMK.SmartSystem.LE.Host.MainHome
         }
         public override List<object> GetResultViewModelMap()
         {
-            return default;
+            return new List<object>()
+            {
+                new SingalrResultMapModel<ReadPmcResultItemModel>()
+                {
+                    ViewModels=headerStatusControl.headerVM,
+                    MapType=SignalrMapModelEnum.AutoPropMap,
+                    AutoPropMapAction=(n,s)=>n.FirstOrDefault(d=>d.Id.Equals(s,StringComparison.OrdinalIgnoreCase))?.Value
+                },
+                new SingalrResultMapModel<ReadProgramNameResultModel>()
+                {
+                     ViewModels=new HeaderTitleProgram(),
+                     MapType=SignalrMapModelEnum.CustomAction,
+                     MapAction=(d)=>headTitle.SetProgram(d.FirstOrDefault()?.Value.Name)
+                },
+                new SingalrResultMapModel<ReadAlarmResultModel>()
+                {
+                    ViewModels=new HeaderTitleAlarm(),
+                    MapType=SignalrMapModelEnum.CustomAction,
+                    MapAction=(d)=>headTitle.SetAlarm(d)
+                }
+            };
         }
 
         public override void CncOnError(string message)

@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace MMK.SmartSystem.LE.Host.ViewModel
 {
-    public class MainWindowViewModel:ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
         private object _mainFrame;
         public object MainFrame
@@ -30,24 +30,7 @@ namespace MMK.SmartSystem.LE.Host.ViewModel
             }
         }
 
-        private object _PopupControl;
-        public object PopupControl
-        {
-            get { return _PopupControl; }
-            set
-            {
-                if (_PopupControl != value)
-                {
-                    _PopupControl = value;
-                    RaisePropertyChanged(() => PopupControl);
-                }
-            }
-        }
+
     }
 
-    public enum WindowStatus
-    {
-        Max,
-        Min
-    }
 }

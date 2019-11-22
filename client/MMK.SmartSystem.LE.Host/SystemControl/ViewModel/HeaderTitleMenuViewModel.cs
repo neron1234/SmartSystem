@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
+using MMK.SmartSystem.Common.ViewModel;
+using MMK.SmartSystem.WebCommon.DeviceModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,16 @@ using System.Threading.Tasks;
 
 namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
 {
-    public class HeaderTitleMenuViewModel:ViewModelBase
+    public class HeaderTitleProgram : CncResultViewModel<ReadProgramNameResultModel>
+    {
+
+    }
+
+    public class HeaderTitleAlarm : CncResultViewModel<ReadAlarmResultModel>
+    { 
+    
+    }
+    public class HeaderTitleMenuViewModel : ViewModelBase
     {
         private string _Title;
         public string Title
@@ -55,7 +66,7 @@ namespace MMK.SmartSystem.LE.Host.SystemControl.ViewModel
         {
             this.Title = "手动";
             this.ProgramName = "09100";
-            this.WarnStr = "机器出现一般故障";
+            this.WarnStr = "";
         }
     }
 }

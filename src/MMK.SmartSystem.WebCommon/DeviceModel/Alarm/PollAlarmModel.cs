@@ -11,7 +11,7 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
 
     }
 
-    public class ReadAlarmResultItemModel
+    public class ReadAlarmResultItemModel : IEquatable<ReadAlarmResultItemModel>
     {
         [Newtonsoft.Json.JsonProperty("num")]
         public int Num { get; set; }
@@ -57,6 +57,14 @@ namespace MMK.SmartSystem.WebCommon.DeviceModel
         [Newtonsoft.Json.JsonProperty("message")]
 
         public string Message { get; set; }
+        public override int GetHashCode()
+        {
+            return Num + NumStr.GetHashCode() + Ttype.GetHashCode() + Axis * 100;
+        }
+        public bool Equals(ReadAlarmResultItemModel other)
+        {
+            return Num == other.Num && Ttype == other.Ttype && Axis == other.Axis;
+        }
     }
 
     public class ReadAlarmResultModel : BaseCncResultModel
