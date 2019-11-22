@@ -30,6 +30,10 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             EditProgramStrVM.FillName = fillName;
             EditProgramStrVM.CloseEvent += EditProgramStrVM_CloseEvent;
             EditProgramStrVM.SaveEvent += EditProgramStrVM_SaveEvent;
+            EditProgramStrVM.LastSearchEvent += EditProgramStrVM_LastSearchEvent;
+            EditProgramStrVM.NextSearchEvent += EditProgramStrVM_NextSearchEvent;
+            EditProgramStrVM.ReplaceEvent += EditProgramStrVM_ReplaceEvent;
+            EditProgramStrVM.ReplaceAllEvent += EditProgramStrVM_ReplaceAllEvent;
             Task.Factory.StartNew(new Action(() => {
                 try
                 {
@@ -52,6 +56,30 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
             }));
         }
 
+        private void EditProgramStrVM_ReplaceAllEvent()
+        {
+            //this.MyTextEditor.
+        }
+
+        private void EditProgramStrVM_ReplaceEvent()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void EditProgramStrVM_NextSearchEvent()
+        {
+            this.MyTextEditor.SelectedText = EditProgramStrVM.SearchText;
+            this.MyTextEditor.SelectionStart = 0;
+            this.MyTextEditor.SelectAll();
+        }
+
+        private void EditProgramStrVM_LastSearchEvent()
+        {
+            this.MyTextEditor.SelectedText = EditProgramStrVM.SearchText;
+            this.MyTextEditor.SelectionStart = this.MyTextEditor.SelectionLength;
+            this.MyTextEditor.SelectAll();
+        }
+
         private void EditProgramStrVM_SaveEvent()
         {
             using (FileStream fsWrite = new FileStream(EditProgramStrVM.FillName, FileMode.OpenOrCreate, FileAccess.Write))
@@ -62,6 +90,7 @@ namespace MMK.SmartSystem.Laser.Base.ProgramOperation.UserControls
                 fsWrite.Dispose();
                 Messenger.Default.Send(new PopupMsg("", false));
             }
+            
         }
 
         private void EditProgramStrVM_CloseEvent(){
